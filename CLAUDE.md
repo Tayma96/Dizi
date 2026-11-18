@@ -44,4 +44,10 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - Kural: Her çekim TEK bir net bilgi versin; hikâye doğrusal ve anlatımla (ses) desteklensin. Seslendirmesiz, bağlamsız kareler peş peşe dizilmez.
 - Çok yakın, kıpırtısız dev yüz çekimlerinden kaçın; orta/genel çekim ağırlıklı, okunur yazı.
 - Yeni bir görsel tarz/teknik değişikliği yapmadan önce kullanıcıya küçük bir örnek gösterip onay al; beğenilen şeyi "iyileştirmek" için bozma.
-- Sıradaki önerilen yön: ilk videodaki 2D tarz (src/studio/rig + src/studio/engine/Episode.tsx) ile İmza B1'i doğrusal, anlatımlı, ElevenLabs sesli yapmak — önce kullanıcıya sor.
+- Kullanıcı: 3D, kamera sistemi ve efektler kötü değil; KÖTÜ KULLANILDI. 3D'den vazgeçme, profesyonelce kullan:
+  - Önce hikâye: her sahnenin amacı tek cümleyle yazılsın; kurgu doğrusal ve sesli (ElevenLabs) olsun.
+  - Çekim dili: önce genel/orta çekimle mekânı ve kimin kim olduğunu kur (establishing), yakın çekimi yalnızca duygu doruğunda kullan; aynı ölçek art arda tekrarlanmasın; 180° kuralı.
+  - Işık: her sahneye bilinçli ışık tasarımı (anahtar + dolgu + arka ışık, kontrast, renk senaryosu); soluk düz ışık yok.
+  - Hareket: sahnede karakter eylemi + motive kamera hareketi; efekt (flaş, ayna, sarsıntı) yalnızca hikâye gerektirince.
+  - Okunurluk: yazı/belge telefonda okunur büyüklükte ve yeterince uzun ekranda.
+  - Her sahneyi render etmeden önce birkaç kareyle kendin denetle (anlaşılıyor mu, kim nerede, ne oluyor?).
