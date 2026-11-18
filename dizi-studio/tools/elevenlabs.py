@@ -233,13 +233,15 @@ def cmd_oyuncu_sec(args):
            "<code>python3 tools/elevenlabs.py ata &lt;karakter&gt; &lt;voice_id&gt; --sahip &lt;public_owner_id&gt;</code></p>"]
     md = ["# Ses kadrosu önerileri (ElevenLabs, Türkçe)", "", "Önizlemeler ücretsizdir. Seçim sonrası: `python3 tools/elevenlabs.py ata <karakter> <voice_id> --sahip <public_owner_id>`", ""]
     for c in cast:
-        ranked = sorted(voices, key=lambda v: -score(c, v))[:4]
+        # uygunluk puanı + popülerlik (Türk kullanıcıların en çok kullandığı/klonladığı sesler önce)
+        pop = lambda v: (v.get("cloned_by_count") or 0) + (v.get("usage_character_count_1y") or 0) / 10000
+        ranked = sorted(voices, key=lambda v: (-score(c, v), -pop(v)))[:5]
         cur = assigned.get(c["id"])
         out.append(f"<h2>{html.escape(c['name'])} <small>({html.escape(c['role'])})</small>{' — atanmış: ' + html.escape(cur['ad']) if cur else ''}</h2><table>")
         md.append(f"## {c['name']} — {c['role']}" + (f" (atanmış: {cur['ad']})" if cur else ""))
         for v in ranked:
             prev = v.get("preview_url") or ""
-            out.append(f"<tr><td><b>{html.escape(v.get('name',''))}</b><br><small>{html.escape(str(v.get('gender')))}, {html.escape(str(v.get('age')))}, {html.escape(str(v.get('descriptive') or ''))}</small></td>"
+            out.append(f"<tr><td><b>{html.escape(v.get('name',''))}</b><br><small>{html.escape(str(v.get('gender')))}, {html.escape(str(v.get('age')))}, {html.escape(str(v.get('descriptive') or ''))} · kullanım: {int(pop(v))}</small></td>"
                        f"<td>{'<audio controls preload=none src=' + html.escape(prev, quote=True) + '></audio>' if prev else '—'}</td>"
                        f"<td><code>ata {c['id']} {html.escape(v['voice_id'])} --sahip {html.escape(v.get('public_owner_id',''))} --ad \"{html.escape(v.get('name',''))}\"</code></td></tr>")
             md.append(f"- **{v.get('name')}** ({v.get('gender')}, {v.get('age')}, {v.get('descriptive') or ''}) — [önizleme]({prev}) — `ata {c['id']} {v['voice_id']} --sahip {v.get('public_owner_id','')}`")
