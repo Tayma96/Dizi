@@ -48,6 +48,10 @@ npx remotion still <KompozisyonId> out/kare.png --frame=120 --scale=0.5
 # Tam bölüm render + -14 LUFS normalizasyonu + Reels parçaları
 bash tools/render.sh <KompozisyonId> <bolum-id>
 
+# 30 sn'lik parça üretimi ve birleştirme (her sahne grubunun başında "partBreak": true)
+bash tools/parca.sh <bolum-id> <parca-no>      # tek parça → bolumler/<id>-parcaN.mp4
+bash tools/birlestir.sh <bolum-id>             # tüm parçalar → bolumler/<id>.mp4 (3 dk, -14 LUFS)
+
 # Stüdyo (canlı önizleme)
 npm run dev
 ```
