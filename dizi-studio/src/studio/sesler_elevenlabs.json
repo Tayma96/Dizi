@@ -1,0 +1,20 @@
+{
+ "berkay_hasta": {
+  "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
+  "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
+  "ad": "Mert Aksoy",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "nalan": {
+  "voice_id": "uvU9jrgGLWNPeNA4NgNT",
+  "sahip": "be807c36f8506e14d6d37254720b5163ab289dd44401a2532223584fc12eea7b",
+  "ad": "İrem - Authoritarian",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ }
+}

@@ -1,0 +1,130 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "ornek15",
+ "episodeNo": 1,
+ "title": "15 sn örnek — İmza B1, h2 sahnesi (ElevenLabs v4)",
+ "scenes": [
+  {
+   "id": "h2",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "emotion": "korkmus"
+    },
+    "nalan": {
+     "mark": "tepsi",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "sfx": [
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.6
+      }
+     ],
+     "cast": {
+      "nalan": {
+       "hidden": false,
+       "enter": "sag",
+       "gesture": "tutuyor",
+       "prop": "tepsi",
+       "emotion": "soguk"
+      }
+     },
+     "fade": "giris"
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Neresi burası?",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "duvar",
+       "body": "stand"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Kalem... elimde kalem vardı. İmza atıyordum!",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Yine başladı.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "yakin",
+      "on": "nalan"
+     },
+     "tags": "[sighs]"
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Sakin ol Berkay. Derin bir nefes al.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "omuz",
+      "on": "nalan",
+      "with": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ben hasta değilim. Holdingin başındayım!",
+     "emotion": "ofkeli",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "ofkeli",
+       "gesture": "ellerAcik"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "with": "sabit"
+     },
+     "fade": "cikis"
+    }
+   ]
+  }
+ ]
+}
