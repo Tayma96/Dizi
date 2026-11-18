@@ -22,7 +22,7 @@ type V3 = [number, number, number];
 /* ------------------------------ yerleşim ------------------------------ */
 type Placed = { id: string; x: number; z: number; facing: number; seat: boolean; headY: number; walking: boolean };
 
-const HEAD_H = { child: 0.99, teen: 1.38, adult: 1.52, old: 1.49 } as const;
+const HEAD_H = { child: 0.97, teen: 1.35, adult: 1.49, old: 1.46 } as const;
 
 const resolveMark = (st: CharState, marks: Record<string, Mark3D>): Mark3D => marks[st.mark ?? Object.keys(marks)[0]] ?? { x: 0, z: 0 };
 

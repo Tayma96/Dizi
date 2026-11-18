@@ -128,13 +128,13 @@ const torsoGeo = (kind: "base" | "long" | "dress" | "skirt") =>
     const g = new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), 32);
     g.scale(1, 1, 0.7);
     return g;
-  });
+  }, true);
 const skirtGeo = (len: number, flare: number) =>
   cached(`skirt-${len}-${flare}`, () => {
-    const g = new THREE.LatheGeometry([new THREE.Vector2(0.15, 0.06), new THREE.Vector2(0.17, -0.05), new THREE.Vector2(flare, -len), new THREE.Vector2(0.001, -len)], 32);
+    const g = new THREE.LatheGeometry([new THREE.Vector2(0.001, -len), new THREE.Vector2(flare, -len), new THREE.Vector2(0.17, -0.05), new THREE.Vector2(0.15, 0.06)], 32);
     g.scale(1, 1, 0.75);
     return g;
-  });
+  }, true);
 
 /* ------------------------------ props ------------------------------ */
 const Prop3D: React.FC<{ prop: Prop }> = ({ prop }) => {
@@ -240,7 +240,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
   const foreLen = 0.21 * age.limb;
   const shoulderX = 0.19 * wx;
   const shoulderY = 0.43 * age.body;
-  const headYc = 0.56 * age.body + 0.01 + HEAD.ry * age.head;
+  const headYc = 0.56 * age.body - 0.02 + HEAD.ry * age.head;
   const resolveY = (y: number | string) => (typeof y === "number" ? y * age.body : headYc + parseFloat(y.slice(4)));
   const solve = (side: -1 | 1, h: HandT) => {
     const T = new THREE.Vector3(side * h.t[0] * (h.t[0] > 0.12 ? wx : 1), resolveY(h.t[1]), h.t[2] * (age.limb));
@@ -291,7 +291,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
 
   // ---- head
   const hp = hairPieces(look.hair.style);
-  const headY = 0.56 * age.body + 0.01 + HEAD.ry * age.head;
+  const headY = 0.56 * age.body - 0.02 + HEAD.ry * age.head;
   const headRot = new THREE.Euler(
     ((pose.headPitch ?? 0) + (emo === "uzgun" || emo === "agliyor" ? 6 : 0)) * D2R,
     (pose.headYaw ?? 0) * D2R,
@@ -350,7 +350,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
             <Arm side={-1} ik={ikL} />
             <Arm side={1} ik={ikR} />
             {/* neck + head */}
-            <M geo={cyl(0.04, 0.045, 0.09)} color={look.hair.style === "hijab" ? look.hair.color : look.skin} pos={[0, 0.53 * age.body + 0.03, -0.01]} line={0.004} />
+            <M geo={cyl(0.038, 0.045, 0.07)} color={look.hair.style === "hijab" ? look.hair.color : look.skin} pos={[0, 0.53 * age.body + 0.01, -0.01]} line={0.004} />
             <group position={[0, headY, 0]} scale={age.head} rotation={headRot}>
               <M geo={headGeometry(jaw)} color={look.skin} line={0.006} />
               <mesh geometry={faceGeometry(jaw)} material={face.mat} renderOrder={2} />

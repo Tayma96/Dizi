@@ -98,13 +98,40 @@ export const paramSurface = (fn: (u: number, v: number) => THREE.Vector3, us: nu
 };
 
 const geoCache = new Map<string, THREE.BufferGeometry>();
-export const cached = (key: string, make: () => THREE.BufferGeometry) => {
+export const cached = (key: string, make: () => THREE.BufferGeometry, outward = false) => {
   let g = geoCache.get(key);
   if (!g) {
     g = make();
+    if (outward) orientOutward(g);
     geoCache.set(key, g);
   }
   return g;
 };
 
 export const D2R = Math.PI / 180;
+
+/** Yüzey normallerini dışa çevirir (ters üretilmiş yüzeyler siyah görünmesin diye). */
+export const orientOutward = (g: THREE.BufferGeometry, center?: THREE.Vector3) => {
+  g.computeBoundingBox();
+  const c = center ?? g.boundingBox!.getCenter(new THREE.Vector3());
+  if (!g.attributes.normal) g.computeVertexNormals();
+  const pos = g.attributes.position;
+  const nor = g.attributes.normal;
+  let sum = 0;
+  for (let i = 0; i < pos.count; i++) {
+    sum += (pos.getX(i) - c.x) * nor.getX(i) + (pos.getY(i) - c.y) * nor.getY(i) + (pos.getZ(i) - c.z) * nor.getZ(i);
+  }
+  if (sum < 0) {
+    const idx = g.index;
+    if (idx) {
+      for (let i = 0; i < idx.count; i += 3) {
+        const a = idx.getX(i + 1);
+        idx.setX(i + 1, idx.getX(i + 2));
+        idx.setX(i + 2, a);
+      }
+      idx.needsUpdate = true;
+    }
+    g.computeVertexNormals();
+  }
+  return g;
+};

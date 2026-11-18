@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import type { HairStyle } from "../studio/rig/types";
-import { D2R, cached, paramSurface } from "./toon";
+import { D2R, cached, orientOutward, paramSurface } from "./toon";
 import { FACE_H, FACE_W, FACE_X0, FACE_Y0 } from "./face2d";
 
 /* Kafa geometrisi (elipsoid + çene daralması), yüz dokusu yaması ve saç kabukları. */
@@ -56,7 +56,7 @@ const mixLine = (L: Line, az: number) => {
 /** Saç kabuğu: saç çizgisi (alt sınır) önde/yanda/arkada derece cinsinden. */
 const shell = (key: string, low: Line, scale: number, opts: { top?: Line; flare?: number; bump?: number; part?: number } = {}) =>
   cached(`hair-${key}`, () =>
-    paramSurface(
+    orientOutward(paramSurface(
       (u, v) => {
         const az = (u - 0.5) * 2 * Math.PI;
         const lo = mixLine(low, az);
@@ -69,7 +69,7 @@ const shell = (key: string, low: Line, scale: number, opts: { top?: Line; flare?
       },
       64,
       18,
-    ),
+    ), new THREE.Vector3(0, 0, 0)),
   );
 
 export type HairPiece = { geo: THREE.BufferGeometry; pos?: [number, number, number]; rot?: [number, number, number]; scale?: [number, number, number]; shade?: boolean };
@@ -100,12 +100,12 @@ export const hairPieces = (style: HairStyle): HairPiece[] => {
     case "longStraight":
       return [
         { geo: shell("longS", { F: 42, S: -22, B: -40 }, 1.08, { part: 0.02 }) },
-        { geo: cached("longS-back", () => longBack(0.55, 0)) },
+        { geo: cached("longS-back", () => longBack(0.55, 0), true) },
       ];
     case "longWavy":
       return [
         { geo: shell("longW", { F: 30, S: -22, B: -40 }, 1.09, { bump: 0.015 }) },
-        { geo: cached("longW-back", () => longBack(0.5, 0.025)) },
+        { geo: cached("longW-back", () => longBack(0.5, 0.025), true) },
       ];
     case "bob":
       return [{ geo: shell("bob", { F: 14, S: -42, B: -55 }, 1.09, { flare: 0.12 }) }];
@@ -135,7 +135,7 @@ export const hairPieces = (style: HairStyle): HairPiece[] => {
         ),
       ];
     case "hijab":
-      return [{ geo: cached("hijab", hijabGeo) }, { geo: cached("hijab-drape", hijabDrape) }];
+      return [{ geo: cached("hijab", () => orientOutward(hijabGeo(), new THREE.Vector3(0, 0, 0))) }, { geo: cached("hijab-drape", hijabDrape, true) }];
     default:
       return [];
   }
@@ -170,6 +170,6 @@ const hijabGeo = () =>
 
 const hijabDrape = () =>
   new THREE.LatheGeometry(
-    [new THREE.Vector2(0.15, -0.12), new THREE.Vector2(0.14, -0.2), new THREE.Vector2(0.17, -0.28), new THREE.Vector2(0.27, -0.38), new THREE.Vector2(0.3, -0.42)],
+    [new THREE.Vector2(0.15, -0.12), new THREE.Vector2(0.14, -0.2), new THREE.Vector2(0.16, -0.27), new THREE.Vector2(0.22, -0.35), new THREE.Vector2(0.24, -0.4)],
     32,
   );
