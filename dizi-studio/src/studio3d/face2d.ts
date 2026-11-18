@@ -80,17 +80,47 @@ const drawEye = (ctx: CanvasRenderingContext2D, cx: number, cy: number, look: Lo
   }
 };
 
-const drawBrow = (ctx: CanvasRenderingContext2D, cx: number, cy: number, f: FaceParams, color: string, flip: boolean, thick: number) => {
+const drawBrow = (ctx: CanvasRenderingContext2D, cx: number, cy: number, f: FaceParams, color: string, flip: boolean, thick: number, arch = 7) => {
   const sg = flip ? -1 : 1;
   const xi = cx + 22 * sg;
   const xo = cx - 22 * sg;
   const yi = cy + 3 + f.browLift - f.browInner;
   const yo = cy + 3 + f.browLift - f.browOuter;
-  const ym = Math.min(yi, yo) - 7;
+  const ym = Math.min(yi, yo) - arch;
   stroke(ctx, `M ${xo} ${yo} Q ${cx} ${ym} ${xi} ${yi}`, color, thick);
 };
 
-const drawMouth = (ctx: CanvasRenderingContext2D, v: Viseme | null, rest: FaceParams["mouth"], cx: number, cy: number, amp: number) => {
+/** Film stili kadın dudakları (dinlenme hali): kupid yayı olan üst dudak + dolgun alt dudak */
+const drawLips = (ctx: CanvasRenderingContext2D, cx: number, cy: number, rest: FaceParams["mouth"], col: string) => {
+  const smile = rest === "smile" || rest === "smirk" ? 4 : rest === "frown" ? -3 : 0;
+  const up = `M ${cx - 17} ${cy - smile * 0.5} Q ${cx - 9} ${cy - 8} ${cx - 2} ${cy - 5} Q ${cx} ${cy - 3.5} ${cx + 2} ${cy - 5} Q ${cx + 9} ${cy - 8} ${cx + 17} ${cy - smile * 0.5} Q ${cx} ${cy + 1} ${cx - 17} ${cy - smile * 0.5} Z`;
+  const lo = `M ${cx - 16} ${cy - smile * 0.5} Q ${cx} ${cy + 2} ${cx + 16} ${cy - smile * 0.5} Q ${cx + 10} ${cy + 11} ${cx} ${cy + 11} Q ${cx - 10} ${cy + 11} ${cx - 16} ${cy - smile * 0.5} Z`;
+  fill(ctx, lo, col);
+  fill(ctx, up, col);
+  ctx.globalAlpha = 0.35;
+  fill(ctx, `M ${cx - 7} ${cy + 5} Q ${cx} ${cy + 3.5} ${cx + 7} ${cy + 5} Q ${cx} ${cy + 8} ${cx - 7} ${cy + 5} Z`, "#ffffff");
+  ctx.globalAlpha = 1;
+  stroke(ctx, `M ${cx - 16} ${cy - smile * 0.5} Q ${cx} ${cy + 2.5} ${cx + 16} ${cy - smile * 0.5}`, "#6a2a2c", 2.4);
+};
+
+/** Film stili kadın ağzı konuşurken: koyu ağız içi + üstte ve altta dolgun dudaklar (dudak senkronu ağız şekilleriyle aynı) */
+const drawLipsOpen = (ctx: CanvasRenderingContext2D, cx: number, cy: number, v: Viseme, amp: number, col: string) => {
+  const S: Record<string, [number, number]> = { A: [15, 17], E: [17, 10], I: [17, 6], O: [10, 13], U: [7, 8], M: [15, 0], F: [15, 5], L: [13, 7] };
+  const [w, h0] = S[v] ?? [14, 6];
+  const h = h0 * amp;
+  const inside = `M ${cx - w} ${cy} Q ${cx} ${cy - 3} ${cx + w} ${cy} Q ${cx} ${cy + h * 1.3 + 2} ${cx - w} ${cy} Z`;
+  fill(ctx, inside, "#4a1a1c");
+  if (v === "E" || v === "I" || v === "L" || v === "F") fill(ctx, `M ${cx - w * 0.7} ${cy + 0.5} Q ${cx} ${cy - 1.5} ${cx + w * 0.7} ${cy + 0.5} L ${cx + w * 0.6} ${cy + 4} Q ${cx} ${cy + 2.5} ${cx - w * 0.6} ${cy + 4} Z`, "#fffaf2");
+  const ww = w + 3;
+  fill(ctx, `M ${cx - ww} ${cy} Q ${cx - 9} ${cy - 9} ${cx - 2} ${cy - 6} Q ${cx} ${cy - 4.5} ${cx + 2} ${cy - 6} Q ${cx + 9} ${cy - 9} ${cx + ww} ${cy} Q ${cx} ${cy - 2.5} ${cx - ww} ${cy} Z`, col);
+  const by = cy + h * 1.3 + 1;
+  fill(ctx, `M ${cx - ww + 1} ${cy + 1} Q ${cx} ${by + 1} ${cx + ww - 1} ${cy + 1} Q ${cx + 10} ${by + 10} ${cx} ${by + 10} Q ${cx - 10} ${by + 10} ${cx - ww + 1} ${cy + 1} Z`, col);
+  ctx.globalAlpha = 0.3;
+  fill(ctx, `M ${cx - 6} ${by + 5} Q ${cx} ${by + 3.5} ${cx + 6} ${by + 5} Q ${cx} ${by + 7.5} ${cx - 6} ${by + 5} Z`, "#ffffff");
+  ctx.globalAlpha = 1;
+};
+
+const drawMouth = (ctx: CanvasRenderingContext2D, v: Viseme | null, rest: FaceParams["mouth"], cx: number, cy: number, amp: number, lc = OUT) => {
   const inside = "#5e2324";
   const tongue = "#d9777a";
   const teeth = "#fffaf2";
@@ -102,12 +132,12 @@ const drawMouth = (ctx: CanvasRenderingContext2D, v: Viseme | null, rest: FacePa
     const s = S[v];
     const h = s.h * amp;
     if (s.closed) {
-      stroke(ctx, `M ${cx - s.w} ${cy} Q ${cx} ${cy + 3} ${cx + s.w} ${cy}`, OUT, 4.5);
+      stroke(ctx, `M ${cx - s.w} ${cy} Q ${cx} ${cy + 3} ${cx + s.w} ${cy}`, lc, 4.5);
       return;
     }
     if (s.round) {
       ctx.fillStyle = inside;
-      ctx.strokeStyle = OUT;
+      ctx.strokeStyle = lc;
       ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.ellipse(cx, cy + h * 0.45, s.w, Math.max(4, h * 0.75), 0, 0, Math.PI * 2);
@@ -120,36 +150,36 @@ const drawMouth = (ctx: CanvasRenderingContext2D, v: Viseme | null, rest: FacePa
     if (s.teeth) fill(ctx, `M ${cx - s.w * 0.75} ${cy + 1} Q ${cx} ${cy - 2} ${cx + s.w * 0.75} ${cy + 1} L ${cx + s.w * 0.6} ${cy + 5} Q ${cx} ${cy + 3} ${cx - s.w * 0.6} ${cy + 5} Z`, teeth);
     if (s.f) fill(ctx, `M ${cx - s.w * 0.7} ${cy + 1} L ${cx + s.w * 0.7} ${cy + 1} L ${cx + s.w * 0.6} ${cy + 6} L ${cx - s.w * 0.6} ${cy + 6} Z`, teeth);
     if (h > 10) fill(ctx, `M ${cx - s.w * 0.5} ${cy + h * 1.2} Q ${cx} ${cy + h * 0.7} ${cx + s.w * 0.5} ${cy + h * 1.2}`, tongue);
-    ctx.strokeStyle = OUT;
+    ctx.strokeStyle = lc;
     ctx.lineWidth = 4;
     ctx.stroke(new Path2D(d));
     return;
   }
   switch (rest) {
-    case "smile": return stroke(ctx, `M ${cx - 17} ${cy - 3} Q ${cx} ${cy + 12} ${cx + 17} ${cy - 3}`, OUT, 4.5);
+    case "smile": return stroke(ctx, `M ${cx - 17} ${cy - 3} Q ${cx} ${cy + 12} ${cx + 17} ${cy - 3}`, lc, 4.5);
     case "grin": {
       const d = `M ${cx - 22} ${cy - 4} Q ${cx} ${cy + 30} ${cx + 22} ${cy - 4} Z`;
       fill(ctx, d, inside);
       fill(ctx, `M ${cx - 18} ${cy - 2} L ${cx + 18} ${cy - 2} L ${cx + 14} ${cy + 5} L ${cx - 14} ${cy + 5} Z`, teeth);
       fill(ctx, `M ${cx - 9} ${cy + 17} Q ${cx} ${cy + 10} ${cx + 9} ${cy + 17}`, tongue);
-      return stroke(ctx, d, OUT, 4);
+      return stroke(ctx, d, lc, 4);
     }
-    case "frown": return stroke(ctx, `M ${cx - 16} ${cy + 6} Q ${cx} ${cy - 6} ${cx + 16} ${cy + 6}`, OUT, 4.5);
+    case "frown": return stroke(ctx, `M ${cx - 16} ${cy + 6} Q ${cx} ${cy - 6} ${cx + 16} ${cy + 6}`, lc, 4.5);
     case "open": {
       const d = `M ${cx - 12} ${cy} Q ${cx} ${cy - 6} ${cx + 12} ${cy} Q ${cx + 10} ${cy + 22} ${cx} ${cy + 22} Q ${cx - 10} ${cy + 22} ${cx - 12} ${cy} Z`;
       fill(ctx, d, inside);
-      return stroke(ctx, d, OUT, 4);
+      return stroke(ctx, d, lc, 4);
     }
     case "o": {
-      ctx.fillStyle = inside; ctx.strokeStyle = OUT; ctx.lineWidth = 4;
+      ctx.fillStyle = inside; ctx.strokeStyle = lc; ctx.lineWidth = 4;
       ctx.beginPath(); ctx.ellipse(cx, cy + 5, 9, 11, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
       return;
     }
-    case "smirk": return stroke(ctx, `M ${cx - 14} ${cy + 2} Q ${cx + 4} ${cy + 6} ${cx + 18} ${cy - 6}`, OUT, 4.5);
-    case "tight": return stroke(ctx, `M ${cx - 12} ${cy + 2} Q ${cx} ${cy - 1} ${cx + 12} ${cy + 2}`, OUT, 5.5);
-    case "wavy": return stroke(ctx, `M ${cx - 16} ${cy + 4} Q ${cx - 8} ${cy - 3} ${cx} ${cy + 3} Q ${cx + 8} ${cy + 9} ${cx + 16} ${cy + 2}`, OUT, 4.5);
-    case "flat": return stroke(ctx, `M ${cx - 13} ${cy + 1} L ${cx + 13} ${cy + 1}`, OUT, 4.5);
-    default: return stroke(ctx, `M ${cx - 14} ${cy} Q ${cx} ${cy + 4} ${cx + 14} ${cy}`, OUT, 4.5);
+    case "smirk": return stroke(ctx, `M ${cx - 14} ${cy + 2} Q ${cx + 4} ${cy + 6} ${cx + 18} ${cy - 6}`, lc, 4.5);
+    case "tight": return stroke(ctx, `M ${cx - 12} ${cy + 2} Q ${cx} ${cy - 1} ${cx + 12} ${cy + 2}`, lc, 5.5);
+    case "wavy": return stroke(ctx, `M ${cx - 16} ${cy + 4} Q ${cx - 8} ${cy - 3} ${cx} ${cy + 3} Q ${cx + 8} ${cy + 9} ${cx + 16} ${cy + 2}`, lc, 4.5);
+    case "flat": return stroke(ctx, `M ${cx - 13} ${cy + 1} L ${cx + 13} ${cy + 1}`, lc, 4.5);
+    default: return stroke(ctx, `M ${cx - 14} ${cy} Q ${cx} ${cy + 4} ${cx + 14} ${cy}`, lc, 4.5);
   }
 };
 
@@ -175,7 +205,7 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     ctx.globalAlpha = 1;
   }
   if (look.facialHair === "stubble") {
-    ctx.globalAlpha = 0.22;
+    ctx.globalAlpha = s.eyes3d ? 0.3 : 0.22;
     fill(ctx, "M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 276 200 282 Q 150 276 128 236 Z", "#5a4a44");
     ctx.globalAlpha = 1;
   }
@@ -195,11 +225,14 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     drawEye(ctx, 160, 198, look, f, s, false);
     drawEye(ctx, 240, 198, look, f, s, true);
   }
-  const browColor = look.hair.style === "hijab" ? "#4a3428" : old ? "#7d746c" : look.hair.color;
+  const browColor = look.hair.style === "hijab" ? "#4a3428" : old ? "#7d746c" : s.eyes3d ? look.hair.shade : look.hair.color;
   // film stilinde kaşlar gözün biraz üstünde ve daha ince (3D göz daha büyük)
   const by = s.eyes3d ? 150 : 160;
-  drawBrow(ctx, 160, by, f, browColor, false, s.eyes3d ? (male ? 7 : 5) : male ? 8 : 6.5);
-  drawBrow(ctx, 240, by, f, browColor, true, s.eyes3d ? (male ? 7 : 5) : male ? 8 : 6.5);
+  // film: erkekte kalın-düz kaş (keskin bakış), kadında ince-kavisli
+  const bt = s.eyes3d ? (male ? 8.5 : 4.2) : male ? 8 : 6.5;
+  const ba = s.eyes3d ? (male ? 3 : 11) : 7;
+  drawBrow(ctx, 160, by, f, browColor, false, bt, ba);
+  drawBrow(ctx, 240, by, f, browColor, true, bt, ba);
   if (!s.eyes3d) stroke(ctx, "M 202 214 Q 196 236 204 244", OUT, 3.5);
   if (look.scar) {
     stroke(ctx, "M 226 140 L 238 176", "#9a4a40", 4);
@@ -223,7 +256,11 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     ctx.translate(200, 266);
     ctx.scale(1.3, 1.3);
     ctx.translate(-200, -266);
-    drawMouth(ctx, s.viseme, f.mouth, 200, 266, amp);
+    const fem = look.gender === "f" && look.age !== "child";
+    const restLike = !s.viseme || s.viseme === "X" || s.viseme === "M";
+    if (fem && restLike && ["line", "flat", "tight", "smile", "smirk", "frown"].includes(f.mouth)) drawLips(ctx, 200, 266, f.mouth, "#c45f66");
+    else if (fem && s.viseme && s.viseme !== "X") drawLipsOpen(ctx, 200, 266, s.viseme, amp, "#c45f66");
+    else drawMouth(ctx, s.viseme, f.mouth, 200, 266, amp, fem ? "#8a3a3e" : OUT);
     ctx.restore();
   } else drawMouth(ctx, s.viseme, f.mouth, 200, 274, amp);
   const tears = s.tears;

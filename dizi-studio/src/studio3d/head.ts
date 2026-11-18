@@ -20,7 +20,8 @@ const K = 0.38 / 220;
 const Y0 = 92;
 const Y1 = 312;
 const FACE_PATHS = {
-  m: [[114, 150], [112, 250, 140, 286], [170, 312, 200, 312], [230, 312, 260, 286], [288, 250, 286, 150], [280, 90, 200, 90], [120, 90, 114, 150]],
+  // erkek (film stili): düz elmacık, geniş çene köşesi, düz çene ucu — daha köşeli, olgun yüz
+  m: [[114, 150], [114, 258, 132, 288], [156, 314, 200, 314], [244, 314, 268, 288], [286, 258, 286, 150], [280, 90, 200, 90], [120, 90, 114, 150]],
   f: [[116, 150], [112, 246, 146, 284], [174, 310, 200, 310], [226, 310, 254, 284], [288, 246, 284, 150], [278, 92, 200, 92], [122, 92, 116, 150]],
 } as const;
 
@@ -72,11 +73,11 @@ const headSurf = (male: boolean, th: number, y: number, scale = 1, out = new THR
 
 const jawMale = (jaw: number) => jaw < 0.2;
 export const headGeometry = (jaw: number) =>
-  cached(`head2-${jawMale(jaw)}`, () => orientOutward(paramSurface((u, v) => headSurf(jawMale(jaw), (u - 0.5) * 2 * Math.PI, Y0 + v * (Y1 - Y0)), 64, 48), new THREE.Vector3(0, 0, 0)));
+  cached(`head3-${jawMale(jaw)}`, () => orientOutward(paramSurface((u, v) => headSurf(jawMale(jaw), (u - 0.5) * 2 * Math.PI, Y0 + v * (Y1 - Y0)), 64, 48), new THREE.Vector3(0, 0, 0)));
 
 /** Yüz yaması: yüzeyin ön kısmı, dokusu düz (önden) yansıtılır → 2D yüz çizimi bozulmadan görünür */
 export const faceGeometry = (jaw: number) =>
-  cached(`face2-${jawMale(jaw)}`, () => {
+  cached(`face3-${jawMale(jaw)}`, () => {
     const male = jawMale(jaw);
     const g = paramSurface(
       (u, v) => headSurf(male, (u - 0.5) * 2 * (82 * D2R), Y0 + (1 - v) * (Y1 - Y0), 1.012),
@@ -141,7 +142,7 @@ const sphere = cached("sph", () => new THREE.SphereGeometry(1, 24, 16));
 export const hairPieces = (style: HairStyle): HairPiece[] => {
   switch (style) {
     case "shortMale":
-      return [{ geo: shell("short", { F: 34, S: -8, B: -52 }, 1.08, { part: 0.03 }) }];
+      return [{ geo: shell("short2", { F: 34, S: -8, B: -52 }, 1.08, { part: 0.1, bump: 0.012 }) }];
     case "spiky":
       return [
         { geo: shell("spiky", { F: 34, S: -8, B: -52 }, 1.07) },
@@ -152,7 +153,7 @@ export const hairPieces = (style: HairStyle): HairPiece[] => {
         })),
       ];
     case "slick":
-      return [{ geo: shell("slick", { F: 40, S: -2, B: -48 }, 1.09, { part: 0.05 }) }];
+      return [{ geo: shell("slick2", { F: 40, S: -2, B: -48 }, 1.09, { part: 0.11 }) }];
     case "buzz":
       return [{ geo: shell("buzz", { F: 36, S: -2, B: -50 }, 1.03) }];
     case "balding":

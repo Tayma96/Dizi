@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Emotion, Gesture, Look, MouthCue, Prop, Viseme } from "../studio/rig/types";
 import { FACE_H, FACE_PX, FACE_W, drawFace } from "./face2d";
-import { HEAD, earPos, faceGeometry, faceToHead, hairPieces, headGeometry } from "./head";
+import { HEAD, earPos, faceGeometry, faceToHead, hairPieces, headGeometry, headPoint } from "./head";
 import { hairStrands } from "./textures";
 import { D2R, STIL, cached, flat, gloss, outline, tenRengi, toonChar as toon, toonCharTex } from "./toon";
 import type { FaceParams } from "../studio/rig/face";
@@ -201,17 +201,18 @@ const lashGeo = (r: number, t: number) => cached(`lash-${r}-${t}`, () => new THR
 
 /** 3D göz: göz akı, iris, göz bebeği, ışık parlaması; üst/alt kapak açıklık, göz kırpma, gülümseme ve duyguya göre döner. */
 const Eye3D: React.FC<{ look: Look; f: FaceParams; side: -1 | 1; blink: number; lookX: number; lookY: number; jaw: number }> = ({ look, f, side, blink, lookX, lookY, jaw }) => {
-  const r = EYE_R * (look.age === "child" ? 1.12 : 1);
+  const female = look.gender === "f" && look.age !== "child";
+  // kadında daha büyük göz; erkekte biraz küçük ve hafif düşük kapak (keskin bakış)
+  const r = EYE_R * (look.age === "child" ? 1.12 : female ? 1.1 : 0.94);
   const surf = faceToHead(200 + side * 40, 196, 1, jaw);
   const c: [number, number, number] = [surf.x * 0.96, surf.y, surf.z - r * 0.5];
   const open = f.eyeOpen * (1 - blink);
   // üst kapak: açık gözde irisin üst kenarına değer; kapanınca aşağı iner
-  const upper = f.eyeSmile ? 0.1 : 0.42 - Math.min(1.35, open) * 1.12;
+  const upper = f.eyeSmile ? 0.1 : 0.42 - Math.min(1.35, open) * 1.12 + (female ? 0 : 0.16);
   // alt kapak: dinlenmede gözün altında, gülümsemede yukarı
   const lower = f.eyeSmile ? -0.05 : 0.95 - Math.max(0, open - 1) * 0.3;
   // kapak eğimi: öfke → iç köşe aşağı, üzüntü → dış köşe aşağı
   const tilt = Math.max(-0.35, Math.min(0.35, (f.browOuter - f.browInner) * 0.03)) * side;
-  const female = look.gender === "f" && look.age !== "child";
   return (
     <group position={c} rotation={[0, side * 0.12, 0]}>
       {/* göz küresi + iris (bakış yönüne döner) */}
@@ -227,7 +228,10 @@ const Eye3D: React.FC<{ look: Look; f: FaceParams; side: -1 | 1; blink: number; 
       <group rotation={[0, 0, tilt]}>
         <group rotation={[upper, 0, 0]}>
           <mesh geometry={lidGeo(r * 1.035, true)} material={toon(look.skin)} />
-          <mesh geometry={lashGeo(r * 1.035, female ? 0.0042 : 0.0028)} material={flat("#24160f")} rotation={[Math.PI / 2, 0, 0]} />
+          <mesh geometry={lashGeo(r * 1.035, female ? 0.0055 : 0.0032)} material={flat("#1c110c")} rotation={[Math.PI / 2, 0, 0]} />
+          {female ? (
+            <mesh geometry={capsule(0.0035, 0.012)} material={flat("#1c110c")} position={[side * r * 1.02, r * 0.1, r * 0.1]} rotation={[0, 0, -side * 1.0]} />
+          ) : null}
         </group>
         <group rotation={[lower, 0, 0]}>
           <mesh geometry={lidGeo(r * 1.03, false)} material={toon(look.skin)} />
@@ -239,7 +243,7 @@ const Eye3D: React.FC<{ look: Look; f: FaceParams; side: -1 | 1; blink: number; 
 
 const Nose3D: React.FC<{ look: Look; jaw: number }> = ({ look, jaw }) => {
   const male = look.gender === "m";
-  const k = (male ? 1.0 : 0.85) * (look.age === "child" ? 0.75 : 1);
+  const k = (male ? 1.05 : 0.76) * (look.age === "child" ? 0.75 : 1);
   const tip = faceToHead(200, 236, 1, jaw);
   const bridge = faceToHead(200, 214, 1, jaw);
   // tek parça yumuşak burun: ince köprü + küçük yuvarlak uç (yumru yok)
@@ -478,6 +482,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
               {hp.map((h, i) => (
                 <M key={i} geo={h.geo} color={h.shade ? look.outfit.accent ?? look.hair.shade : look.hair.color} pos={h.pos} rot={h.rot} scale={h.scale} line={0.008} map={h.shade || look.hair.style === "hijab" ? undefined : hairStrands()} />
               ))}
+              {STIL.film ? <HairLocks look={look} /> : null}
               {look.glasses ? <Glasses color={look.glasses} jaw={jaw} /> : null}
             </group>
           </group>
@@ -487,6 +492,64 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
   );
 };
 
+
+/* ---- film stili saç tutamları: uca doğru incelen kıvrımlı tüpler ---- */
+type LockDef = { pts: [number, number, number][]; r0: number; r1: number };
+const lockGeo = (key: string, d: LockDef) =>
+  cached(`lock-${key}`, () => {
+    const curve = new THREE.CatmullRomCurve3(d.pts.map(([az, el, sc]) => headPoint(az, el * D2R, sc, 0.05).clone()));
+    const TS = 40;
+    const RS = 10;
+    const g = new THREE.TubeGeometry(curve, TS, 1, RS, false);
+    const pos = g.attributes.position;
+    for (let i = 0; i <= TS; i++) {
+      const t = i / TS;
+      const c = curve.getPointAt(t);
+      const r = (d.r0 + (d.r1 - d.r0) * t) * (t < 0.08 ? 0.6 + t * 5 : 1);
+      for (let j = 0; j <= RS; j++) {
+        const k = i * (RS + 1) + j;
+        const v = new THREE.Vector3(pos.getX(k), pos.getY(k), pos.getZ(k)).sub(c);
+        v.setLength(r);
+        // tutamlar yassı: kafaya dik yönde ince
+        const n = c.clone().normalize();
+        const along = v.dot(n);
+        v.addScaledVector(n, -along * 0.45);
+        pos.setXYZ(k, c.x + v.x, c.y + v.y, c.z + v.z);
+      }
+    }
+    pos.needsUpdate = true;
+    g.computeVertexNormals();
+    return g;
+  });
+
+const LOCKS: Record<string, LockDef[]> = {
+  // kadın: yandan perçem + yüzü çerçeveleyen iki tutam
+  kadin: [
+    { pts: [[-0.4, 62, 1.1], [0.05, 46, 1.13], [0.5, 32, 1.11], [0.85, 16, 1.07], [1.0, 2, 1.05]], r0: 0.026, r1: 0.008 },
+    { pts: [[-0.15, 58, 1.1], [0.25, 44, 1.12], [0.62, 28, 1.1], [0.9, 10, 1.06]], r0: 0.022, r1: 0.007 },
+    { pts: [[-0.95, 30, 1.08], [-1.12, 8, 1.07], [-1.2, -18, 1.07], [-1.12, -42, 1.08]], r0: 0.02, r1: 0.007 },
+    { pts: [[1.05, 22, 1.08], [1.18, 0, 1.07], [1.22, -24, 1.07], [1.14, -46, 1.08]], r0: 0.02, r1: 0.007 },
+  ],
+  // erkek: saç çizgisinin üstünden başlayıp yukarı ve yana taranan hacim (quiff), uçlar kafaya yatar
+  erkek: [-0.5, -0.22, 0.06, 0.34].map((a, i) => ({
+    pts: [[a, 40, 1.07], [a + 0.18, 52, 1.16], [a + 0.42, 64, 1.13], [a + 0.7, 74, 1.07]] as [number, number, number][],
+    r0: 0.032 - i * 0.002,
+    r1: 0.01,
+  })),
+};
+
+const HairLocks: React.FC<{ look: Look }> = ({ look }) => {
+  const st = look.hair.style;
+  const set = look.gender === "f" && ["bun", "ponytail", "longStraight", "longWavy", "bob", "braids"].includes(st) ? "kadin" : look.gender === "m" && (st === "shortMale" || st === "slick") ? "erkek" : null;
+  if (!set) return null;
+  return (
+    <group>
+      {LOCKS[set].map((d, i) => (
+        <mesh key={i} geometry={lockGeo(`${set}-${i}`, d)} material={toonCharTex(look.hair.color, hairStrands(), "hair")} />
+      ))}
+    </group>
+  );
+};
 
 const Glasses: React.FC<{ color: string; jaw: number }> = ({ color, jaw }) => {
   const ring = cached("glass-ring", () => new THREE.TorusGeometry(0.032, 0.0045, 8, 28));
