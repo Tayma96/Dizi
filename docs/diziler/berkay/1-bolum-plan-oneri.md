@@ -16,7 +16,7 @@ Bu dosyada yeni replik yoktur: yalnızca olaylar, görüntü fikirleri ve kancal
 | Zaman | Ne olur | Amaç |
 |---|---|---|
 | 0:00-0:03 | Parmaklıklı pencereye yakın plan. Ekranda küçük yazı: **"GÜN 183"**. Kuş süzülür, cama konar. | Kanca: sayaç ne? Neden 183? |
-| 0:03-0:12 | Dış ses (kullanıcının): "Hafızanızı kaybettiğinizde… güvende hisseder miydiniz?" | Temayı koyar: güven ve kafes |
+| 0:03-0:12 | Dış ses (Berkay'ın kendi sesi, Hollywood açılış anlatımı gibi; kullanıcının): "Hafızanızı kaybettiğinizde… güvende hisseder miydiniz?" | Temayı koyar: güven ve kafes |
 | 0:12-0:18 | Kamera demir yatakta yatan Berkay'a döner. Dış ses: "Evet, o benim." | Kim olduğumuzu kurar |
 | 0:18-0:35 | Berkay gözlerini açar: "Nerdeyim ben, neresi burası?" Başını tutar, acıyla doğrulur. **Bileğinde hasta bileziği:** "B. TANER · Oda 7 · Kabul: 14 Mart". | İpucu ekilir: 14 Mart |
 | 0:35-0:55 | Hemşire girer: "Günaydın Berkay, uyanmışsın." / "Sen kimsin…" / "Yine başladık." / "Al haplarını getirdim…" | Kullanıcının replikleri |
@@ -35,7 +35,7 @@ Bu dosyada yeni replik yoktur: yalnızca olaylar, görüntü fikirleri ve kancal
 
 ## Sezonun ters köşeleri (büyük gerçek C seçilirse)
 1. **Hemşire düşman değil (B3-4):** hapları o değiştiriyor; Berkay'ı korumaya çalışıyor ama izlendiği için soğuk davranıyor.
-2. **Dış ses Berkay'ın kendisi değil (sezon ortası):** "Evet, o benim" diyen anlatıcının sesi bir gün koridorda duyulur.
+2. **Anlatıcı Berkay ne biliyor? (sezon ortası):** dış ses Berkay'ın kendisi (kullanıcı kararı), olanları sonradan anlatıyor gibi konuşur. Ama bir bölümde anlattığı şey gördüğümüzle çelişir: Berkay o gün de bir şeyi hatırlamıyor ya da kendine yalan söylüyor.
 3. **Notları yazan Berkay değil (B6-7):** el yazısı onun, ama notları ona yazdıran biri var.
 4. **Oyunu kuran (final):** bu "hafıza oyununu" yıllar önce Berkay kendisi tasarlamış, bir başkasına uygulamak için. Şimdi kendi kurduğu tuzağın içinde.
 

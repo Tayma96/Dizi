@@ -44,9 +44,10 @@ Berkay düz bir çizgide "uyanmaz". Arada gerçekten pes ettiği bölümler olur
 **şüphe → direniş → kanıt karşısında çöküş ("Ben gerçekten deliyim") → hapları kendi isteğiyle içme → küçük bir çatlak → yeniden şüphe.**
 İzleyici Berkay pes ettiğinde ona kızar ve korkar. Yorum tetikleyicisi bu: "Berkay içme o hapı!"
 
-## 5. Güvenilmez anlatıcı
-- Dış ses Berkay'ın gelecekteki hâli gibi konuşur, ama zaman zaman gördüğümüzle çelişir.
-- İzleyici anlatıcıya da güvenemez. Çelişki yalan değil, bakış açısı olmalı; final bunu açıklar.
+## 5. Anlatıcı: Berkay'ın kendi sesi (kullanıcı kararı)
+- Dış ses Berkay'dır: Hollywood filmlerindeki gibi başrolün kendi anlatımı, aynı ses (ElevenLabs'te Berkay'ın sesi), daha sakin ve içten bir tonla.
+- Anlatıcı Berkay sonradan anlatıyormuş gibi konuşur, ama kendi aklına da tam güvenemez. Zaman zaman anlattığı şey ekranda gördüğümüzle çelişir. Bu yalan değil, hastalık ya da oyunun etkisi. Belirsizliği besler.
+- Ses başka birine ait çıkmaz.
 
 ## 6. Yasaklar
 - Final öncesi "her şey kurgu" ya da "her şey gerçek" kesin kanıtı yok.
