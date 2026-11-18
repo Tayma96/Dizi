@@ -171,6 +171,18 @@ const Prop3D: React.FC<{ prop: Prop }> = ({ prop }) => {
       return <M geo={box(0.02, 0.22, 0.004)} color="#d7dde3" pos={[0, 0.12, 0.02]} line={0.003} />;
     case "anahtar":
       return <M geo={box(0.012, 0.07, 0.004)} color="#c9a75a" pos={[0, 0.03, 0.03]} line={0.002} />;
+    case "kalem":
+      return <M geo={cyl(0.007, 0.006, 0.15)} color="#c9a75a" pos={[0, 0.05, 0.03]} rot={[0.6, 0, 0]} line={0.002} />;
+    case "tepsi":
+      return (
+        <group position={[0, 0.0, 0.12]}>
+          <M geo={box(0.32, 0.015, 0.22)} color="#c8ccd2" line={0.003} />
+          <M geo={cyl(0.025, 0.02, 0.045)} color="#f4f4f4" pos={[0.06, 0.03, 0]} line={0.002} />
+          <M geo={cyl(0.03, 0.025, 0.07)} color="#dff0ff" pos={[-0.07, 0.04, 0]} line={0.002} />
+        </group>
+      );
+    case "ilac":
+      return <M geo={cyl(0.022, 0.018, 0.04)} color="#f4f4f4" pos={[0, 0.04, 0.03]} line={0.002} />;
     case "kitap":
       return <M geo={box(0.16, 0.21, 0.035)} color="#3b5d8a" pos={[0, 0.04, 0.04]} line={0.004} />;
     default:

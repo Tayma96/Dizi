@@ -69,7 +69,7 @@ export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac";
 
 export type Look = {
   name: string;
@@ -94,6 +94,8 @@ export type Look = {
   earrings?: string;
   blush?: boolean;
   mole?: boolean;
+  /** kaşta yara izi */
+  scar?: boolean;
 };
 
 export type ArmPose = { upper: number; fore: number };

@@ -7,7 +7,7 @@ import { Audio } from "@remotion/media";
 import { castById } from "../studio/cast";
 import { FilmFinish } from "../dizi/Effects";
 import { lightning } from "../dizi/Sets";
-import { EndCard, KaraokeSubtitle, PhoneMessage, TitleCard } from "../studio/engine/Overlays";
+import { DocumentCard, EndCard, KaraokeSubtitle, MirrorOverlay, PhoneMessage, TitleCard } from "../studio/engine/Overlays";
 import { buildTimeline, type TBeat, type TScene, type Timeline } from "../studio/engine/timeline";
 import type { CharState, EpisodeProps, EpisodeScript, Shot, VoiceManifest } from "../studio/engine/types";
 import { Character3D } from "./Character3D";
@@ -185,7 +185,7 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
     if (d === "kapat") doorOpen = i === bi ? interpolate(bf, [0, 12], [1, 0], clamp) : 0;
   }
 
-  const speakerId = tb.beat.type === "line" && !tb.beat.voiceover ? tb.beat.who : undefined;
+  const speakerId = tb.beat.type === "line" && !tb.beat.voiceover && !tb.beat.offscreen ? tb.beat.who : undefined;
   const chars = Object.values(placed).map((p) => {
     const st = tb.cast[p.id];
     const look = castById(p.id);
@@ -249,12 +249,15 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
           {b.beat.type === "line" ? (
-            <KaraokeSubtitle tb={b} speakerName={castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
+            <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
           ) : b.beat.type === "yazi" ? (
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
           ) : b.beat.type === "mesaj" ? (
             <PhoneMessage from={b.beat.from} text={b.beat.text} dur={b.dur} />
+          ) : b.beat.type === "belge" ? (
+            <DocumentCard title={b.beat.title} lines={b.beat.lines} imza={b.beat.imza} dur={b.dur} />
           ) : null}
+          {b.beat.ayna ? <MirrorOverlay /> : null}
           {b.beat.fade ? <Fade mode={b.beat.fade} dur={b.dur} /> : null}
         </Sequence>
       ))}
@@ -325,7 +328,7 @@ export const Episode3D: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }
                 <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 3 * fps} layout="none">
                   {b.voice ? (
                     <Sequence from={b.voice.from} layout="none">
-                      <Audio src={staticFile(b.voice.file)} volume={1} />
+                      <Audio src={staticFile(b.voice.file)} volume={b.beat.type === "line" ? b.beat.vol ?? 1 : 1} />
                     </Sequence>
                   ) : null}
                   {(b.beat.sfx ?? []).map((s, i) => (

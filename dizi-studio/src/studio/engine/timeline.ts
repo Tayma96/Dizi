@@ -40,7 +40,7 @@ export const buildTimeline = (script: EpisodeScript, manifest: VoiceManifest): T
         for (const [id, st] of Object.entries(beat.cast)) cast[id] = { ...(cast[id] ?? {}), ...st };
       }
       if (beat.shot) shot = beat.shot;
-      else if (beat.type === "line" && !beat.voiceover) shot = { type: "orta", on: beat.who, move: "yaklas" };
+      else if (beat.type === "line" && !beat.voiceover && !beat.offscreen) shot = { type: "orta", on: beat.who, move: "yaklas" };
       let dur: number;
       let voice: TBeat["voice"];
       if (beat.type === "line") {

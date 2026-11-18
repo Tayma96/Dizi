@@ -1,0 +1,1092 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-b1",
+ "episodeNo": 1,
+ "title": "Altı Ay",
+ "endCard": {
+  "text": "Devamı yarın · Takip et",
+  "sub": "Sence Berkay deli mi?"
+ },
+ "scenes": [
+  {
+   "id": "h1",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Uyanış",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "emotion": "sok",
+     "eyesClosed": 1
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.45
+      }
+     ],
+     "fade": "giris"
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "eyesClosed": 0,
+       "emotion": "korkmus"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/nefes_kesilme",
+       "volume": 0.7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "f1",
+   "set": "toplanti_odasi",
+   "time": "gunduz",
+   "look": "flashback",
+   "transition": "flas",
+   "title": "İmza (anı)",
+   "ambience": {
+    "name": "ortam/sehir",
+    "volume": 0.35
+   },
+   "cast": {
+    "berkay": {
+     "mark": "bas",
+     "emotion": "mutlu",
+     "gesture": "tutuyor",
+     "prop": "kalem",
+     "lookAt": "selim"
+    },
+    "selim": {
+     "mark": "yan",
+     "emotion": "mutlu",
+     "lookAt": "berkay"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "selim",
+     "text": "İmzala ortak. Yarın bu şehir senin adını konuşacak.",
+     "emotion": "mutlu",
+     "shot": {
+      "type": "iki",
+      "on": "selim",
+      "with": "berkay"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay",
+      "with": "sabit"
+     },
+     "cast": {
+      "berkay": {
+       "emotion": "gulen",
+       "lookAt": "kamera"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.5,
+       "at": 0.3
+      },
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.5,
+       "at": 0.8
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "transition": "flas",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "emotion": "korkmus"
+    },
+    "nalan": {
+     "mark": "tepsi",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "sfx": [
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.6
+      }
+     ],
+     "cast": {
+      "nalan": {
+       "hidden": false,
+       "enter": "sag",
+       "gesture": "tutuyor",
+       "prop": "tepsi",
+       "emotion": "soguk"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Neresi burası?",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "duvar",
+       "body": "stand"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Kalem... elimde kalem vardı. İmza atıyordum!",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Yine başladı.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "yakin",
+      "on": "nalan"
+     },
+     "tags": "[sighs]"
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Sakin ol Berkay. Derin bir nefes al.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "omuz",
+      "on": "nalan",
+      "with": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ben hasta değilim. Holdingin başındayım!",
+     "emotion": "ofkeli",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "ofkeli",
+       "gesture": "ellerAcik"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "with": "sabit"
+     }
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "music": {
+    "name": "muzik/gerilim",
+    "volume": 0.16
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "duvar",
+     "emotion": "ofkeli"
+    },
+    "nalan": {
+     "mark": "tepsi",
+     "gesture": "tutuyor",
+     "prop": "tepsi",
+     "emotion": "soguk"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Altı ay oldu, Berkay.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "with": "sabit"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok",
+       "gesture": "rest"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Altı ay mı?",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Geçen ay da imza diyordun. Ondan önceki ay da.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "iki",
+      "on": "nalan",
+      "with": "berkay_hasta"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "İlaçların masada. Hepsini iç.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "genis"
+     },
+     "cast": {
+      "nalan": {
+       "prop": "none",
+       "gesture": "rest",
+       "exit": "sag"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "kapat",
+     "sfx": [
+      {
+       "name": "efekt/kapi_kapanma",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "ayna"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.3
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "ayna": true,
+     "cast": {
+      "berkay_hasta": {
+       "turn": 0,
+       "lookAt": "kamera",
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/nefes_kesilme",
+       "volume": 0.5
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Bu yüz benim. Ama bu yara izini... hatırlamıyorum.",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "voiceover": true,
+     "ayna": true
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "sabit"
+     },
+     "ayna": true,
+     "sfx": [
+      {
+       "name": "efekt/darbe",
+       "volume": 0.45
+      }
+     ],
+     "fade": "cikis"
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "partBreak": true,
+   "transition": "kararma",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "music": {
+    "name": "muzik/gerilim",
+    "volume": 0.16
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "emotion": "dusunceli"
+    },
+    "deniz": {
+     "mark": "orta",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Altı ay. Altı ay boyunca ne yaptım?",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     },
+     "voiceover": true
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "sfx": [
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.6
+      }
+     ],
+     "cast": {
+      "deniz": {
+       "hidden": false,
+       "enter": "sag",
+       "gesture": "tutuyor",
+       "prop": "kitap",
+       "emotion": "sakin",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Günaydın Berkay. Bugün beni hatırlıyor musun?",
+     "emotion": "sakin",
+     "shot": {
+      "type": "orta",
+      "on": "deniz"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Hayır. Sizi hiç görmedim.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "soguk",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Her sabah aynı cevap.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "yakin",
+      "on": "deniz"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ortağımı arayın. Selim Aksoy. Her şeyi açıklar.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "kararli"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "yakin",
+      "on": "deniz",
+      "with": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "emotion": "dusunceli"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Seni buraya getiren Selim Bey, Berkay.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "yakin",
+      "on": "deniz",
+      "with": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Her hafta arıyor. Seni çok seviyor.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "genis"
+     },
+     "cast": {
+      "deniz": {
+       "prop": "none",
+       "gesture": "rest",
+       "exit": "sag"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "kapat",
+     "sfx": [
+      {
+       "name": "efekt/kapi_kapanma",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Selim beni kurtardı mı... yoksa sakladı mı?",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     },
+     "voiceover": true,
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "dusunceli",
+       "lookAt": "kamera"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "orta",
+       "emotion": "supheli"
+      }
+     }
+    },
+    {
+     "type": "belge",
+     "dur": 4.6,
+     "title": "YÖNETİM KURULU DEVİR PROTOKOLÜ",
+     "lines": [
+      "Devreden: Berkay Taner — %51 hisse",
+      "Devralan: Aksoy Yatırım A.Ş.",
+      "Tarih: 14 Mart"
+     ],
+     "imza": "Berkay Taner",
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Bu benim imzam. Ama ben bunu hiç atmadım.",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "voiceover": true,
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Üç ay önce atılmış. O gün ben bu odadaydım.",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "voiceover": true
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "turn": 70,
+       "lookAt": "kamera",
+       "emotion": "korkmus"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.35,
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "k1",
+   "set": "hastane_koridoru",
+   "time": "gunduz",
+   "look": "soguk",
+   "partBreak": true,
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.4
+   },
+   "music": {
+    "name": "yok"
+   },
+   "cast": {
+    "deniz": {
+     "mark": "sag",
+     "emotion": "korkmus",
+     "lookAt": "selim"
+    },
+    "selim": {
+     "mark": "orta",
+     "turn": 160,
+     "gesture": "tutuyor",
+     "prop": "kalem",
+     "emotion": "soguk"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Hafızası geri geliyor olabilir.",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "omuz",
+      "on": "deniz",
+      "with": "selim"
+     }
+    },
+    {
+     "type": "line",
+     "who": "selim",
+     "text": "Dozu iki katına çıkarın.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "omuz",
+      "on": "deniz",
+      "with": "selim"
+     },
+     "label": "",
+     "offscreen": true
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Bu çok riskli.",
+     "emotion": "korkmus",
+     "shot": {
+      "type": "yakin",
+      "on": "deniz"
+     }
+    },
+    {
+     "type": "line",
+     "who": "selim",
+     "text": "İmzayı atana kadar.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "omuz",
+      "on": "deniz",
+      "with": "selim"
+     },
+     "label": "",
+     "offscreen": true,
+     "gapAfter": 0.6
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.5
+   },
+   "music": {
+    "name": "muzik/gerilim",
+    "volume": 0.14
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "kapi_ic",
+     "emotion": "korkmus"
+    },
+    "nalan": {
+     "mark": "tepsi",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.35
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Bu sesi tanıyorum. Ya da... tanıdığımı sanıyorum.",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "voiceover": true
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "yatak",
+       "emotion": "notr"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.3
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "sfx": [
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.6
+      }
+     ],
+     "cast": {
+      "nalan": {
+       "hidden": false,
+       "enter": "sag",
+       "gesture": "tutuyor",
+       "prop": "tepsi",
+       "emotion": "soguk"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "İlaç saati.",
+     "emotion": "soguk",
+     "shot": {
+      "type": "yakin",
+      "on": "nalan"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "tutuyor",
+       "prop": "ilac",
+       "emotion": "notr",
+       "lookAt": "nalan"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Teşekkür ederim, Nalan Hanım.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.1,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "eliYuzunde",
+       "prop": "none"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Aferin. Akşam görüşürüz.",
+     "emotion": "sakin",
+     "shot": {
+      "type": "genis"
+     },
+     "cast": {
+      "nalan": {
+       "prop": "none",
+       "gesture": "rest",
+       "exit": "sag"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "kapat",
+     "sfx": [
+      {
+       "name": "efekt/kapi_kapanma",
+       "volume": 0.6
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "tutuyor",
+       "prop": "ilac",
+       "emotion": "kararli",
+       "lookAt": "kamera"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Altı aydır yuttuğum her şey... bugün bitti.",
+     "emotion": "ic_ses",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "with": "yaklas"
+     },
+     "voiceover": true
+    }
+   ]
+  },
+  {
+   "id": "k2",
+   "set": "hastane_koridoru",
+   "time": "gunduz",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.35
+   },
+   "music": {
+    "name": "yok"
+   },
+   "cast": {
+    "nalan": {
+     "mark": "orta",
+     "emotion": "supheli",
+     "lookAt": "kamera"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "with": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "nalan",
+      "with": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "soguk"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/darbe",
+       "volume": 0.6,
+       "at": 0.7
+      }
+     ],
+     "fade": "cikis"
+    }
+   ]
+  }
+ ]
+}

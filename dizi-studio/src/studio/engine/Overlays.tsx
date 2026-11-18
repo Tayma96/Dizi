@@ -132,3 +132,44 @@ export const EndCard: React.FC<{ series: string; episodeNo: number; text?: strin
     </AbsoluteFill>
   );
 };
+
+/* ---------------- Belge (dosya / sözleşme yakın çekimi) ---------------- */
+export const DocumentCard: React.FC<{ title: string; lines: string[]; imza?: string; dur: number }> = ({ title, lines, imza, dur }) => {
+  const frame = useCurrentFrame();
+  const a = interpolate(frame, [0, 10, dur - 8, dur], [0, 1, 1, 0], clamp);
+  const zoom = interpolate(frame, [0, dur], [1, 1.08], clamp);
+  return (
+    <AbsoluteFill style={{ justifyContent: "center", alignItems: "center", backgroundColor: `rgba(0,0,0,${0.6 * a})` }}>
+      <div style={{ width: 760, padding: "70px 64px", backgroundColor: "#f6f2e8", boxShadow: "0 30px 80px rgba(0,0,0,0.6)", opacity: a, scale: `${zoom}`, rotate: "-1.5deg", fontFamily: SERIF }}>
+        <div style={{ fontSize: 40, fontWeight: 900, color: "#222", textAlign: "center", marginBottom: 36, letterSpacing: 1 }}>{title}</div>
+        {lines.map((l, i) => (
+          <div key={i} style={{ fontFamily: SANS, fontWeight: 800, fontSize: 32, color: "#333", marginBottom: 18, lineHeight: 1.3 }}>{l}</div>
+        ))}
+        {imza ? (
+          <div style={{ marginTop: 40, display: "flex", justifyContent: "flex-end" }}>
+            <svg width="300" height="110" viewBox="0 0 300 110">
+              <path
+                d="M 10 80 C 40 20 60 100 90 50 S 140 30 150 70 S 200 90 230 40 S 270 60 290 30"
+                fill="none"
+                stroke="#1a3a8a"
+                strokeWidth={5}
+                strokeLinecap="round"
+                strokeDasharray={600}
+                strokeDashoffset={interpolate(frame, [12, 40], [600, 0], clamp)}
+              />
+            </svg>
+          </div>
+        ) : null}
+        {imza ? <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 26, color: "#555", textAlign: "right" }}>{imza}</div> : null}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------- Ayna görünümü ---------------- */
+export const MirrorOverlay: React.FC = () => (
+  <AbsoluteFill style={{ pointerEvents: "none" }}>
+    <AbsoluteFill style={{ background: "linear-gradient(115deg, rgba(255,255,255,0.0) 30%, rgba(220,235,245,0.18) 42%, rgba(255,255,255,0.0) 50%), radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(20,30,35,0.55) 100%)" }} />
+    <AbsoluteFill style={{ border: "34px solid #8a9298", boxShadow: "inset 0 0 0 6px #2b2b2b" }} />
+  </AbsoluteFill>
+);

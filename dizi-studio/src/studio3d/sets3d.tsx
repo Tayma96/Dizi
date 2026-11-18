@@ -13,7 +13,7 @@ import { cached, flat, toon } from "./toon";
 
 export type SetName3D =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru" | "sokak" | "kafe"
-  | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven";
+  | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "toplanti_odasi" | "hucre";
 
 /** İşaret: karakterin durduğu yer. y = oturma yüksekliği (0 = ayakta). facing = derece (0 kameraya) */
 export type Mark3D = { x: number; z: number; facing?: number; seat?: boolean };
@@ -39,6 +39,8 @@ export const SETS3D: Record<SetName3D, SetInfo3D> = {
   park: { title: "Park", marks: { sol: M(-1.2, 0.6, 15), orta: M(0, 0.8), sag: M(1.2, 0.6, -15), bank_sol: M(-0.4, -0.85, 0, true), bank_sag: M(0.4, -0.85, 0, true) }, wide: WIDE([0, 1.6, 8.0], [0, 1.1, -1.0]) },
   apartman_kapisi: { title: "Apartman kapısı", marks: { kapi: M(0, -1.0, 0), ic: M(0, 1.0, 180), ic_sol: M(-0.9, 1.2, 160) }, wide: WIDE([0.4, 1.6, 5.5], [0, 1.2, -1.0]) },
   koridor: { title: "Karanlık koridor", marks: { orta: M(0, 0.0), uzak: M(0, -3.5), yakin: M(0, 1.6, 180) }, wide: WIDE([0, 1.6, 5.5], [0, 1.2, -2.5]) },
+  toplanti_odasi: { title: "Yönetim kurulu odası", marks: { bas: M(0, -1.55, 0, true), yan: M(-0.95, -0.55, 90, true), yan_sag: M(0.95, -0.2, -90, true), ayakta: M(1.6, 0.6, -30) }, wide: WIDE([0, 1.8, 6.6], [0, 1.0, -0.8]) },
+  hucre: { title: "Hücre-oda", marks: { yatak: M(-1.55, -0.7, 15, true), orta: M(0.3, 0.3, 0), tepsi: M(0.6, -0.5, -60), ayna: M(-0.15, -1.75, 180), kapi_ic: M(2.55, -0.25, 90), duvar: M(-0.6, -2.0, 0), kapi: M(2.4, 0.4, -100) }, wide: WIDE([0, 1.6, 6.4], [0, 1.0, -0.8]) },
   merdiven: { title: "Apartman merdiveni", marks: { orta: M(0, 0.5), basamak: M(0.4, -1.4, -20) }, wide: WIDE([0, 1.6, 6.0], [0, 1.4, -1.0]) },
 };
 
@@ -347,6 +349,41 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
       );
       break;
     }
+    case "toplanti_odasi":
+      body = (
+        <>
+          <Room wall={wallpaper("#2e3338", "#3a4046", "cizgi")} floor={woodFloor("#4a3426", "#3a281c")} h={3.2} />
+          {W([0, 1.65, -2.47], 5.6, 2.6, "w")}
+          <Box d={[1.3, 0.07, 2.8]} c="#3a2a20" p={[0, 0.76, 0.0]} rad={0.02} />
+          <Box d={[0.5, 0.72, 1.6]} c="#2a1e16" p={[0, 0.36, 0.0]} rad={0.02} />
+          <Box d={[0.42, 0.006, 0.3]} c="#f6f4ee" p={[0, 0.8, -1.05]} rad={0.002} line={0.003} />
+          <Chair p={[0, 0, -1.6]} c="#1a1a1e" />
+          <Chair p={[-1.0, 0, -0.55]} r={90} c="#1a1a1e" />
+          <Chair p={[1.0, 0, -0.2]} r={-90} c="#1a1a1e" />
+          <Chair p={[-1.0, 0, 0.5]} r={90} c="#1a1a1e" />
+          <Chair p={[1.0, 0, 0.7]} r={-90} c="#1a1a1e" />
+          <Cyl r1={0.04} r2={0.035} h={0.12} c="#cde6f0" p={[-0.4, 0.86, -0.5]} line={0.004} />
+          <Plant p={[2.8, 0, -2.1]} />
+          <CeilingLamp p={[0, 0, -0.3]} on y={3.2} />
+        </>
+      );
+      break;
+    case "hucre":
+      body = (
+        <>
+          <Room wall={wallpaper("#c9d3cf", "#bcc7c2", "duz")} floor={tileFloor("#b9c2c0", "#a2acaa")} h={2.8} />
+          {W([1.3, 1.75, -2.47], 1.0, 0.9, "w", undefined, false)}
+          {[-0.36, -0.18, 0, 0.18, 0.36].map((x) => <Cyl key={x} r1={0.018} h={0.95} c="#5a5e62" p={[1.3 + x, 1.75, -2.4]} line={0.004} />)}
+          <Bed p={[-1.55, 0, -1.3]} s={0.85} c="#dfe6ea" />
+          <Box d={[0.5, 0.18, 0.36]} c="#e8ecee" p={[-0.15, 0.85, -2.3]} rad={0.03} />
+          <Cyl r1={0.03} h={0.85} c="#c8ccd2" p={[-0.15, 0.42, -2.35]} line={0.004} />
+          <Box d={[0.55, 0.75, 0.03]} c="#b8c6ce" p={[-0.15, 1.62, -2.47]} rad={0.01} />
+          <Box d={[0.6, 0.6, 0.6]} c="#d6dcde" p={[0.9, 0.3, -2.1]} rad={0.03} />
+          <Door3D p={[3.28, 0, -0.5]} r={-90} open={doorOpen} c="#9aa8ae" />
+          <CeilingLamp p={[0, 0, -0.6]} on y={2.8} />
+        </>
+      );
+      break;
     case "koridor":
       body = (
         <>

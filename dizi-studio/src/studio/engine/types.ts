@@ -44,10 +44,28 @@ export type CharState = {
 };
 
 export type Beat =
-  | ({ type: "line"; who: string; text: string; emotion?: string; voiceover?: boolean; gapAfter?: number } & BeatCommon)
+  | ({
+      type: "line";
+      who: string;
+      text: string;
+      emotion?: string;
+      voiceover?: boolean;
+      gapAfter?: number;
+      /** konuşan kadrajda değil (kamera ona dönmez) */
+      offscreen?: boolean;
+      /** altyazıdaki konuşmacı etiketi ("" = gizle, ör. kimliği saklı ses) */
+      label?: string;
+      /** ses seviyesi çarpanı (vars. 1) */
+      vol?: number;
+      /** ses efekti zinciri: kapı arkası / telefon */
+      fx?: "kapi_arkasi" | "telefon";
+      /** ek ses etiketi (ElevenLabs v3/v4) */
+      tags?: string;
+    } & BeatCommon)
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
-  | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon);
+  | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon)
+  | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon);
 
 export type BeatCommon = {
   shot?: Shot;
@@ -58,6 +76,8 @@ export type BeatCommon = {
   door?: "ac" | "kapat";
   /** ekran kararması: "giris" bu vuruşun başında açılır, "cikis" sonunda kararır */
   fade?: "giris" | "cikis";
+  /** ayna/yansıma görünümü (çerçeve + cam katmanı) */
+  ayna?: boolean;
 };
 
 export type Scene = {

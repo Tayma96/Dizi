@@ -73,7 +73,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const { scene } = ts;
-  const marks = SET_INFO[scene.set].marks;
+  const marks = SET_INFO[scene.set as keyof typeof SET_INFO].marks;
   const bi = Math.max(0, ts.beats.findIndex((b) => frame >= b.from && frame < b.from + b.dur));
   const tb = ts.beats[bi] ?? ts.beats[ts.beats.length - 1];
   const bf = frame - tb.from;
@@ -193,11 +193,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}
-        <SetLayer name={scene.set} layer="fg" time={scene.time} />
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} />
       </AbsoluteFill>
       {scene.look === "flashback" ? <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(255,240,210,0) 50%, rgba(255,240,210,0.55) 100%)" }} /> : null}
       {/* overlays per beat */}

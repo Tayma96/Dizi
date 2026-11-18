@@ -195,6 +195,10 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
   drawBrow(ctx, 160, 160, f, browColor, false, male ? 8 : 6.5);
   drawBrow(ctx, 240, 160, f, browColor, true, male ? 8 : 6.5);
   stroke(ctx, "M 202 214 Q 196 236 204 244", OUT, 3.5);
+  if (look.scar) {
+    stroke(ctx, "M 226 140 L 238 176", "#9a4a40", 4);
+    stroke(ctx, "M 224 150 l 8 -2 M 228 160 l 8 -2 M 232 170 l 8 -2", "#9a4a40", 2.5);
+  }
   if (look.mole) { ctx.fillStyle = "#5a3a2a"; ctx.beginPath(); ctx.arc(236, 262, 3, 0, Math.PI * 2); ctx.fill(); }
   if (look.facialHair === "mustache" || look.facialHair === "beard") {
     const d = "M 166 262 Q 200 246 234 262 Q 220 270 200 264 Q 180 270 166 262 Z";

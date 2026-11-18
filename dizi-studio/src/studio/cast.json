@@ -511,5 +511,110 @@
    "shoes": "#1a1a1a",
    "accent": "#b3202e"
   }
+ },
+ {
+  "id": "berkay",
+  "name": "Berkay",
+  "role": "Holding CEO'su, 34 — ana karakter",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "slick",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2b2f3a",
+   "topShade": "#1d2029",
+   "bottom": "#2b2f3a",
+   "shoes": "#111",
+   "accent": "#3a5a8a"
+  },
+  "blush": false
+ },
+ {
+  "id": "berkay_hasta",
+  "name": "Berkay",
+  "role": "Berkay — 6 ay sonra, hastanede",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "scar": true,
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "selim",
+  "name": "Selim",
+  "role": "Ortak, 49 — en güvenilen",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "slick",
+   "color": "#7a746c",
+   "shade": "#a29a90"
+  },
+  "glasses": "#2a2a2a",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "suit",
+   "top": "#8a8f98",
+   "topShade": "#6e737c",
+   "bottom": "#8a8f98",
+   "shoes": "#2a2420",
+   "accent": "#6a2a2a"
+  },
+  "blush": false
+ },
+ {
+  "id": "nalan",
+  "name": "Hemşire Nalan",
+  "role": "Hemşire, 41",
+  "voice": "kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f2c8a8",
+  "skinShade": "#e0ab88",
+  "iris": "#3a3a2a",
+  "hair": {
+   "style": "bun",
+   "color": "#3a2a20",
+   "shade": "#5a4434"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#4fa6a0",
+   "topShade": "#3d8a84",
+   "bottom": "#4fa6a0",
+   "shoes": "#f2f2f2"
+  }
  }
 ]
