@@ -5,12 +5,13 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 ## Değişmez kurallar
 - **Kullanıcı açıkça istemeden senaryo/hikâye/replik yazma.** Fikir ve öneri sunulabilir.
 - Başka dizilerin karakter/hikâye/görsellerini kopyalama; içerik özgün olmalı.
-- Her şey ücretsiz ve ticari kullanıma uygun olmalı (MIT/OFL/CC0 ya da kendi sentezimiz).
+- Her şey ücretsiz ve ticari kullanıma uygun olmalı (MIT/OFL/CC0 ya da kendi sentezimiz). Tek istisna: kullanıcının kendi ElevenLabs kredisi.
+- **ElevenLabs kredisi asla aşılmaz.** Önce kuru çalıştırma + maliyet, kullanıcı onayı, sonra `--onayla`. Önce hesap1 (~6 bin), sonra hesap2 (~60 bin). Ayrıntı: `.claude/skills/elevenlabs-seslendirme/SKILL.md`
 
 ## Ekip (ajanlar: `.claude/agents/`)
 - `genel-yonetmen`: bölümün bütünü, çekim senaryosu JSON'u, koordinasyon, render, yayın kontrolü
 - `goruntu-yonetmeni`: çekimler, kamera, ışık, mekân, karakter görünümü, mimik/jest, yeni görsel varlıklar
-- `ses-yonetmeni`: seslendirme (Chatterbox TTS), müzik, ortam, efekt, miks/mastering
+- `ses-yonetmeni`: seslendirme (ElevenLabs öncelikli, yedek Chatterbox), müzik, ortam, efekt, miks/mastering
 - `senarist-yardimcisi`: senaryoyu inceler, iyileştirme önerir (kendi başına metin yazmaz)
 - `yapimci`: tempo/kanca/bütçe denetimi, keser (metin yazmaz)
 - `izleyici-simulatoru`: izleyici profilleriyle saniye saniye tutundurma puanı (simülasyon)
@@ -30,7 +31,8 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - `src/studio/sets/`: 17 mekân + eşyalar
 - `src/studio/engine/`: bölüm motoru (JSON → kamera, altyazı, ses, geçişler)
 - `src/studio/sheets/`: kontrol sayfaları (Kadro, Duygular, Jestler, Agizlar, Mekanlar)
-- `tools/seslendir.py`: TTS + Whisper kontrolü + kelime zamanları + dudak senkronu
+- `tools/elevenlabs.py`: ElevenLabs seslendirme (bütçe korumalı, çok hesaplı; durum/oyuncu-sec/ata/seslendir/efekt/replikler/ice-aktar) · `tools/ses_kontrol.py`: Whisper kontrolü
+- `tools/seslendir.py`: yedek ücretsiz TTS (Chatterbox) + Whisper kontrolü + dudak senkronu
 - `tools/ses_kutuphanesi.py`: müzik/ortam/efekt sentezi
 - `tools/kurulum.sh`: yeni oturumda ortam kurulumu · `tools/render.sh`: render + −14 LUFS + Reels parçaları
 - `public/episodes/`: bölüm JSON'ları · `public/voice/`: üretilmiş replik sesleri · `public/ses/`: ses kütüphanesi

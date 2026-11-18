@@ -31,7 +31,12 @@ Yöntem ve izleyici-tutma ilkeleri için: `docs/arastirma.md`.
 bash dizi-studio/tools/kurulum.sh
 
 cd dizi-studio
-# Replikleri seslendir (önbellekli; sadece değişen replikler yeniden üretilir)
+# Replikleri seslendir — ElevenLabs (önce kuru çalıştırma, onaydan sonra --onayla; kredi asla aşılmaz)
+python3 tools/elevenlabs.py durum
+python3 tools/elevenlabs.py seslendir public/episodes/<id>.json
+python3 tools/elevenlabs.py seslendir public/episodes/<id>.json --butce 3000 --onayla
+/opt/tts/venv/bin/python tools/ses_kontrol.py <id>
+# Yedek / taslak ses (ücretsiz, yerel Chatterbox)
 /opt/tts/venv/bin/python tools/seslendir.py public/episodes/<id>.json
 
 # Ses kütüphanesine yeni ses ekledikten sonra yeniden üret
