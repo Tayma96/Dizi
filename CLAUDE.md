@@ -4,11 +4,20 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 
 ## Değişmez kurallar
 - **Kullanıcı açıkça istemeden senaryo/hikâye/replik yazma.** Fikir ve öneri sunulabilir.
+  - **İmza dizisi için izin (18 Kasım 2026):** kullanıcı "konuya uygun doğaçlama yapabilirsin, sadece fire verme" dedi. Kullanıcının verdiği metin ve replikler aynen korunur; aradaki boşluklar, geçişler ve yeni replikler dizinin kurallarına (`docs/diziler/berkay/belirsizlik-kurallari.md`) uygun doğaçlanabilir. Doğaçlanan her şey kullanıcıya açıkça belirtilir.
+- **Tek kesin kural: her şey ücretsiz** (kullanıcının kendi ElevenLabs kredisi hariç; o da bütçe kurallarıyla).
 - Başka dizilerin karakter/hikâye/görsellerini kopyalama; içerik özgün olmalı.
 - Her şey ücretsiz ve ticari kullanıma uygun olmalı (MIT/OFL/CC0 ya da kendi sentezimiz). Tek istisna: kullanıcının kendi ElevenLabs kredisi.
 - **ElevenLabs kredisi asla aşılmaz.** Önce kuru çalıştırma + maliyet, kullanıcı onayı, sonra `--onayla`. Önce hesap1 (~6 bin), sonra hesap2 (~60 bin). Ayrıntı: `.claude/skills/elevenlabs-seslendirme/SKILL.md`
 
 ## Ekip (ajanlar: `.claude/agents/`)
+**Her parça (30 sn) için iş akışı (kullanıcı kararı):**
+1. `senarist-yardimcisi`: senaryoya uygun doğaçlama, geçiş ve kanca fikirleri verir.
+2. `genel-yonetmen`: fikirleri seçer, çekim senaryosu JSON'unu yazar.
+3. `ses-yonetmeni`: sesleri, seslerdeki duyguyu ve oyuncuların duygu durumunu inceler, kontrol eder (Whisper, duygu etiketleri, miks).
+4. `goruntu-yonetmeni`: dekoru, kostümleri, karakter tiplerini, kadrajı ve ışığı kontrol eder.
+5. `genel-yonetmen`: hepsini son kez kontrol eder; render ve teslim.
+
 - `genel-yonetmen`: bölümün bütünü, çekim senaryosu JSON'u, koordinasyon, render, yayın kontrolü
 - `goruntu-yonetmeni`: çekimler, kamera, ışık, mekân, karakter görünümü, mimik/jest, yeni görsel varlıklar
 - `ses-yonetmeni`: seslendirme (ElevenLabs öncelikli, yedek Chatterbox), müzik, ortam, efekt, miks/mastering
