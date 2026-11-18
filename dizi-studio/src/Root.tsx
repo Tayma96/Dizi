@@ -15,6 +15,16 @@ export const RemotionRoot: React.FC = () => {
     <>
       <Folder name="Bolumler">
         <Composition
+          id="IMZA-B1"
+          component={Episode3D}
+          calculateMetadata={calculateEpisode3DMetadata}
+          durationInFrames={300}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ episodeId: "imza-b1", part: 0 }}
+        />
+        <Composition
           id="GKK-B1-3D"
           component={Episode3D}
           calculateMetadata={calculateEpisode3DMetadata}

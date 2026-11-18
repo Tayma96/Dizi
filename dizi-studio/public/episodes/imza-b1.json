@@ -98,9 +98,9 @@
      "text": "İmzala ortak. Yarın bu şehir senin adını konuşacak.",
      "emotion": "mutlu",
      "shot": {
-      "type": "iki",
+      "type": "yakin",
       "on": "selim",
-      "with": "berkay"
+      "move": "yaklas"
      }
     },
     {
