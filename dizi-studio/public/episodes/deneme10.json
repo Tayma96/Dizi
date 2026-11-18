@@ -1,0 +1,78 @@
+{
+ "series": "gec-kaldim-kizim",
+ "seriesTitle": "Geç Kaldım Kızım",
+ "episodeNo": 1,
+ "episode": "deneme10",
+ "title": "10 sn 3D deneme (Bölüm 1 açılışı)",
+ "scenes": [
+  {
+   "id": "s1",
+   "set": "salon",
+   "time": "gece",
+   "rain": true,
+   "title": "Salon",
+   "ambience": {
+    "name": "ortam/yagmur",
+    "volume": 0.55
+   },
+   "music": {
+    "name": "muzik/gerilim",
+    "volume": 0.22
+   },
+   "cast": {
+    "zeynep": {
+     "mark": "pencere",
+     "emotion": "uzgun",
+     "turn": 200
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "zeynep",
+     "voiceover": true,
+     "text": "On beş yıl önce babam ekmek almaya çıktı.",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "fade": "giris"
+    },
+    {
+     "type": "line",
+     "who": "zeynep",
+     "voiceover": true,
+     "emotion": "uzgun",
+     "text": "Bir daha hiç dönmedi.",
+     "shot": {
+      "type": "yakin",
+      "on": "zeynep",
+      "move": "yaklas"
+     },
+     "cast": {
+      "zeynep": {
+       "mark": "orta",
+       "turn": 0,
+       "lookAt": "kamera"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "lightning": true,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "zeynep",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "zeynep": {
+       "emotion": "korkmus"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
