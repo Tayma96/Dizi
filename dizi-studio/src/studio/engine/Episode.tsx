@@ -310,10 +310,12 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
             <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={allSpeaking} offset={s.from} />
           </Sequence>
         ))}
-        <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
-          <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard ? script.endCard.text : undefined} sub={script.endCard ? script.endCard.sub : undefined} />
-          <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.6} />
-        </Sequence>
+        {script.endCard === false ? null : (
+          <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
+            <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard ? script.endCard.text : undefined} sub={script.endCard ? script.endCard.sub : undefined} />
+            <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.6} />
+          </Sequence>
+        )}
       </Sequence>
       <FilmFinish vignette={0.45} grain={0.06} />
     </AbsoluteFill>
