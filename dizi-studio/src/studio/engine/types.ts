@@ -1,13 +1,13 @@
 import type { Emotion, Gesture, MouthCue, Prop } from "../rig/types";
-import type { SetName } from "../sets";
-import type { TimeOfDay } from "../sets/props";
+import type { SetName3D as SetName } from "../../studio3d/sets3d";
+import type { TimeOfDay } from "../../studio3d/textures";
 
 /* ======================= SENARYO (bölüm JSON) FORMATI =======================
  * public/episodes/<id>.json — yönetmen ekibinin yazdığı çekim senaryosu.
  * Replik sesleri: tools/seslendir.py public/episodes/<id>.json
  * =========================================================================== */
 
-export type ShotType = "genis" | "orta" | "yakin" | "cok_yakin" | "iki";
+export type ShotType = "genis" | "orta" | "yakin" | "cok_yakin" | "iki" | "omuz" | "ust_aci";
 export type CameraMove = "sabit" | "yaklas" | "uzaklas" | "sarsinti" | "kaydir";
 
 export type Shot = {
@@ -24,7 +24,7 @@ export type Shot = {
 export type CharState = {
   mark?: string;
   emotion?: Emotion;
-  gesture?: Gesture;
+  gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
   body?: "stand" | "sit" | "walk";
   /** bakılan karakter id ya da "kamera" */
@@ -34,6 +34,8 @@ export type CharState = {
   sweat?: boolean;
   wet?: boolean;
   flip?: boolean;
+  /** 3D: gövdenin dönüşü (derece). Verilmezse işaretin yönü / bakılan kişi kullanılır */
+  turn?: number;
   /** sahneye giriş/çıkış */
   enter?: "sol" | "sag";
   exit?: "sol" | "sag";

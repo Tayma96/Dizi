@@ -51,3 +51,26 @@ Genel yönetmene:
 - Eklediğin varlıklar.
 - Kontrol karelerinin yolu.
 - Görsel riskler (ör. "s4'te altyazı yüzü kapatıyor").
+
+## 3D sistem (güncel — varsayılan)
+- **Kod:**
+  - Karakter: `src/studio3d/Character3D.tsx`. Prosedürel 3D, toon gölge, mürekkep çizgisi. Yüz ifadesi `face2d.ts`'teki 2D çizimden doku olarak kafaya giydirilir. Jestler 2 kemikli IK ile `GESTURES3D` el hedeflerinden çözülür.
+  - Kafa ve saç: `head.ts`.
+  - Mekânlar: `sets3d.tsx` (17 mekân, `SETS3D` işaretleri + geniş kamera). Mobilya: `furniture.tsx`. Dokular: `textures.ts`.
+- **Çekim türleri (3D kamera):**
+  - `genis`, `orta`, `yakin`, `cok_yakin`, `iki`.
+  - `omuz`: omuz üstü. `on` = bakılan, `with` = omzu kadrajda olan.
+  - `ust_aci`: yukarıdan.
+  - Açılar: `angle: alt|ust`.
+  - Göz çizgisi otomatik olarak üst 1/3'e oturur. 180° kuralı için kamera, ana geniş kameranın tarafında kalır.
+- **Karakterler:**
+  - Konuşana otomatik döner (gövde %45 + baş).
+  - `lookAt` ile istenen kişiye bakar; `turn` ile gövde açısı verilir.
+  - `mark` değişince yürüyerek gider; `enter`/`exit` ile sahneye girer ya da çıkar.
+- **Üç hareket katmanı:**
+  - Birincil: karakter eylemi.
+  - İkincil: perde, ışık titremesi, ekran içerikleri.
+  - Ortam: toz zerreleri (`Dust`), yağmur (`RainFall`), pencere manzarası.
+  - Her sahnede üçü de bulunsun.
+- **Kontrol kompozisyonları:** `Donus3D` (360° tutarlılık), `Kadro3D`, `Duygular3D`, `Jestler3D`, `JestTest` (önden ve yandan), `Mekanlar3D` (kare başına bir mekân). 3D render'da `--gl=swangle` şart.
+- Eski 2D sistem (`src/studio/rig`, `src/studio/sets`) yedek olarak duruyor.

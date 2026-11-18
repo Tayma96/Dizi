@@ -7,7 +7,7 @@
   "scenes": [
     {
       "id": "s1", "set": "salon", "time": "gece", "rain": true, "title": "Salon",
-      "ambience": { "name": "ortam/yagmur", "volume": 0.3 },
+      "ambience": { "name": "ortam/yagmur", "volume": 0.5 },
       "music": { "name": "muzik/gerilim", "volume": 0.3 },
       "cast": { "zeynep": { "mark": "orta", "emotion": "uzgun", "lookAt": "kamera" } },
       "beats": [

@@ -89,6 +89,9 @@ def norm(x, peak=0.89):
 
 
 def save(cat, name, x, desc, loop=False, stereo_width=0.0):
+    if "gerçek kayıt" in CATALOG.get(f"{cat}/{name}", {}).get("desc", ""):
+        print("= atlandı (gerçek kayıt var):", cat, name)
+        return
     os.makedirs(os.path.join(OUT, cat), exist_ok=True)
     x = norm(np.nan_to_num(x))
     if stereo_width:

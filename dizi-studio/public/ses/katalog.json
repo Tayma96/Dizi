@@ -9,9 +9,16 @@
  "efekt/ayak_sesleri": {
   "file": "ses/efekt/ayak_sesleri.mp3",
   "category": "efekt",
-  "duration": 4.0,
+  "duration": 8,
   "loop": false,
-  "desc": "Ayak sesleri (yürüme, 8 adım)."
+  "desc": "Ayak sesleri, iç mekân (BigSoundBank #0376) — gerçek kayıt, CC0"
+ },
+ "efekt/ayak_sesleri2": {
+  "file": "ses/efekt/ayak_sesleri2.mp3",
+  "category": "efekt",
+  "duration": 7.94,
+  "loop": false,
+  "desc": "Ayak sesleri 2 (BigSoundBank #0165) — gerçek kayıt, CC0"
  },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
@@ -23,9 +30,9 @@
  "efekt/cam_kirilma": {
   "file": "ses/efekt/cam_kirilma.mp3",
   "category": "efekt",
-  "duration": 2.5,
+  "duration": 5,
   "loop": false,
-  "desc": "Cam/bardak kırılması."
+  "desc": "Cam kırılma (BigSoundBank #0771) — gerçek kayıt, CC0"
  },
  "efekt/cay_dokme": {
   "file": "ses/efekt/cay_dokme.mp3",
@@ -58,9 +65,23 @@
  "efekt/gok_gurultusu": {
   "file": "ses/efekt/gok_gurultusu.mp3",
   "category": "efekt",
-  "duration": 5.0,
+  "duration": 12,
   "loop": false,
-  "desc": "Gök gürültüsü."
+  "desc": "Gök gürültüsü (BigSoundBank #2718) — gerçek kayıt, CC0"
+ },
+ "efekt/gok_gurultusu_yakin": {
+  "file": "ses/efekt/gok_gurultusu_yakin.mp3",
+  "category": "efekt",
+  "duration": 4.91,
+  "loop": false,
+  "desc": "Yakın gök gürültüsü (BigSoundBank #3113) — gerçek kayıt, CC0"
+ },
+ "efekt/hastane_monitor": {
+  "file": "ses/efekt/hastane_monitor.mp3",
+  "category": "efekt",
+  "duration": 8.96,
+  "loop": false,
+  "desc": "Hastane monitörü bip (BigSoundBank #0457) — gerçek kayıt, CC0"
  },
  "efekt/hickirik": {
   "file": "ses/efekt/hickirik.mp3",
@@ -76,26 +97,40 @@
   "loop": false,
   "desc": "Kalp atışı (70 bpm). Korku/heyecan."
  },
+ "efekt/kapi_acilma": {
+  "file": "ses/efekt/kapi_acilma.mp3",
+  "category": "efekt",
+  "duration": 4.81,
+  "loop": false,
+  "desc": "Kapı açılma (BigSoundBank #1702) — gerçek kayıt, CC0"
+ },
  "efekt/kapi_carpma": {
   "file": "ses/efekt/kapi_carpma.mp3",
   "category": "efekt",
-  "duration": 1.2,
+  "duration": 3.94,
   "loop": false,
-  "desc": "Kapı çarpma / sert kapanma."
+  "desc": "Kapı çarpma (BigSoundBank #0103) — gerçek kayıt, CC0"
  },
  "efekt/kapi_gicirti": {
   "file": "ses/efekt/kapi_gicirti.mp3",
   "category": "efekt",
-  "duration": 1.6,
+  "duration": 1.33,
   "loop": false,
-  "desc": "Kapı gıcırtısı (yavaş açılış)."
+  "desc": "Kapı gıcırtısı (BigSoundBank #0302) — gerçek kayıt, CC0"
+ },
+ "efekt/kapi_kapanma": {
+  "file": "ses/efekt/kapi_kapanma.mp3",
+  "category": "efekt",
+  "duration": 3.32,
+  "loop": false,
+  "desc": "Kapı kapanma (BigSoundBank #1704) — gerçek kayıt, CC0"
  },
  "efekt/kapi_vurma": {
   "file": "ses/efekt/kapi_vurma.mp3",
   "category": "efekt",
-  "duration": 1.6,
+  "duration": 4,
   "loop": false,
-  "desc": "Kapıya 3 kez vurma."
+  "desc": "Kapı vurma (BigSoundBank #0095) — gerçek kayıt, CC0"
  },
  "efekt/kapi_yumruk": {
   "file": "ses/efekt/kapi_yumruk.mp3",
@@ -107,9 +142,9 @@
  "efekt/kapi_zili": {
   "file": "ses/efekt/kapi_zili.mp3",
   "category": "efekt",
-  "duration": 2.4,
+  "duration": 4,
   "loop": false,
-  "desc": "Kapı zili (ding-dong)."
+  "desc": "Kapı zili (BigSoundBank #0159) — gerçek kayıt, CC0"
  },
  "efekt/kosma": {
   "file": "ses/efekt/kosma.mp3",
@@ -135,9 +170,9 @@
  "efekt/telefon_titresim": {
   "file": "ses/efekt/telefon_titresim.mp3",
   "category": "efekt",
-  "duration": 2.5,
+  "duration": 4.99,
   "loop": false,
-  "desc": "Telefon titreşimi (masa üstünde)."
+  "desc": "Telefon titreşimi (BigSoundBank #0022) — gerçek kayıt, CC0"
  },
  "efekt/telefon_zil": {
   "file": "ses/efekt/telefon_zil.mp3",
@@ -233,9 +268,9 @@
  "ortam/gece_cekirge": {
   "file": "ses/ortam/gece_cekirge.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Gece cırcır böceği: yaz gecesi, bahçe, köy."
+  "desc": "Gece cırcır böceği (BigSoundBank #1470) — gerçek kayıt, CC0"
  },
  "ortam/hastane": {
   "file": "ses/ortam/hastane.mp3",
@@ -247,50 +282,71 @@
  "ortam/kafe_kalabalik": {
   "file": "ses/ortam/kafe_kalabalik.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Kafe/restoran: kalabalık uğultusu + fincan şıngırtısı."
+  "desc": "Kafe kalabalığı (BigSoundBank #2561) — gerçek kayıt, CC0"
  },
  "ortam/kus_sesleri": {
   "file": "ses/ortam/kus_sesleri.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Kuş cıvıltısı: park, sabah, gündüz dış mekân."
+  "desc": "Kuş sesleri (BigSoundBank #0222) — gerçek kayıt, CC0"
  },
  "ortam/oda_tonu": {
   "file": "ses/ortam/oda_tonu.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Sessiz oda tonu. Diyalog altına 'boşluk' hissi."
+  "desc": "Ev içi oda tonu (BigSoundBank #2458) — gerçek kayıt, CC0"
  },
  "ortam/ruzgar": {
   "file": "ses/ortam/ruzgar.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Rüzgâr: mezarlık, gece dışarı, yalnızlık."
+  "desc": "Rüzgâr, içeriden (BigSoundBank #1714) — gerçek kayıt, CC0"
  },
  "ortam/saat_tiklama": {
   "file": "ses/ortam/saat_tiklama.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Duvar saati tik-tak: bekleyiş, gerilim, sessiz ev."
+  "desc": "Duvar saati tik-tak (BigSoundBank #1372) — gerçek kayıt, CC0"
  },
  "ortam/sehir": {
   "file": "ses/ortam/sehir.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Şehir uğultusu: uzaktan trafik, korna. Sokak, ofis penceresi."
+  "desc": "Trafik uğultusu, kapalı pencereli daire (BigSoundBank #0080) — gerçek kayıt, CC0"
+ },
+ "ortam/sehir_gece": {
+  "file": "ses/ortam/sehir_gece.mp3",
+  "category": "ortam",
+  "duration": 58.0,
+  "loop": true,
+  "desc": "Gece şehir (BigSoundBank #0680) — gerçek kayıt, CC0"
+ },
+ "ortam/sehir_kavsak": {
+  "file": "ses/ortam/sehir_kavsak.mp3",
+  "category": "ortam",
+  "duration": 58.0,
+  "loop": true,
+  "desc": "Kavşak trafiği, dış mekân (BigSoundBank #0608) — gerçek kayıt, CC0"
  },
  "ortam/yagmur": {
   "file": "ses/ortam/yagmur.mp3",
   "category": "ortam",
-  "duration": 60.5,
+  "duration": 58.0,
   "loop": true,
-  "desc": "Yağmur (pencere arkası). Gece sahneleri."
+  "desc": "Yağmur, kapalı pencere arkası (BigSoundBank #2387 + #1289 alçak geçiren katman) — gerçek kayıt, CC0"
+ },
+ "ortam/yagmur_saganak": {
+  "file": "ses/ortam/yagmur_saganak.mp3",
+  "category": "ortam",
+  "duration": 58.0,
+  "loop": true,
+  "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
  }
 }

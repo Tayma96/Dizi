@@ -20,8 +20,18 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
   const vStart = tb.voice?.from ?? 0;
   const time = (frame - vStart) / fps;
   // chunk into groups of max 6 words; show the chunk containing the current word
+  // satır başına en fazla 37 karakter (mobil okunabilirlik)
   const chunks: (typeof words)[] = [];
-  for (let i = 0; i < words.length; i += 6) chunks.push(words.slice(i, i + 6));
+  let cur: typeof words = [];
+  for (const w of words) {
+    const len = cur.reduce((n, x) => n + x.w.length + 1, 0) + w.w.length;
+    if (cur.length && len > 37) {
+      chunks.push(cur);
+      cur = [];
+    }
+    cur.push(w);
+  }
+  if (cur.length) chunks.push(cur);
   let ci = chunks.findIndex((c) => time < c[c.length - 1].end + 0.05);
   if (ci < 0) ci = chunks.length - 1;
   const chunk = chunks[ci];
@@ -30,7 +40,7 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
   const outA = interpolate(frame, [tb.dur - 5, tb.dur], [1, 0], clamp);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <div style={{ position: "absolute", left: 60, right: 60, top: 1050, display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
+      <div style={{ position: "absolute", left: 90, right: 150, top: 1060, display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
         {speakerName && !vo ? (
           <div
             style={{

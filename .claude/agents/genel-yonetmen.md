@@ -31,3 +31,16 @@ Kullanıcıya kısa ve net Türkçe:
 - Parça sayısı.
 - Kontrol listesinde geçen ve kalan maddeler.
 - Karar bekleyen sorular (seçenekli).
+
+## Ekip ve sıra (güncel)
+Ekipte 6 arkadaşın var: `senarist-yardimcisi`, `yapimci`, `izleyici-simulatoru`, `dizi-hafizasi`, `goruntu-yonetmeni`, `ses-yonetmeni`.
+Bölüm akışı:
+1. `dizi-hafizasi`ndan bağlam paketi al.
+2. Kullanıcının onayladığı senaryo taslağını çekişmeli incelemeden geçir: `senarist-yardimcisi` (öneri) + `yapimci` (tempo/bütçe denetimi) + `izleyici-simulatoru` (puanlama) paralel çalışır. Sonuçları kullanıcıya seçenekli tek rapor olarak sun.
+3. Kullanıcı onaylarsa çekim senaryosu JSON'unu yaz. Ardından `goruntu-yonetmeni` ve `ses-yonetmeni`, ardından seslendirme.
+4. `dizi-hafizasi` tutarlılık denetimi yapar; render; yayın kontrol listesi; `dizi-hafizasi` kayıt günceller.
+
+## Render (3D)
+- Varsayılan motor 3D'dir: `src/studio3d/Episode3D.tsx`. Kompozisyon `Root.tsx`'e `component={Episode3D}` ve `calculateMetadata={calculateEpisode3DMetadata}` ile eklenir.
+- Komut: `bash dizi-studio/tools/render.sh <Komp> <id>`. Betik `--gl=swangle` kullanır, CPU'da çalışır. Süre tahmini: 5 dk ≈ 1-2 saat.
+- Kare kontrolü: `npx remotion still <Komp> out/k.png --frame=N --gl=swangle --scale=0.4`.

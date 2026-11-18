@@ -8,6 +8,7 @@ import { FilmFinish } from "../../dizi/Effects";
 import { lightning } from "../../dizi/Sets";
 import { EndCard, KaraokeSubtitle, PhoneMessage, TitleCard } from "./Overlays";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
+import type { Gesture } from "../rig/types";
 import type { CharState, EpisodeProps, EpisodeScript, Shot, VoiceManifest } from "./types";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -159,7 +160,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           flip={st.flip}
           pose={{
             emotion: st.emotion,
-            gesture: st.gesture,
+            gesture: st.gesture as Gesture | undefined,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             yaw,

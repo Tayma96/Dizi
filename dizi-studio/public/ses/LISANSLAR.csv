@@ -1,2 +1,26 @@
 kaynak,dosya,lisans,atif
-kod-sentezi (tools/ses_kutuphanesi.py),public/ses/*,telifsiz (kendi üretimimiz),gerekmez
+BigSoundBank #2387,ses/ortam/yagmur.mp3,CC0 1.0,gerekmez
+BigSoundBank #0740,ses/ortam/yagmur_saganak.mp3,CC0 1.0,gerekmez
+BigSoundBank #1714,ses/ortam/ruzgar.mp3,CC0 1.0,gerekmez
+BigSoundBank #0080,ses/ortam/sehir.mp3,CC0 1.0,gerekmez
+BigSoundBank #0680,ses/ortam/sehir_gece.mp3,CC0 1.0,gerekmez
+BigSoundBank #0608,ses/ortam/sehir_kavsak.mp3,CC0 1.0,gerekmez
+BigSoundBank #2561,ses/ortam/kafe_kalabalik.mp3,CC0 1.0,gerekmez
+BigSoundBank #0222,ses/ortam/kus_sesleri.mp3,CC0 1.0,gerekmez
+BigSoundBank #1470,ses/ortam/gece_cekirge.mp3,CC0 1.0,gerekmez
+BigSoundBank #2458,ses/ortam/oda_tonu.mp3,CC0 1.0,gerekmez
+BigSoundBank #1372,ses/ortam/saat_tiklama.mp3,CC0 1.0,gerekmez
+BigSoundBank #2718,ses/efekt/gok_gurultusu.mp3,CC0 1.0,gerekmez
+BigSoundBank #3113,ses/efekt/gok_gurultusu_yakin.mp3,CC0 1.0,gerekmez
+BigSoundBank #0095,ses/efekt/kapi_vurma.mp3,CC0 1.0,gerekmez
+BigSoundBank #0159,ses/efekt/kapi_zili.mp3,CC0 1.0,gerekmez
+BigSoundBank #0302,ses/efekt/kapi_gicirti.mp3,CC0 1.0,gerekmez
+BigSoundBank #1702,ses/efekt/kapi_acilma.mp3,CC0 1.0,gerekmez
+BigSoundBank #1704,ses/efekt/kapi_kapanma.mp3,CC0 1.0,gerekmez
+BigSoundBank #0103,ses/efekt/kapi_carpma.mp3,CC0 1.0,gerekmez
+BigSoundBank #0376,ses/efekt/ayak_sesleri.mp3,CC0 1.0,gerekmez
+BigSoundBank #0165,ses/efekt/ayak_sesleri2.mp3,CC0 1.0,gerekmez
+BigSoundBank #0022,ses/efekt/telefon_titresim.mp3,CC0 1.0,gerekmez
+BigSoundBank #0771,ses/efekt/cam_kirilma.mp3,CC0 1.0,gerekmez
+BigSoundBank #0457,ses/efekt/hastane_monitor.mp3,CC0 1.0,gerekmez
+kod-sentezi (tools/ses_kutuphanesi.py),diğer ses/* dosyaları,telifsiz (kendi üretimimiz),gerekmez

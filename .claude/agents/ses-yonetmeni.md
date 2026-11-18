@@ -37,3 +37,18 @@ Sen stüdyonun **ses yönetmenisin**. Türkçe konuşursun. Genel yönetmen ve g
 - Render sonrası Whisper ile tüm bölüm sesini yazıya dök ve senaryo ile karşılaştır.
 - `ffmpeg -af ebur128` ile LUFS'u ölç.
 - Dinleyemediğin şeyleri (doğallık, tını) kullanıcıya "dinleyip onaylaması gereken" madde olarak raporla.
+
+## Güncel ses kaynakları ve miks kuralları
+- **Gerçek kayıtlar** (BigSoundBank, CC0, atıfsız): `python3 tools/gercek_sesler.py`.
+  - Ortam: yagmur, yagmur_saganak, ruzgar, sehir, sehir_gece, sehir_kavsak, kafe_kalabalik, kus_sesleri, gece_cekirge, oda_tonu, saat_tiklama.
+  - Efekt: gok_gurultusu(_yakin), kapi_vurma, kapi_zili, kapi_gicirti, kapi_acilma, kapi_kapanma, kapi_carpma, ayak_sesleri(2), telefon_titresim, cam_kirilma, hastane_monitor.
+  - `ses_kutuphanesi.py` gerçek kayıtların üzerine yazmaz.
+  - Yeni gerçek ses eklemek için `gercek_sesler.py`'deki tablolara BigSoundBank numarası eklenir (lisansı sayfasından CC0 olarak doğrulanmalı).
+- **Kamu malı müzik** (Musopen / Wikimedia Commons, PD): `python3 tools/muzik_indir.py` → `muzik/pd_*` (Chopin noktürnleri, Tchaikovsky Pathétique, Beethoven cenaze marşı vb.). Commons hız sınırı varsa betik bekleyip yeniden dener.
+- **Miks hiyerarşisi** (motor otomatik uygular, sen seviyeleri JSON'da ayarlarsın):
+  - Diyalog −16 LUFS.
+  - Müzik diyalog altında yaklaşık −7 dB kısılır (otomatik ducking); sahne sonunda 2 sn sönümlenir.
+  - Ortam dosyaları −20 LUFS; JSON'da `volume` 0.4-0.6.
+  - Bir sahnenin ortam sesi kesmeden 0.4 sn önce başlar (otomatik J-cut).
+  - Son master −14 LUFS, tepe −1.5 dBTP, 48 kHz (`render.sh`).
+- Para kazanan kanalda Freesound API otomasyonu kullanılmaz; lisans şartları ticari kullanıma kapalı (`docs/arastirma-2.md`).
