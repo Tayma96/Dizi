@@ -22,6 +22,8 @@ export type FaceState = {
   pale: number;
   sweat?: boolean;
   frame: number;
+  /** 3D göz ve burun kullanılıyorsa dokuya çizilmez (film stili) */
+  eyes3d?: boolean;
 };
 
 const stroke = (ctx: CanvasRenderingContext2D, d: string, color: string, w: number) => {
@@ -189,12 +191,16 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     ctx.beginPath(); ctx.ellipse(254, 238, 19, 10, 0, 0, Math.PI * 2); ctx.fill();
     ctx.globalAlpha = 1;
   }
-  drawEye(ctx, 160, 198, look, f, s, false);
-  drawEye(ctx, 240, 198, look, f, s, true);
+  if (!s.eyes3d) {
+    drawEye(ctx, 160, 198, look, f, s, false);
+    drawEye(ctx, 240, 198, look, f, s, true);
+  }
   const browColor = look.hair.style === "hijab" ? "#4a3428" : old ? "#7d746c" : look.hair.color;
-  drawBrow(ctx, 160, 160, f, browColor, false, male ? 8 : 6.5);
-  drawBrow(ctx, 240, 160, f, browColor, true, male ? 8 : 6.5);
-  stroke(ctx, "M 202 214 Q 196 236 204 244", OUT, 3.5);
+  // film stilinde kaşlar gözün biraz üstünde ve daha ince (3D göz daha büyük)
+  const by = s.eyes3d ? 150 : 160;
+  drawBrow(ctx, 160, by, f, browColor, false, s.eyes3d ? (male ? 7 : 5) : male ? 8 : 6.5);
+  drawBrow(ctx, 240, by, f, browColor, true, s.eyes3d ? (male ? 7 : 5) : male ? 8 : 6.5);
+  if (!s.eyes3d) stroke(ctx, "M 202 214 Q 196 236 204 244", OUT, 3.5);
   if (look.scar) {
     stroke(ctx, "M 226 140 L 238 176", "#9a4a40", 4);
     stroke(ctx, "M 224 150 l 8 -2 M 228 160 l 8 -2 M 232 170 l 8 -2", "#9a4a40", 2.5);
@@ -211,7 +217,15 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     stroke(ctx, d, OUT, 3);
   }
   const amp = s.emotion === "ofkeli" || s.emotion === "korkmus" || s.emotion === "sok" ? 1.25 : s.emotion === "uzgun" || s.emotion === "yorgun" ? 0.8 : 1;
-  drawMouth(ctx, s.viseme, f.mouth, 200, 274, amp);
+  if (s.eyes3d) {
+    // film stili: ağız biraz yukarıda ve büyük (yüz oranı), çizgi rengi dudak tonunda
+    ctx.save();
+    ctx.translate(200, 266);
+    ctx.scale(1.3, 1.3);
+    ctx.translate(-200, -266);
+    drawMouth(ctx, s.viseme, f.mouth, 200, 266, amp);
+    ctx.restore();
+  } else drawMouth(ctx, s.viseme, f.mouth, 200, 274, amp);
   const tears = s.tears;
   if (tears > 0) {
     ctx.globalAlpha = Math.min(1, tears * 2);

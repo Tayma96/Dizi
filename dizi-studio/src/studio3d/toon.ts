@@ -14,34 +14,55 @@ export const toonGradient = () => {
   return grad;
 };
 
-const toonCache = new Map<string, THREE.MeshToonMaterial>();
+/** Görsel stil: "film" = 3D animasyon filmi (yumuşak gölgelendirme, mürekkep çizgisi yok); "toon" = eski 3 tonlu çizgi film. */
+export const STIL: { film: boolean } = { film: true };
+
+type CharMat = THREE.MeshToonMaterial | THREE.MeshStandardMaterial;
+
+const toonCache = new Map<string, CharMat>();
 export const toon = (color: string) => {
   let m = toonCache.get(color);
   if (!m) {
-    m = new THREE.MeshToonMaterial({ color, gradientMap: toonGradient() });
+    m = STIL.film ? new THREE.MeshStandardMaterial({ color, roughness: 0.82, metalness: 0 }) : new THREE.MeshToonMaterial({ color, gradientMap: toonGradient() });
     toonCache.set(color, m);
   }
   return m;
 };
 
-const charCache = new Map<string, THREE.MeshToonMaterial>();
-/** Karakter malzemesi: karanlık sahnelerde de rengini koruması için hafif öz-ışıma */
+const charCache = new Map<string, CharMat>();
+/** Karakter malzemesi. Film stilinde: yumuşak gölge + hafif sıcak öz-ışıma (deri altı saçılımı taklidi). */
 export const toonChar = (color: string) => {
   let m = charCache.get(color);
   if (!m) {
-    m = new THREE.MeshToonMaterial({ color, gradientMap: toonGradient(), emissive: new THREE.Color(color), emissiveIntensity: 0.22 });
+    m = STIL.film
+      ? new THREE.MeshStandardMaterial({ color, roughness: 0.62, metalness: 0, emissive: new THREE.Color(color), emissiveIntensity: 0.22 })
+      : new THREE.MeshToonMaterial({ color, gradientMap: toonGradient(), emissive: new THREE.Color(color), emissiveIntensity: 0.22 });
     charCache.set(color, m);
   }
   return m;
 };
 
-const charTexCache = new Map<string, THREE.MeshToonMaterial>();
+const charTexCache = new Map<string, CharMat>();
 export const toonCharTex = (color: string, map: THREE.Texture, key: string) => {
   const k = `${color}-${key}`;
   let m = charTexCache.get(k);
   if (!m) {
-    m = new THREE.MeshToonMaterial({ color, map, gradientMap: toonGradient(), emissive: new THREE.Color(color), emissiveIntensity: 0.18, emissiveMap: map });
+    m = STIL.film
+      ? new THREE.MeshStandardMaterial({ color, map, roughness: 0.45, metalness: 0, emissive: new THREE.Color(color), emissiveIntensity: 0.18, emissiveMap: map })
+      : new THREE.MeshToonMaterial({ color, map, gradientMap: toonGradient(), emissive: new THREE.Color(color), emissiveIntensity: 0.18, emissiveMap: map });
     charTexCache.set(k, m);
+  }
+  return m;
+};
+
+/** Parlak yüzey (göz akı, iris): düşük pürüzlülük */
+const glossCache = new Map<string, THREE.MeshStandardMaterial>();
+export const gloss = (color: string, emissive = 0.15) => {
+  const k = `${color}-${emissive}`;
+  let m = glossCache.get(k);
+  if (!m) {
+    m = new THREE.MeshStandardMaterial({ color, roughness: 0.18, metalness: 0, emissive: new THREE.Color(color), emissiveIntensity: emissive });
+    glossCache.set(k, m);
   }
   return m;
 };
@@ -60,6 +81,7 @@ export const outline = (thick = 0.008) => {
         .replace("#include <begin_vertex>", "#include <begin_vertex>\ntransformed += normalize(normal) * thick;");
     };
     m.customProgramCacheKey = () => `outline-${key}`;
+    if (STIL.film) m.visible = false;
     outlineCache.set(key, m);
   }
   return m;
@@ -160,8 +182,8 @@ export const setToonContrast = (k = 0) => {
   }
   // karakterlerin öz-ışıması kontrastla azalır (gölge tarafı gerçekten kararsın)
   const glow = 1 - 0.75 * k;
-  for (const m of charCache.values()) m.emissiveIntensity = 0.22 * glow;
-  for (const m of charTexCache.values()) m.emissiveIntensity = 0.18 * glow;
+  for (const m of charCache.values()) m.emissiveIntensity = (STIL.film ? 0.12 : 0.22) * glow;
+  for (const m of charTexCache.values()) m.emissiveIntensity = (STIL.film ? 0.1 : 0.18) * glow;
 };
 
 
@@ -174,7 +196,7 @@ export const tenRengi = (hex: string) => {
     const c = new THREE.Color(hex);
     const hsl = { h: 0, s: 0, l: 0 };
     c.getHSL(hsl);
-    c.setHSL(hsl.h, Math.min(0.85, hsl.s * 1.12), hsl.l * 0.88);
+    c.setHSL(hsl.h - (STIL.film ? 0.018 : 0), Math.min(0.85, hsl.s * (STIL.film ? 1.0 : 1.12)), hsl.l * (STIL.film ? 0.97 : 0.88));
     v = `#${c.getHexString()}`;
     tenCache.set(hex, v);
   }

@@ -5,7 +5,9 @@ import type { Emotion, Gesture, Look, MouthCue, Prop, Viseme } from "../studio/r
 import { FACE_H, FACE_PX, FACE_W, drawFace } from "./face2d";
 import { HEAD, earPos, faceGeometry, faceToHead, hairPieces, headGeometry } from "./head";
 import { hairStrands } from "./textures";
-import { D2R, cached, flat, outline, tenRengi, toonChar as toon, toonCharTex } from "./toon";
+import { D2R, STIL, cached, flat, gloss, outline, tenRengi, toonChar as toon, toonCharTex } from "./toon";
+import type { FaceParams } from "../studio/rig/face";
+import { EMOTION_FACE } from "../studio/rig/face";
 
 /* =====================================================================
  * 3D karakter: prosedürel, çizgi film gölgeli, mürekkep çizgili.
@@ -190,6 +192,81 @@ const Prop3D: React.FC<{ prop: Prop }> = ({ prop }) => {
   }
 };
 
+
+/* ------------------------------ film stili: göz, burun, el ------------------------------ */
+const EYE_R = 0.034;
+const capGeo = (r: number, theta: number) => cached(`cap-${r}-${theta}`, () => new THREE.SphereGeometry(r, 40, 16, 0, Math.PI * 2, 0, theta));
+const lidGeo = (r: number, upper: boolean) => cached(`lid-${r}-${upper}`, () => new THREE.SphereGeometry(r, 40, 20, 0, Math.PI * 2, upper ? 0 : Math.PI / 2, Math.PI / 2));
+const lashGeo = (r: number, t: number) => cached(`lash-${r}-${t}`, () => new THREE.TorusGeometry(r, t, 6, 32, Math.PI));
+
+/** 3D göz: göz akı, iris, göz bebeği, ışık parlaması; üst/alt kapak açıklık, göz kırpma, gülümseme ve duyguya göre döner. */
+const Eye3D: React.FC<{ look: Look; f: FaceParams; side: -1 | 1; blink: number; lookX: number; lookY: number; jaw: number }> = ({ look, f, side, blink, lookX, lookY, jaw }) => {
+  const r = EYE_R * (look.age === "child" ? 1.12 : 1);
+  const surf = faceToHead(200 + side * 40, 196, 1, jaw);
+  const c: [number, number, number] = [surf.x * 0.96, surf.y, surf.z - r * 0.5];
+  const open = f.eyeOpen * (1 - blink);
+  // üst kapak: açık gözde irisin üst kenarına değer; kapanınca aşağı iner
+  const upper = f.eyeSmile ? 0.1 : 0.42 - Math.min(1.35, open) * 1.12;
+  // alt kapak: dinlenmede gözün altında, gülümsemede yukarı
+  const lower = f.eyeSmile ? -0.05 : 0.95 - Math.max(0, open - 1) * 0.3;
+  // kapak eğimi: öfke → iç köşe aşağı, üzüntü → dış köşe aşağı
+  const tilt = Math.max(-0.35, Math.min(0.35, (f.browOuter - f.browInner) * 0.03)) * side;
+  const female = look.gender === "f" && look.age !== "child";
+  return (
+    <group position={c} rotation={[0, side * 0.12, 0]}>
+      {/* göz küresi + iris (bakış yönüne döner) */}
+      <group rotation={[-lookY * 0.3, lookX * 0.42, 0]}>
+        <mesh geometry={SPH} material={gloss("#f5f1ea", 0.25)} scale={r} />
+        <mesh geometry={capGeo(r * 1.004, 0.62)} material={gloss(look.iris, 0.12)} rotation={[Math.PI / 2, 0, 0]} />
+        <mesh geometry={capGeo(r * 1.008, 0.3 * f.pupil)} material={gloss("#0d0806", 0)} rotation={[Math.PI / 2, 0, 0]} />
+      </group>
+      {/* ışık parlaması (gözle dönmez) */}
+      <mesh geometry={SPH} material={flat("#ffffff")} scale={r * 0.16} position={[r * 0.3, r * 0.38, r * 0.92]} />
+      <mesh geometry={SPH} material={flat("#ffffff", 0.7)} scale={r * 0.07} position={[-r * 0.25, -r * 0.2, r * 0.97]} />
+      {/* kapaklar */}
+      <group rotation={[0, 0, tilt]}>
+        <group rotation={[upper, 0, 0]}>
+          <mesh geometry={lidGeo(r * 1.035, true)} material={toon(look.skin)} />
+          <mesh geometry={lashGeo(r * 1.035, female ? 0.0042 : 0.0028)} material={flat("#24160f")} rotation={[Math.PI / 2, 0, 0]} />
+        </group>
+        <group rotation={[lower, 0, 0]}>
+          <mesh geometry={lidGeo(r * 1.03, false)} material={toon(look.skin)} />
+        </group>
+      </group>
+    </group>
+  );
+};
+
+const Nose3D: React.FC<{ look: Look; jaw: number }> = ({ look, jaw }) => {
+  const male = look.gender === "m";
+  const k = (male ? 1.0 : 0.85) * (look.age === "child" ? 0.75 : 1);
+  const tip = faceToHead(200, 236, 1, jaw);
+  const bridge = faceToHead(200, 214, 1, jaw);
+  // tek parça yumuşak burun: ince köprü + küçük yuvarlak uç (yumru yok)
+  return (
+    <group>
+      <mesh geometry={SPH} material={toon(look.skin)} scale={[0.011 * k, 0.034 * k, 0.012 * k]} position={[bridge.x, (bridge.y + tip.y) / 2 + 0.004, (bridge.z + tip.z) / 2 + 0.001]} rotation={[-0.32, 0, 0]} />
+      <mesh geometry={SPH} material={toon(look.skin)} scale={[0.016 * k, 0.013 * k, 0.014 * k]} position={[tip.x, tip.y + 0.002, tip.z + 0.006 * k]} />
+    </group>
+  );
+};
+
+/** Parmaklı el: avuç + 4 parmak + başparmak, hafif kıvrık dinlenme hali. */
+const Hand3D: React.FC<{ side: -1 | 1; color: string; prop?: Prop }> = ({ side, color, prop }) => (
+  <group>
+    <mesh geometry={SPH} material={toon(color)} scale={[0.024, 0.045, 0.04]} />
+    {[-0.027, -0.009, 0.009, 0.026].map((z, i) => (
+      <group key={i} position={[side * -0.004, -0.038, z]} rotation={[0, 0, side * 0.32]}>
+        <mesh geometry={capsule(0.0085, i === 0 || i === 3 ? 0.026 : 0.032)} material={toon(color)} position={[0, -0.018, 0]} />
+      </group>
+    ))}
+    <group position={[side * -0.012, -0.004, 0.034]} rotation={[0.5, 0, side * -0.5]}>
+      <mesh geometry={capsule(0.0095, 0.026)} material={toon(color)} position={[0, -0.016, 0]} />
+    </group>
+    {side === 1 && prop && prop !== "none" ? <Prop3D prop={prop} /> : null}
+  </group>
+);
+
 /* ------------------------------ main ------------------------------ */
 export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [number, number, number] }> = ({ look: look0, pose = {}, position = [0, 0, 0] }) => {
   const look = useMemo(() => ({ ...look0, skin: tenRengi(look0.skin), skinShade: tenRengi(look0.skinShade) }), [look0]);
@@ -245,6 +322,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
     pale: pose.pale ?? (emo === "sok" ? 0.6 : 0),
     sweat: pose.sweat,
     frame,
+    eyes3d: STIL.film,
   });
   face.tex.needsUpdate = true;
 
@@ -277,9 +355,15 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
         <M geo={capsule(limbR, foreLen * 0.9)} color={short ? look.skin : sleeve} pos={[0, -foreLen / 2, 0]} />
         {!short ? <M geo={cyl(limbR * 1.15, limbR * 1.15, 0.03)} color={out.topShade} pos={[0, -foreLen + 0.02, 0]} line={0.003} /> : null}
         <group position={[0, -foreLen - 0.04, 0]}>
-          <M geo={SPH} color={look.skin} scale={[0.052, 0.058, 0.045]} />
-          <M geo={SPH} color={look.skin} scale={[0.02, 0.03, 0.02]} pos={[side * -0.04, 0.01, 0.025]} line={0.003} />
-          {side === 1 && pose.prop && pose.prop !== "none" ? <Prop3D prop={pose.prop} /> : null}
+          {STIL.film ? (
+            <Hand3D side={side} color={look.skin} prop={pose.prop} />
+          ) : (
+            <>
+              <M geo={SPH} color={look.skin} scale={[0.052, 0.058, 0.045]} />
+              <M geo={SPH} color={look.skin} scale={[0.02, 0.03, 0.02]} pos={[side * -0.04, 0.01, 0.025]} line={0.003} />
+              {side === 1 && pose.prop && pose.prop !== "none" ? <Prop3D prop={pose.prop} /> : null}
+            </>
+          )}
         </group>
       </group>
     </group>
@@ -371,11 +455,18 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
             <group position={[0, headY, 0]} scale={age.head} rotation={headRot}>
               <M geo={headGeometry(jaw)} color={look.skin} line={0.009} />
               <mesh geometry={faceGeometry(jaw)} material={face.mat} renderOrder={2} />
+              {STIL.film ? (
+                <>
+                  <Eye3D look={look} f={EMOTION_FACE[emo] ?? EMOTION_FACE.notr} side={-1} blink={blink} lookX={pose.lookX ?? 0} lookY={pose.lookY ?? 0} jaw={jaw} />
+                  <Eye3D look={look} f={EMOTION_FACE[emo] ?? EMOTION_FACE.notr} side={1} blink={blink} lookX={pose.lookX ?? 0} lookY={pose.lookY ?? 0} jaw={jaw} />
+                  <Nose3D look={look} jaw={jaw} />
+                </>
+              ) : null}
               {/* ears */}
               {look.hair.style !== "hijab" ? (
                 <>
-                  <M geo={SPH} color={look.skin} scale={[0.016, 0.04, 0.028]} pos={earPos(jaw, -1)} line={0.005} />
-                  <M geo={SPH} color={look.skin} scale={[0.016, 0.04, 0.028]} pos={earPos(jaw, 1)} line={0.005} />
+                  <M geo={SPH} color={look.skin} scale={STIL.film ? [0.02, 0.046, 0.032] : [0.016, 0.04, 0.028]} pos={earPos(jaw, -1)} line={0.005} />
+                  <M geo={SPH} color={look.skin} scale={STIL.film ? [0.02, 0.046, 0.032] : [0.016, 0.04, 0.028]} pos={earPos(jaw, 1)} line={0.005} />
                 </>
               ) : null}
               {look.earrings && look.hair.style !== "hijab" ? (
