@@ -6,6 +6,7 @@ import {
   Armchair, Bed, Bookshelf, CafeCounter, CafeTable, Car, CeilingLamp, Chalkboard, Chandelier, CoffeeTable, Curtains,
   Desk, DiningTable, Door, FloorLamp, Frame, HospitalBed, Kitchen, O, Plant, PoliceDesk, Rug, SchoolDesk, Sofa,
   StreetLamp, TimeOfDay, Tombstone, Tree, TV, WallClock, Wardrobe, WindowView, SKY,
+  Bird, CellDoor, IronBed, IronBedBlanket, WindowBars,
 } from "./props";
 import { Corridor, FrontDoor, Stairwell } from "../../dizi/Sets";
 
@@ -14,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -25,6 +26,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   cocuk_odasi: { title: "Çocuk odası", marks: { sol: { x: 300, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 800, y: 1780, size: 1250 } } },
   ofis: { title: "Ofis", marks: { masa: { x: 560, y: 1640, size: 1150, sit: true }, sol: { x: 260, y: 1780, size: 1250 }, sag: { x: 840, y: 1780, size: 1250 } } },
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
+  hucre: { title: "Tımarhane odası", marks: { yatak: { x: 590, y: 1238, size: 950 }, orta: { x: 520, y: 1780, size: 1250 }, kapi: { x: 860, y: 1780, size: 1250 } } },
   hastane_koridoru: { title: "Hastane koridoru", marks: { sol: { x: 320, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 780, y: 1780, size: 1250 } } },
   sokak: { title: "Sokak", marks: { sol: { x: 300, y: 1800, size: 1250 }, orta: { x: 540, y: 1810, size: 1270 }, sag: { x: 790, y: 1800, size: 1250 } } },
   kafe: { title: "Kafe", marks: { sol: { x: 280, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 820, y: 1780, size: 1250 }, tezgah: { x: 540, y: 1480, size: 1150 } } },
@@ -86,7 +88,8 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0 }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus }) => {
+  const props = { kus };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -158,6 +161,32 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <HospitalBed x={180} y={1380} s={0.9} />
         </g>
       );
+    case "hucre": {
+      const kus = props.kus;
+      return (
+        <g>
+          <Wall c1="#c9d2cb" c2="#b6c1b9" pattern="yok" />
+          {/* nem lekeleri */}
+          <ellipse cx={180} cy={420} rx={120} ry={70} fill="#00000010" />
+          <ellipse cx={980} cy={1180} rx={90} ry={160} fill="#00000012" />
+          <TileFloor c="#b9c2bd" line="#a1aba6" />
+          <defs>
+            <clipPath id="hucre-win"><rect x={600} y={260} width={340} height={460} /></clipPath>
+            <linearGradient id="hucre-beam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#fffbe8" stopOpacity="0.38" />
+              <stop offset="1" stopColor="#fffbe8" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <WindowView x={600} y={260} w={340} h={460} time={time} rain={rain} id="hucre" flash={flash} city={false} />
+          {kus ? <g clipPath="url(#hucre-win)">{kus}</g> : null}
+          <WindowBars x={600} y={260} w={340} h={460} />
+          {/* pencereden düşen ışık */}
+          <path d="M 600 720 L 940 720 L 760 1500 L 200 1500 Z" fill="url(#hucre-beam)" />
+          <CellDoor x={900} y={860} s={1} />
+          <IronBed x={60} y={1240} s={1} />
+        </g>
+      );
+    }
     case "hastane_koridoru":
       return (
         <g>
@@ -316,6 +345,8 @@ const SetFG: React.FC<{ name: SetName }> = ({ name }) => {
       );
     case "karakol":
       return <PoliceDesk x={160} y={1460} s={1} />;
+    case "hucre":
+      return <IronBedBlanket x={385} y={1230} s={1} />;
     default:
       return null;
   }
@@ -335,7 +366,9 @@ export const SetLayer: React.FC<{
   flash?: number;
   doorOpen?: number;
   children?: React.ReactNode;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children }) => {
+  /** pencere dışındaki kuş (hücre) — SVG düğümü */
+  kus?: React.ReactNode;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -355,7 +388,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />
@@ -363,4 +396,4 @@ export const SetLayer: React.FC<{
   );
 };
 
-export { Door, Armchair, TV };
+export { Door, Armchair, TV, Bird };

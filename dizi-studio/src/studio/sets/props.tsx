@@ -454,3 +454,99 @@ export const PoliceDesk: React.FC<P> = ({ x, y, s }) => (
     <rect x={80} y={-40} width={200} height={40} fill="#e8e0c8" stroke={O} strokeWidth={3} transform="rotate(-4 180 -20)" />
   </G>
 );
+
+/* ---------------- İmza: tımarhane odası (hücre) varlıkları ---------------- */
+
+/** Demir karyola (yandan): ince borular, ince şilte, yastık. Battaniye ön katmanda (IronBedBlanket). */
+export const IronBed: React.FC<P> = ({ x, y, s }) => {
+  const tube = "#5c646a";
+  return (
+    <G x={x} y={y} s={s}>
+      {/* başlık (sol) */}
+      {[10, 50].map((tx) => <rect key={tx} x={tx} y={-190} width={16} height={450} rx={8} fill={tube} stroke={O} strokeWidth={4} />)}
+      {[-150, -60].map((ry) => <rect key={ry} x={10} y={ry} width={56} height={12} rx={6} fill={tube} stroke={O} strokeWidth={3} />)}
+      {/* ayakucu (sağ) */}
+      {[800, 840].map((tx) => <rect key={tx} x={tx} y={-60} width={16} height={320} rx={8} fill={tube} stroke={O} strokeWidth={4} />)}
+      <rect x={800} y={-30} width={56} height={12} rx={6} fill={tube} stroke={O} strokeWidth={3} />
+      {/* yan ray + ayaklar */}
+      <rect x={26} y={80} width={800} height={18} rx={8} fill={tube} stroke={O} strokeWidth={4} />
+      {[120, 720].map((lx) => <rect key={lx} x={lx} y={90} width={14} height={170} fill={tube} stroke={O} strokeWidth={3} />)}
+      {/* şilte + yastık */}
+      <rect x={30} y={0} width={790} height={82} rx={14} fill="#e2e5e1" stroke={O} strokeWidth={sw} />
+      <path d="M 40 58 H 810" stroke="#c9ceca" strokeWidth={6} />
+      <rect x={52} y={-46} width={230} height={66} rx={30} fill="#f2f3ef" stroke={O} strokeWidth={4} />
+      <path d="M 90 -20 Q 160 -34 240 -18" stroke="#d6d9d4" strokeWidth={5} fill="none" />
+    </G>
+  );
+};
+
+/** Battaniye: karakterin gövdesini (yatarken) ve bacaklarını (doğrulunca) örter; yatağın yanından sarkar. */
+export const IronBedBlanket: React.FC<P> = ({ x, y, s }) => (
+  <G x={x} y={y} s={s}>
+    {/* gövdeyi örten kısım + sağa uzanan bacak kabarıklığı (yatarken de otururken de bacaklar altında) */}
+    <path d="M -10 30 Q -16 -40 40 -58 Q 120 -76 210 -66 Q 300 -96 420 -84 Q 480 -78 500 -40 L 512 196 Q 250 214 -8 196 Z" fill="#8c979a" stroke={O} strokeWidth={sw} strokeLinejoin="round" />
+    {/* üst kıvrım (katlanmış kenar) */}
+    <path d="M -10 30 Q -16 -40 40 -58 Q 70 -30 60 20 Q 30 40 -10 30 Z" fill="#a2acae" stroke={O} strokeWidth={4} strokeLinejoin="round" />
+    {/* diz/bacak kıvrımları */}
+    <path d="M 210 -66 Q 230 -20 216 40 M 300 -86 Q 330 -40 320 30 M 420 -84 Q 440 -30 446 190 M 120 0 Q 130 100 110 190" stroke="#74808a" strokeWidth={4} fill="none" />
+  </G>
+);
+
+/** Parmaklıklar: pencerenin önünde (kuş parmaklıkların arkasında kalır). */
+export const WindowBars: React.FC<{ x: number; y: number; w: number; h: number }> = ({ x, y, w, h }) => (
+  <g>
+    {new Array(5).fill(0).map((_, i) => {
+      const bx = x + ((i + 1) * w) / 6;
+      return (
+        <g key={i}>
+          <rect x={bx - 7} y={y - 6} width={14} height={h + 12} rx={6} fill="#3e4448" stroke={O} strokeWidth={3} />
+          <rect x={bx - 3} y={y} width={3} height={h} fill="#6e767c" />
+        </g>
+      );
+    })}
+    <rect x={x - 6} y={y + h * 0.5 - 8} width={w + 12} height={16} rx={6} fill="#3e4448" stroke={O} strokeWidth={3} />
+  </g>
+);
+
+/** Serçe (yandan, sola bakar). flap: kanat açısı -1..1, fly: uçuyor, head: baş dönüşü -1..1 */
+export const Bird: React.FC<{ x: number; y: number; s?: number; flap?: number; fly?: boolean; head?: number; tail?: number }> = ({ x, y, s = 1, flap = 0, fly = false, head = 0, tail = 0 }) => (
+  <g transform={`translate(${x} ${y}) scale(${s})`}>
+    {/* kuyruk */}
+    <path d={`M 22 -6 L 62 ${-16 + tail * 6} L 60 ${2 + tail * 6} Z`} fill="#5a4636" stroke={O} strokeWidth={3} strokeLinejoin="round" />
+    {/* bacaklar */}
+    {!fly ? <path d="M -6 10 L -10 24 M 6 10 L 4 24 M -16 24 H -4 M -2 24 H 10" stroke="#8a6a4a" strokeWidth={3} strokeLinecap="round" /> : null}
+    {/* gövde */}
+    <ellipse cx={0} cy={-6} rx={28} ry={18} fill="#8a6a4e" stroke={O} strokeWidth={3} />
+    <path d="M -24 0 Q -6 14 18 4 Q 0 18 -20 6 Z" fill="#e6d8c0" />
+    {/* kanat */}
+    {fly ? (
+      <path d={`M -6 -12 Q 6 ${-12 - 46 * flap} 34 ${-14 - 40 * flap} Q 18 -6 -6 -12 Z`} fill="#6e5440" stroke={O} strokeWidth={3} strokeLinejoin="round" />
+    ) : (
+      <path d="M -10 -14 Q 14 -22 32 -8 Q 12 2 -10 -6 Z" fill="#6e5440" stroke={O} strokeWidth={3} strokeLinejoin="round" />
+    )}
+    {/* baş */}
+    <g transform={`translate(-24 -20) scale(${head > 0.5 ? -1 : 1} 1)`}>
+      <circle cx={0} cy={0} r={14} fill="#7a5c44" stroke={O} strokeWidth={3} />
+      <path d="M -6 4 Q 0 12 8 6" stroke="#e6d8c0" strokeWidth={4} fill="none" />
+      <path d="M -12 -2 L -24 2 L -12 5 Z" fill="#e2b04a" stroke={O} strokeWidth={2} strokeLinejoin="round" />
+      <circle cx={-5} cy={-3} r={3.2} fill="#120c0a" />
+      <circle cx={-6} cy={-4} r={1} fill="#fff" />
+    </g>
+  </g>
+);
+
+/** Hücre kapısı: çelik, gözetleme penceresi, kollu. open 0..1 */
+export const CellDoor: React.FC<P & { open?: number }> = ({ x, y, s, open = 0 }) => (
+  <G x={x} y={y} s={s}>
+    <rect x={-18} y={-18} width={336} height={658} fill="#aab4b2" stroke={O} strokeWidth={4} />
+    <rect x={0} y={0} width={300} height={640} fill="#1c2224" />
+    <g transform={`scale(${1 - open * 0.85} 1)`}>
+      <rect x={0} y={0} width={300} height={640} fill="#87939a" stroke={O} strokeWidth={sw} />
+      <rect x={70} y={70} width={160} height={110} rx={6} fill="#2a3236" stroke={O} strokeWidth={4} />
+      {[100, 130, 160, 190].map((bx) => <rect key={bx} x={bx} y={70} width={8} height={110} fill="#4a5256" />)}
+      {[40, 600].map((ry) => <rect key={ry} x={10} y={ry} width={280} height={6} fill="#76828a" />)}
+      <rect x={24} y={300} width={22} height={60} rx={10} fill="#b8c0c4" stroke={O} strokeWidth={3} />
+      <rect x={20} y={318} width={70} height={18} rx={9} fill="#c8d0d4" stroke={O} strokeWidth={3} />
+    </g>
+  </G>
+);

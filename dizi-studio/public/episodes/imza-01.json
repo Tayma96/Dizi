@@ -1,0 +1,158 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-01",
+ "episodeNo": 1,
+ "title": "Bölüm 1",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "p1",
+   "set": "hucre",
+   "time": "gunduz",
+   "look": "soguk",
+   "partBreak": true,
+   "title": "Parça 1 — GÜN 183",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/gizem",
+    "volume": 0.18
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "body": "yat",
+     "eyesClosed": 1,
+     "emotion": "notr"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 3.2,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas",
+      "kadraj": "pencere"
+     },
+     "kus": "gel",
+     "etiket": "GÜN 183",
+     "fade": "giris",
+     "sfx": [
+      {
+       "name": "efekt/kanat",
+       "volume": 0.55,
+       "at": 0.6
+      },
+      {
+       "name": "efekt/tik",
+       "volume": 0.3,
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "voiceover": true,
+     "emotion": "anlatim",
+     "text": "Hafızanızı kaybettiğinizde size ilk söylenen şey “burası güvenli” olsa, gerçekten güvende hisseder miydiniz?",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas",
+      "kadraj": "pencere"
+     },
+     "kus": "otur"
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "voiceover": true,
+     "emotion": "anlatim",
+     "text": "Evet, o benim.",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "kaydir"
+     },
+     "kus": "otur"
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "eyesClosed": 0,
+       "emotion": "aci"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "aci",
+     "text": "Nerdeyim ben, neresi burası?",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 3.0,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "body": "dogrul",
+       "gesture": "basTutma",
+       "emotion": "aci"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.35,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "bileklik",
+     "dur": 2.6,
+     "text": [
+      "B. TANER",
+      "ODA 7",
+      "KABUL: 14 MART"
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kapi_kolu",
+     "dur": 3.0,
+     "sfx": [
+      {
+       "name": "efekt/kapi_gicirti",
+       "volume": 0.6,
+       "at": 0.6
+      }
+     ],
+     "fade": "cikis"
+    }
+   ]
+  }
+ ]
+}

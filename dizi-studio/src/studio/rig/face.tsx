@@ -20,6 +20,7 @@ export type FaceParams = {
 };
 
 export const EMOTION_FACE: Record<Emotion, FaceParams> = {
+  aci: { browInner: 13, browOuter: -4, browLift: 4, eyeOpen: 0.5, eyeSmile: false, pupil: 0.9, mouth: "tight", blush: 0.1 },
   notr: { browInner: 0, browOuter: 0, browLift: 0, eyeOpen: 1, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.4 },
   mutlu: { browInner: 3, browOuter: 3, browLift: -3, eyeOpen: 0.95, eyeSmile: false, pupil: 1.05, mouth: "smile", blush: 0.6 },
   gulen: { browInner: 5, browOuter: 4, browLift: -6, eyeOpen: 1, eyeSmile: true, pupil: 1, mouth: "grin", blush: 0.8 },

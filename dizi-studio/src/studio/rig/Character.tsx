@@ -472,7 +472,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           </g>
         </g>
         <g transform={bodyT}>
-          <Legs />
+          {pose.hideLegs ? null : <Legs />}
           <g transform={torsoScale}>
             <Torso />
           </g>

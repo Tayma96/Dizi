@@ -24,3 +24,4 @@ BigSoundBank #0022,ses/efekt/telefon_titresim.mp3,CC0 1.0,gerekmez
 BigSoundBank #0771,ses/efekt/cam_kirilma.mp3,CC0 1.0,gerekmez
 BigSoundBank #0457,ses/efekt/hastane_monitor.mp3,CC0 1.0,gerekmez
 kod-sentezi (tools/ses_kutuphanesi.py),diğer ses/* dosyaları,telifsiz (kendi üretimimiz),gerekmez
+Kendi sentezimiz (numpy),ses/efekt/kanat.mp3,Kendi üretimimiz,gerekmez

@@ -97,6 +97,13 @@
   "loop": false,
   "desc": "Kalp atışı (70 bpm). Korku/heyecan."
  },
+ "efekt/kanat": {
+  "file": "ses/efekt/kanat.mp3",
+  "category": "efekt",
+  "duration": 1.9,
+  "loop": false,
+  "desc": "Küçük kuş kanat çırpışı, konarken yavaşlar (kendi sentezimiz)."
+ },
  "efekt/kapi_acilma": {
   "file": "ses/efekt/kapi_acilma.mp3",
   "category": "efekt",

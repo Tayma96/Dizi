@@ -3,10 +3,10 @@ import { AbsoluteFill, CalculateMetadataFunction, Sequence, interpolate, random,
 import { Audio } from "@remotion/media";
 import { castById } from "../cast";
 import { AGE, Character } from "../rig/Character";
-import { SET_INFO, SetLayer, type Mark } from "../sets";
+import { Bird, SET_INFO, SetLayer, type Mark } from "../sets";
 import { FilmFinish } from "../../dizi/Effects";
 import { lightning } from "../../dizi/Sets";
-import { EndCard, KaraokeSubtitle, PhoneMessage, TitleCard } from "./Overlays";
+import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleCard } from "./Overlays";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
 import { GESTURES, type FullArm } from "../rig/gestures";
@@ -22,9 +22,11 @@ const place = (id: string, st: CharState, marks: Record<string, Mark>): Placed |
   const m = marks[st.mark ?? Object.keys(marks)[0]];
   if (!m) return null;
   const look = castById(id);
-  const sit = st.body === "sit" || Boolean(m.sit && st.body !== "stand");
+  const lie = st.body === "yat" || st.body === "dogrul";
+  const sit = !lie && (st.body === "sit" || Boolean(m.sit && st.body !== "stand"));
   const size = m.size;
-  const top = m.y - (sit ? 0.91 : 0.98) * size;
+  // yatan/doğrulan: işaretin y'si kalça noktasıdır (karakter kalçasından döner)
+  const top = lie ? m.y - 0.6 * size : m.y - (sit ? 0.91 : 0.98) * size;
   const a = AGE[look.age];
   const headLocal = 300 - 100 * a.head * a.sy + 680 * (1 - a.sy);
   return { id, x: m.x, feetY: m.y, size, top, headX: m.x, headY: top + (headLocal / 1000) * size, sit };
@@ -32,7 +34,16 @@ const place = (id: string, st: CharState, marks: Record<string, Mark>): Placed |
 
 type Cam = { cx: number; cy: number; z: number; ay: number };
 
+/** Hazır elle kadrajlar (mekâna özgü ekleme çekimleri) */
+const KADRAJ: Record<string, { cx: number; cy: number; z: number }> = {
+  pencere: { cx: 770, cy: 500, z: 2.05 },
+};
+
 const cameraFor = (shot: Shot, placed: Record<string, Placed>): Cam => {
+  if (shot.kadraj) {
+    const k = typeof shot.kadraj === "string" ? KADRAJ[shot.kadraj] : shot.kadraj;
+    if (k) return { cx: k.cx, cy: k.cy, z: k.z, ay: 960 };
+  }
   const p = shot.on ? placed[shot.on] : undefined;
   let cam: Cam;
   switch (shot.type) {
@@ -112,6 +123,33 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     placed[id] = { ...p, x, headX: x };
   }
 
+  // yatma / doğrulma: kalçadan dönüş açısı; baş konumu kameranın takibi için güncellenir
+  const lieAng: Record<string, number> = {};
+  for (const [id, p] of Object.entries(placed)) {
+    const b = tb.cast[id].body;
+    if (b !== "yat" && b !== "dogrul") continue;
+    const already = b === "dogrul" && prev?.cast[id]?.body === "dogrul";
+    const a = b === "yat" ? -90 : already ? 0 : interpolate(bf, [Math.round(0.15 * fps), Math.round(1.45 * fps)], [-90, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+    lieAng[id] = a;
+    const d = 0.39 * p.size;
+    const r = (a * Math.PI) / 180;
+    placed[id] = { ...p, headX: p.x + d * Math.sin(r), headY: p.feetY - d * Math.cos(r) };
+  }
+
+  // kuş (pencere dışında): gel = uçup pervaza konar, otur = bekler; hareket her seferinde birebir aynıdır (döngü motifi)
+  let kusNode: React.ReactNode = null;
+  if (tb.beat.kus) {
+    const t = tb.beat.kus === "gel" ? bf / fps : 99 + frame / fps;
+    const FLY = 1.7;
+    const k = Math.min(1, t / FLY);
+    const e = 1 - (1 - k) ** 3;
+    const fly = t < FLY;
+    const bx = 1010 + (800 - 1010) * e;
+    const by = 430 + (700 - 430) * e - Math.sin(k * Math.PI) * 50 - (fly ? 0 : Math.max(0, Math.sin((t - FLY) * 14)) * 6 * Math.exp(-(t - FLY) * 5));
+    const head = !fly && Math.floor((t - FLY) / 1.4) % 3 === 1 ? 1 : 0;
+    kusNode = <Bird x={bx} y={by} s={1.7} fly={fly} flap={Math.sin(t * 34)} head={head} tail={fly ? 0 : Math.sin(t * 3) * 0.6} />;
+  }
+
   // camera
   let cam = clampCam(cameraFor(tb.shot, placed));
   if (tb.shot.move === "kaydir" && prev) {
@@ -184,8 +222,9 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       yaw = pv.yaw + (yaw - pv.yaw) * gk;
       lookX = pv.lookX + (lookX - pv.lookX) * gk;
     }
+    const ang = lieAng[id];
     return (
-      <div key={id} style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top }}>
+      <div key={id} style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: ang !== undefined ? `rotate(${ang}deg)` : undefined, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px` }}>
         <Character
           look={look}
           size={p.size}
@@ -197,6 +236,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             armR,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
+            hideLegs: ang !== undefined,
             yaw,
             lookX,
             tears: st.tears,
@@ -227,7 +267,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}
@@ -243,7 +283,10 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
           ) : b.beat.type === "mesaj" ? (
             <PhoneMessage from={b.beat.from} text={b.beat.text} dur={b.dur} />
+          ) : b.beat.type === "insert" ? (
+            <InsertShot kind={b.beat.kind} text={b.beat.text} dur={b.dur} />
           ) : null}
+          {b.beat.etiket ? <CornerLabel text={b.beat.etiket} /> : null}
           {b.beat.fade ? <FadeOverlay mode={b.beat.fade} dur={b.dur} /> : null}
         </Sequence>
       ))}

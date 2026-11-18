@@ -173,3 +173,109 @@ export const MirrorOverlay: React.FC = () => (
     <AbsoluteFill style={{ border: "34px solid #8a9298", boxShadow: "inset 0 0 0 6px #2b2b2b" }} />
   </AbsoluteFill>
 );
+
+/* ---------------- Köşe yazısı (ör. "GÜN 183"): daktilo gibi belirir, telefonda okunur ---------------- */
+export const CornerLabel: React.FC<{ text: string }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const n = Math.min(text.length, Math.floor(interpolate(f, [8, 8 + text.length * 2.5], [0, text.length], clamp)));
+  const cursor = Math.floor(f / 8) % 2 === 0;
+  return (
+    <AbsoluteFill style={{ padding: "300px 0 0 70px" }}>
+      <div style={{ fontFamily: "'Courier New', monospace", fontWeight: 700, fontSize: 64, letterSpacing: 8, color: "#f2f2ee", textShadow: "0 0 18px rgba(0,0,0,0.9), 0 2px 4px #000" }}>
+        {text.slice(0, n)}
+        <span style={{ opacity: cursor ? 0.9 : 0 }}>_</span>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------- Ekleme (insert) yakın planları ---------------- */
+const SKIN = "#e0b08c";
+const OUTL = "#1b1412";
+
+const InsertBileklik: React.FC<{ text: string[]; dur: number }> = ({ text, dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.07], clamp);
+  const tw = Math.sin(f / 5) * 1.5;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#a3adb0" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <defs>
+          <radialGradient id="ins-vig" cx="0.5" cy="0.5" r="0.7">
+            <stop offset="0.55" stopColor="#000" stopOpacity="0" />
+            <stop offset="1" stopColor="#000" stopOpacity="0.55" />
+          </radialGradient>
+        </defs>
+        {/* battaniye zemini */}
+        <rect width={1080} height={1920} fill="#8c979a" />
+        <path d="M 0 700 Q 540 640 1080 720 M 0 1300 Q 540 1240 1080 1320" stroke="#74808a" strokeWidth={10} fill="none" />
+        {/* kol (önlük kolundan çıkıyor): kadrajı dolduran bilek yakın planı */}
+        <path d="M -60 800 Q 400 770 700 820 Q 780 900 760 1060 Q 420 1120 -60 1110 Z" fill={SKIN} stroke={OUTL} strokeWidth={9} />
+        <path d="M -60 770 L 150 780 Q 180 960 160 1130 L -60 1140 Z" fill="#a9c4d6" stroke={OUTL} strokeWidth={9} />
+        <path d="M 150 780 Q 180 960 160 1130" stroke="#8aa8bc" strokeWidth={14} fill="none" />
+        {/* el: avuç + kıvrık parmaklar */}
+        <g transform={`rotate(${tw} 780 950)`}>
+          <path d="M 700 830 Q 900 800 960 900 Q 990 1010 900 1070 Q 790 1110 720 1050 Z" fill={SKIN} stroke={OUTL} strokeWidth={9} />
+          {[0, 1, 2, 3].map((i) => (
+            <path key={i} d={`M 930 ${860 + i * 52} q 90 -6 110 24 q 4 26 -26 28 q -50 2 -84 -6`} fill={SKIN} stroke={OUTL} strokeWidth={7} strokeLinejoin="round" />
+          ))}
+          <path d="M 760 1050 q 40 60 110 40" stroke={OUTL} strokeWidth={6} fill="none" opacity={0.5} />
+        </g>
+        {/* hasta bilekliği */}
+        <rect x={330} y={790} width={470} height={300} rx={34} fill="#f6f6f2" stroke={OUTL} strokeWidth={9} />
+        <rect x={350} y={810} width={430} height={260} rx={22} fill="none" stroke="#c8ccd0" strokeWidth={5} />
+        {text.map((t, i) => (
+          <text key={i} x={565} y={878 + i * 74} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={i === 0 ? 62 : 50} fill="#1a1e24">
+            {t}
+          </text>
+        ))}
+        <rect width={1080} height={1920} fill="url(#ins-vig)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+const InsertKapiKolu: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  // kol yavaşça aşağı döner (biri kapıyı açıyor), sonunda bir an durur
+  const a = interpolate(f, [0.5 * fps, 1.9 * fps], [0, 34], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  const z = interpolate(f, [0, dur], [1.0, 1.09], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0e1214" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <defs>
+          <linearGradient id="ins-steel" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#8e9aa1" />
+            <stop offset="1" stopColor="#5e6a71" />
+          </linearGradient>
+          <linearGradient id="ins-lever" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e4e9ec" />
+            <stop offset="1" stopColor="#9aa4aa" />
+          </linearGradient>
+          <radialGradient id="ins-vig2" cx="0.45" cy="0.48" r="0.65">
+            <stop offset="0.45" stopColor="#000" stopOpacity="0" />
+            <stop offset="1" stopColor="#000" stopOpacity="0.7" />
+          </radialGradient>
+        </defs>
+        <rect width={1080} height={1920} fill="url(#ins-steel)" />
+        <path d="M 0 400 H 1080 M 0 1560 H 1080" stroke="#4e5a60" strokeWidth={14} />
+        {/* kapı aralığı (sağda): koridordan sızan ışık */}
+        <rect x={1010} y={0} width={70} height={1920} fill="#2a3134" />
+        <rect x={1030} y={0} width={14} height={1920} fill="#fff6d8" opacity={interpolate(f, [1.6 * fps, 2.3 * fps], [0, 0.55], clamp)} />
+        {/* rozet + kol */}
+        <ellipse cx={420} cy={960} rx={110} ry={150} fill="#a8b2b8" stroke={OUTL} strokeWidth={8} />
+        <circle cx={420} cy={1060} r={22} fill="#2a3134" />
+        <g transform={`rotate(${a} 420 930)`}>
+          <rect x={360} y={880} width={520} height={100} rx={50} fill="url(#ins-lever)" stroke={OUTL} strokeWidth={8} />
+          <rect x={400} y={898} width={440} height={16} rx={8} fill="#ffffff" opacity={0.55} />
+          <circle cx={420} cy={930} r={66} fill="#c8d0d4" stroke={OUTL} strokeWidth={8} />
+        </g>
+        <rect width={1080} height={1920} fill="url(#ins-vig2)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu"; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
+  kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : <InsertKapiKolu dur={dur} />;

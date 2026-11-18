@@ -21,6 +21,8 @@ export type Shot = {
   angle?: "duz" | "alt" | "ust";
   /** Tasarlanmış kadraj: kamerayı elle kur (ör. dikey kadraja göre establishing). Hareketler (yaklas/uzaklas) yine uygulanır. */
   cam?: { pos: [number, number, number]; target: [number, number, number]; fov?: number };
+  /** 2D elle kadraj: hazır ad (ör. "pencere") ya da { cx, cy, z } */
+  kadraj?: string | { cx: number; cy: number; z: number };
 };
 
 /** Tek ışık kaynağı: p = konum (yönlü ışıkta sahne merkezine doğru), c = renk, i = şiddet */
@@ -33,7 +35,8 @@ export type CharState = {
   emotion?: Emotion;
   gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
-  body?: "stand" | "sit" | "walk";
+  /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
+  body?: "stand" | "sit" | "walk" | "yat" | "dogrul";
   /** bakılan karakter id ya da "kamera" */
   lookAt?: string;
   tears?: number;
@@ -72,7 +75,9 @@ export type Beat =
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
   | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon)
-  | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon);
+  | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon)
+  /** ekleme (insert) yakın planı: tam ekran çizim */
+  | ({ type: "insert"; kind: "bileklik" | "kapi_kolu"; dur: number; text?: string[] } & BeatCommon);
 
 export type BeatCommon = {
   shot?: Shot;
@@ -85,6 +90,10 @@ export type BeatCommon = {
   fade?: "giris" | "cikis";
   /** ayna/yansıma görünümü (çerçeve + cam katmanı) */
   ayna?: boolean;
+  /** ekran köşesinde okunur küçük yazı (ör. "GÜN 183") */
+  etiket?: string;
+  /** pencere dışındaki kuş: gel = uçup konar, otur = pervazda bekler */
+  kus?: "gel" | "otur";
 };
 
 export type Scene = {

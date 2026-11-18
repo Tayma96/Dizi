@@ -71,6 +71,10 @@ EMO = {
     "alayci": ("[sarcastic]", dict(stability=0.45, style=0.45)),
     "soguk": ("[coldly]", dict(stability=0.7, style=0.1)),
     "fisilti": ("[whispers]", dict(stability=0.5, style=0.2)),
+    # film açılışı anlatımı (başrolün kendi dış sesi): sakin, içten, ağır
+    "anlatim": ("[calm, reflective narration]", dict(stability=0.6, style=0.2)),
+    # baş ağrısı, sersem uyanış
+    "aci": ("[groggy, in pain]", dict(stability=0.35, style=0.5)),
 }
 EMO_FALLBACK = {"saskin": "korkmus", "sok": "korkmus", "gulen": "mutlu", "kararli": "soguk", "supheli": "soguk", "yorgun": "sakin", "dusunceli": "sakin", "utangac": "sakin", "igrenmis": "ofkeli"}
 

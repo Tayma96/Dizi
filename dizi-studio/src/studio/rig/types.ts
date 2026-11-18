@@ -46,7 +46,9 @@ export type Emotion =
   | "yorgun"
   | "soguk"
   | "kararli"
-  | "igrenmis";
+  | "igrenmis"
+  /** baş ağrısı, sersemlik */
+  | "aci";
 
 export type Gesture =
   | "rest"
@@ -63,7 +65,9 @@ export type Gesture =
   | "tutuyor"
   | "ellerAcik"
   | "ellerYuzde"
-  | "durDur";
+  | "durDur"
+  /** ağrıyan başını tutma (sağ el şakakta) */
+  | "basTutma";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
@@ -114,6 +118,8 @@ export type Pose = {
   /** head tilt degrees */
   tilt?: number;
   body?: "stand" | "sit" | "walk";
+  /** bacakları çizme (yatakta, battaniye altında) */
+  hideLegs?: boolean;
   /** Lip sync: viseme cues (seconds) starting at frame `from` of the current sequence */
   speech?: { cues: MouthCue[]; from: number };
   /** Random mouth flaps when no cues are available */

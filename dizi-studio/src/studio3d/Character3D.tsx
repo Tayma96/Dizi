@@ -27,6 +27,7 @@ export const GESTURES3D: Record<Gesture | "sarilma" | "kapiAc", { L: HandT; R: H
   isaret: { L: REST, R: { t: [0.24, 0.5, 0.62], pole: [1, -1, 0] } },
   elSalla: { L: REST, R: { t: [0.42, "head+0.1", 0.05], pole: [1, -1, 0] } },
   eliYuzunde: { L: REST, R: CHEEK },
+  basTutma: { L: REST, R: CHEEK },
   eliKalbinde: { L: REST, R: { t: [-0.04, 0.33, 0.17], pole: [1, -1, 0] } },
   omuzSilk: { L: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] }, R: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] } },
   yumruk: { L: { t: [0.2, 0.14, 0.13], pole: [0.5, 0, -1] }, R: { t: [0.2, 0.14, 0.13], pole: [0.5, 0, -1] } },
