@@ -455,7 +455,8 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
             <Arm side={-1} ik={ikL} />
             <Arm side={1} ik={ikR} />
             {/* neck + head */}
-            <M geo={cyl(0.038, 0.045, 0.07)} color={look.hair.style === "hijab" ? look.hair.color : look.skin} pos={[0, 0.53 * age.body + 0.01, -0.01]} line={0.004} />
+            {/* boyun: film stilinde çenenin arkasından başlar ve çene gölgesinde kalır (çene boyundan ayrılır) */}
+            <M geo={STIL.film ? cyl(0.034, 0.042, 0.085) : cyl(0.038, 0.045, 0.07)} color={look.hair.style === "hijab" ? look.hair.color : STIL.film ? look.skinShade : look.skin} pos={[0, 0.53 * age.body + 0.01, STIL.film ? -0.032 : -0.01]} line={0.004} />
             <group position={[0, headY, 0]} scale={age.head} rotation={headRot}>
               <M geo={headGeometry(jaw)} color={look.skin} line={0.009} />
               <mesh geometry={faceGeometry(jaw)} material={face.mat} renderOrder={2} />

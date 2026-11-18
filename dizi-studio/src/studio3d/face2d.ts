@@ -205,9 +205,30 @@ export const drawFace = (ctx: CanvasRenderingContext2D, look: Look, s: FaceState
     ctx.globalAlpha = 1;
   }
   if (look.facialHair === "stubble") {
-    ctx.globalAlpha = s.eyes3d ? 0.3 : 0.22;
-    fill(ctx, "M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 276 200 282 Q 150 276 128 236 Z", "#5a4a44");
-    ctx.globalAlpha = 1;
+    if (s.eyes3d) {
+      // kirli sakal: çene hattı, çene ucu ve üst dudakta yumuşak kenarlı noktacıklar (düz dolgu "maske" gibi durur)
+      ctx.save();
+      ctx.clip(new Path2D("M 132 252 Q 140 300 200 314 Q 260 300 268 252 Q 252 286 226 290 Q 200 296 174 290 Q 148 286 132 252 Z M 172 256 Q 200 248 228 256 Q 214 262 200 260 Q 186 262 172 256 Z"));
+      let seed = 7;
+      const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+      ctx.fillStyle = "#3a2a24";
+      for (let i = 0; i < 1400; i++) {
+        const x = 130 + rnd() * 140;
+        const y = 246 + rnd() * 70;
+        // üst kenara doğru seyrelir
+        const edge = Math.min(1, Math.max(0, (y - 252) / 28));
+        ctx.globalAlpha = 0.28 * edge * (0.5 + rnd() * 0.5);
+        ctx.beginPath();
+        ctx.arc(x, y, 0.9 + rnd() * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+      ctx.globalAlpha = 1;
+    } else {
+      ctx.globalAlpha = 0.22;
+      fill(ctx, "M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 276 200 282 Q 150 276 128 236 Z", "#5a4a44");
+      ctx.globalAlpha = 1;
+    }
   }
   if (look.facialHair === "beard") {
     fill(ctx, "M 124 230 Q 128 330 200 338 Q 272 330 276 230 Q 252 276 200 284 Q 148 276 124 230 Z", look.hair.color);

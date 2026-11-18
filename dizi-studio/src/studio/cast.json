@@ -601,13 +601,13 @@
   "gender": "f",
   "age": "adult",
   "build": "normal",
-  "skin": "#f2c8a8",
-  "skinShade": "#e0ab88",
-  "iris": "#3a3a2a",
+  "skin": "#f6d3bb",
+  "skinShade": "#e6b89a",
+  "iris": "#3f86d6",
   "hair": {
    "style": "bun",
-   "color": "#3a2a20",
-   "shade": "#5a4434"
+   "color": "#e8c06a",
+   "shade": "#a8803a"
   },
   "outfit": {
    "type": "tshirt",
