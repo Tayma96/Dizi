@@ -99,7 +99,7 @@ export const windowView = (key: string, time: TimeOfDay, frame: number, rain: bo
         c.fillRect(bx, h - bh, bw, bh);
         for (let j = 0; j < 10; j++) {
           if (random(`${key}-l-${i}-${j}`) > (time === "gece" ? 0.6 : 0.85)) {
-            const on = random(`${key}-f-${i}-${j}-${Math.floor(frame / 45)}`) > 0.08;
+            const on = true;
             c.fillStyle = time === "gece" ? (on ? "#ffd27a" : "#3a3a2a") : "#e8f0f8";
             c.fillRect(bx + 10 + (j % 3) * 18, h - bh + 18 + Math.floor(j / 3) * 34, 10, 16);
           }

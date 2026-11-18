@@ -79,7 +79,7 @@ export const faceGeometry = (jaw: number) =>
   cached(`face2-${jawMale(jaw)}`, () => {
     const male = jawMale(jaw);
     const g = paramSurface(
-      (u, v) => headSurf(male, (u - 0.5) * 2 * (82 * D2R), Y0 + (1 - v) * (Y1 - Y0), 1.004),
+      (u, v) => headSurf(male, (u - 0.5) * 2 * (82 * D2R), Y0 + (1 - v) * (Y1 - Y0), 1.012),
       48,
       48,
       (u, v) => {

@@ -20,7 +20,7 @@ const D2R = Math.PI / 180;
 type V3 = [number, number, number];
 
 /* ------------------------------ yerleşim ------------------------------ */
-type Placed = { id: string; x: number; z: number; facing: number; seat: boolean; headY: number; walking: boolean };
+type Placed = { id: string; x: number; z: number; facing: number; seat: boolean; headY: number; walking: boolean; walkAmt: number };
 
 const HEAD_H = { child: 0.97, teen: 1.35, adult: 1.49, old: 1.46 } as const;
 
@@ -53,14 +53,22 @@ const placeAll = (tb: TBeat, prev: TBeat | undefined, marks: Record<string, Mark
       walking = k > 0;
       if (walking) facing = st.exit === "sol" ? -90 : 90;
     } else if (pm && (pm.x !== m.x || pm.z !== m.z)) {
-      const k = interpolate(bf, [0, walkDur], [0, 1], clamp);
+      const k = interpolate(bf, [0, walkDur], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
       x = pm.x + (m.x - pm.x) * k;
       z = pm.z + (m.z - pm.z) * k;
       walking = k < 1;
-      if (walking) facing = (Math.atan2(m.x - pm.x, m.z - pm.z) * 180) / Math.PI;
+      // yön: başta eski yönden yürüme yönüne, sonda yürüme yönünden hedef yöne yumuşak dönüş
+      const walkDir = (Math.atan2(m.x - pm.x, m.z - pm.z) * 180) / Math.PI;
+      const from = pst?.turn ?? pm.facing ?? 0;
+      const lerpAng = (a: number, b: number, t: number) => a + ((((b - a) % 360) + 540) % 360 - 180) * t;
+      facing = k < 0.25 ? lerpAng(from, walkDir, k / 0.25) : k > 0.75 ? lerpAng(walkDir, facing, (k - 0.75) / 0.25) : walkDir;
     }
     const headY = HEAD_H[look.age] - (seat ? 0.36 * (look.age === "child" ? 0.6 : 1) : 0);
-    out[id] = { id, x, z, facing, seat, headY, walking };
+    // adım genliği: yürüyüşün başında ve sonunda yumuşakça açılıp kapanır (ani duruş yok)
+    const tIn = interpolate(bf, [0, 8], [0, 1], clamp);
+    const tOut = st.exit ? 1 : interpolate(bf, [walkDur - 10, walkDur], [1, 0], clamp);
+    const walkAmt = walking ? Math.min(tIn, tOut) : 0;
+    out[id] = { id, x, z, facing, seat, headY, walking: walking || walkAmt > 0, walkAmt };
   }
   return out;
 };
@@ -211,6 +219,7 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
           gesture: st.gesture,
           prop: st.prop,
           body: p.walking ? "walk" : p.seat ? "sit" : "stand",
+          walkAmt: p.walkAmt,
           turn,
           headYaw,
           lookX,
@@ -230,7 +239,7 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       <AbsoluteFill style={{ filter }}>
-        <ThreeCanvas width={width} height={height} camera={{ fov: cam.fov, position: pos, near: 0.05, far: 80 }}>
+        <ThreeCanvas width={width} height={height} dpr={1.5} gl={{ antialias: true }} camera={{ fov: cam.fov, position: pos, near: 0.05, far: 80 }}>
           <CameraRig pos={pos} target={cam.target} fov={cam.fov} />
           <Set3D name={scene.set} time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} />
           {chars}
@@ -346,7 +355,7 @@ export const Episode3D: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }
           <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.55} />
         </Sequence>
       </Sequence>
-      <FilmFinish vignette={0.4} grain={0.05} />
+      <FilmFinish vignette={0.35} grain={0} />
     </AbsoluteFill>
   );
 };

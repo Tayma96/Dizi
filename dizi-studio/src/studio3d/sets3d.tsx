@@ -5,7 +5,7 @@ import * as THREE from "three";
 import { random, useCurrentFrame } from "remotion";
 import {
   Armchair, B, Ball, Bed, Bench, Bookshelf, Box, Building, CafeCounter, CafeTable, Car, CeilingLamp, Chair, Chalkboard, Chandelier,
-  CoffeeTable, Cyl, Desk, DiningTable, Door3D, Dust, FloorLamp, Fridge, HospitalBed, KitchenRow, Pic, Plant, PoliceDesk, RainFall,
+  CoffeeTable, Cyl, Desk, DiningTable, Door3D, FloorLamp, Fridge, HospitalBed, KitchenRow, Pic, Plant, PoliceDesk, RainFall,
   Rug, SchoolDesk, Sofa, StreetLamp, Tombstone, Tree, TV, WallClock, WallFrame, Wardrobe, Window3D,
 } from "./furniture";
 import { tileFloor, wallpaper, windowView, woodFloor, type TimeOfDay } from "./textures";
@@ -94,7 +94,7 @@ export const Lighting: React.FC<{ time: TimeOfDay; flash?: number; indoor?: bool
 
 /* ---------------- mekânlar ---------------- */
 export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number }> = ({ name, time = "gunduz", rain, flash = 0, doorOpen = 0 }) => {
-  const frame = useCurrentFrame();
+  useCurrentFrame();
   const night = time === "gece";
   const lampsOn = time !== "gunduz";
   const W = (p: [number, number, number], w: number, h: number, id: string, curtain?: string, city = true) => (
@@ -116,7 +116,6 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
           <FloorLamp p={[-2.7, 0, -2.05]} on={lampsOn} />
           <Plant p={[2.75, 0, -2.1]} />
           <TV p={[2.85, 0, -0.4]} r={-90} on={night} />
-          <Dust center={[0.5, 1.4, -1.2]} size={[3, 1.6, 1.5]} />
         </>
       );
       break;
@@ -326,7 +325,7 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
       );
       break;
     case "apartman_kapisi": {
-      const fl = random(`bulb-${Math.floor(frame / 3)}`) > 0.12 ? 1 : 0.3;
+      const fl = 1; // titreme kapalı
       body = (
         <>
           {/* iç taraf (z>0) */}
@@ -363,7 +362,7 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
       );
       break;
     case "merdiven": {
-      const fl = random(`bulb2-${Math.floor(frame / 3)}`) > 0.12 ? 1 : 0.3;
+      const fl = 1; // titreme kapalı
       body = (
         <>
           <Floor tex={tileFloor("#1a231e", "#101612")} w={5} d={8} />

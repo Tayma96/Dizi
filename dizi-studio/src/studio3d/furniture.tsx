@@ -220,7 +220,8 @@ export const HospitalBed: React.FC<FP> = (f) => {
 /* ---------------- aydınlatma ---------------- */
 export const FloorLamp: React.FC<FP & { on?: boolean }> = ({ on = true, ...f }) => {
   const frame = useCurrentFrame();
-  const fl = on ? 0.9 + random(`fl-${Math.floor(frame / 5)}`) * 0.08 : 0;
+  const fl = on ? 0.95 : 0; // sabit ışık (titreme yok)
+  void frame;
   return (
     <G {...f}>
       <Cyl r1={0.2} h={0.03} c="#2c2622" p={[0, 0.015, 0]} />

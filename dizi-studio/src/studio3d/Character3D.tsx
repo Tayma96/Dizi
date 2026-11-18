@@ -69,6 +69,8 @@ export type Pose3D = {
   lookX?: number;
   lookY?: number;
   body?: "stand" | "sit" | "walk";
+  /** yürüme adım genliği 0..1 (yumuşak başlayıp durma) */
+  walkAmt?: number;
   speech?: { cues: MouthCue[]; from: number };
   talk?: [number, number][];
   tears?: number;
@@ -195,8 +197,8 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
   const sway = Math.sin((frame + seed * 7) / 40) * 1.2;
   const walking = pose.body === "walk";
   const sitting = pose.body === "sit";
-  const wp = walking ? Math.sin(frame / 5) : 0;
-  const bob = walking ? Math.abs(Math.cos(frame / 5)) * 0.025 : 0;
+  const wp = walking ? Math.sin(frame / 5) * (pose.walkAmt ?? 1) : 0;
+  const bob = walking ? Math.abs(Math.cos(frame / 5)) * 0.025 * (pose.walkAmt ?? 1) : 0;
 
   // ---- blink & mouth
   const period = Math.round(fps * (2.8 + random(`b-${seed}`) * 2.4));
@@ -216,7 +218,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
     const tex = new THREE.CanvasTexture(canvas);
     tex.colorSpace = THREE.SRGBColorSpace;
     tex.anisotropy = 4;
-    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -4 });
+    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -8 });
     return { canvas, tex, mat };
   }, []);
   const ctx = face.canvas.getContext("2d")!;
