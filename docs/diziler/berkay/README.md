@@ -4,6 +4,7 @@
 **Öncül (kullanıcının metni):** Holding yöneticisi Berkay imza atarken kararır; akıl hastanesi odasında uyanır. Hemşire "altı aydır buradasın" der. Koridordan en güvendiği ortağının sesini duyar: "Devir imzasını atana kadar çıkmayacak."
 **GÜNCEL kaynak (18 Kasım 2026):** `1-bolum-acilis-kullanici-v2.md` — kuşlu pencere açılışı, hafıza kaybı, Zindan Adası × Truman Show hissi. Eski sürüm: `1-bolum-acilis-kullanici.md` (geçersiz).
 **Motor:** 2D (kullanıcı kararı).
+**Büyük gerçek: C (katmanlı)** + sürekli belirsizlik ("Berkay gerçekten deli mi?"). Bağlayıcı kurallar: `belirsizlik-kurallari.md`. Bölüm 1 planı (öneri): `1-bolum-plan-oneri.md`. Bölüm süresi: 3 dk.
 Ekip incelemesi (senarist, yapımcı, izleyici simülatörü): `1-bolum-inceleme.md`
 
 ## Sıradaki adımlar
