@@ -98,7 +98,7 @@ export type Look = {
   scar?: boolean;
 };
 
-export type ArmPose = { upper: number; fore: number };
+export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };
 
 export type Pose = {
   emotion?: Emotion;

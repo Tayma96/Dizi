@@ -9,6 +9,7 @@ import { lightning } from "../../dizi/Sets";
 import { EndCard, KaraokeSubtitle, PhoneMessage, TitleCard } from "./Overlays";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
+import { GESTURES, type FullArm } from "../rig/gestures";
 import type { CharState, EpisodeProps, EpisodeScript, Shot, VoiceManifest } from "./types";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
@@ -136,6 +137,24 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (d === "kapat") doorOpen = i === bi ? interpolate(bf, [0, 12], [1, 0], clamp) : 0;
   }
 
+  // önceki vuruştaki bakış (baş dönüşünü yumuşatmak için)
+  const gazeOf = (b: typeof tb, id: string, pl: Record<string, Placed>) => {
+    const st = b.cast[id];
+    const p = pl[id];
+    if (!st || !p) return undefined;
+    if (st.lookAt && st.lookAt !== "kamera" && pl[st.lookAt]) {
+      const d = Math.sign(pl[st.lookAt].x - p.x);
+      return { yaw: 0.35 * d * (st.flip ? -1 : 1), lookX: 0.85 * d * (st.flip ? -1 : 1) };
+    }
+    if (!st.lookAt && b.beat.type === "line" && b.beat.who !== id && pl[b.beat.who]) {
+      const d = Math.sign(pl[b.beat.who].x - p.x);
+      return { yaw: 0.3 * d, lookX: 0.8 * d };
+    }
+    return { yaw: 0, lookX: 0 };
+  };
+  const prevLook: Record<string, { yaw: number; lookX: number } | undefined> = {};
+  if (prev) for (const id of Object.keys(placed)) prevLook[id] = gazeOf(prev, id, { ...prevPlaced, ...Object.fromEntries(Object.entries(placed).filter(([k]) => !prevPlaced[k])) });
+
   const renderChar = (id: string) => {
     const p = placed[id];
     const st = tb.cast[id];
@@ -152,6 +171,19 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       yaw = 0.3 * dir;
       lookX = 0.8 * dir;
     }
+    // Jest ve baş dönüşü vuruşlar arasında yumuşak geçer (kol bir karede pozdan poza atlamaz)
+    const pst = prev?.cast[id];
+    const gk = interpolate(bf, [0, 10], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+    const gCur = GESTURES[(st.gesture as Gesture) ?? "rest"] ?? GESTURES.rest;
+    const gPrev = pst && !pst.hidden ? GESTURES[(pst.gesture as Gesture) ?? "rest"] ?? GESTURES.rest : gCur;
+    const mixArm = (a: FullArm, b: FullArm): FullArm => ({ upper: a.upper + (b.upper - a.upper) * gk, fore: a.fore + (b.fore - a.fore) * gk, ul: (a.ul ?? 1) + ((b.ul ?? 1) - (a.ul ?? 1)) * gk, fl: (a.fl ?? 1) + ((b.fl ?? 1) - (a.fl ?? 1)) * gk });
+    const armL = mixArm(gPrev.L, gCur.L);
+    const armR = mixArm(gPrev.R, gCur.R);
+    const pv = prevLook[id];
+    if (pv && !walkX[id]?.walking) {
+      yaw = pv.yaw + (yaw - pv.yaw) * gk;
+      lookX = pv.lookX + (lookX - pv.lookX) * gk;
+    }
     return (
       <div key={id} style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top }}>
         <Character
@@ -161,6 +193,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           pose={{
             emotion: st.emotion,
             gesture: st.gesture as Gesture | undefined,
+            armL,
+            armR,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             yaw,

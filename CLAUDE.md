@@ -24,7 +24,8 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - `docs/diziler/_sablon/`: yeni dizi için incil şablonları
 
 ## Kod haritası (`dizi-studio/`)
-- **Varsayılan motor 3D:** `src/studio3d/` (Character3D, head, face2d, sets3d, furniture, textures, Episode3D). Render: `--gl=swangle`
+- **Varsayılan motor 2D:** `src/studio/` (rig, sets, engine/Episode). Kompozisyon: `GKK-B1` + `--props={"episodeId":"<id>"}`
+- 3D motor (deneme, yedek): `src/studio3d/` (Character3D, head, face2d, sets3d, Episode3D). Render: `--gl=swangle`
 - `tools/gercek_sesler.py`: gerçek CC0 kayıtlar (BigSoundBank) · `tools/muzik_indir.py`: kamu malı müzik
 - `src/studio/rig/`: karakter motoru (duygular, Türkçe dudak senkronu, jestler, saç, kıyafet, yaş, yapı)
 - `src/studio/cast.json`: oyuncu kadrosu (20 karakter)
@@ -40,7 +41,8 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - Eski prototip: `src/dizi/` (ilk Bölüm 1; yazı tipleri ve efektler hâlâ buradan kullanılıyor)
 
 ## Kullanıcı geri bildirimi — dersler (önemli)
-**3D, kamera sistemi ve efektler bu projenin yönüdür; bırakılmaz, 2D'ye geri dönülmez.** Kullanıcının sözü: "Kötü değil, kötü kullanıldı. Düzgün kullanmayı öğrenmelisiniz. Yapan yapıyor." Sorun çıkarsa çözüm aracı terk etmek değil, profesyonelce kullanmaktır.
+**Kullanıcı kararı (18 Kasım 2026): 2D ile devam.** Aynı sahne 2D ve 3D (film stili) yapılıp karşılaştırıldı (`bolumler/ornek15-2d.mp4`, `bolumler/ornek15.mp4`); kullanıcı 2D'yi ve 2D karakterleri daha güzel buldu. Aşağıdaki çekim, ışık ve kurgu dersleri 2D için de geçerlidir. Sorun çıkarsa çözüm aracı terk etmek değil, profesyonelce kullanmaktır.
+- Karakterler itici olmamalı: çene ve yüz hattı net, sakal maske gibi değil, eklemler hareket ederken kopmamalı, jestler pozdan poza atlamamalı (yumuşak geçiş).
 
 İlk fragmanın (`bolumler/imza-fragman.mp4`) neden başarısız olduğu ve doğrusu:
 - **Hikâye önce:** Her sahnenin amacı tek cümleyle yazılır. Kurgu doğrusal ve sesli (ElevenLabs) olur. Bağlamsız, sessiz kareler peş peşe dizilmez.

@@ -199,26 +199,23 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const fl = 108 * (a.fl ?? 1);
     const ey = 355 + ul;
     const hy = ey + fl;
+    // Eklemler yuvarlak uçlu: omuz ve dirsek döndükçe parçalar daima örtüşür (boşluk açılmaz).
+    const upperD = `M ${sx - 22} 352 A 22 22 0 0 1 ${sx + 22} 352 Q ${sx + 24} ${355 + ul * 0.6} ${sx + 19} ${ey} A 19 19 0 0 1 ${sx - 19} ${ey} Q ${sx - 25} ${355 + ul * 0.6} ${sx - 22} 352 Z`;
+    const foreD = `M ${sx - 19} ${ey} A 19 19 0 0 1 ${sx + 19} ${ey} L ${sx + 16} ${hy} L ${sx - 16} ${hy} Z`;
+    const armFill = shortSleeve ? skin : sleeve;
+    // Çift geçiş: önce iki parçanın dış çizgisi, sonra dolgular → eklemde iç çizgi görünmez, kol tek parça gibi bükülür.
     return (
       <g transform={`rotate(${a.upper * dir} ${sx} 355)`}>
-        <path
-          d={`M ${sx - 22} 345 Q ${sx - 25} ${355 + ul * 0.6} ${sx - 19} ${ey + 4} L ${sx + 19} ${ey + 4} Q ${sx + 24} ${355 + ul * 0.6} ${sx + 22} 345 Z`}
-          fill={shortSleeve ? skin : sleeve}
-          stroke={OUT}
-          strokeWidth={SW}
-          strokeLinejoin="round"
-        />
+        <path d={upperD} fill={OUT} stroke={OUT} strokeWidth={SW * 2} strokeLinejoin="round" />
+        <g transform={`rotate(${a.fore * dir} ${sx} ${ey})`}>
+          <path d={foreD} fill={OUT} stroke={OUT} strokeWidth={SW * 2} strokeLinejoin="round" />
+        </g>
+        <path d={upperD} fill={armFill} />
         {shortSleeve ? (
-          <path d={`M ${sx - 24} 345 L ${sx - 25} ${355 + ul * 0.45} L ${sx + 25} ${355 + ul * 0.45} L ${sx + 24} 345 Z`} fill={out.top} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+          <path d={`M ${sx - 24} 352 A 24 24 0 0 1 ${sx + 24} 352 L ${sx + 25} ${355 + ul * 0.45} L ${sx - 25} ${355 + ul * 0.45} Z`} fill={out.top} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
         ) : null}
         <g transform={`rotate(${a.fore * dir} ${sx} ${ey})`}>
-          <path
-            d={`M ${sx - 19} ${ey - 4} L ${sx - 16} ${hy} L ${sx + 16} ${hy} L ${sx + 19} ${ey - 4} Z`}
-            fill={shortSleeve ? skin : sleeve}
-            stroke={OUT}
-            strokeWidth={SW}
-            strokeLinejoin="round"
-          />
+          <path d={foreD} fill={armFill} />
           {!shortSleeve && out.type === "tracksuit" ? <path d={`M ${sx + 12} ${ey} L ${sx + 10} ${hy}`} stroke="#fff" strokeWidth={5} /> : null}
           {!shortSleeve ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
           <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />
