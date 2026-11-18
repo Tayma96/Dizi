@@ -38,3 +38,10 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - `public/episodes/`: bölüm JSON'ları · `public/voice/`: üretilmiş replik sesleri · `public/ses/`: ses kütüphanesi
 - `bolumler/`: bitmiş videolar
 - Eski prototip: `src/dizi/` (ilk Bölüm 1; yazı tipleri ve efektler hâlâ buradan kullanılıyor)
+
+## Kullanıcı geri bildirimi — dersler (önemli)
+- İlk 2D video (src/dizi/Episode1, düz anlatım + iç ses + basit kurgu) beğenildi. 3D karakterler ve fragman "karmaşa, anlaşılmıyor, tutarlılık yok, çirkin" bulundu.
+- Kural: Her çekim TEK bir net bilgi versin; hikâye doğrusal ve anlatımla (ses) desteklensin. Seslendirmesiz, bağlamsız kareler peş peşe dizilmez.
+- Çok yakın, kıpırtısız dev yüz çekimlerinden kaçın; orta/genel çekim ağırlıklı, okunur yazı.
+- Yeni bir görsel tarz/teknik değişikliği yapmadan önce kullanıcıya küçük bir örnek gösterip onay al; beğenilen şeyi "iyileştirmek" için bozma.
+- Sıradaki önerilen yön: ilk videodaki 2D tarz (src/studio/rig + src/studio/engine/Episode.tsx) ile İmza B1'i doğrusal, anlatımlı, ElevenLabs sesli yapmak — önce kullanıcıya sor.
