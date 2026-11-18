@@ -311,7 +311,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
           </Sequence>
         ))}
         <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
-          <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard?.text} sub={script.endCard?.sub} />
+          <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard ? script.endCard.text : undefined} sub={script.endCard ? script.endCard.sub : undefined} />
           <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.6} />
         </Sequence>
       </Sequence>

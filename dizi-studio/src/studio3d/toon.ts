@@ -146,3 +146,21 @@ export const orientOutward = (g: THREE.BufferGeometry, center?: THREE.Vector3) =
   }
   return g;
 };
+
+/** Sahne kontrastı: 0 = varsayılan yumuşak 3 ton, 1 = sert gölge (gerilim/gece). Tüm toon malzemeleri aynı gradyanı paylaşır. */
+export const setToonContrast = (k = 0) => {
+  const g = toonGradient();
+  const d = g.image.data as Uint8Array;
+  const a = Math.round(170 - 105 * k);
+  const b = Math.round(220 - 45 * k);
+  if (d[0] !== a || d[1] !== b) {
+    d[0] = a;
+    d[1] = b;
+    g.needsUpdate = true;
+  }
+  // karakterlerin öz-ışıması kontrastla azalır (gölge tarafı gerçekten kararsın)
+  const glow = 1 - 0.75 * k;
+  for (const m of charCache.values()) m.emissiveIntensity = 0.22 * glow;
+  for (const m of charTexCache.values()) m.emissiveIntensity = 0.18 * glow;
+};
+

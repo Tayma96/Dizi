@@ -9,7 +9,8 @@ import {
   Rug, SchoolDesk, Sofa, StreetLamp, Tombstone, Tree, TV, WallClock, WallFrame, Wardrobe, Window3D,
 } from "./furniture";
 import { tileFloor, wallpaper, windowView, woodFloor, type TimeOfDay } from "./textures";
-import { cached, flat, toon } from "./toon";
+import { cached, flat, setToonContrast, toon } from "./toon";
+import type { LightDesign, LightSrc } from "../studio/engine/types";
 
 export type SetName3D =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru" | "sokak" | "kafe"
@@ -40,7 +41,7 @@ export const SETS3D: Record<SetName3D, SetInfo3D> = {
   apartman_kapisi: { title: "Apartman kapısı", marks: { kapi: M(0, -1.0, 0), ic: M(0, 1.0, 180), ic_sol: M(-0.9, 1.2, 160) }, wide: WIDE([0.4, 1.6, 5.5], [0, 1.2, -1.0]) },
   koridor: { title: "Karanlık koridor", marks: { orta: M(0, 0.0), uzak: M(0, -3.5), yakin: M(0, 1.6, 180) }, wide: WIDE([0, 1.6, 5.5], [0, 1.2, -2.5]) },
   toplanti_odasi: { title: "Yönetim kurulu odası", marks: { bas: M(0, -1.55, 0, true), yan: M(-0.95, -0.55, 90, true), yan_sag: M(0.95, -0.2, -90, true), ayakta: M(1.6, 0.6, -30) }, wide: WIDE([0, 1.8, 6.6], [0, 1.0, -0.8]) },
-  hucre: { title: "Hücre-oda", marks: { yatak: M(-1.55, -0.7, 15, true), orta: M(0.3, 0.3, 0), tepsi: M(0.6, -0.5, -60), ayna: M(-0.15, -1.75, 180), kapi_ic: M(2.55, -0.25, 90), duvar: M(-0.6, -2.0, 0), kapi: M(2.4, 0.4, -100) }, wide: WIDE([0, 1.6, 6.4], [0, 1.0, -0.8]) },
+  hucre: { title: "Hücre-oda", marks: { yatak: M(-1.55, -0.7, 15, true), orta: M(0.3, 0.3, 0), tepsi: M(0.6, -0.5, -60), ayna: M(-0.15, -1.75, 180), kapi_ic: M(2.55, -0.25, 90), duvar: M(-0.6, -2.0, 0), kapi: M(2.4, 0.4, -100), kose: M(-1.85, 0.25, 72) }, wide: WIDE([0, 1.6, 6.4], [0, 1.0, -0.8]) },
   merdiven: { title: "Apartman merdiveni", marks: { orta: M(0, 0.5), basamak: M(0.4, -1.4, -20) }, wide: WIDE([0, 1.6, 6.0], [0, 1.4, -1.0]) },
 };
 
@@ -79,12 +80,33 @@ const Sky: React.FC<{ time: TimeOfDay; rain?: boolean; flash?: number; z?: numbe
 };
 
 /* ---------------- ışık ---------------- */
-export const Lighting: React.FC<{ time: TimeOfDay; flash?: number; indoor?: boolean }> = ({ time, flash = 0, indoor = true }) => {
+export const Lighting: React.FC<{ time: TimeOfDay; flash?: number; indoor?: boolean; design?: LightDesign }> = ({ time, flash = 0, indoor = true, design }) => {
   const L = {
     gunduz: { amb: 0.95, ambC: "#ffffff", dir: 1.25, dirC: "#fff6e8", dirP: [2.5, 5, 4] },
     aksam: { amb: 0.7, ambC: "#ffd9b5", dir: 1.1, dirC: "#ffa860", dirP: [-4, 2, 3] },
     gece: { amb: indoor ? 0.62 : 0.55, ambC: "#c4cce2", dir: 0.55, dirC: "#b8c8ff", dirP: [-2, 4, 3] },
   }[time];
+  setToonContrast(design?.kontrast ?? 0);
+  if (design) {
+    // Bilinçli üç nokta ışık: anahtar (ana yön, gölge tarafı oluşturur), dolgu (gölgeyi açar, düşük), arka (silueti ayırır)
+    const src = (l: LightSrc | undefined, k: string) =>
+      !l ? null : l.tip === "nokta" ? (
+        <pointLight key={k} position={l.p} color={l.c} intensity={l.i} distance={l.menzil ?? 6} decay={1.2} />
+      ) : (
+        <directionalLight key={k} position={l.p} color={l.c} intensity={l.i} />
+      );
+    const ambC = design.ortamRenk ?? L.ambC;
+    return (
+      <>
+        <ambientLight intensity={(design.ortam ?? 0.45) + flash * 2.2} color={flash > 0.2 ? "#e8f0ff" : ambC} />
+        <hemisphereLight args={[ambC, "#2a2420", design.gok ?? 0.2]} />
+        {src(design.anahtar, "anahtar")}
+        {src(design.dolgu, "dolgu")}
+        {src(design.arka, "arka")}
+        {(design.ekstra ?? []).map((l, i) => src(l, `e${i}`))}
+      </>
+    );
+  }
   return (
     <>
       <ambientLight intensity={L.amb + flash * 2.2} color={flash > 0.2 ? "#e8f0ff" : L.ambC} />
@@ -95,7 +117,7 @@ export const Lighting: React.FC<{ time: TimeOfDay; flash?: number; indoor?: bool
 };
 
 /* ---------------- mekânlar ---------------- */
-export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number }> = ({ name, time = "gunduz", rain, flash = 0, doorOpen = 0 }) => {
+export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; light?: LightDesign }> = ({ name, time = "gunduz", rain, flash = 0, doorOpen = 0, light }) => {
   useCurrentFrame();
   const night = time === "gece";
   const lampsOn = time !== "gunduz";
@@ -380,6 +402,11 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
           <Box d={[0.55, 0.75, 0.03]} c="#b8c6ce" p={[-0.15, 1.62, -2.47]} rad={0.01} />
           <Box d={[0.6, 0.6, 0.6]} c="#d6dcde" p={[0.9, 0.3, -2.1]} rad={0.03} />
           <Door3D p={[3.28, 0, -0.5]} r={-90} open={doorOpen} c="#9aa8ae" />
+          {/* kapının ardındaki aydınlık koridor (kapı açılınca boşluk görünmesin) */}
+          <Wall color="#dfe7e4" p={[4.6, 1.4, -0.5]} r={-Math.PI / 2} w={4} h={2.8} />
+          <Wall color="#cfd8d5" p={[3.95, 1.4, -1.8]} w={1.4} h={2.8} />
+          <Wall color="#cfd8d5" p={[3.95, 1.4, 0.8]} r={Math.PI} w={1.4} h={2.8} />
+          <mesh geometry={plane} rotation={[-Math.PI / 2, 0, 0]} position={[3.95, 0.002, -0.5]} scale={[1.4, 2.6, 1]} material={toon("#aeb8b6")} />
           <CeilingLamp p={[0, 0, -0.6]} on y={2.8} />
         </>
       );
@@ -415,7 +442,7 @@ export const Set3D: React.FC<{ name: SetName3D; time?: TimeOfDay; rain?: boolean
   }
   return (
     <group>
-      <Lighting time={time} flash={flash} indoor={indoor} />
+      <Lighting time={time} flash={flash} indoor={indoor} design={light} />
       {body}
     </group>
   );

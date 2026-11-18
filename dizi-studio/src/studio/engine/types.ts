@@ -19,7 +19,14 @@ export type Shot = {
   move?: CameraMove;
   /** low = alttan (güç), high = üstten (çaresizlik) — dikey kaydırma ile taklit */
   angle?: "duz" | "alt" | "ust";
+  /** Tasarlanmış kadraj: kamerayı elle kur (ör. dikey kadraja göre establishing). Hareketler (yaklas/uzaklas) yine uygulanır. */
+  cam?: { pos: [number, number, number]; target: [number, number, number]; fov?: number };
 };
+
+/** Tek ışık kaynağı: p = konum (yönlü ışıkta sahne merkezine doğru), c = renk, i = şiddet */
+export type LightSrc = { p: [number, number, number]; c: string; i: number; tip?: "yonlu" | "nokta"; menzil?: number };
+/** Sahne ışık tasarımı: anahtar + dolgu + arka (+ isteğe bağlı pratik ışıklar). Verilmezse set/zaman varsayılanı kullanılır. */
+export type LightDesign = { /** 0-1: gölge sertliği */ kontrast?: number; ortam?: number; ortamRenk?: string; gok?: number; anahtar?: LightSrc; dolgu?: LightSrc; arka?: LightSrc; ekstra?: LightSrc[] };
 
 export type CharState = {
   mark?: string;
@@ -90,6 +97,8 @@ export type Scene = {
   music?: { name: string; volume?: number; from?: number };
   /** "flashback": sepya/rüya görünümü */
   look?: "normal" | "flashback" | "soguk" | "sicak";
+  /** Bilinçli ışık tasarımı (anahtar/dolgu/arka) */
+  isik?: LightDesign;
   cast: Record<string, CharState>;
   beats: Beat[];
   transition?: "kesme" | "kararma" | "whoosh" | "flas";
@@ -105,7 +114,8 @@ export type EpisodeScript = {
   title: string;
   fps?: number;
   scenes: Scene[];
-  endCard?: { text?: string; sub?: string };
+  /** false: bitiş kartı yok (örnek/fragman) */
+  endCard?: { text?: string; sub?: string } | false;
 };
 
 export type VoiceLine = {

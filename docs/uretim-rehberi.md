@@ -95,7 +95,7 @@ npm run dev
 | `mesaj` | `from`, `text`, `dur` | Telefon mesajı ekranı (bildirim sesi otomatik) |
 
 Her vuruşta ortak alanlar:
-- `shot`: `{ "type": "genis|orta|yakin|cok_yakin|iki", "on": "id", "with": "id", "move": "sabit|yaklas|uzaklas|sarsinti|kaydir", "angle": "duz|alt|ust" }`. Yazılmazsa konuşan kişiye orta çekim gelir.
+- `shot`: `{ "type": "genis|orta|yakin|cok_yakin|iki|omuz|ust_aci", "on": "id", "with": "id", "move": "sabit|yaklas|uzaklas|sarsinti|kaydir", "angle": "duz|alt|ust" }`. Yazılmazsa konuşan kişiye orta çekim gelir.
 - `cast`: karakter durum değişikliği. Kalıcıdır, sonraki vuruşlara taşınır. Alanlar: `mark`, `emotion`, `gesture`, `prop`, `body`, `lookAt`, `tears`, `pale`, `sweat`, `wet`, `flip`, `enter: sol|sag`, `exit: sol|sag`, `hidden`, `eyesClosed`. Bir karakterin `mark`'ı değişirse yürüyerek oraya gider.
 - `sfx`: `[{ "name": "efekt/kapi_zili", "at": 0.2, "volume": 0.8 }]`
 - `lightning: true` → şimşek (ışık + gök gürültüsü + sarsıntı)
@@ -199,6 +199,31 @@ Karakterler ve mekânlar 3D'dir. Böylece karakter yandan, arkadan ya da 3/4 aç
 | apartman_kapisi | kapi (dışarıda), ic, ic_sol (içeride, kapıya dönük) |
 | koridor | orta, uzak, yakin |
 | merdiven | orta, basamak |
+| hucre | yatak (oturur), orta, tepsi, ayna, duvar, kose (yataktan kalkıp gerileme), kapi_ic, kapi |
+
+### Işık tasarımı (`isik`, sahne alanı)
+Her sahneye bilinçli ışık. Verilmezse eski düz gündüz/akşam/gece ışığı kullanılır (yalnızca taslak için).
+```json
+"isik": {
+  "kontrast": 0.8,                 // 0-1: gölge sertliği; karakter öz-ışımasını da kısar
+  "ortam": 0.12, "ortamRenk": "#b4c4d8", "gok": 0.1,
+  "anahtar": { "tip": "nokta", "p": [1.3, 2.0, -1.9], "c": "#e6efff", "i": 11, "menzil": 8 },
+  "dolgu":   { "p": [-1.0, 1.5, 4.0], "c": "#ffe4cc", "i": 0.35 },
+  "arka":    { "p": [1.5, 3.0, -5.0], "c": "#8fb8ff", "i": 1.0 },
+  "ekstra":  [{ "tip": "nokta", "p": [3.7, 2.0, -0.5], "c": "#ffe8c8", "i": 5, "menzil": 4 }]
+}
+```
+- **Anahtar ışık kameranın karşısından değil, karakterin kameraya uzak yanından** gelir (upstage key). Önden gelen anahtar yüzü düzleştirir.
+- Duvarlarda düşüş için anahtarı `nokta` yap (yönlü ışık her yeri eşit boyar). Motivasyon: pencere, kapı aralığı, lamba.
+- Dolgu düşük (0.3-0.4), sıcak/soğuk zıtlığı için anahtarın karşı rengi.
+- Örnek: `public/episodes/ornek15.json` (hücre, klinik soğuk gündüz).
+
+### Tasarlanmış kadraj (`shot.cam`)
+`"shot": { "type": "genis", "move": "sabit", "cam": { "pos": [2.2, 1.5, 2.5], "target": [-0.45, 0.95, -0.7], "fov": 50 } }`
+Dikey kadrajda establishing için: iki karakteri yan yana değil, **derinlik ekseninde** dizecek açı seç. Kamera, set `wide` kamerasıyla aynı tarafta kalmalı (180°).
+
+### Bitiş kartı
+`"endCard": false` → bitiş kartı yok (örnek, fragman).
 
 ## 7. Kurgu ve sahneleme kuralları (araştırmalardan)
 

@@ -65,7 +65,7 @@ export const buildTimeline = (script: EpisodeScript, manifest: VoiceManifest): T
     scenes.push({ scene, from: t, dur: local, beats, speaking });
     t += local;
   }
-  const total = t + END_CARD_SEC * fps;
+  const total = t + (script.endCard === false ? 0 : END_CARD_SEC * fps);
   const parts: [number, number][] = partStarts.map((s, i) => [s, i + 1 < partStarts.length ? partStarts[i + 1] : total]);
   return { scenes, total, parts, fps };
 };

@@ -78,6 +78,7 @@ type Cam = { pos: V3; target: V3; fov: number };
 const FOV = 40;
 
 const camFor = (shot: Shot, placed: Record<string, Placed>, wide: { pos: V3; target: V3 }): Cam => {
+  if (shot.cam) return { pos: shot.cam.pos, target: shot.cam.target, fov: shot.cam.fov ?? FOV };
   const p = shot.on ? placed[shot.on] : undefined;
   const q = shot.with ? placed[shot.with] : undefined;
   const frontOf = (c: Placed, dist: number, side = 0, frameK = 1 / 6): Cam => {
@@ -234,14 +235,14 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
   });
 
   const filter =
-    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.7) hue-rotate(-12deg) brightness(0.95)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : undefined;
+    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.78) hue-rotate(-12deg) brightness(0.9) contrast(1.22)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : undefined;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       <AbsoluteFill style={{ filter }}>
         <ThreeCanvas width={width} height={height} dpr={1.5} gl={{ antialias: true }} camera={{ fov: cam.fov, position: pos, near: 0.05, far: 80 }}>
           <CameraRig pos={pos} target={cam.target} fov={cam.fov} />
-          <Set3D name={scene.set} time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} />
+          <Set3D name={scene.set} time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} light={scene.isik} />
           {chars}
         </ThreeCanvas>
       </AbsoluteFill>
@@ -353,12 +354,14 @@ export const Episode3D: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }
             <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={allSpeaking} offset={s.from} />
           </Sequence>
         ))}
-        <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
-          <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard?.text} sub={script.endCard?.sub} />
-          <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.55} />
-        </Sequence>
+        {script.endCard === false ? null : (
+          <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
+            <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard?.text} sub={script.endCard?.sub} />
+            <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.55} />
+          </Sequence>
+        )}
       </Sequence>
-      <FilmFinish vignette={0.35} grain={0} />
+      <FilmFinish vignette={0.5} grain={0} />
     </AbsoluteFill>
   );
 };
