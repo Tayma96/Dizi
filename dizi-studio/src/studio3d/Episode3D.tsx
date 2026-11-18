@@ -235,7 +235,7 @@ const Scene3D: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ ts,
   });
 
   const filter =
-    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.78) hue-rotate(-12deg) brightness(0.9) contrast(1.22)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : undefined;
+    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.95) brightness(0.93) contrast(1.15)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : undefined;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
