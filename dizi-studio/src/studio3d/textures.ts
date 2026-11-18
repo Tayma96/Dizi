@@ -168,3 +168,28 @@ export const screenTex = (key: string, kind: "ekg" | "tv" | "laptop" | "menu" | 
       c.fillStyle = "#2f4a3a"; c.fillRect(0, 0, w, h); c.strokeStyle = "#e8f0e8"; c.lineWidth = 3; c.beginPath(); c.moveTo(20, 40); c.lineTo(150, 40); c.moveTo(20, 80); c.lineTo(120, 80); c.moveTo(170, 40); c.lineTo(230, 120); c.moveTo(230, 40); c.lineTo(170, 120); c.stroke();
     }
   });
+
+/** Saç teli dokusu: beyaz zemin + koyu teller (saç rengiyle çarpılır) */
+export const hairStrands = () =>
+  canvasTex("hair-strands", 512, 256, (c, w, h) => {
+    c.fillStyle = "#ffffff";
+    c.fillRect(0, 0, w, h);
+    for (let i = 0; i < 70; i++) {
+      const x = (i * 97) % w + ((i * 13) % 7);
+      c.strokeStyle = i % 3 ? "rgba(0,0,0,0.16)" : "rgba(255,255,255,0.0)";
+      c.lineWidth = 2 + (i % 4);
+      c.beginPath();
+      c.moveTo(x, h);
+      c.bezierCurveTo(x + 8, h * 0.66, x - 8, h * 0.33, x + 4, 0);
+      c.stroke();
+    }
+    c.strokeStyle = "rgba(255,255,255,0.35)";
+    c.lineWidth = 6;
+    for (let i = 0; i < 10; i++) {
+      const x = (i * 53) % w;
+      c.beginPath();
+      c.moveTo(x, h * 0.9);
+      c.bezierCurveTo(x + 6, h * 0.7, x - 6, h * 0.5, x, h * 0.35);
+      c.stroke();
+    }
+  }, [3, 1]);

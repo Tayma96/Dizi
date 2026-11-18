@@ -4,44 +4,106 @@ import { D2R, cached, orientOutward, paramSurface } from "./toon";
 import { FACE_H, FACE_W, FACE_X0, FACE_Y0 } from "./face2d";
 
 /* Kafa geometrisi (elipsoid + çene daralması), yüz dokusu yaması ve saç kabukları. */
-export const HEAD = { rx: 0.17, ry: 0.19, rz: 0.165 };
+export const HEAD = { rx: 0.15, ry: 0.19, rz: 0.165 };
 
-export const headPoint = (az: number, el: number, scale = 1, jaw = 0.22, out = new THREE.Vector3()) => {
-  const t = el < 0 ? 1 - jaw * Math.sin(-el) ** 2 : 1 - 0.06 * Math.sin(el) ** 2;
-  return out.set(
-    HEAD.rx * scale * Math.sin(az) * Math.cos(el) * t,
-    HEAD.ry * scale * Math.sin(el),
-    HEAD.rz * scale * Math.cos(az) * Math.cos(el) * t,
-  );
+/** Saç kabukları: yüz yüzeyinin (kadın profili) ölçeklenmiş hali — az: yatay açı, el: yükseklik açısı */
+export const headPoint = (az: number, el: number, scale = 1, _jaw = 0.22, out = new THREE.Vector3()) => {
+  const y = 202 - Math.sin(el) * 110;
+  headSurf(false, az, Math.max(Y0, Math.min(Y1, y)), scale, out);
+  out.y *= scale;
+  return out;
 };
 
-export const headGeometry = (jaw: number) =>
-  cached(`head-${jaw}`, () => paramSurface((u, v) => headPoint((u - 0.5) * 2 * Math.PI, (v - 0.5) * Math.PI, 1, jaw), 48, 32));
+/* ---- Yüz: 2D tasarımdaki (ilk versiyon) yüz hattı birebir kullanılır ----
+   SVG yüz koordinatları: x 116..284, y 92..312 → 3D: k birim/px, merkez (200, 202) */
+const K = 0.38 / 220;
+const Y0 = 92;
+const Y1 = 312;
+const FACE_PATHS = {
+  m: [[114, 150], [112, 250, 140, 286], [170, 312, 200, 312], [230, 312, 260, 286], [288, 250, 286, 150], [280, 90, 200, 90], [120, 90, 114, 150]],
+  f: [[116, 150], [112, 246, 146, 284], [174, 310, 200, 310], [226, 310, 254, 284], [288, 246, 284, 150], [278, 92, 200, 92], [122, 92, 116, 150]],
+} as const;
 
-/* Yüz yaması: SVG yüz koordinatlarını kafa yüzeyine eşler. x 90..310 → az ±75°, y 100..340 → el +60..-60° */
-const UMAX = 75 * D2R;
-const VMAX = 60 * D2R;
+const profileCache = new Map<string, Float32Array>();
+/** y (SVG, tamsayı Y0..Y1) → yarım genişlik (SVG px) */
+const halfWidth = (male: boolean) => {
+  const key = male ? "m" : "f";
+  let w = profileCache.get(key);
+  if (w) return w;
+  w = new Float32Array(Y1 - Y0 + 1);
+  const P = FACE_PATHS[key];
+  let [px, py] = P[0] as unknown as [number, number];
+  for (let i = 1; i < P.length; i++) {
+    const [cx, cy, ex, ey] = P[i] as unknown as [number, number, number, number];
+    for (let t = 0; t <= 1; t += 0.002) {
+      const x = (1 - t) ** 2 * px + 2 * (1 - t) * t * cx + t * t * ex;
+      const y = (1 - t) ** 2 * py + 2 * (1 - t) * t * cy + t * t * ey;
+      const yi = Math.round(y) - Y0;
+      if (yi >= 0 && yi < w.length) w[yi] = Math.max(w[yi], Math.abs(x - 200));
+    }
+    px = ex;
+    py = ey;
+  }
+  // boşlukları doldur + yumuşat
+  for (let i = 1; i < w.length - 1; i++) if (w[i] === 0) w[i] = (w[i - 1] + w[i + 1]) / 2;
+  w[0] = Math.max(w[0], 4);
+  w[w.length - 1] = Math.max(w[w.length - 1], 4);
+  profileCache.set(key, w);
+  return w;
+};
+const wAt = (male: boolean, y: number) => {
+  const w = halfWidth(male);
+  const f = Math.max(0, Math.min(w.length - 1, y - Y0));
+  const i = Math.floor(f);
+  const j = Math.min(w.length - 1, i + 1);
+  return w[i] + (w[j] - w[i]) * (f - i);
+};
+/** yan profil derinliği (önden), SVG px */
+const dFront = (y: number) => 95 * Math.sqrt(Math.max(0, 1 - ((y - 190) / 124) ** 2)) + 2;
+const dBack = (y: number) => 104 * Math.sqrt(Math.max(0, 1 - ((y - 180) / 98) ** 2)) * (y > 278 ? Math.max(0, (312 - y) / 34) : 1) + 2;
+
+/** θ (yatay açı, 0 = ön), ySvg → 3D nokta */
+const headSurf = (male: boolean, th: number, y: number, scale = 1, out = new THREE.Vector3()) => {
+  const w = wAt(male, y) * (th > Math.PI / 2 || th < -Math.PI / 2 ? Math.max(0.92, 1) : 1);
+  const c = Math.cos(th);
+  const z = c >= 0 ? dFront(y) * Math.pow(c, 0.65) : -dBack(y) * Math.pow(-c, 0.8);
+  return out.set((w * Math.sin(th)) * K * scale, (202 - y) * K, z * K * scale);
+};
+
+const jawMale = (jaw: number) => jaw < 0.2;
+export const headGeometry = (jaw: number) =>
+  cached(`head2-${jawMale(jaw)}`, () => orientOutward(paramSurface((u, v) => headSurf(jawMale(jaw), (u - 0.5) * 2 * Math.PI, Y0 + v * (Y1 - Y0)), 64, 48), new THREE.Vector3(0, 0, 0)));
+
+/** Yüz yaması: yüzeyin ön kısmı, dokusu düz (önden) yansıtılır → 2D yüz çizimi bozulmadan görünür */
 export const faceGeometry = (jaw: number) =>
-  cached(`face-${jaw}`, () =>
-    paramSurface(
+  cached(`face2-${jawMale(jaw)}`, () => {
+    const male = jawMale(jaw);
+    const g = paramSurface(
+      (u, v) => headSurf(male, (u - 0.5) * 2 * (82 * D2R), Y0 + (1 - v) * (Y1 - Y0), 1.004),
+      48,
+      48,
       (u, v) => {
-        const az = (u - 0.5) * 2 * UMAX;
-        const el = (v - 0.5) * 2 * VMAX;
-        return headPoint(az, el, 1.012, jaw);
+        const th = (u - 0.5) * 2 * (82 * D2R);
+        const y = Y0 + (1 - v) * (Y1 - Y0);
+        const x = 200 + wAt(male, y) * Math.sin(th);
+        return [(x - 90) / 220, 1 - (y - 100) / 240];
       },
-      40,
-      40,
-      (u, v) => [u, v],
-    ),
-  );
-// sanity: canvas covers x FACE_X0..+FACE_W → u 0..1, y FACE_Y0..+FACE_H → v 1..0 (flipY)
+    );
+    return orientOutward(g, new THREE.Vector3(0, 0, 0));
+  });
 void FACE_X0; void FACE_Y0; void FACE_W; void FACE_H;
 
-/** Bir yüz noktasının (SVG x,y) kafa üzerindeki 3D konumu */
+/** SVG yüz noktasının kafa üzerindeki 3D konumu */
 export const faceToHead = (x: number, y: number, scale = 1.0, jaw = 0.22) => {
-  const az = ((x - 200) / 110) * UMAX;
-  const el = ((220 - y) / 120) * VMAX;
-  return headPoint(az, el, scale, jaw);
+  const male = jawMale(jaw);
+  const w = wAt(male, y);
+  const th = Math.asin(Math.max(-1, Math.min(1, (x - 200) / Math.max(1, w))));
+  return headSurf(male, th, y, scale);
+};
+/** Kulak konumu (yanak hizası) */
+export const earPos = (jaw: number, side: -1 | 1): [number, number, number] => {
+  const p = headSurf(jawMale(jaw), (side * Math.PI) / 2, 212, 1);
+  return [p.x + side * 0.004, p.y, -0.01];
 };
 
 type Line = { F: number; S: number; B: number };
@@ -104,11 +166,11 @@ export const hairPieces = (style: HairStyle): HairPiece[] => {
       ];
     case "longWavy":
       return [
-        { geo: shell("longW", { F: 30, S: -22, B: -40 }, 1.09, { bump: 0.015 }) },
+        { geo: shell("longW2", { F: 42, S: -22, B: -40 }, 1.09, { bump: 0.015 }) },
         { geo: cached("longW-back", () => longBack(0.5, 0.025), true) },
       ];
     case "bob":
-      return [{ geo: shell("bob", { F: 14, S: -42, B: -55 }, 1.09, { flare: 0.12 }) }];
+      return [{ geo: shell("bob2", { F: 30, S: -42, B: -55 }, 1.09, { flare: 0.12 }) }];
     case "ponytail":
       return [
         { geo: shell("pony", { F: 36, S: -6, B: -40 }, 1.07) },

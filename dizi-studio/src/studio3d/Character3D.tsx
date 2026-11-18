@@ -3,8 +3,9 @@ import * as THREE from "three";
 import { interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import type { Emotion, Gesture, Look, MouthCue, Prop, Viseme } from "../studio/rig/types";
 import { FACE_H, FACE_PX, FACE_W, drawFace } from "./face2d";
-import { HEAD, faceGeometry, faceToHead, hairPieces, headGeometry } from "./head";
-import { D2R, cached, flat, outline, toonChar as toon } from "./toon";
+import { HEAD, earPos, faceGeometry, faceToHead, hairPieces, headGeometry } from "./head";
+import { hairStrands } from "./textures";
+import { D2R, cached, flat, outline, toonChar as toon, toonCharTex } from "./toon";
 
 /* =====================================================================
  * 3D karakter: prosedürel, çizgi film gölgeli, mürekkep çizgili.
@@ -106,9 +107,10 @@ const M: React.FC<{
   rot?: [number, number, number];
   scale?: [number, number, number] | number;
   line?: number;
-}> = ({ geo, color, pos, rot, scale, line = 0.006 }) => (
+  map?: THREE.Texture;
+}> = ({ geo, color, pos, rot, scale, line = 0.006, map }) => (
   <group position={pos} rotation={rot} scale={scale}>
-    <mesh geometry={geo} material={toon(color)} />
+    <mesh geometry={geo} material={map ? toonCharTex(color, map, "hair") : toon(color)} />
     {line > 0 ? <mesh geometry={geo} material={outline(line)} /> : null}
   </group>
 );
@@ -352,13 +354,13 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
             {/* neck + head */}
             <M geo={cyl(0.038, 0.045, 0.07)} color={look.hair.style === "hijab" ? look.hair.color : look.skin} pos={[0, 0.53 * age.body + 0.01, -0.01]} line={0.004} />
             <group position={[0, headY, 0]} scale={age.head} rotation={headRot}>
-              <M geo={headGeometry(jaw)} color={look.skin} line={0.006} />
+              <M geo={headGeometry(jaw)} color={look.skin} line={0.009} />
               <mesh geometry={faceGeometry(jaw)} material={face.mat} renderOrder={2} />
               {/* ears */}
               {look.hair.style !== "hijab" ? (
                 <>
-                  <M geo={SPH} color={look.skin} scale={[0.018, 0.042, 0.03]} pos={[-HEAD.rx * 0.98, -0.01, -0.005]} line={0.004} />
-                  <M geo={SPH} color={look.skin} scale={[0.018, 0.042, 0.03]} pos={[HEAD.rx * 0.98, -0.01, -0.005]} line={0.004} />
+                  <M geo={SPH} color={look.skin} scale={[0.016, 0.04, 0.028]} pos={earPos(jaw, -1)} line={0.005} />
+                  <M geo={SPH} color={look.skin} scale={[0.016, 0.04, 0.028]} pos={earPos(jaw, 1)} line={0.005} />
                 </>
               ) : null}
               {look.earrings && look.hair.style !== "hijab" ? (
@@ -368,7 +370,7 @@ export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [numb
                 </>
               ) : null}
               {hp.map((h, i) => (
-                <M key={i} geo={h.geo} color={h.shade ? look.outfit.accent ?? look.hair.shade : look.hair.color} pos={h.pos} rot={h.rot} scale={h.scale} line={0.006} />
+                <M key={i} geo={h.geo} color={h.shade ? look.outfit.accent ?? look.hair.shade : look.hair.color} pos={h.pos} rot={h.rot} scale={h.scale} line={0.008} map={h.shade || look.hair.style === "hijab" ? undefined : hairStrands()} />
               ))}
               {look.glasses ? <Glasses color={look.glasses} jaw={jaw} /> : null}
             </group>

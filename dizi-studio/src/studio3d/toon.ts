@@ -35,6 +35,17 @@ export const toonChar = (color: string) => {
   return m;
 };
 
+const charTexCache = new Map<string, THREE.MeshToonMaterial>();
+export const toonCharTex = (color: string, map: THREE.Texture, key: string) => {
+  const k = `${color}-${key}`;
+  let m = charTexCache.get(k);
+  if (!m) {
+    m = new THREE.MeshToonMaterial({ color, map, gradientMap: toonGradient(), emissive: new THREE.Color(color), emissiveIntensity: 0.18, emissiveMap: map });
+    charTexCache.set(k, m);
+  }
+  return m;
+};
+
 const outlineCache = new Map<number, THREE.MeshBasicMaterial>();
 /** Mürekkep çizgisi: arka yüzleri normal yönünde `thick` kadar şişirip koyu boyar. */
 export const outline = (thick = 0.008) => {
