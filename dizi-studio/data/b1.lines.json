@@ -1,0 +1,9 @@
+{"episode": "b1", "lines": [
+ {"id": "n1", "voice": "genc_kadin", "emotion": "ic_ses", "text": "On beş yıl önce babam ekmek almaya çıktı."},
+ {"id": "n2", "voice": "genc_kadin", "emotion": "uzgun", "text": "Bir daha hiç dönmedi."},
+ {"id": "n3", "voice": "genc_kadin", "emotion": "korkmus", "text": "Dün gece saat üçte... kapı çaldı."},
+ {"id": "n4", "voice": "genc_kadin", "emotion": "ic_ses", "text": "Elinde bir poşet ekmek vardı."},
+ {"id": "baba1", "voice": "yasli_erkek", "emotion": "uzgun", "text": "Geç kaldım, kızım."},
+ {"id": "n5", "voice": "genc_kadin", "emotion": "agliyor", "text": "Sarılmak mı, kaçmak mı... bilemedim."},
+ {"id": "anne1", "voice": "yasli_kadin", "emotion": "fisilti", "text": "Zeynep... babanı on beş yıl önce ben gömdüm."}
+]}

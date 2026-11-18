@@ -1,0 +1,296 @@
+{
+ "efekt/araba_gecis": {
+  "file": "ses/efekt/araba_gecis.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "Yanından geçen araba."
+ },
+ "efekt/ayak_sesleri": {
+  "file": "ses/efekt/ayak_sesleri.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "Ayak sesleri (yürüme, 8 adım)."
+ },
+ "efekt/bildirim": {
+  "file": "ses/efekt/bildirim.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "Mesaj bildirimi (ding)."
+ },
+ "efekt/cam_kirilma": {
+  "file": "ses/efekt/cam_kirilma.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "Cam/bardak kırılması."
+ },
+ "efekt/cay_dokme": {
+  "file": "ses/efekt/cay_dokme.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "Çay/su dökme (bardağa)."
+ },
+ "efekt/darbe": {
+  "file": "ses/efekt/darbe.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "Dramatik darbe/sting (gerçek ortaya çıkınca)."
+ },
+ "efekt/esya_dusme": {
+  "file": "ses/efekt/esya_dusme.mp3",
+  "category": "efekt",
+  "duration": 0.5,
+  "loop": false,
+  "desc": "Bir eşyanın yere düşmesi."
+ },
+ "efekt/fren": {
+  "file": "ses/efekt/fren.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "Araba freni / lastik sürtünmesi."
+ },
+ "efekt/gok_gurultusu": {
+  "file": "ses/efekt/gok_gurultusu.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "Gök gürültüsü."
+ },
+ "efekt/hickirik": {
+  "file": "ses/efekt/hickirik.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "Hıçkırarak ağlama nefesleri."
+ },
+ "efekt/kalp_atisi": {
+  "file": "ses/efekt/kalp_atisi.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "Kalp atışı (70 bpm). Korku/heyecan."
+ },
+ "efekt/kapi_carpma": {
+  "file": "ses/efekt/kapi_carpma.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "Kapı çarpma / sert kapanma."
+ },
+ "efekt/kapi_gicirti": {
+  "file": "ses/efekt/kapi_gicirti.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Kapı gıcırtısı (yavaş açılış)."
+ },
+ "efekt/kapi_vurma": {
+  "file": "ses/efekt/kapi_vurma.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Kapıya 3 kez vurma."
+ },
+ "efekt/kapi_yumruk": {
+  "file": "ses/efekt/kapi_yumruk.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Kapıya sert/telaşlı yumruk."
+ },
+ "efekt/kapi_zili": {
+  "file": "ses/efekt/kapi_zili.mp3",
+  "category": "efekt",
+  "duration": 2.4,
+  "loop": false,
+  "desc": "Kapı zili (ding-dong)."
+ },
+ "efekt/kosma": {
+  "file": "ses/efekt/kosma.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "Koşan ayak sesleri."
+ },
+ "efekt/nefes_kesilme": {
+  "file": "ses/efekt/nefes_kesilme.mp3",
+  "category": "efekt",
+  "duration": 0.9,
+  "loop": false,
+  "desc": "Şaşkınlıkla nefes çekme (gasp)."
+ },
+ "efekt/riser": {
+  "file": "ses/efekt/riser.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "Yükselen gerilim (4 sn), darbe öncesi."
+ },
+ "efekt/telefon_titresim": {
+  "file": "ses/efekt/telefon_titresim.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "Telefon titreşimi (masa üstünde)."
+ },
+ "efekt/telefon_zil": {
+  "file": "ses/efekt/telefon_zil.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "Telefon zil melodisi."
+ },
+ "efekt/tik": {
+  "file": "ses/efekt/tik.mp3",
+  "category": "efekt",
+  "duration": 0.03,
+  "loop": false,
+  "desc": "Küçük tık (anahtar, ışık düğmesi)."
+ },
+ "efekt/tokat": {
+  "file": "ses/efekt/tokat.mp3",
+  "category": "efekt",
+  "duration": 0.25,
+  "loop": false,
+  "desc": "Tokat sesi."
+ },
+ "efekt/whoosh": {
+  "file": "ses/efekt/whoosh.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "Geçiş whoosh'u (sahne/kamera geçişi)."
+ },
+ "muzik/aksiyon": {
+  "file": "ses/muzik/aksiyon.mp3",
+  "category": "muzik",
+  "duration": 46.0,
+  "loop": true,
+  "desc": "Aksiyon/kovalamaca: 120 bpm davul + ostinato. Kaçış, yüzleşme, zaman baskısı."
+ },
+ "muzik/cliffhanger": {
+  "file": "ses/muzik/cliffhanger.mp3",
+  "category": "muzik",
+  "duration": 7.0,
+  "loop": false,
+  "desc": "Bölüm sonu: 5 sn yükselen gerilim + darbe. Sır açığa çıkmadan kesme."
+ },
+ "muzik/gerilim": {
+  "file": "ses/muzik/gerilim.mp3",
+  "category": "muzik",
+  "duration": 61.0,
+  "loop": true,
+  "desc": "Gerilim yatağı: düşük drone + nabız gibi bas + tiz disonans. Sırlar, tehdit."
+ },
+ "muzik/gizem": {
+  "file": "ses/muzik/gizem.mp3",
+  "category": "muzik",
+  "duration": 36.33,
+  "loop": true,
+  "desc": "Gizem: müzik kutusu/çelesta melodisi + karanlık pad. Geçmiş, sır, flashback."
+ },
+ "muzik/hafif_komik": {
+  "file": "ses/muzik/hafif_komik.mp3",
+  "category": "muzik",
+  "duration": 35.92,
+  "loop": true,
+  "desc": "Hafif/komik: pizzicato hissi, 104 bpm. Çocuklar, günlük hayat, mizah."
+ },
+ "muzik/huzunlu_piyano": {
+  "file": "ses/muzik/huzunlu_piyano.mp3",
+  "category": "muzik",
+  "duration": 59.18,
+  "loop": true,
+  "desc": "Hüzünlü piyano (La minör, 66 bpm). Ayrılık, kayıp, iç ses."
+ },
+ "muzik/jenerik_tema": {
+  "file": "ses/muzik/jenerik_tema.mp3",
+  "category": "muzik",
+  "duration": 15.29,
+  "loop": false,
+  "desc": "Dizinin ana teması (leitmotif). Açılış/kapanış jeneriği, 9 notalık motif."
+ },
+ "muzik/romantik": {
+  "file": "ses/muzik/romantik.mp3",
+  "category": "muzik",
+  "duration": 65.0,
+  "loop": true,
+  "desc": "Romantik: yavaş maj7 piyano. Bakışmalar, itiraf."
+ },
+ "muzik/umut": {
+  "file": "ses/muzik/umut.mp3",
+  "category": "muzik",
+  "duration": 51.53,
+  "loop": true,
+  "desc": "Umut / sıcaklık: majör akorlar, yumuşak pad ve piyano. Barışma, kavuşma."
+ },
+ "ortam/gece_cekirge": {
+  "file": "ses/ortam/gece_cekirge.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Gece cırcır böceği: yaz gecesi, bahçe, köy."
+ },
+ "ortam/hastane": {
+  "file": "ses/ortam/hastane.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Hastane odası: monitör bip + havalandırma."
+ },
+ "ortam/kafe_kalabalik": {
+  "file": "ses/ortam/kafe_kalabalik.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Kafe/restoran: kalabalık uğultusu + fincan şıngırtısı."
+ },
+ "ortam/kus_sesleri": {
+  "file": "ses/ortam/kus_sesleri.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Kuş cıvıltısı: park, sabah, gündüz dış mekân."
+ },
+ "ortam/oda_tonu": {
+  "file": "ses/ortam/oda_tonu.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Sessiz oda tonu. Diyalog altına 'boşluk' hissi."
+ },
+ "ortam/ruzgar": {
+  "file": "ses/ortam/ruzgar.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Rüzgâr: mezarlık, gece dışarı, yalnızlık."
+ },
+ "ortam/saat_tiklama": {
+  "file": "ses/ortam/saat_tiklama.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Duvar saati tik-tak: bekleyiş, gerilim, sessiz ev."
+ },
+ "ortam/sehir": {
+  "file": "ses/ortam/sehir.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Şehir uğultusu: uzaktan trafik, korna. Sokak, ofis penceresi."
+ },
+ "ortam/yagmur": {
+  "file": "ses/ortam/yagmur.mp3",
+  "category": "ortam",
+  "duration": 60.5,
+  "loop": true,
+  "desc": "Yağmur (pencere arkası). Gece sahneleri."
+ }
+}

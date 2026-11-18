@@ -1,0 +1,128 @@
+export type HairStyle =
+  | "longStraight"
+  | "longWavy"
+  | "ponytail"
+  | "bun"
+  | "bob"
+  | "curly"
+  | "braids"
+  | "shortMale"
+  | "spiky"
+  | "slick"
+  | "buzz"
+  | "balding"
+  | "bald"
+  | "hijab";
+
+export type Outfit =
+  | "tshirt"
+  | "sweater"
+  | "shirt"
+  | "suit"
+  | "dress"
+  | "cardigan"
+  | "coat"
+  | "hoodie"
+  | "school"
+  | "apron"
+  | "labcoat"
+  | "police"
+  | "tracksuit";
+
+export type Emotion =
+  | "notr"
+  | "mutlu"
+  | "gulen"
+  | "uzgun"
+  | "agliyor"
+  | "ofkeli"
+  | "korkmus"
+  | "saskin"
+  | "sok"
+  | "supheli"
+  | "utangac"
+  | "alayci"
+  | "dusunceli"
+  | "yorgun"
+  | "soguk"
+  | "kararli"
+  | "igrenmis";
+
+export type Gesture =
+  | "rest"
+  | "elBelde"
+  | "kollarBagli"
+  | "isaret"
+  | "elSalla"
+  | "eliYuzunde"
+  | "eliKalbinde"
+  | "omuzSilk"
+  | "yumruk"
+  | "dusunme"
+  | "telefon"
+  | "tutuyor"
+  | "ellerAcik"
+  | "ellerYuzde"
+  | "durDur";
+
+export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
+
+export type MouthCue = { t: number; v: Viseme };
+
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap";
+
+export type Look = {
+  name: string;
+  gender: "f" | "m";
+  age: "child" | "teen" | "adult" | "old";
+  build: "slim" | "normal" | "heavy";
+  skin: string;
+  skinShade: string;
+  hair: { style: HairStyle; color: string; shade: string };
+  iris: string;
+  facialHair?: "mustache" | "beard" | "stubble" | "goatee";
+  outfit: {
+    type: Outfit;
+    top: string;
+    topShade: string;
+    bottom: string;
+    shoes: string;
+    /** tie / scarf / vest / inner shirt colour */
+    accent?: string;
+  };
+  glasses?: string;
+  earrings?: string;
+  blush?: boolean;
+  mole?: boolean;
+};
+
+export type ArmPose = { upper: number; fore: number };
+
+export type Pose = {
+  emotion?: Emotion;
+  gesture?: Gesture;
+  /** Override individual arms (degrees). upper: + outward, fore: + outward bend */
+  armL?: ArmPose;
+  armR?: ArmPose;
+  /** gaze -1..1 */
+  lookX?: number;
+  lookY?: number;
+  /** head turn -1 (to screen left) .. 1 (to screen right) */
+  yaw?: number;
+  /** head tilt degrees */
+  tilt?: number;
+  body?: "stand" | "sit" | "walk";
+  /** Lip sync: viseme cues (seconds) starting at frame `from` of the current sequence */
+  speech?: { cues: MouthCue[]; from: number };
+  /** Random mouth flaps when no cues are available */
+  talk?: [number, number][];
+  tears?: number;
+  pale?: number;
+  sweat?: boolean;
+  wet?: boolean;
+  prop?: Prop;
+  eyesClosed?: number;
+  /** Breathing intensity multiplier (1 normal, 3 panting) */
+  breath?: number;
+  seed?: number;
+};

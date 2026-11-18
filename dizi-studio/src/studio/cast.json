@@ -1,0 +1,515 @@
+[
+ {
+  "id": "zeynep",
+  "name": "Zeynep",
+  "role": "Genç kadın, 24 — ana karakter",
+  "voice": "genc_kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f6cfb0",
+  "skinShade": "#e9b592",
+  "hair": {
+   "style": "longWavy",
+   "color": "#4a2c22",
+   "shade": "#6e4434"
+  },
+  "iris": "#6a4a2c",
+  "outfit": {
+   "type": "sweater",
+   "top": "#d9a441",
+   "topShade": "#b9852a",
+   "bottom": "#3f5a7d",
+   "shoes": "#e9e4dc"
+  }
+ },
+ {
+  "id": "kemal",
+  "name": "Kemal",
+  "role": "Baba, 58",
+  "voice": "yasli_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#9a958f",
+   "shade": "#c8c3bd"
+  },
+  "iris": "#5a4030",
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "coat",
+   "top": "#5b4636",
+   "topShade": "#46352a",
+   "bottom": "#3b3a3f",
+   "shoes": "#2c2622",
+   "accent": "#e9e2d6"
+  },
+  "blush": false
+ },
+ {
+  "id": "nermin",
+  "name": "Nermin",
+  "role": "Anne, 52",
+  "voice": "yasli_kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "bob",
+   "color": "#8c3b2a",
+   "shade": "#b0553f"
+  },
+  "iris": "#4e6b3e",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#4f7a64",
+   "topShade": "#3c604e",
+   "bottom": "#6d5a52",
+   "shoes": "#e0d6cc",
+   "accent": "#efe6d6"
+  }
+ },
+ {
+  "id": "emre",
+  "name": "Emre",
+  "role": "Erkek kardeş, 16",
+  "voice": "genc_erkek2",
+  "gender": "m",
+  "age": "teen",
+  "build": "slim",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "spiky",
+   "color": "#1f1a18",
+   "shade": "#3a3230"
+  },
+  "iris": "#3d2a1e",
+  "outfit": {
+   "type": "hoodie",
+   "top": "#c0392b",
+   "topShade": "#962d22",
+   "bottom": "#2d3a4a",
+   "shoes": "#f2f2f2"
+  }
+ },
+ {
+  "id": "elif",
+  "name": "Elif",
+  "role": "Küçük kız, 7",
+  "voice": "cocuk_kiz",
+  "gender": "f",
+  "age": "child",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "braids",
+   "color": "#c9a26a",
+   "shade": "#e2c08c"
+  },
+  "iris": "#4a78a8",
+  "outfit": {
+   "type": "dress",
+   "top": "#f2b8c6",
+   "topShade": "#de97a8",
+   "bottom": "#f2b8c6",
+   "shoes": "#f6f6f6",
+   "accent": "#e05a6a"
+  }
+ },
+ {
+  "id": "hatice",
+  "name": "Hatice",
+  "role": "Babaanne, 76",
+  "voice": "yasli_kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "hijab",
+   "color": "#d8c9a8",
+   "shade": "#b9a985"
+  },
+  "iris": "#4a3a2a",
+  "glasses": "#6b5a4a",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#5a4a5e",
+   "topShade": "#463a4a",
+   "bottom": "#3e3a40",
+   "shoes": "#2c2622",
+   "accent": "#cdbfa8"
+  }
+ },
+ {
+  "id": "riza",
+  "name": "Rıza",
+  "role": "Dede, 79",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "slim",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "balding",
+   "color": "#e6e2dc",
+   "shade": "#ffffff"
+  },
+  "iris": "#3a2a20",
+  "facialHair": "beard",
+  "glasses": "#3a3a3a",
+  "outfit": {
+   "type": "sweater",
+   "top": "#7a6a52",
+   "topShade": "#5e5140",
+   "bottom": "#4a4440",
+   "shoes": "#2a2420"
+  },
+  "blush": false
+ },
+ {
+  "id": "kaan",
+  "name": "Kaan",
+  "role": "Zengin iş insanı, 31",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "slick",
+   "color": "#141210",
+   "shade": "#3a3632"
+  },
+  "iris": "#2e2a26",
+  "outfit": {
+   "type": "suit",
+   "top": "#1f2b44",
+   "topShade": "#151e30",
+   "bottom": "#1f2b44",
+   "shoes": "#111",
+   "accent": "#7a1f2b"
+  },
+  "blush": false
+ },
+ {
+  "id": "selin",
+  "name": "Selin",
+  "role": "Kibirli rakip, 28",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "ponytail",
+   "color": "#e8c26a",
+   "shade": "#f5dc9c"
+  },
+  "iris": "#3a7a5a",
+  "earrings": "#e3c15a",
+  "outfit": {
+   "type": "dress",
+   "top": "#b3202e",
+   "topShade": "#8c1622",
+   "bottom": "#b3202e",
+   "shoes": "#1a1a1a",
+   "accent": "#1a1a1a"
+  }
+ },
+ {
+  "id": "murat",
+  "name": "Murat",
+  "role": "Bakkal, 47",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a211c",
+   "shade": "#4a3a30"
+  },
+  "iris": "#3a2618",
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "apron",
+   "top": "#8fa8c0",
+   "topShade": "#7088a0",
+   "bottom": "#4a4038",
+   "shoes": "#2a2420",
+   "accent": "#f0ebe0"
+  },
+  "blush": false
+ },
+ {
+  "id": "ayse",
+  "name": "Ayşe",
+  "role": "Komşu teyze, 54",
+  "voice": "kadin2",
+  "gender": "f",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "hijab",
+   "color": "#5b8a6a",
+   "shade": "#43705a"
+  },
+  "iris": "#4a3624",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#7a5a4a",
+   "topShade": "#5e4438",
+   "bottom": "#4a3e3a",
+   "shoes": "#2a2420",
+   "accent": "#e8dccb"
+  }
+ },
+ {
+  "id": "deniz",
+  "name": "Dr. Deniz",
+  "role": "Doktor, 36",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "bun",
+   "color": "#3a2a22",
+   "shade": "#5a4234"
+  },
+  "iris": "#5a3a22",
+  "glasses": "#2a3a5a",
+  "outfit": {
+   "type": "labcoat",
+   "top": "#f2f2ee",
+   "topShade": "#d6d6d0",
+   "bottom": "#3a4a5a",
+   "shoes": "#f2f2f2",
+   "accent": "#7fa7c9"
+  }
+ },
+ {
+  "id": "burak",
+  "name": "Komiser Burak",
+  "role": "Polis, 41",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "buzz",
+   "color": "#1a1612",
+   "shade": "#3a3430"
+  },
+  "iris": "#2a1e16",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "police",
+   "top": "#2f4f7f",
+   "topShade": "#243e66",
+   "bottom": "#1f2a3a",
+   "shoes": "#111"
+  },
+  "blush": false
+ },
+ {
+  "id": "ozan",
+  "name": "Ozan",
+  "role": "Genç adam, 27",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a3a26",
+   "shade": "#7a553a"
+  },
+  "iris": "#5a3a22",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#9cc0e0",
+   "topShade": "#7ea2c4",
+   "bottom": "#2f3a4a",
+   "shoes": "#5a4030"
+  }
+ },
+ {
+  "id": "defne",
+  "name": "Defne",
+  "role": "Üniversiteli, 20",
+  "voice": "genc_kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#b07a52",
+  "skinShade": "#946240",
+  "hair": {
+   "style": "curly",
+   "color": "#2a1a14",
+   "shade": "#4a3024"
+  },
+  "iris": "#3a2418",
+  "glasses": "#7a3a8a",
+  "outfit": {
+   "type": "tracksuit",
+   "top": "#6a4a9a",
+   "topShade": "#523a7c",
+   "bottom": "#3a2e4e",
+   "shoes": "#f2f2f2"
+  }
+ },
+ {
+  "id": "can",
+  "name": "Can",
+  "role": "Küçük erkek, 9",
+  "voice": "cocuk_erkek",
+  "gender": "m",
+  "age": "child",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#3a2a1e",
+   "shade": "#5a4430"
+  },
+  "iris": "#4a3420",
+  "outfit": {
+   "type": "school",
+   "top": "#2a3e6a",
+   "topShade": "#1f2f52",
+   "bottom": "#2a3e6a",
+   "shoes": "#1a1a1a",
+   "accent": "#b3202e"
+  }
+ },
+ {
+  "id": "leyla",
+  "name": "Leyla",
+  "role": "Gizemli gelin, 32",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "longStraight",
+   "color": "#141018",
+   "shade": "#3a3240"
+  },
+  "iris": "#2a2030",
+  "mole": true,
+  "earrings": "#d9d9e6",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#e8dcc6",
+   "topShade": "#cbbda4",
+   "bottom": "#3a3236",
+   "shoes": "#2a2226",
+   "accent": "#3a3236"
+  }
+ },
+ {
+  "id": "huseyin",
+  "name": "Hüseyin",
+  "role": "Tefeci / kötü adam, 52",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "slick",
+   "color": "#6a6660",
+   "shade": "#9a958f"
+  },
+  "iris": "#1e1a16",
+  "facialHair": "goatee",
+  "outfit": {
+   "type": "suit",
+   "top": "#1a1a1c",
+   "topShade": "#0e0e10",
+   "bottom": "#1a1a1c",
+   "shoes": "#0a0a0a",
+   "accent": "#5a5a5a"
+  },
+  "blush": false
+ },
+ {
+  "id": "melek",
+  "name": "Melek",
+  "role": "Kafe garsonu, 23",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f6cfb0",
+  "skinShade": "#e9b592",
+  "hair": {
+   "style": "ponytail",
+   "color": "#a8452a",
+   "shade": "#c86a44"
+  },
+  "iris": "#3a6a4a",
+  "outfit": {
+   "type": "apron",
+   "top": "#f2f2f2",
+   "topShade": "#d8d8d8",
+   "bottom": "#2a2a2e",
+   "shoes": "#2a2a2e",
+   "accent": "#3a2a24"
+  }
+ },
+ {
+  "id": "yusuf",
+  "name": "Yusuf",
+  "role": "Öğrenci, 15",
+  "voice": "cocuk_erkek",
+  "gender": "m",
+  "age": "teen",
+  "build": "slim",
+  "skin": "#b07a52",
+  "skinShade": "#946240",
+  "hair": {
+   "style": "curly",
+   "color": "#1a120e",
+   "shade": "#3a2a20"
+  },
+  "iris": "#2a1a12",
+  "outfit": {
+   "type": "school",
+   "top": "#2a3e6a",
+   "topShade": "#1f2f52",
+   "bottom": "#2f3440",
+   "shoes": "#1a1a1a",
+   "accent": "#b3202e"
+  }
+ }
+]

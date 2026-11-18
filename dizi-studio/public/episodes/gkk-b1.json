@@ -1,0 +1,55 @@
+{
+  "series": "gec-kaldim-kizim",
+  "seriesTitle": "Geç Kaldım Kızım",
+  "episode": "gkk-b1",
+  "episodeNo": 1,
+  "title": "Kapıdaki Adam (motor testi — mevcut Bölüm 1)",
+  "scenes": [
+    {
+      "id": "s1", "set": "salon", "time": "gece", "rain": true, "title": "Salon",
+      "ambience": { "name": "ortam/yagmur", "volume": 0.3 },
+      "music": { "name": "muzik/gerilim", "volume": 0.3 },
+      "cast": { "zeynep": { "mark": "orta", "emotion": "uzgun", "lookAt": "kamera" } },
+      "beats": [
+        { "type": "line", "who": "zeynep", "voiceover": true, "text": "On beş yıl önce babam ekmek almaya çıktı.", "shot": { "type": "genis", "move": "yaklas" }, "fade": "giris" },
+        { "type": "line", "who": "zeynep", "voiceover": true, "emotion": "uzgun", "text": "Bir daha hiç dönmedi.", "shot": { "type": "orta", "on": "zeynep", "move": "yaklas" } },
+        { "type": "action", "dur": 1.4, "lightning": true, "shot": { "type": "orta", "on": "zeynep" }, "cast": { "zeynep": { "emotion": "korkmus" } } }
+      ]
+    },
+    {
+      "id": "s2", "set": "salon", "time": "gece", "rain": true,
+      "cast": { "zeynep": { "mark": "orta", "emotion": "saskin", "lookAt": "kamera" } },
+      "beats": [
+        { "type": "action", "dur": 1.3, "sfx": [{ "name": "efekt/kapi_zili", "volume": 0.8 }], "shot": { "type": "yakin", "on": "zeynep", "move": "sarsinti" } },
+        { "type": "line", "who": "zeynep", "voiceover": true, "emotion": "korkmus", "text": "Dün gece saat üçte... kapı çaldı.", "shot": { "type": "cok_yakin", "on": "zeynep", "move": "yaklas" } }
+      ]
+    },
+    {
+      "id": "s3", "set": "apartman_kapisi", "time": "gece",
+      "cast": { "kemal": { "mark": "kapi", "emotion": "uzgun", "wet": true, "prop": "poset" } },
+      "beats": [
+        { "type": "action", "dur": 2.0, "door": "ac", "sfx": [{ "name": "efekt/kapi_gicirti", "volume": 0.7 }], "shot": { "type": "genis", "move": "sabit" } },
+        { "type": "line", "who": "zeynep", "voiceover": true, "text": "Elinde bir poşet ekmek vardı.", "shot": { "type": "orta", "on": "kemal", "move": "yaklas" } },
+        { "type": "line", "who": "kemal", "text": "Geç kaldım, kızım.", "shot": { "type": "yakin", "on": "kemal", "move": "yaklas" }, "gapAfter": 0.6 }
+      ]
+    },
+    {
+      "id": "s4", "set": "salon", "time": "gece", "rain": true,
+      "music": { "name": "muzik/huzunlu_piyano", "volume": 0.3 },
+      "cast": { "zeynep": { "mark": "orta", "emotion": "agliyor", "lookAt": "kamera" } },
+      "beats": [
+        { "type": "line", "who": "zeynep", "voiceover": true, "emotion": "agliyor", "text": "Sarılmak mı, kaçmak mı... bilemedim.", "shot": { "type": "cok_yakin", "on": "zeynep", "move": "yaklas" } }
+      ]
+    },
+    {
+      "id": "s5", "set": "koridor", "time": "gece", "transition": "kararma",
+      "music": { "name": "muzik/gerilim", "volume": 0.3 },
+      "cast": { "nermin": { "mark": "orta", "emotion": "korkmus", "pale": 0.9, "lookAt": "kamera" } },
+      "beats": [
+        { "type": "action", "dur": 0.8, "shot": { "type": "genis", "move": "yaklas" } },
+        { "type": "line", "who": "nermin", "emotion": "fisilti", "text": "Zeynep... babanı on beş yıl önce ben gömdüm.", "shot": { "type": "yakin", "on": "nermin", "move": "yaklas" } },
+        { "type": "action", "dur": 2.2, "lightning": true, "sfx": [{ "name": "efekt/darbe", "volume": 0.8 }], "shot": { "type": "cok_yakin", "on": "nermin", "move": "sarsinti" }, "cast": { "nermin": { "emotion": "sok" } }, "fade": "cikis" }
+      ]
+    }
+  ]
+}
