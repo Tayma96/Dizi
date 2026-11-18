@@ -217,7 +217,7 @@ Karakterler ve mekânlar 3D'dir. Böylece karakter yandan, arkadan ya da 3/4 aç
 ## 8. Güvenli alanlar (1080×1920, üç platform ortak)
 
 - **Kenar boşlukları:** üst 269 px, alt 672 px, sol 120 px, sağ alt 300 px. Önemli içerik bunların dışında kalmamalı.
-- **Altyazı bandı:** y 1060-1260 (motor otomatik uygular).
+- **Altyazı:** klasik stil (beyaz yazı + siyah kontur), ekranın alt kısmında, alt kenarı y=1450 (motor otomatik uygular).
 - **Göz çizgisi:** üst 1/3'te (3D kamera otomatik uygular).
 
 ## 9. Lisans ve platform notları (ayrıntı: `docs/arastirma-2.md`)

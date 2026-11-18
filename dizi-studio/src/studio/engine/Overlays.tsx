@@ -5,7 +5,7 @@ import type { TBeat } from "./timeline";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
-/* ---------------- Karaoke altyazı (güvenli alan: y 1040-1260) ---------------- */
+/* ---------------- Altyazı (klasik, alt kısım; satır ≤37 karakter, konuşmaya senkron parçalar) ---------------- */
 export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speakerColor?: string }> = ({ tb, speakerName, speakerColor }) => {
   const frame = useCurrentFrame(); // relative to the beat
   const { fps } = useVideoConfig();
@@ -38,43 +38,31 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
   const vo = beat.voiceover;
   const inA = interpolate(frame, [0, 5], [0, 1], clamp);
   const outA = interpolate(frame, [tb.dur - 5, tb.dur], [1, 0], clamp);
+  // Klasik altyazı: ekranın alt kısmında, sade beyaz yazı + ince kontur. Alt kenar y=1450
+  // (Reels/TikTok açıklama metninin üstünde kalır).
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <div style={{ position: "absolute", left: 90, right: 150, top: 1060, display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
+      <div style={{ position: "absolute", left: 80, right: 80, bottom: 1920 - 1450, display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
         {speakerName && !vo ? (
-          <div
-            style={{
-              fontFamily: SANS, fontWeight: 900, fontSize: 32, letterSpacing: 3, color: "#111",
-              backgroundColor: speakerColor ?? "#ffd166", padding: "5px 20px", borderRadius: 40, marginBottom: 14,
-              scale: interpolate(frame, [0, 8], [0.6, 1], { ...clamp, easing: Easing.spring({ damping: 12 }) }),
-            }}
-          >
+          <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 26, letterSpacing: 2, color: speakerColor ?? "#ffd166", marginBottom: 6, WebkitTextStroke: "6px #000", paintOrder: "stroke fill" }}>
             {speakerName.toLocaleUpperCase("tr-TR")}
           </div>
         ) : null}
-        <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: vo ? 68 : 72, lineHeight: 1.2, textAlign: "center", fontStyle: vo ? "italic" : "normal" }}>
-          {chunk.map((w, i) => {
-            const active = time >= w.start - 0.05 && time < w.end + 0.05;
-            const said = time >= w.end;
-            const pop = interpolate(time, [w.start - 0.05, w.start + 0.08], [0, 1], clamp);
-            return (
-              <span
-                key={`${ci}-${i}`}
-                style={{
-                  display: "inline-block",
-                  marginRight: 16,
-                  color: active ? (vo ? "#bfe0ff" : "#ffd166") : "#ffffff",
-                  opacity: said || active ? 1 : 0.55,
-                  scale: active ? `${1 + 0.06 * pop}` : "1",
-                  WebkitTextStroke: "13px #120d0b",
-                  paintOrder: "stroke fill",
-                  textShadow: "0 8px 24px rgba(0,0,0,0.5)",
-                }}
-              >
-                {w.w}
-              </span>
-            );
-          })}
+        <div
+          style={{
+            fontFamily: SANS,
+            fontWeight: 800,
+            fontSize: 54,
+            lineHeight: 1.25,
+            textAlign: "center",
+            color: vo ? "#f2f2f2" : "#ffffff",
+            fontStyle: vo ? "italic" : "normal",
+            WebkitTextStroke: "8px #000",
+            paintOrder: "stroke fill",
+            textShadow: "0 3px 10px rgba(0,0,0,0.65)",
+          }}
+        >
+          {chunk.map((w) => w.w).join(" ")}
         </div>
       </div>
     </AbsoluteFill>
