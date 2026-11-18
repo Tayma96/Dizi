@@ -123,6 +123,33 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x - 30} ${y - 46} H ${x + 30}`} stroke="#d9c38a" strokeWidth={4} />
         </g>
       );
+    case "tepsi":
+      // metal ilaç tepsisi: kâğıt ilaç kabı + su bardağı (el tepsinin altında)
+      return (
+        <g>
+          <rect x={x - 95} y={y - 24} width={190} height={16} rx={6} fill="#c4ccd2" stroke={OUT} strokeWidth={3.5} />
+          <path d={`M ${x - 60} ${y - 24} L ${x - 54} ${y - 52} L ${x - 26} ${y - 52} L ${x - 20} ${y - 24} Z`} fill="#f6f2e8" stroke={OUT} strokeWidth={3} />
+          <circle cx={x - 46} cy={y - 56} r={5} fill="#e85a5a" stroke={OUT} strokeWidth={2} />
+          <circle cx={x - 34} cy={y - 57} r={5} fill="#f4f4f0" stroke={OUT} strokeWidth={2} />
+          <path d={`M ${x + 20} ${y - 24} L ${x + 26} ${y - 74} L ${x + 62} ${y - 74} L ${x + 68} ${y - 24} Z`} fill="#dff0ff" fillOpacity={0.75} stroke={OUT} strokeWidth={3} />
+          <path d={`M ${x + 24} ${y - 50} H ${x + 64}`} stroke="#9cc8ec" strokeWidth={3} />
+        </g>
+      );
+    case "ilac":
+      // iki parmak arasında hap
+      return (
+        <g>
+          <ellipse cx={x} cy={y - 24} rx={11} ry={6} fill="#e85a5a" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M ${x} ${y - 30} V ${y - 18}`} stroke="#ffffff" strokeWidth={2} />
+        </g>
+      );
+    case "kalem":
+      return (
+        <g transform={`rotate(-35 ${x} ${y})`}>
+          <rect x={x - 5} y={y - 78} width={10} height={80} rx={3} fill="#1e2430" stroke={OUT} strokeWidth={2.5} />
+          <rect x={x - 5} y={y - 78} width={10} height={14} fill="#c9a75a" />
+        </g>
+      );
     default:
       return null;
   }

@@ -182,7 +182,7 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <WindowBars x={600} y={260} w={340} h={460} />
           {/* pencereden düşen ışık */}
           <path d="M 600 720 L 940 720 L 760 1500 L 200 1500 Z" fill="url(#hucre-beam)" />
-          <CellDoor x={900} y={860} s={1} />
+          <CellDoor x={900} y={860} s={1} open={doorOpen} />
           <IronBed x={60} y={1240} s={1} />
         </g>
       );

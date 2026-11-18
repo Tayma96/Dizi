@@ -539,7 +539,10 @@ export const Bird: React.FC<{ x: number; y: number; s?: number; flap?: number; f
 export const CellDoor: React.FC<P & { open?: number }> = ({ x, y, s, open = 0 }) => (
   <G x={x} y={y} s={s}>
     <rect x={-18} y={-18} width={336} height={658} fill="#aab4b2" stroke={O} strokeWidth={4} />
-    <rect x={0} y={0} width={300} height={640} fill="#1c2224" />
+    {/* kapı ardı: aydınlık koridor (kapı açılınca görünür) */}
+    <rect x={0} y={0} width={300} height={640} fill="#dfe4dc" />
+    <rect x={0} y={520} width={300} height={120} fill="#b9c0b8" />
+    <rect x={120} y={0} width={60} height={640} fill="#ffffff" opacity={0.35} />
     <g transform={`scale(${1 - open * 0.85} 1)`}>
       <rect x={0} y={0} width={300} height={640} fill="#87939a" stroke={O} strokeWidth={sw} />
       <rect x={70} y={70} width={160} height={110} rx={6} fill="#2a3236" stroke={O} strokeWidth={4} />
