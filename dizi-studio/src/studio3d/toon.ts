@@ -164,3 +164,19 @@ export const setToonContrast = (k = 0) => {
   for (const m of charTexCache.values()) m.emissiveIntensity = 0.18 * glow;
 };
 
+
+/** 3D ten düzeltmesi: kadro renkleri 2D paletten gelir ve toon ışıkta beyaza kaçar.
+ *  Tonu korur, doygunluğu artırır, açıklığı biraz düşürür (ten gerçek ten gibi okunur). */
+const tenCache = new Map<string, string>();
+export const tenRengi = (hex: string) => {
+  let v = tenCache.get(hex);
+  if (!v) {
+    const c = new THREE.Color(hex);
+    const hsl = { h: 0, s: 0, l: 0 };
+    c.getHSL(hsl);
+    c.setHSL(hsl.h, Math.min(0.85, hsl.s * 1.12), hsl.l * 0.88);
+    v = `#${c.getHexString()}`;
+    tenCache.set(hex, v);
+  }
+  return v;
+};

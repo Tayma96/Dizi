@@ -5,7 +5,7 @@ import type { Emotion, Gesture, Look, MouthCue, Prop, Viseme } from "../studio/r
 import { FACE_H, FACE_PX, FACE_W, drawFace } from "./face2d";
 import { HEAD, earPos, faceGeometry, faceToHead, hairPieces, headGeometry } from "./head";
 import { hairStrands } from "./textures";
-import { D2R, cached, flat, outline, toonChar as toon, toonCharTex } from "./toon";
+import { D2R, cached, flat, outline, tenRengi, toonChar as toon, toonCharTex } from "./toon";
 
 /* =====================================================================
  * 3D karakter: prosedürel, çizgi film gölgeli, mürekkep çizgili.
@@ -191,7 +191,8 @@ const Prop3D: React.FC<{ prop: Prop }> = ({ prop }) => {
 };
 
 /* ------------------------------ main ------------------------------ */
-export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [number, number, number] }> = ({ look, pose = {}, position = [0, 0, 0] }) => {
+export const Character3D: React.FC<{ look: Look; pose?: Pose3D; position?: [number, number, number] }> = ({ look: look0, pose = {}, position = [0, 0, 0] }) => {
+  const look = useMemo(() => ({ ...look0, skin: tenRengi(look0.skin), skinShade: tenRengi(look0.skinShade) }), [look0]);
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const seed = pose.seed ?? look.name.length * 7;
