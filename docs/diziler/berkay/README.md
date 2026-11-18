@@ -2,7 +2,8 @@
 
 **Kullanıcının yönü:** Zekice, merak uyandıran, psikolojik gerilim veren bir dizi.
 **Öncül (kullanıcının metni):** Holding yöneticisi Berkay imza atarken kararır; akıl hastanesi odasında uyanır. Hemşire "altı aydır buradasın" der. Koridordan en güvendiği ortağının sesini duyar: "Devir imzasını atana kadar çıkmayacak."
-Kullanıcının orijinal 1. bölüm açılış metni: `1-bolum-acilis-kullanici.md`
+**GÜNCEL kaynak (18 Kasım 2026):** `1-bolum-acilis-kullanici-v2.md` — kuşlu pencere açılışı, hafıza kaybı, Zindan Adası × Truman Show hissi. Eski sürüm: `1-bolum-acilis-kullanici.md` (geçersiz).
+**Motor:** 2D (kullanıcı kararı).
 Ekip incelemesi (senarist, yapımcı, izleyici simülatörü): `1-bolum-inceleme.md`
 
 ## Sıradaki adımlar
