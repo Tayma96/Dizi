@@ -1,0 +1,255 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-fragman",
+ "episodeNo": 1,
+ "title": "Fragman",
+ "endCard": {
+  "text": "Yakında · Takip et",
+  "sub": "Sence Berkay deli mi?"
+ },
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/gerilim",
+    "volume": 0.25
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "emotion": "sok",
+     "eyesClosed": 1
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 0.8,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.45
+      }
+     ],
+     "fade": "giris"
+    },
+    {
+     "type": "action",
+     "dur": 1.1,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "eyesClosed": 0,
+       "emotion": "korkmus"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/nefes_kesilme",
+       "volume": 0.7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "toplanti_odasi",
+   "look": "flashback",
+   "transition": "flas",
+   "cast": {
+    "berkay": {
+     "mark": "bas",
+     "emotion": "gulen",
+     "gesture": "tutuyor",
+     "prop": "kalem",
+     "lookAt": "kamera"
+    },
+    "selim": {
+     "mark": "yan",
+     "emotion": "mutlu",
+     "lookAt": "berkay"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay",
+      "with": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.5,
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "hucre",
+   "look": "soguk",
+   "transition": "flas",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "ayna",
+     "turn": 0,
+     "lookAt": "kamera",
+     "emotion": "sok"
+    }
+   },
+   "beats": [
+    {
+     "type": "yazi",
+     "dur": 1.6,
+     "text": "ALTI AY",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "ayna": true,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.45
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "d",
+   "set": "hucre",
+   "look": "soguk",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "orta",
+     "emotion": "supheli"
+    }
+   },
+   "beats": [
+    {
+     "type": "belge",
+     "dur": 2.4,
+     "title": "DEVİR PROTOKOLÜ",
+     "lines": [
+      "Devreden: Berkay Taner",
+      "Tarih: 14 Mart"
+     ],
+     "imza": "Berkay Taner"
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "set": "hastane_koridoru",
+   "look": "soguk",
+   "transition": "whoosh",
+   "cast": {
+    "deniz": {
+     "mark": "sag",
+     "emotion": "korkmus",
+     "lookAt": "selim"
+    },
+    "selim": {
+     "mark": "orta",
+     "turn": 160,
+     "gesture": "tutuyor",
+     "prop": "kalem"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "omuz",
+      "on": "deniz",
+      "with": "selim"
+     },
+     "sfx": [
+      {
+       "name": "efekt/riser",
+       "volume": 0.5
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "f",
+   "set": "hastane_koridoru",
+   "look": "soguk",
+   "cast": {
+    "nalan": {
+     "mark": "orta",
+     "emotion": "supheli",
+     "lookAt": "kamera"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "nalan",
+      "with": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/darbe",
+       "volume": 0.6,
+       "at": 0.9
+      }
+     ]
+    },
+    {
+     "type": "yazi",
+     "dur": 2.0,
+     "text": "İMZA",
+     "sub": "Kendi imzan, ama sen atmadın."
+    }
+   ]
+  }
+ ]
+}
