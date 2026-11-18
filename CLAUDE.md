@@ -40,14 +40,13 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - Eski prototip: `src/dizi/` (ilk Bölüm 1; yazı tipleri ve efektler hâlâ buradan kullanılıyor)
 
 ## Kullanıcı geri bildirimi — dersler (önemli)
-- İlk 2D video (src/dizi/Episode1, düz anlatım + iç ses + basit kurgu) beğenildi. 3D karakterler ve fragman "karmaşa, anlaşılmıyor, tutarlılık yok, çirkin" bulundu.
-- Kural: Her çekim TEK bir net bilgi versin; hikâye doğrusal ve anlatımla (ses) desteklensin. Seslendirmesiz, bağlamsız kareler peş peşe dizilmez.
-- Çok yakın, kıpırtısız dev yüz çekimlerinden kaçın; orta/genel çekim ağırlıklı, okunur yazı.
-- Yeni bir görsel tarz/teknik değişikliği yapmadan önce kullanıcıya küçük bir örnek gösterip onay al; beğenilen şeyi "iyileştirmek" için bozma.
-- Kullanıcı: 3D, kamera sistemi ve efektler kötü değil; KÖTÜ KULLANILDI. 3D'den vazgeçme, profesyonelce kullan:
-  - Önce hikâye: her sahnenin amacı tek cümleyle yazılsın; kurgu doğrusal ve sesli (ElevenLabs) olsun.
-  - Çekim dili: önce genel/orta çekimle mekânı ve kimin kim olduğunu kur (establishing), yakın çekimi yalnızca duygu doruğunda kullan; aynı ölçek art arda tekrarlanmasın; 180° kuralı.
-  - Işık: her sahneye bilinçli ışık tasarımı (anahtar + dolgu + arka ışık, kontrast, renk senaryosu); soluk düz ışık yok.
-  - Hareket: sahnede karakter eylemi + motive kamera hareketi; efekt (flaş, ayna, sarsıntı) yalnızca hikâye gerektirince.
-  - Okunurluk: yazı/belge telefonda okunur büyüklükte ve yeterince uzun ekranda.
-  - Her sahneyi render etmeden önce birkaç kareyle kendin denetle (anlaşılıyor mu, kim nerede, ne oluyor?).
+**3D, kamera sistemi ve efektler bu projenin yönüdür; bırakılmaz, 2D'ye geri dönülmez.** Kullanıcının sözü: "Kötü değil, kötü kullanıldı. Düzgün kullanmayı öğrenmelisiniz. Yapan yapıyor." Sorun çıkarsa çözüm aracı terk etmek değil, profesyonelce kullanmaktır.
+
+İlk fragmanın (`bolumler/imza-fragman.mp4`) neden başarısız olduğu ve doğrusu:
+- **Hikâye önce:** Her sahnenin amacı tek cümleyle yazılır. Kurgu doğrusal ve sesli (ElevenLabs) olur. Bağlamsız, sessiz kareler peş peşe dizilmez.
+- **Çekim dili:** Önce genel/orta çekimle mekân ve kimin kim olduğu kurulur (establishing). Yakın çekim yalnızca duygu doruğunda kullanılır. Aynı ölçek art arda tekrarlanmaz. 180° kuralı uygulanır. Kıpırtısız dev yüz çekimi yok.
+- **Işık:** Her sahneye bilinçli ışık tasarımı yapılır: anahtar + dolgu + arka ışık, kontrast, renk senaryosu. Soluk, düz ışık yok.
+- **Hareket:** Sahnede karakter eylemi ve motive edilmiş kamera hareketi olur. Efektler (flaş, ayna, sarsıntı) yalnızca hikâye gerektirdiğinde kullanılır.
+- **Okunurluk:** Yazı ve belge telefonda okunur büyüklükte olur ve ekranda yeterince uzun kalır.
+- **Denetim:** Her sahne render'dan önce birkaç kareyle kontrol edilir: anlaşılıyor mu, kim nerede, ne oluyor?
+- **Onay:** Büyük bir değişiklikten önce kullanıcıya tek bir sahnelik tam kaliteli örnek gösterilir.
