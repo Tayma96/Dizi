@@ -1,0 +1,66 @@
+{
+ "p2b_04": {
+  "key": "eb81e6d51226",
+  "file": "voice/emir-01-p2/p2b_04.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "aci",
+  "text": "Öldüm mü?",
+  "duration": 2.586,
+  "asrScore": 1.0,
+  "heard": "Öldüm mü?",
+  "words": [
+   {
+    "w": "Öldüm",
+    "start": 1.419,
+    "end": 1.899
+   },
+   {
+    "w": "mü?",
+    "start": 2.019,
+    "end": 2.539
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.419,
+    "v": "O"
+   },
+   {
+    "t": 1.499,
+    "v": "L"
+   },
+   {
+    "t": 1.739,
+    "v": "U"
+   },
+   {
+    "t": 1.819,
+    "v": "M"
+   },
+   {
+    "t": 1.899,
+    "v": "X"
+   },
+   {
+    "t": 2.019,
+    "v": "M"
+   },
+   {
+    "t": 2.079,
+    "v": "U"
+   },
+   {
+    "t": 2.139,
+    "v": "X"
+   },
+   {
+    "t": 2.539,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 23
+ }
+}

@@ -273,7 +273,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             armR,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
-            hideLegs: ang !== undefined,
+            hideLegs: ang !== undefined && !st.zemin,
             tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : undefined,
             talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : undefined,
             yaw,
@@ -289,7 +289,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           }}
         />
       </div>
-      {ang !== undefined ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
+      {ang !== undefined && !tb.cast[id]?.zemin ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
       </React.Fragment>
     );
   };

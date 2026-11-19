@@ -43,6 +43,8 @@ export type CharState = {
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
   body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta";
+  /** yerde/sedirde yatıyor: battaniye yok, bacaklar görünür */
+  zemin?: boolean;
   /** bakılan karakter id ya da "kamera" */
   lookAt?: string;
   tears?: number;

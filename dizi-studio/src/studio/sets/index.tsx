@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -29,6 +29,8 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
+  sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1660, size: 860 }, y1: { x: 230, y: 1700, size: 1040 }, y2: { x: 130, y: 1520, size: 900 }, yb: { x: 860, y: 1720, size: 1040 }, ya: { x: 960, y: 1520, size: 880 }, giris: { x: -260, y: 1600, size: 980 } } },
+  kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
@@ -419,6 +421,178 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <path d="M 222 1150 L 638 1150" stroke="#8a9098" strokeWidth={6} opacity={0.7} />
           {/* titreşimde kabin kararması */}
           {tb >= 0.4 ? <rect width={W} height={H} fill="#0a0c14" opacity={(1 - flick) * 0.3 + (tb - 0.4) * 0.15} /> : null}
+        </g>
+      );
+    }
+    case "sahil_enkaz": {
+      // Öğle: güneş tepede, gölgeler kısa. Uçak ağaçları biçerek sahile çakılmış; duman, dağınık enkaz.
+      const fr = props.frame ?? 0;
+      const smoke = (x: number, y: number, k: string, sc = 1) =>
+        new Array(14).fill(0).map((_, i) => {
+          const a = (fr * 0.9 + i * 22) % 300;
+          return <circle key={k + i} cx={x + a * 0.5 * sc + Math.sin((a + i * 40) / 30) * 14 * sc} cy={y - a * 2.2 * sc} r={(26 + a * 0.32) * sc} fill={i % 2 ? "#5a5856" : "#7a7774"} opacity={Math.max(0, 0.55 - a / 560)} />;
+        });
+      const palm = (x: number, y: number, h: number, lean: number, k: string, broken = false) => (
+        <g key={k}>
+          <path d={`M ${x - 14} ${y} Q ${x + lean * 0.5} ${y - h * 0.5} ${x + lean} ${y - h} L ${x + lean + 16} ${y - h + 6} Q ${x + lean * 0.5 + 16} ${y - h * 0.5} ${x + 14} ${y} Z`} fill="#8a6a44" stroke={O} strokeWidth={5} />
+          {broken ? (
+            <path d={`M ${x + lean - 6} ${y - h} l 10 -26 l 8 18 l 10 -22 l 6 30 Z`} fill="#c9a874" stroke={O} strokeWidth={4} />
+          ) : (
+            [-150, -110, -60, -20, 20, 70, 120, 160].map((a, i) => (
+              <path key={i} d={`M ${x + lean + 8} ${y - h} q ${Math.cos((a * Math.PI) / 180) * 90} ${Math.sin((a * Math.PI) / 180) * 50 - 30} ${Math.cos((a * Math.PI) / 180) * 170} ${Math.sin((a * Math.PI) / 180) * 90 + 30}`} stroke={i % 2 ? "#2e6a32" : "#3e7e3a"} strokeWidth={22} fill="none" strokeLinecap="round" />
+            ))
+          )}
+        </g>
+      );
+      return (
+        <g>
+          <defs>
+            <linearGradient id="seGok" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#6fb6e6" />
+              <stop offset="1" stopColor="#d6eef8" />
+            </linearGradient>
+            <linearGradient id="seDeniz" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#1f7e9e" />
+              <stop offset="1" stopColor="#5fc6cc" />
+            </linearGradient>
+            <linearGradient id="seKum" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#ecd7a6" />
+              <stop offset="1" stopColor="#dcc08a" />
+            </linearGradient>
+            <radialGradient id="seGunes" cx="0.5" cy="0.06" r="0.5">
+              <stop offset="0" stopColor="#fffbe6" stopOpacity={0.9} />
+              <stop offset="1" stopColor="#fffbe6" stopOpacity={0} />
+            </radialGradient>
+          </defs>
+          <rect width={W} height={760} fill="url(#seGok)" />
+          <circle cx={560} cy={110} r={66} fill="#fffdf0" />
+          <rect width={W} height={900} fill="url(#seGunes)" />
+          {/* deniz */}
+          <rect y={700} width={W} height={260} fill="url(#seDeniz)" />
+          <path d="M 0 700 L 180 690 L 300 700 Z" fill="#4a7a6a" opacity={0.6} />
+          {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${((i * 300 + fr * 1.2) % 1300) - 200} ${760 + i * 40} q 40 -10 80 0`} stroke="#ffffff" strokeWidth={4} opacity={0.6} fill="none" />)}
+          {/* kum + kıyı köpüğü */}
+          <path d="M 0 930 Q 540 900 1080 940 L 1080 1920 L 0 1920 Z" fill="url(#seKum)" />
+          <path d={`M 0 ${930 + Math.sin(fr / 25) * 6} Q 540 ${900 + Math.sin(fr / 25) * 8} 1080 ${940 + Math.sin(fr / 25) * 6}`} stroke="#ffffff" strokeWidth={14} fill="none" opacity={0.8} />
+          <path d="M 0 960 Q 540 930 1080 968" stroke="#cdb27a" strokeWidth={10} fill="none" opacity={0.6} />
+          {/* ağaç sırası (sol) ve uçağın biçtiği ağaçlar */}
+          <path d="M 0 520 Q 120 460 260 520 Q 340 560 420 640 L 440 1000 L 0 1100 Z" fill="#2f6a34" />
+          <path d="M 0 600 Q 160 560 300 640 L 360 1000 L 0 1060 Z" fill="#245a2a" />
+          {palm(60, 1060, 420, -40, "p1")}
+          {palm(380, 1010, 300, 60, "p2", true)}
+          {palm(470, 990, 220, 80, "p3", true)}
+          {palm(250, 1050, 360, 30, "p4")}
+          {/* devrilmiş gövde */}
+          <path d="M 260 1140 L 640 1060 L 650 1086 L 270 1170 Z" fill="#8a6a44" stroke={O} strokeWidth={5} />
+          {/* kayma izi */}
+          <path d="M 360 1060 Q 520 1010 640 990 L 700 1040 Q 540 1080 380 1120 Z" fill="#b89a64" opacity={0.7} />
+          {/* kopmuş kuyruk */}
+          <g transform="rotate(-18 220 960)">
+            <path d="M 150 980 L 190 760 L 270 760 L 300 980 Z" fill="#f2f4f6" stroke={O} strokeWidth={7} />
+            <path d="M 150 980 L 300 980 L 296 1010 L 156 1010 Z" fill="#c8ccd2" stroke={O} strokeWidth={5} />
+            <path d="M 300 980 l 10 -20 l 6 24 l 12 -18 l -2 34 Z" fill="#3a3a3e" />
+          </g>
+          {/* ana gövde: burun denize doğru, kopuk ucu sola */}
+          <g>
+            <path d="M 560 900 L 1000 830 Q 1080 840 1090 900 Q 1070 960 990 980 L 580 1050 Z" fill="#f4f6f8" stroke={O} strokeWidth={8} />
+            <path d="M 560 900 l 14 30 l -18 20 l 22 26 l -14 24 l 16 50" fill="#2a2a2e" stroke={O} strokeWidth={6} />
+            <path d="M 600 1010 L 990 948" stroke="#2a3a5a" strokeWidth={9} />
+            {new Array(9).fill(0).map((_, i) => <rect key={i} x={640 + i * 40} y={918 - i * 6} width={18} height={22} rx={8} fill="#3a4a60" />)}
+            <path d="M 700 900 L 640 690 L 700 680 L 780 880 Z" fill="#dfe4e9" stroke={O} strokeWidth={7} />
+            <ellipse cx={830} cy={1060} rx={260} ry={22} fill="#000" opacity={0.14} />
+          </g>
+          {smoke(580, 900, "sm1")}
+          {/* kopmuş motor */}
+          <g>
+            <rect x={340} y={1190} width={190} height={92} rx={44} fill="#c9ced4" stroke={O} strokeWidth={7} transform="rotate(14 435 1236)" />
+            <ellipse cx={530} cy={1262} rx={20} ry={44} fill="#2a2a2e" transform="rotate(14 530 1262)" />
+            <ellipse cx={440} cy={1300} rx={110} ry={14} fill="#000" opacity={0.15} />
+          </g>
+          {smoke(420, 1200, "sm2", 0.6)}
+          {/* dağınık enkaz */}
+          <path d="M 880 1300 L 1010 1260 L 1040 1340 L 900 1360 Z" fill="#2c2f35" stroke={O} strokeWidth={5} />
+          <rect x={250} y={1440} width={120} height={84} rx={10} fill="#5a3a2a" stroke={O} strokeWidth={5} transform="rotate(-10 310 1480)" />
+          <path d="M 270 1440 l 70 -12" stroke="#c9a75a" strokeWidth={6} />
+          {[[700, 1240, 12], [780, 1500, -20], [160, 1340, 30], [960, 1600, 8]].map(([x, y, r], i) => <rect key={i} x={x} y={y} width={60} height={42} fill="#f6f4ee" stroke={O} strokeWidth={3} transform={`rotate(${r} ${x} ${y})`} />)}
+          <path d="M 620 1180 l 80 -14 l -10 26 Z M 820 1420 l 60 6 l -30 20 Z" fill="#9aa0a8" stroke={O} strokeWidth={4} />
+          {/* mürettebat (yüzüstü, kansız): lacivert üniforma, düşmüş kep */}
+          <g>
+            <path d="M 690 1360 L 860 1330 L 868 1372 L 700 1404 Z" fill="#1d2a44" stroke={O} strokeWidth={6} />
+            <circle cx={676} cy={1384} r={24} fill="#3a2a20" stroke={O} strokeWidth={5} />
+            <path d="M 860 1334 L 940 1322 L 944 1346 L 866 1360 Z M 864 1360 L 944 1366 L 942 1390 L 866 1380 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
+            <path d="M 740 1398 l -40 40 M 760 1340 l -30 -40" stroke="#1d2a44" strokeWidth={22} strokeLinecap="round" />
+            <path d="M 712 1446 l 18 -6 M 722 1302 l 16 -4" stroke="#d9b45a" strokeWidth={5} />
+            <ellipse cx={600} cy={1440} rx={34} ry={14} fill="#1d2a44" stroke={O} strokeWidth={4} />
+            <path d="M 572 1436 l 56 0" stroke="#d9b45a" strokeWidth={4} />
+            <ellipse cx={790} cy={1410} rx={150} ry={14} fill="#000" opacity={0.12} />
+          </g>
+          <g>
+            <path d="M 1020 1200 L 1100 1190 L 1100 1226 L 1024 1232 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
+            <path d="M 1020 1230 l -40 10" stroke="#1d2a44" strokeWidth={20} strokeLinecap="round" />
+          </g>
+          {/* sıcak hava titreşimi */}
+          <rect y={1000} width={W} height={60} fill="#ffffff" opacity={0.04 + 0.02 * Math.sin(fr / 6)} />
+        </g>
+      );
+    }
+    case "kulube": {
+      // Bambu duvar, saz çatı aralığından süzülen ışık, saman + yaprak yatak, reçine kâsesi, küçük ateş.
+      const fr = props.frame ?? 0;
+      return (
+        <g>
+          <defs>
+            <linearGradient id="kuIsik" x1="0" y1="0" x2="0.4" y2="1">
+              <stop offset="0" stopColor="#ffe9b0" stopOpacity={0.45} />
+              <stop offset="1" stopColor="#ffe9b0" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <rect width={W} height={H} fill="#5a3e24" />
+          {new Array(27).fill(0).map((_, i) => <rect key={i} x={i * 40} y={420} width={36} height={1100} fill={i % 3 ? "#8a6238" : "#7a5430"} stroke="#4a321c" strokeWidth={3} />)}
+          {[620, 900, 1180].map((y) => <path key={y} d={`M 0 ${y} L 1080 ${y + 10}`} stroke="#4a321c" strokeWidth={10} />)}
+          {/* kapı aralığı: dışarısı parlak */}
+          <rect x={830} y={600} width={210} height={900} fill="#f7e8b8" stroke="#3a2614" strokeWidth={10} />
+          <path d="M 860 700 q 60 -40 140 10 M 850 820 q 80 -30 170 20" stroke="#4f8a3e" strokeWidth={26} fill="none" strokeLinecap="round" />
+          <path d="M 830 1500 L 1040 1500 L 1080 1920 L 700 1920 Z" fill="#f7e8b8" opacity={0.22} />
+          {/* saz çatı */}
+          <path d="M 0 0 L 1080 0 L 1080 470 Q 540 380 0 470 Z" fill="#b08a48" />
+          {new Array(10).fill(0).map((_, r) => (
+            <path key={r} d={`M 0 ${40 + r * 44} ${new Array(28).fill(0).map((_, i) => `L ${i * 40 + 20} ${40 + r * 44 + 26} L ${i * 40 + 40} ${40 + r * 44}`).join(" ")}`} stroke={r % 2 ? "#c9a45c" : "#9a7838"} strokeWidth={6} fill="none" />
+          ))}
+          <path d="M 0 470 Q 540 380 1080 470" stroke="#6a4a24" strokeWidth={14} fill="none" />
+          {/* çatı aralıklarından ışık huzmeleri */}
+          {[[300, 0.9], [560, 0.7], [700, 1]].map(([x, o], i) => (
+            <path key={i} d={`M ${x} 300 L ${x + 40} 300 L ${x + 300} 1600 L ${x + 160} 1600 Z`} fill="url(#kuIsik)" opacity={(o as number) * (0.8 + 0.2 * Math.sin(fr / 40 + i))} />
+          ))}
+          {/* asılı kuru otlar */}
+          {[180, 260, 640].map((x, i) => (
+            <g key={x}>
+              <path d={`M ${x} 430 L ${x} 520`} stroke="#4a321c" strokeWidth={4} />
+              <path d={`M ${x - 20} 520 Q ${x} 600 ${x + 20} 520 Z`} fill={i % 2 ? "#7a8a3a" : "#8a7a3a"} stroke="#3a2a14" strokeWidth={3} />
+            </g>
+          ))}
+          {/* toprak zemin + hasır */}
+          <rect y={1500} width={W} height={420} fill="#6a4a2c" />
+          <path d="M 60 1700 L 760 1680 L 800 1880 L 20 1900 Z" fill="#b8955a" opacity={0.75} />
+          {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${60 + i * 90} 1690 L ${40 + i * 96} 1895`} stroke="#9a7a44" strokeWidth={4} />)}
+          {/* küçük ateş (arka sol) */}
+          <ellipse cx={150} cy={1360} rx={70} ry={20} fill="#3a2a1a" />
+          <path d={`M 120 1360 Q 140 ${1300 + Math.sin(fr / 3) * 8} 150 1280 Q 160 ${1310 + Math.cos(fr / 4) * 8} 182 1360 Z`} fill="#ff9a3a" />
+          <path d={`M 138 1360 Q 150 ${1320 + Math.sin(fr / 2) * 6} 164 1360 Z`} fill="#ffe08a" />
+          {new Array(6).fill(0).map((_, i) => { const a = (fr + i * 30) % 180; return <circle key={i} cx={150 + Math.sin(a / 20) * 16} cy={1270 - a * 3} r={18 + a * 0.2} fill="#9a8a7a" opacity={Math.max(0, 0.3 - a / 600)} />; })}
+          {/* yatak: alçak ahşap çerçeve, saman, iri yapraklar */}
+          <rect x={150} y={1440} width={760} height={110} rx={14} fill="#6a4a28" stroke={O} strokeWidth={7} />
+          <path d="M 160 1450 Q 530 1390 900 1450 L 900 1480 L 160 1480 Z" fill="#d8b866" stroke={O} strokeWidth={5} />
+          {new Array(14).fill(0).map((_, i) => <path key={i} d={`M ${170 + i * 52} 1452 q 20 -30 50 -6`} stroke="#c09a48" strokeWidth={4} fill="none" />)}
+          {[[200, 1440, -20], [380, 1430, 10], [600, 1432, -8], [800, 1442, 18]].map(([x, y, r], i) => (
+            <path key={i} d={`M ${x} ${y} q 60 -40 140 0 q -70 30 -140 0 Z`} fill={i % 2 ? "#4f7e34" : "#5f8a3a"} stroke="#2e4a1e" strokeWidth={3} transform={`rotate(${r} ${x} ${y})`} />
+          ))}
+          {/* tabure + reçine kâsesi */}
+          <rect x={930} y={1560} width={110} height={18} rx={6} fill="#6a4a28" stroke={O} strokeWidth={4} />
+          <path d="M 944 1578 L 940 1660 M 1026 1578 L 1030 1660" stroke="#6a4a28" strokeWidth={10} />
+          <path d="M 940 1560 Q 985 1610 1030 1560 Z" fill="#8a5a34" stroke={O} strokeWidth={4} />
+          <ellipse cx={985} cy={1560} rx={44} ry={8} fill="#d99a2a" />
+          {/* genel loşluk */}
+          <rect width={W} height={H} fill="#1a0e04" opacity={0.18} />
         </g>
       );
     }

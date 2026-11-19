@@ -15,7 +15,7 @@ export const AGE = {
 } as const;
 const BUILD = { slim: 0.9, normal: 1, heavy: 1.24 } as const;
 
-const SHORT_SLEEVES = new Set(["tshirt", "dress", "police"]);
+const SHORT_SLEEVES = new Set(["tshirt", "dress", "police", "yerli"]);
 const LONG_COATS = new Set(["coat", "labcoat"]);
 
 const useBlink = (seed: number) => {
@@ -155,6 +155,13 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       );
     case "bardak":
       return <path d={`M ${x - 22} ${y - 6} L ${x - 18} ${y - 74} L ${x + 18} ${y - 74} L ${x + 22} ${y - 6} Z`} fill="#dff0ff" fillOpacity={0.8} stroke={OUT} strokeWidth={3} />;
+    case "sopa":
+      return (
+        <g transform={`rotate(-12 ${x} ${y})`}>
+          <path d={`M ${x - 6} ${y - 260} L ${x + 6} ${y - 258} L ${x + 10} ${y + 300} L ${x - 2} ${y + 302} Z`} fill="#7a5530" stroke={OUT} strokeWidth={3} />
+          <path d={`M ${x - 2} ${y - 120} l -16 -24 M ${x + 4} ${y + 80} l 14 -20`} stroke="#7a5530" strokeWidth={5} />
+        </g>
+      );
     case "kalem":
       return (
         <g transform={`rotate(-35 ${x} ${y})`}>
@@ -251,6 +258,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={foreD} fill={OUT} stroke={OUT} strokeWidth={SW * 2} strokeLinejoin="round" />
         </g>
         <path d={upperD} fill={armFill} />
+        {look.sargi && side === "l" ? <rect x={sx - 27} y={360 + ul * 0.55} width={54} height={30} rx={9} fill="#5f8a3a" stroke={OUT} strokeWidth={3} /> : null}
         {shortSleeve ? (
           <path d={`M ${sx - 24} 352 A 24 24 0 0 1 ${sx + 24} 352 L ${sx + 25} ${355 + ul * 0.45} L ${sx - 25} ${355 + ul * 0.45} Z`} fill={out.top} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
         ) : null}
@@ -275,7 +283,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   // --- legs ---
   const Legs = () => {
     const pants = out.bottom;
-    const skirt = out.type === "dress" || out.type === "hostes" || (out.type === "school" && !male);
+    const skirt = out.type === "dress" || out.type === "hostes" || (out.type === "yerli" && !male) || (out.type === "school" && !male);
     const legFill = skirt ? skin : pants;
     if (pose.body === "sit") {
       return (
@@ -283,8 +291,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d="M 140 600 L 120 700 L 196 712 L 200 640 L 204 712 L 280 700 L 260 600 Z" fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
           <path d="M 126 696 L 132 880 L 186 880 L 194 706 Z" fill={legFill} stroke={OUT} strokeWidth={SW} />
           <path d="M 206 706 L 214 880 L 268 880 L 274 696 Z" fill={legFill} stroke={OUT} strokeWidth={SW} />
-          <path d="M 124 876 Q 120 908 156 908 L 190 908 L 190 876 Z" fill={out.shoes} stroke={OUT} strokeWidth={SW} />
-          <path d="M 210 876 L 210 908 L 244 908 Q 280 908 276 876 Z" fill={out.shoes} stroke={OUT} strokeWidth={SW} />
+          <path d="M 124 876 Q 120 908 156 908 L 190 908 L 190 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />
+          <path d="M 210 876 L 210 908 L 244 908 Q 280 908 276 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />
         </g>
       );
     }
@@ -294,7 +302,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       return (
         <g key={side} transform={`rotate(${rot} ${hx} 600)`}>
           <path d={side < 0 ? "M 146 600 L 144 950 L 196 950 L 200 600 Z" : "M 200 600 L 204 950 L 256 950 L 254 600 Z"} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
-          <path d={side < 0 ? "M 138 946 Q 136 978 170 978 L 198 978 L 198 946 Z" : "M 202 946 L 202 978 L 230 978 Q 264 978 262 946 Z"} fill={out.shoes} stroke={OUT} strokeWidth={SW} />
+          <path d={side < 0 ? "M 138 946 Q 136 978 170 978 L 198 978 L 198 946 Z" : "M 202 946 L 202 978 L 230 978 Q 264 978 262 946 Z"} fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />
         </g>
       );
     };
@@ -314,6 +322,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const skirtGirl = t === "dress" || (t === "school" && !male);
     return (
       <g>
+        {t === "yerli" && !male ? (
+          <g>
+            <path d="M 132 590 L 112 800 Q 200 812 288 800 L 268 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+            {new Array(12).fill(0).map((_, i) => <path key={i} d={`M ${118 + i * 15} 800 l -2 26`} stroke={out.bottom} strokeWidth={6} strokeLinecap="round" />)}
+            <path d="M 150 660 Q 200 676 250 660" stroke="#00000030" strokeWidth={4} fill="none" />
+          </g>
+        ) : null}
         {t === "hostes" ? (
           <g>
             <path d="M 136 590 L 140 790 Q 200 800 260 790 L 264 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
@@ -357,6 +372,16 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             <circle cx={206} cy={500} r={5} fill={OUT} />
             <circle cx={206} cy={560} r={5} fill={OUT} />
             <path d="M 236 420 L 262 418" stroke={OUT} strokeWidth={3} />
+          </g>
+        ) : null}
+        {t === "yerli" ? (
+          <g>
+            {/* dokuma deseni */}
+            {[380, 430, 480, 530, 580].map((y) => <path key={y} d={`M 128 ${y} L 272 ${y}`} stroke={out.topShade} strokeWidth={4} strokeDasharray="10 8" opacity={0.8} />)}
+            <path d="M 176 330 Q 200 372 224 330" fill="none" stroke={OUT} strokeWidth={SW} />
+            {/* ip kemer */}
+            <path d="M 132 590 Q 200 606 268 590" stroke="#a57a44" strokeWidth={9} fill="none" />
+            <path d="M 238 598 l 6 40 M 248 596 l 10 36" stroke="#a57a44" strokeWidth={5} />
           </g>
         ) : null}
         {t === "hostes" ? (
@@ -544,14 +569,52 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {pose.hideLegs ? null : <Legs />}
           <g transform={torsoScale}>
             <Torso />
+            {look.yirtik ? (
+              <g>
+                <path d="M 150 420 L 172 400 L 168 432 L 196 418 L 184 470 L 160 476 Z" fill={skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+                <path d="M 224 500 L 250 486 L 262 520 L 244 512 L 236 548 L 222 530 Z" fill={skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+                <path d="M 140 560 Q 170 540 200 566 Q 230 590 262 570" stroke="#7a6a58" strokeWidth={14} fill="none" opacity={0.35} />
+                <ellipse cx={238} cy={420} rx={20} ry={12} fill="#7a1c1c" opacity={0.55} />
+                <ellipse cx={176} cy={520} rx={14} ry={22} fill="#6a5440" opacity={0.3} />
+                {look.sargi ? <path d="M 136 450 Q 200 430 266 470 L 262 500 Q 200 462 138 482 Z" fill="#5f8a3a" stroke={OUT} strokeWidth={3} /> : null}
+                {look.sargi ? <path d="M 150 462 Q 200 448 254 478" stroke="#c9a640" strokeWidth={3} fill="none" opacity={0.8} /> : null}
+              </g>
+            ) : null}
           </g>
           {/* neck */}
           <path d="M 180 290 L 180 336 Q 200 346 220 336 L 220 290 Z" fill={look.hair.style === "hijab" ? look.hair.color : skin} stroke={OUT} strokeWidth={SW} />
           <path d="M 182 318 Q 200 330 218 318" fill="none" stroke={look.skinShade} strokeWidth={6} opacity={look.hair.style === "hijab" ? 0 : 1} />
+          {look.kolye ? (
+            <g>
+              <path d="M 168 334 Q 200 378 232 334" stroke="#6a4a2a" strokeWidth={3} fill="none" />
+              {[0.15, 0.35, 0.5, 0.65, 0.85].map((k, i) => <ellipse key={i} cx={168 + k * 64} cy={334 + Math.sin(Math.PI * k) * 40} rx={7} ry={9} fill={look.kolye} stroke={OUT} strokeWidth={2} />)}
+            </g>
+          ) : null}
         </g>
         <g transform={bodyT}>
           <g transform={headT}>
             <Head />
+            {look.kan ? (
+              <g opacity={Math.min(1, look.kan)}>
+                {/* alında yarık + kaş üstünde pıhtı */}
+                <path d="M 154 128 Q 172 118 190 124 Q 176 134 156 138 Z" fill="#7a1010" stroke="#4a0808" strokeWidth={2} />
+                <path d="M 150 134 Q 140 150 146 170 Q 152 178 156 166 Q 154 150 162 138 Z" fill="#9a1616" opacity={0.85} />
+                <ellipse cx={170} cy={132} rx={26} ry={12} fill="#a01818" opacity={0.35} />
+                {/* burundan ince sızıntı */}
+                <path d="M 206 236 Q 210 248 206 258" stroke="#9a1616" strokeWidth={5} fill="none" strokeLinecap="round" opacity={0.8} />
+                {/* toz ve sıyrıklar */}
+                <path d="M 244 196 l 16 -6 M 246 206 l 14 -4" stroke="#9a3a2a" strokeWidth={3} opacity={0.6} />
+                <ellipse cx={248} cy={176} rx={16} ry={10} fill="#7a5a4a" opacity={0.3} />
+                <ellipse cx={142} cy={236} rx={12} ry={7} fill="#7a5a4a" opacity={0.28} />
+              </g>
+            ) : null}
+            {look.sargi ? (
+              <g>
+                <path d="M 114 128 Q 200 96 286 128 L 286 156 Q 200 126 114 156 Z" fill="#5f8a3a" stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
+                {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${130 + i * 42} ${140 - (i === 1 || i === 2 ? 10 : 2)} q 20 -8 38 2`} stroke="#3e6428" strokeWidth={3} fill="none" />)}
+                <path d="M 140 132 Q 200 110 262 132" stroke="#d9b850" strokeWidth={3} fill="none" opacity={0.7} />
+              </g>
+            ) : null}
           </g>
         </g>
         <g transform={bodyT}>

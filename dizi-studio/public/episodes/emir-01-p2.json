@@ -1,0 +1,364 @@
+{
+ "series": "emir",
+ "seriesTitle": "Emir",
+ "episode": "emir-01-p2",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Parça 2",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "p2",
+   "set": "sahil_enkaz",
+   "time": "gunduz",
+   "look": "normal",
+   "title": "Parça 2 — Sahil",
+   "transition": "kararma",
+   "ambience": {
+    "name": "ortam/sahil",
+    "volume": 0.5
+   },
+   "ambience2": {
+    "name": "ortam/kus_sesleri",
+    "volume": 0.12
+   },
+   "music": {
+    "name": "muzik/huzunlu_piyano",
+    "volume": 0.1
+   },
+   "cast": {
+    "emir_kaza": {
+     "mark": "emir",
+     "body": "yat",
+     "zemin": true,
+     "eyesClosed": 1,
+     "emotion": "yorgun"
+    },
+    "yerli_bilge": {
+     "mark": "yb",
+     "hidden": true,
+     "prop": "sopa",
+     "gesture": "tutuyor",
+     "emotion": "supheli"
+    },
+    "yerli_genc": {
+     "mark": "y1",
+     "hidden": true,
+     "prop": "sopa",
+     "gesture": "tutuyor",
+     "emotion": "korkmus"
+    },
+    "yerli_genc2": {
+     "mark": "y2",
+     "hidden": true,
+     "emotion": "korkmus"
+    },
+    "yerli_ana": {
+     "mark": "ya",
+     "hidden": true,
+     "emotion": "korkmus",
+     "gesture": "eliKalbinde"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 3.4,
+     "fade": "giris",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/ates",
+       "volume": 0.35,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "emir_kumda",
+     "dur": 2.8
+    },
+    {
+     "type": "action",
+     "dur": 3.2,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "yerli_bilge": {
+       "hidden": false,
+       "enter": "sol",
+       "bak": {
+        "x": -0.6,
+        "y": 0.6
+       }
+      },
+      "yerli_genc": {
+       "hidden": false,
+       "enter": "sol",
+       "bak": {
+        "x": 0.6,
+        "y": 0.6
+       }
+      },
+      "yerli_genc2": {
+       "hidden": false,
+       "enter": "sol",
+       "bak": {
+        "x": 0.6,
+        "y": 0.6
+       }
+      },
+      "yerli_ana": {
+       "hidden": false,
+       "enter": "sol",
+       "bak": {
+        "x": -0.6,
+        "y": 0.6
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/yerli_mirilti",
+       "volume": 0.35,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.7,
+     "shot": {
+      "type": "orta",
+      "on": "yerli_bilge",
+      "move": "yaklas"
+     },
+     "cast": {
+      "yerli_bilge": {
+       "emotion": "supheli",
+       "bak": {
+        "x": -0.6,
+        "y": 0.6
+       }
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "sopa_murettebat",
+     "dur": 2.4,
+     "sfx": [
+      {
+       "name": "efekt/sopa_durtme",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "iki",
+      "on": "yerli_genc",
+      "with": "yerli_bilge",
+      "move": "sabit"
+     },
+     "cast": {
+      "yerli_bilge": {
+       "emotion": "uzgun",
+       "bak": {
+        "x": -0.3,
+        "y": 0.8
+       }
+      },
+      "yerli_genc": {
+       "emotion": "uzgun",
+       "bak": {
+        "x": 0.6,
+        "y": 0.6
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/yerli_mirilti",
+       "volume": 0.25,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "sopa_emir",
+     "dur": 1.9,
+     "sfx": [
+      {
+       "name": "efekt/sopa_durtme",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "emir_goz",
+     "dur": 1.9
+    },
+    {
+     "type": "insert",
+     "kind": "emir_parmak",
+     "dur": 1.7
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "shot": {
+      "type": "iki",
+      "on": "yerli_genc",
+      "with": "yerli_bilge",
+      "move": "sabit"
+     },
+     "cast": {
+      "yerli_genc": {
+       "emotion": "saskin",
+       "bak": {
+        "x": 0.6,
+        "y": 0.6
+       }
+      },
+      "yerli_bilge": {
+       "emotion": "kararli",
+       "gesture": "isaret",
+       "bak": {
+        "x": -0.6,
+        "y": 0.6
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/yerli_mirilti",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "tasima",
+     "dur": 3.6,
+     "fade": "cikis",
+     "sfx": [
+      {
+       "name": "efekt/surukleme",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "p2b",
+   "set": "kulube",
+   "time": "gunduz",
+   "look": "sicak",
+   "title": "Parça 2 — Kulübe",
+   "transition": "kararma",
+   "ambience": {
+    "name": "ortam/kulube",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/gizem",
+    "volume": 0.12
+   },
+   "cast": {
+    "emir_kulube": {
+     "mark": "yatak",
+     "body": "yat",
+     "zemin": true,
+     "eyesClosed": 1,
+     "emotion": "yorgun"
+    },
+    "yerli_kadin": {
+     "mark": "kadin",
+     "emotion": "notr",
+     "gesture": "tutuyor",
+     "bak": {
+      "x": -0.7,
+      "y": 0.4
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 3.0,
+     "fade": "giris",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "sargi_yakin",
+     "dur": 2.4
+    },
+    {
+     "type": "insert",
+     "kind": "pov_acilis",
+     "dur": 3.6,
+     "sfx": [
+      {
+       "name": "efekt/ic_cekme",
+       "volume": 0.4,
+       "at": 0.4
+      },
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.25,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "emir_kulube",
+     "voiceover": true,
+     "emotion": "aci",
+     "tags": "[weak, hoarse, barely audible]",
+     "text": "Öldüm mü?",
+     "gapAfter": 0.6,
+     "shot": {
+      "type": "yakin",
+      "on": "emir_kulube",
+      "move": "sabit"
+     },
+     "ekle": {
+      "kind": "pov_kadin",
+      "text": [
+       "1"
+      ]
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "pov_kadin",
+     "dur": 3.8,
+     "text": [
+      "2"
+     ],
+     "fade": "cikis"
+    }
+   ]
+  }
+ ]
+}

@@ -6,6 +6,13 @@
   "loop": false,
   "desc": "Yanından geçen araba."
  },
+ "efekt/ates": {
+  "file": "ses/efekt/ates.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "Ateş çıtırtısı (6 sn)."
+ },
  "efekt/ayak_sesleri": {
   "file": "ses/efekt/ayak_sesleri.mp3",
   "category": "efekt",
@@ -237,6 +244,20 @@
   "loop": false,
   "desc": "Duvar saati yelkovan atlaması, tok tak (kendi sentezimiz)."
  },
+ "efekt/sopa_durtme": {
+  "file": "ses/efekt/sopa_durtme.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Sopa ile dürtme (3 kez, yumuşak tok ses)."
+ },
+ "efekt/surukleme": {
+  "file": "ses/efekt/surukleme.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "Kumda sürükleme + ayak sesleri (3,5 sn)."
+ },
  "efekt/telefon_titresim": {
   "file": "ses/efekt/telefon_titresim.mp3",
   "category": "efekt",
@@ -285,6 +306,13 @@
   "duration": 1.2,
   "loop": false,
   "desc": "Geçiş whoosh'u (sahne/kamera geçişi)."
+ },
+ "efekt/yerli_mirilti": {
+  "file": "ses/efekt/yerli_mirilti.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "Kelimesiz, tedirgin alçak sesle konuşma (yerliler, 6 sn)."
  },
  "efekt/yudum": {
   "file": "ses/efekt/yudum.mp3",
@@ -384,6 +412,13 @@
   "loop": true,
   "desc": "Kafe kalabalığı (BigSoundBank #2561) — gerçek kayıt, CC0"
  },
+ "ortam/kulube": {
+  "file": "ses/ortam/kulube.mp3",
+  "category": "ortam",
+  "duration": 38.5,
+  "loop": true,
+  "desc": "Kulübe içi: küçük ateş, hafif rüzgâr, uzakta dalgalar."
+ },
  "ortam/kus_sesleri": {
   "file": "ses/ortam/kus_sesleri.mp3",
   "category": "ortam",
@@ -411,6 +446,13 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Duvar saati tik-tak (BigSoundBank #1372) — gerçek kayıt, CC0"
+ },
+ "ortam/sahil": {
+  "file": "ses/ortam/sahil.mp3",
+  "category": "ortam",
+  "duration": 38.5,
+  "loop": true,
+  "desc": "Sahil: dalgalar, uzakta yanan enkazın çıtırtısı."
  },
  "ortam/sehir": {
   "file": "ses/ortam/sehir.mp3",

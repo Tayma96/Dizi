@@ -29,7 +29,9 @@ export type Outfit =
   | "police"
   | "tracksuit"
   /** kabin görevlisi üniforması: ceket, bluz, fular, kanat rozeti, kalem etek */
-  | "hostes";
+  | "hostes"
+  /** doğal lif dokuma tunik (ada halkı), ip kemer, saçaklı etek ucu */
+  | "yerli";
 
 export type Emotion =
   | "notr"
@@ -77,7 +79,7 @@ export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa";
 
 export type Look = {
   name: string;
@@ -106,6 +108,14 @@ export type Look = {
   scar?: boolean;
   /** sağ bilekte hasta bilekliği */
   bileklik?: boolean;
+  /** yüzde kan (0-1): alında yarık, yanaktan süzülen kan */
+  kan?: number;
+  /** yırtık, kirli giysi */
+  yirtik?: boolean;
+  /** reçineli yaprak sargıları (alın ve kol) */
+  sargi?: boolean;
+  /** deniz kabuğu kolye rengi */
+  kolye?: string;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };

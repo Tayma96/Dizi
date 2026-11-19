@@ -79,5 +79,23 @@
    "similarity_boost": 0.8,
    "speed": 1.0
   }
+ },
+ "emir_kulube": {
+  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+  "ad": "Batuhan Altınova",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "emir_kaza": {
+  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+  "ad": "Batuhan Altınova",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
  }
 }

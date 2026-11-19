@@ -902,5 +902,194 @@
    "accent": "#c9312f"
   },
   "blush": false
+ },
+ {
+  "id": "emir_kaza",
+  "name": "Emir",
+  "role": "Emir: kazadan sonra, sahilde baygın",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#e6e0d4",
+   "topShade": "#c8c0b0",
+   "bottom": "#1f2a44",
+   "shoes": "#0e0e10"
+  },
+  "blush": false,
+  "kan": 1,
+  "yirtik": true
+ },
+ {
+  "id": "emir_kulube",
+  "name": "Emir",
+  "role": "Emir: yerlilerin kulübesinde, sargılı",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#e6e0d4",
+   "topShade": "#c8c0b0",
+   "bottom": "#1f2a44",
+   "shoes": "skin"
+  },
+  "blush": false,
+  "kan": 0.35,
+  "yirtik": true,
+  "sargi": true
+ },
+ {
+  "id": "yerli_bilge",
+  "name": "Yaşlı adam",
+  "role": "Emir dizisi: ada halkının yaşlısı (sopalı)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "slim",
+  "skin": "#a8714a",
+  "skinShade": "#8e5c3a",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "balding",
+   "color": "#d8d2c8",
+   "shade": "#b8b0a4"
+  },
+  "facialHair": "beard",
+  "outfit": {
+   "type": "yerli",
+   "top": "#c4a878",
+   "topShade": "#a48a5c",
+   "bottom": "#8a6a3e",
+   "shoes": "skin"
+  },
+  "kolye": "#f2e6cf",
+  "blush": false
+ },
+ {
+  "id": "yerli_genc",
+  "name": "Genç adam",
+  "role": "Emir dizisi: ada halkından genç (sopalı)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#9a6440",
+  "skinShade": "#7e4e30",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "shortMale",
+   "color": "#1a120c",
+   "shade": "#3a2a1e"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#b89a6a",
+   "topShade": "#98794c",
+   "bottom": "#7a5a34",
+   "shoes": "skin"
+  },
+  "kolye": "#e9dcc0",
+  "blush": false,
+  "facialHair": "stubble"
+ },
+ {
+  "id": "yerli_genc2",
+  "name": "Genç adam",
+  "role": "Emir dizisi: ada halkından genç",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#b07a52",
+  "skinShade": "#94603c",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "spiky",
+   "color": "#1a120c",
+   "shade": "#3a2a1e"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#a88c60",
+   "topShade": "#8a6e44",
+   "bottom": "#6e5030",
+   "shoes": "skin"
+  },
+  "blush": false
+ },
+ {
+  "id": "yerli_ana",
+  "name": "Yaşlı kadın",
+  "role": "Emir dizisi: ada halkından yaşlı kadın",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "normal",
+  "skin": "#a46e48",
+  "skinShade": "#8a5836",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "bun",
+   "color": "#c8c0b4",
+   "shade": "#a8a094"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#b49464",
+   "topShade": "#94744a",
+   "bottom": "#7e5e38",
+   "shoes": "skin"
+  },
+  "kolye": "#f2e6cf",
+  "blush": false
+ },
+ {
+  "id": "yerli_kadin",
+  "name": "Genç kadın",
+  "role": "Emir dizisi: Emir'i iyileştiren genç ada kadını",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#b8805a",
+  "skinShade": "#9a6644",
+  "iris": "#6a4220",
+  "hair": {
+   "style": "longWavy",
+   "color": "#1a110c",
+   "shade": "#3a2618"
+  },
+  "earrings": "#f2e6cf",
+  "outfit": {
+   "type": "yerli",
+   "top": "#c9ad7c",
+   "topShade": "#a98e5e",
+   "bottom": "#8f6e42",
+   "shoes": "skin"
+  },
+  "kolye": "#f6ecd6",
+  "blush": true
  }
 ]
