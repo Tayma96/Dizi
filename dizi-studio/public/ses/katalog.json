@@ -111,6 +111,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Bathroom door flung open hard and hitting the wall, followed by two hurried slipper footsteps on tile floor"
  },
+ "efekt/el_cagri_sinyali": {
+  "file": "ses/efekt/el_cagri_sinyali.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Outgoing phone call ringback tone heard through a phone speaker, two rings then pickup click"
+ },
  "efekt/el_cctv_ugultu": {
   "file": "ses/efekt/el_cctv_ugultu.mp3",
   "category": "efekt",
@@ -173,6 +180,13 @@
   "duration": 12.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Quiet hospital patient room tone, low ventilation hum, faint fluorescent buzz, very distant footsteps, sterile and empty, no voices"
+ },
+ "efekt/el_hat_kapanma": {
+  "file": "ses/efekt/el_hat_kapanma.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Phone call ending, short hang-up beep tones through a speaker"
  },
  "efekt/el_islak_adim": {
   "file": "ses/efekt/el_islak_adim.mp3",
@@ -279,6 +293,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Young woman sharply inhaling in fear and holding her breath, close microphone"
  },
+ "efekt/el_ofis_telefon": {
+  "file": "ses/efekt/el_ofis_telefon.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Busy corporate office background heard faintly through a phone speaker, distant chatter, keyboard typing, phone ringing far away"
+ },
  "efekt/el_otomatik_kapi": {
   "file": "ses/efekt/el_otomatik_kapi.mp3",
   "category": "efekt",
@@ -327,6 +348,13 @@
   "duration": 1.2,
   "loop": false,
   "desc": "ElevenLabs SFX: Discreetly spitting a few small wet pills into a cupped palm, close, quiet"
+ },
+ "efekt/el_tuslama": {
+  "file": "ses/efekt/el_tuslama.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Quick tapping of a phone number on a smartphone touchscreen keypad, soft key beeps"
  },
  "efekt/el_whoosh_kay": {
   "file": "ses/efekt/el_whoosh_kay.mp3",

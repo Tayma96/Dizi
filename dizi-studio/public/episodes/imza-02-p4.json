@@ -1,0 +1,378 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-p4",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — Parça 4",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Ses",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.42
+   },
+   "music": {
+    "name": "muzik/deli_tema",
+    "volume": 0.1
+   },
+   "isaretler": {
+    "yatak_kenar": {
+     "x": 430,
+     "y": 1560,
+     "size": 940,
+     "sit": true
+    },
+    "pencere": {
+     "x": 790,
+     "y": 1660,
+     "size": 1000
+    }
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak_kenar",
+     "body": "sit",
+     "emotion": "kararli",
+     "murekkep": true,
+     "lookAt": "deniz"
+    },
+    "deniz": {
+     "mark": "pencere",
+     "emotion": "notr",
+     "gesture": "rest",
+     "lookAt": "berkay_hasta"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Bir telefon istiyorum. Tek bir telefon.",
+     "emotion": "notr",
+     "tags": "[calm, measured, strategic]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Kimi arayacaksın?",
+     "emotion": "notr",
+     "tags": "[mild, unhurried, curious]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Şirketimi. Taner Holding.",
+     "emotion": "notr",
+     "tags": "[quiet, firm, confident]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 3.4,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "tutuyor",
+       "prop": "telefon",
+       "bak": {
+        "x": 0.0,
+        "y": 0.6
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_tuslama",
+       "volume": 0.55,
+       "at": 0.2
+      },
+      {
+       "name": "efekt/el_cagri_sinyali",
+       "volume": 0.5,
+       "at": 1.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "ayla",
+     "text": "Taner Holding, iyi günler.",
+     "emotion": "notr",
+     "tags": "[bright, polite, professional]",
+     "gapAfter": 0.3,
+     "fx": "telefon",
+     "offscreen": true,
+     "label": "SANTRAL",
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "lookAt": "berkay_hasta"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_ofis_telefon",
+       "volume": 0.22,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Berkay Taner'le görüşebilir miyim?",
+     "emotion": "notr",
+     "tags": "[polite, neutral]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "deniz",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "ayla",
+     "text": "Berkay Bey toplantıda efendim. Kim arıyor diyeyim?",
+     "emotion": "notr",
+     "tags": "[polite, routine]",
+     "gapAfter": 0.3,
+     "fx": "telefon",
+     "offscreen": true,
+     "label": "SANTRAL",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_ofis_telefon",
+       "volume": 0.22,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Söyle…",
+     "emotion": "notr",
+     "tags": "[soft, inviting]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "uzat",
+       "prop": "telefon",
+       "flip": true
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Berkay Taner.",
+     "emotion": "notr",
+     "tags": "[clipped, authoritative, CEO voice]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "tutuyor",
+       "prop": "telefon",
+       "emotion": "kararli"
+      },
+      "deniz": {
+       "gesture": "rest",
+       "prop": "none",
+       "flip": false
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_ofis_telefon",
+       "volume": 0.25,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "ayla",
+     "text": "Efendim… Berkay Bey şu an karşımda.",
+     "emotion": "notr",
+     "tags": "[polite, puzzled, careful]",
+     "gapAfter": 0.4,
+     "fx": "telefon",
+     "offscreen": true,
+     "label": "SANTRAL",
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "emotion": "notr",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_ofis",
+     "text": "Kim arıyor, Ayla?",
+     "emotion": "notr",
+     "tags": "[distant, off-mic, casual, slightly impatient]",
+     "gapAfter": 0.5,
+     "fx": "telefon_uzak",
+     "offscreen": true,
+     "label": "",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok",
+       "pale": 0.35
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Teşekkürler, Ayla Hanım.",
+     "emotion": "notr",
+     "tags": "[warm, courteous, unhurried]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "tutuyor",
+       "prop": "telefon"
+      },
+      "berkay_hasta": {
+       "gesture": "rest",
+       "prop": "none"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_hat_kapanma",
+       "volume": 0.5,
+       "at": 1.5
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "O ses… benimdi.",
+     "emotion": "notr",
+     "tags": "[calm, intimate, clearly articulated]",
+     "gapAfter": 0.9,
+     "voiceover": true,
+     "label": "BERKAY",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "uzaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus",
+       "pale": 0.35,
+       "bak": {
+        "x": 0,
+        "y": 0.3
+       }
+      }
+     },
+     "hiz": 0.88
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "siyah": true
+    }
+   ]
+  }
+ ]
+}

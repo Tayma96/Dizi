@@ -86,3 +86,8 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Kullanıcı düzeltmesi: "Hemşire ağzına bakıyor, yutmuşsun diyor, sonra tekrar tükürüyor?" → mantık hatası giderildi: Berkay hapları ağzına değil AVUCUNA saklar; Nalan "Aç ağzını" + "Dilini kaldır" ile kontrol eder (ağız gerçekten boş). Avuçta iki hap + üçüncünün yerinde terle erimiş açık mavi macun.
 - İpucu defteri: dün 2 hap, bugün 3 (yeni: küçük, mat, açık mavi #8fc1ea, ağızda/terde eriyen). İki açıklama: personel avuçlamayı öngördü / mavi leke kapsülün boyası, üçüncü hap hiç yoktu.
 - Odaya duvar saati eklendi (yalnızca `saat` verilen sahnelerde): 07:14.
+
+## Bölüm 2 · Parça 4 "Ses" (20 Kasım 2026) — `bolumler/deli-degilim-02-parca4.mp4`
+- Senarist: `raporlar/b2-p4-senarist.md` (D1: Deniz numarayı ezberden tuşlar; D2: "Teşekkürler, Ayla Hanım.").
+- Yeni ses: santral görevlisi Ayla (Elif Ozder), fx telefon. Arka plandaki "Kim arıyor, Ayla?" Berkay'ın kendi sesi (`berkay_ofis`, fx `telefon_uzak`), altyazıda isim yok.
+- Dizinin sorusu büyüdü: "deli mi?" → "bu adam kim?" İki açıklama: şirkette yerine geçen biri / Berkay kendini haberlerdeki adam sanan bir hasta.

@@ -1466,5 +1466,33 @@
    "accent": "#e8e8f0"
   },
   "blush": true
+ },
+ {
+  "id": "berkay_ofis",
+  "name": "?",
+  "role": "Deli Değilim: telefonda arka plandaki ses (Berkay'ın sesi)",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "scar": true,
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false,
+  "bileklik": true
  }
 ]
