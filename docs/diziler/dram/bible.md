@@ -6,7 +6,7 @@ Durum: 19 Kasım 2026. Kullanıcı: "herkesi hüngür hüngür ağlatacak dram, 
 - 4-1-2-3-5: soğuk açılış (4: kaza) → "1 gün önce" (1) → … Bölüm sonu kullanıcının seçtiği **A finali**: anne "Yarın akşam erken gel oğlum, doğum günün… bir sürprizimiz var." Ahmet gözü telefonda "Gelirim anne." Dış ses: "Gelmedim." Kararma. (Finaldeki anne repliği ve "Gelmedim" dış sesi kullanıcının onayladığı A seçeneğinden.)
 
 ## Kadro
-- **Ahmet (21):** başrol ve dış ses. Ses: Eray (ElevenLabs). Kapüşonlu, kirli sakal.
+- **Ahmet (21):** başrol ve dış ses. Ses: Eray (ElevenLabs). Sakalsız, yandan ayrılmış düz saç, turuncu kapüşonlu (kullanıcı: "başroller birbirine benziyor, sakalını sil").
 - **Baba (60, emekli):** krem rengi eski sedanı kullanır. Ses: Evren. Gri saç, bıyık, mavi gömlek.
 - **Anne (56):** tesettürlü Anadolu kadını, oyalı bordo yazma, haki elbise. Ses: Gamze Özdemir. Varsayım: "Ben onu yapmayı bilmiyordum değil mi, eşşoğlu eşşek!" (kullanıcı onaylamadı, varsayım).
 - **Sıla (16):** kız kardeş. Ses: henüz atanmadı (Gözde düşünülüyor).

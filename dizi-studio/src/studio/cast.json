@@ -1343,22 +1343,21 @@
   "gender": "m",
   "age": "adult",
   "build": "slim",
-  "skin": "#e8b892",
-  "skinShade": "#d29e78",
+  "skin": "#f0c6a2",
+  "skinShade": "#dcaa86",
   "iris": "#3a2618",
   "hair": {
-   "style": "shortMale",
-   "color": "#2a1c14",
-   "shade": "#4a3226"
+   "style": "slick",
+   "color": "#3a2416",
+   "shade": "#5a3a24"
   },
-  "facialHair": "stubble",
   "outfit": {
    "type": "hoodie",
-   "top": "#3a4a5e",
-   "topShade": "#2c3a4c",
+   "top": "#c8502a",
+   "topShade": "#a83e1e",
    "bottom": "#2a3242",
    "shoes": "#e8e8e8",
-   "accent": "#d8d8d0"
+   "accent": "#f2e8d8"
   },
   "blush": false
  },
