@@ -385,6 +385,10 @@ def visemes_from_alignment(al):
 FX = {
     "kapi_arkasi": "highpass=f=180,lowpass=f=2000,equalizer=f=350:t=q:w=1.0:g=2,aecho=0.8:0.5:14|31:0.18|0.1,apad=pad_dur=0.3",
     "telefon": "highpass=f=300,lowpass=f=3400,acompressor=threshold=-20dB:ratio=4",
+    # hafıza flaşı: geniş yankı
+    "yanki": "aecho=0.8:0.7:70|140:0.35|0.2,apad=pad_dur=0.5",
+    # havalandırma kanalı: metalik, dar bant, kısa tarak yankısı
+    "kanal": "highpass=f=350,lowpass=f=3200,aecho=0.8:0.6:7|15|23:0.5|0.35|0.2,apad=pad_dur=0.4",
 }
 
 
@@ -405,7 +409,7 @@ def postprocess(raw_path, out_path, fx=None):
     det = subprocess.run(["ffmpeg", "-i", raw_path, "-af", "silencedetect=n=-45dB:d=0.05", "-f", "null", "-"], capture_output=True, text=True).stderr
     m = re.search(r"silence_start: 0(?:\.0+)?\s.*?silence_end: ([\d.]+)", det, re.S)
     lead = max(0.0, float(m.group(1)) - 0.06) if m else 0.0
-    loudnorm_2pass(raw_path, out_path, target=-25.0 if fx == "kapi_arkasi" else -16.0, extra_af=FX.get(fx or "", ""), ss=lead)
+    loudnorm_2pass(raw_path, out_path, target={"kapi_arkasi": -25.0, "kanal": -22.0}.get(fx or "", -16.0), extra_af=FX.get(fx or "", ""), ss=lead)
     dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out_path]).strip())
     return lead, dur
 

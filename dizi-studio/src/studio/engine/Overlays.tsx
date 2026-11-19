@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { SANS, SERIF } from "../../dizi/fonts";
 import type { TBeat } from "./timeline";
+import { Insert2, type Insert2Kind } from "./Inserts2";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
@@ -11,12 +12,15 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
   const { fps } = useVideoConfig();
   if (tb.beat.type !== "line") return null;
   const beat = tb.beat;
-  const words = tb.voice?.words?.length
+  const words0 = tb.voice?.words?.length
     ? tb.voice.words
     : beat.text.split(" ").map((w, i, arr) => {
         const d = tb.dur / fps / arr.length;
         return { w, start: i * d, end: (i + 1) * d };
       });
+  // gizle: baştaki kelimeler başka bir sesle örtülür; altyazı "…" ile başlar
+  const g = beat.gizle ?? 0;
+  const words = g > 0 ? words0.slice(g).map((w, i) => (i === 0 ? { ...w, w: `…${w.w}` } : w)) : words0;
   const vStart = tb.voice?.from ?? 0;
   const time = (frame - vStart) / fps;
   // chunk into groups of max 6 words; show the chunk containing the current word
@@ -325,5 +329,5 @@ const InsertHaplar: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu" | "haplar"; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
-  kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : kind === "haplar" ? <InsertHaplar dur={dur} /> : <InsertKapiKolu dur={dur} />;
+export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu" | "haplar" | Insert2Kind; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
+  kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : kind === "haplar" ? <InsertHaplar dur={dur} /> : kind === "kapi_kolu" ? <InsertKapiKolu dur={dur} /> : <Insert2 kind={kind} dur={dur} text={text} />;

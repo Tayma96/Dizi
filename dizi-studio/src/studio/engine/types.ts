@@ -71,13 +71,17 @@ export type Beat =
       fx?: "kapi_arkasi" | "telefon";
       /** ek ses etiketi (ElevenLabs v3/v4) */
       tags?: string;
+      /** altyazıda baştan gizlenecek kelime sayısı (ses başka bir sesle örtülür) */
+      gizle?: number;
+      /** okuma hızı (ElevenLabs speed) */
+      hiz?: number;
     } & BeatCommon)
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
   | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon)
   | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon)
   /** ekleme (insert) yakın planı: tam ekran çizim */
-  | ({ type: "insert"; kind: "bileklik" | "kapi_kolu" | "haplar"; dur: number; text?: string[] } & BeatCommon);
+  | ({ type: "insert"; kind: "bileklik" | "kapi_kolu" | "haplar" | import("./Inserts2").Insert2Kind; dur: number; text?: string[] } & BeatCommon);
 
 export type BeatCommon = {
   shot?: Shot;
@@ -85,7 +89,8 @@ export type BeatCommon = {
   cast?: Record<string, CharState>;
   sfx?: { name: string; at?: number; volume?: number }[];
   lightning?: boolean;
-  door?: "ac" | "kapat";
+  /** aralik: kapı birkaç santim aralanır */
+  door?: "ac" | "kapat" | "aralik";
   /** ekran kararması: "giris" bu vuruşun başında açılır, "cikis" sonunda kararır */
   fade?: "giris" | "cikis";
   /** ayna/yansıma görünümü (çerçeve + cam katmanı) */
@@ -98,6 +103,8 @@ export type BeatCommon = {
   shots?: { at: number; shot: Shot }[];
   /** hücre saati bu vuruştan itibaren */
   saat?: string;
+  /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */
+  ekle?: { kind: string; text?: string[] };
 };
 
 export type Scene = {

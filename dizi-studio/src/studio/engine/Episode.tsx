@@ -194,7 +194,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   for (let i = 0; i <= bi; i++) {
     const d = ts.beats[i].beat.door;
     if (d === "ac") doorOpen = i === bi ? interpolate(bf, [0, 45], [0, 1], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 }) : 1;
-    if (d === "kapat") doorOpen = i === bi ? interpolate(bf, [0, 12], [1, 0], clamp) : 0;
+    if (d === "kapat") doorOpen = i === bi ? interpolate(bf, [0, 12], [doorOpen || 1, 0], clamp) : 0;
+    if (d === "aralik") doorOpen = i === bi ? interpolate(bf, [0, 30], [0, 0.14], clamp) : 0.14;
   }
 
   // önceki vuruştaki bakış (baş dönüşünü yumuşatmak için)
@@ -312,6 +313,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           ) : b.beat.type === "insert" ? (
             <InsertShot kind={b.beat.kind} text={b.beat.text} dur={b.dur} />
           ) : null}
+          {b.beat.ekle ? <InsertShot kind={b.beat.ekle.kind as never} text={b.beat.ekle.text} dur={b.dur} /> : null}
+          {b.beat.type === "line" && b.beat.ekle ? <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} /> : null}
           {b.beat.etiket ? <CornerLabel text={b.beat.etiket} /> : null}
           {b.beat.fade ? <FadeOverlay mode={b.beat.fade} dur={b.dur} /> : null}
         </Sequence>

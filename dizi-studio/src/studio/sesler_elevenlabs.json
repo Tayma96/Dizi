@@ -8,10 +8,28 @@
    "speed": 1.0
   }
  },
+ "deniz": {
+  "voice_id": "PdYVUd1CAGSXsTvZZTNn",
+  "sahip": "ad50827bd49bc3cf8315f998cdbf2e71885fde967ff265f582df732f3eef6d71",
+  "ad": "Mia",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "nalan": {
   "voice_id": "uvU9jrgGLWNPeNA4NgNT",
   "sahip": "be807c36f8506e14d6d37254720b5163ab289dd44401a2532223584fc12eea7b",
   "ad": "İrem - Authoritarian",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "selim": {
+  "voice_id": "j82ax9yhzfYwq9lDvRWL",
+  "sahip": "50fa846ac7597ddc729c33b64e3bec6347727ebc8131f83546a724b817bc2b5b",
+  "ad": "Kadir Kayışcı",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0
