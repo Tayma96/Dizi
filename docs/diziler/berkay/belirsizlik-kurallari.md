@@ -16,6 +16,18 @@
 | Tablet videosu | Dün gece sen yaptın | Uyuşturulmuşken çekildi ya da kurgulandı |
 | Parmaktaki mürekkep (#10204a) | Gece imza ritüeli | Uyurken sürüldü (Nalan'ın kapaksız kalemi) |
 
+## İzleyici ne biliyor? (kullanıcı kararı, 19 Kasım 2026)
+> "İzleyici de Berkay gibi şüphede kalmalı, izleyicinin de sinirini ve psikolojisini bozmalıyız."
+- Gerçeği **yalnızca yazarlar** bilir. İzleyiciye perde arkası gösterilmez (personelin kendi aralarında itiraf ettiği sahne yok).
+- Her "kanıtın" iki açıklaması ekranda inandırıcı kalır: izleyici de Berkay gibi "deli mi değil mi?" diye bölünür.
+- **İzleyicinin aklıyla oynama araçları** (gaslighting izleyiciye de yapılır):
+  - Planlar arasında küçük, bilinçli tutarsızlıklar: duvar saati, pencere parmaklığı sayısı, yastığın yeri, Nalan'ın cebindeki kalemin rengi. Hiçbiri açıklanmaz; dikkatli izleyici fark edip yorumlarda tartışır.
+  - Dış ses (Berkay) bazen ekranda gördüğümüzle çelişir.
+  - Aynı replik farklı bölümlerde birebir aynı tonla tekrarlanır (kayıt mı, rutin mi?).
+  - Önceki bölümde gösterilen bir kare, sonraki bölümde "hatırlama" olarak küçük bir farkla yeniden gösterilir.
+  - Kesin kanıta en yakın an, hemen ardından gelen başka bir "kanıtla" çürütülür.
+- Final öncesi kesin cevap yok.
+
 ## Hâlâ geçerli olanlar (yeni gerçeğe göre)
 
 **Eski karar (18 Kasım 2026), gerçek kısmı yukarıda değişti:**
