@@ -44,7 +44,12 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - **Parça 5 (kapı aralığı):** koridorda doktor ve ortağın sesi; el, kalem, saat görünür; ikinci not "KUŞ HER SABAH 07:14'TE KONAR. SAYMAYI BIRAKMA."; saat 07:13.
 - **Parça 6 (döngü):** saat 07:14; kuş aynı hareketle konar, cama iki kez vurur; havalandırmadan fısıltı "Hatırla, Berkay."; kararma.
 
+## Ekip raporları
+- Senarist: `raporlar/p1-p2-senarist.md`
+- Görüntü yönetmeni: `raporlar/p1-goruntu-yonetmeni.md`. **Önce TEKNİK RİSK bölümünü oku:** ses eşleşmesi vuruş sırasına bağlı; replik vuruşlarının önüne vuruş eklersen manifest anahtarlarını ve mp3 adlarını yeniden adlandır (ücretsiz).
+- Ses yönetmeni: `raporlar/p1-ses-yonetmeni.md` (gelince yazılır).
+- **Yönetmen önceliği:** P0 (1-6) maddelerinin hepsi ve P1'den kostüm (7), ifade (8), tekinsiz mekân (9), yerleşim (10), bileklik (12), kapı kolu ışığı (13) uygulanır. Nalan önerisi parça 2'de uygulanır. GÜN 183 sahnenin içine alınır (köşe yazısı kalkar).
+
 ## Bekleyen
-- Ses yönetmeni ve görüntü yönetmeni parça 1 raporları (gelince bu dosyaya özetlenir ve uygulanır).
 - Her parça: kontrol kareleri → render → kullanıcıya gönder.
 - Sonda: 6 parça birleştir → `bolumler/imza-01.mp4` (3 dk, -14 LUFS) → kullanıcıya gönder → commit ve push.
