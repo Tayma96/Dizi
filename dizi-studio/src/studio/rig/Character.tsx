@@ -275,7 +275,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   // --- legs ---
   const Legs = () => {
     const pants = out.bottom;
-    const skirt = out.type === "dress" || (out.type === "school" && !male);
+    const skirt = out.type === "dress" || out.type === "hostes" || (out.type === "school" && !male);
     const legFill = skirt ? skin : pants;
     if (pose.body === "sit") {
       return (
@@ -314,6 +314,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const skirtGirl = t === "dress" || (t === "school" && !male);
     return (
       <g>
+        {t === "hostes" ? (
+          <g>
+            <path d="M 136 590 L 140 790 Q 200 800 260 790 L 264 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+            <path d="M 200 700 L 200 796" stroke={OUT} strokeWidth={3} opacity={0.6} />
+          </g>
+        ) : null}
         {t === "hoodie" ? <path d="M 140 330 Q 200 390 260 330 Q 250 300 200 296 Q 150 300 140 330 Z" fill={out.topShade} stroke={OUT} strokeWidth={SW} /> : null}
         {skirtGirl ? (
           <path
@@ -351,6 +357,28 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             <circle cx={206} cy={500} r={5} fill={OUT} />
             <circle cx={206} cy={560} r={5} fill={OUT} />
             <path d="M 236 420 L 262 418" stroke={OUT} strokeWidth={3} />
+          </g>
+        ) : null}
+        {t === "hostes" ? (
+          <g>
+            {/* beyaz bluz V yaka */}
+            <path d="M 170 330 L 200 440 L 230 330 Z" fill="#f7f6f2" stroke={OUT} strokeWidth={3} />
+            {/* ceket yakaları */}
+            <path d="M 158 334 L 200 470 L 184 360 Z M 242 334 L 200 470 L 216 360 Z" fill={out.topShade} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+            {/* boyun fuları: yanda düğüm, iki uç */}
+            <path d="M 172 334 Q 200 352 228 334 L 226 348 Q 200 366 174 348 Z" fill={out.accent ?? "#c9312f"} stroke={OUT} strokeWidth={3} />
+            <path d="M 226 340 L 254 372 L 238 384 L 220 350 Z M 230 344 L 246 398 L 230 402 L 222 352 Z" fill={out.accent ?? "#c9312f"} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+            <circle cx={226} cy={344} r={8} fill={out.accent ?? "#c9312f"} stroke={OUT} strokeWidth={3} />
+            <path d="M 180 342 Q 200 352 220 342" stroke="#f2e3b0" strokeWidth={3} fill="none" />
+            {/* altın kanat rozeti */}
+            <path d="M 140 410 q 12 -10 24 -2 q 12 -8 24 2 q -12 6 -24 4 q -12 2 -24 -4 Z" fill="#d9b45a" stroke={OUT} strokeWidth={2} />
+            <circle cx={164} cy={410} r={4} fill="#f6e6a6" stroke={OUT} strokeWidth={1.5} />
+            {/* isim kartı */}
+            <rect x={222} y={420} width={36} height={14} rx={3} fill="#f2f2ee" stroke={OUT} strokeWidth={2} />
+            {/* düğmeler + bel */}
+            <circle cx={206} cy={500} r={5} fill="#d9b45a" stroke={OUT} strokeWidth={2} />
+            <circle cx={206} cy={555} r={5} fill="#d9b45a" stroke={OUT} strokeWidth={2} />
+            <path d="M 236 470 L 262 468" stroke={OUT} strokeWidth={3} />
           </g>
         ) : null}
         {t === "cardigan" ? (

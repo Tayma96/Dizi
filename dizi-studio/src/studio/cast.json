@@ -894,12 +894,13 @@
   },
   "earrings": "#e8d08a",
   "outfit": {
-   "type": "dress",
-   "top": "#25485a",
-   "topShade": "#1a3644",
-   "bottom": "#25485a",
-   "shoes": "#141414"
+   "type": "hostes",
+   "top": "#1e4a5c",
+   "topShade": "#153846",
+   "bottom": "#1e4a5c",
+   "shoes": "#111114",
+   "accent": "#c9312f"
   },
-  "blush": true
+  "blush": false
  }
 ]

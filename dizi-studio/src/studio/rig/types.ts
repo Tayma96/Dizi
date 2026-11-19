@@ -27,7 +27,9 @@ export type Outfit =
   | "apron"
   | "labcoat"
   | "police"
-  | "tracksuit";
+  | "tracksuit"
+  /** kabin görevlisi üniforması: ceket, bluz, fular, kanat rozeti, kalem etek */
+  | "hostes";
 
 export type Emotion =
   | "notr"

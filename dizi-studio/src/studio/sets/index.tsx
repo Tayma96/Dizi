@@ -293,74 +293,98 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       );
     }
     case "ucak_kabin": {
-      // business sınıfı: pencere kenarı koltuk; dışarıda bulutların üstünde yumuşak gün ışığı
+      // business sınıfı, önden (burun tarafından) bakış: pencereler sol yan duvarda Emir'in yanında,
+      // koridor sağda, arkada perspektifle uzaklaşan koltuk sıraları. Kaçış noktası (600, 900).
       const fr = props.frame ?? 0;
       const tb = props.turb ?? 0;
       const flick = tb ? (random(`fl${Math.floor(fr / 2)}`) > 0.72 ? 0.25 : 1) : 1;
-      const wob = tb ? Math.sin(fr / 2.3) * 10 * tb + Math.sin(fr / 5.1) * 6 * tb : 0;
-      const win = (cx: number, id: string) => (
+      const wob = tb ? Math.sin(fr / 2.3) * 8 * tb + Math.sin(fr / 5.1) * 5 * tb : 0;
+      const win = (cx: number, cy: number, rx: number, ry: number, id: string) => (
         <g key={id}>
           <defs>
-            <clipPath id={id}><ellipse cx={cx} cy={720} rx={104} ry={150} /></clipPath>
+            <clipPath id={id}><ellipse cx={cx} cy={cy} rx={rx} ry={ry} /></clipPath>
             <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#6fa8e0" />
-              <stop offset="0.6" stopColor="#bcd8ee" />
+              <stop offset="0.6" stopColor="#c2dcef" />
               <stop offset="1" stopColor="#f7dcaa" />
             </linearGradient>
           </defs>
-          <ellipse cx={cx} cy={720} rx={140} ry={188} fill="#ddd5c8" stroke={O} strokeWidth={6} />
-          <ellipse cx={cx} cy={720} rx={118} ry={166} fill="#cfc6b7" />
+          <ellipse cx={cx} cy={cy} rx={rx * 1.3} ry={ry * 1.22} fill="#ddd5c8" stroke={O} strokeWidth={Math.max(3, rx / 18)} />
           <g clipPath={`url(#${id})`}>
-            <rect x={cx - 110} y={560} width={220} height={320} fill={`url(#${id}g)`} />
-            <circle cx={cx + 70} cy={600} r={60} fill="#fff6d8" opacity={0.7} />
-            <g transform={`translate(0 ${wob})`}>
-              {[0, 1, 2, 3, 4, 5].map((i) => {
-                const x = ((i * 130 - fr * 0.9) % 780 + 780) % 780 - 260 + cx - 130;
-                return <ellipse key={i} cx={x} cy={800 + (i % 2) * 26} rx={90 + (i % 3) * 20} ry={34} fill="#ffffff" opacity={0.92} />;
+            <rect x={cx - rx} y={cy - ry} width={rx * 2} height={ry * 2} fill={`url(#${id}g)`} />
+            <g transform={`translate(0 ${wob * (rx / 100)})`}>
+              {[0, 1, 2, 3].map((i) => {
+                const x = cx - rx * 1.6 + ((i * rx * 0.9 - fr * 0.8 * (rx / 100)) % (rx * 3.6) + rx * 3.6) % (rx * 3.6);
+                return <ellipse key={i} cx={x} cy={cy + ry * 0.45 + (i % 2) * ry * 0.12} rx={rx * 0.8} ry={ry * 0.2} fill="#ffffff" opacity={0.92} />;
               })}
-              <rect x={cx - 110} y={828} width={220} height={60} fill="#fbfbff" opacity={0.95} />
+              <rect x={cx - rx} y={cy + ry * 0.6} width={rx * 2} height={ry} fill="#fbfbff" opacity={0.95} />
             </g>
-            <rect x={cx - 110} y={560} width={220} height={52} fill="#efe8dc" />
-            <rect x={cx - 110} y={606} width={220} height={8} fill="#d5ccbe" />
+            <rect x={cx - rx} y={cy - ry} width={rx * 2} height={ry * 0.32} fill="#efe8dc" />
           </g>
-          <ellipse cx={cx} cy={720} rx={104} ry={150} fill="none" stroke="#b9b0a2" strokeWidth={5} />
+          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="none" stroke="#b9b0a2" strokeWidth={Math.max(2, rx / 22)} />
+        </g>
+      );
+      // arka sıralardaki koltuklar (derinlik s: 1 = yakın)
+      const seat = (x: number, y: number, sc: number, k: string) => (
+        <g key={k} transform={`translate(${x} ${y}) scale(${sc})`}>
+          <rect x={-150} y={-260} width={300} height={420} rx={50} fill="#3b3432" stroke={O} strokeWidth={8} />
+          <rect x={-100} y={-248} width={200} height={80} rx={18} fill="#f2ede4" stroke={O} strokeWidth={5} />
         </g>
       );
       return (
         <g>
           <defs>
-            <linearGradient id="kabinDuvar" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="kabinDuvar" x1="0" y1="0" x2="1" y2="0">
               <stop offset="0" stopColor="#efe8dd" />
-              <stop offset="1" stopColor="#d6cdbf" />
+              <stop offset="1" stopColor="#d9d0c2" />
             </linearGradient>
-            <linearGradient id="kabinHuzme" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="#fff1cc" stopOpacity={0.5} />
+            <linearGradient id="kabinHuzme" x1="0" y1="0" x2="1" y2="0.6">
+              <stop offset="0" stopColor="#fff1cc" stopOpacity={0.55} />
               <stop offset="1" stopColor="#fff1cc" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <rect width={W} height={H} fill="url(#kabinDuvar)" />
-          {/* bagaj dolabı */}
-          <path d="M 0 0 L 1080 0 L 1080 300 Q 540 390 0 300 Z" fill="#f4efe7" stroke={O} strokeWidth={6} />
-          <path d="M 0 250 Q 540 340 1080 250" stroke="#d8d0c4" strokeWidth={5} fill="none" />
-          {[180, 540, 900].map((x) => <rect key={x} x={x - 40} y={x === 540 ? 300 : 272} width={80} height={14} rx={6} fill="#c8bfb2" />)}
-          {/* tavan ışık şeridi (titrer) */}
-          <path d="M 0 318 Q 540 408 1080 318" stroke="#fff4d6" strokeWidth={10} fill="none" opacity={0.9 * flick} />
-          {/* duvar paneli ve pencereler */}
-          <rect x={0} y={1180} width={W} height={16} fill="#c4bbad" />
-          {win(240, "kw1")}
-          {win(840, "kw2")}
-          {/* güneş huzmesi */}
-          <path d="M 330 600 L 470 560 L 1080 1500 L 760 1600 Z" fill="url(#kabinHuzme)" opacity={0.55 * flick} />
-          {/* koltuk */}
+          {/* arka duvar (kabin bölmesi) */}
+          <rect width={W} height={H} fill="#d4cbbd" />
+          <rect x={470} y={720} width={260} height={340} fill="#e6dfd3" stroke={O} strokeWidth={4} />
+          {/* tavan + bagaj dolapları */}
+          <path d="M 300 0 L 820 0 L 690 720 L 510 720 Z" fill="#f6f2ea" />
+          <path d="M 560 0 L 590 720 M 640 0 L 610 720" stroke="#e2dacd" strokeWidth={6} />
+          <path d="M 0 0 L 300 0 L 510 720 L 470 760 L 0 360 Z" fill="#f2ede4" stroke={O} strokeWidth={6} />
+          <path d="M 0 300 L 470 720" stroke="#d6cec1" strokeWidth={5} />
+          <path d="M 1080 0 L 820 0 L 690 720 L 730 760 L 1080 360 Z" fill="#ece6dc" stroke={O} strokeWidth={6} />
+          <path d="M 1080 300 L 730 720" stroke="#d2cabd" strokeWidth={5} />
+          {/* tavan ışık şeritleri (titrer) */}
+          <path d="M 20 330 L 478 742" stroke="#fff4d6" strokeWidth={9} opacity={0.9 * flick} />
+          <path d="M 1060 330 L 722 742" stroke="#fff4d6" strokeWidth={9} opacity={0.9 * flick} />
+          {/* sol yan duvar: pencereler (Emir'in yanında en büyüğü) */}
+          <path d="M 0 360 L 470 760 L 470 1060 L 0 1560 Z" fill="url(#kabinDuvar)" stroke={O} strokeWidth={6} />
+          {win(418, 880, 13, 24, "kw4")}
+          {win(360, 870, 22, 40, "kw3")}
+          {win(270, 862, 38, 66, "kw2")}
+          {win(118, 860, 74, 120, "kw1")}
+          {/* sağ yan duvar (koridorun karşısı) */}
+          <path d="M 1080 360 L 730 760 L 730 1060 L 1080 1560 Z" fill="#dcd3c5" stroke={O} strokeWidth={6} />
+          {win(776, 880, 11, 22, "kw7")}
+          {win(830, 872, 18, 34, "kw6")}
+          {win(920, 864, 30, 54, "kw5")}
+          {/* zemin + koridor halısı */}
+          <path d="M 0 1560 L 470 1060 L 730 1060 L 1080 1560 L 1080 1920 L 0 1920 Z" fill="#3e4458" />
+          <path d="M 560 1060 L 680 1060 L 1080 1640 L 1080 1920 L 760 1920 Z" fill="#4a5270" />
+          {/* arka sıralar: sol (Emir'in arkası) ve sağ (koridorun karşısı) */}
+          {seat(520, 1000, 0.28, "s3")}
+          {seat(470, 1060, 0.45, "s2")}
+          {seat(700, 1000, 0.28, "s6")}
+          {seat(790, 1070, 0.45, "s5")}
+          {seat(930, 1180, 0.72, "s4")}
+          {/* pencereden düşen gün ışığı (anahtar ışık soldan) */}
+          <path d="M 60 760 L 190 760 L 760 1700 L 300 1760 Z" fill="url(#kabinHuzme)" opacity={0.6 * flick} />
+          {/* Emir'in koltuğu */}
           <rect x={318} y={820} width={444} height={800} rx={70} fill="#3b3432" stroke={O} strokeWidth={7} />
           <rect x={350} y={850} width={380} height={140} rx={40} fill="#4a4240" />
           <rect x={400} y={836} width={280} height={110} rx={22} fill="#f2ede4" stroke={O} strokeWidth={4} />
           <path d="M 352 1080 L 728 1080 M 352 1260 L 728 1260" stroke="#2c2624" strokeWidth={5} />
           <rect x={278} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
           <rect x={722} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
-          {/* halı */}
-          <rect y={1620} width={W} height={300} fill="#3e4458" />
-          {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${i * 130 - 40} 1620 l 60 300`} stroke="#4a5068" strokeWidth={4} />)}
           {/* titreşimde kabin kararması */}
           {tb ? <rect width={W} height={H} fill="#0a0c14" opacity={(1 - flick) * 0.35 + tb * 0.08} /> : null}
         </g>
