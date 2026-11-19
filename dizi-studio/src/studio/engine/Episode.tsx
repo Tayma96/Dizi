@@ -22,7 +22,7 @@ const place = (id: string, st: CharState, marks: Record<string, Mark>): Placed |
   const m = marks[st.mark ?? Object.keys(marks)[0]];
   if (!m) return null;
   const look = castById(id);
-  const lie = st.body === "yat" || st.body === "dogrul";
+  const lie = st.body === "yat" || st.body === "dogrul" || st.body === "yatakta";
   const sit = !lie && (st.body === "sit" || Boolean(m.sit && st.body !== "stand"));
   const size = m.size;
   // yatan/doğrulan: işaretin y'si kalça noktasıdır (karakter kalçasından döner)
@@ -129,8 +129,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const lieAng: Record<string, number> = {};
   for (const [id, p] of Object.entries(placed)) {
     const b = tb.cast[id].body;
-    if (b !== "yat" && b !== "dogrul") continue;
-    const already = b === "dogrul" && prev?.cast[id]?.body === "dogrul";
+    if (b !== "yat" && b !== "dogrul" && b !== "yatakta") continue;
+    const already = b === "yatakta" || (b === "dogrul" && prev?.cast[id]?.body === "dogrul");
     const a = b === "yat" ? -90 : already ? 0 : interpolate(bf, [Math.round(0.15 * fps), Math.round(1.45 * fps)], [-90, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     lieAng[id] = a;
     // baş merkezi: kalça → boyun (gövde ekseni), boyun → baş (baş kameraya doğru -0.72a geri döner)

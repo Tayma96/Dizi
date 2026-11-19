@@ -557,7 +557,9 @@ export const CellDoor: React.FC<P & { open?: number }> = ({ x, y, s, open = 0 })
 /** Hücre saati: saat ve dakika ayarlı; saniye ibresi gerçek hızda */
 export const HucreClock: React.FC<P & { time?: string }> = ({ x, y, s, time = "07:14" }) => {
   const frame = useCurrentFrame();
-  const [h, m] = time.split(":").map(Number);
+  // "parlama": camındaki floresan yansıması yüzünden okunmaz (saat P2-P4'te gizli kalır)
+  const glare = time === "parlama";
+  const [h, m] = (glare ? "07:15" : time).split(":").map(Number);
   return (
     <G x={x} y={y} s={s}>
       <circle cx={0} cy={0} r={62} fill="#e9e6dc" stroke={O} strokeWidth={6} />
@@ -569,6 +571,7 @@ export const HucreClock: React.FC<P & { time?: string }> = ({ x, y, s, time = "0
       <path d="M 0 0 L 0 -46" stroke={O} strokeWidth={5} strokeLinecap="round" transform={`rotate(${m * 6})`} />
       <path d="M 0 8 L 0 -50" stroke="#b33" strokeWidth={2} transform={`rotate(${(frame / 30) * 6})`} />
       <circle r={5} fill={O} />
+      {glare ? <ellipse cx={-6} cy={-6} rx={56} ry={50} fill="#f8fbff" opacity={0.85} /> : null}
     </G>
   );
 };

@@ -36,7 +36,7 @@ export type CharState = {
   gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
-  body?: "stand" | "sit" | "walk" | "yat" | "dogrul";
+  body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta";
   /** bakılan karakter id ya da "kamera" */
   lookAt?: string;
   tears?: number;
@@ -77,7 +77,7 @@ export type Beat =
   | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon)
   | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon)
   /** ekleme (insert) yakın planı: tam ekran çizim */
-  | ({ type: "insert"; kind: "bileklik" | "kapi_kolu"; dur: number; text?: string[] } & BeatCommon);
+  | ({ type: "insert"; kind: "bileklik" | "kapi_kolu" | "haplar"; dur: number; text?: string[] } & BeatCommon);
 
 export type BeatCommon = {
   shot?: Shot;

@@ -143,6 +143,18 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x} ${y - 30} V ${y - 18}`} stroke="#ffffff" strokeWidth={2} />
         </g>
       );
+    case "pano":
+      // ilaç takip panosu (kâğıt + kıskaç)
+      return (
+        <g>
+          <rect x={x - 46} y={y - 120} width={92} height={124} rx={6} fill="#b98a5a" stroke={OUT} strokeWidth={3.5} />
+          <rect x={x - 38} y={y - 108} width={76} height={104} fill="#f6f4ee" />
+          <rect x={x - 18} y={y - 126} width={36} height={16} rx={4} fill="#9aa4aa" stroke={OUT} strokeWidth={3} />
+          {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${x - 28} ${y - 88 + i * 20} H ${x + 26}`} stroke="#9aa0a6" strokeWidth={3} />)}
+        </g>
+      );
+    case "bardak":
+      return <path d={`M ${x - 22} ${y - 6} L ${x - 18} ${y - 74} L ${x + 18} ${y - 74} L ${x + 22} ${y - 6} Z`} fill="#dff0ff" fillOpacity={0.8} stroke={OUT} strokeWidth={3} />;
     case "kalem":
       return (
         <g transform={`rotate(-35 ${x} ${y})`}>

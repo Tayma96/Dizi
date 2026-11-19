@@ -286,5 +286,44 @@ const InsertKapiKolu: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu"; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
-  kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : <InsertKapiKolu dur={dur} />;
+/** Hap kabı yakın planı: beyaz yuvarlak hap + yarısı mavi kapsül (dizi boyunca sabit) */
+const InsertHaplar: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.08], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#9aa4a8" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <defs>
+          <radialGradient id="hp-vig" cx="0.5" cy="0.5" r="0.7">
+            <stop offset="0.5" stopColor="#000" stopOpacity="0" />
+            <stop offset="1" stopColor="#000" stopOpacity="0.6" />
+          </radialGradient>
+        </defs>
+        {/* metal tepsi */}
+        <rect x={-40} y={700} width={1160} height={700} rx={40} fill="#c4ccd2" stroke={OUTL} strokeWidth={10} />
+        <rect x={0} y={740} width={1080} height={620} rx={30} fill="#b4bcc2" />
+        {/* kâğıt hap kabı (üstten) */}
+        <ellipse cx={540} cy={1040} rx={300} ry={230} fill="#f6f2e8" stroke={OUTL} strokeWidth={10} />
+        <ellipse cx={540} cy={1060} rx={250} ry={180} fill="#ebe5d6" />
+        {new Array(16).fill(0).map((_, i) => {
+          const a = (i / 16) * Math.PI * 2;
+          return <path key={i} d={`M ${540 + Math.cos(a) * 250} ${1060 + Math.sin(a) * 180} L ${540 + Math.cos(a) * 300} ${1040 + Math.sin(a) * 230}`} stroke="#d8d0be" strokeWidth={6} />;
+        })}
+        {/* beyaz yuvarlak hap */}
+        <ellipse cx={440} cy={1070} rx={78} ry={62} fill="#fbfbf8" stroke={OUTL} strokeWidth={8} />
+        <path d="M 380 1070 H 500" stroke="#c8c8c0" strokeWidth={6} />
+        {/* yarısı mavi kapsül */}
+        <g transform="rotate(-28 640 1040)">
+          <rect x={560} y={1000} width={90} height={80} rx={40} fill="#fbfbf8" stroke={OUTL} strokeWidth={8} />
+          <rect x={640} y={1000} width={90} height={80} rx={40} fill="#3f86d6" stroke={OUTL} strokeWidth={8} />
+          <rect x={630} y={1004} width={20} height={72} fill="#3f86d6" />
+          <rect x={590} y={1014} width={40} height={10} rx={5} fill="#ffffff" opacity={0.7} />
+        </g>
+        <rect width={1080} height={1920} fill="url(#hp-vig)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu" | "haplar"; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
+  kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : kind === "haplar" ? <InsertHaplar dur={dur} /> : <InsertKapiKolu dur={dur} />;
