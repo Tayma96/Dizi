@@ -11,7 +11,7 @@ rng = np.random.default_rng(31)
 
 # kabin: jet uğultusu (alçak geniş gürültü + hafif motor tonu)
 d = 40; t = t_(d)
-cab = lp(noise(d, "brown"), 260) * 1.6 + bp(noise(d, "pink"), 300, 1800) * 0.35 + np.sin(2 * np.pi * 118 * t) * 0.02 + np.sin(2 * np.pi * 236 * t) * 0.01
+cab = lp(noise(d, "brown"), 260) * 1.6 + bp(noise(d, "pink"), 300, 1800) * 0.7 + bp(noise(d), 2000, 4000) * 0.04 + np.sin(2 * np.pi * 118 * t) * 0.02 + np.sin(2 * np.pi * 236 * t) * 0.01
 save("ortam", "ucak_kabin", loopable(cab), "Uçak kabini: jet uğultusu (business sınıfı, seyir).", loop=True, stereo_width=0.6)
 
 # türbülans: yavaş başlayan alçak gümbürtü + gövde tıkırtıları
@@ -40,11 +40,15 @@ inh = bp(noise(d, "pink"), 600, 3000) * np.where(t < 0.55, np.sin(np.pi * t / 0.
 exh = bp(noise(d, "pink"), 250, 1800) * np.where(t > 0.6, np.sin(np.pi * np.clip((t - 0.6) / 1.0, 0, 1)) ** 2, 0)
 save("efekt", "ic_cekme", fade(inh + exh, 0.02, 0.1), "İç çekme: derin nefes alıp bırakma (erkek).")
 
-# kemer ikazı: iki tonlu kabin "ding"
-d = 1.6
+# kemer ikazı: iki tonlu kabin "ding" (saf sinüs + zayıf ikinci harmonik, kısa atak, 1.2 sn sönüm)
+d = 1.9
 ding = np.zeros(int(d * SR))
-place(ding, bell(1046, 1.4) * 0.6, 0.0)
-place(ding, bell(784, 1.4) * 0.6, 0.35)
+def chime(f):
+    tt = t_(1.4)
+    e = np.minimum(1, tt / 0.005) * np.exp(-tt / 0.35)
+    return (np.sin(2 * np.pi * f * tt) + 0.3 * np.sin(2 * np.pi * 2 * f * tt)) * e
+place(ding, chime(1046) * 0.6, 0.0)
+place(ding, chime(784) * 0.6, 0.38)
 save("efekt", "kabin_ding", reverb(ding, 0.6, 0.2), "Uçak kabini ikaz sesi (iki ton).")
 
 # dış: rüzgâr uğultusu + boğulan motor
@@ -55,6 +59,29 @@ out += np.sin(2 * np.pi * np.cumsum(f) / SR) * 0.08 * (0.6 + 0.4 * np.sin(2 * np
 for at in [0.8, 1.6, 2.9, 4.1]:
     place(out, lp(noise(0.25), 300) * np.exp(-t_(0.25) * 12) * 1.2, at)
 save("efekt", "ucak_dis", fade(out, 0.3, 0.8), "Uçak dışı: rüzgâr, boğulan motor, patlamalar (6 sn).")
+
+# yavaş yavaş büyüyen türbülans (tek dosya, 24 sn): doyurulmuş gümbürtü + gövde gıcırtısı + bagaj tıkırtıları
+d = 24; t = t_(d)
+ramp = np.clip(t / 20.0, 0, 1) ** 1.6 * 0.9 + 0.1
+rum = lp(noise(d, "brown"), 110) * 3 * (0.6 + 0.4 * np.abs(np.sin(2 * np.pi * (1.2 + t / 12) * t)))
+rum = np.tanh(rum * 3 * ramp) * 0.6
+creak = bp(noise(d, "pink"), 300, 900) * (0.5 + 0.5 * np.sin(2 * np.pi * 2.4 * t)) * ramp ** 1.5 * 0.5
+ar = rum + creak
+for i in range(70):
+    at = rng.uniform(1.0, d - 0.3)
+    w = (at / d) ** 1.4
+    place(ar, bp(noise(0.06), 1500, 5000) * np.exp(-t_(0.06) * 70) * 0.5 * w, at)
+save("efekt", "turbulans_artan", fade(ar, 0.6, 0.8), "Türbülans: 24 sn boyunca yavaş yavaş büyüyen titreşim, gıcırtı ve tıkırtılar.")
+
+# fincan tıkırtısı: porselen, kümeler hâlinde
+d = 2.4
+fc = np.zeros(int(d * SR))
+for i in range(18):
+    at = 0.2 + i * 0.12 + rng.uniform(-0.02, 0.02)
+    tt = t_(0.05)
+    tick = sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt / rng.uniform(0.015, 0.04)) for f in (2800, 4100, 6300)) / 3
+    place(fc, tick * rng.uniform(0.25, 0.8) * min(1, at / 1.2), at)
+save("efekt", "fincan_tikirti", fc, "Fincan tabağında titreyen porselen tıkırtısı.")
 
 cat = os.path.join(K.OUT, "katalog.json")
 c = json.load(open(cat, encoding="utf-8")) if os.path.exists(cat) else {}

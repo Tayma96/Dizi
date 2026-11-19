@@ -283,7 +283,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   // --- legs ---
   const Legs = () => {
     const pants = out.bottom;
-    const skirt = out.type === "dress" || out.type === "hostes" || (out.type === "yerli" && !male) || (out.type === "school" && !male);
+    const skirt = out.type === "dress" || out.type === "hostes" || out.type === "yerli" || (out.type === "school" && !male);
     const legFill = skirt ? skin : pants;
     if (pose.body === "sit") {
       return (
@@ -322,6 +322,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const skirtGirl = t === "dress" || (t === "school" && !male);
     return (
       <g>
+        {t === "yerli" && male ? (
+          <g>
+            <path d="M 130 590 L 122 770 Q 200 784 278 770 L 270 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+            <path d="M 150 600 L 236 772" stroke="#00000033" strokeWidth={5} />
+            <path d="M 126 760 Q 200 774 274 760" stroke={out.topShade} strokeWidth={6} fill="none" strokeDasharray="12 8" />
+          </g>
+        ) : null}
         {t === "yerli" && !male ? (
           <g>
             <path d="M 132 590 L 112 800 Q 200 812 288 800 L 268 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
@@ -379,6 +386,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             {/* dokuma deseni */}
             {[380, 430, 480, 530, 580].map((y) => <path key={y} d={`M 128 ${y} L 272 ${y}`} stroke={out.topShade} strokeWidth={4} strokeDasharray="10 8" opacity={0.8} />)}
             <path d="M 176 330 Q 200 372 224 330" fill="none" stroke={OUT} strokeWidth={SW} />
+            {out.accent ? <path d="M 150 332 Q 200 360 272 470 L 270 520 Q 210 410 136 350 Z" fill={out.accent} stroke={OUT} strokeWidth={3} strokeLinejoin="round" /> : null}
+            {out.accent ? <path d="M 160 346 Q 210 380 266 476" stroke="#f2e6cf" strokeWidth={4} fill="none" strokeDasharray="10 8" opacity={0.7} /> : null}
             {/* ip kemer */}
             <path d="M 132 590 Q 200 606 268 590" stroke="#a57a44" strokeWidth={9} fill="none" />
             <path d="M 238 598 l 6 40 M 248 596 l 10 36" stroke="#a57a44" strokeWidth={5} />
@@ -498,7 +507,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         </g>
       ) : null}
       {look.facialHair === "stubble" || look.facialHair === "beard" ? (
-        <path d={`M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 276 200 282 Q 150 276 128 236 Z`} fill={look.facialHair === "beard" ? look.hair.color : "#5a4a44"} opacity={look.facialHair === "beard" ? 1 : 0.22} stroke={look.facialHair === "beard" ? OUT : "none"} strokeWidth={3} />
+        <path d={look.facialHair === "beard" ? `M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 262 200 268 Q 150 262 128 236 Z` : `M 128 236 Q 132 300 200 314 Q 268 300 272 236 Q 250 276 200 282 Q 150 276 128 236 Z`} fill={look.facialHair === "beard" ? look.hair.color : "#5a4a44"} opacity={look.facialHair === "beard" ? 1 : 0.22} stroke={look.facialHair === "beard" ? OUT : "none"} strokeWidth={3} />
       ) : null}
       <g opacity={blushAmt}>
         <ellipse cx={148 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
@@ -511,7 +520,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
       {look.mole ? <circle cx={236 + dx} cy={262} r={3} fill="#5a3a2a" /> : null}
       {look.facialHair === "mustache" || look.facialHair === "beard" ? (
-        <path d={`M ${166 + dx} 262 Q ${200 + dx} 246 ${234 + dx} 262 Q ${220 + dx} 270 ${200 + dx} 264 Q ${180 + dx} 270 ${166 + dx} 262 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} />
+        <path d={`M ${160 + dx} 274 Q ${200 + dx} 246 ${240 + dx} 274 Q ${224 + dx} 268 ${200 + dx} 264 Q ${176 + dx} 268 ${160 + dx} 274 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} />
       ) : null}
       {look.facialHair === "goatee" ? <path d={`M ${186 + dx} 292 Q ${200 + dx} 312 ${214 + dx} 292 L ${210 + dx} 302 Q ${200 + dx} 306 ${190 + dx} 302 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} /> : null}
       <Mouth viseme={vis} rest={face.mouth} cx={200 + dx * 1.1} cy={274} amp={amp} />
@@ -558,7 +567,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       style={{ overflow: "visible", scale: flip ? "-1 1" : undefined, ...style }}
     >
       <g transform={`translate(0 ${groundShift + bob})`}>
-        {pose.hideLegs ? null : <ellipse cx={200} cy={(pose.body === "sit" ? 910 : 985) - groundShift} rx={130 * wx} ry={16} fill="#000" opacity={0.2} transform={`translate(0 ${-bob})`} />}
+        {pose.hideLegs || pose.golgesiz ? null : <ellipse cx={200} cy={(pose.body === "sit" ? 910 : 985) - groundShift} rx={130 * wx} ry={16} fill="#000" opacity={0.2} transform={`translate(0 ${-bob})`} />}
         {/* back hair (follows the head) */}
         <g transform={bodyT}>
           <g transform={headT}>
@@ -571,8 +580,11 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             <Torso />
             {look.yirtik ? (
               <g>
-                <path d="M 150 420 L 172 400 L 168 432 L 196 418 L 184 470 L 160 476 Z" fill={skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
-                <path d="M 224 500 L 250 486 L 262 520 L 244 512 L 236 548 L 222 530 Z" fill={skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+                <path d="M 150 420 L 158 408 L 166 414 L 172 400 L 176 418 L 188 412 L 184 440 L 192 452 L 180 466 L 164 470 L 156 452 Z" fill={look.skinShade} stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />
+                <path d="M 160 430 Q 170 440 168 458" stroke={skin} strokeWidth={8} fill="none" opacity={0.8} />
+                <path d="M 158 408 l -6 -8 M 176 418 l 4 -10 M 188 412 l 8 -4 M 156 452 l -8 4" stroke="#f4f0e6" strokeWidth={2} />
+                <path d="M 226 500 L 236 494 L 244 500 L 252 488 L 258 506 L 262 522 L 250 520 L 246 540 L 236 546 L 228 528 Z" fill={look.skinShade} stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />
+                <path d="M 236 494 l -4 -8 M 252 488 l 6 -6 M 246 540 l 4 8" stroke="#f4f0e6" strokeWidth={2} />
                 <path d="M 140 560 Q 170 540 200 566 Q 230 590 262 570" stroke="#7a6a58" strokeWidth={14} fill="none" opacity={0.35} />
                 <ellipse cx={238} cy={420} rx={20} ry={12} fill="#7a1c1c" opacity={0.55} />
                 <ellipse cx={176} cy={520} rx={14} ry={22} fill="#6a5440" opacity={0.3} />

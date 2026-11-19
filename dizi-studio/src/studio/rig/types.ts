@@ -136,6 +136,8 @@ export type Pose = {
   body?: "stand" | "sit" | "walk";
   /** bacakları çizme (yatakta, battaniye altında) */
   hideLegs?: boolean;
+  /** zemin gölgesini çizme (yerde yatarken) */
+  golgesiz?: boolean;
   /** Lip sync: viseme cues (seconds) starting at frame `from` of the current sequence */
   speech?: { cues: MouthCue[]; from: number };
   /** Random mouth flaps when no cues are available */

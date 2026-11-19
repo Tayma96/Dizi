@@ -69,6 +69,13 @@
   "loop": false,
   "desc": "Bir eşyanın yere düşmesi."
  },
+ "efekt/fincan_tikirti": {
+  "file": "ses/efekt/fincan_tikirti.mp3",
+  "category": "efekt",
+  "duration": 2.4,
+  "loop": false,
+  "desc": "Fincan tabağında titreyen porselen tıkırtısı."
+ },
  "efekt/fren": {
   "file": "ses/efekt/fren.mp3",
   "category": "efekt",
@@ -114,7 +121,7 @@
  "efekt/kabin_ding": {
   "file": "ses/efekt/kabin_ding.mp3",
   "category": "efekt",
-  "duration": 1.6,
+  "duration": 1.9,
   "loop": false,
   "desc": "Uçak kabini ikaz sesi (iki ton)."
  },
@@ -249,14 +256,14 @@
   "category": "efekt",
   "duration": 1.6,
   "loop": false,
-  "desc": "Sopa ile dürtme (3 kez, yumuşak tok ses)."
+  "desc": "Sopa ile dürtme (3 kez): kumaş, ten, odun."
  },
  "efekt/surukleme": {
   "file": "ses/efekt/surukleme.mp3",
   "category": "efekt",
-  "duration": 3.5,
+  "duration": 3.6,
   "loop": false,
-  "desc": "Kumda sürükleme + ayak sesleri (3,5 sn)."
+  "desc": "Kumda sürükleme: kum, çekiş, ayak sesleri, kumaş."
  },
  "efekt/telefon_titresim": {
   "file": "ses/efekt/telefon_titresim.mp3",
@@ -293,6 +300,13 @@
   "loop": false,
   "desc": "Türbülans: yavaş başlayan gövde titreşimi ve tıkırtılar (6 sn)."
  },
+ "efekt/turbulans_artan": {
+  "file": "ses/efekt/turbulans_artan.mp3",
+  "category": "efekt",
+  "duration": 24.0,
+  "loop": false,
+  "desc": "Türbülans: 24 sn boyunca yavaş yavaş büyüyen titreşim, gıcırtı ve tıkırtılar."
+ },
  "efekt/ucak_dis": {
   "file": "ses/efekt/ucak_dis.mp3",
   "category": "efekt",
@@ -312,7 +326,7 @@
   "category": "efekt",
   "duration": 6.0,
   "loop": false,
-  "desc": "Kelimesiz, tedirgin alçak sesle konuşma (yerliler, 6 sn)."
+  "desc": "Kelimesiz, alçak sesle konuşan birkaç kişi (sözcükler seçilmez)."
  },
  "efekt/yudum": {
   "file": "ses/efekt/yudum.mp3",

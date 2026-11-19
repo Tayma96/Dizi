@@ -925,7 +925,8 @@
    "top": "#e6e0d4",
    "topShade": "#c8c0b0",
    "bottom": "#1f2a44",
-   "shoes": "#0e0e10"
+   "shoes": "#0e0e10",
+   "accent": "#7a2430"
   },
   "blush": false,
   "kan": 1,
@@ -981,8 +982,9 @@
    "type": "yerli",
    "top": "#c4a878",
    "topShade": "#a48a5c",
-   "bottom": "#8a6a3e",
-   "shoes": "skin"
+   "bottom": "#7a4a30",
+   "shoes": "skin",
+   "accent": "#8a3a2a"
   },
   "kolye": "#f2e6cf",
   "blush": false
@@ -1005,9 +1007,9 @@
   },
   "outfit": {
    "type": "yerli",
-   "top": "#b89a6a",
-   "topShade": "#98794c",
-   "bottom": "#7a5a34",
+   "top": "#9a6a44",
+   "topShade": "#7a5032",
+   "bottom": "#3e4a6a",
    "shoes": "skin"
   },
   "kolye": "#e9dcc0",
@@ -1032,9 +1034,9 @@
   },
   "outfit": {
    "type": "yerli",
-   "top": "#a88c60",
-   "topShade": "#8a6e44",
-   "bottom": "#6e5030",
+   "top": "#c2a070",
+   "topShade": "#a0804e",
+   "bottom": "#8a4a2e",
    "shoes": "skin"
   },
   "blush": false
@@ -1059,8 +1061,9 @@
    "type": "yerli",
    "top": "#b49464",
    "topShade": "#94744a",
-   "bottom": "#7e5e38",
-   "shoes": "skin"
+   "bottom": "#5a4a6a",
+   "shoes": "skin",
+   "accent": "#3a4a7a"
   },
   "kolye": "#f2e6cf",
   "blush": false
@@ -1084,9 +1087,9 @@
   "earrings": "#f2e6cf",
   "outfit": {
    "type": "yerli",
-   "top": "#c9ad7c",
-   "topShade": "#a98e5e",
-   "bottom": "#8f6e42",
+   "top": "#d2b484",
+   "topShade": "#b0925e",
+   "bottom": "#7a5232",
    "shoes": "skin"
   },
   "kolye": "#f6ecd6",

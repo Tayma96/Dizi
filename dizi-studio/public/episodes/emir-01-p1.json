@@ -131,7 +131,7 @@
      "sfx": [
       {
        "name": "efekt/ic_cekme",
-       "volume": 0.55,
+       "volume": 0.3,
        "at": 0.1
       }
      ]
@@ -162,7 +162,7 @@
      "sfx": [
       {
        "name": "efekt/ayak_sesleri",
-       "volume": 0.22,
+       "volume": 0.4,
        "at": 0.0
       }
      ]
@@ -241,7 +241,14 @@
        "exit": "sag",
        "lookAt": null
       }
-     }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
     },
     {
      "type": "action",
@@ -307,7 +314,7 @@
    },
    "music": {
     "name": "muzik/gerilim",
-    "volume": 0.1
+    "volume": 0.2
    },
    "cast": {
     "emir": {
@@ -331,8 +338,8 @@
      "dur": 2.0,
      "sfx": [
       {
-       "name": "efekt/turbulans",
-       "volume": 0.3,
+       "name": "efekt/fincan_tikirti",
+       "volume": 0.45,
        "at": 0.0
       }
      ]
@@ -364,7 +371,7 @@
      "sfx": [
       {
        "name": "efekt/kabin_ding",
-       "volume": 0.55,
+       "volume": 0.28,
        "at": 0.25
       }
      ]
@@ -386,14 +393,7 @@
         "y": 0.05
        }
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/turbulans",
-       "volume": 0.45,
-       "at": 0.0
-      }
-     ]
+     }
     },
     {
      "type": "insert",
@@ -430,25 +430,13 @@
        "name": "efekt/nefes_kesilme",
        "volume": 0.35,
        "at": 0.2
-      },
-      {
-       "name": "efekt/turbulans",
-       "volume": 0.55,
-       "at": 0.0
       }
      ]
     },
     {
      "type": "insert",
      "kind": "kol_dayama",
-     "dur": 1.6,
-     "sfx": [
-      {
-       "name": "efekt/turbulans",
-       "volume": 0.6,
-       "at": 0.0
-      }
-     ]
+     "dur": 1.6
     },
     {
      "type": "action",
@@ -486,10 +474,19 @@
        "name": "efekt/ucak_dis",
        "volume": 0.7,
        "at": 0.0
+      },
+      {
+       "name": "efekt/riser",
+       "volume": 0.5,
+       "at": 1.5
       }
      ]
     }
-   ]
+   ],
+   "ambience2": {
+    "name": "efekt/turbulans_artan",
+    "volume": 0.8
+   }
   }
  ]
 }

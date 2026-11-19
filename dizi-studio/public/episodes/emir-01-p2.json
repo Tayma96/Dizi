@@ -23,7 +23,7 @@
    },
    "music": {
     "name": "muzik/huzunlu_piyano",
-    "volume": 0.1
+    "volume": 0.0
    },
    "cast": {
     "emir_kaza": {
@@ -71,7 +71,7 @@
      "sfx": [
       {
        "name": "efekt/ates",
-       "volume": 0.35,
+       "volume": 0.6,
        "at": 0.0
       }
      ]
@@ -93,32 +93,32 @@
        "hidden": false,
        "enter": "sol",
        "bak": {
-        "x": -0.6,
-        "y": 0.6
+        "x": -1.0,
+        "y": 0.85
        }
       },
       "yerli_genc": {
        "hidden": false,
        "enter": "sol",
        "bak": {
-        "x": 0.6,
-        "y": 0.6
+        "x": 1.0,
+        "y": 0.85
        }
       },
       "yerli_genc2": {
        "hidden": false,
        "enter": "sol",
        "bak": {
-        "x": 0.6,
-        "y": 0.6
+        "x": 1.0,
+        "y": 0.85
        }
       },
       "yerli_ana": {
        "hidden": false,
        "enter": "sol",
        "bak": {
-        "x": -0.6,
-        "y": 0.6
+        "x": -1.0,
+        "y": 0.85
        }
       }
      },
@@ -142,8 +142,8 @@
       "yerli_bilge": {
        "emotion": "supheli",
        "bak": {
-        "x": -0.6,
-        "y": 0.6
+        "x": -1.0,
+        "y": 0.85
        }
       }
      }
@@ -164,24 +164,23 @@
      "type": "action",
      "dur": 1.8,
      "shot": {
-      "type": "iki",
+      "type": "orta",
       "on": "yerli_genc",
-      "with": "yerli_bilge",
-      "move": "sabit"
+      "move": "yaklas"
      },
      "cast": {
       "yerli_bilge": {
        "emotion": "uzgun",
        "bak": {
-        "x": -0.3,
-        "y": 0.8
+        "x": -0.8,
+        "y": 1.0
        }
       },
       "yerli_genc": {
        "emotion": "uzgun",
        "bak": {
-        "x": 0.6,
-        "y": 0.6
+        "x": 1.0,
+        "y": 0.85
        }
       }
      },
@@ -208,37 +207,54 @@
     {
      "type": "insert",
      "kind": "emir_goz",
-     "dur": 1.9
+     "dur": 1.9,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.35,
+       "at": 0.4
+      }
+     ]
     },
     {
      "type": "insert",
      "kind": "emir_parmak",
-     "dur": 1.7
+     "dur": 1.7,
+     "sfx": [
+      {
+       "name": "efekt/nefes_kesilme",
+       "volume": 0.25,
+       "at": 0.3
+      }
+     ]
     },
     {
      "type": "action",
      "dur": 2.0,
      "shot": {
-      "type": "iki",
-      "on": "yerli_genc",
-      "with": "yerli_bilge",
-      "move": "sabit"
+      "type": "genis",
+      "kadraj": {
+       "cx": 680,
+       "cy": 1300,
+       "z": 1.6
+      },
+      "move": "yaklas"
      },
      "cast": {
       "yerli_genc": {
        "emotion": "saskin",
        "bak": {
-        "x": 0.6,
-        "y": 0.6
+        "x": 1.0,
+        "y": 0.85
        }
       },
       "yerli_bilge": {
        "emotion": "kararli",
-       "gesture": "isaret",
        "bak": {
-        "x": -0.6,
-        "y": 0.6
-       }
+        "x": -1.0,
+        "y": 0.85
+       },
+       "gesture": "rest"
       }
      },
      "sfx": [
@@ -257,7 +273,7 @@
      "sfx": [
       {
        "name": "efekt/surukleme",
-       "volume": 0.55,
+       "volume": 0.3,
        "at": 0.0
       }
      ]
@@ -289,11 +305,11 @@
     },
     "yerli_kadin": {
      "mark": "kadin",
+     "hidden": true,
      "emotion": "notr",
-     "gesture": "tutuyor",
      "bak": {
-      "x": -0.7,
-      "y": 0.4
+      "x": -1,
+      "y": 0.9
      }
     }
    },
@@ -318,13 +334,8 @@
      "dur": 3.6,
      "sfx": [
       {
-       "name": "efekt/ic_cekme",
-       "volume": 0.4,
-       "at": 0.4
-      },
-      {
        "name": "efekt/cinlama",
-       "volume": 0.25,
+       "volume": 0.13,
        "at": 0.0
       }
      ]
@@ -347,7 +358,8 @@
       "text": [
        "1"
       ]
-     }
+     },
+     "vol": 0.6
     },
     {
      "type": "insert",

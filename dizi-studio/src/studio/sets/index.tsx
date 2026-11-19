@@ -29,7 +29,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
-  sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1660, size: 860 }, y1: { x: 230, y: 1700, size: 1040 }, y2: { x: 130, y: 1520, size: 900 }, yb: { x: 860, y: 1720, size: 1040 }, ya: { x: 960, y: 1520, size: 880 }, giris: { x: -260, y: 1600, size: 980 } } },
+  sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
@@ -427,11 +427,14 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
     case "sahil_enkaz": {
       // Öğle: güneş tepede, gölgeler kısa. Uçak ağaçları biçerek sahile çakılmış; duman, dağınık enkaz.
       const fr = props.frame ?? 0;
-      const smoke = (x: number, y: number, k: string, sc = 1) =>
-        new Array(14).fill(0).map((_, i) => {
-          const a = (fr * 0.9 + i * 22) % 300;
-          return <circle key={k + i} cx={x + a * 0.5 * sc + Math.sin((a + i * 40) / 30) * 14 * sc} cy={y - a * 2.2 * sc} r={(26 + a * 0.32) * sc} fill={i % 2 ? "#5a5856" : "#7a7774"} opacity={Math.max(0, 0.55 - a / 560)} />;
-        });
+      const smoke = (x: number, y: number, k: string, sc = 1) => (
+        <g key={k} filter="url(#seBulanik)">
+          {new Array(7).fill(0).map((_, i) => {
+            const a = (fr * 0.7 + i * 48) % 336;
+            return <ellipse key={k + i} cx={x + a * 0.9 * sc + Math.sin((a + i * 70) / 40) * 22 * sc} cy={y - a * 1.9 * sc} rx={(50 + a * 0.55) * sc} ry={(38 + a * 0.4) * sc} fill={i % 3 ? "#5e5b58" : "#85817c"} opacity={Math.max(0, (0.5 + 0.15 * random(`${k}o${i}`)) - a / 520)} />;
+          })}
+        </g>
+      );
       const palm = (x: number, y: number, h: number, lean: number, k: string, broken = false) => (
         <g key={k}>
           <path d={`M ${x - 14} ${y} Q ${x + lean * 0.5} ${y - h * 0.5} ${x + lean} ${y - h} L ${x + lean + 16} ${y - h + 6} Q ${x + lean * 0.5 + 16} ${y - h * 0.5} ${x + 14} ${y} Z`} fill="#8a6a44" stroke={O} strokeWidth={5} />
@@ -459,6 +462,7 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
               <stop offset="0" stopColor="#ecd7a6" />
               <stop offset="1" stopColor="#dcc08a" />
             </linearGradient>
+            <filter id="seBulanik"><feGaussianBlur stdDeviation="9" /></filter>
             <radialGradient id="seGunes" cx="0.5" cy="0.06" r="0.5">
               <stop offset="0" stopColor="#fffbe6" stopOpacity={0.9} />
               <stop offset="1" stopColor="#fffbe6" stopOpacity={0} />
@@ -486,11 +490,15 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <path d="M 260 1140 L 640 1060 L 650 1086 L 270 1170 Z" fill="#8a6a44" stroke={O} strokeWidth={5} />
           {/* kayma izi */}
           <path d="M 360 1060 Q 520 1010 640 990 L 700 1040 Q 540 1080 380 1120 Z" fill="#b89a64" opacity={0.7} />
-          {/* kopmuş kuyruk */}
-          <g transform="rotate(-18 220 960)">
-            <path d="M 150 980 L 190 760 L 270 760 L 300 980 Z" fill="#f2f4f6" stroke={O} strokeWidth={7} />
-            <path d="M 150 980 L 300 980 L 296 1010 L 156 1010 Z" fill="#c8ccd2" stroke={O} strokeWidth={5} />
-            <path d="M 300 980 l 10 -20 l 6 24 l 12 -18 l -2 34 Z" fill="#3a3a3e" />
+          {/* kopmuş kuyruk bölümü: gövde parçası + dikey ve yatay stabilizatör */}
+          <g transform="rotate(-14 230 960)">
+            <path d="M 110 930 Q 200 900 330 920 L 340 1000 Q 210 1010 120 990 Z" fill="#f2f4f6" stroke={O} strokeWidth={7} />
+            <path d="M 118 975 Q 220 985 338 972" stroke="#2a3a5a" strokeWidth={8} fill="none" />
+            <path d="M 330 918 l 12 18 l -10 14 l 14 20 l -8 32" fill="#2a2a2e" stroke={O} strokeWidth={5} />
+            <path d="M 140 925 L 120 740 L 190 740 L 260 912 Z" fill="#f2f4f6" stroke={O} strokeWidth={7} />
+            <path d="M 132 760 L 186 760 M 128 790 L 196 790" stroke="#2a3a5a" strokeWidth={10} />
+            <path d="M 130 960 L 40 1000 L 70 1020 L 200 990 Z" fill="#e2e6ea" stroke={O} strokeWidth={6} />
+            <ellipse cx={220} cy={1010} rx={130} ry={14} fill="#000" opacity={0.14} />
           </g>
           {/* ana gövde: burun denize doğru, kopuk ucu sola */}
           <g>
@@ -498,16 +506,21 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
             <path d="M 560 900 l 14 30 l -18 20 l 22 26 l -14 24 l 16 50" fill="#2a2a2e" stroke={O} strokeWidth={6} />
             <path d="M 600 1010 L 990 948" stroke="#2a3a5a" strokeWidth={9} />
             {new Array(9).fill(0).map((_, i) => <rect key={i} x={640 + i * 40} y={918 - i * 6} width={18} height={22} rx={8} fill="#3a4a60" />)}
-            <path d="M 700 900 L 640 690 L 700 680 L 780 880 Z" fill="#dfe4e9" stroke={O} strokeWidth={7} />
+            <path d="M 680 1000 L 520 1110 L 560 1130 L 640 1100 L 620 1150 L 700 1080 L 780 990 Z" fill="#dfe4e9" stroke={O} strokeWidth={7} />
+            <path d="M 560 1112 l 30 -30" stroke="#b8bec6" strokeWidth={5} />
             <ellipse cx={830} cy={1060} rx={260} ry={22} fill="#000" opacity={0.14} />
           </g>
           {smoke(580, 900, "sm1")}
-          {/* kopmuş motor */}
-          <g>
-            <rect x={340} y={1190} width={190} height={92} rx={44} fill="#c9ced4" stroke={O} strokeWidth={7} transform="rotate(14 435 1236)" />
-            <ellipse cx={530} cy={1262} rx={20} ry={44} fill="#2a2a2e" transform="rotate(14 530 1262)" />
-            <ellipse cx={440} cy={1300} rx={110} ry={14} fill="#000" opacity={0.15} />
+          {/* kopmuş motor: kaporta, ön halka, fan kanatları, yırtık pilon */}
+          <g transform="rotate(12 440 1236)">
+            <rect x={330} y={1186} width={210} height={100} rx={46} fill="#c9ced4" stroke={O} strokeWidth={7} />
+            <path d="M 380 1186 l 10 -30 l 20 18 l 16 -26 l 18 38" fill="#9aa0a8" stroke={O} strokeWidth={5} />
+            <ellipse cx={540} cy={1236} rx={26} ry={50} fill="#d8dde2" stroke={O} strokeWidth={7} />
+            <ellipse cx={540} cy={1236} rx={16} ry={38} fill="#2a2a2e" />
+            {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M 540 1236 L ${540 + Math.cos(i * 1.26) * 12} ${1236 + Math.sin(i * 1.26) * 32}`} stroke="#8a9098" strokeWidth={4} />)}
+            <path d="M 330 1210 L 300 1226 L 300 1250 L 330 1264 Z" fill="#5a5e64" stroke={O} strokeWidth={5} />
           </g>
+          <ellipse cx={440} cy={1300} rx={120} ry={14} fill="#000" opacity={0.15} />
           {smoke(420, 1200, "sm2", 0.6)}
           {/* dağınık enkaz */}
           <path d="M 880 1300 L 1010 1260 L 1040 1340 L 900 1360 Z" fill="#2c2f35" stroke={O} strokeWidth={5} />
@@ -515,20 +528,21 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <path d="M 270 1440 l 70 -12" stroke="#c9a75a" strokeWidth={6} />
           {[[700, 1240, 12], [780, 1500, -20], [160, 1340, 30], [960, 1600, 8]].map(([x, y, r], i) => <rect key={i} x={x} y={y} width={60} height={42} fill="#f6f4ee" stroke={O} strokeWidth={3} transform={`rotate(${r} ${x} ${y})`} />)}
           <path d="M 620 1180 l 80 -14 l -10 26 Z M 820 1420 l 60 6 l -30 20 Z" fill="#9aa0a8" stroke={O} strokeWidth={4} />
-          {/* mürettebat (yüzüstü, kansız): lacivert üniforma, düşmüş kep */}
+          {/* mürettebat (kansız): enkaz parçasının arkasında yalnızca sırt, uzanmış kol ve düşmüş kep görünür */}
           <g>
-            <path d="M 690 1360 L 860 1330 L 868 1372 L 700 1404 Z" fill="#1d2a44" stroke={O} strokeWidth={6} />
-            <circle cx={676} cy={1384} r={24} fill="#3a2a20" stroke={O} strokeWidth={5} />
-            <path d="M 860 1334 L 940 1322 L 944 1346 L 866 1360 Z M 864 1360 L 944 1366 L 942 1390 L 866 1380 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
-            <path d="M 740 1398 l -40 40 M 760 1340 l -30 -40" stroke="#1d2a44" strokeWidth={22} strokeLinecap="round" />
-            <path d="M 712 1446 l 18 -6 M 722 1302 l 16 -4" stroke="#d9b45a" strokeWidth={5} />
-            <ellipse cx={600} cy={1440} rx={34} ry={14} fill="#1d2a44" stroke={O} strokeWidth={4} />
-            <path d="M 572 1436 l 56 0" stroke="#d9b45a" strokeWidth={4} />
-            <ellipse cx={790} cy={1410} rx={150} ry={14} fill="#000" opacity={0.12} />
+            <path d="M 690 1350 Q 780 1320 880 1336 L 884 1376 Q 780 1366 694 1392 Z" fill="#1d2a44" stroke={O} strokeWidth={6} />
+            <path d="M 700 1380 Q 650 1420 610 1430 L 612 1452 Q 664 1446 712 1400 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
+            <path d="M 626 1428 L 630 1450 M 640 1424 L 644 1446" stroke="#d9b45a" strokeWidth={5} />
+            <path d="M 612 1432 Q 584 1436 586 1450 Q 596 1460 612 1452 Z" fill="#e0b088" stroke={O} strokeWidth={4} />
+            <path d="M 760 1290 L 930 1250 L 960 1340 L 780 1372 Z" fill="#9aa0a8" stroke={O} strokeWidth={6} />
+            <path d="M 790 1300 L 920 1272" stroke="#7a8088" strokeWidth={5} />
+            <ellipse cx={540} cy={1470} rx={34} ry={13} fill="#1d2a44" stroke={O} strokeWidth={4} />
+            <path d="M 512 1466 l 56 0" stroke="#d9b45a" strokeWidth={4} />
+            <ellipse cx={800} cy={1400} rx={150} ry={14} fill="#000" opacity={0.12} />
           </g>
           <g>
             <path d="M 1020 1200 L 1100 1190 L 1100 1226 L 1024 1232 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
-            <path d="M 1020 1230 l -40 10" stroke="#1d2a44" strokeWidth={20} strokeLinecap="round" />
+            <path d="M 1000 1180 L 1100 1150 L 1100 1200 L 1010 1214 Z" fill="#9aa0a8" stroke={O} strokeWidth={5} />
           </g>
           {/* sıcak hava titreşimi */}
           <rect y={1000} width={W} height={60} fill="#ffffff" opacity={0.04 + 0.02 * Math.sin(fr / 6)} />
@@ -542,17 +556,23 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
         <g>
           <defs>
             <linearGradient id="kuIsik" x1="0" y1="0" x2="0.4" y2="1">
-              <stop offset="0" stopColor="#ffe9b0" stopOpacity={0.45} />
-              <stop offset="1" stopColor="#ffe9b0" stopOpacity={0} />
+              <stop offset="0" stopColor="#ffe9b0" stopOpacity={0.5} />
+              <stop offset="1" stopColor="#ffe9b0" stopOpacity={0.15} />
             </linearGradient>
           </defs>
           <rect width={W} height={H} fill="#5a3e24" />
           {new Array(27).fill(0).map((_, i) => <rect key={i} x={i * 40} y={420} width={36} height={1100} fill={i % 3 ? "#8a6238" : "#7a5430"} stroke="#4a321c" strokeWidth={3} />)}
           {[620, 900, 1180].map((y) => <path key={y} d={`M 0 ${y} L 1080 ${y + 10}`} stroke="#4a321c" strokeWidth={10} />)}
-          {/* kapı aralığı: dışarısı parlak */}
-          <rect x={830} y={600} width={210} height={900} fill="#f7e8b8" stroke="#3a2614" strokeWidth={10} />
-          <path d="M 860 700 q 60 -40 140 10 M 850 820 q 80 -30 170 20" stroke="#4f8a3e" strokeWidth={26} fill="none" strokeLinecap="round" />
-          <path d="M 830 1500 L 1040 1500 L 1080 1920 L 700 1920 Z" fill="#f7e8b8" opacity={0.22} />
+          {/* kapı: ahşap pervaz, dışarıda gök + kum, aşırı pozlanmış parıltı */}
+          <rect x={830} y={600} width={210} height={900} fill="#bfe2f2" />
+          <rect x={830} y={1150} width={210} height={350} fill="#f2dfae" />
+          <rect x={830} y={1080} width={210} height={70} fill="#3fa0b4" />
+          <path d="M 850 760 q 60 -40 160 10 M 840 880 q 90 -30 190 20" stroke="#4f8a3e" strokeWidth={26} fill="none" strokeLinecap="round" />
+          <rect x={830} y={600} width={210} height={900} fill="#fff8e0" opacity={0.45} />
+          <rect x={812} y={590} width={26} height={920} fill="#5a3a1e" stroke={O} strokeWidth={5} />
+          <rect x={1032} y={590} width={26} height={920} fill="#5a3a1e" stroke={O} strokeWidth={5} />
+          <rect x={812} y={576} width={246} height={28} fill="#5a3a1e" stroke={O} strokeWidth={5} />
+          <path d="M 830 1500 L 1040 1500 L 1080 1920 L 660 1920 Z" fill="#f7e8b8" opacity={0.4} />
           {/* saz çatı */}
           <path d="M 0 0 L 1080 0 L 1080 470 Q 540 380 0 470 Z" fill="#b08a48" />
           {new Array(10).fill(0).map((_, r) => (
@@ -574,11 +594,12 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <rect y={1500} width={W} height={420} fill="#6a4a2c" />
           <path d="M 60 1700 L 760 1680 L 800 1880 L 20 1900 Z" fill="#b8955a" opacity={0.75} />
           {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${60 + i * 90} 1690 L ${40 + i * 96} 1895`} stroke="#9a7a44" strokeWidth={4} />)}
-          {/* küçük ateş (arka sol) */}
-          <ellipse cx={150} cy={1360} rx={70} ry={20} fill="#3a2a1a" />
-          <path d={`M 120 1360 Q 140 ${1300 + Math.sin(fr / 3) * 8} 150 1280 Q 160 ${1310 + Math.cos(fr / 4) * 8} 182 1360 Z`} fill="#ff9a3a" />
-          <path d={`M 138 1360 Q 150 ${1320 + Math.sin(fr / 2) * 6} 164 1360 Z`} fill="#ffe08a" />
-          {new Array(6).fill(0).map((_, i) => { const a = (fr + i * 30) % 180; return <circle key={i} cx={150 + Math.sin(a / 20) * 16} cy={1270 - a * 3} r={18 + a * 0.2} fill="#9a8a7a" opacity={Math.max(0, 0.3 - a / 600)} />; })}
+          {/* küçük ateş: taş halka, ön solda */}
+          {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <ellipse key={i} cx={130 + Math.cos(i * 0.785) * 74} cy={1700 + Math.sin(i * 0.785) * 22} rx={20} ry={13} fill="#8a8480" stroke={O} strokeWidth={3} />)}
+          <path d={`M 96 1700 Q 120 ${1630 + Math.sin(fr / 3) * 10} 130 1606 Q 142 ${1640 + Math.cos(fr / 4) * 10} 166 1700 Z`} fill="#ff9a3a" />
+          <path d={`M 114 1700 Q 130 ${1650 + Math.sin(fr / 2) * 6} 146 1700 Z`} fill="#ffe08a" />
+          <ellipse cx={130} cy={1690} rx={160} ry={60} fill="#ffb060" opacity={0.12 + 0.04 * Math.sin(fr / 3)} />
+          {new Array(6).fill(0).map((_, i) => { const a = (fr + i * 30) % 180; return <circle key={i} cx={130 + Math.sin(a / 20) * 16} cy={1600 - a * 3} r={18 + a * 0.2} fill="#9a8a7a" opacity={Math.max(0, 0.3 - a / 600)} />; })}
           {/* yatak: alçak ahşap çerçeve, saman, iri yapraklar */}
           <rect x={150} y={1440} width={760} height={110} rx={14} fill="#6a4a28" stroke={O} strokeWidth={7} />
           <path d="M 160 1450 Q 530 1390 900 1450 L 900 1480 L 160 1480 Z" fill="#d8b866" stroke={O} strokeWidth={5} />
@@ -591,8 +612,11 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <path d="M 944 1578 L 940 1660 M 1026 1578 L 1030 1660" stroke="#6a4a28" strokeWidth={10} />
           <path d="M 940 1560 Q 985 1610 1030 1560 Z" fill="#8a5a34" stroke={O} strokeWidth={4} />
           <ellipse cx={985} cy={1560} rx={44} ry={8} fill="#d99a2a" />
+          {/* Emir'in göğsüne ve yüzüne düşen sıcak ışık + havada toz */}
+          <ellipse cx={420} cy={1440} rx={220} ry={70} fill="#ffe2a0" opacity={0.18} />
+          {new Array(22).fill(0).map((_, i) => <circle key={i} cx={(random(`tz${i}`) * 700 + 280 + fr * 0.2 * (i % 3)) % 1080} cy={500 + ((random(`ty${i}`) * 1000 + fr * 0.4) % 1000)} r={2.5} fill="#fff2c8" opacity={0.5} />)}
           {/* genel loşluk */}
-          <rect width={W} height={H} fill="#1a0e04" opacity={0.18} />
+          <rect width={W} height={H} fill="#1a0e04" opacity={0.16} />
         </g>
       );
     }

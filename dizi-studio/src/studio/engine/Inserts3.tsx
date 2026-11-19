@@ -289,7 +289,7 @@ const Kum: React.FC = () => (
 /** Yatan karakter (baş solda), ekleme çekimi için */
 const Yatan: React.FC<{ id: string; size: number; cx: number; cy: number; eyes?: number; emotion?: string; rot?: number }> = ({ id, size, cx, cy, eyes = 1, emotion = "yorgun", rot = -90 }) => (
   <div style={{ position: "absolute", left: cx - size * 0.2, top: cy - size * 0.2, transformOrigin: `${size * 0.2}px ${size * 0.2}px`, transform: `rotate(${rot}deg)` }}>
-    <Character look={castById(id)} size={size} pose={{ emotion: emotion as never, eyesClosed: eyes, seed: 2, breath: 0.3 }} />
+    <Character look={castById(id)} size={size} pose={{ emotion: emotion as never, eyesClosed: eyes, seed: 2, breath: 0.3, golgesiz: true }} />
   </div>
 );
 
@@ -302,9 +302,8 @@ const EmirKumda: React.FC<{ dur: number }> = ({ dur }) => {
       <AbsoluteFill style={{ transform: `scale(${z})` }}>
         <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}><Kum /></svg>
         <Yatan id="emir_kaza" size={2300} cx={330} cy={900} />
-        <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 10%, rgba(255,250,220,0.35) 0%, rgba(255,250,220,0) 60%)" }} />
       </AbsoluteFill>
-      <Vig v={0.45} />
+      <Vig v={0.2} />
     </AbsoluteFill>
   );
 };
@@ -323,7 +322,7 @@ const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ d
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <Kum />
         {hedef === "murettebat" ? (
-          <g transform={`translate(0 ${give})`}>
+          <g transform={`translate(1080 ${give}) scale(-1 1)`}>
             {/* yüzüstü yatan pilot: lacivert ceket sırtı, ense, uzanmış kol (altın şeritli manşet) */}
             <path d="M -60 1000 Q 260 940 600 980 Q 660 1100 620 1300 Q 300 1330 -60 1320 Z" fill="#1d2a44" stroke={O} strokeWidth={10} />
             <path d="M 300 990 Q 320 1150 300 1310" stroke="#151d30" strokeWidth={8} fill="none" />
@@ -336,14 +335,14 @@ const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ d
             <ellipse cx={400} cy={1350} rx={460} ry={36} fill="#000" opacity={0.12} />
           </g>
         ) : (
-          <g transform={`translate(0 ${give})`}>
+          <g transform={`translate(1080 ${give}) scale(-1 1)`}>
             {/* sırtüstü Emir: yırtık beyaz gömlek, omuz, yaka, çene kenarı */}
             <path d="M -60 960 Q 320 900 760 960 L 780 1360 Q 360 1330 -60 1380 Z" fill="#e6e0d4" stroke={O} strokeWidth={10} />
             <path d="M 700 950 L 820 900 L 860 1000 L 760 1060 Z" fill="#f2efe8" stroke={O} strokeWidth={7} />
-            <path d="M 780 880 Q 900 840 1000 900 Q 1060 1000 1000 1100 Q 900 1150 820 1080 Z" fill={SKIN} stroke={O} strokeWidth={10} />
+            <path d="M 820 960 Q 760 1000 700 1080" stroke="#7a2430" strokeWidth={30} fill="none" strokeLinecap="round" />
             <path d="M 300 1000 L 360 950 L 384 1030 L 444 976 L 430 1100 L 320 1096 Z" fill={SKIN} stroke={O} strokeWidth={6} />
             <path d="M 120 1200 Q 300 1160 520 1220" stroke="#9a8a70" strokeWidth={26} opacity={0.35} fill="none" />
-            <ellipse cx={560} cy={1060} rx={54} ry={30} fill="#8a1a1a" opacity={0.45} />
+            <path d="M 430 1050 Q 480 1010 540 1040 Q 590 1030 600 1080 Q 560 1110 500 1096 Q 450 1100 430 1050 Z" fill="#6a1010" opacity={0.7} />
             <path d="M 160 1060 Q 200 1010 260 1040" stroke="#8a7a60" strokeWidth={12} opacity={0.4} fill="none" />
             <ellipse cx={420} cy={1380} rx={460} ry={34} fill="#000" opacity={0.12} />
           </g>
@@ -354,7 +353,7 @@ const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ d
           <path d="M 900 690 l -30 -40 M 1040 530 l 30 10" stroke="#7a5530" strokeWidth={9} />
         </g>
       </svg>
-      <Vig v={0.5} />
+      <Vig v={0.22} />
     </AbsoluteFill>
   );
 };
@@ -397,28 +396,33 @@ const EmirParmak: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-/** İki genç Emir'i kollarından tutup ağaçlara doğru sürükler (geniş) */
+/** İki genç Emir'i bileklerinden tutup ağaçlara doğru sürükler (geniş); arkada enkaz dumanı ve kuyruk */
 const Tasima: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const x = interpolate(f, [0, dur], [760, 260], clamp);
+  const x = interpolate(f, [0, dur], [780, 300], clamp);
   return (
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <AbsoluteFill style={{ background: "linear-gradient(180deg,#7fc0ea 0%,#d6eef8 30%,#1f7e9e 31%,#5fc6cc 40%,#e6cf9c 41%,#dcc08a 100%)" }} />
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
+        <defs><filter id="taBulanik"><feGaussianBlur stdDeviation="10" /></filter></defs>
         <path d="M 0 500 Q 200 420 420 520 L 460 820 L 0 860 Z" fill="#2f6a34" />
-        <path d={`M ${x + 140} 1450 L 1080 1460`} stroke="#c4a870" strokeWidth={10} strokeDasharray="30 18" />
-        <path d={`M ${x + 140} 1490 L 1080 1500`} stroke="#c4a870" strokeWidth={10} strokeDasharray="30 18" />
+        <g filter="url(#taBulanik)">
+          {new Array(6).fill(0).map((_, i) => { const a = (f * 0.7 + i * 50) % 300; return <ellipse key={i} cx={900 + a * 0.6} cy={760 - a * 1.8} rx={60 + a * 0.4} ry={44 + a * 0.3} fill="#6a6764" opacity={Math.max(0, 0.5 - a / 520)} />; })}
+        </g>
+        <path d="M 860 770 L 900 640 L 950 640 L 990 770 Z" fill="#e8ebee" stroke={O} strokeWidth={5} opacity={0.85} />
+        <path d={`M ${x + 700} 1500 Q ${(x + 1080) / 2 + 300} 1490 1080 1496`} stroke="#c4a870" strokeWidth={12} strokeDasharray="34 18" fill="none" />
+        <path d={`M ${x + 700} 1540 Q ${(x + 1080) / 2 + 300} 1530 1080 1536`} stroke="#c4a870" strokeWidth={12} strokeDasharray="34 18" fill="none" />
       </svg>
-      <div style={{ position: "absolute", left: x + 70 - 0.2 * 900, top: 1150 - 0.2 * 900, transformOrigin: `${0.2 * 900}px ${0.2 * 900}px`, transform: "rotate(-68deg)" }}>
-        <Character look={castById("emir_kaza")} size={900} pose={{ emotion: "yorgun", eyesClosed: 1, seed: 2, armL: { upper: 150, fore: 0 }, armR: { upper: 150, fore: 0 } }} />
+      <div style={{ position: "absolute", left: x + 40 - 0.2 * 900, top: 1150 - 0.2 * 900, transformOrigin: `${0.2 * 900}px ${0.2 * 900}px`, transform: "rotate(-80deg)" }}>
+        <Character look={castById("emir_kaza")} size={900} pose={{ emotion: "yorgun", eyesClosed: 1, seed: 2, golgesiz: true, armL: { upper: 168, fore: 0 }, armR: { upper: 168, fore: 0 } }} />
       </div>
-      <div style={{ position: "absolute", left: x - 70 - 0.2 * 920, top: 1560 - 920 }}>
-        <Character look={castById("yerli_genc")} size={920} pose={{ body: "walk", emotion: "kararli", yaw: -0.55, lookX: -0.8, armR: { upper: 40, fore: -30 }, seed: 4 }} />
+      <div style={{ position: "absolute", left: x - 120 - 0.2 * 920, top: 1560 - 920 }}>
+        <Character look={castById("yerli_genc")} size={920} pose={{ body: "walk", emotion: "kararli", yaw: -0.85, lookX: -1, lookY: 0.2, armR: { upper: 22, fore: -48 }, seed: 4 }} />
       </div>
-      <div style={{ position: "absolute", left: x + 40 - 0.2 * 900, top: 1600 - 900 }}>
-        <Character look={castById("yerli_genc2")} size={900} pose={{ body: "walk", emotion: "kararli", yaw: -0.55, lookX: -0.8, armL: { upper: 40, fore: -30 }, seed: 5 }} />
+      <div style={{ position: "absolute", left: x - 10 - 0.2 * 900, top: 1600 - 900 }}>
+        <Character look={castById("yerli_genc2")} size={900} pose={{ body: "walk", emotion: "kararli", yaw: -0.85, lookX: -1, lookY: 0.2, armL: { upper: 22, fore: -48 }, seed: 5 }} />
       </div>
-      <Vig v={0.35} />
+      <Vig v={0.22} />
     </AbsoluteFill>
   );
 };
@@ -440,11 +444,13 @@ const SargiYakin: React.FC<{ dur: number }> = ({ dur }) => {
         <path d="M 360 880 Q 470 860 580 900" stroke="#f2c24a" strokeWidth={14} opacity={shine} fill="none" strokeLinecap="round" />
         <path d="M 600 960 Q 680 940 750 970" stroke="#f2c24a" strokeWidth={10} opacity={shine} fill="none" strokeLinecap="round" />
         <path d="M 300 1060 L 800 1040" stroke="#a57a44" strokeWidth={12} />
-        {/* kadın eli */}
+        {/* kadın eli: avuç yaprağa bastırır, başparmak + dört parmak, bilekte örgü bilezik */}
         <g transform={`translate(0 ${(1 - press) * -260})`}>
-          <path d="M 640 520 Q 720 600 700 760 Q 640 800 560 780 Q 520 640 560 520 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
-          <path d="M 580 760 l -10 40 M 620 770 l -6 46 M 660 768 l 0 44" stroke="#b8805a" strokeWidth={22} strokeLinecap="round" />
-          <path d="M 540 480 L 720 480 L 700 560 L 560 560 Z" fill="#c9ad7c" stroke={O} strokeWidth={7} />
+          <path d="M 560 470 L 700 470 L 704 640 L 556 640 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
+          <rect x={548} y={560} width={164} height={34} rx={10} fill="#c9a24a" stroke={O} strokeWidth={5} />
+          <path d="M 556 640 Q 540 740 580 790 L 700 790 Q 730 720 704 640 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
+          {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${592 + i * 32} 780 L ${590 + i * 34} 860 Q ${604 + i * 34} 880 ${618 + i * 34} 860 L ${616 + i * 32} 780`} fill="#b8805a" stroke={O} strokeWidth={6} />)}
+          <path d="M 556 680 Q 500 720 510 790 Q 530 810 552 780 Q 556 740 580 720" fill="#b8805a" stroke={O} strokeWidth={6} />
         </g>
       </svg>
       <Vig v={0.55} />
@@ -458,8 +464,8 @@ const Kapaklar: React.FC<{ open: number }> = ({ open }) => {
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
-        <path d={`M -100 -100 L 1180 -100 L 1180 ${h * 0.96} Q 540 ${h + 160} -100 ${h * 0.96} Z`} fill="#050302" />
-        <path d={`M -100 2020 L 1180 2020 L 1180 ${1920 - h * 0.96} Q 540 ${1920 - h - 160} -100 ${1920 - h * 0.96} Z`} fill="#050302" />
+        <path d={`M -100 -100 L 1180 -100 L 1180 ${h + 160} Q 540 ${h - 160} -100 ${h + 160} Z`} fill="#050302" />
+        <path d={`M -100 2020 L 1180 2020 L 1180 ${1920 - h - 160} Q 540 ${1920 - h + 160} -100 ${1920 - h - 160} Z`} fill="#050302" />
       </svg>
       <AbsoluteFill style={{ background: `radial-gradient(ellipse at center, rgba(0,0,0,0) ${30 + open * 25}%, rgba(0,0,0,0.85) 100%)` }} />
     </AbsoluteFill>
@@ -480,7 +486,7 @@ const SazTavan: React.FC = () => (
 /** POV: Emir gözlerini açmaya çalışır; saz çatı bulanık, kapaklar kırpışır */
 const PovAcilis: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const open = interpolate(f, [0, dur * 0.2, dur * 0.35, dur * 0.5, dur * 0.7, dur * 0.85, dur], [0, 0.18, 0.05, 0.3, 0.12, 0.4, 0.35], clamp);
+  const open = interpolate(f, [0, dur * 0.2, dur * 0.35, dur * 0.5, dur * 0.7, dur * 0.85, dur], [0, 0.25, 0.1, 0.4, 0.2, 0.5, 0.45], clamp);
   const blur = interpolate(f, [0, dur], [22, 14], clamp);
   const sway = Math.sin(f / 18) * 10;
   return (
