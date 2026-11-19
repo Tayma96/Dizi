@@ -12,7 +12,7 @@
   {
    "id": "a",
    "set": "market",
-   "time": "gece",
+   "time": "gunduz",
    "look": "soguk",
    "title": "03.00",
    "saat": "03:00",
@@ -59,8 +59,9 @@
       "ece724": {
        "emotion": "saskin",
        "bak": {
-        "x": -0.4,
-        "y": -0.2
+        "x": -0.95,
+        "y": 0.05,
+        "yaw": -0.75
        }
       }
      },
@@ -94,8 +95,9 @@
        "emotion": "korkmus",
        "gesture": "eliYuzunde",
        "bak": {
-        "x": -0.4,
-        "y": -0.2
+        "x": -0.95,
+        "y": 0.05,
+        "yaw": -0.75
        }
       }
      }
@@ -172,8 +174,8 @@
   {
    "id": "b",
    "set": "market",
-   "time": "gece",
-   "look": "normal",
+   "time": "gunduz",
+   "look": "soguk",
    "title": "23.00 · Devir",
    "saat": "23:00",
    "transition": "kesme",
@@ -354,8 +356,9 @@
       "ece724": {
        "emotion": "supheli",
        "bak": {
-        "x": -0.4,
-        "y": -0.2
+        "x": -0.95,
+        "y": 0.05,
+        "yaw": -0.75
        }
       }
      },
@@ -400,8 +403,8 @@
   {
    "id": "g",
    "set": "market",
-   "time": "gece",
-   "look": "normal",
+   "time": "gunduz",
+   "look": "soguk",
    "title": "Gece akışı",
    "saat": "00:12",
    "transition": "kesme",
@@ -660,8 +663,9 @@
        "gesture": "rest",
        "prop": "none",
        "bak": {
-        "x": -0.4,
-        "y": -0.2
+        "x": -0.95,
+        "y": 0.05,
+        "yaw": -0.75
        }
       }
      }
@@ -741,7 +745,7 @@
   {
    "id": "c",
    "set": "market",
-   "time": "gece",
+   "time": "gunduz",
    "look": "soguk",
    "title": "03.00 · Kural 1",
    "saat": "03:00",
@@ -872,8 +876,9 @@
       "ece724": {
        "emotion": "yorgun",
        "bak": {
-        "x": -0.4,
-        "y": -0.2
+        "x": -0.95,
+        "y": 0.05,
+        "yaw": -0.75
        }
       }
      },
@@ -914,9 +919,9 @@
       "ece724": {
        "emotion": "saskin",
        "bak": {
-        "x": 1.0,
-        "y": -0.1,
-        "yaw": 0.9
+        "x": -0.5,
+        "y": -0.45,
+        "yaw": -0.35
        }
       }
      }
@@ -932,9 +937,9 @@
       "ece724": {
        "emotion": "supheli",
        "bak": {
-        "x": 1.0,
-        "y": -0.1,
-        "yaw": 0.9
+        "x": -0.5,
+        "y": -0.45,
+        "yaw": -0.35
        }
       }
      }
@@ -992,9 +997,9 @@
        "gesture": "telefon",
        "prop": "telefon",
        "bak": {
-        "x": 1.0,
-        "y": -0.1,
-        "yaw": 0.9
+        "x": -0.5,
+        "y": -0.45,
+        "yaw": -0.35
        }
       }
      }
@@ -1057,9 +1062,9 @@
       "ece724": {
        "emotion": "sok",
        "bak": {
-        "x": 1.0,
-        "y": -0.1,
-        "yaw": 0.9
+        "x": -0.5,
+        "y": -0.45,
+        "yaw": -0.35
        }
       }
      }
@@ -1071,9 +1076,9 @@
      "shot": {
       "type": "genis",
       "kadraj": {
-       "cx": 945,
-       "cy": 1030,
-       "z": 2.2
+       "cx": 454,
+       "cy": 910,
+       "z": 2.4
       },
       "move": "yaklas"
      },

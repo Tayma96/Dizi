@@ -22,3 +22,9 @@ Durum: 19 Kasım 2026. Kullanıcı: "kurallı korku, 7/24 market" (The Rules'tan
 - Mekân: beyaz floresan ışıkla aşırı aydınlık ama bomboş market (tekinsiz parlaklık), dışarıda yağmurlu karanlık sokak, kapının üstünde kırmızı dijital saat. Arka sağda karanlık "DEPO · PERSONEL" kapısı.
 - Ses: buzdolabı uğultusu, floresan, otomatik kapının "ding-dong"u, sessizlik. Müzik: ElevenLabs (bu diziye özgü).
 - KAT 7 dersleri: tek parça kesintisiz kurgu, ilk 3 sn kanca, kurallar ekranda okunur, kimin kim olduğu net.
+
+## Mekân yerleşimi (kullanıcı düzeltmesi: "kasiyer kapıya sırtını mı dönük?")
+- Kamera ana koridordan arkaya bakar. **Sol duvar:** cam vitrin + otomatik kapı ("GİRİŞ", paspas), kapının önünde tavandan sarkan dijital saat, camda ters okunan "AÇIK 7/24", ekmek reyonu.
+- **Sağ ön:** kasa; Ece kasanın arkasında, yüzü **sola, kapıya** dönük; arkasında sigara rafı.
+- **Arka duvar:** solda DEPO kapısı, sağda buzdolapları. Ortada iki raf koridoru.
+- Müşteriler soldan (kapıdan) girer, kasanın önünde Ece'nin karşısında durur, sola çıkar. İç mekân aydınlık (gece filtresi yok), dışarısı karanlık.

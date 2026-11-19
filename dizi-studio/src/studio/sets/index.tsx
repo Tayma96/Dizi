@@ -31,7 +31,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
   lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 }, asansor: { x: 360, y: 1560, size: 1000 } } },
-  market: { title: "Can Market 7/24 (gece)", marks: { ece: { x: 800, y: 1700, size: 1120 }, sabri: { x: 470, y: 1760, size: 1160 }, kapi: { x: 540, y: 1330, size: 760 }, depo: { x: 960, y: 1400, size: 860 }, musteri: { x: 300, y: 1760, size: 1160 } } },
+  market: { title: "Can Market 7/24 (gece)", marks: { ece: { x: 820, y: 1700, size: 1120 }, sabri: { x: 420, y: 1780, size: 1160 }, kapi: { x: 150, y: 1500, size: 900 }, depo: { x: 450, y: 1100, size: 520 }, musteri: { x: 400, y: 1790, size: 1160 } } },
   kat7_koridor: { title: "7. kat: yanık arşiv koridoru", marks: { cemil: { x: 540, y: 1790, size: 1160 }, ileri: { x: 560, y: 1500, size: 820 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
@@ -672,80 +672,93 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       );
     }
     case "market": {
-      // Can Market 7/24: kasanın arkasından girişe bakış. Ortada otomatik cam kapı (doorOpen), dışarıda yağmurlu sokak;
-      // kapının üstünde kırmızı dijital saat (props.saat); solda raflar ve buzdolabı duvarı; sağ arkada karanlık DEPO kapısı (props.tv === "depo" → aralık).
+      // Can Market 7/24, yerleşim: kamera ana koridordan arkaya bakar (kaçış noktası VX,VY).
+      // SOL duvar: sokağa bakan cam vitrin + otomatik kapı (doorOpen) + kapı üstünde dijital saat (props.saat) + ekmek reyonu.
+      // SAĞ ön: kasa (FG). Ece kasanın arkasında, yüzü sola (kapıya) dönük. ARKA: buzdolabı duvarı + sağ köşede DEPO kapısı (props.tv === "depo").
       const fr = props.frame ?? 0;
       const tb = props.turb ?? 0;
       const flick = tb > 0 ? (random(`mf${Math.floor(fr / 2)}`) > 1 - tb * 0.6 ? 0.4 : 1) : 1;
       const op = Math.max(0, Math.min(1, doorOpen));
       const saat = props.saat ?? "23:00";
       const depo = props.tv === "depo" ? 1 : 0;
-      const VX = 540, VY = 980;
+      const VX = 620;
+      const BL = 400, BR = 840, BT = 600, BB = 1100; // arka duvar dikdörtgeni
+      // sol duvarda t (0 = kamera, 1 = arka duvar) noktası
+      const lx = (t: number) => BL * t;
+      const lt = (t: number) => 60 + (BT - 60) * t;
+      const lb = (t: number) => 1780 - (1780 - BB) * t;
+      const quadL = (t1: number, t2: number, f1: number, f2: number) => `M ${lx(t1)} ${lt(t1) + (lb(t1) - lt(t1)) * f1} L ${lx(t2)} ${lt(t2) + (lb(t2) - lt(t2)) * f1} L ${lx(t2)} ${lt(t2) + (lb(t2) - lt(t2)) * f2} L ${lx(t1)} ${lt(t1) + (lb(t1) - lt(t1)) * f2} Z`;
+      // otomatik kapı: t 0.18-0.52 arası; iki kanat duvar boyunca kayar
+      const d1 = 0.18, d2 = 0.52, dm = (d1 + d2) / 2;
       return (
         <g>
           <defs>
-            <linearGradient id="mkTavan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#e9ecef" /><stop offset="1" stopColor="#cdd3d8" /></linearGradient>
-            <linearGradient id="mkSokak" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#060a12" /><stop offset="1" stopColor="#141c28" /></linearGradient>
-            <linearGradient id="mkZemin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#d8dcd8" /><stop offset="1" stopColor="#a8aea8" /></linearGradient>
-            <filter id="mkParlak"><feGaussianBlur stdDeviation="7" /></filter>
+            <linearGradient id="mkSokak2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#05080f" /><stop offset="1" stopColor="#141c2a" /></linearGradient>
+            <linearGradient id="mkZemin2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#cfd4d0" /><stop offset="1" stopColor="#9aa29c" /></linearGradient>
+            <linearGradient id="mkDolap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#f4fbff" /><stop offset="1" stopColor="#cfe4f2" /></linearGradient>
+            <filter id="mkParlak2"><feGaussianBlur stdDeviation="6" /></filter>
           </defs>
-          {/* tavan + floresan paneller (perspektif) */}
-          <rect width={W} height={H} fill="#dfe3e6" />
-          <path d={`M 0 0 L 1080 0 L ${VX + 300} ${VY - 420} L ${VX - 300} ${VY - 420} Z`} fill="url(#mkTavan)" />
-          {[0, 1, 2].map((i) => { const k = 0.25 + i * 0.25; const w = 520 * (1 - k * 0.7); const y = 60 + (VY - 420 - 60) * k; return <rect key={i} x={540 - w / 2} y={y} width={w} height={26 * (1 - k * 0.6)} rx={6} fill="#ffffff" opacity={0.95 * flick} />; })}
-          {/* arka duvar: kapı, saat, vitrin */}
-          <rect x={VX - 300} y={VY - 420} width={600} height={620} fill="#cfd4d6" />
-          <rect x={VX - 150} y={VY - 300} width={300} height={500} fill="url(#mkSokak)" stroke="#5a6066" strokeWidth={8} />
-          <rect x={VX - 140} y={VY - 290} width={140 * (1 - op)} height={480} fill="#8ab0c8" opacity={0.18} stroke="#7a8288" strokeWidth={4} />
-          <rect x={VX + 140 * op} y={VY - 290} width={140 * (1 - op)} height={480} fill="#8ab0c8" opacity={0.18} stroke="#7a8288" strokeWidth={4} />
-          {new Array(26).fill(0).map((_, i) => { const y = (fr * 22 + i * 61) % 480; const x = VX - 140 + ((i * 37) % 280); return <path key={i} d={`M ${x} ${VY - 290 + y} l -4 20`} stroke="#8aa0b8" strokeWidth={2} opacity={0.5} />; })}
-          <circle cx={VX + 100} cy={VY - 200} r={18} fill="#f2c870" opacity={0.8} />
-          {/* kapı üstü dijital saat */}
-          <rect x={VX - 100} y={VY - 400} width={200} height={70} rx={8} fill="#140404" stroke="#3a3a3a" strokeWidth={4} />
-          <text x={VX} y={VY - 348} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={54} fill="#ff2a1a">{saat}</text>
-          <text x={VX} y={VY - 348} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={54} fill="#ff2a1a" opacity={0.4} filter="url(#mkParlak)">{saat}</text>
-          {/* vitrinde ters okunan neon "AÇIK 7/24" */}
-          <text x={VX - 230} y={VY - 120} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={30} fill="#ff4a8a" opacity={0.85} transform={`scale(-1 1) translate(${-2 * (VX - 230)} 0)`}>AÇIK 7/24</text>
-          <rect x={VX - 290} y={VY - 160} width={130} height={340} fill="#0a0e16" stroke="#5a6066" strokeWidth={6} />
-          <rect x={VX + 160} y={VY - 160} width={130} height={340} fill="#0a0e16" stroke="#5a6066" strokeWidth={6} />
-          {/* sol duvar: buzdolabı vitrini (parlak, şişeler) */}
-          <path d={`M 0 140 L ${VX - 300} ${VY - 420} L ${VX - 300} ${VY + 200} L 0 1700 Z`} fill="#b8c0c4" />
-          {[0, 1, 2, 3].map((i) => {
-            const k0 = i * 0.24, k1 = k0 + 0.22;
-            const x0 = (VX - 300) * k0, x1 = (VX - 300) * k1;
-            const y0t = 140 + (VY - 420 - 140) * k0, y1t = 140 + (VY - 420 - 140) * k1;
-            const y0b = 1700 - (1700 - (VY + 200)) * k0, y1b = 1700 - (1700 - (VY + 200)) * k1;
-            return (
-              <g key={i}>
-                <path d={`M ${x0} ${y0t + 40} L ${x1} ${y1t + 30} L ${x1} ${y1b - 30} L ${x0} ${y0b - 40} Z`} fill="#e8f4ff" stroke="#6a7278" strokeWidth={6} />
-                {[0, 1, 2, 3].map((j) => <path key={j} d={`M ${x0} ${y0t + 40 + (y0b - y0t - 80) * (j + 1) / 5} L ${x1} ${y1t + 30 + (y1b - y1t - 60) * (j + 1) / 5}`} stroke="#9aa4aa" strokeWidth={4} />)}
-                {[0, 1, 2, 3, 4].map((j) => new Array(4).fill(0).map((__, q) => <rect key={`${j}-${q}`} x={x0 + 14 + q * (x1 - x0 - 20) / 4} y={y0t + 60 + (y0b - y0t - 80) * j / 5} width={Math.max(6, (x1 - x0) / 7)} height={Math.max(18, (y0b - y0t) / 9)} rx={4} fill={["#d84a3a", "#3a8ad8", "#e8c03a", "#3ab86a"][(j + q + i) % 4]} opacity={0.85} />))}
-              </g>
-            );
-          })}
-          {/* sağ duvar: DEPO · PERSONEL kapısı (karanlık; aralanabilir) */}
-          <path d={`M 1080 140 L ${VX + 300} ${VY - 420} L ${VX + 300} ${VY + 200} L 1080 1700 Z`} fill="#c4cacd" />
-          <path d="M 880 640 L 1010 600 L 1010 1460 L 880 1330 Z" fill="#5a6066" stroke="#2a2e32" strokeWidth={6} />
-          <path d={`M 880 640 L ${880 + 130 * (1 - depo * 0.35)} ${600 + 40 * depo * 0.35} L ${880 + 130 * (1 - depo * 0.35)} ${1460 - 30 * depo * 0.35} L 880 1330 Z`} fill="#7a8088" stroke="#2a2e32" strokeWidth={5} />
-          {depo ? <path d={`M ${880 + 130 * 0.65} 614 L 1010 600 L 1010 1460 L ${880 + 130 * 0.65} 1450 Z`} fill="#000" /> : null}
-          <rect x={900} y={700} width={90} height={40} fill="#e8e0c0" transform="skewY(-17)" />
-          <text x={945} y={727} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={16} fontWeight={900} fill="#1a1a1a" transform="skewY(-17)">DEPO · PERSONEL</text>
-          {/* orta: raf koridoru (ekmek reyonu solda, cips sağda) */}
-          {[[-1, 330], [1, 750]].map(([sd, x]) => (
-            <g key={sd}>
-              <path d={`M ${x - 120 * sd} 1700 L ${x - 120 * sd} 900 L ${x + 30 * sd} 960 L ${x + 30 * sd} 1500 Z`} fill="#f0f2f4" stroke="#8a9298" strokeWidth={5} />
-              {[0, 1, 2, 3].map((j) => <path key={j} d={`M ${x - 120 * sd} ${1000 + j * 180} L ${x + 30 * sd} ${1030 + j * 130}`} stroke="#8a9298" strokeWidth={5} />)}
-              {[0, 1, 2, 3].map((j) => new Array(4).fill(0).map((__, q) => <rect key={`${j}-${q}`} x={x - 110 * sd + q * 34 * sd - (sd < 0 ? 0 : 26)} y={960 + j * 170 - q * 8} width={26} height={34} rx={5} fill={sd < 0 ? ["#e8c88a", "#d8a860", "#f0d8a8"][(j + q) % 3] : ["#e84a3a", "#3a6ad8", "#e8a03a"][(j + q) % 3]} />))}
+          <rect width={W} height={H} fill="#d6dbde" />
+          {/* tavan + floresan tüpler (arkaya doğru) */}
+          <path d={`M 0 0 L 1080 0 L ${BR} ${BT} L ${BL} ${BT} Z`} fill="#e6eaec" />
+          {[0.15, 0.4, 0.62, 0.8].map((k, i) => { const y = 40 + (BT - 40) * k; const w = 360 * (1 - k * 0.75); const cx = 540 + (VX - 540) * k; return <rect key={i} x={cx - w / 2} y={y} width={w} height={Math.max(6, 22 * (1 - k))} rx={5} fill="#ffffff" opacity={0.95 * flick} />; })}
+          {/* arka duvar: buzdolabı vitrini + DEPO kapısı */}
+          <rect x={BL} y={BT} width={BR - BL} height={BB - BT} fill="#c8ced2" />
+          {[0, 1, 2, 3].map((i) => (
+            <g key={i}>
+              <rect x={BL + 106 + i * 82} y={BT + 30} width={76} height={400} fill="url(#mkDolap)" stroke="#6a7278" strokeWidth={4} />
+              {[0, 1, 2, 3].map((j) => <rect key={j} x={BL + 112 + i * 82} y={BT + 60 + j * 90} width={64} height={60} fill={["#d84a3a", "#3a8ad8", "#e8c03a", "#3ab86a"][(i + j) % 4]} opacity={0.75} />)}
             </g>
           ))}
-          <rect x={150} y={880} width={180} height={34} fill="#e8a03a" transform="skewY(4)" />
-          <text x={240} y={904} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={20} fontWeight={900} fill="#2a1a0a" transform="skewY(4)">EKMEK</text>
-          {/* zemin: parlak beyaz karo, yansıma */}
-          <path d={`M 0 1700 L ${VX - 300} ${VY + 200} L ${VX + 300} ${VY + 200} L 1080 1700 L 1080 1920 L 0 1920 Z`} fill="url(#mkZemin)" />
-          {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${i * 155} 1920 L ${VX - 300 + i * 86} ${VY + 200}`} stroke="#b8beb8" strokeWidth={3} />)}
-          {[1240, 1360, 1520, 1720].map((y) => <path key={y} d={`M 0 ${y + 180} L 1080 ${y + 180}`} stroke="#b8beb8" strokeWidth={3} opacity={0.7} />)}
-          <rect x={VX - 150} y={VY + 210} width={300} height={260} fill="#141c28" opacity={0.15} />
-          {/* tekinsiz parlaklık: hafif soğuk ton + köşe karartması */}
+          <rect x={BL + 10} y={BT + 110} width={88} height={390} fill={depo ? "#000" : "#4a5056"} stroke="#2a2e32" strokeWidth={5} />
+          <rect x={BL + 10} y={BT + 110} width={88 * (1 - depo * 0.6)} height={390} fill="#5a6066" stroke="#2a2e32" strokeWidth={4} />
+          <circle cx={BL + 10 + 88 * (1 - depo * 0.6) - 12} cy={BT + 320} r={5} fill="#c8ccd0" />
+          <rect x={BL + 8} y={BT + 70} width={92} height={32} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
+          <text x={BL + 54} y={BT + 92} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={16} fontWeight={900} fill="#1a1a1a">DEPO</text>
+          {/* sol duvar: cam vitrin, otomatik kapı, saat */}
+          <path d={`M 0 60 L ${BL} ${BT} L ${BL} ${BB} L 0 1780 Z`} fill="#b8c0c4" />
+          <path d={quadL(0.02, 0.98, 0.18, 0.92)} fill="url(#mkSokak2)" stroke="#5a6066" strokeWidth={6} />
+          {/* yağmur ve sokak lambası (camın ardında) */}
+          {new Array(30).fill(0).map((_, i) => { const t = 0.05 + ((i * 37) % 90) / 100; const y0 = lt(t) + (lb(t) - lt(t)) * 0.2; const h = (lb(t) - lt(t)) * 0.7; const y = y0 + ((fr * 18 + i * 53) % h); return <path key={i} d={`M ${lx(t)} ${y} l -3 ${16 * (1 - t * 0.6)}`} stroke="#8aa0b8" strokeWidth={2} opacity={0.45} />; })}
+          <circle cx={lx(0.75)} cy={lt(0.75) + (lb(0.75) - lt(0.75)) * 0.35} r={16} fill="#f2c870" opacity={0.75} />
+          {/* otomatik kapı kanatları */}
+          <path d={quadL(d1, d1 + (dm - d1) * (1 - op), 0.2, 0.92)} fill="#9ab8cc" opacity={0.28} stroke="#7a8288" strokeWidth={5} />
+          <path d={quadL(dm + (d2 - dm) * op, d2, 0.2, 0.92)} fill="#9ab8cc" opacity={0.28} stroke="#7a8288" strokeWidth={5} />
+          <path d={quadL(d1, d2, 0.17, 0.2)} fill="#9aa2a8" />
+          <path d={`M ${lx(d1)} ${lt(d1) + (lb(d1) - lt(d1)) * 0.17} L ${lx(d1)} ${lt(d1) + (lb(d1) - lt(d1)) * 0.93}`} stroke="#c8d0d6" strokeWidth={12} />
+          <path d={`M ${lx(d2)} ${lt(d2) + (lb(d2) - lt(d2)) * 0.17} L ${lx(d2)} ${lt(d2) + (lb(d2) - lt(d2)) * 0.93}`} stroke="#c8d0d6" strokeWidth={9} />
+          <path d={quadL(dm - 0.06, dm + 0.06, 0.5, 0.56)} fill="#e8f0f4" opacity={0.85 * (1 - op)} />
+          <text x={lx(dm)} y={lt(dm) + (lb(dm) - lt(dm)) * 0.545} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={20} fontWeight={900} fill="#1a2a3a" opacity={1 - op}>GİRİŞ</text>
+          <path d={`M ${lx(d1)} ${lb(d1) + 6} L ${lx(d2)} ${lb(d2) + 6} L ${lx(d2) + 120} ${lb(d2) + 30} L ${lx(d1) + 170} ${lb(d1) + 40} Z`} fill="#3a3e44" opacity={0.85} />
+          {/* kapının önünde tavandan sarkan dijital saat panosu (düz okunur) */}
+          <path d="M 120 180 L 120 250 M 300 180 L 300 250" stroke="#5a6066" strokeWidth={5} />
+          <rect x={70} y={250} width={280} height={96} rx={10} fill="#140404" stroke="#3a3a3a" strokeWidth={6} />
+          <text x={210} y={318} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={66} fill="#ff2a1a">{saat}</text>
+          <text x={210} y={318} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={66} fill="#ff2a1a" opacity={0.4} filter="url(#mkParlak2)">{saat}</text>
+          {/* camda ters okunan neon */}
+          <path d={quadL(0.6, 0.9, 0.24, 0.3)} fill="#ff4a8a" opacity={0.18} />
+          <text x={lx(0.75)} y={lt(0.75) + (lb(0.75) - lt(0.75)) * 0.29} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={26} fill="#ff4a8a" opacity={0.9} transform={`scale(-1 1) translate(${-2 * lx(0.75)} 0)`}>AÇIK 7/24</text>
+          {/* ekmek reyonu (sol, kapının arkasında) */}
+          <path d={quadL(0.6, 0.85, 0.62, 0.95)} fill="#e8a03a" stroke="#6a4a1a" strokeWidth={4} />
+          {[0, 1, 2].map((i) => <ellipse key={i} cx={lx(0.64 + i * 0.07)} cy={lt(0.64 + i * 0.07) + (lb(0.64 + i * 0.07) - lt(0.64 + i * 0.07)) * 0.7} rx={18 - i * 3} ry={10 - i * 2} fill="#f0d090" stroke="#8a5a2a" strokeWidth={2} />)}
+          <path d={quadL(0.6, 0.85, 0.56, 0.61)} fill="#2a1a0a" />
+          {/* sağ duvar: sigara/tütün rafı (kasanın arkası) */}
+          <path d={`M 1080 60 L ${BR} ${BT} L ${BR} ${BB} L 1080 1780 Z`} fill="#c4cacd" />
+          <path d={`M 1080 360 L ${BR + 40} ${BT + 120} L ${BR + 40} ${BT + 330} L 1080 1000 Z`} fill="#3a3e44" stroke="#1a1c1e" strokeWidth={5} />
+          {[0, 1, 2, 3, 4].map((j) => <path key={j} d={`M 1080 ${420 + j * 110} L ${BR + 40} ${BT + 150 + j * 38}`} stroke="#6a7078" strokeWidth={4} />)}
+          {/* orta raf koridorları */}
+          {[[0.0, 500], [1.0, 700]].map(([k, x]) => (
+            <g key={x}>
+              <path d={`M ${x - 70 + (x - 600) * 0.6} 1500 L ${x - 30 + (x - 600) * 0.2} 1040 L ${x + 30 + (x - 600) * 0.2} 1040 L ${x + 70 + (x - 600) * 0.6} 1500 Z`} fill="#eef0f2" stroke="#8a9298" strokeWidth={4} />
+              {[0, 1, 2].map((j) => <path key={j} d={`M ${x - 64 + (x - 600) * 0.6 - j * 0} ${1160 + j * 110} L ${x + 64 + (x - 600) * 0.6} ${1160 + j * 110}`} stroke="#8a9298" strokeWidth={4} />)}
+              {[0, 1, 2].map((j) => new Array(4).fill(0).map((__, q) => <rect key={`${j}-${q}`} x={x - 56 + (x - 600) * 0.5 + q * 30} y={1100 + j * 110} width={22} height={50} rx={4} fill={["#e84a3a", "#3a6ad8", "#e8a03a", "#3ab86a"][(j + q + (k as number)) % 4]} />))}
+            </g>
+          ))}
+          {/* zemin */}
+          <path d={`M 0 1780 L ${BL} ${BB} L ${BR} ${BB} L 1080 1780 L 1080 1920 L 0 1920 Z`} fill="url(#mkZemin2)" />
+          {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${i * 135} 1920 L ${BL + i * ((BR - BL) / 8)} ${BB}`} stroke="#b2b8b2" strokeWidth={3} />)}
+          {[1180, 1300, 1460, 1680].map((y) => <path key={y} d={`M 0 ${y} L 1080 ${y}`} stroke="#b2b8b2" strokeWidth={3} opacity={0.6} />)}
+          {/* tekinsiz soğuk parlaklık */}
           <rect width={W} height={H} fill="#9ec4ff" opacity={0.05} />
           <rect width={W} height={H} fill="#000" opacity={(1 - flick) * 0.35} />
         </g>
@@ -1079,15 +1092,17 @@ const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean }> = 
     case "market":
       return (
         <g>
-          <path d="M 560 1520 L 1080 1460 L 1080 1920 L 600 1920 Z" fill="#d84a2a" stroke="#2a1410" strokeWidth={8} />
-          <path d="M 540 1500 L 1080 1440 L 1080 1480 L 560 1540 Z" fill="#f0f0ec" stroke="#2a1410" strokeWidth={6} />
-          <rect x={860} y={1340} width={150} height={110} rx={10} fill="#2a2e32" stroke="#0a0b0d" strokeWidth={5} />
-          <rect x={876} y={1354} width={118} height={64} fill="#3a8a5a" />
-          <text x={935} y={1396} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={22} fontWeight={700} fill="#d8ffd8">0,00 ₺</text>
-          <rect x={620} y={1420} width={140} height={60} rx={6} fill="#e8e8e0" stroke="#2a1410" strokeWidth={4} />
-          {[0, 1, 2, 3].map((i) => <rect key={i} x={630 + i * 32} y={1428} width={26} height={44} fill={["#e84a3a", "#3a8ad8", "#e8c03a", "#3ab86a"][i]} />)}
-          <text x={820} y={1720} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={64} fontWeight={900} fill="#fff2e8" opacity={0.9}>CAN MARKET</text>
-          <text x={820} y={1790} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={44} fontWeight={900} fill="#fff2e8" opacity={0.9}>7/24</text>
+          {/* kasa bankosu: önü (müşteri tarafı) sola, kapıya bakar */}
+          <path d="M 600 1530 L 1080 1500 L 1080 1920 L 640 1920 Z" fill="#d84a2a" stroke="#2a1410" strokeWidth={8} />
+          <path d="M 560 1500 L 600 1530 L 640 1920 L 560 1920 Z" fill="#b83a20" stroke="#2a1410" strokeWidth={6} />
+          <path d="M 560 1490 L 1080 1460 L 1080 1500 L 600 1530 Z" fill="#f0f0ec" stroke="#2a1410" strokeWidth={6} />
+          {/* yazar kasa: ekranı Ece'ye, müşteri ekranı sola */}
+          <path d="M 640 1440 L 760 1430 L 770 1490 L 640 1500 Z" fill="#2a2e32" stroke="#0a0b0d" strokeWidth={4} />
+          <path d="M 648 1446 L 752 1438 L 758 1468 L 650 1476 Z" fill="#3a8a5a" />
+          <rect x={880} y={1410} width={70} height={60} rx={6} fill="#e8e8e0" stroke="#2a1410" strokeWidth={4} />
+          {[0, 1].map((i) => <rect key={i} x={888 + i * 30} y={1418} width={24} height={44} fill={["#e84a3a", "#3a8ad8"][i]} />)}
+          <text x={850} y={1720} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={60} fontWeight={900} fill="#fff2e8" opacity={0.9}>CAN MARKET</text>
+          <text x={850} y={1790} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={42} fontWeight={900} fill="#fff2e8" opacity={0.9}>7/24</text>
         </g>
       );
     case "lobi":
