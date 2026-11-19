@@ -28,6 +28,11 @@
   - Kesin kanıta en yakın an, hemen ardından gelen başka bir "kanıtla" çürütülür.
 - Final öncesi kesin cevap yok.
 
+## Küfür (kullanıcı, 19 Kasım 2026: "küfür de ekleyebilirsin, sever bizim insanımız küfürü")
+- Küfür karaktere bağlı ve yerinde: Berkay kontrolü kaybettiğinde ya da bir gerçeği fark ettiğinde ("lan", "hassiktir", gerekirse daha ağırı), hastalar serbest.
+- Personel (Deniz, Nalan) asla küfür etmez: soğukkanlı kibarlık onların silahı; kontrast tehdidi büyütür.
+- Dış ses (anlatıcı Berkay) küfürsüz ve sakin kalır.
+
 ## Hâlâ geçerli olanlar (yeni gerçeğe göre)
 
 **Eski karar (18 Kasım 2026), gerçek kısmı yukarıda değişti:**

@@ -297,139 +297,215 @@
   "kredi": 20
  },
  "b_03": {
-  "key": "1143f85931fd",
+  "key": "9b031e0dead7",
   "file": "voice/imza-02-p2/b_03.mp3",
   "voice": "elevenlabs:Mert Aksoy",
   "emotion": "notr",
-  "text": "Deniz Hanım! O video sahte!",
-  "duration": 2.273,
+  "text": "Deniz Hanım! Açın lan şu kapıyı! O video sahte!",
+  "duration": 3.709,
   "asrScore": 1.0,
-  "heard": "Deniz Hanım, o video sahte!",
+  "heard": "Deniz Hanım! Açın lan şu kapıyı! O video sahte!",
   "words": [
    {
     "w": "Deniz",
-    "start": 0.084,
-    "end": 0.404
+    "start": 0.089,
+    "end": 0.409
    },
    {
     "w": "Hanım!",
-    "start": 0.444,
-    "end": 0.804
+    "start": 0.449,
+    "end": 0.849
+   },
+   {
+    "w": "Açın",
+    "start": 1.049,
+    "end": 1.289
+   },
+   {
+    "w": "lan",
+    "start": 1.369,
+    "end": 1.529
+   },
+   {
+    "w": "şu",
+    "start": 1.569,
+    "end": 1.649
+   },
+   {
+    "w": "kapıyı!",
+    "start": 1.689,
+    "end": 2.249
    },
    {
     "w": "O",
-    "start": 0.964,
-    "end": 1.044
+    "start": 2.409,
+    "end": 2.489
    },
    {
     "w": "video",
-    "start": 1.124,
-    "end": 1.364
+    "start": 2.569,
+    "end": 2.809
    },
    {
     "w": "sahte!",
-    "start": 1.444,
-    "end": 2.084
+    "start": 2.889,
+    "end": 3.689
    }
   ],
   "mouth": [
    {
-    "t": 0.084,
+    "t": 0.089,
     "v": "L"
    },
    {
-    "t": 0.137,
+    "t": 0.142,
     "v": "E"
    },
    {
-    "t": 0.191,
+    "t": 0.196,
     "v": "L"
    },
    {
-    "t": 0.244,
+    "t": 0.249,
     "v": "I"
    },
    {
-    "t": 0.324,
+    "t": 0.329,
     "v": "L"
    },
    {
-    "t": 0.457,
+    "t": 0.462,
     "v": "A"
    },
    {
-    "t": 0.471,
+    "t": 0.476,
     "v": "L"
    },
    {
-    "t": 0.484,
+    "t": 0.489,
     "v": "I"
    },
    {
-    "t": 0.564,
+    "t": 0.569,
     "v": "M"
    },
    {
-    "t": 0.644,
+    "t": 0.649,
     "v": "X"
    },
    {
-    "t": 0.964,
-    "v": "O"
-   },
-   {
-    "t": 1.044,
-    "v": "X"
-   },
-   {
-    "t": 1.124,
-    "v": "F"
-   },
-   {
-    "t": 1.172,
-    "v": "I"
-   },
-   {
-    "t": 1.22,
-    "v": "L"
-   },
-   {
-    "t": 1.268,
-    "v": "E"
-   },
-   {
-    "t": 1.316,
-    "v": "O"
-   },
-   {
-    "t": 1.444,
-    "v": "L"
-   },
-   {
-    "t": 1.524,
+    "t": 1.049,
     "v": "A"
    },
    {
-    "t": 1.604,
+    "t": 1.129,
     "v": "L"
    },
    {
-    "t": 1.817,
-    "v": "E"
+    "t": 1.209,
+    "v": "I"
    },
    {
-    "t": 1.924,
+    "t": 1.249,
+    "v": "L"
+   },
+   {
+    "t": 1.289,
     "v": "X"
    },
    {
-    "t": 2.084,
+    "t": 1.369,
+    "v": "L"
+   },
+   {
+    "t": 1.422,
+    "v": "A"
+   },
+   {
+    "t": 1.476,
+    "v": "L"
+   },
+   {
+    "t": 1.609,
+    "v": "U"
+   },
+   {
+    "t": 1.689,
+    "v": "L"
+   },
+   {
+    "t": 1.742,
+    "v": "A"
+   },
+   {
+    "t": 1.796,
+    "v": "M"
+   },
+   {
+    "t": 1.849,
+    "v": "I"
+   },
+   {
+    "t": 2.089,
+    "v": "X"
+   },
+   {
+    "t": 2.409,
+    "v": "O"
+   },
+   {
+    "t": 2.489,
+    "v": "X"
+   },
+   {
+    "t": 2.569,
+    "v": "F"
+   },
+   {
+    "t": 2.617,
+    "v": "I"
+   },
+   {
+    "t": 2.665,
+    "v": "L"
+   },
+   {
+    "t": 2.713,
+    "v": "E"
+   },
+   {
+    "t": 2.761,
+    "v": "O"
+   },
+   {
+    "t": 2.889,
+    "v": "L"
+   },
+   {
+    "t": 2.969,
+    "v": "A"
+   },
+   {
+    "t": 3.049,
+    "v": "L"
+   },
+   {
+    "t": 3.262,
+    "v": "E"
+   },
+   {
+    "t": 3.369,
+    "v": "X"
+   },
+   {
+    "t": 3.689,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 26
+  "kredi": 38
  },
  "b_06": {
   "key": "08316c6f36cd",
@@ -439,7 +515,7 @@
   "text": "Videodaki adam solak, Deniz Hanım.",
   "duration": 2.717,
   "asrScore": 1.0,
-  "heard": "Videodaki adam solak deniz hanım",
+  "heard": "Videodaki adam solak deniz hanım.",
   "words": [
    {
     "w": "Videodaki",
@@ -1092,5 +1168,64 @@
   "model": "eleven_v4",
   "hesap": "proxy",
   "kredi": 33
+ },
+ "a_06": {
+  "key": "e97590744e33",
+  "file": "voice/imza-02-p2/a_06.mp3",
+  "voice": "elevenlabs:Mert Aksoy",
+  "emotion": "notr",
+  "text": "Hassiktir…",
+  "duration": 1.593,
+  "asrScore": 0.941,
+  "heard": "Hasiktir!",
+  "words": [
+   {
+    "w": "Hassiktir…",
+    "start": 0.17,
+    "end": 1.546
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.17,
+    "v": "L"
+   },
+   {
+    "t": 0.186,
+    "v": "A"
+   },
+   {
+    "t": 0.293,
+    "v": "L"
+   },
+   {
+    "t": 0.506,
+    "v": "I"
+   },
+   {
+    "t": 0.613,
+    "v": "L"
+   },
+   {
+    "t": 0.826,
+    "v": "I"
+   },
+   {
+    "t": 0.946,
+    "v": "L"
+   },
+   {
+    "t": 1.066,
+    "v": "X"
+   },
+   {
+    "t": 1.546,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 18
  }
 }
