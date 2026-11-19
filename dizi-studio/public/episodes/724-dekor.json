@@ -1,0 +1,9 @@
+{"series":"724","seriesTitle":"7/24","episode":"724-dekor","episodeNo":0,"title":"Dekor kontrolü","endCard":false,
+"scenes":[
+ {"id":"g","set":"market_genel","time":"gunduz","saat":"03:00","cast":{"ece724":{"mark":"ece","emotion":"saskin","bak":{"x":-0.8,"y":0.1,"yaw":-0.5}}},
+  "beats":[{"type":"action","dur":1.5,"door":"ac","iz":1.2,"shot":{"type":"genis","move":"sabit"}}]},
+ {"id":"k","set":"market_kapi","time":"gunduz","saat":"03:00","cast":{},
+  "beats":[{"type":"action","dur":1.5,"door":"ac","iz":1.2,"shot":{"type":"genis","move":"sabit"}}]},
+ {"id":"c","set":"market_kasa","time":"gunduz","saat":"03:00","cast":{"ece724":{"mark":"ece","emotion":"korkmus","bak":{"x":-0.3,"y":0.1,"yaw":-0.25}}},
+  "beats":[{"type":"action","dur":1.5,"shot":{"type":"genis","move":"sabit"}}]}
+]}

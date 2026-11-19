@@ -51,8 +51,8 @@ const Sokak: React.FC<{ id: string; x: number; y: number; w: number; h: number; 
         <rect x={x} y={y} width={w} height={ufuk - y} fill="#121822" />
         {[0, 1, 2, 3].map((i) => (
           <g key={i}>
-            <rect x={x + w * (0.06 + i * 0.25)} y={y + (ufuk - y) * 0.1} width={w * 0.12} height={(ufuk - y) * 0.32} fill={i === 2 ? "#e8b860" : "#1a2230"} stroke="#0a0e14" strokeWidth={3} />
-            {i === 2 ? <rect x={x + w * (0.06 + i * 0.25)} y={y + (ufuk - y) * 0.1} width={w * 0.12} height={(ufuk - y) * 0.32} fill="#ffd890" opacity={0.25} /> : null}
+            <rect x={x + w * (0.06 + i * 0.25)} y={y + (ufuk - y) * 0.1} width={w * 0.12} height={(ufuk - y) * 0.32} fill={i === 2 ? "#a8803c" : "#1a2230"} stroke="#0a0e14" strokeWidth={3} />
+            {i === 2 ? <path d={`M ${x + w * (0.12 + i * 0.25)} ${y + (ufuk - y) * 0.1} v ${(ufuk - y) * 0.32} M ${x + w * (0.06 + i * 0.25)} ${y + (ufuk - y) * 0.26} h ${w * 0.12}`} stroke="#3a2a14" strokeWidth={4} /> : null}
             <path d={`M ${x + w * (0.04 + i * 0.25)} ${y + (ufuk - y) * 0.45} h ${w * 0.16}`} stroke="#0a0e14" strokeWidth={5} />
           </g>
         ))}
@@ -96,15 +96,16 @@ const Iz: React.FC<{ x: number; y: number; s: number; ang: number; sag: boolean;
   return (
     <g transform={`translate(${x} ${y}) scale(1 ${squash}) rotate(${deg}) translate(${ox} 0)`} opacity={a}>
       {/* ön taban */}
-      <path d={`M ${-11 * s} ${-12 * s} Q ${-13 * s} ${-36 * s} 0 ${-40 * s} Q ${13 * s} ${-36 * s} ${11 * s} ${-12 * s} Q ${9 * s} ${2 * s} 0 ${2 * s} Q ${-9 * s} ${2 * s} ${-11 * s} ${-12 * s} Z`} fill="#4e5e6a" opacity={0.55} />
+      <path d={`M ${-11 * s} ${-12 * s} Q ${-13 * s} ${-36 * s} 0 ${-40 * s} Q ${13 * s} ${-36 * s} ${11 * s} ${-12 * s} Q ${9 * s} ${2 * s} 0 ${2 * s} Q ${-9 * s} ${2 * s} ${-11 * s} ${-12 * s} Z`} fill="#55656f" opacity={0.42} />
       {/* topuk */}
-      <ellipse cx={0} cy={22 * s} rx={9 * s} ry={11 * s} fill="#4e5e6a" opacity={0.55} />
+      <path d={`M ${-9 * s} ${14 * s} Q ${-10 * s} ${32 * s} 0 ${33 * s} Q ${10 * s} ${32 * s} ${9 * s} ${14 * s} Z`} fill="#55656f" opacity={0.42} />
+      {/* taban dişleri */}
+      {[-26, -18, -10].map((yy) => <path key={yy} d={`M ${-8 * s} ${yy * s} h ${16 * s}`} stroke="#3e4c56" strokeWidth={1.6 * s} opacity={0.35} />)}
       {/* ıslak parıltı */}
       <path d={`M ${-6 * s} ${-30 * s} Q 0 ${-36 * s} ${6 * s} ${-30 * s}`} stroke="#f4fbff" strokeWidth={2.5 * s} fill="none" opacity={0.75} />
       <path d={`M ${-5 * s} ${18 * s} Q 0 ${14 * s} ${5 * s} ${18 * s}`} stroke="#f4fbff" strokeWidth={2 * s} fill="none" opacity={0.6} />
       {/* damlalar */}
-      <circle cx={16 * s} cy={-20 * s} r={2.4 * s} fill="#5a6a76" opacity={0.6} />
-      <circle cx={-15 * s} cy={8 * s} r={1.8 * s} fill="#5a6a76" opacity={0.5} />
+      <circle cx={16 * s} cy={-20 * s} r={1.6 * s} fill="#5a6a76" opacity={0.4} />
     </g>
   );
 };
@@ -176,7 +177,7 @@ const GenelBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => 
   const kR1 = -0.5 + 0.68 * op, kR2 = 0.2 + 0.68 * op;
   const izPts: [number, number, number][] = [
     [-0.55, 3.85], [-0.4, 3.62], [-0.18, 3.42], [0.02, 3.24], [0.22, 3.08], [0.36, 2.95],
-  ].map(([X, Z]) => { const [x, y] = P(X, 0, Z); return [x, y, 760 / Z / 260]; });
+  ].map(([X, Z]) => { const [x, y] = P(X, 0, Z); return [x, y, (760 / Z / 260) * 1.5]; });
   return (
     <g>
       <defs>
@@ -273,6 +274,7 @@ const GenelBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => 
         );
       })()}
       {/* sol önde reyon (ürünler koridora bakar) */}
+      <path d={yuzZ(2.6, -1.9, -1.2, 0, 1.7)} fill="#d4d8da" stroke="#8a9298" strokeWidth={4} />
       <path d={yuzX(-1.2, 1.05, 2.6, 0, 1.7)} fill="#eef0f0" stroke="#8a9298" strokeWidth={4} />
       {[0.15, 0.55, 0.95, 1.35].map((Y, r) => (
         <g key={Y}>
@@ -284,7 +286,6 @@ const GenelBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => 
           <path d={yuzX(-1.17, 1.05, 2.6, Y - 0.02, Y + 0.04)} fill="#f8e070" opacity={0.9} />
         </g>
       ))}
-      <path d={yuzZ(2.6, -1.9, -1.2, 0, 1.7)} fill="#d4d8da" stroke="#8a9298" strokeWidth={4} />
       {/* tekinsiz soğuk parlaklık + kenar kararması */}
       <rect width={W} height={H} fill="#a8c8ff" opacity={0.05} />
       <rect width={W} height={H} fill="url(#g724vin)" />
@@ -334,7 +335,7 @@ const KapiBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => {
   // ayak izleri: paspastan kameraya (kasaya) doğru
   const izPts: [number, number, number][] = [
     [540, 1290], [585, 1350], [600, 1425], [640, 1510], [650, 1610], [690, 1720], [700, 1845],
-  ].map(([x, y]) => [x, y, ((y - KVY) / (KFL - KVY)) * 0.95]);
+  ].map(([x, y]) => [x, y, ((y - KVY) / (KFL - KVY)) * 1.45]);
   return (
     <g>
       <defs>
@@ -478,36 +479,40 @@ const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb }) => {
         <text x={312} y={446} textAnchor="end" fontFamily="'Courier New', monospace" fontSize={12} fontWeight={700} fill="#e8ffe8">{saat}:{String(sec % 60).padStart(2, "0")}</text>
       </g>
       {/* sigara dolabı: Ece'nin arkası (yüzü öne çıksın diye koyu) */}
-      <rect x={250} y={420} width={600} height={720} rx={6} fill="#1e2228" stroke="#0c0e12" strokeWidth={8} />
+      <rect x={190} y={420} width={600} height={720} rx={6} fill="#1e2228" stroke="#0c0e12" strokeWidth={8} />
       {new Array(6).fill(0).map((_, r) => (
         <g key={r}>
           {new Array(10).fill(0).map((__, c) => (
             <g key={c}>
-              <rect x={272 + c * 57} y={448 + r * 112} width={46} height={78} rx={3} fill={PAKET[(r * 7 + c * 3) % PAKET.length]} opacity={0.82} />
-              <rect x={272 + c * 57} y={448 + r * 112} width={46} height={20} fill="#ffffff" opacity={0.25} />
+              <rect x={212 + c * 57} y={448 + r * 112} width={46} height={78} rx={3} fill={PAKET[(r * 7 + c * 3) % PAKET.length]} opacity={0.82} />
+              <rect x={212 + c * 57} y={448 + r * 112} width={46} height={20} fill="#ffffff" opacity={0.25} />
             </g>
           ))}
-          <path d={`M 260 ${540 + r * 112} H 840`} stroke="#4a5058" strokeWidth={6} />
+          <path d={`M 200 ${540 + r * 112} H 780`} stroke="#4a5058" strokeWidth={6} />
         </g>
       ))}
-      <rect x={250} y={420} width={600} height={720} fill="#bcd4e4" opacity={0.1} />
-      <path d="M 300 430 l 160 700 M 640 430 l 120 700" stroke="#ffffff" strokeWidth={26} opacity={0.05} />
+      <rect x={190} y={420} width={600} height={720} fill="#bcd4e4" opacity={0.1} />
+      <path d="M 240 430 l 160 700 M 580 430 l 120 700" stroke="#ffffff" strokeWidth={26} opacity={0.05} />
       {/* 18 yaş uyarısı */}
-      <rect x={300} y={1150} width={500} height={56} rx={6} fill="#f8f4e8" stroke="#2a2e32" strokeWidth={3} />
-      <text x={550} y={1188} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={26} fill="#a01818">18 YAŞ ALTINA SİGARA SATILMAZ</text>
+      <rect x={240} y={1150} width={500} height={56} rx={6} fill="#f8f4e8" stroke="#2a2e32" strokeWidth={3} />
+      <text x={490} y={1188} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={26} fill="#a01818">18 YAŞ ALTINA SİGARA SATILMAZ</text>
       {/* sağ: kazı kazan standı + takvim */}
-      <rect x={880} y={480} width={150} height={260} rx={6} fill="#f2c830" stroke="#6a5010" strokeWidth={5} />
-      {[0, 1, 2].map((i) => <rect key={i} x={895} y={498 + i * 78} width={120} height={64} rx={4} fill={["#e84a3a", "#3a8ad8", "#3ab86a"][i]} />)}
-      <rect x={890} y={780} width={130} height={160} fill="#f8f8f4" stroke="#5a5a56" strokeWidth={3} />
-      <rect x={890} y={780} width={130} height={36} fill="#c02020" />
-      <text x={955} y={806} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={20} fill="#ffffff">KASIM</text>
-      <text x={955} y={900} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={66} fill="#2a2a2a">19</text>
+      <rect x={808} y={480} width={124} height={250} rx={6} fill="#f2c830" stroke="#6a5010" strokeWidth={5} />
+      {[0, 1, 2].map((i) => <rect key={i} x={818} y={496 + i * 76} width={104} height={62} rx={4} fill={["#e84a3a", "#3a8ad8", "#3ab86a"][i]} />)}
+      <rect x={805} y={770} width={130} height={160} fill="#f8f8f4" stroke="#5a5a56" strokeWidth={3} />
+      <rect x={805} y={770} width={130} height={36} fill="#c02020" />
+      <text x={870} y={796} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={20} fill="#ffffff">KASIM</text>
+      <text x={870} y={890} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={66} fill="#2a2a2a">19</text>
       {/* sağ arka: DEPO · PERSONEL koridoru (karanlık, aralık) */}
-      <rect x={1030} y={300} width={50} height={1050} fill="#14161a" />
-      <rect x={1030} y={250} width={50} height={40} fill="#e8e0c0" />
-      <text x={1034} y={278} fontFamily="Arial, sans-serif" fontWeight={900} fontSize={18} fill="#1a1a1a">DEPO</text>
+      <rect x={955} y={330} width={140} height={1010} fill="#5a6066" stroke="#2a2e32" strokeWidth={6} />
+      <rect x={975} y={350} width={110} height={990} fill="#0a0b0d" />
+      <path d="M 975 350 L 1035 372 L 1035 1318 L 975 1340 Z" fill="#4a5056" stroke="#2a2e32" strokeWidth={4} />
+      <circle cx={1022} cy={860} r={7} fill="#c8ccd0" />
+      <rect x={950} y={262} width={130} height={56} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
+      <text x={1015} y={286} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={22} fill="#1a1a1a">DEPO</text>
+      <text x={1015} y={310} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={16} fill="#1a1a1a">PERSONEL</text>
       {/* zemin hizası (kasanın arkası görünmez) */}
-      <rect y={1240} width={W} height={H - 1240} fill="#b8bdbe" />
+      <rect y={1330} width={W} height={H - 1330} fill="#b8bdbe" />
       {/* üstten anahtar ışık havuzu + kenar kararması */}
       <rect width={W} height={H} fill="url(#c724key)" />
       <rect width={W} height={H} fill="#a8c8ff" opacity={0.05} />
@@ -521,23 +526,23 @@ const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb }) => {
 const KasaFG: React.FC<MarketProps> = () => (
   <g>
     {/* üst tabla */}
-    <path d="M 0 1330 L 1080 1330 L 1080 1392 L 0 1392 Z" fill="#f2f0ea" stroke="#5a4a40" strokeWidth={5} />
-    <path d="M 0 1330 L 1080 1330" stroke="#ffffff" strokeWidth={4} opacity={0.8} />
+    <path d="M 0 1440 L 1080 1440 L 1080 1500 L 0 1500 Z" fill="#f2f0ea" stroke="#5a4a40" strokeWidth={5} />
+    <path d="M 0 1440 L 1080 1440" stroke="#ffffff" strokeWidth={4} opacity={0.8} />
     {/* ön panel */}
-    <rect x={0} y={1392} width={1080} height={528} fill="#c63c22" stroke="#2a1410" strokeWidth={6} />
-    <rect x={0} y={1392} width={1080} height={22} fill="#000" opacity={0.18} />
-    <text x={540} y={1610} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={96} fill="#fff4ea">CAN MARKET</text>
-    <text x={540} y={1710} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={70} fill="#fff4ea">7/24</text>
+    <rect x={0} y={1500} width={1080} height={420} fill="#c63c22" stroke="#2a1410" strokeWidth={6} />
+    <rect x={0} y={1500} width={1080} height={22} fill="#000" opacity={0.18} />
+    <text x={540} y={1690} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={96} fill="#fff4ea">CAN MARKET</text>
+    <text x={540} y={1790} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={70} fill="#fff4ea">7/24</text>
     {/* yazar kasanın sırtı (müşteri ekranı) — solda, yüzü örtmez */}
-    <rect x={60} y={1170} width={230} height={170} rx={10} fill="#2a2e34" stroke="#0a0b0d" strokeWidth={5} />
-    <rect x={80} y={1188} width={190} height={70} fill="#2a8a5a" />
-    <text x={175} y={1236} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={34} fill="#d8ffe4">0,00 ₺</text>
-    <rect x={100} y={1270} width={150} height={60} rx={6} fill="#3a3e44" />
+    <rect x={60} y={1280} width={230} height={170} rx={10} fill="#2a2e34" stroke="#0a0b0d" strokeWidth={5} />
+    <rect x={80} y={1298} width={190} height={70} fill="#2a8a5a" />
+    <text x={175} y={1346} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={34} fill="#d8ffe4">0,00 ₺</text>
+    <rect x={100} y={1380} width={150} height={60} rx={6} fill="#3a3e44" />
     {/* kart makinesi + poşet rulosu + sakız standı (sağda) */}
-    <rect x={760} y={1250} width={70} height={90} rx={10} fill="#1a1c20" stroke="#0a0b0d" strokeWidth={4} />
-    <rect x={770} y={1262} width={50} height={30} fill="#3a6aa8" />
-    <rect x={860} y={1180} width={190} height={160} rx={8} fill="#e8e8e0" stroke="#5a4a40" strokeWidth={5} />
-    {[0, 1, 2, 3].map((i) => <rect key={i} x={872 + i * 44} y={1194} width={36} height={132} fill={PAKET[(i + 3) % PAKET.length]} />)}
+    <rect x={760} y={1360} width={70} height={90} rx={10} fill="#1a1c20" stroke="#0a0b0d" strokeWidth={4} />
+    <rect x={770} y={1372} width={50} height={30} fill="#3a6aa8" />
+    <rect x={860} y={1290} width={190} height={160} rx={8} fill="#e8e8e0" stroke="#5a4a40" strokeWidth={5} />
+    {[0, 1, 2, 3].map((i) => <rect key={i} x={872 + i * 44} y={1304} width={36} height={132} fill={PAKET[(i + 3) % PAKET.length]} />)}
   </g>
 );
 
@@ -548,5 +553,5 @@ export const Market724FG: React.FC<MarketProps> = (p) => (p.view === "genel" ? <
 export const MARKET724_MARKS = {
   genel: { ece: { x: 885, y: 1218, size: 404 } },
   kapi: { kapi: { x: 550, y: 1260, size: 640 } },
-  kasa: { ece: { x: 560, y: 1880, size: 1000 } },
+  kasa: { ece: { x: 540, y: 1960, size: 1180 } },
 };

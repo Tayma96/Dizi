@@ -125,6 +125,8 @@ export type BeatCommon = {
   kemer?: boolean;
   /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
   tv?: "acik" | "kapali";
+  /** 7/24: ıslak ayak izleri bu kadar saniyede belirir (0 = sil); sonraki vuruşlarda kalır */
+  iz?: number;
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */
   ekle?: { kind: string; text?: string[] };
 };

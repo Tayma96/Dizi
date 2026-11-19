@@ -210,6 +210,12 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (d === "acik") doorOpen = 1;
     if (d === "aralik") doorOpen = i === bi ? interpolate(bf, [0, 30], [0, 0.14], clamp) : 0.14;
   }
+  // 7/24: ıslak ayak izleri (beat.iz = izlerin belirme süresi, sn; sonraki vuruşlarda kalır)
+  let izNow = 0;
+  for (let i = 0; i <= bi; i++) {
+    const z = ts.beats[i].beat.iz;
+    if (z !== undefined) izNow = z <= 0 ? 0 : i === bi ? interpolate(bf, [0, z * fps], [0, 1], clamp) : 1;
+  }
 
   // önceki vuruştaki bakış (baş dönüşünü yumuşatmak için)
   const gazeOf = (b: typeof tb, id: string, pl: Record<string, Placed>) => {
@@ -330,7 +336,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           </>
         ) : (
           <>
-            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow}>
+            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow}>
               {outsideIds.map(renderChar)}
             </SetLayer>
             {insideIds.map(renderChar)}

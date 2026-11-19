@@ -1,5 +1,6 @@
 /* Mekân kütüphanesi. Her mekân iki katman verir: "bg" (karakterlerin arkası) ve "fg" (önü: masa, tezgâh vb.).
    `MARKS` karakterlerin duracağı önerilen noktalardır (x = karakter merkezi, y = ayak çizgisi, size = boy px). */
+import { Market724BG, Market724FG, MARKET724_MARKS, type MarketView } from "./market724";
 import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import {
@@ -15,7 +16,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market" | "market_genel" | "market_kapi" | "market_kasa";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -31,6 +32,9 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
   lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 }, asansor: { x: 360, y: 1560, size: 1000 } } },
+  market_genel: { title: "Can Market · genel", marks: MARKET724_MARKS.genel },
+  market_kapi: { title: "Can Market · kapı", marks: MARKET724_MARKS.kapi },
+  market_kasa: { title: "Can Market · kasa", marks: MARKET724_MARKS.kasa },
   market: { title: "Can Market 7/24 (gece)", marks: { ece: { x: 820, y: 1700, size: 1120 }, sabri: { x: 420, y: 1780, size: 1160 }, kapi: { x: 150, y: 1500, size: 900 }, depo: { x: 450, y: 1100, size: 520 }, musteri: { x: 400, y: 1790, size: 1160 } } },
   kat7_koridor: { title: "7. kat: yanık arşiv koridoru", marks: { cemil: { x: 540, y: 1790, size: 1160 }, ileri: { x: 560, y: 1500, size: 820 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
@@ -98,8 +102,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean; iz?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer, iz = 0 }) => {
   const frame = useCurrentFrame();
+  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724BG view={name.slice(7) as MarketView} frame={frame} doorOpen={doorOpen} saat={saat ?? "03:00"} iz={iz} turb={turb ?? 0} />;
   const props = { kus, saat, frame, sallanan, kaydir, tv, turb, kemer };
   const night = time === "gece";
   switch (name) {
@@ -1088,6 +1093,7 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 /** Elements that sit IN FRONT of the characters. */
 const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean }> = ({ name, turb = 0, fincanElde }) => {
   const fr = useCurrentFrame();
+  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} />;
   switch (name) {
     case "market":
       return (
@@ -1209,7 +1215,9 @@ export const SetLayer: React.FC<{
   kemer?: boolean;
   /** fincan karakterin elinde: masadaki fincanı gizle */
   fincanElde?: boolean;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb, kemer, fincanElde }) => {
+  /** 7/24: ıslak ayak izlerinin ilerlemesi 0-1 */
+  iz?: number;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb, kemer, fincanElde, iz }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -1229,7 +1237,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} kemer={kemer} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} kemer={kemer} iz={iz} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />
