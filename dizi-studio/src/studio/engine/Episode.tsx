@@ -36,7 +36,9 @@ type Cam = { cx: number; cy: number; z: number; ay: number };
 
 /** Hazır elle kadrajlar (mekâna özgü ekleme çekimleri) */
 const KADRAJ: Record<string, { cx: number; cy: number; z: number }> = {
-  pencere: { cx: 770, cy: 500, z: 2.05 },
+  pencere: { cx: 770, cy: 600, z: 2.05 },
+  kapi: { cx: 930, cy: 1170, z: 1.7 },
+  oda: { cx: 540, cy: 960, z: 1 },
 };
 
 const cameraFor = (shot: Shot, placed: Record<string, Placed>): Cam => {
@@ -131,36 +133,56 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const already = b === "dogrul" && prev?.cast[id]?.body === "dogrul";
     const a = b === "yat" ? -90 : already ? 0 : interpolate(bf, [Math.round(0.15 * fps), Math.round(1.45 * fps)], [-90, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     lieAng[id] = a;
-    const d = 0.39 * p.size;
+    // baş merkezi: kalça → boyun (gövde ekseni), boyun → baş (baş kameraya doğru -0.72a geri döner)
     const r = (a * Math.PI) / 180;
-    placed[id] = { ...p, headX: p.x + d * Math.sin(r), headY: p.feetY - d * Math.cos(r) };
+    const rh = ((a - 0.72 * a) * Math.PI) / 180;
+    const nx = p.x + 0.3 * p.size * Math.sin(r);
+    const ny = p.feetY - 0.3 * p.size * Math.cos(r);
+    placed[id] = { ...p, headX: nx + 0.1 * p.size * Math.sin(rh), headY: ny - 0.1 * p.size * Math.cos(rh) };
   }
 
   // kuş (pencere dışında): gel = uçup pervaza konar, otur = bekler; hareket her seferinde birebir aynıdır (döngü motifi)
   let kusNode: React.ReactNode = null;
   if (tb.beat.kus) {
-    const t = tb.beat.kus === "gel" ? bf / fps : 99 + frame / fps;
+    // zaman, sahnedeki ilk "gel" vuruşunun başından sayılır → uçuş vuruşlar arasında kesintisiz sürer ve her seferinde birebir aynıdır
+    const anchor = ts.beats.find((b) => b.beat.kus === "gel");
+    const t = anchor ? (frame - anchor.from) / fps : 99 + frame / fps;
     const FLY = 1.7;
     const k = Math.min(1, t / FLY);
     const e = 1 - (1 - k) ** 3;
     const fly = t < FLY;
     const bx = 1010 + (800 - 1010) * e;
     const by = 430 + (700 - 430) * e - Math.sin(k * Math.PI) * 50 - (fly ? 0 : Math.max(0, Math.sin((t - FLY) * 14)) * 6 * Math.exp(-(t - FLY) * 5));
-    const head = !fly && Math.floor((t - FLY) / 1.4) % 3 === 1 ? 1 : 0;
-    kusNode = <Bird x={bx} y={by} s={1.7} fly={fly} flap={Math.sin(t * 34)} head={head} tail={fly ? 0 : Math.sin(t * 3) * 0.6} />;
+    // imza hareketi: konduktan sonra gagasıyla cama iki kez vurur
+    const peck = (c: number) => Math.max(0, 1 - Math.abs(t - c) / 0.07);
+    const pk = fly ? 0 : Math.max(peck(FLY + 0.45), peck(FLY + 0.8));
+    const head = !fly && t > FLY + 1.2 && Math.floor((t - FLY) / 1.4) % 3 === 1 ? 1 : 0;
+    kusNode = (
+      <g transform={`rotate(${fly ? -12 : -18 * pk} ${bx} ${by})`}>
+        <Bird x={bx - 14 * pk} y={by} s={1.7} fly={fly || t < FLY + 0.1} flap={Math.sin(t * 34)} head={head} tail={fly ? 0 : Math.sin(t * 3) * 0.6} />
+      </g>
+    );
   }
 
+  let saatNow = scene.saat;
+  for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.saat) saatNow = ts.beats[i].beat.saat;
+
+  // vuruş içi kesme
+  let shotNow = tb.shot;
+  if (tb.beat.shots) for (const c of tb.beat.shots) if (bf >= Math.round(c.at * fps)) shotNow = c.shot;
+  const cutAt = tb.beat.shots ? Math.max(0, ...tb.beat.shots.filter((c) => bf >= Math.round(c.at * fps)).map((c) => Math.round(c.at * fps))) : 0;
+
   // camera
-  let cam = clampCam(cameraFor(tb.shot, placed));
+  let cam = clampCam(cameraFor(shotNow, placed));
   if (tb.shot.move === "kaydir" && prev) {
     const pc = clampCam(cameraFor(prev.shot, placed));
     const k = interpolate(bf, [0, 18], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     cam = { cx: pc.cx + (cam.cx - pc.cx) * k, cy: pc.cy + (cam.cy - pc.cy) * k, z: pc.z + (cam.z - pc.z) * k, ay: pc.ay + (cam.ay - pc.ay) * k };
   }
-  const prog = bf / Math.max(1, tb.dur);
+  const prog = (bf - cutAt) / Math.max(1, tb.dur - cutAt);
   let z = cam.z;
-  if (tb.shot.move === "yaklas" || !tb.shot.move) z *= 1 + 0.06 * prog;
-  if (tb.shot.move === "uzaklas") z *= 1.08 - 0.08 * prog;
+  if (shotNow.move === "yaklas" || !shotNow.move) z *= 1 + 0.06 * prog;
+  if (shotNow.move === "uzaklas") z *= 1.08 - 0.08 * prog;
   cam = clampCam({ ...cam, z });
   const flash = tb.beat.lightning ? lightning(bf, 0) : 0;
   const shakeAmt = (tb.shot.move === "sarsinti" ? 12 : 0) + flash * 16;
@@ -224,7 +246,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     }
     const ang = lieAng[id];
     return (
-      <div key={id} style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: ang !== undefined ? `rotate(${ang}deg)` : undefined, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px` }}>
+      <React.Fragment key={id}>
+      <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: ang !== undefined ? `rotate(${ang}deg)` : undefined, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px` }}>
         <Character
           look={look}
           size={p.size}
@@ -237,6 +260,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             hideLegs: ang !== undefined,
+            tilt: ang !== undefined ? -0.72 * ang : undefined,
             yaw,
             lookX,
             tears: st.tears,
@@ -249,6 +273,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           }}
         />
       </div>
+      {ang !== undefined ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
+      </React.Fragment>
     );
   };
 
@@ -256,7 +282,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const outsideIds = scene.set === "apartman_kapisi" ? ids.filter((id) => tb.cast[id].mark === "kapi") : [];
   const insideIds = ids.filter((id) => !outsideIds.includes(id));
   const filter =
-    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.7) hue-rotate(-12deg) brightness(0.95)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : undefined;
+    scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.7) hue-rotate(-12deg) brightness(0.95)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : scene.look === "tekinsiz" ? `saturate(0.62) hue-rotate(-12deg) brightness(${frame % 83 < 2 ? 0.8 : 0.88}) contrast(1.16)` : undefined;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
@@ -267,7 +293,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}
@@ -278,7 +304,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
           {b.beat.type === "line" ? (
-            <KaraokeSubtitle tb={b} speakerName={castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
+            <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
           ) : b.beat.type === "yazi" ? (
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
           ) : b.beat.type === "mesaj" ? (
@@ -292,6 +318,23 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       ))}
       <SceneTransition kind={scene.transition} />
     </AbsoluteFill>
+  );
+};
+
+/** Battaniye: yatanın derinlik sırasında (önünde duranların arkasında) çizilir.
+ *  k = 0 yatarken (göğse kadar örter, ayak kabarıklığı), k = 1 otururken (kucağı örter, diz kabarıklığı). */
+const BL_LIE: [number, number][] = [[-175, 40], [-175, -30], [-150, -68], [-60, -70], [30, -72], [110, -58], [190, -52], [215, -46], [222, -6], [222, 56], [-175, 56]];
+const BL_SIT: [number, number][] = [[-72, 40], [-72, -16], [-62, -44], [6, -44], [70, -46], [120, -66], [190, -44], [215, -40], [222, -4], [222, 56], [-72, 56]];
+const Blanket: React.FC<{ hx: number; hy: number; k: number }> = ({ hx, hy, k }) => {
+  const P = BL_LIE.map(([x, y], i) => [hx + x + (BL_SIT[i][0] - x) * k, hy + y + (BL_SIT[i][1] - y) * k]);
+  const d = `M ${P[0][0]} ${P[0][1]} L ${P[1][0]} ${P[1][1]} Q ${P[2][0]} ${P[2][1]} ${P[3][0]} ${P[3][1]} Q ${P[4][0]} ${P[4][1]} ${P[5][0]} ${P[5][1]} Q ${P[6][0]} ${P[6][1]} ${P[7][0]} ${P[7][1]} Q ${P[8][0]} ${P[8][1]} ${P[8][0]} ${P[8][1] + 20} L ${P[9][0]} ${P[9][1]} L ${P[10][0]} ${P[10][1]} Z`;
+  const hem = `M ${P[0][0]} ${P[0][1]} L ${P[1][0]} ${P[1][1]} Q ${P[2][0]} ${P[2][1]} ${P[3][0]} ${P[3][1]} L ${P[3][0] + 6} ${P[3][1] + 34} Q ${P[2][0] + 20} ${P[2][1] + 40} ${P[0][0] + 22} ${P[0][1]} Z`;
+  return (
+    <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, overflow: "visible", pointerEvents: "none" }}>
+      <path d={d} fill="#8c979a" stroke="#1b1412" strokeWidth={5} strokeLinejoin="round" />
+      <path d={hem} fill="#a6b0b2" stroke="#1b1412" strokeWidth={3.5} strokeLinejoin="round" />
+      <path d={`M ${P[5][0]} ${P[5][1] + 6} Q ${P[5][0] + 10} ${P[5][1] + 40} ${P[5][0] - 4} ${hy + 50} M ${P[7][0] - 30} ${P[7][1] + 8} Q ${P[7][0] - 20} ${P[7][1] + 40} ${P[7][0] - 26} ${hy + 50}`} stroke="#74808a" strokeWidth={4} fill="none" />
+    </svg>
   );
 };
 
@@ -365,7 +408,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
             {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} /> : null}
             {ts.scene.transition === "whoosh" ? <Audio src={staticFile("ses/efekt/whoosh.mp3")} volume={0.6} /> : null}
             {ts.beats.map((b) => (
-              <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 3 * fps} layout="none">
+              <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 6 * fps} layout="none">
                 {b.voice ? (
                   <Sequence from={b.voice.from} layout="none">
                     <Audio src={staticFile(b.voice.file)} volume={1} />

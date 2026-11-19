@@ -100,6 +100,8 @@ export type Look = {
   mole?: boolean;
   /** kaşta yara izi */
   scar?: boolean;
+  /** sağ bilekte hasta bilekliği */
+  bileklik?: boolean;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };

@@ -41,6 +41,13 @@
   "loop": false,
   "desc": "Çay/su dökme (bardağa)."
  },
+ "efekt/cinlama": {
+  "file": "ses/efekt/cinlama.mp3",
+  "category": "efekt",
+  "duration": 2.6,
+  "loop": false,
+  "desc": "Kulak çınlaması 4.2+6.1 kHz (kendi sentezimiz; eski kaynağı belgesiz dosyanın yerine)."
+ },
  "efekt/darbe": {
   "file": "ses/efekt/darbe.mp3",
   "category": "efekt",
@@ -153,12 +160,26 @@
   "loop": false,
   "desc": "Kapı zili (BigSoundBank #0159) — gerçek kayıt, CC0"
  },
+ "efekt/kilit": {
+  "file": "ses/efekt/kilit.mp3",
+  "category": "efekt",
+  "duration": 1.1,
+  "loop": false,
+  "desc": "Anahtar dönüşü + metal kilit dili ve ağır mandal (kendi sentezimiz)."
+ },
  "efekt/kosma": {
   "file": "ses/efekt/kosma.mp3",
   "category": "efekt",
   "duration": 3.0,
   "loop": false,
   "desc": "Koşan ayak sesleri."
+ },
+ "efekt/kus_cik": {
+  "file": "ses/efekt/kus_cik.mp3",
+  "category": "efekt",
+  "duration": 0.5,
+  "loop": false,
+  "desc": "Kısa serçe cıvıltısı (kendi sentezimiz)."
  },
  "efekt/nefes_kesilme": {
   "file": "ses/efekt/nefes_kesilme.mp3",

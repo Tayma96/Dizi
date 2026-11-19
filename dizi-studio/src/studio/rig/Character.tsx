@@ -245,6 +245,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={foreD} fill={armFill} />
           {!shortSleeve && out.type === "tracksuit" ? <path d={`M ${sx + 12} ${ey} L ${sx + 10} ${hy}`} stroke="#fff" strokeWidth={5} /> : null}
           {!shortSleeve ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
+          {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
           <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />
           <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
           {side === "r" && pose.prop && pose.prop !== "none" ? (
@@ -491,7 +492,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       style={{ overflow: "visible", scale: flip ? "-1 1" : undefined, ...style }}
     >
       <g transform={`translate(0 ${groundShift + bob})`}>
-        <ellipse cx={200} cy={(pose.body === "sit" ? 910 : 985) - groundShift} rx={130 * wx} ry={16} fill="#000" opacity={0.2} transform={`translate(0 ${-bob})`} />
+        {pose.hideLegs ? null : <ellipse cx={200} cy={(pose.body === "sit" ? 910 : 985) - groundShift} rx={130 * wx} ry={16} fill="#000" opacity={0.2} transform={`translate(0 ${-bob})`} />}
         {/* back hair (follows the head) */}
         <g transform={bodyT}>
           <g transform={headT}>

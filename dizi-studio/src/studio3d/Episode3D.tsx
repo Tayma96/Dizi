@@ -326,7 +326,7 @@ export const Episode3D: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }
               <Scene3D ts={ts} colors={colors} />
               {ts.scene.transition === "whoosh" ? <Audio src={staticFile("ses/efekt/whoosh.mp3")} volume={0.5} /> : null}
               {ts.beats.map((b) => (
-                <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 3 * fps} layout="none">
+                <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 6 * fps} layout="none">
                   {b.voice ? (
                     <Sequence from={b.voice.from} layout="none">
                       <Audio src={staticFile(b.voice.file)} volume={b.beat.type === "line" ? b.beat.vol ?? 1 : 1} />

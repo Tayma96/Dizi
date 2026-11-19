@@ -10,7 +10,8 @@
    "id": "p1",
    "set": "hucre",
    "time": "gunduz",
-   "look": "soguk",
+   "look": "tekinsiz",
+   "saat": "07:14",
    "partBreak": true,
    "title": "Parça 1 — GÜN 183",
    "ambience": {
@@ -19,38 +20,37 @@
    },
    "music": {
     "name": "muzik/gizem",
-    "volume": 0.18
+    "volume": 0.26
    },
    "cast": {
     "berkay_hasta": {
      "mark": "yatak",
      "body": "yat",
      "eyesClosed": 1,
-     "emotion": "notr"
+     "emotion": "notr",
+     "pale": 0.35
+    },
+    "nalan": {
+     "mark": "kapi",
+     "hidden": true
     }
    },
    "beats": [
     {
      "type": "action",
-     "dur": 3.2,
+     "dur": 0.8,
      "shot": {
       "type": "genis",
-      "move": "yaklas",
-      "kadraj": "pencere"
+      "kadraj": "pencere",
+      "move": "yaklas"
      },
      "kus": "gel",
-     "etiket": "GÜN 183",
      "fade": "giris",
      "sfx": [
       {
        "name": "efekt/kanat",
-       "volume": 0.55,
-       "at": 0.6
-      },
-      {
-       "name": "efekt/tik",
-       "volume": 0.3,
-       "at": 2.2
+       "volume": 0.5,
+       "at": 0.0
       }
      ]
     },
@@ -59,13 +59,47 @@
      "who": "berkay_hasta",
      "voiceover": true,
      "emotion": "anlatim",
+     "hiz": 0.9,
      "text": "Hafızanızı kaybettiğinizde size ilk söylenen şey “burası güvenli” olsa, gerçekten güvende hisseder miydiniz?",
+     "gapAfter": 0.8,
      "shot": {
       "type": "genis",
-      "move": "yaklas",
-      "kadraj": "pencere"
+      "kadraj": "pencere",
+      "move": "yaklas"
      },
-     "kus": "otur"
+     "kus": "gel",
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.4,
+       "at": 0.9
+      },
+      {
+       "name": "efekt/kus_cik",
+       "volume": 0.35,
+       "at": 1.0
+      },
+      {
+       "name": "efekt/tik",
+       "volume": 0.35,
+       "at": 1.35
+      },
+      {
+       "name": "efekt/tik",
+       "volume": 0.35,
+       "at": 1.7
+      }
+     ],
+     "shots": [
+      {
+       "at": 3.45,
+       "shot": {
+        "type": "genis",
+        "kadraj": "oda",
+        "move": "yaklas"
+       }
+      }
+     ]
     },
     {
      "type": "line",
@@ -76,22 +110,21 @@
      "shot": {
       "type": "orta",
       "on": "berkay_hasta",
-      "move": "kaydir"
-     },
-     "kus": "otur"
+      "move": "yaklas"
+     }
     },
     {
      "type": "action",
      "dur": 1.4,
      "shot": {
-      "type": "yakin",
+      "type": "cok_yakin",
       "on": "berkay_hasta",
       "move": "sabit"
      },
      "cast": {
       "berkay_hasta": {
-       "eyesClosed": 0,
-       "emotion": "aci"
+       "eyesClosed": 0.25,
+       "emotion": "yorgun"
       }
      }
     },
@@ -99,16 +132,65 @@
      "type": "line",
      "who": "berkay_hasta",
      "emotion": "aci",
+     "tags": "[waking up, groggy, breathing heavily]",
      "text": "Nerdeyim ben, neresi burası?",
      "shot": {
       "type": "yakin",
       "on": "berkay_hasta",
       "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "eyesClosed": 0,
+       "emotion": "korkmus"
+      }
      }
     },
     {
      "type": "action",
-     "dur": 3.0,
+     "dur": 1.6,
+     "shot": {
+      "type": "orta",
+      "kadraj": {
+       "cx": 520,
+       "cy": 1010,
+       "z": 1.45
+      },
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "body": "dogrul",
+       "emotion": "yorgun"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.55,
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "basTutma",
+       "emotion": "aci",
+       "eyesClosed": 0.45
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.9,
      "shot": {
       "type": "orta",
       "on": "berkay_hasta",
@@ -116,23 +198,16 @@
      },
      "cast": {
       "berkay_hasta": {
-       "body": "dogrul",
-       "gesture": "basTutma",
-       "emotion": "aci"
+       "gesture": "rest",
+       "emotion": "saskin",
+       "eyesClosed": 0
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/cinlama",
-       "volume": 0.35,
-       "at": 0.2
-      }
-     ]
+     }
     },
     {
      "type": "insert",
      "kind": "bileklik",
-     "dur": 2.6,
+     "dur": 2.5,
      "text": [
       "B. TANER",
       "ODA 7",
@@ -140,17 +215,71 @@
      ]
     },
     {
-     "type": "insert",
-     "kind": "kapi_kolu",
-     "dur": 3.0,
+     "type": "action",
+     "dur": 1.1,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus"
+      }
+     },
      "sfx": [
       {
-       "name": "efekt/kapi_gicirti",
-       "volume": 0.6,
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.55,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/riser",
+       "volume": 0.4,
        "at": 0.6
       }
-     ],
-     "fade": "cikis"
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "offscreen": true,
+     "label": "",
+     "emotion": "soguk",
+     "fx": "kapi_arkasi",
+     "text": "Yedi'yi ben alırım.",
+     "shot": {
+      "type": "orta",
+      "kadraj": "kapi",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.6,
+     "shot": {
+      "type": "orta",
+      "kadraj": "kapi",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "kapi_kolu",
+     "dur": 2.9,
+     "fade": "cikis",
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.85,
+       "at": 0.1
+      },
+      {
+       "name": "efekt/tik",
+       "volume": 0.5,
+       "at": 1.9
+      }
+     ]
     }
    ]
   }

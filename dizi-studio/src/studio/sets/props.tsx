@@ -553,3 +553,74 @@ export const CellDoor: React.FC<P & { open?: number }> = ({ x, y, s, open = 0 })
     </g>
   </G>
 );
+
+/** Hücre saati: saat ve dakika ayarlı; saniye ibresi gerçek hızda */
+export const HucreClock: React.FC<P & { time?: string }> = ({ x, y, s, time = "07:14" }) => {
+  const frame = useCurrentFrame();
+  const [h, m] = time.split(":").map(Number);
+  return (
+    <G x={x} y={y} s={s}>
+      <circle cx={0} cy={0} r={62} fill="#e9e6dc" stroke={O} strokeWidth={6} />
+      <circle cx={0} cy={0} r={52} fill="none" stroke="#c8c4b8" strokeWidth={2} />
+      {new Array(12).fill(0).map((_, i) => (
+        <rect key={i} x={-2} y={-54} width={4} height={i % 3 === 0 ? 13 : 8} fill={O} transform={`rotate(${i * 30})`} />
+      ))}
+      <path d="M 0 0 L 0 -32" stroke={O} strokeWidth={7} strokeLinecap="round" transform={`rotate(${(h % 12) * 30 + m * 0.5})`} />
+      <path d="M 0 0 L 0 -46" stroke={O} strokeWidth={5} strokeLinecap="round" transform={`rotate(${m * 6})`} />
+      <path d="M 0 8 L 0 -50" stroke="#b33" strokeWidth={2} transform={`rotate(${(frame / 30) * 6})`} />
+      <circle r={5} fill={O} />
+    </G>
+  );
+};
+
+/** Duvara tırnakla kazınmış gün çentikleri + sayı (sahnenin içinde, Berkay'ın kendi saydığı günler) */
+export const WallTally: React.FC<P & { groups?: number; text?: string }> = ({ x, y, s, groups = 8, text = "183" }) => (
+  <G x={x} y={y} s={s}>
+    {new Array(groups).fill(0).map((_, g) => {
+      const gx = (g % 4) * 62;
+      const gy = Math.floor(g / 4) * 64;
+      return (
+        <g key={g} transform={`translate(${gx} ${gy}) rotate(${(g % 3) - 1})`}>
+          {[0, 1, 2, 3].map((i) => (
+            <g key={i}>
+              <path d={`M ${i * 10} 0 L ${i * 10 + 2} 44`} stroke="#4c5a52" strokeWidth={4} strokeLinecap="round" />
+              <path d={`M ${i * 10 + 2} 0 L ${i * 10 + 4} 44`} stroke="#e4ebe6" strokeWidth={1.5} opacity={0.7} />
+            </g>
+          ))}
+          <path d="M -6 34 L 40 8" stroke="#4c5a52" strokeWidth={4} strokeLinecap="round" />
+        </g>
+      );
+    })}
+    <text x={260} y={110} fontFamily="'Courier New', monospace" fontWeight={700} fontSize={64} fill="none" stroke="#3e4a44" strokeWidth={4} transform="rotate(-4 260 110)">
+      {text}
+    </text>
+    <text x={262} y={108} fontFamily="'Courier New', monospace" fontWeight={700} fontSize={64} fill="none" stroke="#e4ebe6" strokeWidth={1.2} opacity={0.6} transform="rotate(-4 262 108)">
+      {text}
+    </text>
+  </G>
+);
+
+/** Tavan köşesinde güvenlik kamerası: kırmızı ışık yanıp söner */
+export const SecurityCam: React.FC<P> = ({ x, y, s }) => {
+  const frame = useCurrentFrame();
+  const on = frame % 30 < 12;
+  return (
+    <G x={x} y={y} s={s}>
+      <rect x={-8} y={-40} width={16} height={40} fill="#3a4044" stroke={O} strokeWidth={3} />
+      <g transform="rotate(28)">
+        <rect x={-70} y={-4} width={96} height={46} rx={8} fill="#d8dcde" stroke={O} strokeWidth={4} />
+        <rect x={-86} y={4} width={20} height={30} rx={4} fill="#2a3034" stroke={O} strokeWidth={3} />
+        <circle cx={-48} cy={30} r={6} fill={on ? "#ff2a2a" : "#5a1a1a"} />
+        {on ? <circle cx={-48} cy={30} r={14} fill="#ff2a2a" opacity={0.3} /> : null}
+      </g>
+    </G>
+  );
+};
+
+/** Havalandırma ızgarası */
+export const VentGrille: React.FC<P> = ({ x, y, s }) => (
+  <G x={x} y={y} s={s}>
+    <rect x={0} y={0} width={150} height={90} rx={6} fill="#8a948e" stroke={O} strokeWidth={4} />
+    {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={12} y={12 + i * 15} width={126} height={7} rx={3} fill="#2a302c" />)}
+  </G>
+);

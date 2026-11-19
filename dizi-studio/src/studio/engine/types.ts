@@ -94,6 +94,10 @@ export type BeatCommon = {
   etiket?: string;
   /** pencere dışındaki kuş: gel = uçup konar, otur = pervazda bekler */
   kus?: "gel" | "otur";
+  /** vuruş içinde kesme: `at` saniyesinden itibaren bu çekim kullanılır */
+  shots?: { at: number; shot: Shot }[];
+  /** hücre saati bu vuruştan itibaren */
+  saat?: string;
 };
 
 export type Scene = {
@@ -105,7 +109,9 @@ export type Scene = {
   ambience?: { name: string; volume?: number };
   music?: { name: string; volume?: number; from?: number };
   /** "flashback": sepya/rüya görünümü */
-  look?: "normal" | "flashback" | "soguk" | "sicak";
+  look?: "normal" | "flashback" | "soguk" | "sicak" | "tekinsiz";
+  /** hücre saati (ör. "07:14"); vuruşta `saat` ile değişebilir */
+  saat?: string;
   /** Bilinçli ışık tasarımı (anahtar/dolgu/arka) */
   isik?: LightDesign;
   cast: Record<string, CharState>;

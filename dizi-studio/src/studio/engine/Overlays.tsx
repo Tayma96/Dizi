@@ -190,7 +190,6 @@ export const CornerLabel: React.FC<{ text: string }> = ({ text }) => {
 };
 
 /* ---------------- Ekleme (insert) yakın planları ---------------- */
-const SKIN = "#e0b08c";
 const OUTL = "#1b1412";
 
 const InsertBileklik: React.FC<{ text: string[]; dur: number }> = ({ text, dur }) => {
@@ -209,23 +208,26 @@ const InsertBileklik: React.FC<{ text: string[]; dur: number }> = ({ text, dur }
         {/* battaniye zemini */}
         <rect width={1080} height={1920} fill="#8c979a" />
         <path d="M 0 700 Q 540 640 1080 720 M 0 1300 Q 540 1240 1080 1320" stroke="#74808a" strokeWidth={10} fill="none" />
-        {/* kol (önlük kolundan çıkıyor): kadrajı dolduran bilek yakın planı */}
-        <path d="M -60 800 Q 400 770 700 820 Q 780 900 760 1060 Q 420 1120 -60 1110 Z" fill={SKIN} stroke={OUTL} strokeWidth={9} />
-        <path d="M -60 770 L 150 780 Q 180 960 160 1130 L -60 1140 Z" fill="#a9c4d6" stroke={OUTL} strokeWidth={9} />
-        <path d="M 150 780 Q 180 960 160 1130" stroke="#8aa8bc" strokeWidth={14} fill="none" />
-        {/* el: avuç + kıvrık parmaklar */}
-        <g transform={`rotate(${tw} 780 950)`}>
-          <path d="M 700 830 Q 900 800 960 900 Q 990 1010 900 1070 Q 790 1110 720 1050 Z" fill={SKIN} stroke={OUTL} strokeWidth={9} />
+        {/* bilek yakın planı: pijama kolu (kadrodaki renk), kalın kol, kolu saran bileklik, başparmaklı el */}
+        <path d="M -60 740 Q 380 700 700 760 Q 800 900 760 1130 Q 400 1200 -60 1180 Z" fill="#e6b08a" stroke={OUTL} strokeWidth={10} />
+        <path d="M -60 700 L 170 712 Q 214 950 190 1200 L -60 1220 Z" fill="#8fa6b5" stroke={OUTL} strokeWidth={10} />
+        <path d="M 170 712 Q 214 950 190 1200" stroke="#7790a0" strokeWidth={18} fill="none" />
+        <path d="M 40 760 Q 70 950 40 1160" stroke="#7790a0" strokeWidth={8} fill="none" opacity={0.7} />
+        <g transform={`rotate(${tw} 760 940)`}>
+          <path d="M 680 770 Q 900 740 980 880 Q 1010 1020 930 1110 Q 800 1170 700 1100 Z" fill="#e6b08a" stroke={OUTL} strokeWidth={10} />
           {[0, 1, 2, 3].map((i) => (
-            <path key={i} d={`M 930 ${860 + i * 52} q 90 -6 110 24 q 4 26 -26 28 q -50 2 -84 -6`} fill={SKIN} stroke={OUTL} strokeWidth={7} strokeLinejoin="round" />
+            <path key={i} d={`M 950 ${830 + i * 58} q 92 -8 116 24 q 6 30 -26 32 q -54 2 -90 -8`} fill="#e6b08a" stroke={OUTL} strokeWidth={8} strokeLinejoin="round" />
           ))}
-          <path d="M 760 1050 q 40 60 110 40" stroke={OUTL} strokeWidth={6} fill="none" opacity={0.5} />
+          {/* başparmak */}
+          <path d="M 760 760 q 60 -70 140 -50 q 30 16 4 40 q -60 0 -110 40" fill="#e6b08a" stroke={OUTL} strokeWidth={8} strokeLinejoin="round" />
         </g>
-        {/* hasta bilekliği */}
-        <rect x={330} y={790} width={470} height={300} rx={34} fill="#f6f6f2" stroke={OUTL} strokeWidth={9} />
-        <rect x={350} y={810} width={430} height={260} rx={22} fill="none" stroke="#c8ccd0" strokeWidth={5} />
+        {/* bileklik: kolu sarar (üst ve alt kenar kolun arkasına döner), çıtçıtlı */}
+        <path d="M 360 730 Q 330 940 360 1150 L 600 1150 Q 630 940 600 730 Z" fill="#f6f6f2" stroke={OUTL} strokeWidth={9} />
+        <path d="M 360 730 Q 480 712 600 730 M 360 1150 Q 480 1168 600 1150" stroke="#c8ccd0" strokeWidth={10} fill="none" />
+        <path d="M 600 730 Q 630 940 600 1150" stroke="#d8dcde" strokeWidth={14} fill="none" />
+        <circle cx={588} cy={940} r={14} fill="#c8ccd0" stroke={OUTL} strokeWidth={4} />
         {text.map((t, i) => (
-          <text key={i} x={565} y={878 + i * 74} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={i === 0 ? 62 : 50} fill="#1a1e24">
+          <text key={`h${i}`} x={480} y={870 + i * 70} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={i === 0 ? 50 : 40} fill="#1a1e24">
             {t}
           </text>
         ))}
@@ -261,11 +263,18 @@ const InsertKapiKolu: React.FC<{ dur: number }> = ({ dur }) => {
         <rect width={1080} height={1920} fill="url(#ins-steel)" />
         <path d="M 0 400 H 1080 M 0 1560 H 1080" stroke="#4e5a60" strokeWidth={14} />
         {/* kapı aralığı (sağda): koridordan sızan ışık */}
-        <rect x={1010} y={0} width={70} height={1920} fill="#2a3134" />
-        <rect x={1030} y={0} width={14} height={1920} fill="#fff6d8" opacity={interpolate(f, [1.6 * fps, 2.3 * fps], [0, 0.55], clamp)} />
+        <rect x={0} y={0} width={70} height={1920} fill="#2a3134" />
+        <rect x={30} y={0} width={14} height={1920} fill="#fff6d8" opacity={interpolate(f, [1.6 * fps, 2.3 * fps], [0, 0.55], clamp)} />
+        {/* çizikler ve boya izleri */}
+        <path d="M 620 600 L 760 640 M 300 1300 L 420 1270 M 700 1350 L 860 1420" stroke="#4e5a60" strokeWidth={4} opacity={0.6} />
+        <rect x={160} y={500} width={460} height={140} rx={8} fill="#3a4448" stroke={OUTL} strokeWidth={6} />
         {/* rozet + kol */}
         <ellipse cx={420} cy={960} rx={110} ry={150} fill="#a8b2b8" stroke={OUTL} strokeWidth={8} />
         <circle cx={420} cy={1060} r={22} fill="#2a3134" />
+        {/* anahtar deliğinde dönen anahtar (kilit sesiyle) */}
+        <g transform={`rotate(${interpolate(f, [0.15 * fps, 0.45 * fps], [0, 90], clamp)} 420 1060)`}>
+          <rect x={414} y={1030} width={12} height={60} rx={4} fill="#c9a75a" stroke={OUTL} strokeWidth={3} />
+        </g>
         <g transform={`rotate(${a} 420 930)`}>
           <rect x={360} y={880} width={520} height={100} rx={50} fill="url(#ins-lever)" stroke={OUTL} strokeWidth={8} />
           <rect x={400} y={898} width={440} height={16} rx={8} fill="#ffffff" opacity={0.55} />

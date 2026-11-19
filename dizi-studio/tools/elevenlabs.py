@@ -309,7 +309,7 @@ def lines_from_episode(script):
                 emo = "notr"
             if who not in cast:
                 raise SystemExit(f"Bilinmeyen karakter: {who}")
-            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "tags": b.get("tags", "")})
+            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "tags": b.get("tags", ""), "hiz": b.get("hiz"), "fx": b.get("fx")})
     return out
 
 
@@ -381,12 +381,31 @@ def visemes_from_alignment(al):
     return outc
 
 
-def postprocess(raw_path, out_path):
-    """Baştaki sessizliği kırp, -16 LUFS diyalog seviyesi. Kırpılan süreyi döndürür."""
+# Ses filtreleri (replik alanı "fx"): kapı arkası = boğuk, yankılı (ses yönetmeni ayarı)
+FX = {
+    "kapi_arkasi": "highpass=f=180,lowpass=f=2000,equalizer=f=350:t=q:w=1.0:g=2,aecho=0.8:0.5:14|31:0.18|0.1,apad=pad_dur=0.3",
+    "telefon": "highpass=f=300,lowpass=f=3400,acompressor=threshold=-20dB:ratio=4",
+}
+
+
+def loudnorm_2pass(src, dst, target=-16.0, extra_af="", ss=0.0):
+    """Ölç → doğrusal kazanç → tepe sınırlayıcı (-1.5 dBTP). Kısa kliplerde de hedefe ulaşır
+    (tek geçişli loudnorm 3 sn altı kliplerde 3-4 dB kısık bırakıyordu)."""
+    pre = (extra_af + ",") if extra_af else ""
+    meas = subprocess.run(["ffmpeg", "-hide_banner", "-ss", f"{ss:.3f}", "-i", src, "-af", f"{pre}ebur128=framelog=quiet", "-f", "null", "-"], capture_output=True, text=True).stderr
+    m = re.findall(r"I:\s+(-?[\d.]+) LUFS", meas)
+    cur = float(m[-1]) if m else target
+    gain = max(-30.0, min(20.0, target - cur))
+    af = f"{pre}volume={gain:.2f}dB,alimiter=limit=0.84:level=false"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{ss:.3f}", "-i", src, "-af", af, "-ar", "44100", "-ac", "1", "-c:a", "libmp3lame", "-q:a", "2", dst], check=True)
+
+
+def postprocess(raw_path, out_path, fx=None):
+    """Baştaki sessizliği kırp, -16 LUFS diyalog seviyesi (kapı arkası gibi filtreliyse -25). Kırpılan süreyi döndürür."""
     det = subprocess.run(["ffmpeg", "-i", raw_path, "-af", "silencedetect=n=-45dB:d=0.05", "-f", "null", "-"], capture_output=True, text=True).stderr
     m = re.search(r"silence_start: 0(?:\.0+)?\s.*?silence_end: ([\d.]+)", det, re.S)
     lead = max(0.0, float(m.group(1)) - 0.06) if m else 0.0
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{lead:.3f}", "-i", raw_path, "-af", "loudnorm=I=-16:TP=-1.5", "-ar", "44100", "-ac", "1", "-c:a", "libmp3lame", "-q:a", "2", out_path], check=True)
+    loudnorm_2pass(raw_path, out_path, target=-25.0 if fx == "kapi_arkasi" else -16.0, extra_af=FX.get(fx or "", ""), ss=lead)
     dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out_path]).strip())
     return lead, dur
 
@@ -417,7 +436,8 @@ def cmd_seslendir(args):
     for l in lines:
         text = build_text(l, model)
         v = vmap[l["who"]]
-        key = hashlib.sha1(f"el|{model}|{v['voice_id']}|{json.dumps(v.get('ayar', {}), sort_keys=True)}|{l['emotion']}|{text}".encode()).hexdigest()[:12]
+        extra = "".join(f"|{k}={l[k]}" for k in ("hiz", "fx") if l.get(k))
+        key = hashlib.sha1(f"el|{model}|{v['voice_id']}|{json.dumps(v.get('ayar', {}), sort_keys=True)}|{l['emotion']}|{text}{extra}".encode()).hexdigest()[:12]
         cached = manifest.get(l["id"], {}).get("key") == key and os.path.exists(os.path.join(ROOT, "public", manifest[l["id"]]["file"]))
         if cached and l["id"] not in redo:
             continue
@@ -452,6 +472,8 @@ def cmd_seslendir(args):
         if model in TAG_MODELS:
             vs = {"stability": 0.5, "similarity_boost": 0.8, "use_speaker_boost": True, "speed": 1.0}
         vs.update(entry.get("ayar", {}))
+        if l.get("hiz"):
+            vs["speed"] = float(l["hiz"])
         body = {"text": text, "model_id": model, "voice_settings": vs, "seed": int(key[:8], 16) % 4294967295}
         if model in LANG_MODELS:
             body["language_code"] = "tr"
@@ -461,7 +483,7 @@ def cmd_seslendir(args):
         open(raw, "wb").write(base64.b64decode(res["audio_base64"]))
         al = res.get("alignment") or res.get("normalized_alignment")
         out_rel = f"voice/{ep}/{l['id']}.mp3"
-        lead, dur = postprocess(raw, os.path.join(ROOT, "public", out_rel))
+        lead, dur = postprocess(raw, os.path.join(ROOT, "public", out_rel), l.get("fx"))
         words = words_from_alignment(al, l["text"]) if al else []
         cues = visemes_from_alignment(al) if al else []
         words, cues = shift(words, cues, lead)

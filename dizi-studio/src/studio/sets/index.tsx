@@ -6,7 +6,7 @@ import {
   Armchair, Bed, Bookshelf, CafeCounter, CafeTable, Car, CeilingLamp, Chalkboard, Chandelier, CoffeeTable, Curtains,
   Desk, DiningTable, Door, FloorLamp, Frame, HospitalBed, Kitchen, O, Plant, PoliceDesk, Rug, SchoolDesk, Sofa,
   StreetLamp, TimeOfDay, Tombstone, Tree, TV, WallClock, Wardrobe, WindowView, SKY,
-  Bird, CellDoor, IronBed, IronBedBlanket, WindowBars,
+  Bird, CellDoor, IronBed, WindowBars, HucreClock, WallTally, SecurityCam, VentGrille,
 } from "./props";
 import { Corridor, FrontDoor, Stairwell } from "../../dizi/Sets";
 
@@ -26,7 +26,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   cocuk_odasi: { title: "Çocuk odası", marks: { sol: { x: 300, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 800, y: 1780, size: 1250 } } },
   ofis: { title: "Ofis", marks: { masa: { x: 560, y: 1640, size: 1150, sit: true }, sol: { x: 260, y: 1780, size: 1250 }, sag: { x: 840, y: 1780, size: 1250 } } },
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
-  hucre: { title: "Tımarhane odası", marks: { yatak: { x: 590, y: 1238, size: 950 }, orta: { x: 520, y: 1780, size: 1250 }, kapi: { x: 860, y: 1780, size: 1250 } } },
+  hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 } } },
   hastane_koridoru: { title: "Hastane koridoru", marks: { sol: { x: 320, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 780, y: 1780, size: 1250 } } },
   sokak: { title: "Sokak", marks: { sol: { x: 300, y: 1800, size: 1250 }, orta: { x: 540, y: 1810, size: 1270 }, sag: { x: 790, y: 1800, size: 1250 } } },
   kafe: { title: "Kafe", marks: { sol: { x: 280, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 820, y: 1780, size: 1250 }, tezgah: { x: 540, y: 1480, size: 1150 } } },
@@ -88,8 +88,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus }) => {
-  const props = { kus };
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat }) => {
+  const frame = useCurrentFrame();
+  const props = { kus, saat, frame };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -165,25 +166,61 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       const kus = props.kus;
       return (
         <g>
-          <Wall c1="#c9d2cb" c2="#b6c1b9" pattern="yok" />
-          {/* nem lekeleri */}
-          <ellipse cx={180} cy={420} rx={120} ry={70} fill="#00000010" />
-          <ellipse cx={980} cy={1180} rx={90} ry={160} fill="#00000012" />
-          <TileFloor c="#b9c2bd" line="#a1aba6" />
           <defs>
             <clipPath id="hucre-win"><rect x={600} y={260} width={340} height={460} /></clipPath>
             <linearGradient id="hucre-beam" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#fffbe8" stopOpacity="0.38" />
+              <stop offset="0" stopColor="#fffbe8" stopOpacity="0.55" />
               <stop offset="1" stopColor="#fffbe8" stopOpacity="0" />
             </linearGradient>
+            <linearGradient id="hucre-cloud" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#d9e0e3" />
+              <stop offset="1" stopColor="#bfc8cc" />
+            </linearGradient>
+            <radialGradient id="hucre-vig" cx="0.5" cy="0.45" r="0.75">
+              <stop offset="0.55" stopColor="#000" stopOpacity="0" />
+              <stop offset="1" stopColor="#000" stopOpacity="0.45" />
+            </radialGradient>
           </defs>
+          {/* kurum boyası: üstte soluk, altta koyu yağlı boya, aralarında koyu şerit */}
+          <rect width={W} height={1500} fill="#c3ccc5" />
+          <rect y={1000} width={W} height={500} fill="#6f8279" />
+          <rect y={988} width={W} height={14} fill="#4e5e56" />
+          {/* damlama izli lekeler ve çatlak */}
+          <path d="M 120 330 Q 190 300 250 340 Q 236 420 220 480 L 214 560 L 206 470 Q 160 430 120 330 Z" fill="#00000014" />
+          <path d="M 1000 1040 Q 1050 1100 1040 1200 L 1032 1290 L 1024 1180 Q 980 1120 1000 1040 Z" fill="#00000018" />
+          <path d="M 330 140 L 352 210 L 340 260 L 366 330" stroke="#5c6862" strokeWidth={3} fill="none" opacity={0.6} />
+          <TileFloor c="#9aa49e" line="#848e88" />
           <WindowView x={600} y={260} w={340} h={460} time={time} rain={rain} id="hucre" flash={flash} city={false} />
-          {kus ? <g clipPath="url(#hucre-win)">{kus}</g> : null}
+          <g clipPath="url(#hucre-win)">
+            <rect x={600} y={260} width={340} height={460} fill="url(#hucre-cloud)" opacity={0.9} />
+            <ellipse cx={700} cy={360} rx={110} ry={40} fill="#e6eaec" opacity={0.7} />
+            <ellipse cx={860} cy={460} rx={130} ry={46} fill="#cdd4d7" opacity={0.7} />
+            {kus}
+          </g>
           <WindowBars x={600} y={260} w={340} h={460} />
-          {/* pencereden düşen ışık */}
+          {/* gün çentikleri ve 183 (pencerenin altında, Berkay'ın kazıdığı) */}
+          <WallTally x={612} y={752} s={0.72} groups={8} text="183" />
+          <HucreClock x={240} y={420} s={1} time={props.saat ?? "07:14"} />
+          <SecurityCam x={1010} y={70} s={1} />
+          <VentGrille x={330} y={150} s={1} />
+          {/* pencereden düşen ışık + parmaklık gölgeleri */}
           <path d="M 600 720 L 940 720 L 760 1500 L 200 1500 Z" fill="url(#hucre-beam)" />
-          <CellDoor x={900} y={860} s={1} open={doorOpen} />
-          <IronBed x={60} y={1240} s={1} />
+          {[0, 1, 2, 3, 4].map((i) => {
+            const t = (i + 1) / 6;
+            const x1 = 600 + 340 * t;
+            const x2 = 200 + 560 * t;
+            return <path key={i} d={`M ${x1 - 5} 720 L ${x1 + 5} 720 L ${x2 + 14} 1500 L ${x2 - 14} 1500 Z`} fill="#26302b" opacity={0.18} />;
+          })}
+          {/* toz zerreleri */}
+          {new Array(14).fill(0).map((_, i) => {
+            const fr = props.frame ?? 0;
+            const px = 420 + random(`dz${i}`) * 420 + Math.sin((fr + i * 40) / 60) * 20;
+            const py = 800 + ((random(`dy${i}`) * 600 + fr * 0.6) % 600);
+            return <circle key={i} cx={px} cy={py} r={2 + random(`dr${i}`) * 2} fill="#fffbe8" opacity={0.35} />;
+          })}
+          <CellDoor x={780} y={860} s={1} open={doorOpen} />
+          <IronBed x={30} y={1240} s={0.86} />
+          <rect width={W} height={H} fill="url(#hucre-vig)" />
         </g>
       );
     }
@@ -345,8 +382,6 @@ const SetFG: React.FC<{ name: SetName }> = ({ name }) => {
       );
     case "karakol":
       return <PoliceDesk x={160} y={1460} s={1} />;
-    case "hucre":
-      return <IronBedBlanket x={385} y={1230} s={1} />;
     default:
       return null;
   }
@@ -368,7 +403,9 @@ export const SetLayer: React.FC<{
   children?: React.ReactNode;
   /** pencere dışındaki kuş (hücre) — SVG düğümü */
   kus?: React.ReactNode;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus }) => {
+  /** hücre saati "07:14" */
+  saat?: string;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -388,7 +425,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />
