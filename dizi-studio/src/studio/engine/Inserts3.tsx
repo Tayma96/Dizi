@@ -600,7 +600,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "ucak_carpma": return <UcakCarpma dur={dur} />;
     case "kurallar": case "ayak_izi": case "ekmek_raf": case "kasa_acilir": case "telefon_ekran": case "kapusonlu": return <Insert5 kind={kind} dur={dur} text={text} />;
     case "cctv_asansor": case "cctv_bos": case "cctv_lobi": case "kat_gostergesi": case "arka_bos": case "cctv_cik": case "pano_fener": case "not_yakin": case "telefon_cal": case "kablo": case "dugme_7": case "kep": case "takvim": case "dis_bina": return <Insert4 kind={kind} dur={dur} text={text} />;
-    case "tablet_video": case "murekkep_parmak": case "kalem_cep": return <Insert6 kind={kind} dur={dur} text={text} />;
+    case "tablet_video": case "murekkep_parmak": case "kalem_cep": case "hap_uc": case "avuc_iki": return <Insert6 kind={kind} dur={dur} text={text} />;
     case "pov_kadin": return <PovKadin dur={dur} faz={(text ?? ["1"])[0]} />;
   }
 };

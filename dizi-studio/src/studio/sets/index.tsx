@@ -257,6 +257,7 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <ellipse cx={180} cy={420} rx={120} ry={70} fill="#00000010" />
           <ellipse cx={980} cy={1180} rx={90} ry={160} fill="#00000012" />
           <TileFloor c="#b9c2bd" line="#a1aba6" />
+          {props.saat ? <HucreClock x={300} y={430} s={1} time={props.saat} /> : null}
           <defs>
             <clipPath id="hucre1-win"><rect x={600} y={260} width={340} height={460} /></clipPath>
             <linearGradient id="hucre1-beam" x1="0" y1="0" x2="0" y2="1">

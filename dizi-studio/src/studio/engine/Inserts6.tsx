@@ -9,8 +9,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const MONO = "'Courier New', monospace";
 const MUREKKEP = "#10204a";
 
-export type Insert6Kind = "tablet_video" | "murekkep_parmak" | "kalem_cep";
-export const INSERT6_KINDS: Insert6Kind[] = ["tablet_video", "murekkep_parmak", "kalem_cep"];
+export type Insert6Kind = "tablet_video" | "murekkep_parmak" | "kalem_cep" | "hap_uc" | "avuc_iki";
+export const INSERT6_KINDS: Insert6Kind[] = ["tablet_video", "murekkep_parmak", "kalem_cep", "hap_uc", "avuc_iki"];
 
 /* ---------------------------------------------------------------------------------------------
  * Tablet videosu. Deniz'in elindeki tablette, odanın köşesindeki kameradan (kamera_led açısı) çekilmiş kayıt:
@@ -331,11 +331,145 @@ const KalemCep: React.FC<{ dur: number }> = () => {
   );
 };
 
+/* ---------------------------------------------------------------------------------------------
+ * Üç hap: Bölüm 1'deki tepsi ve kâğıt kap birebir; beyaz yuvarlak + yarısı mavi kapsül + YENİ üçüncü hap:
+ * küçük, tebeşir gibi mat açık mavi (#8fc1ea), kenarı hafif tozlu (ağızda eriyen tablet). Hafif yaklaşma.
+ * ------------------------------------------------------------------------------------------- */
+const OUTL = "#1b1412";
+const HapUc: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.1], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#9aa4a8" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "52% 56%" }}>
+        <defs>
+          <radialGradient id="h3-vig" cx="0.5" cy="0.55" r="0.7"><stop offset="0.5" stopColor="#000" stopOpacity="0" /><stop offset="1" stopColor="#000" stopOpacity="0.6" /></radialGradient>
+          <radialGradient id="h3-toz" cx="0.4" cy="0.35" r="0.7"><stop offset="0" stopColor="#bfe0f8" /><stop offset="1" stopColor="#7fb4e0" /></radialGradient>
+          <filter id="h3-gren"><feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="1" seed="3" /><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.25 0" /><feComposite in2="SourceGraphic" operator="in" /></filter>
+        </defs>
+        {/* metal tepsi (B1 ile aynı) */}
+        <rect x={-40} y={700} width={1160} height={700} rx={40} fill="#c4ccd2" stroke={OUTL} strokeWidth={10} />
+        <rect x={0} y={740} width={1080} height={620} rx={30} fill="#b4bcc2" />
+        <path d="M 60 760 L 1020 760" stroke="#dfe5ea" strokeWidth={6} opacity={0.7} />
+        {/* su bardağı (köşede, plastik) */}
+        <ellipse cx={890} cy={860} rx={110} ry={46} fill="#e8f2f6" stroke={OUTL} strokeWidth={6} opacity={0.9} />
+        <ellipse cx={890} cy={866} rx={92} ry={36} fill="#cfe4ee" />
+        <path d="M 820 856 q 30 -14 60 -4" stroke="#ffffff" strokeWidth={6} fill="none" opacity={0.8} />
+        {/* kâğıt hap kabı (üstten) */}
+        <ellipse cx={540} cy={1040} rx={300} ry={230} fill="#f6f2e8" stroke={OUTL} strokeWidth={10} />
+        <ellipse cx={540} cy={1060} rx={250} ry={180} fill="#ebe5d6" />
+        {new Array(16).fill(0).map((_, i) => {
+          const a = (i / 16) * Math.PI * 2;
+          return <path key={i} d={`M ${540 + Math.cos(a) * 250} ${1060 + Math.sin(a) * 180} L ${540 + Math.cos(a) * 300} ${1040 + Math.sin(a) * 230}`} stroke="#d8d0be" strokeWidth={6} />;
+        })}
+        {/* beyaz yuvarlak hap */}
+        <ellipse cx={420} cy={1090} rx={78} ry={62} fill="#fbfbf8" stroke={OUTL} strokeWidth={8} />
+        <path d="M 360 1090 H 480" stroke="#c8c8c0" strokeWidth={6} />
+        {/* yarısı mavi kapsül */}
+        <g transform="rotate(-28 640 1060)">
+          <rect x={560} y={1020} width={90} height={80} rx={40} fill="#fbfbf8" stroke={OUTL} strokeWidth={8} />
+          <rect x={640} y={1020} width={90} height={80} rx={40} fill="#3f86d6" stroke={OUTL} strokeWidth={8} />
+          <rect x={630} y={1024} width={20} height={72} fill="#3f86d6" />
+          <rect x={590} y={1034} width={40} height={10} rx={5} fill="#ffffff" opacity={0.7} />
+        </g>
+        {/* YENİ: üçüncü hap, küçük, mat, tebeşir gibi açık mavi; kenarında toz */}
+        <ellipse cx={548} cy={958} rx={50} ry={40} fill="url(#h3-toz)" stroke={OUTL} strokeWidth={7} />
+        <ellipse cx={548} cy={958} rx={50} ry={40} fill="#ffffff" filter="url(#h3-gren)" />
+        <ellipse cx={536} cy={948} rx={18} ry={9} fill="#ffffff" opacity={0.35} />
+        {[[598, 990], [606, 972], [500, 994], [588, 1004]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={3 + (i % 2)} fill="#a8d0f0" opacity={0.8} />)}
+        <rect width={1080} height={1920} fill="url(#h3-vig)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------------------------------------------------------------------------------------
+ * Avuçta iki hap: Berkay'ın sağ eli (dünkü lacivert mürekkep işaret parmağı ucunda solmuş hâlde), avuçta tükürükle
+ * ıslanmış beyaz yuvarlak hap + yarısı mavi kapsül; üçüncü yok. 1.4 sn'de sol işaret parmağı yukarıdan girer:
+ * ucunda erimiş hapın açık mavi macunu (dilden alınmış). Islaklık: parlak vurgu ve küçük damlalar.
+ * ------------------------------------------------------------------------------------------- */
+const AvucIki: React.FC<{ dur: number }> = () => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const blur = interpolate(t, [0, 0.4], [6, 0], clamp);
+  const tx = Math.sin(f / 5) * 2.5;
+  const ty = Math.cos(f / 6.3) * 2;
+  const pIn = interpolate(t, [1.3, 1.9], [0, 1], { ...clamp, easing: (x) => 1 - (1 - x) ** 3 });
+  const skin = "#f1c6a0";
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#a9c4d6", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, filter: `blur(${blur.toFixed(1)}px)` }}>
+        <defs>
+          <linearGradient id="ai_isik" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffffff" stopOpacity={0.22} /><stop offset="0.6" stopColor="#ffffff" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.25} /></linearGradient>
+          <filter id="ai_sur"><feGaussianBlur stdDeviation="8" /></filter>
+          <filter id="ai_kenar"><feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves="2" seed="4" /><feDisplacementMap in="SourceGraphic" scale="10" /></filter>
+        </defs>
+        {/* pijama kumaşı */}
+        <rect width={1080} height={1920} fill="#a9c4d6" />
+        {[[-40, 380, 1120, 560], [-60, 1350, 1140, 1560]].map(([x1, y1, x2, y2], i) => <path key={i} d={`M ${x1} ${y1} Q 540 ${(y1 + y2) / 2 + 80} ${x2} ${y2}`} stroke="#8aa8bc" strokeWidth={26} fill="none" opacity={0.7} />)}
+        <g transform={`translate(${tx} ${ty})`}>
+          {/* elin gölgesi */}
+          <path d="M 300 1180 Q 260 1500 360 1920 L 760 1920 Q 860 1500 840 1150 Z" fill="#6a889c" opacity={0.35} transform="translate(26 30)" filter="url(#ai_sur)" />
+          {/* avuç + bilek */}
+          <path d="M 360 1920 L 372 1640 Q 300 1450 300 1200 Q 300 1080 380 1060 L 760 1050 Q 840 1080 845 1200 Q 850 1420 745 1640 L 735 1920 Z" fill={skin} stroke="#5a3a2a" strokeWidth={6} />
+          {/* parmaklar hafif kıvrık (avuç çukur tutuluyor) */}
+          <Parmak x={372} y={1110} len={250} w={92} ang={-6} skin={skin} id="s" />
+          <Parmak x={478} y={1050} len={320} w={102} ang={-2} skin={skin} id="y" />
+          <Parmak x={592} y={1035} len={350} w={108} ang={2} skin={skin} id="o" />
+          <Parmak x={706} y={1065} len={320} w={104} ang={6} skin={skin} id="i">
+            {/* dünkü mürekkep: solmuş, tırnak dibinde kalmış */}
+            <path d="M -32 -282 Q -36 -306 -6 -316 Q 24 -320 34 -296 Q 36 -276 18 -268 Q -4 -260 -24 -270 Z" fill={MUREKKEP} opacity={0.45} filter="url(#ai_kenar)" />
+          </Parmak>
+          <g transform="translate(812 1330) rotate(40)">
+            <rect x={-62} y={-280} width={124} height={320} rx={62} fill={skin} stroke="#5a3a2a" strokeWidth={6} />
+          </g>
+          {/* avuç çukuru gölgesi + tükürük ıslaklığı */}
+          <ellipse cx={560} cy={1270} rx={190} ry={120} fill="#d8a888" opacity={0.45} />
+          <ellipse cx={560} cy={1290} rx={150} ry={80} fill="#e8f4ff" opacity={0.18} />
+          {/* iki hap: ıslak parıltı ve damlalar */}
+          <ellipse cx={500} cy={1290} rx={62} ry={50} fill="#f6f6f2" stroke={OUTL} strokeWidth={6} />
+          <path d="M 452 1290 H 548" stroke="#c8c8c0" strokeWidth={5} />
+          <path d="M 470 1262 q 20 -10 44 -2" stroke="#ffffff" strokeWidth={7} fill="none" />
+          <g transform="rotate(-24 640 1250)">
+            <rect x={572} y={1218} width={72} height={64} rx={32} fill="#f6f6f2" stroke={OUTL} strokeWidth={6} />
+            <rect x={636} y={1218} width={72} height={64} rx={32} fill="#3a7ec8" stroke={OUTL} strokeWidth={6} />
+            <rect x={628} y={1222} width={16} height={56} fill="#3a7ec8" />
+            <rect x={596} y={1230} width={34} height={8} rx={4} fill="#ffffff" opacity={0.8} />
+            <rect x={660} y={1230} width={30} height={8} rx={4} fill="#ffffff" opacity={0.5} />
+          </g>
+          {[[440, 1340, 7], [596, 1326, 5], [690, 1300, 6], [530, 1236, 4]].map(([x, y, r], i) => (
+            <g key={i}><circle cx={x} cy={y} r={r} fill="#e8f4ff" opacity={0.8} /><circle cx={x - r * 0.3} cy={y - r * 0.3} r={r * 0.35} fill="#ffffff" /></g>
+          ))}
+          {/* bileklik */}
+          <rect x={352} y={1690} width={406} height={92} rx={16} fill="#f4f4f0" stroke="#6a6a66" strokeWidth={5} />
+          {new Array(22).fill(0).map((_, i) => <rect key={i} x={392 + i * 11} y={1708} width={i % 3 ? 4 : 7} height={40} fill="#3a3a3a" opacity={0.25 + (i % 4) * 0.08} />)}
+        </g>
+        {/* sol işaret parmağı yukarıdan girer: ucunda erimiş hapın açık mavi macunu */}
+        <g transform={`translate(${880 - 120 * pIn} ${-420 + 760 * pIn}) rotate(200)`} opacity={pIn > 0 ? 1 : 0}>
+          <rect x={-55} y={-60} width={110} height={520} rx={55} fill={skin} stroke="#5a3a2a" strokeWidth={6} />
+          <path d="M -30 -10 q 30 12 60 0" stroke="#d39f7c" strokeWidth={4} fill="none" />
+          <g filter="url(#ai_kenar)">
+            <path d="M -40 -40 Q -48 -70 -10 -76 Q 30 -78 42 -48 Q 46 -24 22 -16 Q -6 -8 -30 -18 Z" fill="#8fc1ea" opacity={0.95} />
+            <circle cx={-34} cy={-6} r={8} fill="#8fc1ea" opacity={0.8} />
+          </g>
+          <path d="M -24 -58 q 14 -8 30 -2" stroke="#ffffff" strokeWidth={5} fill="none" opacity={0.8} />
+        </g>
+        <rect width={1080} height={1920} fill="url(#ai_isik)" />
+        {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${-200 + i * 300} 0 L ${200 + i * 300} 1920`} stroke="#203040" strokeWidth={46} opacity={0.1} />)}
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert6: React.FC<{ kind: Insert6Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "tablet_video": return <TabletVideo dur={dur} text={text} />;
     case "murekkep_parmak": return <MurekkepParmak dur={dur} />;
     case "kalem_cep": return <KalemCep dur={dur} />;
+    case "hap_uc": return <HapUc dur={dur} />;
+    case "avuc_iki": return <AvucIki dur={dur} />;
     default: return null;
   }
 };
