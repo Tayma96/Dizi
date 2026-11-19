@@ -78,6 +78,7 @@ export type Gesture =
   /** ağrıyan başını tutma (sağ el şakakta) */
   | "basTutma"
   | "golge"
+  | "kolTut"
   | "okşa"
   | "direksiyon"
   /** parmakla yanağa krem sürme (ovma) */
@@ -93,7 +94,7 @@ export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "kasik";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "kasik" | "tablet";
 
 export type Look = {
   name: string;
@@ -169,6 +170,8 @@ export type Pose = {
   sweat?: boolean;
   /** sivilcenin üstünde krem */
   krem?: boolean;
+  /** sağ elde lacivert mürekkep lekesi */
+  murekkep?: boolean;
   wet?: boolean;
   prop?: Prop;
   eyesClosed?: number;

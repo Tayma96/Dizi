@@ -72,6 +72,17 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x - 6} ${y - 52} q 6 -10 0 -20 M ${x + 6} ${y - 50} q 6 -10 0 -20`} stroke="#fff" strokeOpacity={0.6} strokeWidth={3} fill="none" />
         </g>
       );
+    case "tablet":
+      // tablet: ekranı karşıdakine dönük; arka yüzü koyu, kenarından soğuk ekran ışığı taşar
+      return (
+        <g>
+          <ellipse cx={x + 40} cy={y - 70} rx={120} ry={110} fill="#9fc4ff" opacity={0.16} />
+          <rect x={x - 46} y={y - 150} width={92} height={136} rx={12} fill="#16181c" stroke={OUT} strokeWidth={3.5} />
+          <rect x={x - 40} y={y - 144} width={80} height={124} rx={8} fill="#2a3446" />
+          <path d={`M ${x + 40} ${y - 140} v 116`} stroke="#9fc4ff" strokeWidth={4} opacity={0.8} />
+          <circle cx={x} cy={y - 60} r={5} fill="#3a3e44" />
+        </g>
+      );
     case "kasik":
       return (
         <g>
@@ -316,6 +327,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
           <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />
           <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
+          {side === "l" && pose.murekkep ? (
+            <g>
+              <circle cx={sx - 6} cy={hy + 24} r={7} fill="#10204a" opacity={0.9} />
+              <path d={`M ${sx + 12} ${hy + 4} q 6 14 2 26`} stroke="#10204a" strokeWidth={5} strokeLinecap="round" opacity={0.6} fill="none" />
+            </g>
+          ) : null}
           {side === "r" && pose.prop && pose.prop !== "none" ? (
             <g transform={`rotate(${-(a.upper + a.fore) * dir} ${sx} ${hy + 12})`}>
               <HandProp prop={pose.prop} x={sx} y={hy + 12} look={look} />

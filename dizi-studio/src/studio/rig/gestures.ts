@@ -32,6 +32,8 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   direksiyon: { L: { upper: 14, fore: -66, ul: 0.78 }, R: { upper: 14, fore: -66, ul: 0.78 } },
   /** yanındaki oturan kişinin saçını okşar (sol kol) */
   okşa: { L: { upper: 126, fore: 0, ul: 0.45, fl: 0.35 }, R: { upper: 6, fore: 0 } },
+  /** yanındakinin kolundan tutup çeker (sol kol, ekranın soluna uzanır) */
+  kolTut: { L: { upper: 64, fore: -30, ul: 0.86, fl: 0.95 }, R: { upper: 10, fore: -20 } },
   krem: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 122, ul: 0.41, fl: 1.03 } },
   yuzGoster: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 119, ul: 0.41, fl: 0.8 } },
   kafaKasi: { L: { upper: 6, fore: 0 }, R: { upper: 150, fore: 76, ul: 0.9, fl: 0.88 } },

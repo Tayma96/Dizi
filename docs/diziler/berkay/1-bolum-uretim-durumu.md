@@ -69,3 +69,9 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - **Bakış:** karakterler konuşurken kameraya bakıyor. Dizilerde kameraya bakılmaz; birbirlerine bakmalılar (3/4, profil).
 - **Senaryo:** kullanıcının söylediklerinden çok sapılmış, ilk bölümde her şey ele verilmiş, gizem yok, tahmin edilebilir.
 - **Karar:** plan modunda yalnızca senaryoya odaklanılacak; parça parça, kısa. Görsel düzeltmeler sonra.
+
+## Bölüm 2 · Parça 1 (19 Kasım 2026) — `bolumler/deli-degilim-02-parca1.mp4` (45 sn)
+- Yayın adı **Deli Değilim**. Bölüm 1'in gerçek sonu: ortak salonda TV haberi → "Bu… benim." → "Hadi, odana dönelim. Hemen!" (imza-01-p2…p5).
+- Senarist: `raporlar/b2-p1-senarist.md`, görüntü: `raporlar/b2-p1-goruntu.md`. Kanca: Nalan'ın cebinde kapaksız lacivert kalem (iki yönlü kalmalı).
+- Yeni varlıklar: `engine/Inserts6.tsx` (tablet_video: KAM 2 · ODA 7 · 11.09 03:12; murekkep_parmak; kalem_cep), jest `kolTut`, prop `tablet`, CharState `murekkep`. Mürekkep rengi sabit #10204a.
+- Ses: ElevenLabs hastane koridoru/oda ortamı, dizi teması `muzik/deli_tema`, efektler (sürükleme, demir kapı, tablet, kalp, kalem, kamera kaydı). Repliklere mekân akustiği (koridor uzun yankı, oda kısa); dış ses kuru; video sesi telefon filtresi. Duygu etiketi yerine replik başına yönlendirme (emotion "notr" + tags).

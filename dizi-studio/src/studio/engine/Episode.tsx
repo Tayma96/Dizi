@@ -294,6 +294,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             pale: st.pale,
             sweat: st.sweat,
             krem: st.krem,
+            murekkep: st.murekkep,
             wet: st.wet,
             eyesClosed: st.eyesClosed,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,

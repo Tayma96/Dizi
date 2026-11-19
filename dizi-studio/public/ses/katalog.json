@@ -111,6 +111,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Bathroom door flung open hard and hitting the wall, followed by two hurried slipper footsteps on tile floor"
  },
+ "efekt/el_demir_kapi": {
+  "file": "ses/efekt/el_demir_kapi.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Heavy metal hospital room door pushed open, then shut hard with a lock bolt clack, reverberant"
+ },
  "efekt/el_depo_kapi": {
   "file": "ses/efekt/el_depo_kapi.mp3",
   "category": "efekt",
@@ -173,6 +180,27 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: A single sheet of paper handed over across a counter, crisp paper rustle"
+ },
+ "efekt/el_kalem_tik": {
+  "file": "ses/efekt/el_kalem_tik.mp3",
+  "category": "efekt",
+  "duration": 0.6,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Single ballpoint pen click, very close, crisp"
+ },
+ "efekt/el_kalp_yavas": {
+  "file": "ses/efekt/el_kalp_yavas.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Slow heavy heartbeat, muffled and very close, as if heard from inside the body"
+ },
+ "efekt/el_kamera_kayit": {
+  "file": "ses/efekt/el_kamera_kayit.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Low quality security camera recording playback, faint digital hiss and hum, tiny speaker, empty room tone"
  },
  "efekt/el_kasa": {
   "file": "ses/efekt/el_kasa.mp3",
@@ -243,6 +271,20 @@
   "duration": 10.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Family dinner table ambience in a small home kitchen, spoons and forks clinking on ceramic plates, soft pot simmering on the stove, no voices"
+ },
+ "efekt/el_surukleme": {
+  "file": "ses/efekt/el_surukleme.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Hurried footsteps in a hospital corridor, a man resisting while being pulled along, cloth slippers scuffing and dragging on linoleum floor, fabric rustling, reverberant"
+ },
+ "efekt/el_tablet_tik": {
+  "file": "ses/efekt/el_tablet_tik.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Finger tapping a tablet glass screen once, then a tiny video playback click"
  },
  "efekt/el_telefon_titresim": {
   "file": "ses/efekt/el_telefon_titresim.mp3",

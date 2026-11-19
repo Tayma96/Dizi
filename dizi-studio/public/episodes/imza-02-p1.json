@@ -1,0 +1,506 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-p1",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — Parça 1",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "kogus_koridoru",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Koridor (sürükleme)",
+   "kaydirma": 330,
+   "ambience": {
+    "name": "efekt/el_hastane_koridor",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/deli_tema",
+    "volume": 0.17
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "b",
+     "yuru": true,
+     "emotion": "ofkeli",
+     "bak": {
+      "x": -0.9,
+      "y": 0.0,
+      "yaw": -0.65
+     }
+    },
+    "nalan": {
+     "mark": "n",
+     "yuru": true,
+     "emotion": "kararli",
+     "gesture": "kolTut",
+     "bak": {
+      "x": 0.5,
+      "y": 0.05,
+      "yaw": 0.3
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ekrandaki bendim lan, BENDİM!",
+     "emotion": "notr",
+     "tags": "[shouting, desperate, looking back]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "shots": [
+      {
+       "at": 1.1,
+       "shot": {
+        "type": "orta",
+        "kadraj": {
+         "cx": 420,
+         "cy": 1080,
+         "z": 1.45
+        },
+        "move": "sarsinti"
+       }
+      }
+     ],
+     "sfx": [
+      {
+       "name": "efekt/el_surukleme",
+       "volume": 0.7,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Yürü, Berkay. Herkesi uyandıracaksın.",
+     "emotion": "notr",
+     "tags": "[tired, firm, low voice, not looking at him]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_surukleme",
+       "volume": 0.5,
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Oda (Deniz bekliyor)",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.45
+   },
+   "isaretler": {
+    "ayak": {
+     "x": 330,
+     "y": 1720,
+     "size": 1040
+    },
+    "pencere": {
+     "x": 790,
+     "y": 1660,
+     "size": 1000
+    },
+    "yatak_kenar": {
+     "x": 430,
+     "y": 1560,
+     "size": 940,
+     "sit": true
+    }
+   },
+   "cast": {
+    "deniz": {
+     "mark": "pencere",
+     "emotion": "notr",
+     "gesture": "tutuyor",
+     "prop": "tablet",
+     "lookAt": "berkay_hasta"
+    },
+    "berkay_hasta": {
+     "mark": "ayak",
+     "emotion": "ofkeli",
+     "enter": "sag",
+     "lookAt": "deniz"
+    },
+    "nalan": {
+     "mark": "kapi_ic",
+     "emotion": "kararli",
+     "lookAt": "berkay_hasta"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.2,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_demir_kapi",
+       "volume": 0.75,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Gel. Otur şöyle.",
+     "emotion": "notr",
+     "tags": "[calm, gentle, patient]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "O haber bir yıl önce çekildi. Kanal tekrar yayınlıyor. Sen her tekrarında bu krizi yaşıyorsun.",
+     "emotion": "notr",
+     "tags": "[calm, measured, patient, like explaining it for the hundredth time]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "yaklas"
+     },
+     "shots": [
+      {
+       "at": 3.3,
+       "shot": {
+        "type": "yakin",
+        "on": "berkay_hasta",
+        "move": "sabit"
+       }
+      }
+     ],
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ama 'bu sabah' dedi!",
+     "emotion": "notr",
+     "tags": "[disbelieving, raised voice, shaky]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "saskin",
+       "gesture": "ellerAcik",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Bir yıl önceki sabah.",
+     "emotion": "notr",
+     "tags": "[quiet, certain, almost kind]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "yakin",
+      "on": "deniz",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Bir şey göstereyim.",
+     "emotion": "notr",
+     "tags": "[soft, careful]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "deniz",
+      "move": "yaklas"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "uzat",
+       "prop": "tablet",
+       "lookAt": "berkay_hasta"
+      },
+      "berkay_hasta": {
+       "emotion": "korkmus",
+       "gesture": "rest",
+       "lookAt": "deniz"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_tablet_tik",
+       "volume": 0.6,
+       "at": 1.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "ekle": {
+      "kind": "tablet_video",
+      "text": [
+       "0"
+      ]
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kamera_kayit",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Hayırlı olsun beyler.",
+     "emotion": "notr",
+     "tags": "[pleased, businesslike, confident, satisfied]",
+     "gapAfter": 1.7,
+     "fx": "telefon",
+     "offscreen": true,
+     "label": "VİDEO",
+     "vol": 0.8,
+     "ekle": {
+      "kind": "tablet_video",
+      "text": [
+       "2.0"
+      ]
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Bunu dün sen yaptın.",
+     "emotion": "notr",
+     "tags": "[calm, slightly sad]",
+     "gapAfter": 0.35,
+     "offscreen": true,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok",
+       "pale": 0.4,
+       "lookAt": "deniz"
+      },
+      "deniz": {
+       "gesture": "tutuyor"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Bu… ben değilim.",
+     "emotion": "notr",
+     "tags": "[whispering, shaken, trembling]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "deniz",
+      "move": "uzaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus",
+       "pale": 0.4,
+       "lookAt": "deniz"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Mürekkep (final)",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.4
+   },
+   "music": {
+    "name": "yok"
+   },
+   "isaretler": {
+    "ayak": {
+     "x": 330,
+     "y": 1720,
+     "size": 1040
+    },
+    "pencere": {
+     "x": 790,
+     "y": 1660,
+     "size": 1000
+    },
+    "yatak_kenar": {
+     "x": 430,
+     "y": 1560,
+     "size": 940,
+     "sit": true
+    }
+   },
+   "cast": {
+    "deniz": {
+     "mark": "pencere",
+     "emotion": "notr",
+     "gesture": "tutuyor",
+     "prop": "tablet",
+     "lookAt": "nalan"
+    },
+    "berkay_hasta": {
+     "mark": "ayak",
+     "emotion": "korkmus",
+     "pale": 0.4,
+     "murekkep": true,
+     "bak": {
+      "x": 0.0,
+      "y": 0.8
+     }
+    },
+    "nalan": {
+     "mark": "kapi_ic",
+     "emotion": "supheli",
+     "lookAt": "deniz"
+    }
+   },
+   "beats": [
+    {
+     "type": "insert",
+     "kind": "murekkep_parmak",
+     "dur": 2.8,
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.3,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus",
+       "tears": 0.3,
+       "bak": {
+        "x": 0.0,
+        "y": -0.1
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.35,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "O gün ilk kez… gerçekten deli olabileceğimi düşündüm.",
+     "emotion": "notr",
+     "tags": "[calm, intimate, reflective narration, quietly devastated]",
+     "gapAfter": 0.6,
+     "voiceover": true,
+     "label": "BERKAY",
+     "shot": {
+      "type": "genis",
+      "move": "uzaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "yatak_kenar",
+       "emotion": "uzgun",
+       "tears": 0.3,
+       "bak": {
+        "x": 0.0,
+        "y": 0.7
+       }
+      },
+      "deniz": {
+       "lookAt": "nalan",
+       "emotion": "supheli"
+      },
+      "nalan": {
+       "lookAt": "deniz",
+       "emotion": "supheli"
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "kalem_cep",
+     "dur": 1.6,
+     "fade": "cikis",
+     "sfx": [
+      {
+       "name": "efekt/el_kalem_tik",
+       "volume": 0.8,
+       "at": 0.5
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

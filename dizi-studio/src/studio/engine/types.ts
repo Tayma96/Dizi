@@ -58,6 +58,8 @@ export type CharState = {
   sweat?: boolean;
   /** sivilcede krem */
   krem?: boolean;
+  /** sağ elde mürekkep */
+  murekkep?: boolean;
   wet?: boolean;
   flip?: boolean;
   /** 3D: gövdenin dönüşü (derece). Verilmezse işaretin yönü / bakılan kişi kullanılır */
