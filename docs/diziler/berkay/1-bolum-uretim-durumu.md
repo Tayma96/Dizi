@@ -75,3 +75,8 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Senarist: `raporlar/b2-p1-senarist.md`, görüntü: `raporlar/b2-p1-goruntu.md`. Kanca: Nalan'ın cebinde kapaksız lacivert kalem (iki yönlü kalmalı).
 - Yeni varlıklar: `engine/Inserts6.tsx` (tablet_video: KAM 2 · ODA 7 · 11.09 03:12; murekkep_parmak; kalem_cep), jest `kolTut`, prop `tablet`, CharState `murekkep`. Mürekkep rengi sabit #10204a.
 - Ses: ElevenLabs hastane koridoru/oda ortamı, dizi teması `muzik/deli_tema`, efektler (sürükleme, demir kapı, tablet, kalp, kalem, kamera kaydı). Repliklere mekân akustiği (koridor uzun yankı, oda kısa); dış ses kuru; video sesi telefon filtresi. Duygu etiketi yerine replik başına yönlendirme (emotion "notr" + tags).
+
+## Bölüm 2 · Parça 2 "Ayna" (19 Kasım 2026) — `bolumler/deli-degilim-02-parca2.mp4`
+- Senarist: `raporlar/b2-p2-senarist.md`, ses: `raporlar/b2-p2-ses.md`. Görüntü yönetmeni QA: 1 P0 (Deniz girişi/plaka örtülmesi) + 5 P1 düzeltildi.
+- İpucu defteri: videodaki adam SOL eliyle imza atar; Berkay sağ elini kullanır; mürekkep sağ elde. Deniz: "Güvenlik kameraları görüntüyü ayna gibi kaydeder." Aynalanmış görüntüde kapı üstündeki "7" TERS (gerçek odada kapının iç üstünde emaye "7" plakası düz okunur). Personelin olası sonraki cevabı (senarist): numara vasistas camında, koridordan okunur.
+- Berkay'ın kapıdaki cümlesi ("Videodaki adam solak") dış sesin tekrarı; Deniz "Aynı cümleyle" der.

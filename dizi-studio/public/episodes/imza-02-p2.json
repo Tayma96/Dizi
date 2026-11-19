@@ -27,7 +27,7 @@
      "size": 1040
     },
     "ayak2": {
-     "x": 560,
+     "x": 400,
      "y": 1720,
      "size": 1040
     },
@@ -35,6 +35,11 @@
      "x": 800,
      "y": 1690,
      "size": 1020
+    },
+    "deniz_ic": {
+     "x": 880,
+     "y": 1690,
+     "size": 880
     }
    },
    "cast": {
@@ -185,7 +190,7 @@
      "size": 1040
     },
     "ayak2": {
-     "x": 560,
+     "x": 400,
      "y": 1720,
      "size": 1040
     },
@@ -193,6 +198,11 @@
      "x": 800,
      "y": 1690,
      "size": 1020
+    },
+    "deniz_ic": {
+     "x": 880,
+     "y": 1690,
+     "size": 880
     }
    },
    "cast": {
@@ -206,7 +216,7 @@
      }
     },
     "deniz": {
-     "mark": "kapi_ic",
+     "mark": "deniz_ic",
      "hidden": true,
      "emotion": "notr",
      "gesture": "tutuyor",
@@ -219,9 +229,9 @@
      "type": "action",
      "dur": 1.2,
      "shot": {
-      "type": "yakin",
+      "type": "cok_yakin",
       "on": "berkay_hasta",
-      "move": "sabit"
+      "move": "yaklas"
      }
     },
     {
@@ -253,9 +263,9 @@
      "shot": {
       "type": "orta",
       "kadraj": {
-       "cx": 900,
-       "cy": 1060,
-       "z": 1.6
+       "cx": 760,
+       "cy": 1080,
+       "z": 1.4
       },
       "move": "sarsinti"
      },
@@ -264,8 +274,8 @@
        "gesture": "rest",
        "kol": {
         "R": {
-         "upper": 98,
-         "fore": -18,
+         "upper": 84,
+         "fore": -14,
          "ul": 1.0,
          "fl": 1.0
         },
@@ -320,7 +330,7 @@
     },
     {
      "type": "action",
-     "dur": 1.5,
+     "dur": 2.0,
      "door": "ac",
      "shot": {
       "type": "genis",
@@ -328,7 +338,8 @@
      },
      "cast": {
       "deniz": {
-       "hidden": false
+       "hidden": false,
+       "enter": "sag"
       }
      },
      "sfx": [
@@ -375,7 +386,11 @@
      "dur": 1.0,
      "shot": {
       "type": "orta",
-      "on": "deniz",
+      "kadraj": {
+       "cx": 810,
+       "cy": 1090,
+       "z": 2.0
+      },
       "move": "sabit"
      },
      "cast": {
@@ -424,7 +439,11 @@
      "gapAfter": 0.3,
      "shot": {
       "type": "orta",
-      "on": "deniz",
+      "kadraj": {
+       "cx": 810,
+       "cy": 1090,
+       "z": 2.0
+      },
       "move": "yaklas"
      },
      "cast": {

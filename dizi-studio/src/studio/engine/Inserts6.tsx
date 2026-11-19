@@ -138,6 +138,7 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             </svg>
             <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)" }} />
           </div>
+          {mod !== "hatira" ? (<>
           {/* kayıt yazıları (okunur, altyazı bandına girmez) */}
           <div style={{ position: "absolute", left: 30, top: 28, fontFamily: MONO, fontWeight: 700, fontSize: 46, color: "#e8f0ff", textShadow: "0 2px 4px #000" }}>KAM 2 · ODA 7</div>
           <div style={{ position: "absolute", right: 30, top: 28, fontFamily: MONO, fontWeight: 700, fontSize: 46, color: "#ff4a3a", opacity: rec ? 1 : 0.25, textShadow: "0 2px 4px #000" }}>● REC</div>
@@ -147,6 +148,7 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             <div style={{ width: `${(ilerleme / 135) * 100}%`, height: 10, borderRadius: 5, backgroundColor: "#e8f0ff" }} />
           </div>
           <div style={{ position: "absolute", left: 30, top: 1366, fontFamily: MONO, fontWeight: 700, fontSize: 34, color: "#dfe6f0" }}>00:{String(ilerleme).padStart(2, "0")} / 02:15</div>
+          </>) : null}
           {/* ekrana dokunuş */}
           {dokunus ? <div style={{ position: "absolute", left: 640, top: 1040, width: 120, height: 120, borderRadius: 60, border: "6px solid rgba(255,255,255,0.7)", transform: `scale(${interpolate(tLocal, [flipAt - 0.35, flipAt + 0.25], [0.4, 1.3], clamp)})`, opacity: interpolate(tLocal, [flipAt - 0.35, flipAt + 0.25], [0.9, 0], clamp) }} /> : null}
           {/* kilit: ekran kararır, asma kilit simgesi, siyah camda silik yansıma */}

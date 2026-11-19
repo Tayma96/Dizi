@@ -76,7 +76,8 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       // tablet: ekranı karşıdakine dönük; arka yüzü koyu, kenarından soğuk ekran ışığı taşar
       return (
         <g>
-          <ellipse cx={x + 40} cy={y - 70} rx={120} ry={110} fill="#9fc4ff" opacity={0.16} />
+          <defs><radialGradient id="tbHale"><stop offset="0" stopColor="#9fc4ff" stopOpacity={0.22} /><stop offset="1" stopColor="#9fc4ff" stopOpacity={0} /></radialGradient></defs>
+          <ellipse cx={x + 30} cy={y - 76} rx={150} ry={140} fill="url(#tbHale)" />
           <rect x={x - 46} y={y - 150} width={92} height={136} rx={12} fill="#16181c" stroke={OUT} strokeWidth={3.5} />
           <rect x={x - 40} y={y - 144} width={80} height={124} rx={8} fill="#2a3446" />
           <path d={`M ${x + 40} ${y - 140} v 116`} stroke="#9fc4ff" strokeWidth={4} opacity={0.8} />
