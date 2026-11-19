@@ -104,7 +104,7 @@ export type BeatCommon = {
   sfx?: { name: string; at?: number; volume?: number }[];
   lightning?: boolean;
   /** aralik: kapı birkaç santim aralanır */
-  door?: "ac" | "kapat" | "aralik";
+  door?: "ac" | "kapat" | "aralik" | "acik";
   /** ekran kararması: "giris" bu vuruşun başında açılır, "cikis" sonunda kararır */
   fade?: "giris" | "cikis";
   /** ayna/yansıma görünümü (çerçeve + cam katmanı) */

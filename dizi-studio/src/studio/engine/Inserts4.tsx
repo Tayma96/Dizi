@@ -13,8 +13,8 @@ const CCTV: React.FC<{ kam: string; children: React.ReactNode; glitchAt?: number
   const f = useCurrentFrame();
   const z = interpolate(f, [0, dur], zoom, { ...clamp, easing: Easing.inOut(Easing.quad) });
   const glitch = glitchAt !== undefined && f >= glitchAt && f < glitchAt + 6;
-  const sec = startSec + Math.floor(f / 30);
-  const ss = String(sec % 60).padStart(2, "0");
+  const tot = 17 * 60 + startSec + Math.floor(f / 30);
+  const ss = `${String(Math.floor(tot / 60)).padStart(2, "0")}:${String(tot % 60).padStart(2, "0")}`;
   const date = glitch ? "19.11.1998" : "19.11.2026";
   const jx = glitch ? (random(`gx${f}`) - 0.5) * 40 : 0;
   const noiseRows = new Array(glitch ? 14 : 3).fill(0).map((_, i) => ({ y: random(`ny${f}-${i}`) * 1920, h: 2 + random(`nh${f}-${i}`) * (glitch ? 30 : 6), o: 0.08 + random(`no${f}-${i}`) * (glitch ? 0.4 : 0.12) }));
@@ -30,7 +30,7 @@ const CCTV: React.FC<{ kam: string; children: React.ReactNode; glitchAt?: number
       {/* etiketler */}
       <div style={{ position: "absolute", left: 60, top: 150, fontFamily: MONO, fontWeight: 700, fontSize: 46, color: "#e8ffe8", textShadow: "0 0 8px #000" }}>{kam}</div>
       <div style={{ position: "absolute", right: 60, top: 150, fontFamily: MONO, fontWeight: 700, fontSize: 46, color: "#ff3a2a", opacity: Math.floor(f / 15) % 2 ? 1 : 0.25 }}>● REC</div>
-      <div style={{ position: "absolute", left: 60, bottom: 380, fontFamily: MONO, fontWeight: 700, fontSize: 50, color: glitch ? "#ff3a2a" : "#e8ffe8", textShadow: "0 0 8px #000" }}>{date}  03:17:{ss}</div>
+      <div style={{ position: "absolute", left: 60, bottom: 380, fontFamily: MONO, fontWeight: 700, fontSize: 50, color: glitch ? "#ff3a2a" : "#e8ffe8", textShadow: "0 0 8px #000" }}>{date}  03:{ss}</div>
       {caption ? (
         <div style={{ position: "absolute", left: 60, right: 60, top: 1180, textAlign: "center", fontFamily: "Inter, Arial, sans-serif", fontWeight: 900, fontSize: 72, color: "#fff", WebkitTextStroke: "3px #000", textShadow: "0 4px 18px #000", opacity: interpolate(f, [0, 4], [0, 1], clamp) }}>{caption}</div>
       ) : null}
@@ -117,11 +117,11 @@ const Kabin: React.FC<{ kat: string; children?: React.ReactNode }> = ({ kat, chi
 );
 
 /** KAM 04: kabinde köşeye dönük siluet, baş ilk kareden eğilmeye başlar; büyük "7"; 1998 glitch'i */
-const CctvAsansor: React.FC<{ dur: number }> = ({ dur }) => {
+const CctvAsansor: React.FC<{ dur: number; yazi?: boolean }> = ({ dur, yazi = true }) => {
   const f = useCurrentFrame();
   const tilt = interpolate(f, [0, dur], [0, 34], { ...clamp, easing: Easing.inOut(Easing.sin) });
   return (
-    <CCTV kam="KAM 04 · ASANSÖR" dur={dur} glitchAt={Math.round(dur * 0.62)} zoom={[1.0, 1.06]} caption={f < 75 ? "Bu binada 7. kat yok." : undefined}>
+    <CCTV kam="KAM 04 · ASANSÖR" dur={dur} glitchAt={Math.round(dur * 0.62)} zoom={[1.0, 1.06]} caption={yazi && f < 75 ? "Bu binada 7. kat yok." : undefined}>
       <Kabin kat="7">
         <Siluet x={560} y={1560} s={1.45} tilt={tilt} />
       </Kabin>
@@ -143,7 +143,7 @@ const CctvLobi: React.FC<{ dur: number; mod?: string }> = ({ dur, mod = "normal"
   const don = mod === "don" ? interpolate(f, [dur * 0.2, dur * 0.8], [0, 1], clamp) : 0;
   const tilt = mod === "don" ? interpolate(f, [dur * 0.2, dur * 0.8], [28, 4], clamp) : 28;
   return (
-    <CCTV kam="KAM 01 · LOBİ" dur={dur} startSec={mod === "normal" ? 58 : mod === "don" ? 9 : 16} zoom={mod === "normal" ? [1.0, 1.45] : [1.25, 1.4]}>
+    <CCTV kam="KAM 01 · LOBİ" dur={dur} startSec={mod === "normal" ? 58 : mod === "don" ? 80 : mod === "bos" ? 86 : 600} zoom={mod === "normal" ? [1.0, 1.45] : [1.25, 1.4]}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         <rect width={1080} height={1920} fill="#1e201c" />
         <rect x={360} y={300} width={720} height={800} fill="#5a5c54" />
@@ -220,7 +220,7 @@ const CctvCik: React.FC<{ dur: number }> = ({ dur }) => {
   const k = Math.min(7, Math.floor(interpolate(f, [dur * 0.25, dur * 0.85], [0, 7.99], clamp)));
   const door = interpolate(f, [0, dur * 0.2], [1, 0], clamp);
   return (
-    <CCTV kam="KAM 04 · ASANSÖR" dur={dur} startSec={31} zoom={[1.0, 1.08]}>
+    <CCTV kam="KAM 04 · ASANSÖR" dur={dur} startSec={112} zoom={[1.0, 1.08]}>
       <Kabin kat={String(k)}>
         <rect x={0} y={1700} width={540 * (1 - door)} height={220} fill="#3a3c36" />
         <rect x={1080 - 540 * (1 - door)} y={1700} width={540 * (1 - door)} height={220} fill="#363832" />
@@ -266,24 +266,76 @@ const PanoFener: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-/** Sararmış not, yakın: el yazısı; imza "R." ve tarih */
+/** Sararmış not ve yanında 1998 gazete kupürü; kamera nottan kupüre kayar (Rıza'nın kim olduğu burada anlaşılır) */
 const NotYakin: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const z = interpolate(f, [0, dur], [1.0, 1.08], clamp);
+  const x = interpolate(f, [dur * 0.38, dur * 0.62], [0, -760], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  const z = interpolate(f, [0, dur], [1.0, 1.06], clamp);
   return (
     <AbsoluteFill style={{ backgroundColor: "#040405", overflow: "hidden" }}>
-      <AbsoluteFill style={{ transform: `scale(${z}) rotate(-4deg)` }}>
-        <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 48%, #fff2c8 0%, rgba(255,242,200,0.35) 38%, rgba(0,0,0,0) 62%)" }} />
-        <div style={{ position: "absolute", left: 150, top: 560, width: 780, height: 760, background: "#d6c493", boxShadow: "0 10px 40px rgba(0,0,0,0.6)" }}>
+      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 48%, rgba(255,242,200,0.55) 0%, rgba(255,242,200,0.15) 38%, rgba(0,0,0,0) 62%)" }} />
+      <div style={{ position: "absolute", left: 0, top: 0, width: 2000, height: 1920, transform: `translateX(${x}px) scale(${z})`, transformOrigin: "540px 960px" }}>
+        {/* not */}
+        <div style={{ position: "absolute", left: 150, top: 560, width: 780, height: 760, background: "#d6c493", boxShadow: "0 10px 40px rgba(0,0,0,0.6)", transform: "rotate(-4deg)" }}>
           <div style={{ position: "absolute", left: 370, top: -14, width: 34, height: 34, borderRadius: 17, background: "#a01818" }} />
           <div style={{ position: "absolute", left: 60, top: 90, right: 50, fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontSize: 62, lineHeight: 1.35, color: "#2a2018" }}>
             Gece bekçisine:<br />Asansör 7'ye çıkarsa<br /><span style={{ fontWeight: 900, fontSize: 80 }}>ÇAĞIRMA.</span>
           </div>
           <div style={{ position: "absolute", right: 60, bottom: 60, fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontSize: 50, color: "#2a2018" }}>— R. 19.11.1998</div>
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 30% 80%, rgba(90,60,20,0.35) 0%, rgba(0,0,0,0) 40%)" }} />
         </div>
-      </AbsoluteFill>
+        {/* gazete kupürü */}
+        <div style={{ position: "absolute", left: 960, top: 470, width: 820, height: 980, background: "#e2dcc8", boxShadow: "0 10px 40px rgba(0,0,0,0.6)", transform: "rotate(3deg)", padding: 44, boxSizing: "border-box", fontFamily: "Georgia, serif", color: "#1a1612" }}>
+          <div style={{ position: "absolute", left: 390, top: -14, width: 34, height: 34, borderRadius: 17, background: "#a01818" }} />
+          <div style={{ fontSize: 30, letterSpacing: 4, borderBottom: "4px solid #1a1612", paddingBottom: 8 }}>20 KASIM 1998 · İSTANBUL</div>
+          <div style={{ fontSize: 76, fontWeight: 900, lineHeight: 1.05, marginTop: 24 }}>İŞ HANINDA YANGIN</div>
+          <div style={{ fontSize: 44, fontWeight: 700, lineHeight: 1.2, marginTop: 18 }}>Genç bekçi Rıza Koç 7. kattaki arşivde hayatını kaybetti</div>
+          <div style={{ width: 300, height: 220, background: "#9a9486", marginTop: 26, float: "left", marginRight: 24 }} />
+          <div style={{ fontSize: 28, lineHeight: 1.35, marginTop: 26 }}>Gece 03.17'de başlayan yangında arşiv katı tamamen kül oldu. Nöbetteki diğer bekçi kurtuldu. Kat mühürlendi.</div>
+        </div>
+      </div>
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Dış çekim: gece, yağmur; 6 katlı eski han. Çatının üstünde, 7. kat hizasında olmayan bir pencere bir an yanar. Lobide monitör ışığı. */
+const DisBina: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1.0, 1.12], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  const hayalet = (f > dur * 0.35 && f < dur * 0.35 + 5) || (f > dur * 0.5 && f < dur * 0.5 + 9) ? 1 : 0;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#05070c", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "540px 900px" }}>
+        <defs>
+          <linearGradient id="dbGok" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0a0e18" /><stop offset="1" stopColor="#1a2230" /></linearGradient>
+        </defs>
+        <rect width={1080} height={1920} fill="url(#dbGok)" />
+        {/* bina gövdesi: 6 kat */}
+        <rect x={190} y={560} width={700} height={1160} fill="#2a2622" stroke="#0a0908" strokeWidth={8} />
+        <rect x={170} y={540} width={740} height={40} fill="#3a342e" />
+        {[0, 1, 2, 3, 4, 5].map((r) => (
+          <g key={r}>
+            {[0, 1, 2, 3].map((c) => <rect key={c} x={240 + c * 160} y={620 + r * 170} width={100} height={120} fill={r === 5 ? "#10131a" : "#12151c"} stroke="#0a0908" strokeWidth={5} />)}
+            <text x={160} y={700 + r * 170} textAnchor="end" fontFamily={MONO} fontSize={34} fontWeight={700} fill="#5a6070">{6 - r}</text>
+          </g>
+        ))}
+        {/* zemin kat lobi: cam kapı, monitör ışığı, masada küçük figür */}
+        <rect x={420} y={1560} width={240} height={160} fill="#1a2a40" stroke="#0a0908" strokeWidth={6} />
+        <rect x={430} y={1570} width={220} height={140} fill="#6a9ad8" opacity={0.25} />
+        <circle cx={560} cy={1640} r={12} fill="#0a0908" />
+        <rect x={545} y={1652} width={30} height={40} fill="#0a0908" />
+        {/* çatının üstünde olmayan 7. kat penceresi */}
+        <rect x={400} y={400} width={100} height={120} fill="#e8d8a0" opacity={hayalet * 0.85} />
+        <rect x={380} y={380} width={140} height={160} fill="#e8d8a0" opacity={hayalet * 0.15} />
+        <text x={160} y={480} textAnchor="end" fontFamily={MONO} fontSize={34} fontWeight={700} fill="#8a3a2a" opacity={0.4 + hayalet * 0.6}>7?</text>
+        {/* yağmur ve ıslak sokak */}
+        <rect y={1720} width={1080} height={200} fill="#0e1218" />
+        <rect x={420} y={1730} width={240} height={140} fill="#6a9ad8" opacity={0.08} />
+        {new Array(70).fill(0).map((_, i) => { const y = (f * 30 + i * 131) % 1920; const x = (i * 97) % 1080; return <path key={i} d={`M ${x} ${y} l -8 40`} stroke="#8aa0b8" strokeWidth={2} opacity={0.35} />; })}
+      </svg>
+      <div style={{ position: "absolute", left: 60, right: 60, top: 1180, textAlign: "center", fontFamily: "Inter, Arial, sans-serif", fontWeight: 900, fontSize: 72, color: "#fff", WebkitTextStroke: "3px #000", textShadow: "0 4px 18px #000" }}>Bu binada 7. kat yok.</div>
+      <div style={{ position: "absolute", left: 60, top: 150, fontFamily: MONO, fontWeight: 700, fontSize: 42, color: "#e8e2c4", textShadow: "0 0 8px #000" }}>Karaköy · Eski bir iş hanı · 03:16</div>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.8) 100%)" }} />
     </AbsoluteFill>
   );
 };
@@ -406,12 +458,12 @@ const Takvim: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik" | "pano_fener" | "not_yakin" | "telefon_cal" | "kablo" | "dugme_7" | "kep" | "takvim";
-export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik", "pano_fener", "not_yakin", "telefon_cal", "kablo", "dugme_7", "kep", "takvim"];
+export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik" | "pano_fener" | "not_yakin" | "telefon_cal" | "kablo" | "dugme_7" | "kep" | "takvim" | "dis_bina";
+export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik", "pano_fener", "not_yakin", "telefon_cal", "kablo", "dugme_7", "kep", "takvim", "dis_bina"];
 
 export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
-    case "cctv_asansor": return <CctvAsansor dur={dur} />;
+    case "cctv_asansor": return <CctvAsansor dur={dur} yazi={text?.[0] !== "yazisiz"} />;
     case "cctv_bos": return text?.[0] === "monitor" ? <Monitor dur={dur} zoom={[1, 1.12]}><CctvBos dur={dur} /></Monitor> : <CctvBos dur={dur} />;
     case "cctv_lobi": return text?.[1] === "monitor" ? <Monitor dur={dur} zoom={[1, 1.25]}><CctvLobi dur={dur} mod={text?.[0]} /></Monitor> : <CctvLobi dur={dur} mod={text?.[0]} />;
     case "arka_bos": return <ArkaBos dur={dur} />;
@@ -423,6 +475,7 @@ export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[]
     case "dugme_7": return <Dugme7 dur={dur} />;
     case "kep": return <Kep dur={dur} />;
     case "takvim": return <Takvim dur={dur} />;
+    case "dis_bina": return <DisBina dur={dur} />;
     case "kat_gostergesi": return <KatGostergesi dur={dur} text={text} />;
   }
 };

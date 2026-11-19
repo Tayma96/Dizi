@@ -35,3 +35,10 @@ Mitoloji (gizli, yavaş açılır): 19.11.1998 gecesi binanın 7. katı (arşiv)
 
 ### Bölüm 1 kurgusu (kullanıcı önerisi: soğuk açılış)
 Sıra: P4 (telefon) → başlık "KAT 7 / 8 DAKİKA ÖNCE · 03:17" → P1 → P2 → P3 → P5 → P6. Ara bitiş kartları kesildi; tek bitiş kartı sonda ("Lobide oturan kim?"). Dosya: `bolumler/kat7-01.mp4` (2:43, -14.5 LUFS).
+
+### Bölüm 1, v3: tek parça, kesintisiz (kullanıcı geri bildirimi: "hiçbir şey anlamadım, sahneler atlıyor")
+Ders: 30 sn'lik bağımsız parçaları uç uca eklemek, her 30 sn'de bir sert açılış + "siyah + vuruş" kapanışı demek; birleşince kopuk. Soğuk açılış tüm bir parça olmamalı.
+- Tek bölüm dosyası `public/episodes/kat7-01.json` (sahneler: giris, p1-p6), tek kesintisiz müzik, aradaki kararmalar yok.
+- Giriş: dış çekim (6 katlı han, olmayan 7. kat penceresi bir an yanar, "Bu binada 7. kat yok.") → Cemil'in telsizle rutin bildirimi ("Merkez, Cemil. Lobi sakin, her şey yolunda.").
+- Kat rehberinde gazete kupürü: "İŞ HANINDA YANGIN · Genç bekçi Rıza Koç 7. kattaki arşivde hayatını kaybetti (20.11.1998)". Cemil: "Rıza Koç…" Telefon bundan sonra gelir: izleyici arayanı tanır.
+- Kronolojik sıra (1→6); kapı ve konum sürekliliği; CCTV saati ileri akar.

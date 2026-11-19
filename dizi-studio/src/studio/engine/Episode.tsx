@@ -207,6 +207,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const d = ts.beats[i].beat.door;
     if (d === "ac") doorOpen = i === bi ? interpolate(bf, [0, 45], [0, 1], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 }) : 1;
     if (d === "kapat") doorOpen = i === bi ? interpolate(bf, [0, 12], [doorOpen || 1, 0], clamp) : 0;
+    if (d === "acik") doorOpen = 1;
     if (d === "aralik") doorOpen = i === bi ? interpolate(bf, [0, 30], [0, 0.14], clamp) : 0.14;
   }
 
