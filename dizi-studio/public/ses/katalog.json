@@ -146,6 +146,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Violent car crash: loud tire screech skid then massive metal impact, shattering windshield glass, debris, then sudden silence"
  },
+ "efekt/el_hastane_koridor": {
+  "file": "ses/efekt/el_hastane_koridor.mp3",
+  "category": "efekt",
+  "duration": 12.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Psychiatric hospital corridor ambience, distant muffled patient murmurs and a faint far-away shout, fluorescent light hum, distant door closing, sterile reverb, no music"
+ },
+ "efekt/el_hastane_oda": {
+  "file": "ses/efekt/el_hastane_oda.mp3",
+  "category": "efekt",
+  "duration": 12.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Quiet hospital patient room tone, low ventilation hum, faint fluorescent buzz, very distant footsteps, sterile and empty, no voices"
+ },
  "efekt/el_islak_adim": {
   "file": "ses/efekt/el_islak_adim.mp3",
   "category": "efekt",
@@ -628,6 +642,13 @@
   "duration": 7.0,
   "loop": false,
   "desc": "Bölüm sonu: 5 sn yükselen gerilim + darbe. Sır açığa çıkmadan kesme."
+ },
+ "muzik/deli_tema": {
+  "file": "ses/muzik/deli_tema.mp3",
+  "category": "muzik",
+  "duration": 60.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Psychological thriller theme for a Turkish series about a man who may or may not be insane, detuned music box melody over a dark low string drone, sparse prepared piano notes, unsettling, slowly building tension, no vocals"
  },
  "muzik/dram_huzun": {
   "file": "ses/muzik/dram_huzun.mp3",
