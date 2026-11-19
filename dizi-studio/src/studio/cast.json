@@ -1094,5 +1094,31 @@
   },
   "kolye": "#f6ecd6",
   "blush": true
+ },
+ {
+  "id": "pilot",
+  "name": "Pilot",
+  "role": "Emir dizisi: kazada ölen pilot",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#e2b48e",
+  "skinShade": "#cc9a74",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a4a3a",
+   "shade": "#7a6a58"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#1d2a44",
+   "topShade": "#141d30",
+   "bottom": "#1d2a44",
+   "shoes": "#0e0e10",
+   "accent": "#1d2a44"
+  },
+  "blush": false
  }
 ]

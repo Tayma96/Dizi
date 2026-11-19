@@ -308,7 +308,7 @@ const EmirKumda: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-/** Sopa dürtmesi: hedef = "murettebat" (lacivert üniforma, kımıldamıyor) | "emir" (yırtık beyaz gömlek) */
+/** Sopa dürtmesi: hedef = "murettebat" (yerde yatan pilot, kımıldamıyor) | "emir" (yırtık beyaz gömlek) */
 const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ dur, hedef }) => {
   const f = useCurrentFrame();
   const n = hedef === "emir" ? 2 : 3;
@@ -317,40 +317,17 @@ const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ d
   const poke = k < 0.35 ? k / 0.35 : k < 0.5 ? 1 : 1 - (k - 0.5) / 0.5;
   const tip = interpolate(poke, [0, 1], [0, 120]);
   const give = poke > 0.95 ? 6 : 0;
+  const id = hedef === "emir" ? "emir_kaza" : "pilot";
   return (
-    <AbsoluteFill>
-      <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
-        <Kum />
-        {hedef === "murettebat" ? (
-          <g transform={`translate(1080 ${give}) scale(-1 1)`}>
-            {/* yüzüstü yatan pilot: lacivert ceket sırtı, ense, uzanmış kol (altın şeritli manşet) */}
-            <path d="M -60 1000 Q 260 940 600 980 Q 660 1100 620 1300 Q 300 1330 -60 1320 Z" fill="#1d2a44" stroke={O} strokeWidth={10} />
-            <path d="M 300 990 Q 320 1150 300 1310" stroke="#151d30" strokeWidth={8} fill="none" />
-            <path d="M 600 990 Q 640 980 680 1000 L 700 1120 Q 660 1140 620 1130 Z" fill="#f2f0ea" stroke={O} strokeWidth={8} />
-            <path d="M 660 990 Q 760 930 860 980 Q 900 1080 840 1150 Q 760 1180 700 1120 Z" fill="#2a1c14" stroke={O} strokeWidth={10} />
-            <path d="M 700 1020 q 40 -30 90 -20" stroke="#4a3426" strokeWidth={6} fill="none" />
-            <path d="M 420 1300 Q 520 1420 680 1440 L 690 1520 Q 500 1500 380 1340 Z" fill="#1d2a44" stroke={O} strokeWidth={9} />
-            <path d="M 640 1442 L 664 1516 M 610 1436 L 632 1508" stroke="#d9b45a" strokeWidth={9} />
-            <path d="M 686 1450 Q 760 1450 790 1490 Q 770 1530 690 1520 Z" fill="#e0b088" stroke={O} strokeWidth={8} />
-            <ellipse cx={400} cy={1350} rx={460} ry={36} fill="#000" opacity={0.12} />
-          </g>
-        ) : (
-          <g transform={`translate(1080 ${give}) scale(-1 1)`}>
-            {/* sırtüstü Emir: yırtık beyaz gömlek, omuz, yaka, çene kenarı */}
-            <path d="M -60 960 Q 320 900 760 960 L 780 1360 Q 360 1330 -60 1380 Z" fill="#e6e0d4" stroke={O} strokeWidth={10} />
-            <path d="M 700 950 L 820 900 L 860 1000 L 760 1060 Z" fill="#f2efe8" stroke={O} strokeWidth={7} />
-            <path d="M 820 960 Q 760 1000 700 1080" stroke="#7a2430" strokeWidth={30} fill="none" strokeLinecap="round" />
-            <path d="M 300 1000 L 360 950 L 384 1030 L 444 976 L 430 1100 L 320 1096 Z" fill={SKIN} stroke={O} strokeWidth={6} />
-            <path d="M 120 1200 Q 300 1160 520 1220" stroke="#9a8a70" strokeWidth={26} opacity={0.35} fill="none" />
-            <path d="M 430 1050 Q 480 1010 540 1040 Q 590 1030 600 1080 Q 560 1110 500 1096 Q 450 1100 430 1050 Z" fill="#6a1010" opacity={0.7} />
-            <path d="M 160 1060 Q 200 1010 260 1040" stroke="#8a7a60" strokeWidth={12} opacity={0.4} fill="none" />
-            <ellipse cx={420} cy={1380} rx={460} ry={34} fill="#000" opacity={0.12} />
-          </g>
-        )}
-        {/* sopa sağ üstten gelir */}
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}><Kum /></svg>
+      <div style={{ position: "absolute", left: 0, top: give }}>
+        <Yatan id={id} size={2600} cx={260} cy={760} emotion="yorgun" />
+      </div>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         <g transform={`translate(${-tip * 0.75} ${tip * 0.65})`}>
-          <path d="M 640 960 L 1180 380 L 1200 404 L 662 980 Z" fill="#7a5530" stroke={O} strokeWidth={7} />
-          <path d="M 900 690 l -30 -40 M 1040 530 l 30 10" stroke="#7a5530" strokeWidth={9} />
+          <path d="M 640 1000 L 1180 420 L 1200 444 L 662 1020 Z" fill="#7a5530" stroke={O} strokeWidth={7} />
+          <path d="M 900 730 l -30 -40 M 1040 570 l 30 10" stroke="#7a5530" strokeWidth={9} />
         </g>
       </svg>
       <Vig v={0.22} />

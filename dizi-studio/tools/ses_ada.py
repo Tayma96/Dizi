@@ -45,8 +45,7 @@ for at in [0.1, 0.65, 1.15]:
     tt = t_(0.08)
     cloth = bp(noise(0.08), 1500, 5000) * np.exp(-tt / 0.02) * 0.5
     flesh = lp(noise(0.08), 600) * np.exp(-tt / 0.03) * 1.2
-    wood = sum(np.sin(2 * np.pi * f * tt) * np.exp(-tt / 0.025) for f in (900, 2300, 3800)) / 3 * 0.25
-    place(p, cloth + flesh + wood, at)
+    place(p, cloth + flesh, at)
 save("efekt", "sopa_durtme", p, "Sopa ile dürtme (3 kez): kumaş, ten, odun.")
 
 # kumda sürükleme: mikro dürtüler (kum) + çekiş vuruşları + ayak tokluğu + kumaş hışırtısı

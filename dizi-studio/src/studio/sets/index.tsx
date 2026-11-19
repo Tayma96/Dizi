@@ -29,7 +29,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
-  sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 } } },
+  sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
@@ -528,22 +528,11 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <path d="M 270 1440 l 70 -12" stroke="#c9a75a" strokeWidth={6} />
           {[[700, 1240, 12], [780, 1500, -20], [160, 1340, 30], [960, 1600, 8]].map(([x, y, r], i) => <rect key={i} x={x} y={y} width={60} height={42} fill="#f6f4ee" stroke={O} strokeWidth={3} transform={`rotate(${r} ${x} ${y})`} />)}
           <path d="M 620 1180 l 80 -14 l -10 26 Z M 820 1420 l 60 6 l -30 20 Z" fill="#9aa0a8" stroke={O} strokeWidth={4} />
-          {/* mürettebat (kansız): enkaz parçasının arkasında yalnızca sırt, uzanmış kol ve düşmüş kep görünür */}
-          <g>
-            <path d="M 690 1350 Q 780 1320 880 1336 L 884 1376 Q 780 1366 694 1392 Z" fill="#1d2a44" stroke={O} strokeWidth={6} />
-            <path d="M 700 1380 Q 650 1420 610 1430 L 612 1452 Q 664 1446 712 1400 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
-            <path d="M 626 1428 L 630 1450 M 640 1424 L 644 1446" stroke="#d9b45a" strokeWidth={5} />
-            <path d="M 612 1432 Q 584 1436 586 1450 Q 596 1460 612 1452 Z" fill="#e0b088" stroke={O} strokeWidth={4} />
-            <path d="M 760 1290 L 930 1250 L 960 1340 L 780 1372 Z" fill="#9aa0a8" stroke={O} strokeWidth={6} />
-            <path d="M 790 1300 L 920 1272" stroke="#7a8088" strokeWidth={5} />
-            <ellipse cx={540} cy={1470} rx={34} ry={13} fill="#1d2a44" stroke={O} strokeWidth={4} />
-            <path d="M 512 1466 l 56 0" stroke="#d9b45a" strokeWidth={4} />
-            <ellipse cx={800} cy={1400} rx={150} ry={14} fill="#000" opacity={0.12} />
-          </g>
-          <g>
-            <path d="M 1020 1200 L 1100 1190 L 1100 1226 L 1024 1232 Z" fill="#1d2a44" stroke={O} strokeWidth={5} />
-            <path d="M 1000 1180 L 1100 1150 L 1100 1200 L 1010 1214 Z" fill="#9aa0a8" stroke={O} strokeWidth={5} />
-          </g>
+          {/* düşmüş kep + enkaz parçası (mürettebat rig karakteri olarak yerde yatar) */}
+          <path d="M 760 1290 L 930 1250 L 960 1340 L 780 1372 Z" fill="#9aa0a8" stroke={O} strokeWidth={6} />
+          <path d="M 790 1300 L 920 1272" stroke="#7a8088" strokeWidth={5} />
+          <ellipse cx={540} cy={1470} rx={34} ry={13} fill="#1d2a44" stroke={O} strokeWidth={4} />
+          <path d="M 512 1466 l 56 0" stroke="#d9b45a" strokeWidth={4} />
           {/* sıcak hava titreşimi */}
           <rect y={1000} width={W} height={60} fill="#ffffff" opacity={0.04 + 0.02 * Math.sin(fr / 6)} />
         </g>

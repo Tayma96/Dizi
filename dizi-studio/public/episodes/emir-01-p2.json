@@ -53,6 +53,22 @@
      "hidden": true,
      "emotion": "korkmus",
      "gesture": "eliKalbinde"
+    },
+    "pilot": {
+     "mark": "m1",
+     "body": "yat",
+     "zemin": true,
+     "eyesClosed": 1,
+     "emotion": "notr",
+     "pale": 0.5
+    },
+    "hostes": {
+     "mark": "m2",
+     "body": "yat",
+     "zemin": true,
+     "eyesClosed": 1,
+     "emotion": "notr",
+     "pale": 0.5
     }
    },
    "beats": [
@@ -154,14 +170,7 @@
         "y": 0.85
        }
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/yerli_mirilti",
-       "volume": 0.35,
-       "at": 0.6
-      }
-     ]
+     }
     },
     {
      "type": "action",
@@ -179,14 +188,7 @@
         "y": 0.85
        }
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/yerli_mirilti",
-       "volume": 0.3,
-       "at": 0.0
-      }
-     ]
+     }
     },
     {
      "type": "insert",
@@ -223,14 +225,7 @@
         "y": 0.85
        }
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/yerli_mirilti",
-       "volume": 0.25,
-       "at": 0.0
-      }
-     ]
+     }
     },
     {
      "type": "insert",
@@ -296,14 +291,7 @@
        },
        "gesture": "rest"
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/yerli_mirilti",
-       "volume": 0.45,
-       "at": 0.0
-      }
-     ]
+     }
     },
     {
      "type": "insert",
