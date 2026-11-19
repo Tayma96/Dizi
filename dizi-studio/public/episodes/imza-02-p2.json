@@ -1,0 +1,549 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-p2",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — Parça 2",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Hatıra + yalnız",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/deli_tema",
+    "volume": 0.13
+   },
+   "isaretler": {
+    "ayak": {
+     "x": 420,
+     "y": 1720,
+     "size": 1040
+    },
+    "ayak2": {
+     "x": 560,
+     "y": 1720,
+     "size": 1040
+    },
+    "kapi_on": {
+     "x": 800,
+     "y": 1690,
+     "size": 1020
+    }
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "ayak",
+     "emotion": "supheli",
+     "murekkep": true,
+     "kol": {
+      "L": {
+       "upper": 22,
+       "fore": -118
+      }
+     },
+     "bak": {
+      "x": -0.35,
+      "y": 0.55,
+      "yaw": -0.15
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "insert",
+     "kind": "tablet_video",
+     "dur": 3.0,
+     "text": [
+      "0",
+      "hatira"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/el_cctv_ugultu",
+       "volume": 0.35,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/el_kamera_kayit",
+       "volume": 0.3,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kilit",
+       "volume": 0.8,
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Ben imzamı hep sağ elimle atarım.",
+     "emotion": "notr",
+     "tags": "[quiet, intimate, clearly articulated]",
+     "gapAfter": 0.5,
+     "voiceover": true,
+     "label": "BERKAY",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "havaImza",
+       "kol": {},
+       "emotion": "dusunceli",
+       "bak": {
+        "x": -0.3,
+        "y": 0.35,
+        "yaw": -0.12
+       }
+      }
+     },
+     "hiz": 0.85
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "havaImzaSol",
+       "emotion": "supheli",
+       "bak": {
+        "x": 0.3,
+        "y": 0.35,
+        "yaw": 0.12
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Videodaki adam… solaktı.",
+     "emotion": "notr",
+     "tags": "[quiet, slow realization]",
+     "gapAfter": 0.3,
+     "voiceover": true,
+     "label": "BERKAY",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "emotion": "saskin",
+       "bak": {
+        "x": 0.0,
+        "y": 0.1
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Kapı",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "yok"
+   },
+   "isaretler": {
+    "ayak": {
+     "x": 420,
+     "y": 1720,
+     "size": 1040
+    },
+    "ayak2": {
+     "x": 560,
+     "y": 1720,
+     "size": 1040
+    },
+    "kapi_on": {
+     "x": 800,
+     "y": 1690,
+     "size": 1020
+    }
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "ayak",
+     "emotion": "saskin",
+     "murekkep": true,
+     "bak": {
+      "x": 0.0,
+      "y": 0.1
+     }
+    },
+    "deniz": {
+     "mark": "kapi_ic",
+     "hidden": true,
+     "emotion": "notr",
+     "gesture": "tutuyor",
+     "prop": "tablet",
+     "lookAt": "berkay_hasta"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "kapi_on",
+       "emotion": "ofkeli",
+       "bak": {
+        "x": 0.9,
+        "y": 0.0,
+        "yaw": 0.7
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Deniz Hanım! O video sahte!",
+     "emotion": "notr",
+     "tags": "[shouting, pounding on door, urgent]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "kadraj": {
+       "cx": 900,
+       "cy": 1060,
+       "z": 1.6
+      },
+      "move": "sarsinti"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "kol": {
+        "R": {
+         "upper": 98,
+         "fore": -18,
+         "ul": 1.0,
+         "fl": 1.0
+        },
+        "L": {
+         "upper": 14,
+         "fore": -40
+        }
+       },
+       "emotion": "ofkeli",
+       "bak": {
+        "x": 0.95,
+        "y": 0.0,
+        "yaw": 0.75
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kapi_yumruk",
+       "volume": 0.85,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "ayak2",
+       "gesture": "rest",
+       "emotion": "supheli",
+       "bak": {
+        "x": 0.9,
+        "y": 0.0,
+        "yaw": 0.6
+       },
+       "kol": {}
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_koridor_adim_yaklasan",
+       "volume": 0.7,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "hidden": false
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kilit_yarim",
+       "volume": 0.6,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.55,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Videodaki adam solak, Deniz Hanım.",
+     "emotion": "notr",
+     "tags": "[low, controlled, triumphant]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "kararli",
+       "kol": {
+        "L": {
+         "upper": 22,
+         "fore": -150,
+         "ul": 0.8
+        }
+       },
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "uzat",
+       "emotion": "notr",
+       "lookAt": "berkay_hasta"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_tablet_tik",
+       "volume": 0.5,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "tablet_video",
+     "dur": 2.6,
+     "text": [
+      "0.4",
+      "ayna",
+      "0.7"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/whoosh",
+       "volume": 0.25,
+       "at": 0.7
+      },
+      {
+       "name": "efekt/el_cctv_ugultu",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Güvenlik kameraları görüntüyü ayna gibi kaydeder, Berkay.",
+     "emotion": "notr",
+     "tags": "[polite, unhurried, matter-of-fact]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "yaklas"
+     },
+     "cast": {
+      "deniz": {
+       "gesture": "tutuyor",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "kol": {},
+       "gesture": "rest",
+       "emotion": "uzgun",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Geçen hafta da tam bunu söylemiştin. Aynı cümleyle.",
+     "emotion": "notr",
+     "tags": "[soft, almost tender, pitying]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "yakin",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.15,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "tablet_video",
+     "dur": 2.4,
+     "text": [
+      "4.0",
+      "ayna_kilit",
+      "99"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/riser",
+       "volume": 0.3,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.55,
+       "at": 1.2
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.7,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "soguk",
+       "pale": 0.2,
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "yakin",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "emotion": "mutlu",
+       "lookAt": "berkay_hasta"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_tablet_kilit",
+       "volume": 0.6,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "siyah": true,
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.8,
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

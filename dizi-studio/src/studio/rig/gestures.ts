@@ -36,6 +36,8 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   kolTut: { L: { upper: 64, fore: -30, ul: 0.86, fl: 0.95 }, R: { upper: 10, fore: -20 } },
   /** havaya imza atar (sol taraftaki kol = karakterin sağ eli; kalem tutar gibi önde yazar) */
   havaImza: { L: { upper: 34, fore: -104, ul: 0.74, fl: 0.95 }, R: { upper: 6, fore: 0 } },
+  /** sol eliyle (ekranın sağındaki kol) imzayı dener: beceriksiz */
+  havaImzaSol: { L: { upper: 6, fore: 0 }, R: { upper: 34, fore: -104, ul: 0.74, fl: 0.95 } },
   krem: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 122, ul: 0.41, fl: 1.03 } },
   yuzGoster: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 119, ul: 0.41, fl: 0.8 } },
   kafaKasi: { L: { upper: 6, fore: 0 }, R: { upper: 150, fore: 76, ul: 0.9, fl: 0.88 } },

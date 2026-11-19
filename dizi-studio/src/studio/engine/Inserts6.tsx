@@ -21,7 +21,9 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t0 = Number(text?.[0] ?? 0);
-  const t = t0 + f / fps;
+  const modOn = text?.[1] ?? "";
+  // hatıra: yalnızca imza anı döner (sol el kalemle yazar)
+  const t = modOn === "hatira" ? (t0 + f / fps) % 1.4 : t0 + f / fps;
   // text[1] mod: "" normal | "hatira" (hatırlanan kare: sıcak-soluk, ele yaklaşır) | "ayna" (text[2] sn'de ekrana dokunulur, görüntü aynalanır)
   //              | "ayna_kilit" (baştan aynalı; kapının üstündeki 7'ye yaklaşır; text[2] sn'de ekran kilitlenir)
   const mod = text?.[1] ?? "";
@@ -31,8 +33,8 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const dokunus = mod === "ayna" && tLocal >= flipAt - 0.35 && tLocal < flipAt + 0.25;
   const kilit = mod === "ayna_kilit" && tLocal >= flipAt;
   const kilitA = mod === "ayna_kilit" ? interpolate(tLocal, [flipAt, flipAt + 0.25], [0, 1], clamp) : 0;
-  const plakaZoom = mod === "ayna_kilit" ? interpolate(tLocal, [0, Math.max(0.5, flipAt - 0.2)], [1, 2.1], { ...clamp, easing: (x) => 1 - (1 - x) ** 2 }) : 1;
-  const hatiraZoom = mod === "hatira" ? interpolate(tLocal, [0, 1.6], [1.25, 1.55], clamp) : 1;
+  const plakaZoom = mod === "ayna_kilit" ? interpolate(tLocal, [0.1, 1.3], [1, 3.4], { ...clamp, easing: (x) => 1 - (1 - x) ** 2 }) : 1;
+  const hatiraZoom = mod === "hatira" ? interpolate(tLocal, [0, 2.6], [2.1, 2.6], clamp) : 1;
   const look = castById("berkay_hasta");
   // el titremesi + yavaş yaklaşma
   const jx = Math.sin(f / 7) * 2.5 + Math.sin(f / 3.1) * 0.8;
@@ -44,7 +46,7 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const imza = t < 1.6;
   const kx = ayakta ? 560 : 430;
   const armR = imza
-    ? { upper: 16 + Math.sin(t * 22) * 4, fore: -66 + Math.sin(t * 17) * 6, ul: 0.8 }
+    ? { upper: 30 + Math.sin(t * 22) * 4, fore: -78 + Math.sin(t * 17) * 7, ul: 0.82 }
     : ayakta
       ? { upper: 50, fore: -34 + Math.sin(t * 9) * 7, ul: 0.72, fl: 0.9 }
       : { upper: 52, fore: -34, ul: 0.72, fl: 0.9 };
@@ -56,7 +58,7 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
       {/* odanın bulanık arka planı (tabletin arkası) */}
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 40% 30%, #4a545c 0%, #2a3036 55%, #14181c 100%)" }} />
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(220,235,255,0.10) 0%, rgba(0,0,0,0) 40%)" }} />
-      <AbsoluteFill style={{ transform: `translate(${jx}px, ${jy}px) scale(${z * plakaZoom * hatiraZoom}) rotate(-1.2deg)`, transformOrigin: mod === "ayna_kilit" ? "197px 520px" : mod === "hatira" ? "640px 1180px" : "50% 50%", filter: mod === "hatira" ? "sepia(0.35) saturate(0.7) brightness(1.05) blur(1.2px)" : undefined }}>
+      <AbsoluteFill style={{ transform: `translate(${jx}px, ${jy}px) scale(${z * plakaZoom * hatiraZoom}) rotate(-1.2deg)`, transformOrigin: mod === "ayna_kilit" ? "205px 540px" : mod === "hatira" ? "600px 1240px" : "50% 50%", filter: mod === "hatira" ? "sepia(0.35) saturate(0.7) brightness(1.05) blur(1.2px)" : undefined }}>
         {/* tablet gövdesi */}
         <div style={{ position: "absolute", left: 90, top: 200, width: 900, height: 1500, borderRadius: 64, backgroundColor: "#16181c", boxShadow: "0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 3px #2a2e34" }} />
         <div style={{ position: "absolute", left: 534, top: 214, width: 12, height: 12, borderRadius: 6, backgroundColor: "#2e3440" }} />
@@ -104,9 +106,9 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
                 size={620}
                 pose={{
                   emotion: "mutlu",
-                  gesture: ayakta ? "uzat" : imza ? "okuma" : "uzat",
+                  gesture: ayakta ? "uzat" : imza ? "rest" : "uzat",
                   armR,
-                  armL: imza ? { upper: 12, fore: -62, ul: 0.8 } : undefined,
+                  armL: imza ? { upper: 10, fore: -36, ul: 0.95 } : undefined,
                   prop: uzatiyor ? "kagit" : imza ? "kalem" : "none",
                   body: ayakta ? "stand" : "sit",
                   yaw: 0.35,
@@ -120,7 +122,7 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             {/* dizindeki boş kâğıt (imza evresi) */}
             {imza ? (
               <svg viewBox="0 0 844 1428" width={844} height={1428} style={{ position: "absolute", left: 0, top: 0 }}>
-                <path d="M 372 990 L 492 984 L 498 1012 L 376 1020 Z" fill="#e8e8e2" stroke="#3a3e3c" strokeWidth={3} />
+                <path d="M 392 1004 L 488 998 L 492 1022 L 396 1030 Z" fill="#e8e8e2" stroke="#3a3e3c" strokeWidth={3} />
               </svg>
             ) : null}
             {/* sıkıştırma blokları, tarama çizgileri, kenar vinyeti */}

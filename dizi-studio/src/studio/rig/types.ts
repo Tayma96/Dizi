@@ -79,6 +79,7 @@ export type Gesture =
   | "basTutma"
   | "golge"
   | "havaImza"
+  | "havaImzaSol"
   | "kolTut"
   | "okşa"
   | "direksiyon"
