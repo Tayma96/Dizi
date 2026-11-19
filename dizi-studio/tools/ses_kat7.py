@@ -59,6 +59,15 @@ burst = bp(noise(d), 300, 5000) * np.exp(-t * 6) * 0.6
 chord = sum(np.sin(2 * np.pi * f * t) for f in (146.8, 155.6, 207.7)) / 3 * np.exp(-t * 1.2) * 0.4
 save("efekt", "korku_vurus", reverb(boom + burst + chord, 2.0, 0.3), "Korku vuruşu (stinger).")
 
+# telsiz: bas-konuş tıkı + kısa hışırtı (squelch)
+d = 0.6; t = t_(d)
+tc = np.zeros(int(d * SR))
+place(tc, hp(noise(0.01), 1500) * 0.8, 0.0)
+place(tc, bp(noise(0.35), 800, 4000) * np.exp(-t_(0.35) * 6) * 0.5, 0.05)
+save("efekt", "telsiz_cit", tc, "Telsiz bas-konuş tıkı ve hışırtı.")
+d = 2.0; t = t_(d)
+save("efekt", "telsiz_parazit", fade(bp(noise(d), 600, 4500) * (0.6 + 0.4 * np.sin(2 * np.pi * 7 * t)) * 0.6, 0.05, 0.3), "Telsiz paraziti (2 sn).")
+
 cat = os.path.join(K.OUT, "katalog.json")
 c = json.load(open(cat, encoding="utf-8")) if os.path.exists(cat) else {}
 c.update(K.CATALOG)

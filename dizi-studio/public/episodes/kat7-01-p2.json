@@ -1,0 +1,304 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p2",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Arkası boş",
+ "endCard": {
+  "text": "KAT 7 · Parça 3 geliyor",
+  "sub": "Telsizden cevap veren kimdi?"
+ },
+ "scenes": [
+  {
+   "id": "p2",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 2 — Arkası boş",
+   "saat": "0",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.3,
+    "from": 30
+   },
+   "cast": {
+    "cemil": {
+     "mark": "cemil",
+     "emotion": "sok",
+     "bak": {
+      "x": -0.75,
+      "y": 0.35
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": 1.0,
+        "y": 0.0,
+        "yaw": 0.95
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "arka_bos",
+     "dur": 2.2,
+     "sfx": [
+      {
+       "name": "efekt/floresan_cit",
+       "volume": 0.3,
+       "at": 0.5
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -0.75,
+        "y": 0.35
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ic_cekme",
+       "volume": 0.25,
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_lobi",
+     "dur": 3.8,
+     "text": [
+      "don",
+      "monitor"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.5,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/parazit",
+       "volume": 0.3,
+       "at": 2.7
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": 1.0,
+        "y": 0.0,
+        "yaw": 0.95
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "arka_bos",
+     "dur": 1.2
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_lobi",
+     "dur": 2.0,
+     "text": [
+      "bos",
+      "monitor"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/parazit",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "korkmus",
+     "tags": "[scared, urgent whisper into a walkie-talkie]",
+     "text": "Merkez, Cemil ben. Lobide… bir şey var.",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "gesture": "telefon",
+       "prop": "telsiz",
+       "bak": {
+        "x": -0.75,
+        "y": 0.35
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telsiz_cit",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "orta",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "supheli"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telsiz_parazit",
+       "volume": 0.4,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "voiceover": true,
+     "label": "TELSİZ",
+     "emotion": "korkmus",
+     "text": "Merkez, Cemil ben. Lobide… bir şey var.",
+     "gapAfter": 1.0,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telsiz_cit",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ],
+     "tags": "[scared, urgent whisper into a walkie-talkie]"
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "gesture": "rest",
+       "prop": "none"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/esya_dusme",
+       "volume": 0.6,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_cik",
+     "dur": 3.2,
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.35,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/asansor_ding_uzak",
+       "volume": 0.6,
+       "at": 2.8
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 0.6,
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

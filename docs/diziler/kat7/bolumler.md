@@ -23,3 +23,12 @@ Bitiş kartı: "KAT 7" · "Arkasındaki kimdi?"
 - Parça 2 kancası: Cemil döner, arkası boş; monitörde siluet hâlâ sandalyesinin ardında ve bu kez başını kameraya çeviriyor.
 - Ekilecek ipuçları: yaka kartı (sonda "C. AYDIN" okunur), kat rehberi panosunda 6'nın üstünde sökülmüş bir satır.
 - Kredi: 122 (3 replik + 1 yeniden).
+
+## Bölüm 1 planı (6 parça, ~3 dk): "03:17"
+Mitoloji (gizli, yavaş açılır): 19.11.1998 gecesi binanın 7. katı (arşiv) yandı; genç bekçi Cemil, yanındaki arkadaşı Rıza'yı yangında bıraktı ve kaçtı. Sonra 7. kat mühürlendi, asansörden silindi. Siluet Cemil'in yaka kartını taşıyor: "Ölen aslında Cemil mi?" sorusu dizinin büyük merakı.
+- **P1 "03:17"** (tamam): Asansör 7'ye çıkıyor, kabin boş iniyor, monitörde siluet Cemil'in arkasında; "Yaşlanmışsın, Cemil."
+- **P2 "Arkası boş":** Cemil döner, arkası boş. Monitörde siluet hâlâ orada, başını kameraya çeviriyor. Tekrar döner: boş; monitör: siluet yok. Telsiz: "Merkez, Cemil ben…" Telsizden kendi sesi aynı cümleyi geri söylüyor. Telsizi düşürür. KAM 04: asansör yeniden 7'ye çıkıyor.
+- **P3 "Kat rehberi":** Fenerle lobideki kat rehberi panosuna gider: 1-6 firmalar; 6'nın üstünde harfleri sökülmüş bir satır, izlerden "7 · ARŞİV" okunur. Panoya iğnelenmiş sararmış not: "Asansör 7'ye çıkarsa ÇAĞIRMA. — 19.11.1998". Arkasında "ding".
+- **P4 "Telefon":** Lobideki eski duvar telefonu çalar (03:17). Genç, nefes nefese bir ses: "Abi! Yedinci katta yangın var, kapı açılmıyor! Abi neredesin?!" Cemil: "Rıza?.." Hat kesilir; Cemil telefon kablosunun duvara bağlı bile olmadığını görür.
+- **P5 "Çağrı":** Asansör kendiliğinden açılır; düğme panelinde olmayan "7" düğmesi yanıyor. Yerde yanık kenarlı bir bekçi kepi. Hoparlörden: "Yukarı çık, Cemil. Bu sefer kaçma." Cemil içeri girer, kapı kapanır, gösterge 1… 6… 7.
+- **P6 "Kat 7" (bölüm sonu):** Kapı 7. kata açılır: yanık, isli koridor, "7. KAT · ARŞİV" tabelası, duvarda "KASIM 1998" takvimi. Asansörden çıkan Cemil'in telsizi cızırdar. Kesme: KAM 01 lobi görüntüsü: Cemil hâlâ masasında oturuyor ve başını yavaşça kameraya kaldırıyor. Siyah. Kart: "Lobide oturan kim?"

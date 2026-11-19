@@ -335,6 +335,20 @@
   "loop": false,
   "desc": "Telefon zil melodisi."
  },
+ "efekt/telsiz_cit": {
+  "file": "ses/efekt/telsiz_cit.mp3",
+  "category": "efekt",
+  "duration": 0.6,
+  "loop": false,
+  "desc": "Telsiz bas-konuş tıkı ve hışırtı."
+ },
+ "efekt/telsiz_parazit": {
+  "file": "ses/efekt/telsiz_parazit.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "Telsiz paraziti (2 sn)."
+ },
  "efekt/tik": {
   "file": "ses/efekt/tik.mp3",
   "category": "efekt",
@@ -446,6 +460,13 @@
   "duration": 15.29,
   "loop": false,
   "desc": "Dizinin ana teması (leitmotif). Açılış/kapanış jeneriği, 9 notalık motif."
+ },
+ "muzik/kat7_gerilim": {
+  "file": "ses/muzik/kat7_gerilim.mp3",
+  "category": "muzik",
+  "duration": 90.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Dark cinematic horror underscore for a night security guard alone in an old building. Slow, sparse and unsettling: deep sub-bass drone, a faint heartbeat-like low pulse, dissonant high sustained strings that slowly swell, occasional distant metallic scrapes and reversed piano notes. No melody, no drums, no vocals. Builds tension very gradually, never resolves."
  },
  "muzik/romantik": {
   "file": "ses/muzik/romantik.mp3",

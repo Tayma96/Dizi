@@ -587,6 +587,11 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <rect x={590} y={1060} width={46} height={110} rx={8} fill="#3a3d44" stroke="#0d0e10" strokeWidth={4} />
           <circle cx={613} cy={1095} r={10} fill="#5a1a14" />
           <circle cx={613} cy={1135} r={10} fill="#2a2a2e" />
+          {/* kat rehberi panosu: 6 kat; 6'nın üstünde sökülmüş bir satır */}
+          <rect x={600} y={620} width={150} height={330} fill="#1b1d22" stroke="#0a0b0d" strokeWidth={5} />
+          <text x={675} y={652} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={17} fontWeight={700} fill="#c9c4a8">KAT REHBERİ</text>
+          <rect x={612} y={666} width={126} height={22} fill="#26292f" stroke="#3a3d44" strokeWidth={2} strokeDasharray="4 4" />
+          {[6, 5, 4, 3, 2, 1].map((k, i) => <text key={k} x={618} y={714 + i * 38} fontFamily="'Courier New', monospace" fontSize={19} fontWeight={700} fill="#d9d4b4">{k} ······</text>)}
           {/* cam giriş kapısı: yağmurlu gece sokağı */}
           <rect x={760} y={700} width={300} height={820} fill="#0d1622" stroke="#0a0b0d" strokeWidth={10} />
           <circle cx={960} cy={860} r={40} fill="#f2c870" opacity={0.5} />

@@ -395,6 +395,8 @@ FX = {
     "yanki": "aecho=0.8:0.7:70|140:0.35|0.2,apad=pad_dur=0.5",
     # havalandırma kanalı: metalik, dar bant, kısa tarak yankısı
     "kanal": "highpass=f=350,lowpass=f=3200,aecho=0.8:0.6:7|15|23:0.5|0.35|0.2,apad=pad_dur=0.4",
+    # telsiz hoparlörü: dar bant, hafif bozulma
+    "telsiz": "highpass=f=400,lowpass=f=3000,acompressor=threshold=-22dB:ratio=6,aecho=0.6:0.3:9:0.2",
     # hayalet fısıltısı: aynı ses, pes (perde -2.6 yarım ton), tempo korunur, karanlık yankı
     "hayalet": "asetrate=44100*0.86,aresample=44100,atempo=1.1628,highpass=f=90,lowpass=f=6000,aecho=0.8:0.6:45|110:0.35|0.22,apad=pad_dur=0.8",
 }
@@ -547,6 +549,33 @@ def cmd_efekt(args):
     say(f"+ efekt/{args.isim}  {cost} kredi ({acct['ad']})")
 
 
+def cmd_muzik(args):
+    """ElevenLabs Music: sözsüz fon müziği üretir → public/ses/muzik/<isim>.mp3 (gerçek maliyet abonelik farkından okunur)."""
+    est = int(args.sure * 25)
+    say(f"Müzik '{args.isim}': \"{args.tarif}\" ({args.sure} sn). Kaba tahmin ≈ {est} kredi.")
+    if not args.onayla:
+        say("KURU ÇALIŞTIRMA — kredi harcanmadı. --onayla ile üretin.")
+        return
+    acct, sub, rows = pick_account(est, args.sahte)
+    if not acct:
+        raise SystemExit("DUR: yeterli kredi yok.")
+    before = sub["kalan"]
+    audio, _ = http(acct, "POST", "/v1/music?output_format=mp3_44100_128", body={"prompt": args.tarif, "music_length_ms": int(args.sure * 1000), "model_id": "music_v1", "force_instrumental": True}, raw=True, fake=args.sahte)
+    out = os.path.join(ROOT, "public", "ses", "muzik", f"{args.isim}.mp3")
+    raw = "/tmp/el-music.mp3"
+    open(raw, "wb").write(audio)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", raw, "-af", "loudnorm=I=-18:TP=-2", "-ar", "44100", "-c:a", "libmp3lame", "-q:a", "2", out], check=True)
+    cost = max(0, before - subscription(acct, args.sahte)["kalan"])
+    cat_path = os.path.join(ROOT, "public", "ses", "katalog.json")
+    cat = json.load(open(cat_path, encoding="utf-8"))
+    cat[f"muzik/{args.isim}"] = {"file": f"ses/muzik/{args.isim}.mp3", "category": "muzik", "duration": args.sure, "loop": False, "desc": f"ElevenLabs Music: {args.tarif}"}
+    json.dump(dict(sorted(cat.items())), open(cat_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    st = load_state()
+    st["harcama"].append({"zaman": int(time.time()), "hesap": acct["ad"], "replik": f"muzik/{args.isim}", "kredi": cost, "model": "music_v1", "sahte": bool(args.sahte)})
+    save_state(st)
+    say(f"+ muzik/{args.isim}  {cost} kredi ({acct['ad']})")
+
+
 def cmd_replikler(args):
     script = json.load(open(args.bolum, encoding="utf-8"))
     vmap = json.load(open(VOICES, encoding="utf-8")) if os.path.exists(VOICES) else {}
@@ -625,13 +654,18 @@ def main():
     e.add_argument("isim")
     e.add_argument("--sure", type=float, default=4.0)
     e.add_argument("--onayla", action="store_true")
+    mz = sp.add_parser("muzik")
+    mz.add_argument("tarif")
+    mz.add_argument("isim")
+    mz.add_argument("--sure", type=float, default=60.0)
+    mz.add_argument("--onayla", action="store_true")
     r = sp.add_parser("replikler")
     r.add_argument("bolum")
     r.add_argument("--model", default="eleven_v4", choices=sorted(COST))
     ia = sp.add_parser("ice-aktar")
     ia.add_argument("bolum")
     args = p.parse_args()
-    {"replikler": cmd_replikler, "ice-aktar": cmd_ice_aktar, "durum": cmd_durum, "oyuncu-sec": cmd_oyuncu_sec, "ata": cmd_ata, "seslendir": cmd_seslendir, "efekt": cmd_efekt}[args.cmd](args)
+    {"replikler": cmd_replikler, "ice-aktar": cmd_ice_aktar, "durum": cmd_durum, "oyuncu-sec": cmd_oyuncu_sec, "ata": cmd_ata, "seslendir": cmd_seslendir, "efekt": cmd_efekt, "muzik": cmd_muzik}[args.cmd](args)
 
 
 if __name__ == "__main__":

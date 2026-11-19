@@ -80,7 +80,7 @@ export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz";
 
 export type Look = {
   name: string;
@@ -117,6 +117,8 @@ export type Look = {
   sargi?: boolean;
   /** deniz kabuğu kolye rengi */
   kolye?: string;
+  /** göğüste yaka kartı (isim) */
+  isimlik?: string;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };

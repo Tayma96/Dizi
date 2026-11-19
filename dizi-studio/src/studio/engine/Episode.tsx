@@ -386,12 +386,13 @@ const ducked = (f: number, speaking: [number, number][], ramp = 8) => {
   return d;
 };
 
-const MusicTrack: React.FC<{ src: string; base: number; dur: number; speaking: [number, number][]; offset: number }> = ({ src, base, dur, speaking, offset }) => {
+const MusicTrack: React.FC<{ src: string; base: number; dur: number; speaking: [number, number][]; offset: number; startSec?: number }> = ({ src, base, dur, speaking, offset, startSec = 0 }) => {
   const f = useCurrentFrame();
   const fadeIn = interpolate(f, [0, 30], [0, 1], clamp);
   const fadeOut = interpolate(f, [dur - 30, dur], [1, 0], clamp);
   const d = ducked(f + offset, speaking);
-  return <Audio src={staticFile(src)} loop volume={base * fadeIn * fadeOut * (1 - 0.55 * d)} />;
+  const { fps } = useVideoConfig();
+  return <Audio src={staticFile(src)} loop trimBefore={Math.round(startSec * fps)} volume={base * fadeIn * fadeOut * (1 - 0.55 * d)} />;
 };
 
 const AmbTrack: React.FC<{ src: string; base: number; dur: number; fadeIn?: boolean; fadeOut?: boolean }> = ({ src, base, dur, fadeIn = true, fadeOut = true }) => {
@@ -414,11 +415,11 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
   const allSpeaking = tl.scenes.flatMap((s) => s.speaking);
 
   // music segments: a scene without `music` continues the previous one; name "yok" stops it
-  const segs: { name: string; from: number; to: number; volume: number }[] = [];
+  const segs: { name: string; from: number; to: number; volume: number; startSec?: number }[] = [];
   for (const s of tl.scenes) {
     const m = s.scene.music;
     const last = segs[segs.length - 1];
-    if (m && m.name !== "yok" && !(last && last.name === m.name && last.to === s.from)) segs.push({ name: m.name, from: s.from, to: s.from + s.dur, volume: m.volume ?? 0.35 });
+    if (m && m.name !== "yok" && !(last && last.name === m.name && last.to === s.from)) segs.push({ name: m.name, from: s.from, to: s.from + s.dur, volume: m.volume ?? 0.35, startSec: m.from ?? 0 });
     else if (m && m.name === "yok") continue;
     else if (last && last.to === s.from) last.to = s.from + s.dur;
   }
@@ -453,7 +454,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
         ))}
         {segs.map((s, i) => (
           <Sequence key={i} name={`Müzik: ${s.name}`} from={s.from} durationInFrames={s.to - s.from} layout="none">
-            <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={allSpeaking} offset={s.from} />
+            <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={allSpeaking} offset={s.from} startSec={s.startSec} />
           </Sequence>
         ))}
         {script.endCard === false ? null : (

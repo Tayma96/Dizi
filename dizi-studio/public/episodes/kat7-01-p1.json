@@ -5,7 +5,7 @@
  "episodeNo": 1,
  "title": "Bölüm 1 — 03:17",
  "endCard": {
-  "text": "KAT 7 · Devamı yarın",
+  "text": "KAT 7 · Parça 2 geliyor",
   "sub": "Arkasındaki kimdi? Yorumlara yaz."
  },
  "scenes": [
@@ -70,7 +70,8 @@
         "y": 0.35
        }
       }
-     }
+     },
+     "etiket": "Gece bekçisi Cemil · 03:17"
     },
     {
      "type": "insert",
@@ -82,6 +83,9 @@
        "volume": 0.3,
        "at": 0.0
       }
+     ],
+     "text": [
+      "monitor"
      ]
     },
     {
@@ -281,6 +285,10 @@
        "volume": 0.25,
        "at": 2.2
       }
+     ],
+     "text": [
+      "normal",
+      "monitor"
      ]
     },
     {
@@ -338,7 +346,11 @@
       }
      ]
     }
-   ]
+   ],
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.3
+   }
   }
  ]
 }

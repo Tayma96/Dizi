@@ -155,6 +155,14 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       );
     case "bardak":
       return <path d={`M ${x - 22} ${y - 6} L ${x - 18} ${y - 74} L ${x + 18} ${y - 74} L ${x + 22} ${y - 6} Z`} fill="#dff0ff" fillOpacity={0.8} stroke={OUT} strokeWidth={3} />;
+    case "telsiz":
+      return (
+        <g>
+          <rect x={x - 16} y={y - 78} width={32} height={74} rx={6} fill="#1c1c1e" stroke={OUT} strokeWidth={3} />
+          <rect x={x - 10} y={y - 70} width={20} height={14} fill="#5a8a5a" />
+          <path d={`M ${x + 8} ${y - 78} l 0 -40`} stroke="#1c1c1e" strokeWidth={6} strokeLinecap="round" />
+        </g>
+      );
     case "sopa":
       return (
         <g transform={`rotate(-12 ${x} ${y})`}>
@@ -580,6 +588,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {pose.hideLegs ? null : <Legs />}
           <g transform={torsoScale}>
             <Torso />
+            {look.isimlik ? (
+              <g>
+                <rect x={210} y={396} width={66} height={20} rx={3} fill="#e8e6dc" stroke={OUT} strokeWidth={2.5} />
+                <text x={243} y={411} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={10.5} fontWeight={700} fill="#111">{look.isimlik}</text>
+              </g>
+            ) : null}
             {look.yirtik ? (
               <g>
                 <path d="M 150 420 L 158 408 L 166 414 L 172 400 L 176 418 L 188 412 L 184 440 L 192 452 L 180 466 L 164 470 L 156 452 Z" fill={look.skinShade} stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />

@@ -38,8 +38,31 @@ const CCTV: React.FC<{ kam: string; children: React.ReactNode; glitchAt?: number
   );
 };
 
+/** Omuz üstü monitör çekimi: CRT çerçevesi, önde Cemil'in kafa/omuz silueti; ekranın içinde CCTV görüntüsü */
+const Monitor: React.FC<{ children: React.ReactNode; dur: number; zoom?: [number, number] }> = ({ children, dur, zoom = [1, 1.08] }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], zoom, { ...clamp, easing: Easing.inOut(Easing.quad) });
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#07080a", overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})` }}>
+        <div style={{ position: "absolute", left: 110, top: 330, width: 860, height: 1300, borderRadius: 40, background: "#1a1b1e", boxShadow: "0 0 120px rgba(120,170,255,0.25)" }} />
+        <div style={{ position: "absolute", left: 150, top: 370, width: 780, height: 1220, borderRadius: 28, overflow: "hidden" }}>
+          <div style={{ width: 1080, height: 1920, transform: `scale(${780 / 1080}, ${1220 / 1920})`, transformOrigin: "0 0" }}>{children}</div>
+        </div>
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
+          <rect x={470} y={1630} width={140} height={120} fill="#141518" />
+          <path d="M -40 1920 L -40 1560 Q 60 1450 230 1470 Q 330 1480 380 1560 L 420 1920 Z" fill="#0b0c10" />
+          <ellipse cx={170} cy={1360} rx={150} ry={175} fill="#0d0e12" />
+          <path d="M 40 1320 q 20 -60 70 -70 M 300 1320 q -20 -60 -70 -70" stroke="#3a3c40" strokeWidth={16} fill="none" />
+        </svg>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 55% 45%, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 /** Yüzsüz siluet (sırtı dönük): Cemil'inkiyle aynı bekçi üniforması, uzun kollar, eğik baş */
-const Siluet: React.FC<{ x: number; y: number; s: number; tilt: number; isim?: number }> = ({ x, y, s, tilt, isim = 0 }) => (
+const Siluet: React.FC<{ x: number; y: number; s: number; tilt: number; isim?: number; don?: number }> = ({ x, y, s, tilt, isim = 0, don = 0 }) => (
   <g transform={`translate(${x} ${y}) scale(${s})`}>
     <path d="M -70 -10 L -78 300 L -30 300 L -10 60 L 10 60 L 30 300 L 78 300 L 70 -10 Z" fill="#0c0e14" />
     <path d="M -110 -330 Q -120 -380 -60 -400 L 60 -400 Q 120 -380 110 -330 L 90 0 L -90 0 Z" fill="#141a28" />
@@ -53,6 +76,13 @@ const Siluet: React.FC<{ x: number; y: number; s: number; tilt: number; isim?: n
     <g transform={`rotate(${tilt} 0 -400)`}>
       <rect x={-24} y={-440} width={48} height={50} fill="#0a0a0c" />
       <ellipse cx={0} cy={-500} rx={66} ry={80} fill="#08080a" />
+      {/* kameraya dönen baş: göz çukurları belli belirsiz parlar */}
+      {don > 0 ? (
+        <g opacity={don}>
+          <ellipse cx={-24} cy={-505} rx={11} ry={7} fill="#c8d8c8" opacity={0.55} />
+          <ellipse cx={24} cy={-505} rx={11} ry={7} fill="#c8d8c8" opacity={0.55} />
+        </g>
+      ) : null}
     </g>
     {isim > 0 ? (
       <g opacity={isim}>
@@ -107,11 +137,13 @@ const CctvBos: React.FC<{ dur: number }> = ({ dur }) => (
 );
 
 /** KAM 01: lobi, tepeden. Masada Cemil; sandalyesinin hemen arkasında siluet, başı eğik. Ortada 4 kare yaka kartı parlar. */
-const CctvLobi: React.FC<{ dur: number }> = ({ dur }) => {
+const CctvLobi: React.FC<{ dur: number; mod?: string }> = ({ dur, mod = "normal" }) => {
   const f = useCurrentFrame();
-  const isim = f >= Math.round(dur * 0.5) && f < Math.round(dur * 0.5) + 4 ? 1 : 0;
+  const isim = mod === "normal" && f >= Math.round(dur * 0.5) && f < Math.round(dur * 0.5) + 4 ? 1 : 0;
+  const don = mod === "don" ? interpolate(f, [dur * 0.2, dur * 0.8], [0, 1], clamp) : 0;
+  const tilt = mod === "don" ? interpolate(f, [dur * 0.2, dur * 0.8], [28, 4], clamp) : 28;
   return (
-    <CCTV kam="KAM 01 · LOBİ" dur={dur} startSec={58} zoom={[1.0, 1.45]}>
+    <CCTV kam="KAM 01 · LOBİ" dur={dur} startSec={mod === "normal" ? 58 : mod === "don" ? 9 : 16} zoom={mod === "normal" ? [1.0, 1.45] : [1.25, 1.4]}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         <rect width={1080} height={1920} fill="#1e201c" />
         <rect x={360} y={300} width={720} height={800} fill="#5a5c54" />
@@ -127,7 +159,7 @@ const CctvLobi: React.FC<{ dur: number }> = ({ dur }) => {
         <rect x={470} y={1150} width={160} height={110} fill="#5a6a70" stroke="#111" strokeWidth={5} transform="rotate(-8 550 1205)" />
       </svg>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
-        <Siluet x={700} y={1300} s={1.25} tilt={28} isim={isim} />
+        {mod !== "bos" ? <Siluet x={700} y={1300} s={1.25} tilt={tilt} isim={isim} don={don} /> : null}
       </svg>
       <div style={{ position: "absolute", left: 700 - 0.2 * 760, top: 1010 }}>
         <Character look={castById("cemil")} size={760} pose={{ body: "sit", emotion: "notr", yaw: -0.3, lookX: -0.6, lookY: 0.5, seed: 3 }} />
@@ -160,14 +192,52 @@ const KatGostergesi: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }
   );
 };
 
-export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi";
-export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi"];
+/** Cemil'in arkası: karanlık mermer duvar, sandalye sırtı, kimse yok; floresan titrer */
+const ArkaBos: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const fl = random(`ab${Math.floor(f / 2)}`) > 0.8 ? 0.4 : 1;
+  const z = interpolate(f, [0, dur], [1.05, 1.0], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0a0b0d", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <rect width={1080} height={1920} fill="#1c1e23" />
+        {[0, 1, 2].map((i) => <rect key={i} x={i * 360} y={200} width={356} height={1300} fill={i % 2 ? "#202329" : "#1d2025"} stroke="#141619" strokeWidth={4} />)}
+        <rect x={200} y={90} width={680} height={30} rx={8} fill="#e8f2ea" opacity={0.7 * fl} />
+        <rect y={1500} width={1080} height={420} fill="#141619" />
+        {/* sandalye sırtı (önde, bulanık değil) */}
+        <path d="M 300 1920 L 320 1300 Q 540 1240 760 1300 L 780 1920 Z" fill="#101114" stroke="#000" strokeWidth={8} />
+        <rect width={1080} height={1920} fill="#000" opacity={0.25 + (1 - fl) * 0.4} />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** KAM 04: boş kabin, kapı kapanır; kabin göstergesi 0'dan 7'ye çıkar */
+const CctvCik: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const k = Math.min(7, Math.floor(interpolate(f, [dur * 0.25, dur * 0.85], [0, 7.99], clamp)));
+  const door = interpolate(f, [0, dur * 0.2], [1, 0], clamp);
+  return (
+    <CCTV kam="KAM 04 · ASANSÖR" dur={dur} startSec={31} zoom={[1.0, 1.08]}>
+      <Kabin kat={String(k)}>
+        <rect x={0} y={1700} width={540 * (1 - door)} height={220} fill="#3a3c36" />
+        <rect x={1080 - 540 * (1 - door)} y={1700} width={540 * (1 - door)} height={220} fill="#363832" />
+      </Kabin>
+    </CCTV>
+  );
+};
+
+export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik";
+export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik"];
 
 export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "cctv_asansor": return <CctvAsansor dur={dur} />;
-    case "cctv_bos": return <CctvBos dur={dur} />;
-    case "cctv_lobi": return <CctvLobi dur={dur} />;
+    case "cctv_bos": return text?.[0] === "monitor" ? <Monitor dur={dur} zoom={[1, 1.12]}><CctvBos dur={dur} /></Monitor> : <CctvBos dur={dur} />;
+    case "cctv_lobi": return text?.[1] === "monitor" ? <Monitor dur={dur} zoom={[1, 1.25]}><CctvLobi dur={dur} mod={text?.[0]} /></Monitor> : <CctvLobi dur={dur} mod={text?.[0]} />;
+    case "arka_bos": return <ArkaBos dur={dur} />;
+    case "cctv_cik": return <CctvCik dur={dur} />;
     case "kat_gostergesi": return <KatGostergesi dur={dur} text={text} />;
   }
 };
