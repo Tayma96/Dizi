@@ -1,3 +1,5 @@
+> **Yayın adı: DELİ DEĞİLİM** (kullanıcı, 19 Kasım 2026: "o dizinin adını 'deli değilim' olarak paylaştım her yerde"). Eski çalışma adı "İmza"; dosya adları (`imza-*`) teknik nedenle aynı kalır.
+
 # Berkay dizisi (çalışma adı) — durum notu
 
 **Kullanıcının yönü:** Zekice, merak uyandıran, psikolojik gerilim veren bir dizi.
