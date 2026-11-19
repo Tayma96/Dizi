@@ -10,3 +10,10 @@
 → Depodan aynı ses, bu kez yavaş: "Ece… ben Sabri. Gel."
 → Depo kapısı gıcırdayarak aralanıyor. Siyah.
 Bitiş kartı: "7/24 · Bölüm 2 yarın" · "Sen olsan depoya gider miydin?"
+
+### Düzeltme (kullanıcı: "Sabri kameradan mı izliyor, neden soruyor?")
+Sabri kuralların her gece 03.00'te başladığını bilir; ilk gecesinde Ece'yi merak ettiği için o saatte arar. Kamera yok.
+- SABRİ (tel.): "Kızım, saat üç oldu. Kapı açıldı mı? Hoş geldiniz demedin, değil mi?"
+- ECE: "Demedim abi… Ama sen az önce depodan seslendin?"
+- SABRİ (korkuyla): "Ben evdeyim kızım. Sakın gitme."
+- DEPO: "Ece… ben Sabri. Gel."

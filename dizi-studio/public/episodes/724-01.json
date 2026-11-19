@@ -977,9 +977,9 @@
      "offscreen": true,
      "label": "TELEFON · SABRİ ABİ",
      "fx": "telefon",
-     "emotion": "notr",
-     "tags": "[sleepy, at home, concerned]",
-     "text": "Kızım, ben evdeyim. Her şey yolunda mı?",
+     "emotion": "korkmus",
+     "tags": "[worried, urgent, quiet]",
+     "text": "Kızım, saat üç oldu. Kapı açıldı mı? Hoş geldiniz demedin, değil mi?",
      "gapAfter": 0.4,
      "shot": {
       "type": "yakin",
@@ -1003,8 +1003,8 @@
      "type": "line",
      "who": "ece724",
      "emotion": "fisilti",
-     "tags": "[whispering into the phone, terrified]",
-     "text": "Abi… sen depoda değil misin?",
+     "tags": "[terrified whisper into the phone]",
+     "text": "Demedim abi… Ama sen az önce depodan seslendin?",
      "gapAfter": 0.5,
      "shot": {
       "type": "cok_yakin",
@@ -1014,6 +1014,28 @@
      "cast": {
       "ece724": {
        "emotion": "korkmus"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "sabri",
+     "offscreen": true,
+     "label": "TELEFON · SABRİ ABİ",
+     "fx": "telefon",
+     "emotion": "korkmus",
+     "tags": "[voice trembling with fear, slow]",
+     "text": "Ben evdeyim kızım. Sakın gitme.",
+     "gapAfter": 0.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "ece724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece724": {
+       "emotion": "sok",
+       "tears": 0.3
       }
      }
     },
