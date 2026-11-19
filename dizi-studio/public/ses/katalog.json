@@ -321,6 +321,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
  },
+ "efekt/el_tukurme": {
+  "file": "ses/efekt/el_tukurme.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Discreetly spitting a few small wet pills into a cupped palm, close, quiet"
+ },
  "efekt/el_whoosh_kay": {
   "file": "ses/efekt/el_whoosh_kay.mp3",
   "category": "efekt",

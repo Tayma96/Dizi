@@ -1,0 +1,437 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-p3",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — Parça 3",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Doz",
+   "saat": "07:14",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/deli_tema",
+    "volume": 0.11
+   },
+   "isaretler": {
+    "yatak_kenar": {
+     "x": 430,
+     "y": 1560,
+     "size": 940,
+     "sit": true
+    },
+    "nalan_yan": {
+     "x": 800,
+     "y": 1640,
+     "size": 980
+    }
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak_kenar",
+     "emotion": "kararli",
+     "murekkep": true,
+     "bak": {
+      "x": 0.8,
+      "y": 0.0,
+      "yaw": 0.55
+     },
+     "body": "sit"
+    },
+    "nalan": {
+     "mark": "nalan_yan",
+     "hidden": true,
+     "emotion": "notr",
+     "gesture": "tutuyor",
+     "prop": "tepsi",
+     "lookAt": "berkay_hasta"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.0,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "hidden": false,
+       "enter": "sag"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.7,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.55,
+       "at": 0.25
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Günaydın Berkay, uyanmışsın.",
+     "emotion": "sakin",
+     "gapAfter": 0.15,
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "lookAt": "nalan"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Yine başladık.",
+     "emotion": "notr",
+     "tags": "[flat, deliberate, staring her down]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "soguk",
+       "lookAt": "nalan"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/b1_nalan_yine_kesik",
+       "volume": 0.85,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 0.6,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "saskin",
+       "bak": {
+        "x": -0.8,
+        "y": -0.55,
+        "yaw": -0.4
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.7,
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "notr",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Bak… hatırlıyorsun. Demek ki ilaçlar işe yarıyor.",
+     "emotion": "notr",
+     "tags": "[warm smile, gentle, quietly controlling]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "mutlu",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "hap_uc",
+     "dur": 2.0,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.3,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Dün iki taneydi.",
+     "emotion": "notr",
+     "tags": "[low, suspicious, measured]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Deniz Hanım dozu artırdı. Bu kadar iyi gidiyorken…",
+     "emotion": "notr",
+     "tags": "[soft, reasonable, closing the subject]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "notr"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "yudum",
+       "prop": "bardak",
+       "emotion": "notr",
+       "lookAt": "nalan"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/yudum",
+       "volume": 0.6,
+       "at": 1.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Aç ağzını.",
+     "emotion": "soguk",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "prop": "none"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Dilini kaldır.",
+     "emotion": "notr",
+     "tags": "[flat, routine, clinical]",
+     "gapAfter": 0.5,
+     "offscreen": true,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "agizAcik",
+       "lookAt": "nalan"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Aferin.",
+     "emotion": "sakin",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "soguk"
+      },
+      "nalan": {
+       "emotion": "mutlu"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Yarın da… hatırla.",
+     "emotion": "notr",
+     "tags": "[soft, calm]",
+     "gapAfter": 0.9,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "exit": "sag"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kapi_kapanma",
+       "volume": 0.6,
+       "at": 1.6
+      },
+      {
+       "name": "efekt/kilit",
+       "volume": 0.75,
+       "at": 2.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Üçünü de avucuma sakladım.",
+     "emotion": "notr",
+     "tags": "[quiet, intimate, reflective narration]",
+     "gapAfter": 0.2,
+     "voiceover": true,
+     "label": "BERKAY",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "kol": {
+        "L": {
+         "upper": 22,
+         "fore": -118
+        }
+       },
+       "emotion": "kararli",
+       "bak": {
+        "x": -0.35,
+        "y": 0.6,
+        "yaw": -0.15
+       }
+      }
+     },
+     "sfx": []
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Avucumda iki tane vardı.",
+     "emotion": "notr",
+     "tags": "[quiet, slow realization]",
+     "gapAfter": 1.5,
+     "voiceover": true,
+     "label": "BERKAY",
+     "ekle": {
+      "kind": "avuc_iki"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Siktir…",
+     "emotion": "notr",
+     "tags": "[whispering, horrified]",
+     "gapAfter": 0.6,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "emotion": "korkmus",
+       "pale": 0.3,
+       "bak": {
+        "x": 0,
+        "y": 0.3
+       },
+       "kol": {}
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.5,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "siyah": true,
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.35,
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

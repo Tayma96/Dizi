@@ -54,6 +54,8 @@ export type Emotion =
   | "igrenmis"
   /** baş ağrısı, sersemlik */
   | "aci"
+  /** "Aç ağzını": ağız açık, yüz nötr */
+  | "agizAcik"
   /** çığlık: dehşet, gözler fal taşı, kaşlar en yukarıda */
   | "dehset";
 

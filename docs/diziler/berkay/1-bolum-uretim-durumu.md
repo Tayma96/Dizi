@@ -80,3 +80,9 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Senarist: `raporlar/b2-p2-senarist.md`, ses: `raporlar/b2-p2-ses.md`. Görüntü yönetmeni QA: 1 P0 (Deniz girişi/plaka örtülmesi) + 5 P1 düzeltildi.
 - İpucu defteri: videodaki adam SOL eliyle imza atar; Berkay sağ elini kullanır; mürekkep sağ elde. Deniz: "Güvenlik kameraları görüntüyü ayna gibi kaydeder." Aynalanmış görüntüde kapı üstündeki "7" TERS (gerçek odada kapının iç üstünde emaye "7" plakası düz okunur). Personelin olası sonraki cevabı (senarist): numara vasistas camında, koridordan okunur.
 - Berkay'ın kapıdaki cümlesi ("Videodaki adam solak") dış sesin tekrarı; Deniz "Aynı cümleyle" der.
+
+## Bölüm 2 · Parça 3 "Doz" (19-20 Kasım 2026) — `bolumler/deli-degilim-02-parca3.mp4`
+- Senarist: `raporlar/b2-p3-senarist.md`. B1 kayıtları birebir yeniden kullanıldı: "Günaydın Berkay, uyanmışsın.", "Aç ağzını.", "Aferin." ve "Yine başladık" (Berkay'ın aynı repliğiyle üst üste, "Yine baş—"ta kesik).
+- Kullanıcı düzeltmesi: "Hemşire ağzına bakıyor, yutmuşsun diyor, sonra tekrar tükürüyor?" → mantık hatası giderildi: Berkay hapları ağzına değil AVUCUNA saklar; Nalan "Aç ağzını" + "Dilini kaldır" ile kontrol eder (ağız gerçekten boş). Avuçta iki hap + üçüncünün yerinde terle erimiş açık mavi macun.
+- İpucu defteri: dün 2 hap, bugün 3 (yeni: küçük, mat, açık mavi #8fc1ea, ağızda/terde eriyen). İki açıklama: personel avuçlamayı öngördü / mavi leke kapsülün boyası, üçüncü hap hiç yoktu.
+- Odaya duvar saati eklendi (yalnızca `saat` verilen sahnelerde): 07:14.

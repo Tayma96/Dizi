@@ -384,9 +384,9 @@ const HapUc: React.FC<{ dur: number }> = ({ dur }) => {
 };
 
 /* ---------------------------------------------------------------------------------------------
- * Avuçta iki hap: Berkay'ın sağ eli (dünkü lacivert mürekkep işaret parmağı ucunda solmuş hâlde), avuçta tükürükle
- * ıslanmış beyaz yuvarlak hap + yarısı mavi kapsül; üçüncü yok. 1.4 sn'de sol işaret parmağı yukarıdan girer:
- * ucunda erimiş hapın açık mavi macunu (dilden alınmış). Islaklık: parlak vurgu ve küçük damlalar.
+ * Avuçta iki hap: Berkay'ın sağ eli (dünkü lacivert mürekkep işaret parmağı ucunda solmuş hâlde), terli avuçta
+ * beyaz yuvarlak hap + yarısı mavi kapsül; üçüncünün yerinde açık mavi, macunlaşmış leke (terle erimiş).
+ * 1.3 sn'de sol işaret parmağı yukarıdan girer, lekeye dokunur; parmak ucunda macun kalır.
  * ------------------------------------------------------------------------------------------- */
 const AvucIki: React.FC<{ dur: number }> = () => {
   const f = useCurrentFrame();
@@ -408,7 +408,7 @@ const AvucIki: React.FC<{ dur: number }> = () => {
         {/* pijama kumaşı */}
         <rect width={1080} height={1920} fill="#a9c4d6" />
         {[[-40, 380, 1120, 560], [-60, 1350, 1140, 1560]].map(([x1, y1, x2, y2], i) => <path key={i} d={`M ${x1} ${y1} Q 540 ${(y1 + y2) / 2 + 80} ${x2} ${y2}`} stroke="#8aa8bc" strokeWidth={26} fill="none" opacity={0.7} />)}
-        <g transform={`translate(${tx} ${ty})`}>
+        <g transform={`translate(${tx} ${ty - 170})`}>
           {/* elin gölgesi */}
           <path d="M 300 1180 Q 260 1500 360 1920 L 760 1920 Q 860 1500 840 1150 Z" fill="#6a889c" opacity={0.35} transform="translate(26 30)" filter="url(#ai_sur)" />
           {/* avuç + bilek */}
@@ -424,9 +424,16 @@ const AvucIki: React.FC<{ dur: number }> = () => {
           <g transform="translate(812 1330) rotate(40)">
             <rect x={-62} y={-280} width={124} height={320} rx={62} fill={skin} stroke="#5a3a2a" strokeWidth={6} />
           </g>
-          {/* avuç çukuru gölgesi + tükürük ıslaklığı */}
+          {/* avuç çukuru gölgesi + ter parlaması */}
           <ellipse cx={560} cy={1270} rx={190} ry={120} fill="#d8a888" opacity={0.45} />
-          <ellipse cx={560} cy={1290} rx={150} ry={80} fill="#e8f4ff" opacity={0.18} />
+          <ellipse cx={560} cy={1290} rx={150} ry={80} fill="#fff4e8" opacity={0.14} />
+          {/* üçüncü hapın yerinde: terle erimiş, macunlaşmış açık mavi leke ve izi */}
+          <g filter="url(#ai_kenar)">
+            <path d="M 600 1338 Q 590 1310 626 1302 Q 666 1298 684 1322 Q 692 1350 664 1362 Q 628 1372 606 1358 Z" fill="#8fc1ea" opacity={0.9} />
+            <path d="M 612 1330 Q 640 1318 668 1328" stroke="#c8e2f6" strokeWidth={5} fill="none" opacity={0.8} />
+            <circle cx={700} cy={1344} r={7} fill="#8fc1ea" opacity={0.7} />
+            <circle cx={590} cy={1370} r={5} fill="#8fc1ea" opacity={0.6} />
+          </g>
           {/* iki hap: ıslak parıltı ve damlalar */}
           <ellipse cx={500} cy={1290} rx={62} ry={50} fill="#f6f6f2" stroke={OUTL} strokeWidth={6} />
           <path d="M 452 1290 H 548" stroke="#c8c8c0" strokeWidth={5} />
@@ -438,7 +445,7 @@ const AvucIki: React.FC<{ dur: number }> = () => {
             <rect x={596} y={1230} width={34} height={8} rx={4} fill="#ffffff" opacity={0.8} />
             <rect x={660} y={1230} width={30} height={8} rx={4} fill="#ffffff" opacity={0.5} />
           </g>
-          {[[440, 1340, 7], [596, 1326, 5], [690, 1300, 6], [530, 1236, 4]].map(([x, y, r], i) => (
+          {[[440, 1340, 4], [530, 1236, 3]].map(([x, y, r], i) => (
             <g key={i}><circle cx={x} cy={y} r={r} fill="#e8f4ff" opacity={0.8} /><circle cx={x - r * 0.3} cy={y - r * 0.3} r={r * 0.35} fill="#ffffff" /></g>
           ))}
           {/* bileklik */}
@@ -446,10 +453,10 @@ const AvucIki: React.FC<{ dur: number }> = () => {
           {new Array(22).fill(0).map((_, i) => <rect key={i} x={392 + i * 11} y={1708} width={i % 3 ? 4 : 7} height={40} fill="#3a3a3a" opacity={0.25 + (i % 4) * 0.08} />)}
         </g>
         {/* sol işaret parmağı yukarıdan girer: ucunda erimiş hapın açık mavi macunu */}
-        <g transform={`translate(${880 - 120 * pIn} ${-420 + 760 * pIn}) rotate(200)`} opacity={pIn > 0 ? 1 : 0}>
+        <g transform={`translate(${900 - 216 * pIn} ${-500 + 1577 * pIn}) rotate(205) scale(1.35)`} opacity={pIn > 0 ? 1 : 0}>
           <rect x={-55} y={-60} width={110} height={520} rx={55} fill={skin} stroke="#5a3a2a" strokeWidth={6} />
           <path d="M -30 -10 q 30 12 60 0" stroke="#d39f7c" strokeWidth={4} fill="none" />
-          <g filter="url(#ai_kenar)">
+          <g filter="url(#ai_kenar)" opacity={pIn > 0.97 ? 1 : 0}>
             <path d="M -40 -40 Q -48 -70 -10 -76 Q 30 -78 42 -48 Q 46 -24 22 -16 Q -6 -8 -30 -18 Z" fill="#8fc1ea" opacity={0.95} />
             <circle cx={-34} cy={-6} r={8} fill="#8fc1ea" opacity={0.8} />
           </g>
