@@ -111,6 +111,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Bathroom door flung open hard and hitting the wall, followed by two hurried slipper footsteps on tile floor"
  },
+ "efekt/el_cctv_ugultu": {
+  "file": "ses/efekt/el_cctv_ugultu.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Low CCTV video playback hum with faint tape hiss"
+ },
  "efekt/el_demir_kapi": {
   "file": "ses/efekt/el_demir_kapi.mp3",
   "category": "efekt",
@@ -202,6 +209,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Low quality security camera recording playback, faint digital hiss and hum, tiny speaker, empty room tone"
  },
+ "efekt/el_kapi_yumruk": {
+  "file": "ses/efekt/el_kapi_yumruk.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Fist pounding three times on a heavy metal hospital door, desperate, irregular rhythm, reverberant"
+ },
  "efekt/el_kasa": {
   "file": "ses/efekt/el_kasa.mp3",
   "category": "efekt",
@@ -215,6 +229,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Two teenage siblings giggling quietly, trying to hold back laughter, short"
+ },
+ "efekt/el_koridor_adim_yaklasan": {
+  "file": "ses/efekt/el_koridor_adim_yaklasan.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Calm unhurried footsteps approaching on hospital linoleum, heard through a closed metal door"
  },
  "efekt/el_korku_vurus": {
   "file": "ses/efekt/el_korku_vurus.mp3",
@@ -278,6 +299,13 @@
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Hurried footsteps in a hospital corridor, a man resisting while being pulled along, cloth slippers scuffing and dragging on linoleum floor, fabric rustling, reverberant"
+ },
+ "efekt/el_tablet_kilit": {
+  "file": "ses/efekt/el_tablet_kilit.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Tablet screen lock click, soft digital tone, quiet room"
  },
  "efekt/el_tablet_tik": {
   "file": "ses/efekt/el_tablet_tik.mp3",

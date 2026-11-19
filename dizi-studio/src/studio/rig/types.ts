@@ -78,6 +78,7 @@ export type Gesture =
   /** ağrıyan başını tutma (sağ el şakakta) */
   | "basTutma"
   | "golge"
+  | "havaImza"
   | "kolTut"
   | "okşa"
   | "direksiyon"

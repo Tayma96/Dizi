@@ -269,6 +269,15 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <WindowBars x={600} y={260} w={340} h={460} />
           <path d="M 600 720 L 940 720 L 760 1500 L 200 1500 Z" fill="url(#hucre1-beam)" />
           <CellDoor x={900} y={860} s={1} open={doorOpen} />
+          {/* kapının üstünde emaye oda numarası: 7 (tablet videosundaki kapıyla aynı) */}
+          <g>
+            <rect x={948} y={770} width={84} height={58} rx={7} fill="#f2f0e8" stroke="#2a2e30" strokeWidth={4} />
+            <rect x={954} y={776} width={72} height={46} rx={4} fill="none" stroke="#9aa0a0" strokeWidth={2} />
+            <text x={990} y={815} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={42} fill="#16181a">7</text>
+            <circle cx={956} cy={799} r={3} fill="#8a8e8e" />
+            <circle cx={1024} cy={799} r={3} fill="#8a8e8e" />
+            <path d="M 1018 772 l 12 0 l 0 10 Z" fill="#c8c4b8" />
+          </g>
           <IronBed x={60} y={1240} s={1} />
         </g>
       );

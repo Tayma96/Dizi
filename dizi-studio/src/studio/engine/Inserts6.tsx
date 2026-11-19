@@ -22,6 +22,17 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const { fps } = useVideoConfig();
   const t0 = Number(text?.[0] ?? 0);
   const t = t0 + f / fps;
+  // text[1] mod: "" normal | "hatira" (hatırlanan kare: sıcak-soluk, ele yaklaşır) | "ayna" (text[2] sn'de ekrana dokunulur, görüntü aynalanır)
+  //              | "ayna_kilit" (baştan aynalı; kapının üstündeki 7'ye yaklaşır; text[2] sn'de ekran kilitlenir)
+  const mod = text?.[1] ?? "";
+  const tLocal = f / fps;
+  const flipAt = Number(text?.[2] ?? 999);
+  const flipK = mod === "ayna" ? interpolate(tLocal, [flipAt, flipAt + 0.18, flipAt + 0.36], [1, 0, -1], clamp) : mod === "ayna_kilit" ? -1 : 1;
+  const dokunus = mod === "ayna" && tLocal >= flipAt - 0.35 && tLocal < flipAt + 0.25;
+  const kilit = mod === "ayna_kilit" && tLocal >= flipAt;
+  const kilitA = mod === "ayna_kilit" ? interpolate(tLocal, [flipAt, flipAt + 0.25], [0, 1], clamp) : 0;
+  const plakaZoom = mod === "ayna_kilit" ? interpolate(tLocal, [0, Math.max(0.5, flipAt - 0.2)], [1, 2.1], { ...clamp, easing: (x) => 1 - (1 - x) ** 2 }) : 1;
+  const hatiraZoom = mod === "hatira" ? interpolate(tLocal, [0, 1.6], [1.25, 1.55], clamp) : 1;
   const look = castById("berkay_hasta");
   // el titremesi + yavaş yaklaşma
   const jx = Math.sin(f / 7) * 2.5 + Math.sin(f / 3.1) * 0.8;
@@ -45,14 +56,14 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
       {/* odanın bulanık arka planı (tabletin arkası) */}
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 40% 30%, #4a545c 0%, #2a3036 55%, #14181c 100%)" }} />
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(220,235,255,0.10) 0%, rgba(0,0,0,0) 40%)" }} />
-      <AbsoluteFill style={{ transform: `translate(${jx}px, ${jy}px) scale(${z}) rotate(-1.2deg)`, transformOrigin: "50% 50%" }}>
+      <AbsoluteFill style={{ transform: `translate(${jx}px, ${jy}px) scale(${z * plakaZoom * hatiraZoom}) rotate(-1.2deg)`, transformOrigin: mod === "ayna_kilit" ? "197px 520px" : mod === "hatira" ? "640px 1180px" : "50% 50%", filter: mod === "hatira" ? "sepia(0.35) saturate(0.7) brightness(1.05) blur(1.2px)" : undefined }}>
         {/* tablet gövdesi */}
         <div style={{ position: "absolute", left: 90, top: 200, width: 900, height: 1500, borderRadius: 64, backgroundColor: "#16181c", boxShadow: "0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 3px #2a2e34" }} />
         <div style={{ position: "absolute", left: 534, top: 214, width: 12, height: 12, borderRadius: 6, backgroundColor: "#2e3440" }} />
         {/* ekran */}
         <div style={{ position: "absolute", left: 118, top: 236, width: 844, height: 1428, borderRadius: 26, overflow: "hidden", backgroundColor: "#000" }}>
           {/* video: tek renk mavi-gri güvenlik kamerası */}
-          <div style={{ position: "absolute", inset: 0, filter: "grayscale(1) sepia(0.2) hue-rotate(180deg) saturate(0.55) contrast(1.28) brightness(0.95)" }}>
+          <div style={{ position: "absolute", inset: 0, filter: "grayscale(1) sepia(0.2) hue-rotate(180deg) saturate(0.55) contrast(1.28) brightness(0.95)", transform: `scaleX(${flipK})`, transformOrigin: "50% 50%" }}>
             <svg viewBox="0 0 844 1428" width={844} height={1428} style={{ position: "absolute", left: 0, top: 0 }}>
               {/* köşe kamerasından eğik bakış: arka duvar, zemin (perspektif karolar) */}
               <rect width={844} height={1428} fill="#6e7270" />
@@ -71,6 +82,9 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
               {/* kapı (sağ) ve kapı altından sızan koridor ışığı */}
               <rect x={690} y={330} width={150} height={430} fill="#4a4e50" stroke="#2a2e30" strokeWidth={6} />
               <rect x={720} y={380} width={70} height={60} fill="#2a2e30" />
+              {/* kapının üstündeki oda numarası (gerçek odadakiyle aynı emaye plaka) */}
+              <rect x={737} y={282} width={56} height={40} rx={5} fill="#eceae2" stroke="#2a2e30" strokeWidth={3} />
+              <text x={765} y={313} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={30} fill="#141618">7</text>
               <path d="M 690 760 L 840 760 L 760 900 L 640 900 Z" fill="#c8ccc8" opacity={0.2} />
               {/* demir karyola (yandan): başlık, şilte, buruşuk çarşaf, yastık */}
               <path d="M 120 760 V 1160 M 150 760 V 1160" stroke="#2e3230" strokeWidth={12} />
@@ -131,6 +145,19 @@ const TabletVideo: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             <div style={{ width: `${(ilerleme / 135) * 100}%`, height: 10, borderRadius: 5, backgroundColor: "#e8f0ff" }} />
           </div>
           <div style={{ position: "absolute", left: 30, top: 1366, fontFamily: MONO, fontWeight: 700, fontSize: 34, color: "#dfe6f0" }}>00:{String(ilerleme).padStart(2, "0")} / 02:15</div>
+          {/* ekrana dokunuş */}
+          {dokunus ? <div style={{ position: "absolute", left: 640, top: 1040, width: 120, height: 120, borderRadius: 60, border: "6px solid rgba(255,255,255,0.7)", transform: `scale(${interpolate(tLocal, [flipAt - 0.35, flipAt + 0.25], [0.4, 1.3], clamp)})`, opacity: interpolate(tLocal, [flipAt - 0.35, flipAt + 0.25], [0.9, 0], clamp) }} /> : null}
+          {/* kilit: ekran kararır, asma kilit simgesi, siyah camda silik yansıma */}
+          {kilit ? (
+            <div style={{ position: "absolute", inset: 0, backgroundColor: `rgba(4,5,7,${kilitA})` }}>
+              <svg viewBox="0 0 844 1428" width={844} height={1428} style={{ position: "absolute", left: 0, top: 0, opacity: kilitA }}>
+                <rect x={382} y={640} width={80} height={64} rx={10} fill="none" stroke="#c8d0dc" strokeWidth={6} />
+                <path d="M 398 640 V 616 Q 398 588 422 588 Q 446 588 446 616 V 640" fill="none" stroke="#c8d0dc" strokeWidth={6} />
+                <circle cx={422} cy={668} r={7} fill="#c8d0dc" />
+                <path d="M 0 0 L 844 0 L 844 520 L 0 900 Z" fill="#ffffff" opacity={0.03} />
+              </svg>
+            </div>
+          ) : null}
           {/* camda pencere yansıması + parmak izi lekeleri */}
           <AbsoluteFill style={{ background: "linear-gradient(118deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.08) 38%, rgba(255,255,255,0) 46%)" }} />
           <svg viewBox="0 0 844 1428" width={844} height={1428} style={{ position: "absolute", left: 0, top: 0 }}>

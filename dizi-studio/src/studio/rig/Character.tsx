@@ -287,6 +287,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   if (pose.gesture === "krem") { armR.fore += Math.sin(frame / 2.4) * 5; armR.upper += Math.sin(frame / 2.4 + 1.2) * 3; }
   if (pose.gesture === "kafaKasi") armR.fore += Math.sin(frame / 1.7) * 9;
   if (pose.gesture === "okşa") armL.upper += Math.sin(frame / 5) * 5;
+  if (pose.gesture === "havaImza") { armL.fore += Math.sin(frame / 2.2) * 9 + Math.sin(frame / 5.3) * 5; armL.upper += Math.cos(frame / 3.1) * 5; }
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
     armL.upper += walkPhase * 10;
