@@ -132,6 +132,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Slow wet barefoot footsteps on glossy tile floor in an empty quiet store, each step a soft wet slap, unhurried, getting closer, eerie"
  },
+ "efekt/el_kagit": {
+  "file": "ses/efekt/el_kagit.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A single sheet of paper handed over across a counter, crisp paper rustle"
+ },
  "efekt/el_kasa": {
   "file": "ses/efekt/el_kasa.mp3",
   "category": "efekt",
@@ -180,6 +187,20 @@
   "duration": 3.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
+ },
+ "efekt/el_whoosh_kay": {
+  "file": "ses/efekt/el_whoosh_kay.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Fast cinematic whoosh swipe transition, airy, short"
+ },
+ "efekt/el_zaman_atla": {
+  "file": "ses/efekt/el_zaman_atla.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Time-lapse fast clock ticking accelerating, digital clock beeps, whoosh of time passing, ends with one clear click"
  },
  "efekt/esya_dusme": {
   "file": "ses/efekt/esya_dusme.mp3",
@@ -545,6 +566,13 @@
   "loop": true,
   "desc": "Aksiyon/kovalamaca: 120 bpm davul + ostinato. Kaçış, yüzleşme, zaman baskısı."
  },
+ "muzik/banyo_komik": {
+  "file": "ses/muzik/banyo_komik.mp3",
+  "category": "muzik",
+  "duration": 35.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Playful light comedic morning underscore for a Turkish web series, pizzicato strings, soft marimba and light claps, cheeky and bouncy, warm, no vocals, ends with a brief slightly ominous low note"
+ },
  "muzik/cliffhanger": {
   "file": "ses/muzik/cliffhanger.mp3",
   "category": "muzik",
@@ -600,6 +628,13 @@
   "duration": 90.0,
   "loop": false,
   "desc": "ElevenLabs Music: Minimal eerie horror score for an empty 24-hour convenience store at 3 a.m. Cold buzzing synth pad like fluorescent lights, a slow detuned music-box motif that repeats and slightly warps, soft sub-bass pulses, sparse high glassy tones, occasional unsettling silence. No drums, no vocals, no melody resolution. Creepy, lonely, tense, slowly building dread."
+ },
+ "muzik/market_tedirgin": {
+  "file": "ses/muzik/market_tedirgin.mp3",
+  "category": "muzik",
+  "duration": 45.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Quiet uneasy underscore for a night convenience store scene in a Turkish mystery series, soft muted electric piano and warm synth pad, gentle pulse, friendly on the surface but something feels slightly off, subtle dissonant notes, no vocals, minimal, slow"
  },
  "muzik/romantik": {
   "file": "ses/muzik/romantik.mp3",

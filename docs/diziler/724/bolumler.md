@@ -21,7 +21,7 @@ Sabri kuralların her gece 03.00'te başladığını bilir; ilk gecesinde Ece'yi
 ---
 ## Bölüm 1 (yeni, kullanıcının senaryosu — 19 Kasım 2026)
 Kullanıcı senaryoyu kendisi yazdı; replikler aynen korunur, yeni replik eklenmez.
-- **Banyo (sabah):** çığlık → FPS göz açılır, Ece aynada kendine bakıyor → "Bu ne olamazz" → "Kocaman lan bu" (sivilce) → krem: "Of of offf.." → anne girer "Noldu kızım iyi misin?" → "Anne şuna bak ya kafam kadar" → "Ağzına sıçtığım ödümü kopardın" → "Bundan kötü şey mi olur" → "Naptın bugünkü iş görüşmeni gidecen mi?" → "Gidicem anne tamaaamm.." ✔ örnek render: `bolumler/724-b1-banyo.mp4`
+- **Banyo (sabah):** çığlık → FPS göz açılır, Ece aynada kendine bakıyor → "Bu ne olamazz" → "Kocaman lan bu" (sivilce) → krem: "Of of offf.." → anne girer "Noldu kızım iyi misin?" → "Anne şuna bak ya kafam kadar" → "Ağzına sıçtığım ödümü kopardın" → "Bundan kötü şey mi olur" → "Naptın bugünkü iş görüşmeni gidecen mi?" → "Gidicem anne tamaaamm.." ✔ örnek render: `bolumler/724-b1-banyo.mp4` · tam bölüm: `bolumler/724-01.mp4` (1:40)
 - **Market (iş görüşmesi, Ece sivil):** Sabri kasada "Hoş geldinizz" → Ece: iş görüşmesi, bu saatte burada olmam söylenmişti → Sabri'nin yüzü düşer, toparlar: marketin sahibiyim, bugün başlayabilir misin? → "Hemen mi?" → gece vardiyası, akşam 11'de başla → "Pekii.."
 - **Saat 22:50:** "Ben geldiiimm" → Sabri: kuralları okumalısın → Ece kafa kaşır "Tabi abi bakıyım" → kâğıt.
 - **Kurallar (yeni, 4 kural; eski 5 kural geçersiz):**

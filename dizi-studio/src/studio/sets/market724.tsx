@@ -551,7 +551,7 @@ export const Market724FG: React.FC<MarketProps> = (p) => (p.view === "genel" ? <
 
 /** işaretler (karakter ayak noktası ve boyu) */
 export const MARKET724_MARKS = {
-  genel: { ece: { x: 885, y: 1218, size: 404 } },
-  kapi: { kapi: { x: 550, y: 1260, size: 640 } },
-  kasa: { ece: { x: 540, y: 1960, size: 1180 } },
+  genel: { ece: { x: 885, y: 1218, size: 404 }, kasiyer: { x: 885, y: 1218, size: 404 }, kapi: { x: 445, y: 1141, size: 326 } },
+  kapi: { kapi: { x: 550, y: 1262, size: 640 }, musteri: { x: 470, y: 1990, size: 1300 } },
+  kasa: { ece: { x: 540, y: 1960, size: 1180 }, kasiyer: { x: 540, y: 1960, size: 1180 } },
 };

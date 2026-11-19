@@ -10,32 +10,32 @@ const Vig: React.FC<{ v?: number }> = ({ v = 0.6 }) => (
 );
 
 export const KURALLAR = [
-  "Saat 03.00'te otomatik kapı kendiliğinden açılırsa \"Hoş geldiniz\" deme.",
-  "Ekmek reyonundan çocuk sesi gelirse, sesin adını söyleme.",
-  "Kasada yüzünü göstermeyen müşteriye para üstü verme.",
-  "Arka depodan biri seni adınla çağırırsa gitme. Sabri bile olsa.",
-  "Güneş doğmadan kepengi kaldırma.",
+  "Herkese hoş geldiniz diyeceksin ancak kapı kendiliğinden açılırsa sakın söyleme!",
+  "Depodan bir ses duyarsan kulak asma, çağırırsa gitme!",
+  "Asla kimseye saygısızlık yapma! Tartışmaya girme!",
+  "Kepenkler bir anda kapanırsa sessizce açılmasını bekle.",
 ];
 
 /** Lamine kural kâğıdı, kasanın arkasına bantlı. text[0] = vurgulanacak kural no (1-5) */
 const Kurallar: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => {
   const f = useCurrentFrame();
   const vurgu = Number(text?.[0] ?? 0);
+  // text[1] === "sirali": kurallar tek tek belirir (okunacak kadar ara ile)
+  const sirali = text?.[1] === "sirali";
+  const adim = (dur * 0.82) / KURALLAR.length;
   const z = interpolate(f, [0, dur], [1.0, 1.05], clamp);
   return (
     <AbsoluteFill style={{ backgroundColor: "#c8ccd0", overflow: "hidden" }}>
       <AbsoluteFill style={{ transform: `scale(${z}) rotate(-1.5deg)` }}>
         <div style={{ position: "absolute", left: 80, top: 330, width: 920, height: 1260, background: "#fbfaf4", boxShadow: "0 16px 50px rgba(0,0,0,0.35)", borderRadius: 8, padding: "60px 56px", boxSizing: "border-box" }}>
           <div style={{ position: "absolute", left: 380, top: -26, width: 160, height: 52, background: "rgba(240,230,170,0.75)", transform: "rotate(-3deg)" }} />
-          <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 58, color: "#b81818", textAlign: "center", letterSpacing: 2 }}>GECE VARDİYASI</div>
-          <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 46, color: "#1a1a1a", textAlign: "center", marginBottom: 36 }}>KURALLARI</div>
+          <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 64, color: "#b81818", textAlign: "center", letterSpacing: 2, marginBottom: 50 }}>KURALLAR</div>
           {KURALLAR.map((k, i) => (
-            <div key={i} style={{ display: "flex", gap: 22, marginBottom: 30, padding: "8px 10px", borderRadius: 10, background: vurgu === i + 1 ? "rgba(255,220,60,0.55)" : "transparent" }}>
-              <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 52, color: "#b81818", minWidth: 50 }}>{i + 1}.</div>
-              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, lineHeight: 1.25, color: "#1a1a1a" }}>{k}</div>
+            <div key={i} style={{ display: "flex", gap: 22, marginBottom: 44, padding: "8px 10px", borderRadius: 10, background: vurgu === i + 1 ? "rgba(255,220,60,0.55)" : "transparent", opacity: sirali ? interpolate(f, [i * adim, i * adim + 10], [0, 1], clamp) : 1, transform: sirali ? `translateY(${interpolate(f, [i * adim, i * adim + 10], [14, 0], clamp)}px)` : undefined }}>
+              <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 60, color: "#b81818", minWidth: 56 }}>{i + 1}.</div>
+              <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 50, lineHeight: 1.22, color: "#1a1a1a" }}>{k}</div>
             </div>
           ))}
-          <div style={{ position: "absolute", right: 56, bottom: 44, fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontSize: 40, color: "#1a2a6a" }}>Okuma. Ezberle. — S.</div>
           <AbsoluteFill style={{ background: "linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.45) 42%, rgba(255,255,255,0) 52%)", borderRadius: 8 }} />
         </div>
       </AbsoluteFill>

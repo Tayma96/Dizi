@@ -316,8 +316,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const gozBlur = tb.beat.gozAc ? interpolate(bf, [0, tb.beat.gozAc * fps], [12, 0], clamp) : 0;
   const filterAll = [filter, gozBlur > 0.2 ? `blur(${gozBlur.toFixed(1)}px)` : ""].filter(Boolean).join(" ") || undefined;
 
+  // "kaydir" geçişi: yeni sahne sağdan kayarak gelir
+  const kayX = scene.transition === "kaydir" ? interpolate(frame, [0, 13], [1080, 0], { ...clamp, easing: (t) => 1 - (1 - t) ** 3 }) : 0;
+
   return (
-    <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
+    <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden", transform: kayX ? `translateX(${kayX}px)` : undefined }}>
       <AbsoluteFill
         style={{
           transformOrigin: "0 0",

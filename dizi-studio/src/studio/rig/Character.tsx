@@ -72,6 +72,15 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x - 6} ${y - 52} q 6 -10 0 -20 M ${x + 6} ${y - 50} q 6 -10 0 -20`} stroke="#fff" strokeOpacity={0.6} strokeWidth={3} fill="none" />
         </g>
       );
+    case "kagit":
+      // A4 kural kâğıdı (elde dik tutulur)
+      return (
+        <g transform={`rotate(-6 ${x} ${y})`}>
+          <rect x={x - 46} y={y - 128} width={92} height={128} rx={3} fill="#fbfaf4" stroke={OUT} strokeWidth={3.5} />
+          <rect x={x - 26} y={y - 118} width={52} height={9} fill="#b81818" />
+          {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${x - 36} ${y - 96 + i * 22} h 10 M ${x - 22} ${y - 96 + i * 22} H ${x + 36} M ${x - 22} ${y - 88 + i * 22} H ${x + 20}`} stroke="#6a6a6a" strokeWidth={2.5} />)}
+        </g>
+      );
     case "mektup":
       return (
         <g>

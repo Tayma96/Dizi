@@ -4,7 +4,10 @@
  "episode": "724-b1",
  "episodeNo": 1,
  "title": "Bölüm 1",
- "endCard": false,
+ "endCard": {
+  "text": "7/24 · Bölüm 2 yakında",
+  "sub": "Sen olsan bu kuralları ciddiye alır mıydın?"
+ },
  "scenes": [
   {
    "id": "a",
@@ -207,7 +210,11 @@
       }
      }
     }
-   ]
+   ],
+   "music": {
+    "name": "muzik/banyo_komik",
+    "volume": 0.2
+   }
   },
   {
    "id": "b",
@@ -348,6 +355,825 @@
        "gesture": "rest"
       }
      }
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "market_genel",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "kapi",
+     "emotion": "notr",
+     "lookAt": "sabri"
+    },
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "notr",
+     "gesture": "okuma",
+     "bak": {
+      "x": -0.8,
+      "y": 0.3,
+      "yaw": -0.5
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.1,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_whoosh_kay",
+       "volume": 0.6,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/el_otomatik_kapi",
+       "volume": 0.5,
+       "at": 0.35
+      },
+      {
+       "name": "efekt/el_dingdong",
+       "volume": 0.55,
+       "at": 0.45
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 0.6,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sabri": {
+       "gesture": "rest",
+       "emotion": "mutlu",
+       "bak": {
+        "x": -0.8,
+        "y": 0.0,
+        "yaw": -0.55
+       }
+      }
+     }
+    }
+   ],
+   "transition": "kaydir",
+   "music": {
+    "name": "muzik/market_tedirgin",
+    "volume": 0.17
+   }
+  },
+  {
+   "id": "d",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "mutlu",
+     "bak": {
+      "x": -0.12,
+      "y": 0.05,
+      "yaw": -0.08
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Hoş geldinizzz!",
+     "emotion": "mutlu",
+     "tags": "[cheerful]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "hiz": 0.92
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "mutlu",
+     "bak": {
+      "x": 0.22,
+      "y": 0.0,
+      "yaw": 0.12
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Hoş buldum abi. İş görüşmesi için gelmiştim, bu saatte burda olmam söylenmişti.",
+     "emotion": "mutlu",
+     "tags": "[polite, friendly, a little shy]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     }
+    }
+   ]
+  },
+  {
+   "id": "f",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "mutlu",
+     "bak": {
+      "x": -0.12,
+      "y": 0.05,
+      "yaw": -0.08
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "yakin",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sabri": {
+       "emotion": "dusunceli",
+       "bak": {
+        "x": -0.1,
+        "y": 0.35,
+        "yaw": -0.05
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.5,
+     "shot": {
+      "type": "yakin",
+      "on": "sabri",
+      "move": "sabit"
+     },
+     "cast": {
+      "sabri": {
+       "emotion": "mutlu",
+       "bak": {
+        "x": -0.12,
+        "y": 0.05,
+        "yaw": -0.08
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Evet, ben bu marketin sahibiyim. Bugün başlayabilir misin?",
+     "emotion": "mutlu",
+     "tags": "[recovering, forced friendly smile]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "yaklas"
+     }
+    }
+   ]
+  },
+  {
+   "id": "g",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "saskin",
+     "bak": {
+      "x": 0.22,
+      "y": 0.0,
+      "yaw": 0.12
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Hemen mi?",
+     "emotion": "saskin",
+     "tags": "[surprised]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_sivil",
+      "move": "sabit"
+     }
+    }
+   ]
+  },
+  {
+   "id": "h",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "mutlu",
+     "bak": {
+      "x": -0.12,
+      "y": 0.05,
+      "yaw": -0.08
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Aslında gece vardiyası için eleman arıyoruz... Akşam 11'de başla.",
+     "emotion": "notr",
+     "tags": "[hesitant pause, then matter-of-fact]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sabri": {
+       "emotion": "kararli",
+       "bak": {
+        "x": -0.12,
+        "y": 0.05,
+        "yaw": -0.08
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "i",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "19:40",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "dusunceli",
+     "bak": {
+      "x": 0.22,
+      "y": 0.0,
+      "yaw": 0.12
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Pekii...",
+     "emotion": "dusunceli",
+     "tags": "[uncertain, drawn-out]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "dusunceli"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.9,
+     "shot": {
+      "type": "yakin",
+      "move": "yaklas",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.7
+      }
+     },
+     "cast": {
+      "ece_sivil": {
+       "hidden": true
+      }
+     },
+     "saat": "19:41",
+     "sfx": [
+      {
+       "name": "efekt/el_zaman_atla",
+       "volume": 0.5,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "20:26"
+    },
+    {
+     "type": "action",
+     "dur": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "21:13"
+    },
+    {
+     "type": "action",
+     "dur": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "21:58"
+    },
+    {
+     "type": "action",
+     "dur": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "22:31"
+    },
+    {
+     "type": "action",
+     "dur": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "22:47"
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 357,
+       "z": 2.75
+      }
+     },
+     "saat": "22:50"
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "hidden": false,
+       "mark": "kapi",
+       "emotion": "mutlu",
+       "bak": {
+        "x": 0.15,
+        "y": 0.05,
+        "yaw": 0.1
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_otomatik_kapi",
+       "volume": 0.5,
+       "at": 0.1
+      },
+      {
+       "name": "efekt/el_dingdong",
+       "volume": 0.5,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Ben geldiiimm!",
+     "emotion": "mutlu",
+     "tags": "[cheerful, sing-song]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     }
+    }
+   ]
+  },
+  {
+   "id": "j",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "mutlu",
+     "bak": {
+      "x": -0.12,
+      "y": 0.05,
+      "yaw": -0.08
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Hoş geldin kızım. Başlamadan önce marketin kurallarını okumalısın. Bu kurallar önemli.",
+     "emotion": "soguk",
+     "tags": "[serious, low measured voice]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sabri": {
+       "emotion": "kararli"
+      }
+     }
+    }
+   ],
+   "music": {
+    "name": "muzik/market_gerilim",
+    "volume": 0.2,
+    "from": 4
+   }
+  },
+  {
+   "id": "k",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "saskin",
+     "bak": {
+      "x": 0.22,
+      "y": 0.0,
+      "yaw": 0.12
+     },
+     "gesture": "kafaKasi"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Tabi abi, bakıyım.",
+     "emotion": "notr",
+     "tags": "[puzzled, light]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "saskin",
+       "gesture": "kafaKasi"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "l",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "mutlu",
+     "bak": {
+      "x": -0.12,
+      "y": 0.05,
+      "yaw": -0.08
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "sabit"
+     },
+     "cast": {
+      "sabri": {
+       "emotion": "soguk",
+       "gesture": "uzat",
+       "prop": "kagit"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kagit",
+       "volume": 0.7,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kurallar",
+     "dur": 11.0,
+     "text": [
+      "0",
+      "sirali"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/el_kagit",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "m",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "dusunceli",
+     "bak": {
+      "x": 0.1,
+      "y": 0.7,
+      "yaw": 0.05
+     },
+     "gesture": "tutuyor",
+     "prop": "kagit"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.1,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     }
+    }
+   ]
+  },
+  {
+   "id": "n",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "soguk",
+     "lookAt": "kamera"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "yakin",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_korku_vurus",
+       "volume": 0.25,
+       "at": 0.1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "o",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "musteri",
+     "emotion": "supheli",
+     "bak": {
+      "x": 0.1,
+      "y": 0.7,
+      "yaw": 0.05
+     },
+     "gesture": "tutuyor",
+     "prop": "kagit"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 0.9,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Abi sen ciddi misin ya?",
+     "emotion": "korkmus",
+     "tags": "[nervous laugh, uneasy smile]",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "utangac",
+       "sweat": true,
+       "bak": {
+        "x": 0.22,
+        "y": 0.0,
+        "yaw": 0.12
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "p",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "saat": "22:50",
+   "ambience": {
+    "name": "efekt/el_market_ortam",
+    "volume": 0.4
+   },
+   "cast": {
+    "sabri": {
+     "mark": "kasiyer",
+     "emotion": "soguk",
+     "lookAt": "kamera"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "sabri",
+      "move": "yaklas"
+     },
+     "fade": "cikis",
+     "sfx": [
+      {
+       "name": "efekt/el_korku_vurus",
+       "volume": 0.5,
+       "at": 1.2
+      }
+     ]
     }
    ]
   }

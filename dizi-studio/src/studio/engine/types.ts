@@ -161,7 +161,7 @@ export type Scene = {
   isik?: LightDesign;
   cast: Record<string, CharState>;
   beats: Beat[];
-  transition?: "kesme" | "kararma" | "whoosh" | "flas";
+  transition?: "kesme" | "kararma" | "whoosh" | "flas" | "kaydir";
   /** Reels/Shorts için bölüm bu sahneden önce kesilebilir */
   partBreak?: boolean;
 };
