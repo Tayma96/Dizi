@@ -7,7 +7,7 @@ Güncelleme: 19 Kasım 2026, 03:00 (TR). Devam: 05:50 (TR), zamanlanmış görev
 - **Tek kural:** her şey ücretsiz.
 - **Doğaçlama izni:** konuya uygun doğaçlama serbest ("sadece fire verme"). Kullanıcının replikleri aynen korunur.
 - **Format:** bölüm 3 dk = 6 parça × 30 sn. Her parça ayrı render (`tools/parca.sh imza-01 N`), sonunda birleştirilir (`tools/birlestir.sh imza-01`).
-- **ElevenLabs bütçesi:** Bölüm 1'in kalan tüm sesleri için üst sınır **1.500 kredi** (kullanıcı onayı, 19 Kasım 03:00).
+- **ElevenLabs bütçesi:** Bölüm 1 için üst sınır **5.000 kredi** (kullanıcı onayı, 19 Kasım 03:10; önceki 1.500 sınırının yerine geçer).
   - Her seslendirmede `--butce` ile sınır korunur.
   - Toplam aşılacaksa DUR ve kullanıcıya sor.
   - Model `eleven_v4`. Sesler: Berkay = Mert Aksoy (dış ses de Berkay, `anlatim` duygusu), Nalan = İrem.
