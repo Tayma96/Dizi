@@ -258,6 +258,13 @@
   "loop": false,
   "desc": "İki yudum su, yutkunma (kendi sentezimiz)."
  },
+ "gonderme/gonderme1_125x": {
+  "file": "ses/gonderme/gonderme1_125x.mp3",
+  "category": "gonderme",
+  "duration": 5.83,
+  "loop": false,
+  "desc": "Kullanıcının verdiği gündem göndermesi kaydı (\"…doktor yok mu doktor\"), 1.25x hızlandırılmış. Telif üçüncü kişiye ait olabilir; kullanım kararı kullanıcıda."
+ },
  "muzik/aksiyon": {
   "file": "ses/muzik/aksiyon.mp3",
   "category": "muzik",
