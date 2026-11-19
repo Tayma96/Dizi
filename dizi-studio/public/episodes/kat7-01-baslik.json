@@ -1,0 +1,63 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-baslik",
+ "episodeNo": 1,
+ "title": "Başlık",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "bk",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Başlık",
+   "saat": "7",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.35
+   },
+   "cast": {
+    "cemil": {
+     "mark": "cemil",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "yazi",
+     "text": "KAT 7",
+     "dur": 1.8,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "yazi",
+     "text": "8 DAKİKA ÖNCE",
+     "sub": "03:17",
+     "dur": 2.0,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/saat_tak",
+       "volume": 0.5,
+       "at": 0.3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
