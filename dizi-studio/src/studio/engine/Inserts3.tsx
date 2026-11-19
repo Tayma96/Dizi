@@ -446,7 +446,8 @@ const SargiYakin: React.FC<{ dur: number }> = ({ dur }) => {
         <path d="M 300 1060 L 800 1040" stroke="#a57a44" strokeWidth={12} />
         {/* kadın eli: avuç yaprağa bastırır, başparmak + dört parmak, bilekte örgü bilezik */}
         <g transform={`translate(0 ${(1 - press) * -260})`}>
-          <path d="M 560 470 L 700 470 L 704 640 L 556 640 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
+          <path d="M 540 -400 L 720 -400 L 704 640 L 556 640 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
+          <path d="M 548 -400 Q 560 100 566 600" stroke="#9a6644" strokeWidth={10} fill="none" opacity={0.5} />
           <rect x={548} y={560} width={164} height={34} rx={10} fill="#c9a24a" stroke={O} strokeWidth={5} />
           <path d="M 556 640 Q 540 740 580 790 L 700 790 Q 730 720 704 640 Z" fill="#b8805a" stroke={O} strokeWidth={8} />
           {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${592 + i * 32} 780 L ${590 + i * 34} 860 Q ${604 + i * 34} 880 ${618 + i * 34} 860 L ${616 + i * 32} 780`} fill="#b8805a" stroke={O} strokeWidth={6} />)}
@@ -487,12 +488,15 @@ const SazTavan: React.FC = () => (
 const PovAcilis: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
   const open = interpolate(f, [0, dur * 0.2, dur * 0.35, dur * 0.5, dur * 0.7, dur * 0.85, dur], [0, 0.25, 0.1, 0.4, 0.2, 0.5, 0.45], clamp);
-  const blur = interpolate(f, [0, dur], [22, 14], clamp);
+  const blur = interpolate(f, [0, dur], [26, 16], clamp);
   const sway = Math.sin(f / 18) * 10;
   return (
     <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
-      <AbsoluteFill style={{ filter: `blur(${blur}px) brightness(1.15)`, transform: `translate(${sway}px, ${sway * 0.5}px) scale(1.12)` }}>
-        <SazTavan />
+      <AbsoluteFill style={{ filter: `blur(${blur}px) brightness(1.1)`, transform: `translate(${sway}px, ${sway * 0.5}px)` }}>
+        <AbsoluteFill style={{ filter: "blur(10px)" }}><SazTavan /></AbsoluteFill>
+        <div style={{ position: "absolute", left: 540 - 0.2 * 3000, top: 960 - 0.2 * 3000 }}>
+          <Character look={castById("yerli_kadin")} size={3000} pose={{ emotion: "notr", lookX: 0, lookY: 0.1, yaw: 0, tilt: -6, seed: 7 }} />
+        </div>
       </AbsoluteFill>
       <Kapaklar open={open} />
     </AbsoluteFill>
@@ -504,7 +508,7 @@ const PovKadin: React.FC<{ dur: number; faz: string }> = ({ dur, faz }) => {
   const f = useCurrentFrame();
   const p = interpolate(f, [0, dur], [0, 1], clamp);
   const ilk = faz === "1";
-  const open = ilk ? interpolate(p, [0, 1], [0.35, 0.65]) : interpolate(p, [0, 0.5, 1], [0.65, 1, 1]);
+  const open = ilk ? interpolate(p, [0, 1], [0.45, 0.65]) : interpolate(p, [0, 0.5, 1], [0.65, 1, 1]);
   const blur = ilk ? interpolate(p, [0, 1], [16, 8]) : interpolate(p, [0, 0.6, 1], [8, 0, 0]);
   const zoom = ilk ? interpolate(p, [0, 1], [1.0, 1.03]) : interpolate(p, [0, 1], [1.03, 1.08]);
   const size = 3000;
@@ -522,8 +526,78 @@ const PovKadin: React.FC<{ dur: number; faz: string }> = ({ dur, faz }) => {
   );
 };
 
-export type Insert3Kind = "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin";
-export const INSERT3_KINDS: Insert3Kind[] = ["kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin"];
+/** Çarpma: uçak dumanlar içinde ada kıyısındaki ağaçlara dalar; çarpma anında toz, kırılan ağaçlar, beyaz parlama ve sarsıntı */
+const UcakCarpma: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const hit = dur * 0.72;
+  const p = interpolate(f, [0, hit], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
+  const px = interpolate(p, [0, 1], [120, 700]);
+  const py = interpolate(p, [0, 1], [360, 1330]);
+  const sc = interpolate(p, [0, 1], [0.5, 1.05]);
+  const after = Math.max(0, f - hit);
+  const shake = after > 0 ? Math.sin(after * 2.3) * Math.max(0, 26 - after * 1.2) : Math.sin(f / 2) * 3;
+  const flash = after > 0 ? Math.max(0, 1 - after / 8) : 0;
+  const smoke = new Array(30).fill(0).map((_, i) => {
+    const age = (f - i * 1.6);
+    if (age < 0 || f > hit) return null;
+    const t0 = Math.max(0, (f - age)) / hit;
+    const sx = interpolate(t0, [0, 1], [120, 700]) - 60;
+    const sy = interpolate(t0, [0, 1], [360, 1330]) - 40;
+    return <circle key={i} cx={sx - age * 1.5} cy={sy - age * 2.2} r={20 + age * 1.4} fill={i % 2 ? "#4a4846" : "#6a6764"} opacity={Math.max(0, 0.6 - age / 70)} />;
+  });
+  return (
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `translate(${shake}px, ${shake * 0.6}px)` }}>
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+          <defs>
+            <linearGradient id="ucGok" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#6fb6e6" />
+              <stop offset="1" stopColor="#d6eef8" />
+            </linearGradient>
+            <filter id="ucBul"><feGaussianBlur stdDeviation="6" /></filter>
+          </defs>
+          <rect width={1080} height={1100} fill="url(#ucGok)" />
+          <circle cx={820} cy={200} r={60} fill="#fffdf0" />
+          <rect y={1000} width={1080} height={260} fill="#2a8eaa" />
+          <path d="M 0 1240 Q 540 1200 1080 1250 L 1080 1920 L 0 1920 Z" fill="#e6cf9c" />
+          <path d="M 380 1300 Q 600 1120 840 1180 Q 1000 1200 1080 1150 L 1080 1420 Q 760 1440 420 1420 Z" fill="#2f6a34" />
+          {[460, 560, 660, 760, 880, 980].map((x, i) => {
+            const bent = after > 0 && Math.abs(x - 700) < 200 ? Math.min(40, after * 4) * (x < 700 ? -1 : 1) : 0;
+            return <g key={i} transform={`rotate(${bent} ${x} 1400)`}><path d={`M ${x} 1400 L ${x + 6} 1150`} stroke="#7a5a3a" strokeWidth={16} /><path d={`M ${x + 6} 1150 q -70 -10 -120 40 M ${x + 6} 1150 q 70 -10 120 40 M ${x + 6} 1150 q -20 -60 -80 -70 M ${x + 6} 1150 q 30 -60 90 -60`} stroke="#3e7e3a" strokeWidth={20} fill="none" strokeLinecap="round" /></g>;
+          })}
+          <g filter="url(#ucBul)">{smoke}</g>
+          {f <= hit + 2 ? (
+            <g transform={`translate(${px} ${py}) rotate(22) scale(${sc})`}>
+              <path d="M -400 -40 Q 0 -80 300 -40 Q 400 -20 420 30 Q 390 70 300 80 Q 0 100 -380 50 Z" fill="#f6f8fa" stroke={O} strokeWidth={8} />
+              <path d="M -380 30 Q 0 70 300 60" stroke="#2a3a5a" strokeWidth={9} fill="none" />
+              <path d="M -360 -30 L -420 -240 L -320 -240 L -240 -40 Z" fill="#f2f4f6" stroke={O} strokeWidth={7} />
+              <path d="M -60 40 L -240 220 L -150 230 L 120 50 Z" fill="#dfe4e9" stroke={O} strokeWidth={7} />
+              <rect x={-170} y={110} width={150} height={60} rx={28} fill="#c9ced4" stroke={O} strokeWidth={6} />
+              <path d="M -170 130 q -20 10 0 24" stroke="#ff7a2a" strokeWidth={10} fill="none" />
+            </g>
+          ) : null}
+          {after > 0 ? (
+            <g>
+              {new Array(22).fill(0).map((_, i) => {
+                const a = (i / 22) * Math.PI * 2;
+                const r = after * (10 + random(`d${i}`) * 14);
+                return <circle key={i} cx={720 + Math.cos(a) * r * 1.4} cy={1340 + Math.sin(a) * r * 0.6 - after * 3} r={30 + after * 2.5} fill={i % 3 ? "#c9b48a" : "#6a6560"} opacity={Math.max(0, 0.8 - after / 40)} />;
+              })}
+              {new Array(10).fill(0).map((_, i) => (
+                <rect key={i} x={700 + Math.cos(i * 0.9) * after * 18} y={1320 - after * (8 + i * 2) + after * after * 0.4} width={24} height={10} fill="#e8ebee" stroke={O} strokeWidth={2} transform={`rotate(${after * 20 + i * 40} ${700 + Math.cos(i * 0.9) * after * 18} ${1320 - after * 8})`} />
+              ))}
+            </g>
+          ) : null}
+        </svg>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ backgroundColor: "#fff8e8", opacity: flash }} />
+      <AbsoluteFill style={{ backgroundColor: "#000", opacity: interpolate(f, [dur - 8, dur], [0, 1], clamp) }} />
+    </AbsoluteFill>
+  );
+};
+
+export type Insert3Kind = "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
+export const INSERT3_KINDS: Insert3Kind[] = ["kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
 
 export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -542,6 +616,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "tasima": return <Tasima dur={dur} />;
     case "sargi_yakin": return <SargiYakin dur={dur} />;
     case "pov_acilis": return <PovAcilis dur={dur} />;
+    case "ucak_carpma": return <UcakCarpma dur={dur} />;
     case "pov_kadin": return <PovKadin dur={dur} faz={(text ?? ["1"])[0]} />;
   }
 };

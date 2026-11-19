@@ -34,9 +34,9 @@ def crackle(d, dens=40, amp=0.5):
     return x
 
 d = 40
-save("ortam", "sahil", loopable(waves(d) + crackle(d, 6, 0.25) * 0.4), "Sahil: dalgalar, uzakta yanan enkazın çıtırtısı.", loop=True, stereo_width=0.8)
+save("ortam", "sahil", loopable(waves(d)), "Sahil: dalgalar, uzakta yanan enkazın çıtırtısı.", loop=True, stereo_width=0.8)
 save("efekt", "ates", fade(crackle(6, 50, 0.6), 0.3, 0.6), "Ateş çıtırtısı (6 sn).")
-kul = lp(noise(d, "pink"), 500) * 0.15 + crackle(d, 18, 0.35) + bp(waves(d), 100, 900) * 0.18
+kul = lp(noise(d, "pink"), 400) * 0.12 + bp(waves(d), 100, 900) * 0.25
 save("ortam", "kulube", loopable(kul), "Kulübe içi: küçük ateş, hafif rüzgâr, uzakta dalgalar.", loop=True, stereo_width=0.6)
 
 # sopa dürtmesi: kumaş hışırtısı + boğuk ten tokluğu + hafif odun tıkı (telefonda duyulur)
