@@ -90,6 +90,83 @@
   "loop": false,
   "desc": "Raftan poşetli ekmek düşer."
  },
+ "efekt/el_depo_kapi": {
+  "file": "ses/efekt/el_depo_kapi.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Heavy metal storage room door creaking open very slowly in the dark, long eerie creak"
+ },
+ "efekt/el_dingdong": {
+  "file": "ses/efekt/el_dingdong.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Electronic two-tone entry chime of a small shop door, ding dong, slightly old cheap speaker, in a quiet empty store"
+ },
+ "efekt/el_ekmek": {
+  "file": "ses/efekt/el_ekmek.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A plastic-wrapped loaf of bread slides off a metal shelf and falls on a tile floor in a silent store"
+ },
+ "efekt/el_floresan": {
+  "file": "ses/efekt/el_floresan.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Single fluorescent light tube flickering and buzzing with electrical crackle"
+ },
+ "efekt/el_islak_adim": {
+  "file": "ses/efekt/el_islak_adim.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Slow wet barefoot footsteps on glossy tile floor in an empty quiet store, each step a soft wet slap, unhurried, getting closer, eerie"
+ },
+ "efekt/el_kasa": {
+  "file": "ses/efekt/el_kasa.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Old electronic cash register drawer pops open by itself with a metallic ring and clunk"
+ },
+ "efekt/el_korku_vurus": {
+  "file": "ses/efekt/el_korku_vurus.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Deep cinematic horror impact hit with a short reverse swell into a low boom and ringing tail"
+ },
+ "efekt/el_market_ortam": {
+  "file": "ses/efekt/el_market_ortam.mp3",
+  "category": "efekt",
+  "duration": 15.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Night interior ambience of an empty 24-hour convenience store: low buzzing fluorescent lights, refrigerator compressors humming, faint rain outside, very quiet, seamless"
+ },
+ "efekt/el_nefes_tutma": {
+  "file": "ses/efekt/el_nefes_tutma.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Young woman sharply inhaling in fear and holding her breath, close microphone"
+ },
+ "efekt/el_otomatik_kapi": {
+  "file": "ses/efekt/el_otomatik_kapi.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Automatic sliding glass door of a small convenience store opening slowly at night, soft electric motor whir and rubber seal, followed by heavy rain from outside getting louder through the open door, realistic, close perspective"
+ },
+ "efekt/el_telefon_titresim": {
+  "file": "ses/efekt/el_telefon_titresim.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
+ },
  "efekt/esya_dusme": {
   "file": "ses/efekt/esya_dusme.mp3",
   "category": "efekt",
@@ -502,6 +579,13 @@
   "duration": 90.0,
   "loop": false,
   "desc": "ElevenLabs Music: Dark cinematic horror underscore for a night security guard alone in an old building. Slow, sparse and unsettling: deep sub-bass drone, a faint heartbeat-like low pulse, dissonant high sustained strings that slowly swell, occasional distant metallic scrapes and reversed piano notes. No melody, no drums, no vocals. Builds tension very gradually, never resolves."
+ },
+ "muzik/market_gerilim": {
+  "file": "ses/muzik/market_gerilim.mp3",
+  "category": "muzik",
+  "duration": 90.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Minimal eerie horror score for an empty 24-hour convenience store at 3 a.m. Cold buzzing synth pad like fluorescent lights, a slow detuned music-box motif that repeats and slightly warps, soft sub-bass pulses, sparse high glassy tones, occasional unsettling silence. No drums, no vocals, no melody resolution. Creepy, lonely, tense, slowly building dread."
  },
  "muzik/romantik": {
   "file": "ses/muzik/romantik.mp3",
