@@ -113,6 +113,8 @@ export type BeatCommon = {
   sarsil?: number;
   /** uçak türbülansı 0-1: kamera sarsıntısı + kabin ışığı titremesi */
   turb?: number;
+  /** emniyet kemeri işareti bu vuruştan itibaren yanar/söner */
+  kemer?: boolean;
   /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
   tv?: "acik" | "kapali";
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */

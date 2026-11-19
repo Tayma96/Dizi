@@ -172,6 +172,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
 
   let tvNow: string | undefined;
   for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.tv) tvNow = ts.beats[i].beat.tv;
+  let kemerNow = false;
+  for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.kemer !== undefined) kemerNow = Boolean(ts.beats[i].beat.kemer);
   let saatNow = scene.saat;
   for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.saat) saatNow = ts.beats[i].beat.saat;
 
@@ -307,11 +309,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} turb={tb.beat.turb} />
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
       </AbsoluteFill>
       {scene.look === "flashback" ? <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(255,240,210,0) 50%, rgba(255,240,210,0.55) 100%)" }} /> : null}
       {/* overlays per beat */}

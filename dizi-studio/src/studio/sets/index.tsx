@@ -28,7 +28,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
-  ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 540, y: 1600, size: 1080, sit: true }, hostes: { x: 925, y: 1860, size: 1220 } } },
+  ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
@@ -93,9 +93,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer }) => {
   const frame = useCurrentFrame();
-  const props = { kus, saat, frame, sallanan, kaydir, tv, turb };
+  const props = { kus, saat, frame, sallanan, kaydir, tv, turb, kemer };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -293,100 +293,132 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       );
     }
     case "ucak_kabin": {
-      // business sınıfı, önden (burun tarafından) bakış: pencereler sol yan duvarda Emir'in yanında,
-      // koridor sağda, arkada perspektifle uzaklaşan koltuk sıraları. Kaçış noktası (600, 900).
+      // Business sınıfı, burun tarafından kıça bakış. Emir pencere koltuğunda (sol duvara bitişik);
+      // koltuk ile cam arasında lambalı konsol, sağda koridor ve karşı sıra. Kaçış noktası (700, 880).
       const fr = props.frame ?? 0;
       const tb = props.turb ?? 0;
-      const flick = tb ? (random(`fl${Math.floor(fr / 2)}`) > 0.72 ? 0.25 : 1) : 1;
-      const wob = tb ? Math.sin(fr / 2.3) * 8 * tb + Math.sin(fr / 5.1) * 5 * tb : 0;
-      const win = (cx: number, cy: number, rx: number, ry: number, id: string) => (
+      // ışık titremesi yalnızca güçlü türbülansta
+      const flick = tb >= 0.4 ? (random(`fl${Math.floor(fr / 2)}`) > 0.8 - (tb - 0.4) ? 0.3 : 1) : 1;
+      const bob = tb ? Math.sin(fr / 3.1) * 7 * tb + Math.sin(fr / 7.3) * 5 * tb : 0;
+      const rattle = tb ? (random(`rt${fr}`) - 0.5) * 3 * tb : 0;
+      // yan duvardaki pencere (perspektifte daralan yuvarlak köşeli dikdörtgen); d: 0 yakın .. 1 uzak
+      const winL = (x: number, y: number, w: number, h: number, id: string, near = false) => (
         <g key={id}>
           <defs>
-            <clipPath id={id}><ellipse cx={cx} cy={cy} rx={rx} ry={ry} /></clipPath>
+            <clipPath id={id}><rect x={x} y={y} width={w} height={h} rx={w * 0.45} /></clipPath>
             <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#6fa8e0" />
-              <stop offset="0.6" stopColor="#c2dcef" />
-              <stop offset="1" stopColor="#f7dcaa" />
+              <stop offset="0" stopColor="#77ade2" />
+              <stop offset="0.62" stopColor="#c8e0f1" />
+              <stop offset="1" stopColor="#f6dcae" />
             </linearGradient>
           </defs>
-          <ellipse cx={cx} cy={cy} rx={rx * 1.3} ry={ry * 1.22} fill="#ddd5c8" stroke={O} strokeWidth={Math.max(3, rx / 18)} />
+          <rect x={x - w * 0.22} y={y - h * 0.1} width={w * 1.44} height={h * 1.2} rx={w * 0.62} fill="#f1efea" stroke="#b9b4aa" strokeWidth={Math.max(2, w / 26)} />
           <g clipPath={`url(#${id})`}>
-            <rect x={cx - rx} y={cy - ry} width={rx * 2} height={ry * 2} fill={`url(#${id}g)`} />
-            <g transform={`translate(0 ${wob * (rx / 100)})`}>
-              {[0, 1, 2, 3].map((i) => {
-                const x = cx - rx * 1.6 + ((i * rx * 0.9 - fr * 0.8 * (rx / 100)) % (rx * 3.6) + rx * 3.6) % (rx * 3.6);
-                return <ellipse key={i} cx={x} cy={cy + ry * 0.45 + (i % 2) * ry * 0.12} rx={rx * 0.8} ry={ry * 0.2} fill="#ffffff" opacity={0.92} />;
+            <rect x={x} y={y} width={w} height={h} fill={`url(#${id}g)`} />
+            {near ? <circle cx={x + w * 0.75} cy={y + h * 0.2} r={w * 0.35} fill="#fff7dc" opacity={0.8} /> : null}
+            <g transform={`translate(0 ${bob * (w / 110)})`}>
+              {[0, 1, 2].map((i) => {
+                const cx = x - w + ((i * w * 1.1 - fr * 0.6 * (w / 110)) % (w * 3.3) + w * 3.3) % (w * 3.3);
+                return <ellipse key={i} cx={cx} cy={y + h * (0.72 + (i % 2) * 0.06)} rx={w * 0.75} ry={h * 0.07} fill="#ffffff" opacity={0.95} />;
               })}
-              <rect x={cx - rx} y={cy + ry * 0.6} width={rx * 2} height={ry} fill="#fbfbff" opacity={0.95} />
+              <rect x={x} y={y + h * 0.78} width={w} height={h * 0.4} fill="#fbfbff" />
             </g>
-            <rect x={cx - rx} y={cy - ry} width={rx * 2} height={ry * 0.32} fill="#efe8dc" />
+            {/* yarı inik perde */}
+            <rect x={x} y={y} width={w} height={h * 0.2} fill="#dcd7ce" />
+            <rect x={x} y={y + h * 0.2 - Math.max(2, w / 30)} width={w} height={Math.max(3, w / 15)} fill="#c4beb3" />
           </g>
-          <ellipse cx={cx} cy={cy} rx={rx} ry={ry} fill="none" stroke="#b9b0a2" strokeWidth={Math.max(2, rx / 22)} />
         </g>
       );
-      // arka sıralardaki koltuklar (derinlik s: 1 = yakın)
-      const seat = (x: number, y: number, sc: number, k: string) => (
-        <g key={k} transform={`translate(${x} ${y}) scale(${sc})`}>
-          <rect x={-150} y={-260} width={300} height={420} rx={50} fill="#3b3432" stroke={O} strokeWidth={8} />
-          <rect x={-100} y={-248} width={200} height={80} rx={18} fill="#f2ede4" stroke={O} strokeWidth={5} />
+      const shell = (x: number, y: number, sc: number, k: string, flip = 1) => (
+        <g key={k} transform={`translate(${x} ${y}) scale(${sc * flip} ${sc})`}>
+          <path d="M -170 160 L -170 -230 Q -170 -300 -100 -300 L 100 -300 Q 170 -300 170 -230 L 170 160 Z" fill="#2c2f35" stroke={O} strokeWidth={8} />
+          <path d="M -130 160 L -130 -210 Q -130 -260 -80 -260 L 80 -260 Q 130 -260 130 -210 L 130 160 Z" fill="#7a6656" />
+          <rect x={-80} y={-252} width={160} height={70} rx={16} fill="#f3efe8" />
+          <path d="M -170 -60 L 170 -60" stroke="#8a9098" strokeWidth={6} />
         </g>
       );
       return (
         <g>
           <defs>
-            <linearGradient id="kabinDuvar" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stopColor="#efe8dd" />
-              <stop offset="1" stopColor="#d9d0c2" />
+            <linearGradient id="ucTavan" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#f7f6f2" />
+              <stop offset="1" stopColor="#e3e5ea" />
             </linearGradient>
-            <linearGradient id="kabinHuzme" x1="0" y1="0" x2="1" y2="0.6">
-              <stop offset="0" stopColor="#fff1cc" stopOpacity={0.55} />
-              <stop offset="1" stopColor="#fff1cc" stopOpacity={0} />
+            <linearGradient id="ucDuvarL" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#e9e6e0" />
+              <stop offset="1" stopColor="#d6d2ca" />
             </linearGradient>
+            <linearGradient id="ucHuzme" x1="0" y1="0" x2="1" y2="0.5">
+              <stop offset="0" stopColor="#fff0c6" stopOpacity={0.6} />
+              <stop offset="1" stopColor="#fff0c6" stopOpacity={0} />
+            </linearGradient>
+            <radialGradient id="ucMood" cx="0.6" cy="0.25" r="0.6">
+              <stop offset="0" stopColor="#d9e4ff" stopOpacity={0.55} />
+              <stop offset="1" stopColor="#d9e4ff" stopOpacity={0} />
+            </radialGradient>
           </defs>
-          {/* arka duvar (kabin bölmesi) */}
-          <rect width={W} height={H} fill="#d4cbbd" />
-          <rect x={470} y={720} width={260} height={340} fill="#e6dfd3" stroke={O} strokeWidth={4} />
-          {/* tavan + bagaj dolapları */}
-          <path d="M 300 0 L 820 0 L 690 720 L 510 720 Z" fill="#f6f2ea" />
-          <path d="M 560 0 L 590 720 M 640 0 L 610 720" stroke="#e2dacd" strokeWidth={6} />
-          <path d="M 0 0 L 300 0 L 510 720 L 470 760 L 0 360 Z" fill="#f2ede4" stroke={O} strokeWidth={6} />
-          <path d="M 0 300 L 470 720" stroke="#d6cec1" strokeWidth={5} />
-          <path d="M 1080 0 L 820 0 L 690 720 L 730 760 L 1080 360 Z" fill="#ece6dc" stroke={O} strokeWidth={6} />
-          <path d="M 1080 300 L 730 720" stroke="#d2cabd" strokeWidth={5} />
-          {/* tavan ışık şeritleri (titrer) */}
-          <path d="M 20 330 L 478 742" stroke="#fff4d6" strokeWidth={9} opacity={0.9 * flick} />
-          <path d="M 1060 330 L 722 742" stroke="#fff4d6" strokeWidth={9} opacity={0.9 * flick} />
-          {/* sol yan duvar: pencereler (Emir'in yanında en büyüğü) */}
-          <path d="M 0 360 L 470 760 L 470 1060 L 0 1560 Z" fill="url(#kabinDuvar)" stroke={O} strokeWidth={6} />
-          {win(418, 880, 13, 24, "kw4")}
-          {win(360, 870, 22, 40, "kw3")}
-          {win(270, 862, 38, 66, "kw2")}
-          {win(118, 860, 74, 120, "kw1")}
-          {/* sağ yan duvar (koridorun karşısı) */}
-          <path d="M 1080 360 L 730 760 L 730 1060 L 1080 1560 Z" fill="#dcd3c5" stroke={O} strokeWidth={6} />
-          {win(776, 880, 11, 22, "kw7")}
-          {win(830, 872, 18, 34, "kw6")}
-          {win(920, 864, 30, 54, "kw5")}
-          {/* zemin + koridor halısı */}
-          <path d="M 0 1560 L 470 1060 L 730 1060 L 1080 1560 L 1080 1920 L 0 1920 Z" fill="#3e4458" />
-          <path d="M 560 1060 L 680 1060 L 1080 1640 L 1080 1920 L 760 1920 Z" fill="#4a5270" />
-          {/* arka sıralar: sol (Emir'in arkası) ve sağ (koridorun karşısı) */}
-          {seat(520, 1000, 0.28, "s3")}
-          {seat(470, 1060, 0.45, "s2")}
-          {seat(700, 1000, 0.28, "s6")}
-          {seat(790, 1070, 0.45, "s5")}
-          {seat(930, 1180, 0.72, "s4")}
-          {/* pencereden düşen gün ışığı (anahtar ışık soldan) */}
-          <path d="M 60 760 L 190 760 L 760 1700 L 300 1760 Z" fill="url(#kabinHuzme)" opacity={0.6 * flick} />
-          {/* Emir'in koltuğu */}
-          <rect x={318} y={820} width={444} height={800} rx={70} fill="#3b3432" stroke={O} strokeWidth={7} />
-          <rect x={350} y={850} width={380} height={140} rx={40} fill="#4a4240" />
-          <rect x={400} y={836} width={280} height={110} rx={22} fill="#f2ede4" stroke={O} strokeWidth={4} />
-          <path d="M 352 1080 L 728 1080 M 352 1260 L 728 1260" stroke="#2c2624" strokeWidth={5} />
-          <rect x={278} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
-          <rect x={722} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
+          <rect width={W} height={H} fill="#dad7d1" />
+          {/* arka bölme (galley perdesi + çıkış işareti) */}
+          <rect x={560} y={760} width={280} height={260} fill="#cfcbc4" stroke={O} strokeWidth={4} />
+          <rect x={600} y={790} width={90} height={230} fill="#8a96a8" />
+          <path d="M 610 790 L 610 1020 M 630 790 L 630 1020 M 650 790 L 650 1020 M 670 790 L 670 1020" stroke="#7a8698" strokeWidth={3} />
+          <rect x={730} y={784} width={60} height={22} rx={4} fill="#2f9a5a" />
+          {/* tavan: orta panel + kavisli bagaj dolapları + LED */}
+          <path d="M 330 0 L 1000 0 L 800 740 L 600 740 Z" fill="url(#ucTavan)" />
+          <rect width={W} height={760} fill="url(#ucMood)" />
+          <g transform={`translate(${rattle} 0)`}>
+            <path d="M 0 0 L 330 0 L 600 740 L 560 770 Q 300 520 0 300 Z" fill="#f2f1ee" stroke={O} strokeWidth={6} />
+            <path d="M 0 240 Q 300 470 568 742" stroke="#d9d6cf" strokeWidth={5} fill="none" />
+            <path d="M 0 300 Q 300 520 560 770" stroke="#fff3d2" strokeWidth={8} fill="none" opacity={0.95 * flick} />
+            <path d="M 1080 0 L 1000 0 L 800 740 L 840 770 Q 960 560 1080 380 Z" fill="#ecebe7" stroke={O} strokeWidth={6} />
+            <path d="M 1080 330 Q 950 540 832 742" stroke="#d4d1ca" strokeWidth={5} fill="none" />
+            <path d="M 1080 380 Q 960 560 840 770" stroke="#fff3d2" strokeWidth={8} fill="none" opacity={0.95 * flick} />
+          </g>
+          {/* emniyet kemeri işareti (Emir'in üstünde) */}
+          <g transform="translate(300 330) rotate(28)">
+            <rect x={-60} y={-24} width={120} height={48} rx={10} fill="#e6e4df" stroke={O} strokeWidth={4} />
+            <rect x={-50} y={-16} width={100} height={32} rx={6} fill={props.kemer ? "#ffd84a" : "#bcb8b0"} />
+            {props.kemer ? <rect x={-50} y={-16} width={100} height={32} rx={6} fill="#ffe680" opacity={0.6} /> : null}
+            <path d="M -32 6 q 0 -14 10 -14 q 10 0 10 14 M -22 -14 a 5 5 0 1 0 0.1 0 M 8 -8 L 36 8 M 8 8 L 36 -8" stroke="#3a3630" strokeWidth={4} fill="none" />
+          </g>
+          {/* sol yan duvar: pencereler Emir'in koltuğunun hemen yanında */}
+          <path d="M 0 300 Q 300 520 560 770 L 560 1020 L 0 1640 Z" fill="url(#ucDuvarL)" stroke={O} strokeWidth={6} />
+          <path d="M 0 1180 L 560 990" stroke="#c8c3ba" strokeWidth={5} />
+          {winL(520, 850, 14, 34, "uw5")}
+          {winL(470, 836, 22, 52, "uw4")}
+          {winL(392, 812, 34, 82, "uw3")}
+          {winL(262, 770, 58, 132, "uw2")}
+          {winL(54, 640, 112, 250, "uw1", true)}
+          {/* sağ yan duvar (karşı sıra) */}
+          <path d="M 1080 380 Q 960 560 840 770 L 840 1020 L 1080 1500 Z" fill="#d4d0c8" stroke={O} strokeWidth={6} />
+          {winL(870, 850, 12, 30, "uw7")}
+          {winL(930, 818, 22, 54, "uw6")}
+          {/* zemin + koridor + yer ışıkları */}
+          <path d="M 0 1640 L 560 1020 L 840 1020 L 1080 1500 L 1080 1920 L 0 1920 Z" fill="#363c4a" />
+          <path d="M 640 1020 L 790 1020 L 1080 1600 L 1080 1920 L 700 1920 Z" fill="#454d60" />
+          {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${650 + i * 40} ${1030 + i * 160} l 26 0`} stroke="#9fb8ff" strokeWidth={3} opacity={0.6} />)}
+          {/* arka sıralar (perspektif) */}
+          {shell(560, 1000, 0.22, "r4")}
+          {shell(520, 1040, 0.34, "r3")}
+          {shell(800, 1010, 0.24, "r6")}
+          {shell(880, 1080, 0.4, "r5")}
+          {shell(1040, 1240, 0.7, "r7")}
+          {/* koltuk ile cam arası konsol + okuma lambası */}
+          <path d="M 120 1180 L 250 1160 L 250 1560 L 110 1600 Z" fill="#2c2f35" stroke={O} strokeWidth={6} />
+          <path d="M 120 1180 L 250 1160 L 262 1172 L 132 1194 Z" fill="#8a7058" stroke={O} strokeWidth={4} />
+          <path d="M 200 1170 Q 196 1080 240 1050" stroke="#9aa0a8" strokeWidth={8} fill="none" />
+          <ellipse cx={246} cy={1048} rx={18} ry={10} fill="#e9e6df" stroke={O} strokeWidth={4} />
+          <rect x={150} y={1140} width={22} height={40} rx={6} fill="#d8eef6" stroke={O} strokeWidth={3} />
+          {/* gün ışığı huzmesi (anahtar ışık: soldaki pencereden) */}
+          <path d="M 90 700 L 170 680 L 760 1600 L 380 1720 Z" fill="url(#ucHuzme)" opacity={0.55 * flick} />
+          {/* Emir'in koltuk kabuğu */}
+          <path d="M 222 1620 L 222 900 Q 222 800 320 800 L 540 800 Q 638 800 638 900 L 638 1620 Z" fill="#2c2f35" stroke={O} strokeWidth={8} />
+          <path d="M 262 1600 L 262 920 Q 262 850 332 850 L 528 850 Q 598 850 598 920 L 598 1600 Z" fill="#7a6656" stroke="#5e4e42" strokeWidth={4} />
+          <path d="M 300 1060 L 560 1060 M 300 1240 L 560 1240" stroke="#66544a" strokeWidth={4} strokeDasharray="10 8" />
+          <rect x={320} y={848} width={220} height={110} rx={22} fill="#f3efe8" stroke={O} strokeWidth={4} />
+          <path d="M 222 1150 L 638 1150" stroke="#8a9098" strokeWidth={6} opacity={0.7} />
           {/* titreşimde kabin kararması */}
-          {tb ? <rect width={W} height={H} fill="#0a0c14" opacity={(1 - flick) * 0.35 + tb * 0.08} /> : null}
+          {tb >= 0.4 ? <rect width={W} height={H} fill="#0a0c14" opacity={(1 - flick) * 0.3 + (tb - 0.4) * 0.15} /> : null}
         </g>
       );
     }
@@ -565,26 +597,27 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 };
 
 /** Elements that sit IN FRONT of the characters. */
-const SetFG: React.FC<{ name: SetName; turb?: number }> = ({ name, turb = 0 }) => {
+const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean }> = ({ name, turb = 0, fincanElde }) => {
   const fr = useCurrentFrame();
   switch (name) {
     case "ucak_kabin": {
-      // koltuk önü konsol + masa: notlar ve kahve fincanı (türbülansta fincan titrer)
-      const j = turb ? (random(`cup${fr}`) - 0.5) * 6 * turb : 0;
+      // koltuk önü masa: notlar ve kahve fincanı (türbülansta fincan titrer)
+      const j = turb ? (random(`cup${fr}`) - 0.5) * 8 * turb : 0;
       return (
         <g>
-          <path d="M 262 1300 L 806 1300 L 826 1920 L 242 1920 Z" fill="#2e2827" stroke={O} strokeWidth={7} />
-          <path d="M 250 1330 L 830 1330" stroke="#3e3634" strokeWidth={6} />
-          <rect x={300} y={1420} width={480} height={300} rx={24} fill="#352e2c" stroke="#231e1d" strokeWidth={5} />
-          <rect x={236} y={1262} width={600} height={46} rx={12} fill="#6a4a32" stroke={O} strokeWidth={7} />
-          <path d="M 330 1268 L 560 1256 L 574 1276 L 338 1288 Z" fill="#f8f5ee" stroke={O} strokeWidth={4} />
-          <path d="M 352 1274 L 540 1265" stroke="#8a8a90" strokeWidth={3} />
-          <path d="M 470 1272 L 560 1268" stroke="#1d2a44" strokeWidth={5} strokeLinecap="round" />
-          <g transform={`translate(${j} ${j * 0.4})`}>
-            <ellipse cx={720} cy={1266} rx={58} ry={10} fill="#f4f0e8" stroke={O} strokeWidth={4} />
-            <path d="M 682 1226 L 758 1226 L 750 1262 Q 720 1272 690 1262 Z" fill="#fbf9f4" stroke={O} strokeWidth={5} />
-            <path d="M 758 1234 q 22 4 6 22" stroke={O} strokeWidth={5} fill="none" />
-            <ellipse cx={720} cy={1227} rx={37} ry={6} fill="#5a3a24" />
+          <path d="M 170 1300 L 700 1300 L 720 1920 L 150 1920 Z" fill="#2c2f35" stroke={O} strokeWidth={7} />
+          <path d="M 180 1330 L 690 1330" stroke="#8a9098" strokeWidth={5} opacity={0.7} />
+          <rect x={210} y={1420} width={450} height={300} rx={24} fill="#34373e" stroke="#22242a" strokeWidth={5} />
+          <rect x={140} y={1262} width={590} height={46} rx={12} fill="#8a7058" stroke={O} strokeWidth={7} />
+          <path d="M 220 1268 L 450 1256 L 464 1276 L 228 1288 Z" fill="#f8f5ee" stroke={O} strokeWidth={4} />
+          <path d="M 242 1274 L 430 1265" stroke="#8a8a90" strokeWidth={3} />
+          <path d="M 360 1272 L 450 1268" stroke="#1d2a44" strokeWidth={5} strokeLinecap="round" />
+          <ellipse cx={610} cy={1266} rx={58} ry={10} fill="#f4f0e8" stroke={O} strokeWidth={4} />
+          <g transform={`translate(${j} ${j * 0.4})`} opacity={fincanElde ? 0 : 1}>
+            <ellipse cx={610} cy={1266} rx={58} ry={10} fill="#f4f0e8" stroke={O} strokeWidth={4} />
+            <path d="M 572 1226 L 648 1226 L 640 1262 Q 610 1272 580 1262 Z" fill="#fbf9f4" stroke={O} strokeWidth={5} />
+            <path d="M 648 1234 q 22 4 6 22" stroke={O} strokeWidth={5} fill="none" />
+            <ellipse cx={610} cy={1227} rx={37} ry={6} fill="#5a3a24" />
           </g>
         </g>
       );
@@ -637,7 +670,11 @@ export const SetLayer: React.FC<{
   tv?: string;
   /** uçak türbülansı 0-1 (ışık titremesi, bulut sarsıntısı) */
   turb?: number;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb }) => {
+  /** emniyet kemeri işareti yanıyor */
+  kemer?: boolean;
+  /** fincan karakterin elinde: masadaki fincanı gizle */
+  fincanElde?: boolean;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb, kemer, fincanElde }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -648,7 +685,7 @@ export const SetLayer: React.FC<{
     return (
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-          <SetFG name={name} turb={turb} />
+          <SetFG name={name} turb={turb} fincanElde={fincanElde} />
         </svg>
         {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       </AbsoluteFill>
@@ -657,7 +694,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} kemer={kemer} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />

@@ -21,5 +21,9 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   ellerAcik: { L: { upper: 22, fore: -70, fl: 0.8 }, R: { upper: 22, fore: -70, fl: 0.8 } },
   ellerYuzde: { L: { upper: -16, fore: -166, ul: 0.42 }, R: { upper: -16, fore: -166, ul: 0.42 } },
   durDur: { L: { upper: 6, fore: 0 }, R: { upper: -6, fore: -150, ul: 0.6 } },
+  /** fincanı ağza götürme (sağ el, fincan prop) */
+  yudum: { L: { upper: 10, fore: -58, ul: 0.8 }, R: { upper: -12, fore: -158, ul: 0.48 } },
+  /** iki el önde, masadaki notların üstünde */
+  okuma: { L: { upper: 12, fore: -62, ul: 0.8 }, R: { upper: 12, fore: -62, ul: 0.8 } },
   basTutma: { L: { upper: 6, fore: 0 }, R: { upper: 144, fore: 82, ul: 0.9, fl: 0.9 } },
 };
