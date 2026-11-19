@@ -77,6 +77,8 @@ export type Gesture =
   | "durDur"
   /** ağrıyan başını tutma (sağ el şakakta) */
   | "basTutma"
+  | "golge"
+  | "direksiyon"
   /** parmakla yanağa krem sürme (ovma) */
   | "krem"
   /** yanağını gösterme (sağ işaret parmağı yanağında) */
@@ -129,6 +131,8 @@ export type Look = {
   kolye?: string;
   /** göğüste yaka kartı (isim) */
   isimlik?: string;
+  /** başörtüsünde yazma deseni ve oya rengi */
+  oya?: string;
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
 };

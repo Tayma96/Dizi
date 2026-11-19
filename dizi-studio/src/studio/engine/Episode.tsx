@@ -348,7 +348,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
               {outsideIds.map(renderChar)}
             </SetLayer>
             {insideIds.map(renderChar)}
-            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
+            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
           </>
         )}
       </AbsoluteFill>
@@ -356,6 +356,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       {/* overlays per beat */}
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
+          {b.beat.siyah ? <AbsoluteFill style={{ backgroundColor: "#000" }} /> : null}
           {b.beat.type === "line" ? (
             <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
           ) : b.beat.type === "yazi" ? (

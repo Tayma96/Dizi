@@ -201,6 +201,22 @@ export const HairFront: React.FC<{ look: Look; dx: number }> = ({ look, dx }) =>
           />
           <path d={`M ${150 + dx} 330 Q ${200 + dx} 370 ${250 + dx} 330`} stroke={shade} strokeWidth={6} fill="none" />
           <path d={`M ${130 + dx} 120 Q ${200 + dx} 86 ${270 + dx} 120`} stroke={shade} strokeWidth={5} fill="none" />
+          {look.oya ? (
+            <g>
+              {/* yazma deseni: küçük çiçekler */}
+              {[[118, 150], [112, 220], [126, 285], [282, 150], [288, 220], [274, 285], [160, 76], [240, 76], [200, 68]].map(([x, y], i) => (
+                <g key={i}>
+                  <circle cx={x + dx} cy={y} r={4} fill={look.oya} opacity={0.75} />
+                  <circle cx={x + dx} cy={y} r={2} fill="#fff8e0" />
+                </g>
+              ))}
+              {/* yüz çevresinde oya: alın hizasında boncuk dizisi */}
+              {new Array(13).fill(0).map((_, i) => {
+                const a = Math.PI * (1.08 + i * 0.065);
+                return <circle key={`o${i}`} cx={200 + dx + Math.cos(a) * 80} cy={186 + Math.sin(a) * 92} r={3} fill={look.oya} stroke={OUT} strokeWidth={1} />;
+              })}
+            </g>
+          ) : null}
         </g>
       );
     default:

@@ -1,0 +1,269 @@
+{
+ "series": "dram",
+ "seriesTitle": "Dram",
+ "episode": "dram-01",
+ "episodeNo": 1,
+ "title": "Bölüm 1",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "araba_on",
+   "time": "gunduz",
+   "title": "Araba (kaza)",
+   "ambience": {
+    "name": "efekt/el_araba_ici",
+    "volume": 0.4
+   },
+   "music": {
+    "name": "muzik/dram_yolculuk",
+    "volume": 0.2
+   },
+   "cast": {
+    "anne_dg": {
+     "mark": "anne",
+     "emotion": "mutlu",
+     "lookAt": "baba_dg"
+    },
+    "baba_dg": {
+     "mark": "baba",
+     "emotion": "mutlu",
+     "gesture": "direksiyon",
+     "bak": {
+      "x": 0.0,
+      "y": 0.0,
+      "yaw": 0.0
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ahmet",
+     "voiceover": true,
+     "label": "AHMET",
+     "text": "Bütün hayatım... işte tam da o an yok oldu.",
+     "emotion": "anlatim",
+     "tags": "[quiet, heartbroken narration, holding back tears]",
+     "gapAfter": 0.4,
+     "fade": "giris",
+     "turb": 0.08,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Bugün Ahmet'imin doğum günü... Hemen o çok istediği telefonu alalım bey.",
+     "emotion": "mutlu",
+     "tags": "[warm, loving, excited]",
+     "gapAfter": 0.3,
+     "turb": 0.08,
+     "shot": {
+      "type": "iki",
+      "on": "anne_dg",
+      "with": "baba_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "mutlu",
+       "lookAt": "baba_dg"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "baba_dg",
+     "text": "Tamam hanım, tamam. Hallederiz. Bankadan bi çekiyim şu parayı.",
+     "emotion": "mutlu",
+     "tags": "[warm, amused, easygoing]",
+     "gapAfter": 0.3,
+     "turb": 0.08,
+     "shot": {
+      "type": "orta",
+      "on": "baba_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "baba_dg": {
+       "emotion": "mutlu",
+       "bak": {
+        "x": -0.35,
+        "y": 0.0,
+        "yaw": -0.3
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Deli olucak, telefonu görünce!",
+     "emotion": "mutlu",
+     "tags": "[happy, chuckling]",
+     "gapAfter": 0.25,
+     "turb": 0.08,
+     "shot": {
+      "type": "orta",
+      "on": "anne_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "gulen"
+      },
+      "baba_dg": {
+       "emotion": "gulen",
+       "bak": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "door": "ac",
+     "turb": 0.1,
+     "shot": {
+      "type": "iki",
+      "on": "anne_dg",
+      "with": "baba_dg",
+      "move": "sabit"
+     },
+     "cast": {
+      "baba_dg": {
+       "emotion": "aci",
+       "gesture": "golge",
+       "bak": {
+        "x": 0.0,
+        "y": 0.0,
+        "yaw": 0.0
+       }
+      },
+      "anne_dg": {
+       "emotion": "saskin",
+       "lookAt": "kamera"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_korna_yaklasan",
+       "volume": 0.75,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Dikkat eett!",
+     "emotion": "panik",
+     "tags": "[screaming in terror]",
+     "gapAfter": 0.0,
+     "turb": 0.3,
+     "shot": {
+      "type": "yakin",
+      "on": "anne_dg",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "dehset",
+       "gesture": "durDur",
+       "lookAt": "kamera"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.55,
+     "lightning": false,
+     "turb": 0.9,
+     "shot": {
+      "type": "iki",
+      "on": "anne_dg",
+      "with": "baba_dg",
+      "move": "sarsinti"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_fren_kaza",
+       "volume": 0.95,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "araba_on",
+   "time": "gunduz",
+   "title": "Karanlık (dış ses)",
+   "music": {
+    "name": "muzik/dram_huzun",
+    "volume": 0.22
+   },
+   "cast": {},
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.2,
+     "siyah": true,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kulak_cinlama",
+       "volume": 0.35,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "ahmet",
+     "voiceover": true,
+     "label": "AHMET",
+     "text": "Dünyadaki en sevdiğim insan... artık yok...",
+     "emotion": "agliyor",
+     "tags": "[voice breaking, quietly crying]",
+     "gapAfter": 1.0,
+     "siyah": true,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     }
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "araba_on",
+   "time": "gunduz",
+   "title": "1 gün önce",
+   "transition": "flas",
+   "cast": {},
+   "beats": [
+    {
+     "type": "yazi",
+     "text": "1 GÜN ÖNCE",
+     "dur": 2.0,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "siyah": true
+    }
+   ]
+  }
+ ]
+}

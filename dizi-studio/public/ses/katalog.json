@@ -90,6 +90,13 @@
   "loop": false,
   "desc": "Raftan poşetli ekmek düşer."
  },
+ "efekt/el_araba_ici": {
+  "file": "ses/efekt/el_araba_ici.mp3",
+  "category": "efekt",
+  "duration": 12.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Interior of an old sedan car driving at steady speed in the evening, low engine hum, tire rumble on asphalt, soft wind noise, no music, no voices"
+ },
  "efekt/el_banyo_kapi": {
   "file": "ses/efekt/el_banyo_kapi.mp3",
   "category": "efekt",
@@ -125,6 +132,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Single fluorescent light tube flickering and buzzing with electrical crackle"
  },
+ "efekt/el_fren_kaza": {
+  "file": "ses/efekt/el_fren_kaza.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Violent car crash: loud tire screech skid then massive metal impact, shattering windshield glass, debris, then sudden silence"
+ },
  "efekt/el_islak_adim": {
   "file": "ses/efekt/el_islak_adim.mp3",
   "category": "efekt",
@@ -153,12 +167,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Deep cinematic horror impact hit with a short reverse swell into a low boom and ringing tail"
  },
+ "efekt/el_korna_yaklasan": {
+  "file": "ses/efekt/el_korna_yaklasan.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Large truck approaching fast head-on, engine roar rising, long desperate air horn blast getting louder"
+ },
  "efekt/el_krem_tup": {
   "file": "ses/efekt/el_krem_tup.mp3",
   "category": "efekt",
   "duration": 1.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Small plastic cream tube squeezed, soft wet squelch, close up"
+ },
+ "efekt/el_kulak_cinlama": {
+  "file": "ses/efekt/el_kulak_cinlama.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: High pitched ear ringing tinnitus after an explosion, slowly fading, muffled distant sounds"
  },
  "efekt/el_market_ortam": {
   "file": "ses/efekt/el_market_ortam.mp3",
@@ -579,6 +607,20 @@
   "duration": 7.0,
   "loop": false,
   "desc": "Bölüm sonu: 5 sn yükselen gerilim + darbe. Sır açığa çıkmadan kesme."
+ },
+ "muzik/dram_huzun": {
+  "file": "ses/muzik/dram_huzun.mp3",
+  "category": "muzik",
+  "duration": 60.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Heartbreaking slow solo piano with soft string pad, grief and loss, very emotional Turkish drama theme, sparse notes, builds gently, no vocals"
+ },
+ "muzik/dram_yolculuk": {
+  "file": "ses/muzik/dram_yolculuk.mp3",
+  "category": "muzik",
+  "duration": 30.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Warm nostalgic Turkish family road trip underscore, gentle acoustic guitar and soft baglama, light hand percussion, happy and tender, everyday joy, no vocals"
  },
  "muzik/gerilim": {
   "file": "ses/muzik/gerilim.mp3",

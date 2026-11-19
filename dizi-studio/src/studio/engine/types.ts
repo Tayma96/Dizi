@@ -127,6 +127,8 @@ export type BeatCommon = {
   kemer?: boolean;
   /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
   tv?: "acik" | "kapali";
+  /** tam siyah ekran (dış ses karanlıkta) */
+  siyah?: boolean;
   /** FPS göz açılması: göz kapakları bu kadar saniyede kırpışarak açılır */
   gozAc?: number;
   /** 7/24: ıslak ayak izleri bu kadar saniyede belirir (0 = sil); sonraki vuruşlarda kalır */

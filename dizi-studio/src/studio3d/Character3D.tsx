@@ -31,6 +31,8 @@ export const GESTURES3D: Record<Gesture | "sarilma" | "kapiAc", { L: HandT; R: H
   okuma: { L: { t: [0.18, 0.3, 0.3], pole: [1, -0.6, 0] }, R: { t: [0.18, 0.3, 0.3], pole: [1, -0.6, 0] } },
   basTutma: { L: REST, R: CHEEK },
   krem: { L: REST, R: CHEEK },
+  golge: { L: REST, R: CHEEK },
+  direksiyon: { L: REST, R: REST },
   yuzGoster: { L: REST, R: CHEEK },
   kafaKasi: { L: REST, R: CHEEK },
   uzat: { L: REST, R: CHEEK },

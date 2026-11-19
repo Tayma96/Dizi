@@ -1,8 +1,35 @@
 {
+ "ahmet": {
+  "voice_id": "KKeCA7uY2AJH3qyXgvpo",
+  "sahip": "e03f7eccb0ee12c1d47ce27abb631b568997c7f87dfd0e35529b81b9ddada0f2",
+  "ad": "KKeCA7uY2AJH3qyXgvpo",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "anne724": {
   "voice_id": "JgYekNWmelei0oWTtYie",
   "sahip": "0d06d501e2656152f3023cd43e51fea6403c5d7ba2283ffc62e91a6a7390cf81",
   "ad": "JgYekNWmelei0oWTtYie",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "anne_dg": {
+  "voice_id": "Hvrobr8BhLPfiaSv2cHi",
+  "sahip": "4003729bd2c71989e34c8e2c5c713147deb493c36497880f332e3fa841f2418a",
+  "ad": "Hvrobr8BhLPfiaSv2cHi",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "baba_dg": {
+  "voice_id": "t2OF8bTMamJQneB9gk1S",
+  "sahip": "0f72f4518c796f68cb32cf2fc34f02645c8524672cedb14ee4dfbcfe8d72616f",
+  "ad": "t2OF8bTMamJQneB9gk1S",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0
