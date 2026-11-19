@@ -1252,5 +1252,87 @@
    "shoes": "#1a1a1a"
   },
   "blush": true
+ },
+ {
+  "id": "ece_ev",
+  "name": "Ece",
+  "role": "7/24: Ece evde, pijamalı, sivilceli",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "bun",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#e8a0b8",
+   "topShade": "#c8809a",
+   "bottom": "#b8a0d0",
+   "shoes": "#f0e0e8",
+   "accent": "#ffffff"
+  },
+  "blush": true,
+  "sivilce": true
+ },
+ {
+  "id": "ece_sivil",
+  "name": "Ece",
+  "role": "7/24: Ece sivil (iş görüşmesi), sivilceli",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "ponytail",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "sweater",
+   "top": "#c8902a",
+   "topShade": "#a8741a",
+   "bottom": "#34466a",
+   "shoes": "#f0f0f0",
+   "accent": "#f4ead0"
+  },
+  "blush": true,
+  "sivilce": true
+ },
+ {
+  "id": "anne724",
+  "name": "Anne",
+  "role": "7/24: Ece'nin annesi, 50'li yaşlar, telaşlı ve ağzı bozuk",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#eec4a2",
+  "skinShade": "#d8a884",
+  "iris": "#4a2e1e",
+  "hair": {
+   "style": "bob",
+   "color": "#4a3022",
+   "shade": "#6a4a36"
+  },
+  "outfit": {
+   "type": "cardigan",
+   "top": "#8a4a5a",
+   "topShade": "#6a3444",
+   "bottom": "#5a4a48",
+   "shoes": "#6a4a3a",
+   "accent": "#e8dcc8"
+  },
+  "earrings": "#d8b860",
+  "blush": false,
+  "mole": true
  }
 ]

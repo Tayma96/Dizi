@@ -31,6 +31,7 @@ export const EMOTION_FACE: Record<Emotion, FaceParams> = {
   ofkeli: { browInner: -14, browOuter: 6, browLift: 6, eyeOpen: 0.58, eyeSmile: false, pupil: 0.85, mouth: "tight", blush: 0.7 },
   korkmus: { browInner: 14, browOuter: 4, browLift: -6, eyeOpen: 0.82, eyeSmile: false, pupil: 0.65, mouth: "tight", blush: 0.1 },
   saskin: { browInner: 10, browOuter: 10, browLift: -10, eyeOpen: 1.0, eyeSmile: false, pupil: 0.9, mouth: "line", blush: 0.4 },
+  dehset: { browInner: 20, browOuter: 16, browLift: -18, eyeOpen: 1.18, eyeSmile: false, pupil: 0.42, mouth: "open", blush: 0 },
   sok: { browInner: 12, browOuter: 12, browLift: -12, eyeOpen: 1.05, eyeSmile: false, pupil: 0.55, mouth: "flat", blush: 0 },
   supheli: { browInner: -6, browOuter: 4, browLift: 2, eyeOpen: 0.5, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0.3 },
   utangac: { browInner: 6, browOuter: 0, browLift: -2, eyeOpen: 0.8, eyeSmile: false, pupil: 1.1, mouth: "smile", blush: 1.3 },
@@ -152,17 +153,29 @@ export const Brow: React.FC<{
 };
 
 /** Mouth: viseme (talking) or resting shape. */
-export const Mouth: React.FC<{ viseme: Viseme | null; rest: FaceParams["mouth"]; cx: number; cy: number; amp?: number }> = ({
+export const Mouth: React.FC<{ viseme: Viseme | null; rest: FaceParams["mouth"]; cx: number; cy: number; amp?: number; scream?: boolean }> = ({
   viseme,
   rest,
   cx,
   cy,
   amp = 1,
+  scream,
 }) => {
   const lip = "#c4605f";
   const inside = "#5e2324";
   const tongue = "#d9777a";
   const teeth = "#fffaf2";
+  if (scream && viseme && viseme !== "X" && viseme !== "M") {
+    // çığlık: dikey oval, gergin dudaklar, üst dişler
+    const k = viseme === "A" || viseme === "O" ? 1 : 0.8;
+    return (
+      <g>
+        <path d={`M ${cx} ${cy - 10} C ${cx + 22 * k} ${cy - 10} ${cx + 20 * k} ${cy + 44 * k} ${cx} ${cy + 46 * k} C ${cx - 20 * k} ${cy + 44 * k} ${cx - 22 * k} ${cy - 10} ${cx} ${cy - 10} Z`} fill={inside} stroke={OUT} strokeWidth={4} />
+        <path d={`M ${cx - 13 * k} ${cy - 4} Q ${cx} ${cy - 9} ${cx + 13 * k} ${cy - 4} L ${cx + 11 * k} ${cy + 2} Q ${cx} ${cy - 1} ${cx - 11 * k} ${cy + 2} Z`} fill={teeth} />
+        <ellipse cx={cx} cy={cy + 34 * k} rx={9 * k} ry={6 * k} fill={tongue} />
+      </g>
+    );
+  }
   if (viseme && viseme !== "X") {
     const shapes: Record<Exclude<Viseme, "X">, { w: number; h: number; round?: boolean; teeth?: boolean; closed?: boolean; f?: boolean }> = {
       A: { w: 17, h: 20 },

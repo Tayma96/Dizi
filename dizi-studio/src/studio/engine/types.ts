@@ -56,6 +56,8 @@ export type CharState = {
   tears?: number;
   pale?: number;
   sweat?: boolean;
+  /** sivilcede krem */
+  krem?: boolean;
   wet?: boolean;
   flip?: boolean;
   /** 3D: gövdenin dönüşü (derece). Verilmezse işaretin yönü / bakılan kişi kullanılır */
@@ -125,6 +127,8 @@ export type BeatCommon = {
   kemer?: boolean;
   /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
   tv?: "acik" | "kapali";
+  /** FPS göz açılması: göz kapakları bu kadar saniyede kırpışarak açılır */
+  gozAc?: number;
   /** 7/24: ıslak ayak izleri bu kadar saniyede belirir (0 = sil); sonraki vuruşlarda kalır */
   iz?: number;
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */

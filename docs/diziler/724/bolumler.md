@@ -17,3 +17,17 @@ Sabri kuralların her gece 03.00'te başladığını bilir; ilk gecesinde Ece'yi
 - ECE: "Demedim abi… Ama sen az önce depodan seslendin?"
 - SABRİ (korkuyla): "Ben evdeyim kızım. Sakın gitme."
 - DEPO: "Ece… ben Sabri. Gel."
+
+---
+## Bölüm 1 (yeni, kullanıcının senaryosu — 19 Kasım 2026)
+Kullanıcı senaryoyu kendisi yazdı; replikler aynen korunur, yeni replik eklenmez.
+- **Banyo (sabah):** çığlık → FPS göz açılır, Ece aynada kendine bakıyor → "Bu ne olamazz" → "Kocaman lan bu" (sivilce) → krem: "Of of offf.." → anne girer "Noldu kızım iyi misin?" → "Anne şuna bak ya kafam kadar" → "Ağzına sıçtığım ödümü kopardın" → "Bundan kötü şey mi olur" → "Naptın bugünkü iş görüşmeni gidecen mi?" → "Gidicem anne tamaaamm.." ✔ örnek render: `bolumler/724-b1-banyo.mp4`
+- **Market (iş görüşmesi, Ece sivil):** Sabri kasada "Hoş geldinizz" → Ece: iş görüşmesi, bu saatte burada olmam söylenmişti → Sabri'nin yüzü düşer, toparlar: marketin sahibiyim, bugün başlayabilir misin? → "Hemen mi?" → gece vardiyası, akşam 11'de başla → "Pekii.."
+- **Saat 22:50:** "Ben geldiiimm" → Sabri: kuralları okumalısın → Ece kafa kaşır "Tabi abi bakıyım" → kâğıt.
+- **Kurallar (yeni, 4 kural; eski 5 kural geçersiz):**
+  1. Herkese hoş geldiniz diyeceksin ancak kapı kendiliğinden açılırsa sakın söyleme!
+  2. Depodan bir ses duyarsan kulak asma, çağırırsa gitme!
+  3. Asla kimseye saygısızlık yapma! Tartışmaya girme!
+  4. Kepenkler bir anda kapanırsa sessizce açılmasını bekle.
+- **Son:** Ece kurallara, Sabri'ye, tekrar kurallara bakar: "Abi sen ciddi misin ya" (gülümseyerek, tedirgin).
+- Yeni kadro: `ece_ev` (pijama, topuz), `ece_sivil` (hardal kazak), `anne724` (ses: Elvan). Ece'nin sağ yanağında sivilce (süreklilik: bölüm boyunca, kremli).

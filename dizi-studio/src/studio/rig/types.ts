@@ -53,7 +53,9 @@ export type Emotion =
   | "kararli"
   | "igrenmis"
   /** baş ağrısı, sersemlik */
-  | "aci";
+  | "aci"
+  /** çığlık: dehşet, gözler fal taşı, kaşlar en yukarıda */
+  | "dehset";
 
 export type Gesture =
   | "rest"
@@ -74,7 +76,15 @@ export type Gesture =
   | "ellerYuzde"
   | "durDur"
   /** ağrıyan başını tutma (sağ el şakakta) */
-  | "basTutma";
+  | "basTutma"
+  /** parmakla yanağa krem sürme (ovma) */
+  | "krem"
+  /** yanağını gösterme (sağ işaret parmağı yanağında) */
+  | "yuzGoster"
+  /** kafa kaşıma */
+  | "kafaKasi"
+  /** elindeki kâğıdı uzatma */
+  | "uzat";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
@@ -119,6 +129,8 @@ export type Look = {
   kolye?: string;
   /** göğüste yaka kartı (isim) */
   isimlik?: string;
+  /** sağ yanakta iri sivilce */
+  sivilce?: boolean;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };
@@ -150,6 +162,8 @@ export type Pose = {
   tears?: number;
   pale?: number;
   sweat?: boolean;
+  /** sivilcenin üstünde krem */
+  krem?: boolean;
   wet?: boolean;
   prop?: Prop;
   eyesClosed?: number;

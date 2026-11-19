@@ -249,7 +249,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const opts: Viseme[] = ["A", "E", "L", "O", "M", "I", "L", "A"];
     vis = opts[Math.floor(random(`t-${seed}-${Math.floor(frame / 3)}`) * opts.length)];
   }
-  const amp = emo === "ofkeli" || emo === "korkmus" || emo === "sok" ? 1.25 : emo === "uzgun" || emo === "yorgun" ? 0.8 : 1;
+  const amp = emo === "dehset" ? 1.45 : emo === "ofkeli" || emo === "korkmus" || emo === "sok" ? 1.25 : emo === "uzgun" || emo === "yorgun" ? 0.8 : 1;
   const browColor = look.age === "old" && !["hijab"].includes(look.hair.style) ? "#7d746c" : look.hair.style === "hijab" ? "#4a3428" : look.hair.color;
 
   // --- arms ---
@@ -257,6 +257,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const armL: FullArm = { ...g.L, ...(pose.armL ?? {}) };
   const armR: FullArm = { ...g.R, ...(pose.armR ?? {}) };
   if (pose.gesture === "elSalla") armR.fore += Math.sin(frame / 3) * 18;
+  if (pose.gesture === "krem") { armR.fore += Math.sin(frame / 2.4) * 5; armR.upper += Math.sin(frame / 2.4 + 1.2) * 3; }
+  if (pose.gesture === "kafaKasi") armR.fore += Math.sin(frame / 1.7) * 9;
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
     armL.upper += walkPhase * 10;
@@ -547,11 +549,20 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       <Brow cx={240 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
       {look.mole ? <circle cx={236 + dx} cy={262} r={3} fill="#5a3a2a" /> : null}
+      {look.sivilce ? (
+        <g>
+          <ellipse cx={252 + dx} cy={240} rx={17} ry={14} fill="#e8706a" opacity={0.45} />
+          <circle cx={252 + dx} cy={240} r={9} fill="#d8524a" stroke="#9a2e28" strokeWidth={1.5} />
+          <circle cx={251 + dx} cy={238} r={4} fill="#fbf2d8" />
+          <circle cx={249 + dx} cy={236} r={1.6} fill="#ffffff" />
+          {pose.krem ? <path d={`M ${236 + dx} 236 Q ${246 + dx} 224 ${264 + dx} 232 Q ${272 + dx} 246 ${256 + dx} 252 Q ${238 + dx} 252 ${236 + dx} 236 Z`} fill="#f8f6f0" opacity={0.92} stroke="#d8d4c8" strokeWidth={1.5} /> : null}
+        </g>
+      ) : null}
       {look.facialHair === "mustache" || look.facialHair === "beard" ? (
         <path d={`M ${160 + dx} 274 Q ${200 + dx} 246 ${240 + dx} 274 Q ${224 + dx} 268 ${200 + dx} 264 Q ${176 + dx} 268 ${160 + dx} 274 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} />
       ) : null}
       {look.facialHair === "goatee" ? <path d={`M ${186 + dx} 292 Q ${200 + dx} 312 ${214 + dx} 292 L ${210 + dx} 302 Q ${200 + dx} 306 ${190 + dx} 302 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} /> : null}
-      <Mouth viseme={vis} rest={face.mouth} cx={200 + dx * 1.1} cy={274} amp={amp} />
+      <Mouth viseme={vis} rest={face.mouth} cx={200 + dx * 1.1} cy={274} amp={amp} scream={emo === "dehset"} />
       {tears > 0 ? (
         <g opacity={Math.min(1, tears * 2)}>
           {[160 + dx - 12, 240 + dx + 12].map((x, i) => {

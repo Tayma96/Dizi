@@ -1,0 +1,355 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-b1",
+ "episodeNo": 1,
+ "title": "Bölüm 1",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "banyo_ayna",
+   "time": "gunduz",
+   "title": "Banyo (FPS ayna)",
+   "ambience": {
+    "name": "ortam/banyo_sabah",
+    "volume": 0.45
+   },
+   "cast": {
+    "ece_ev": {
+     "mark": "ece",
+     "emotion": "dehset",
+     "lookAt": "kamera"
+    },
+    "anne724": {
+     "mark": "anne",
+     "hidden": true,
+     "emotion": "korkmus"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "AAAAAAH!",
+     "label": "",
+     "emotion": "bagiriyor",
+     "tags": "[screams in horror, long piercing scream]",
+     "gapAfter": 0.25,
+     "gozAc": 1.5,
+     "shot": {
+      "type": "orta",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 540,
+       "cy": 770,
+       "z": 1.55
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Bu ne... Olamazz!",
+     "emotion": "korkmus",
+     "tags": "[horrified, breathless disbelief]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "yakin",
+      "move": "yaklas",
+      "kadraj": {
+       "cx": 560,
+       "cy": 760,
+       "z": 1.9
+      }
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "sok",
+       "lookAt": "kamera",
+       "gesture": "eliYuzunde"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.7,
+     "shot": {
+      "type": "cok_yakin",
+      "move": "yaklas",
+      "kadraj": {
+       "cx": 600,
+       "cy": 800,
+       "z": 3.4
+      }
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "sok",
+       "lookAt": "kamera",
+       "gesture": "rest"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_korku_vurus",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Kocaman lan, bu!",
+     "emotion": "ofkeli",
+     "tags": "[shocked, disgusted]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "yakin",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 570,
+       "cy": 770,
+       "z": 2.1
+      }
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "igrenmis",
+       "lookAt": "kamera"
+      }
+     },
+     "hiz": 0.9
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Of, of, offf...",
+     "emotion": "uzgun",
+     "tags": "[whining, wincing]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "move": "yaklas",
+      "kadraj": {
+       "cx": 560,
+       "cy": 830,
+       "z": 1.5
+      }
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "aci",
+       "lookAt": "kamera",
+       "gesture": "krem",
+       "krem": true
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_krem_tup",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 0.9,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "saskin",
+       "gesture": "krem",
+       "krem": true,
+       "bak": {
+        "x": 0.6,
+        "y": 0,
+        "yaw": 0.45
+       }
+      },
+      "anne724": {
+       "hidden": false,
+       "emotion": "korkmus",
+       "lookAt": "ece_ev"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_banyo_kapi",
+       "volume": 0.8,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Noldu kızım, iyi misin?",
+     "emotion": "panik",
+     "tags": "[worried, out of breath, rushing in]",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "uzgun",
+       "gesture": "rest",
+       "krem": true,
+       "lookAt": "anne724"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "Banyo (kapı)",
+   "ambience": {
+    "name": "ortam/banyo_sabah",
+    "volume": 0.45
+   },
+   "cast": {
+    "ece_ev": {
+     "mark": "ece",
+     "emotion": "uzgun",
+     "lookAt": "anne724",
+     "krem": true
+    },
+    "anne724": {
+     "mark": "anne",
+     "emotion": "korkmus",
+     "lookAt": "ece_ev"
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Anne, şuna bak ya! Kafam kadar!",
+     "emotion": "uzgun",
+     "tags": "[whiny, dramatic, complaining]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "iki",
+      "on": "ece_ev",
+      "with": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "uzgun",
+       "gesture": "yuzGoster",
+       "lookAt": "anne724",
+       "krem": true
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Ağzına sıçtığım! Ödümü kopardın!",
+     "emotion": "ofkeli",
+     "tags": "[angry, exasperated, scolding]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "elBelde",
+       "lookAt": "ece_ev"
+      },
+      "ece_ev": {
+       "emotion": "utangac",
+       "gesture": "rest",
+       "lookAt": "anne724",
+       "krem": true
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Bundan kötü şey mi olur?",
+     "emotion": "gulen",
+     "tags": "[laughing]",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "orta",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "gulen",
+       "lookAt": "anne724",
+       "krem": true
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.18,
+       "at": 1.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Naptın, bugünkü iş görüşmeni? Gidecen mi?",
+     "emotion": "notr",
+     "tags": "[changing the subject, matter-of-fact]",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "ece_ev",
+      "with": "anne724",
+      "move": "sabit"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "supheli",
+       "gesture": "kollarBagli",
+       "lookAt": "ece_ev"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Gidicem anne, tamaaamm...",
+     "emotion": "yorgun",
+     "tags": "[annoyed, bored, drawn-out exasperated]",
+     "gapAfter": 0.6,
+     "shot": {
+      "type": "orta",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "yorgun",
+       "lookAt": "anne724",
+       "krem": true,
+       "gesture": "rest"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

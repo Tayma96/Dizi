@@ -90,6 +90,13 @@
   "loop": false,
   "desc": "Raftan poşetli ekmek düşer."
  },
+ "efekt/el_banyo_kapi": {
+  "file": "ses/efekt/el_banyo_kapi.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Bathroom door flung open hard and hitting the wall, followed by two hurried slipper footsteps on tile floor"
+ },
  "efekt/el_depo_kapi": {
   "file": "ses/efekt/el_depo_kapi.mp3",
   "category": "efekt",
@@ -138,6 +145,13 @@
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Deep cinematic horror impact hit with a short reverse swell into a low boom and ringing tail"
+ },
+ "efekt/el_krem_tup": {
+  "file": "ses/efekt/el_krem_tup.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Small plastic cream tube squeezed, soft wet squelch, close up"
  },
  "efekt/el_market_ortam": {
   "file": "ses/efekt/el_market_ortam.mp3",
@@ -600,6 +614,13 @@
   "duration": 51.53,
   "loop": true,
   "desc": "Umut / sıcaklık: majör akorlar, yumuşak pad ve piyano. Barışma, kavuşma."
+ },
+ "ortam/banyo_sabah": {
+  "file": "ses/ortam/banyo_sabah.mp3",
+  "category": "ortam",
+  "duration": 28.5,
+  "loop": true,
+  "desc": "Sabah banyo: fan uğultusu, musluk damlası, uzak şehir, kuş."
  },
  "ortam/gece_cekirge": {
   "file": "ses/ortam/gece_cekirge.mp3",

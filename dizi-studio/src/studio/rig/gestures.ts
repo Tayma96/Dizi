@@ -26,4 +26,8 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   /** iki el önde, masadaki notların üstünde */
   okuma: { L: { upper: 12, fore: -62, ul: 0.8 }, R: { upper: 12, fore: -62, ul: 0.8 } },
   basTutma: { L: { upper: 6, fore: 0 }, R: { upper: 144, fore: 82, ul: 0.9, fl: 0.9 } },
+  krem: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 122, ul: 0.41, fl: 1.03 } },
+  yuzGoster: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 119, ul: 0.41, fl: 0.8 } },
+  kafaKasi: { L: { upper: 6, fore: 0 }, R: { upper: 150, fore: 76, ul: 0.9, fl: 0.88 } },
+  uzat: { L: { upper: 6, fore: 0 }, R: { upper: 52, fore: -34, ul: 0.72, fl: 0.9 } },
 };

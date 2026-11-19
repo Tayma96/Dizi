@@ -293,6 +293,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             tears: st.tears,
             pale: st.pale,
             sweat: st.sweat,
+            krem: st.krem,
             wet: st.wet,
             eyesClosed: st.eyesClosed,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,
@@ -311,13 +312,17 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const filter =
     scene.look === "flashback" ? "sepia(0.55) contrast(0.92) brightness(1.06) saturate(0.8)" : scene.look === "soguk" ? "saturate(0.7) hue-rotate(-12deg) brightness(0.95)" : scene.look === "sicak" ? "sepia(0.18) saturate(1.15)" : scene.look === "tekinsiz" ? `saturate(0.62) hue-rotate(-12deg) brightness(${frame % 83 < 2 ? 0.8 : 0.88}) contrast(1.16)` : undefined;
 
+  // FPS göz açılması: görüntü bulanıktan netleşir
+  const gozBlur = tb.beat.gozAc ? interpolate(bf, [0, tb.beat.gozAc * fps], [12, 0], clamp) : 0;
+  const filterAll = [filter, gozBlur > 0.2 ? `blur(${gozBlur.toFixed(1)}px)` : ""].filter(Boolean).join(" ") || undefined;
+
   return (
     <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
       <AbsoluteFill
         style={{
           transformOrigin: "0 0",
           transform: `translate(${540 + sx}px, ${cam.ay + sy}px) scale(${cam.z}) translate(${-cam.cx}px, ${-cam.cy}px)`,
-          filter,
+          filter: filterAll,
         }}
       >
         {scene.arka ? (
@@ -361,6 +366,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           {b.beat.type === "line" && b.beat.ekle ? <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} /> : null}
           {b.beat.etiket ? <CornerLabel text={b.beat.etiket} /> : null}
           {b.beat.fade ? <FadeOverlay mode={b.beat.fade} dur={b.dur} /> : null}
+          {b.beat.gozAc ? <GozAc d={Math.round(b.beat.gozAc * fps)} /> : null}
         </Sequence>
       ))}
       <SceneTransition kind={scene.transition} />
@@ -382,6 +388,27 @@ const Blanket: React.FC<{ hx: number; hy: number; k: number }> = ({ hx, hy, k })
       <path d={hem} fill="#a6b0b2" stroke="#1b1412" strokeWidth={3.5} strokeLinejoin="round" />
       <path d={`M ${P[5][0]} ${P[5][1] + 6} Q ${P[5][0] + 10} ${P[5][1] + 40} ${P[5][0] - 4} ${hy + 50} M ${P[7][0] - 30} ${P[7][1] + 8} Q ${P[7][0] - 20} ${P[7][1] + 40} ${P[7][0] - 26} ${hy + 50}`} stroke="#74808a" strokeWidth={4} fill="none" />
     </svg>
+  );
+};
+
+/** FPS göz açılması: üst ve alt göz kapağı kırpışarak açılır, görüntü bulanıktan netleşir. */
+const GozAc: React.FC<{ d: number }> = ({ d }) => {
+  const f = useCurrentFrame();
+  if (f > d + 2) return null;
+  const o = interpolate(f, [0, d * 0.28, d * 0.42, d * 0.55, d], [0, 0.42, 0.42, 0.12, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+  const gap = 960 * o * 1.15;
+  const top = 960 - gap, bot = 960 + gap;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+        <defs>
+          <linearGradient id="gzU" x1="0" y1="0" x2="0" y2="1"><stop offset="0.8" stopColor="#000" /><stop offset="1" stopColor="#000" stopOpacity={0.6} /></linearGradient>
+          <linearGradient id="gzD" x1="0" y1="1" x2="0" y2="0"><stop offset="0.8" stopColor="#000" /><stop offset="1" stopColor="#000" stopOpacity={0.6} /></linearGradient>
+        </defs>
+        <path d={`M -40 -40 L 1120 -40 L 1120 ${top + 120} Q 540 ${top - 260} -40 ${top + 120} Z`} fill="url(#gzU)" />
+        <path d={`M -40 1960 L 1120 1960 L 1120 ${bot - 120} Q 540 ${bot + 260} -40 ${bot - 120} Z`} fill="url(#gzD)" />
+      </svg>
+    </AbsoluteFill>
   );
 };
 
