@@ -1,0 +1,212 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-01-p5",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Son parça",
+ "endCard": {
+  "text": "Devamı yarın · Takip et",
+  "sub": "Sence ekrandaki kim?"
+ },
+ "scenes": [
+  {
+   "id": "p5",
+   "set": "ortak_salon",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Son parça — Televizyon",
+   "ambience": {
+    "name": "ortam/hastane",
+    "volume": 0.3
+   },
+   "music": {
+    "name": "muzik/gizem",
+    "volume": 0.16
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "b0",
+     "emotion": "mutlu"
+    },
+    "nalan": {
+     "mark": "n0",
+     "emotion": "mutlu"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "tv": "acik",
+     "cast": {
+      "berkay_hasta": {
+       "mark": "b",
+       "emotion": "notr"
+      },
+      "nalan": {
+       "mark": "n",
+       "emotion": "notr"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "spiker",
+     "offscreen": true,
+     "label": "TV",
+     "emotion": "notr",
+     "tags": "[news anchor, formal]",
+     "fx": "tv",
+     "text": "Taner Holding'de bugün tarihi bir imza atıldı.",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli",
+       "bak": {
+        "x": 0.6,
+        "y": -0.9
+       }
+      },
+      "nalan": {
+       "bak": {
+        "x": -0.5,
+        "y": -0.9
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "saskin",
+       "bak": {
+        "x": 0.6,
+        "y": -0.9
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "spiker",
+     "offscreen": true,
+     "label": "TV",
+     "emotion": "notr",
+     "tags": "[news anchor, formal]",
+     "fx": "tv",
+     "text": "Yönetim Kurulu Başkanı Berkay Taner, anlaşmayı bu sabah imzaladı.",
+     "ekle": {
+      "kind": "tv_haber"
+     },
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "fisilti",
+     "tags": "[stunned, whispering]",
+     "text": "Bu… benim.",
+     "shot": {
+      "type": "cok_yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "korkmus",
+     "tags": "[hurried, tense]",
+     "text": "Hadi, odana dönelim.",
+     "tv": "kapali",
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "korkmus",
+       "lookAt": "berkay_hasta",
+       "gesture": "isaret",
+       "bak": null
+      },
+      "berkay_hasta": {
+       "bak": {
+        "x": 0.6,
+        "y": -0.7
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "tv_kapali",
+     "dur": 3.0,
+     "sfx": [
+      {
+       "name": "efekt/cinlama",
+       "volume": 0.6,
+       "at": 0.2
+      }
+     ],
+     "fade": "cikis"
+    }
+   ]
+  }
+ ]
+}

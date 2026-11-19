@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -28,6 +28,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
+  ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1790, size: 1150 }, n0: { x: -600, y: 1790, size: 1100 }, b: { x: 360, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
   hastane_koridoru: { title: "Hastane koridoru", marks: { sol: { x: 320, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 780, y: 1780, size: 1250 } } },
@@ -91,9 +92,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv }) => {
   const frame = useCurrentFrame();
-  const props = { kus, saat, frame, sallanan, kaydir };
+  const props = { kus, saat, frame, sallanan, kaydir, tv };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -290,6 +291,42 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
         </g>
       );
     }
+    case "ortak_salon": {
+      const fr = props.frame ?? 0;
+      const on = props.tv !== "kapali";
+      return (
+        <g>
+          <rect width={W} height={1500} fill="#c9d1c4" />
+          <rect y={1060} width={W} height={440} fill="#8a9a8c" />
+          <rect y={1050} width={W} height={12} fill="#5c6a60" />
+          <rect width={W} height={190} fill="#b8c0b4" />
+          {[200, 880].map((lx) => <rect key={lx} x={lx - 110} y={140} width={220} height={26} rx={6} fill="#f6fbf2" />)}
+          <TileFloor c="#a9b3aa" line="#949e96" />
+          {/* duvara monteli televizyon (kafesli koruma) */}
+          <rect x={300} y={500} width={480} height={300} rx={16} fill="#121416" stroke={O} strokeWidth={8} />
+          <rect x={322} y={520} width={436} height={260} fill={on ? "#2a4a6a" : "#0a0c0e"} />
+          {on ? (
+            <g>
+              <rect x={322} y={520} width={436} height={260} fill="#3a5a7a" opacity={0.6 + 0.2 * Math.sin(fr / 7)} />
+              <rect x={322} y={720} width={436} height={40} fill="#b8202a" />
+              <rect x={340} y={732} width={220} height={16} rx={4} fill="#f2f2f2" />
+            </g>
+          ) : (
+            <path d="M 340 540 L 420 540 L 360 640 Z" fill="#ffffff" opacity={0.08} />
+          )}
+          {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M ${300 + i * 96} 500 V 800`} stroke="#6a7276" strokeWidth={4} opacity={0.7} />)}
+          <rect x={530} y={800} width={20} height={60} fill="#4a5054" />
+          {/* boş plastik sandalyeler */}
+          {[[120, 1380], [300, 1400], [820, 1390], [980, 1370]].map(([cx, cy], i) => (
+            <g key={i}>
+              <rect x={cx - 70} y={cy - 150} width={140} height={110} rx={18} fill="#6a8aa0" stroke={O} strokeWidth={5} />
+              <rect x={cx - 80} y={cy - 40} width={160} height={30} rx={10} fill="#5a7a90" stroke={O} strokeWidth={5} />
+              <path d={`M ${cx - 66} ${cy - 10} L ${cx - 74} ${cy + 110} M ${cx + 66} ${cy - 10} L ${cx + 74} ${cy + 110}`} stroke="#3a4448" strokeWidth={8} />
+            </g>
+          ))}
+        </g>
+      );
+    }
     case "hastane_koridoru":
       return (
         <g>
@@ -475,7 +512,9 @@ export const SetLayer: React.FC<{
   sallanan?: number;
   /** takip çekiminde mekânın kayması (px) */
   kaydir?: number;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir }) => {
+  /** ortak salon televizyonu: "acik" | "kapali" */
+  tv?: string;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -495,7 +534,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />

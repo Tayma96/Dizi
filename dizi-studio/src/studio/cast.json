@@ -670,5 +670,30 @@
    "shoes": "#e8e8e8"
   },
   "blush": false
+ },
+ {
+  "id": "spiker",
+  "name": "Spiker",
+  "role": "Televizyon haber spikeri (yalnız ses)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "slick",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2b2f3a",
+   "topShade": "#1d2029",
+   "bottom": "#2b2f3a",
+   "shoes": "#111"
+  },
+  "blush": false
  }
 ]

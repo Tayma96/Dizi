@@ -52,5 +52,14 @@
    "similarity_boost": 0.8,
    "speed": 1.0
   }
+ },
+ "spiker": {
+  "voice_id": "Q2IX97JeHBY3vNGzgM5s",
+  "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
+  "ad": "Cavit (TV sunucu)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
  }
 }

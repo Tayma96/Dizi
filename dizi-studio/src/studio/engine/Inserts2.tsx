@@ -1,6 +1,8 @@
 /* İmza B1 parça 3-6 ekleme (insert) yakın planları. Hepsi 1080x1920 tam ekran SVG, kendi çizimimiz. */
 import React from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
+import { Character } from "../rig/Character";
+import { castById } from "../cast";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -428,12 +430,63 @@ const KapiYuz: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/** Televizyon haberi: takım elbiseli Berkay imza atıyor (CANLI yazısı yok: canlı mı kayıt mı belirsiz) */
+const TvHaber: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.06], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0c0e10" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})` }}>
+        <AbsoluteFill style={{ background: "linear-gradient(180deg,#2c4a6c 0%,#18283a 100%)" }} />
+        {/* stüdyo/toplantı odası arka planı */}
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
+          {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={60 + i * 200} y={300} width={150} height={700} fill="#3a5a80" opacity={0.5} />)}
+          <rect x={0} y={1180} width={1080} height={240} fill="#4a3426" />
+          <rect x={0} y={1170} width={1080} height={20} fill="#6a4a36" />
+        </svg>
+        <div style={{ position: "absolute", left: 540 - 0.2 * 1250, top: 380 }}>
+          <Character look={castById("berkay")} size={1250} pose={{ emotion: "mutlu", gesture: "tutuyor", prop: "kalem", seed: 3 }} />
+        </div>
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
+          <path d="M 300 1220 L 760 1200 L 790 1300 L 280 1320 Z" fill="#f4f0e4" stroke={O} strokeWidth={6} />
+          <path d="M 360 1290 q 30 -40 60 0 q 30 30 60 -10" stroke="#10204a" strokeWidth={6} fill="none" />
+        </svg>
+        {/* haber alt bandı */}
+        <div style={{ position: "absolute", left: 0, right: 0, top: 1460, height: 170, background: "#b8202a", display: "flex", flexDirection: "column", justifyContent: "center", paddingLeft: 50 }}>
+          <div style={{ fontFamily: "sans-serif", fontWeight: 900, fontSize: 54, color: "#fff", letterSpacing: 1 }}>TANER HOLDİNG'DE TARİHİ İMZA</div>
+          <div style={{ fontFamily: "sans-serif", fontWeight: 700, fontSize: 36, color: "#ffe0e0", marginTop: 8 }}>Yönetim Kurulu Başkanı Berkay Taner</div>
+        </div>
+        {/* TV tarama çizgileri */}
+        <AbsoluteFill style={{ background: "repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 2px, transparent 2px, transparent 5px)" }} />
+      </AbsoluteFill>
+      <AbsoluteFill style={{ border: "40px solid #121416", boxSizing: "border-box" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Kapanmış televizyon: siyah camda pijamalı Berkay'ın soluk yansıması */
+const TvKapali: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.1], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#060708" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})`, opacity: 0.32, filter: "blur(1.5px) grayscale(0.6)" }}>
+        <div style={{ position: "absolute", left: 540 - 0.2 * 1500, top: 260 }}>
+          <Character look={castById("berkay_hasta")} size={1500} pose={{ emotion: "sok", seed: 5 }} />
+        </div>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "linear-gradient(135deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 40%)" }} />
+      <AbsoluteFill style={{ border: "40px solid #121416", boxSizing: "border-box" }} />
+    </AbsoluteFill>
+  );
+};
+
 export type Insert2Kind =
   | "hap_avuc" | "kamera_led" | "hap_zulasi" | "icme" | "parmak"
   | "flas_plaza" | "flas_kalem" | "flas_el" | "flas_imza"
-  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah" | "kapi_yuz";
+  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah" | "kapi_yuz" | "tv_haber" | "tv_kapali";
 
-export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah", "kapi_yuz"];
+export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah", "kapi_yuz", "tv_haber", "tv_kapali"];
 
 export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -455,5 +508,7 @@ export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[]
     case "centik": return <Centik dur={dur} />;
     case "siyah": return <AbsoluteFill style={{ backgroundColor: "#000" }} />;
     case "kapi_yuz": return <KapiYuz dur={dur} />;
+    case "tv_haber": return <TvHaber dur={dur} />;
+    case "tv_kapali": return <TvKapali dur={dur} />;
   }
 };

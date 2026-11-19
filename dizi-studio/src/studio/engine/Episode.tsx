@@ -165,6 +165,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     );
   }
 
+  let tvNow: string | undefined;
+  for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.tv) tvNow = ts.beats[i].beat.tv;
   let saatNow = scene.saat;
   for (let i = 0; i <= bi; i++) if (ts.beats[i].beat.saat) saatNow = ts.beats[i].beat.saat;
 
@@ -205,6 +207,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const p = pl[id];
     if (!st || !p) return undefined;
     if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
+    if (st.bak) return { yaw: st.bak.x * 0.35, lookX: st.bak.x };
     // yürürken önüne bakar (birbirine bakarak yürümezler); ancak açıkça bakılan kişi varsa ona döner
     if (st.yuru && !st.lookAt) return { yaw: 0.3, lookX: 0.55 };
     // dizilerde kameraya bakılmaz: belirtilen kişiye, yoksa konuşana, konuşan da karşısındakine bakar
@@ -262,6 +265,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             tilt: ang !== undefined ? -0.72 * ang : undefined,
             yaw,
             lookX,
+            lookY: st.bak ? st.bak.y : undefined,
             tears: st.tears,
             pale: st.pale,
             sweat: st.sweat,
@@ -292,7 +296,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}

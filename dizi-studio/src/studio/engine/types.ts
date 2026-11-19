@@ -35,6 +35,8 @@ export type CharState = {
   emotion?: Emotion;
   gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
+  /** bakış yönü elle: x -1..1 (sol/sağ), y -1..1 (yukarı/aşağı); ör. duvardaki televizyona bakmak */
+  bak?: { x: number; y: number };
   /** yerinde yürü (takip çekimi; mekân kayar) */
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
@@ -107,6 +109,8 @@ export type BeatCommon = {
   saat?: string;
   /** bu vuruşta sarsılan kapı numarası (koğuş koridoru) */
   sarsil?: number;
+  /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
+  tv?: "acik" | "kapali";
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */
   ekle?: { kind: string; text?: string[] };
 };
