@@ -83,6 +83,13 @@
   "loop": false,
   "desc": "Dramatik darbe/sting (gerçek ortaya çıkınca)."
  },
+ "efekt/ekmek_dusme": {
+  "file": "ses/efekt/ekmek_dusme.mp3",
+  "category": "efekt",
+  "duration": 0.8,
+  "loop": false,
+  "desc": "Raftan poşetli ekmek düşer."
+ },
  "efekt/esya_dusme": {
   "file": "ses/efekt/esya_dusme.mp3",
   "category": "efekt",
@@ -146,6 +153,13 @@
   "loop": false,
   "desc": "İç çekme: derin nefes alıp bırakma (erkek)."
  },
+ "efekt/islak_adim": {
+  "file": "ses/efekt/islak_adim.mp3",
+  "category": "efekt",
+  "duration": 3.2,
+  "loop": false,
+  "desc": "Islak ayak sesleri (görünmeyen biri yürüyor)."
+ },
  "efekt/kabin_ding": {
   "file": "ses/efekt/kabin_ding.mp3",
   "category": "efekt",
@@ -188,6 +202,13 @@
   "loop": false,
   "desc": "Kapı çarpma (BigSoundBank #0103) — gerçek kayıt, CC0"
  },
+ "efekt/kapi_dingdong": {
+  "file": "ses/efekt/kapi_dingdong.mp3",
+  "category": "efekt",
+  "duration": 1.9,
+  "loop": false,
+  "desc": "Market kapısı ding-dong."
+ },
  "efekt/kapi_gicirti": {
   "file": "ses/efekt/kapi_gicirti.mp3",
   "category": "efekt",
@@ -222,6 +243,13 @@
   "duration": 4,
   "loop": false,
   "desc": "Kapı zili (BigSoundBank #0159) — gerçek kayıt, CC0"
+ },
+ "efekt/kasa_cekmece": {
+  "file": "ses/efekt/kasa_cekmece.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "Yazar kasa çekmecesi açılır (çın + tok)."
  },
  "efekt/kat_bip": {
   "file": "ses/efekt/kat_bip.mp3",
@@ -285,6 +313,13 @@
   "duration": 0.9,
   "loop": false,
   "desc": "Şaşkınlıkla nefes çekme (gasp)."
+ },
+ "efekt/otomatik_kapi": {
+  "file": "ses/efekt/otomatik_kapi.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Otomatik sürgülü kapı açılma/kapanma."
  },
  "efekt/parazit": {
   "file": "ses/efekt/parazit.mp3",
@@ -523,6 +558,13 @@
   "duration": 38.5,
   "loop": true,
   "desc": "Gece lobisi: floresan uğultusu, klima, dışarıda yağmur."
+ },
+ "ortam/market_gece": {
+  "file": "ses/ortam/market_gece.mp3",
+  "category": "ortam",
+  "duration": 38.5,
+  "loop": true,
+  "desc": "Gece marketi: buzdolabı uğultusu, floresan, dışarıda yağmur."
  },
  "ortam/oda_tonu": {
   "file": "ses/ortam/oda_tonu.mp3",

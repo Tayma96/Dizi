@@ -1172,5 +1172,85 @@
    "shoes": "#0e0e10"
   },
   "blush": false
+ },
+ {
+  "id": "ece724",
+  "name": "Ece",
+  "role": "7/24: gece vardiyasındaki üniversiteli, 21",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "ponytail",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "apron",
+   "top": "#2e3a48",
+   "topShade": "#222c38",
+   "bottom": "#3a4a5a",
+   "shoes": "#e8e8e8",
+   "accent": "#e8701a"
+  },
+  "isimlik": "ECE",
+  "blush": true
+ },
+ {
+  "id": "sabri",
+  "name": "Sabri",
+  "role": "7/24: dükkân sahibi, 60",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#d8a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "balding",
+   "color": "#9a948c",
+   "shade": "#7a746c"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#6a6a66",
+   "topShade": "#525250",
+   "bottom": "#3a3530",
+   "shoes": "#2a1a10",
+   "accent": "#d8d0c0"
+  },
+  "blush": false
+ },
+ {
+  "id": "sarhos724",
+  "name": "Müşteri",
+  "role": "7/24: gece yarısı sarhoş müşteri",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#e8b490",
+  "skinShade": "#d09a74",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "coat",
+   "top": "#4a3a2a",
+   "topShade": "#3a2c20",
+   "bottom": "#2a2a30",
+   "shoes": "#1a1a1a"
+  },
+  "blush": true
  }
 ]

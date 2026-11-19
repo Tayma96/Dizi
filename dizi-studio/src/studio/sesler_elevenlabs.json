@@ -26,6 +26,15 @@
    "speed": 1.0
   }
  },
+ "ece724": {
+  "voice_id": "o9DOmAyPjfFu8AfoFAnM",
+  "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
+  "ad": "Nazlı Yeni",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "emir": {
   "voice_id": "vwmWyMlmlJtiiXeCVRKn",
   "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
@@ -89,6 +98,33 @@
    "speed": 1.0
   }
  },
+ "riza98": {
+  "voice_id": "9IVUOktoy2pc7WdsXQgd",
+  "sahip": "bfb1031b470e9c806e7dd6cf5d6733f467ddc616ed59af772d13e2b7f763057d",
+  "ad": "Ahmet Akyalcin",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "sabri": {
+  "voice_id": "MuOq11XzQTthwLhmGZ2V",
+  "sahip": "9e46ff55f2d9efaf1ab7b5acbc5f3415a7280d5a01ce1b2f69c05d327fdf36d4",
+  "ad": "Nihat",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "sarhos724": {
+  "voice_id": "Dzgub2SzfGvifooR4JMV",
+  "sahip": "f0d1207528476696cf00d74c0cf6c00aea0c404cca67943deb3ddc8dd37973a6",
+  "ad": "Furkan",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "selim": {
   "voice_id": "j82ax9yhzfYwq9lDvRWL",
   "sahip": "50fa846ac7597ddc729c33b64e3bec6347727ebc8131f83546a724b817bc2b5b",
@@ -102,15 +138,6 @@
   "voice_id": "Q2IX97JeHBY3vNGzgM5s",
   "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
   "ad": "Cavit (TV sunucu)",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "riza98": {
-  "voice_id": "9IVUOktoy2pc7WdsXQgd",
-  "sahip": "bfb1031b470e9c806e7dd6cf5d6733f467ddc616ed59af772d13e2b7f763057d",
-  "ad": "Ahmet Akyalcin",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0
