@@ -20,24 +20,24 @@ export type FaceParams = {
 };
 
 export const EMOTION_FACE: Record<Emotion, FaceParams> = {
-  aci: { browInner: 13, browOuter: -4, browLift: 4, eyeOpen: 0.5, eyeSmile: false, pupil: 0.9, mouth: "tight", blush: 0.1 },
+  aci: { browInner: 13, browOuter: -4, browLift: 4, eyeOpen: 0.42, eyeSmile: false, pupil: 0.9, mouth: "tight", blush: 0.1 },
   notr: { browInner: 0, browOuter: 0, browLift: 0, eyeOpen: 1, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.4 },
   mutlu: { browInner: 3, browOuter: 3, browLift: -3, eyeOpen: 0.95, eyeSmile: false, pupil: 1.05, mouth: "smile", blush: 0.6 },
   gulen: { browInner: 5, browOuter: 4, browLift: -6, eyeOpen: 1, eyeSmile: true, pupil: 1, mouth: "grin", blush: 0.8 },
-  uzgun: { browInner: 12, browOuter: -6, browLift: -2, eyeOpen: 0.78, eyeSmile: false, pupil: 1, mouth: "frown", blush: 0.5 },
+  uzgun: { browInner: 12, browOuter: -6, browLift: -2, eyeOpen: 0.64, eyeSmile: false, pupil: 1, mouth: "frown", blush: 0.5 },
   agliyor: { browInner: 16, browOuter: -8, browLift: -4, eyeOpen: 0.6, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.9 },
-  ofkeli: { browInner: -14, browOuter: 6, browLift: 6, eyeOpen: 0.85, eyeSmile: false, pupil: 0.85, mouth: "tight", blush: 0.7 },
-  korkmus: { browInner: 14, browOuter: 4, browLift: -10, eyeOpen: 1.25, eyeSmile: false, pupil: 0.65, mouth: "open", blush: 0.1 },
-  saskin: { browInner: 10, browOuter: 10, browLift: -14, eyeOpen: 1.25, eyeSmile: false, pupil: 0.9, mouth: "o", blush: 0.4 },
-  sok: { browInner: 12, browOuter: 12, browLift: -18, eyeOpen: 1.35, eyeSmile: false, pupil: 0.55, mouth: "open", blush: 0 },
-  supheli: { browInner: -6, browOuter: 4, browLift: 2, eyeOpen: 0.62, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0.3 },
+  ofkeli: { browInner: -14, browOuter: 6, browLift: 6, eyeOpen: 0.58, eyeSmile: false, pupil: 0.85, mouth: "tight", blush: 0.7 },
+  korkmus: { browInner: 14, browOuter: 4, browLift: -6, eyeOpen: 0.82, eyeSmile: false, pupil: 0.65, mouth: "tight", blush: 0.1 },
+  saskin: { browInner: 10, browOuter: 10, browLift: -10, eyeOpen: 1.0, eyeSmile: false, pupil: 0.9, mouth: "line", blush: 0.4 },
+  sok: { browInner: 12, browOuter: 12, browLift: -12, eyeOpen: 1.05, eyeSmile: false, pupil: 0.55, mouth: "flat", blush: 0 },
+  supheli: { browInner: -6, browOuter: 4, browLift: 2, eyeOpen: 0.5, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0.3 },
   utangac: { browInner: 6, browOuter: 0, browLift: -2, eyeOpen: 0.8, eyeSmile: false, pupil: 1.1, mouth: "smile", blush: 1.3 },
   alayci: { browInner: -2, browOuter: 6, browLift: 0, eyeOpen: 0.72, eyeSmile: false, pupil: 1, mouth: "smirk", blush: 0.3 },
-  dusunceli: { browInner: 6, browOuter: -2, browLift: -2, eyeOpen: 0.85, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0.3 },
+  dusunceli: { browInner: 6, browOuter: -2, browLift: -2, eyeOpen: 0.7, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0.3 },
   yorgun: { browInner: 4, browOuter: -4, browLift: 2, eyeOpen: 0.55, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.2 },
-  soguk: { browInner: -4, browOuter: 0, browLift: 2, eyeOpen: 0.75, eyeSmile: false, pupil: 0.9, mouth: "flat", blush: 0.1 },
-  kararli: { browInner: -8, browOuter: 2, browLift: 3, eyeOpen: 0.9, eyeSmile: false, pupil: 1, mouth: "tight", blush: 0.4 },
-  igrenmis: { browInner: -8, browOuter: -2, browLift: 4, eyeOpen: 0.65, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.3 },
+  soguk: { browInner: -4, browOuter: 0, browLift: 2, eyeOpen: 0.6, eyeSmile: false, pupil: 0.9, mouth: "flat", blush: 0.1 },
+  kararli: { browInner: -8, browOuter: 2, browLift: 3, eyeOpen: 0.68, eyeSmile: false, pupil: 1, mouth: "tight", blush: 0.4 },
+  igrenmis: { browInner: -8, browOuter: -2, browLift: 4, eyeOpen: 0.55, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.3 },
 };
 
 export const Eye: React.FC<{
@@ -66,7 +66,9 @@ export const Eye: React.FC<{
     return <path d={d} fill="none" stroke={OUT} strokeWidth={5} strokeLinecap="round" />;
   }
   const top = cy - h * 1.35 * Math.min(1.35, open);
-  const bot = cy + h * 1.1 * Math.min(1.2, 0.6 + open * 0.4);
+  // gözler kısıldıkça alt kapak da yükselir (yanağın gözü itmesi); duyguyu ağız yerine göz taşır
+  const bot = cy + h * 1.1 * Math.min(1.2, 0.35 + open * 0.65);
+  const squint = open < 0.85 ? Math.min(1, (0.85 - open) / 0.4) : 0;
   const shape = `M ${cx - w * s} ${cy} Q ${cx - w * 0.3 * s} ${top} ${cx + w * s} ${cy - 2} Q ${cx + w * 0.2 * s} ${bot} ${cx - w * s} ${cy} Z`;
   const ix = cx + lookX * 7 * squeeze;
   const iy = cy + lookY * 5;
@@ -84,6 +86,9 @@ export const Eye: React.FC<{
         <circle cx={ix + 4} cy={iy - 4} r={3.2} fill="#fff" />
         <circle cx={ix - 4} cy={iy + 4} r={1.4} fill="#fff" opacity={0.8} />
       </g>
+      {squint > 0 ? (
+        <path d={`M ${cx - w * 0.8 * s} ${cy + 2} Q ${cx} ${bot + 3} ${cx + w * 0.85 * s} ${cy}`} fill="none" stroke={OUT} strokeWidth={2.6} strokeOpacity={0.35 + squint * 0.4} strokeLinecap="round" />
+      ) : null}
       {/* upper lid line */}
       <path
         d={`M ${cx - (w + 2) * s} ${cy + 1} Q ${cx - w * 0.3 * s} ${top - 1} ${cx + (w + 2) * s} ${cy - 2}`}
@@ -106,7 +111,7 @@ export const Eye: React.FC<{
           d={`M ${cx - w * 0.7} ${cy + h * 1.15} Q ${cx} ${cy + h * 1.6} ${cx + w * 0.7} ${cy + h * 1.0}`}
           fill="none"
           stroke={OUT}
-          strokeOpacity={old ? 0.35 : 0.26}
+          strokeOpacity={old ? 0.35 : 0.18}
           strokeWidth={old ? 2 : 2.2}
           strokeLinecap="round"
         />
