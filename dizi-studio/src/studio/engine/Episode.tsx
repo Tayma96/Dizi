@@ -121,6 +121,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       x = interpolate(bf, [0, walkDur], [prevPlaced[id].x, p.x], clamp);
       walking = bf < walkDur;
     }
+    if (st.yuru) walking = true;
     walkX[id] = { x, walking };
     placed[id] = { ...p, x, headX: x };
   }
@@ -204,6 +205,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const p = pl[id];
     if (!st || !p) return undefined;
     if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
+    // yürürken önüne bakar (birbirine bakarak yürümezler); ancak açıkça bakılan kişi varsa ona döner
+    if (st.yuru && !st.lookAt) return { yaw: 0.3, lookX: 0.55 };
     // dizilerde kameraya bakılmaz: belirtilen kişiye, yoksa konuşana, konuşan da karşısındakine bakar
     const others = Object.keys(pl).filter((k) => k !== id && !b.cast[k]?.hidden);
     const target = st.lookAt && pl[st.lookAt] ? st.lookAt : b.beat.type === "line" && b.beat.who !== id && pl[b.beat.who] ? b.beat.who : others[0];
@@ -227,7 +230,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     // Jest ve baş dönüşü vuruşlar arasında yumuşak geçer (kol bir karede pozdan poza atlamaz)
     const pst = prev?.cast[id];
     // yürürken kollar önceki pozda kalır (kol bacaktan önce hareket etmez); yürüyüş bitince yumuşak geçiş
-    const walkingNow = walkX[id]?.walking;
+    const walkingNow = walkX[id]?.walking && !st.yuru;
     const walkEnd = st.enter || (prevPlaced[id] && prevPlaced[id].x !== p.x) ? Math.min(tb.dur, Math.round(1.3 * fps)) : 0;
     const gk = walkingNow ? 0 : interpolate(bf, [walkEnd, walkEnd + 10], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     const gCur = GESTURES[(st.gesture as Gesture) ?? "rest"] ?? GESTURES.rest;
@@ -289,7 +292,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}

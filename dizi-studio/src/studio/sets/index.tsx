@@ -27,7 +27,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   ofis: { title: "Ofis", marks: { masa: { x: 560, y: 1640, size: 1150, sit: true }, sol: { x: 260, y: 1780, size: 1250 }, sag: { x: 840, y: 1780, size: 1250 } } },
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
-  kogus_koridoru: { title: "Koğuş koridoru", marks: { b0: { x: -260, y: 1780, size: 1150 }, n0: { x: -560, y: 1780, size: 1100 }, b1: { x: 160, y: 1780, size: 1150 }, n1: { x: 440, y: 1780, size: 1100 }, b2: { x: 470, y: 1780, size: 1150 }, n2: { x: 750, y: 1780, size: 1100 }, b3: { x: 700, y: 1780, size: 1150 }, n3: { x: 980, y: 1780, size: 1100 }, b4: { x: 1350, y: 1780, size: 1150 }, n4: { x: 1630, y: 1780, size: 1100 } } },
+  kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
   hastane_koridoru: { title: "Hastane koridoru", marks: { sol: { x: 320, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 780, y: 1780, size: 1250 } } },
@@ -91,9 +91,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir }) => {
   const frame = useCurrentFrame();
-  const props = { kus, saat, frame, sallanan };
+  const props = { kus, saat, frame, sallanan, kaydir };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -252,23 +252,40 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       );
     }
     case "kogus_koridoru": {
+      // uzun koridor: kamera yürüyenleri takip eder, koridor sağdan sola akar (props.kaydir = dünya kayması px)
       const fr = props.frame ?? 0;
+      const off = props.kaydir ?? 0;
+      const doors: [number, string][] = [[300, "11"], [1196, "12"], [2756, "13"], [3796, "14"], [4800, "15"], [5700, "16"]];
+      const lights = new Array(20).fill(0).map((_, i) => i * 380 - 200);
+      const extras: [number, "bank" | "sondurucu" | "pano"][] = [[1900, "bank"], [2260, "sondurucu"], [3300, "pano"], [4350, "bank"]];
       return (
         <g>
           <rect width={W} height={1500} fill="#c8d0c6" />
           <rect y={1040} width={W} height={460} fill="#7f9087" />
           <rect y={1030} width={W} height={12} fill="#55645c" />
-          <path d="M 0 0 H 1080 V 200 H 0 Z" fill="#b6beb4" />
-          {[160, 540, 920].map((lx, i) => (
-            <g key={i}>
-              <rect x={lx - 110} y={150} width={220} height={26} rx={6} fill="#f6fbf2" opacity={i === 1 && fr % 97 < 3 ? 0.4 : 1} />
-              <path d={`M ${lx - 140} 176 L ${lx + 140} 176 L ${lx + 260} 1500 L ${lx - 260} 1500 Z`} fill="#fbfff0" opacity={0.07} />
-            </g>
-          ))}
+          <rect width={W} height={200} fill="#b6beb4" />
           <TileFloor c="#a8b2aa" line="#949e96" />
-          <WardDoor x={40} y={860} s={1} no="12" shake={props.sallanan === 1 ? Math.sin(fr * 2.4) * 5 : 0} />
-          <WardDoor x={400} y={860} s={1} no="13" />
-          <WardDoor x={760} y={860} s={1} no="14" />
+          <g transform={`translate(${-off} 0)`}>
+            {lights.map((lx, i) => (
+              <g key={i}>
+                <rect x={lx - 110} y={150} width={220} height={26} rx={6} fill="#f6fbf2" opacity={i === 4 && fr % 97 < 3 ? 0.4 : 1} />
+                <path d={`M ${lx - 140} 176 L ${lx + 140} 176 L ${lx + 260} 1500 L ${lx - 260} 1500 Z`} fill="#fbfff0" opacity={0.06} />
+              </g>
+            ))}
+            {new Array(30).fill(0).map((_, i) => <path key={`f${i}`} d={`M ${i * 260 - 200} 1500 L ${i * 260 - 380} 1920`} stroke="#949e96" strokeWidth={4} />)}
+            {extras.map(([ex, k], i) =>
+              k === "bank" ? (
+                <g key={`e${i}`}><rect x={ex - 150} y={1300} width={300} height={40} rx={8} fill="#7a5a44" stroke={O} strokeWidth={5} /><rect x={ex - 130} y={1340} width={16} height={150} fill="#4a4e50" /><rect x={ex + 114} y={1340} width={16} height={150} fill="#4a4e50" /></g>
+              ) : k === "sondurucu" ? (
+                <g key={`e${i}`}><rect x={ex - 30} y={1180} width={60} height={150} rx={20} fill="#c43a2a" stroke={O} strokeWidth={5} /><rect x={ex - 14} y={1150} width={28} height={36} fill="#2a2a2a" /></g>
+              ) : (
+                <g key={`e${i}`}><rect x={ex - 120} y={620} width={240} height={300} fill="#e8ecef" stroke={O} strokeWidth={5} />{[0, 1, 2, 3].map((r) => <rect key={r} x={ex - 90} y={660 + r * 56} width={180 - r * 30} height={18} fill="#b8c0c4" />)}</g>
+              ),
+            )}
+            {doors.map(([dx, no]) => (
+              <WardDoor key={no} x={dx - 140} y={860} s={1} no={no} shake={props.sallanan === Number(no) ? Math.sin(fr * 2.4) * 6 : 0} />
+            ))}
+          </g>
           <path d="M 0 1480 H 1080" stroke="#5a665e" strokeWidth={6} />
         </g>
       );
@@ -456,7 +473,9 @@ export const SetLayer: React.FC<{
   saat?: string;
   /** sarsılan kapı (koğuş koridoru: 1, 2, 3) */
   sallanan?: number;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan }) => {
+  /** takip çekiminde mekânın kayması (px) */
+  kaydir?: number;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -476,7 +495,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />

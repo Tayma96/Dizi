@@ -35,6 +35,8 @@ export type CharState = {
   emotion?: Emotion;
   gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
+  /** yerinde yürü (takip çekimi; mekân kayar) */
+  yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
   body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta";
   /** bakılan karakter id ya da "kamera" */
@@ -121,6 +123,8 @@ export type Scene = {
   look?: "normal" | "flashback" | "soguk" | "sicak" | "tekinsiz";
   /** hücre saati (ör. "07:14"); vuruşta `saat` ile değişebilir */
   saat?: string;
+  /** takip çekimi: mekân bu hızla (px/sn) sola akar, karakterler yerinde yürür */
+  kaydirma?: number;
   /** Bilinçli ışık tasarımı (anahtar/dolgu/arka) */
   isik?: LightDesign;
   cast: Record<string, CharState>;

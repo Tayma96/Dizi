@@ -108,8 +108,8 @@
    "set": "kogus_koridoru",
    "time": "gunduz",
    "look": "soguk",
-   "title": "Parça 4b — Koğuş koridoru",
-   "transition": "kesme",
+   "title": "Parça 4b — Koğuş koridoru (takip)",
+   "kaydirma": 260,
    "ambience": {
     "name": "ortam/hastane",
     "volume": 0.35
@@ -120,13 +120,15 @@
    },
    "cast": {
     "berkay_hasta": {
-     "mark": "b0",
+     "mark": "b",
+     "yuru": true,
      "emotion": "supheli",
      "gesture": "rest",
      "prop": "none"
     },
     "nalan": {
-     "mark": "n0",
+     "mark": "n",
+     "yuru": true,
      "emotion": "notr"
     }
    },
@@ -138,19 +140,10 @@
       "type": "genis",
       "move": "sabit"
      },
-     "cast": {
-      "berkay_hasta": {
-       "mark": "b1"
-      },
-      "nalan": {
-       "mark": "n1",
-       "lookAt": "berkay_hasta"
-      }
-     },
      "sfx": [
       {
        "name": "efekt/ayak_sesleri2",
-       "volume": 0.45,
+       "volume": 0.4,
        "at": 0.0
       }
      ]
@@ -164,17 +157,19 @@
      "tags": "[panicked, screaming]",
      "fx": "kapi_arkasi_hafif",
      "text": "Çıkarın lan beni! Geliyorlar! Öldürecekler hepimizi!",
-     "sarsil": 1,
+     "sarsil": 12,
      "shot": {
-      "type": "iki",
-      "on": "berkay_hasta",
-      "with": "nalan",
+      "type": "orta",
+      "kadraj": {
+       "cx": 530,
+       "cy": 1200,
+       "z": 1.3
+      },
       "move": "sabit"
      },
      "cast": {
       "berkay_hasta": {
-       "emotion": "korkmus",
-       "lookAt": null
+       "emotion": "korkmus"
       }
      },
      "sfx": [
@@ -192,26 +187,16 @@
     },
     {
      "type": "action",
-     "dur": 1.7,
+     "dur": 1.9,
      "shot": {
       "type": "genis",
       "move": "sabit"
      },
      "cast": {
       "berkay_hasta": {
-       "mark": "b2"
-      },
-      "nalan": {
-       "mark": "n2"
+       "emotion": "supheli"
       }
-     },
-     "sfx": [
-      {
-       "name": "efekt/ayak_sesleri2",
-       "volume": 0.4,
-       "at": 0.0
-      }
-     ]
+     }
     },
     {
      "type": "line",
@@ -225,28 +210,31 @@
       "kind": "kapi_yuz"
      },
      "shot": {
-      "type": "iki",
-      "on": "berkay_hasta",
-      "with": "nalan",
+      "type": "orta",
+      "kadraj": {
+       "cx": 530,
+       "cy": 1200,
+       "z": 1.3
+      },
       "move": "sabit"
      }
     },
     {
      "type": "action",
-     "dur": 2.0,
+     "dur": 1.6,
      "shot": {
       "type": "orta",
-      "on": "berkay_hasta",
+      "kadraj": {
+       "cx": 530,
+       "cy": 1200,
+       "z": 1.3
+      },
       "move": "sabit"
      },
      "cast": {
       "berkay_hasta": {
-       "mark": "b3",
        "gesture": "basTutma",
        "emotion": "saskin"
-      },
-      "nalan": {
-       "mark": "n3"
       }
      }
     },
@@ -256,20 +244,16 @@
      "shot": {
       "type": "orta",
       "kadraj": {
-       "cx": 900,
-       "cy": 1150,
-       "z": 1.55
+       "cx": 530,
+       "cy": 1200,
+       "z": 1.3
       },
       "move": "yaklas"
      },
      "cast": {
       "berkay_hasta": {
        "gesture": "rest",
-       "emotion": "saskin",
-       "lookAt": null
-      },
-      "nalan": {
-       "emotion": "notr"
+       "emotion": "saskin"
       }
      },
      "sfx": [
@@ -277,17 +261,6 @@
        "name": "gonderme/gonderme1_125x",
        "volume": 0.9,
        "at": 0.2
-      }
-     ],
-     "shots": [
-      {
-       "at": 3.4,
-       "shot": {
-        "type": "iki",
-        "on": "berkay_hasta",
-        "with": "nalan",
-        "move": "yaklas"
-       }
       }
      ]
     },
@@ -298,9 +271,12 @@
      "tags": "[amused, smiling]",
      "text": "Bu manyak da kendini böcek sanıyor.",
      "shot": {
-      "type": "iki",
-      "on": "berkay_hasta",
-      "with": "nalan",
+      "type": "orta",
+      "kadraj": {
+       "cx": 530,
+       "cy": 1200,
+       "z": 1.45
+      },
       "move": "yaklas"
      },
      "cast": {
@@ -316,7 +292,7 @@
     },
     {
      "type": "action",
-     "dur": 2.2,
+     "dur": 2.4,
      "shot": {
       "type": "genis",
       "move": "sabit"
@@ -324,12 +300,12 @@
      "fade": "cikis",
      "cast": {
       "berkay_hasta": {
-       "mark": "b4",
-       "emotion": "mutlu"
+       "emotion": "mutlu",
+       "lookAt": ""
       },
       "nalan": {
-       "mark": "n4",
-       "emotion": "mutlu"
+       "emotion": "mutlu",
+       "lookAt": ""
       }
      }
     }
