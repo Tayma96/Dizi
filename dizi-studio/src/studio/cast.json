@@ -618,5 +618,57 @@
    "shoes": "#f2f2f2"
   },
   "blush": false
+ },
+ {
+  "id": "hasta1",
+  "name": "Hasta (12)",
+  "role": "Koğuş hastası, panik",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "shortMale",
+   "color": "#3a2e26",
+   "shade": "#5a4a40"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta2",
+  "name": "Hasta (13)",
+  "role": "Koğuş hastası, kendini devlet büyüğü sanıyor",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#e2b08c",
+  "skinShade": "#c99070",
+  "iris": "#2a1e16",
+  "hair": {
+   "style": "balding",
+   "color": "#6a6660",
+   "shade": "#9a958f"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
  }
 ]

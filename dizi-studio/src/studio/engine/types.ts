@@ -103,6 +103,8 @@ export type BeatCommon = {
   shots?: { at: number; shot: Shot }[];
   /** hücre saati bu vuruştan itibaren */
   saat?: string;
+  /** bu vuruşta sarsılan kapı numarası (koğuş koridoru) */
+  sarsil?: number;
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */
   ekle?: { kind: string; text?: string[] };
 };

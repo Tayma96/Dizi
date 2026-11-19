@@ -17,6 +17,24 @@
    "speed": 1.0
   }
  },
+ "hasta1": {
+  "voice_id": "DUnzBkwtjRWXPr6wRbmL",
+  "sahip": "3c5f8ec5e254c2b5c218004fd69e258afd3afcd5a454c10b35558677050270c8",
+  "ad": "Mark (anxious)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "hasta2": {
+  "voice_id": "j9K9HnBcmgA6xNWqjlX0",
+  "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
+  "ad": "Emin (epic)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "nalan": {
   "voice_id": "uvU9jrgGLWNPeNA4NgNT",
   "sahip": "be807c36f8506e14d6d37254720b5163ab289dd44401a2532223584fc12eea7b",

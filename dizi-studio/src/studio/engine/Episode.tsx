@@ -289,7 +289,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}

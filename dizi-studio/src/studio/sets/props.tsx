@@ -627,3 +627,19 @@ export const VentGrille: React.FC<P> = ({ x, y, s }) => (
     {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={12} y={12 + i * 15} width={126} height={7} rx={3} fill="#2a302c" />)}
   </G>
 );
+
+/** Koğuş koridoru hücre kapısı: çelik, parmaklıklı gözetleme penceresi, numara plakası */
+export const WardDoor: React.FC<P & { no: string; shake?: number }> = ({ x, y, s, no, shake = 0 }) => (
+  <G x={x} y={y} s={s}>
+    <rect x={-16} y={-16} width={312} height={656} fill="#9aa6a2" stroke={O} strokeWidth={4} />
+    <g transform={`translate(${shake} 0)`}>
+      <rect x={0} y={0} width={280} height={640} fill="#7c8a8e" stroke={O} strokeWidth={sw} />
+      <rect x={60} y={90} width={160} height={150} rx={6} fill="#141a1c" stroke={O} strokeWidth={4} />
+      {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={72 + i * 34} y={90} width={10} height={150} fill="#4a5458" stroke={O} strokeWidth={2} />)}
+      <rect x={110} y={300} width={60} height={26} rx={4} fill="#d8dcd4" stroke={O} strokeWidth={3} />
+      <text x={140} y={320} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={20} fill="#1a1e20">{no}</text>
+      <rect x={232} y={330} width={20} height={56} rx={8} fill="#c4ccd0" stroke={O} strokeWidth={3} />
+      <rect x={10} y={560} width={260} height={8} fill="#6a767a" />
+    </g>
+  </G>
+);

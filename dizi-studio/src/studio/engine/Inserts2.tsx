@@ -403,12 +403,37 @@ const Centik: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/** Hücre kapısının parmaklıklı penceresinden bakan hasta (konuşurken ağzı oynar) */
+const KapiYuz: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const talk = f > 4 && f < dur - 10 ? Math.abs(Math.sin(f * 0.9)) * (0.5 + random(`ky${Math.floor(f / 3)}`) * 0.5) : 0;
+  return (
+    <Frame bg="#3a4448" dur={dur} vig={0.55} zoom={[1, 1.05]}>
+      <rect width={1080} height={1920} fill="#7c8a8e" />
+      <rect x={140} y={520} width={800} height={760} rx={20} fill="#0e1214" stroke={O} strokeWidth={14} />
+      <g>
+        <ellipse cx={540} cy={920} rx={230} ry={280} fill="#e2b08c" stroke={O} strokeWidth={10} />
+        <path d="M 320 780 Q 360 600 540 610 Q 720 600 760 780 Q 700 700 540 700 Q 380 700 320 780 Z" fill="#6a6660" stroke={O} strokeWidth={8} />
+        <path d="M 400 840 Q 450 810 500 836 M 580 836 Q 630 810 680 840" stroke={O} strokeWidth={12} fill="none" strokeLinecap="round" />
+        <ellipse cx={455} cy={890} rx={34} ry={26} fill="#fdfaf5" stroke={O} strokeWidth={6} />
+        <ellipse cx={625} cy={890} rx={34} ry={26} fill="#fdfaf5" stroke={O} strokeWidth={6} />
+        <circle cx={462} cy={892} r={13} fill="#2a1e16" />
+        <circle cx={618} cy={892} r={13} fill="#2a1e16" />
+        <path d="M 540 900 Q 520 980 552 1000" stroke={O} strokeWidth={8} fill="none" />
+        <path d="M 430 1080 Q 540 1150 650 1080 Q 640 1180 540 1190 Q 440 1180 430 1080 Z" fill="#5a4a44" opacity={0.25} />
+        <ellipse cx={540} cy={1085} rx={70} ry={10 + talk * 34} fill="#4a1a1c" stroke={O} strokeWidth={7} />
+      </g>
+      {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={200 + i * 160} y={520} width={46} height={760} fill="#4a5458" stroke={O} strokeWidth={6} />)}
+    </Frame>
+  );
+};
+
 export type Insert2Kind =
   | "hap_avuc" | "kamera_led" | "hap_zulasi" | "icme" | "parmak"
   | "flas_plaza" | "flas_kalem" | "flas_el" | "flas_imza"
-  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah";
+  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah" | "kapi_yuz";
 
-export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah"];
+export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah", "kapi_yuz"];
 
 export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -429,5 +454,6 @@ export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[]
     case "havalandirma": return <Havalandirma dur={dur} />;
     case "centik": return <Centik dur={dur} />;
     case "siyah": return <AbsoluteFill style={{ backgroundColor: "#000" }} />;
+    case "kapi_yuz": return <KapiYuz dur={dur} />;
   }
 };
