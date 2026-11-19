@@ -35,6 +35,7 @@ export type Outfit =
 
 export type Emotion =
   | "notr"
+  | "baygin"
   | "mutlu"
   | "gulen"
   | "uzgun"

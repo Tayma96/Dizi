@@ -27,7 +27,7 @@
      "body": "yat",
      "zemin": true,
      "eyesClosed": 1,
-     "emotion": "yorgun"
+     "emotion": "baygin"
     },
     "yerli_bilge": {
      "mark": "yb",
@@ -59,7 +59,7 @@
      "body": "yat",
      "zemin": true,
      "eyesClosed": 1,
-     "emotion": "notr",
+     "emotion": "baygin",
      "pale": 0.5
     },
     "hostes": {
@@ -67,7 +67,7 @@
      "body": "yat",
      "zemin": true,
      "eyesClosed": 1,
-     "emotion": "notr",
+     "emotion": "baygin",
      "pale": 0.5
     }
    },
@@ -329,7 +329,7 @@
      "body": "yat",
      "zemin": true,
      "eyesClosed": 1,
-     "emotion": "yorgun"
+     "emotion": "baygin"
     },
     "yerli_kadin": {
      "mark": "kadin",

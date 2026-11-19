@@ -287,7 +287,7 @@ const Kum: React.FC = () => (
 );
 
 /** Yatan karakter (baş solda), ekleme çekimi için */
-const Yatan: React.FC<{ id: string; size: number; cx: number; cy: number; eyes?: number; emotion?: string; rot?: number }> = ({ id, size, cx, cy, eyes = 1, emotion = "yorgun", rot = -90 }) => (
+const Yatan: React.FC<{ id: string; size: number; cx: number; cy: number; eyes?: number; emotion?: string; rot?: number }> = ({ id, size, cx, cy, eyes = 1, emotion = "baygin", rot = -90 }) => (
   <div style={{ position: "absolute", left: cx - size * 0.2, top: cy - size * 0.2, transformOrigin: `${size * 0.2}px ${size * 0.2}px`, transform: `rotate(${rot}deg)` }}>
     <Character look={castById(id)} size={size} pose={{ emotion: emotion as never, eyesClosed: eyes, seed: 2, breath: 0.3, golgesiz: true }} />
   </div>
@@ -322,7 +322,7 @@ const SopaDurtme: React.FC<{ dur: number; hedef: "murettebat" | "emir" }> = ({ d
     <AbsoluteFill style={{ overflow: "hidden" }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}><Kum /></svg>
       <div style={{ position: "absolute", left: 0, top: give }}>
-        <Yatan id={id} size={2600} cx={260} cy={760} emotion="yorgun" />
+        <Yatan id={id} size={2600} cx={260} cy={760} emotion="baygin" />
       </div>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         <g transform={`translate(${-tip * 0.75} ${tip * 0.65})`}>
@@ -351,7 +351,9 @@ const EmirGoz: React.FC<{ dur: number }> = ({ dur }) => {
 /** Kumda parmaklar kıpırdar */
 const EmirParmak: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const tw = (i: number) => (f > dur * 0.25 ? Math.max(0, Math.sin((f - dur * 0.25) / 4 + i * 0.8)) * 22 : 0);
+  // istemsiz kas kasılması: önce işaret parmağı bir an kıvrılır, biraz sonra orta parmak hafifçe seğirir
+  const spasm = (t0: number, amp: number) => { const k = f - t0; return k >= 0 && k < 5 ? amp * Math.sin((k / 5) * Math.PI) : 0; };
+  const tw = (i: number) => (i === 0 ? spasm(Math.round(dur * 0.35), 16) : i === 1 ? spasm(Math.round(dur * 0.62), 9) : 0);
   return (
     <AbsoluteFill>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
@@ -366,7 +368,6 @@ const EmirParmak: React.FC<{ dur: number }> = ({ dur }) => {
         <path d="M 520 1000 Q 560 940 640 950 L 650 980 Q 590 990 560 1030 Z" fill={SKIN} stroke={O} strokeWidth={7} />
         <path d="M 470 1080 q 30 10 60 0" stroke="#8a1a1a" strokeWidth={8} opacity={0.6} />
         {/* kumda iz */}
-        {f > dur * 0.3 ? <path d="M 800 1110 q 40 10 80 0 M 800 1150 q 40 10 70 2" stroke="#c4a870" strokeWidth={6} fill="none" /> : null}
       </svg>
       <Vig v={0.5} />
     </AbsoluteFill>
@@ -391,7 +392,7 @@ const Tasima: React.FC<{ dur: number }> = ({ dur }) => {
         <path d={`M ${x + 700} 1540 Q ${(x + 1080) / 2 + 300} 1530 1080 1536`} stroke="#c4a870" strokeWidth={12} strokeDasharray="34 18" fill="none" />
       </svg>
       <div style={{ position: "absolute", left: x + 40 - 0.2 * 900, top: 1150 - 0.2 * 900, transformOrigin: `${0.2 * 900}px ${0.2 * 900}px`, transform: "rotate(-80deg)" }}>
-        <Character look={castById("emir_kaza")} size={900} pose={{ emotion: "yorgun", eyesClosed: 1, seed: 2, golgesiz: true, armL: { upper: 168, fore: 0 }, armR: { upper: 168, fore: 0 } }} />
+        <Character look={castById("emir_kaza")} size={900} pose={{ emotion: "baygin", eyesClosed: 1, seed: 2, golgesiz: true, armL: { upper: 168, fore: 0 }, armR: { upper: 168, fore: 0 } }} />
       </div>
       <div style={{ position: "absolute", left: x - 120 - 0.2 * 920, top: 1560 - 920 }}>
         <Character look={castById("yerli_genc")} size={920} pose={{ body: "walk", emotion: "kararli", yaw: -0.85, lookX: -1, lookY: 0.2, armR: { upper: 22, fore: -48 }, seed: 4 }} />

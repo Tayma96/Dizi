@@ -21,6 +21,8 @@ export type FaceParams = {
 
 export const EMOTION_FACE: Record<Emotion, FaceParams> = {
   aci: { browInner: 13, browOuter: -4, browLift: 4, eyeOpen: 0.42, eyeSmile: false, pupil: 0.9, mouth: "tight", blush: 0.1 },
+  /** baygın: gevşek yüz, düz ağız, hafif acı izi; gülümseme yok */
+  baygin: { browInner: 5, browOuter: -3, browLift: 3, eyeOpen: 0.5, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0 },
   notr: { browInner: 0, browOuter: 0, browLift: 0, eyeOpen: 1, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.4 },
   mutlu: { browInner: 3, browOuter: 3, browLift: -3, eyeOpen: 0.95, eyeSmile: false, pupil: 1.05, mouth: "smile", blush: 0.6 },
   gulen: { browInner: 5, browOuter: 4, browLift: -6, eyeOpen: 1, eyeSmile: true, pupil: 1, mouth: "grin", blush: 0.8 },
@@ -62,7 +64,7 @@ export const Eye: React.FC<{
     // closed / laughing eye
     const d = smile
       ? `M ${cx - w} ${cy + 4} Q ${cx} ${cy - 16} ${cx + w} ${cy + 4}`
-      : `M ${cx - w} ${cy} Q ${cx} ${cy + 9} ${cx + w} ${cy}`;
+      : `M ${cx - w} ${cy + 1} Q ${cx} ${cy + 4} ${cx + w} ${cy + 1}`;
     return <path d={d} fill="none" stroke={OUT} strokeWidth={5} strokeLinecap="round" />;
   }
   const top = cy - h * 1.35 * Math.min(1.35, open);
