@@ -541,7 +541,8 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
       );
     }
     case "lobi": {
-      // Gece, eski iş hanı lobisi. Solda eski asansör + kırmızı kat göstergesi (props.saat = kat), sağda cam giriş kapısı (yağmur).
+      // 1952 yapımı eski İstanbul hanı lobisi, gece. Soldan sağa: merdiven kemeri, asansör (+ kırmızı kat göstergesi = props.saat),
+      // kat rehberi, duvar telefonu, pirinç posta kutuları, cam giriş kapısı (yağmur, sokak lambası), üstte duvar saati.
       // props.turb = floresan titremesi; doorOpen = asansör kapısı.
       const fr = props.frame ?? 0;
       const tb = props.turb ?? 0;
@@ -553,108 +554,194 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
         <g>
           <defs>
             <linearGradient id="loDuvar" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#23262d" />
-              <stop offset="1" stopColor="#1a1c21" />
+              <stop offset="0" stopColor="#3a3328" />
+              <stop offset="1" stopColor="#2a251e" />
             </linearGradient>
-            <linearGradient id="loZemin" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#2c2f36" />
-              <stop offset="1" stopColor="#15171b" />
+            <linearGradient id="loLambri" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#4a3020" />
+              <stop offset="1" stopColor="#2e1c12" />
             </linearGradient>
             <linearGradient id="loKabin" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stopColor="#fffbe0" />
               <stop offset="1" stopColor="#c8c4a0" />
             </linearGradient>
+            <linearGradient id="loSokak" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#0b1422" />
+              <stop offset="1" stopColor="#1a2636" />
+            </linearGradient>
+            <radialGradient id="loLamba" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0" stopColor="#ffd890" stopOpacity={0.55} />
+              <stop offset="1" stopColor="#ffd890" stopOpacity={0} />
+            </radialGradient>
+            <linearGradient id="loHuzme" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#f2d290" stopOpacity={0.28} />
+              <stop offset="1" stopColor="#f2d290" stopOpacity={0} />
+            </linearGradient>
+            <filter id="loParlak"><feGaussianBlur stdDeviation="8" /></filter>
           </defs>
+          {/* duvar: sıva + ahşap lambri + pervazlar */}
           <rect width={W} height={H} fill="url(#loDuvar)" />
-          {/* mermer paneller */}
-          {[0, 1, 2, 3].map((i) => <rect key={i} x={i * 270} y={300} width={266} height={1220} fill={i % 2 ? "#262930" : "#23262c"} stroke="#17191d" strokeWidth={4} />)}
-          {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M ${i * 190 + 30} ${400 + (i % 3) * 200} q 60 80 20 200 q -30 90 40 180`} stroke="#3a3d44" strokeWidth={3} fill="none" opacity={0.6} />)}
-          {/* tavan + floresan */}
-          <rect width={W} height={300} fill="#17191d" />
-          <rect x={160} y={240} width={760} height={26} rx={8} fill="#e8f2ea" opacity={0.85 * flick} />
-          <rect x={120} y={230} width={840} height={60} fill="#e8f2ea" opacity={0.08 * flick} />
-          {/* asansör: kasa, kat göstergesi, kapılar */}
-          <rect x={150} y={600} width={420} height={920} fill="#3a3d44" stroke="#0d0e10" strokeWidth={8} />
-          <rect x={270} y={640} width={180} height={90} rx={8} fill="#0c0606" stroke="#0d0e10" strokeWidth={5} />
+          <rect x={0} y={1180} width={W} height={340} fill="url(#loLambri)" />
+          {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={20 + i * 180} y={1210} width={150} height={270} rx={6} fill="none" stroke="#5a3a26" strokeWidth={5} />)}
+          <rect x={0} y={1170} width={W} height={16} fill="#5a3a26" />
+          {/* tavan: kasetli, kalın kornişli */}
+          <rect width={W} height={290} fill="#1e1a15" />
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={30 + i * 262} y={40} width={240} height={190} fill="#26211a" stroke="#14110d" strokeWidth={6} />)}
+          <rect x={0} y={280} width={W} height={34} fill="#4a4033" />
+          <path d="M 0 314 L 1080 314" stroke="#2a241c" strokeWidth={8} />
+          {/* floresan (titrer) */}
+          <rect x={300} y={232} width={480} height={20} rx={8} fill="#e8f2ea" opacity={0.85 * flick} />
+          <rect x={200} y={220} width={680} height={80} fill="#e8f2ea" opacity={0.06 * flick} />
+          {/* duvar saati (cam kapının üstünde) */}
+          <g transform="translate(910 520)">
+            <circle r={66} fill="#e8e2cc" stroke="#2a241c" strokeWidth={10} />
+            {new Array(12).fill(0).map((_, i) => <path key={i} d={`M ${Math.sin((i * Math.PI) / 6) * 50} ${-Math.cos((i * Math.PI) / 6) * 50} L ${Math.sin((i * Math.PI) / 6) * 58} ${-Math.cos((i * Math.PI) / 6) * 58}`} stroke="#2a241c" strokeWidth={4} />)}
+            <path d="M 0 0 L 25 4" stroke="#1a1612" strokeWidth={8} strokeLinecap="round" />
+            <path d="M 0 0 L 44 5" stroke="#1a1612" strokeWidth={5} strokeLinecap="round" />
+            <path d={`M 0 0 L ${Math.sin(fr / 4.77) * 52} ${-Math.cos(fr / 4.77) * 52}`} stroke="#a01818" strokeWidth={2.5} />
+            <circle r={6} fill="#1a1612" />
+          </g>
+          {/* merdiven kemeri (sol kenar): karanlığa çıkan basamaklar */}
+          <path d="M 0 1520 L 0 700 Q 70 620 130 700 L 130 1520 Z" fill="#0c0b09" stroke="#4a4033" strokeWidth={8} />
+          {[0, 1, 2, 3, 4, 5, 6].map((i) => <path key={i} d={`M 0 ${1500 - i * 90} L ${120 - i * 6} ${1500 - i * 90}`} stroke="#2a241c" strokeWidth={6} />)}
+          <path d="M 10 1500 L 110 900" stroke="#6a5a40" strokeWidth={6} />
+          {/* asansör: pirinç kasa, kat göstergesi, kapılar */}
+          <rect x={150} y={600} width={420} height={920} fill="#2a241c" stroke="#0d0b08" strokeWidth={8} />
+          <rect x={164} y={612} width={392} height={896} fill="none" stroke="#8a6a3a" strokeWidth={6} />
+          <path d="M 170 640 Q 360 560 550 640" stroke="#8a6a3a" strokeWidth={8} fill="none" />
+          <rect x={270} y={640} width={180} height={90} rx={8} fill="#0c0606" stroke="#8a6a3a" strokeWidth={5} />
           <text x={360} y={712} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={84} fill="#ff2a1a">{kat}</text>
-          <text x={360} y={712} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={84} fill="#ff2a1a" opacity={0.35} filter="url(#loParlak)">{kat}</text>
-          <defs><filter id="loParlak"><feGaussianBlur stdDeviation="8" /></filter></defs>
+          <text x={360} y={712} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={84} fill="#ff2a1a" opacity={0.4} filter="url(#loParlak)">{kat}</text>
           <rect x={190} y={760} width={340} height={740} fill="url(#loKabin)" opacity={cabFl} />
           <path d="M 190 1500 L 530 1500 L 640 1700 L 80 1700 Z" fill="#fff6d0" opacity={op * 0.4 * cabFl} />
-          <rect x={150} y={600} width={420} height={920} fill="#fff6d0" opacity={op * 0.08 * cabFl} />
-          <rect x={190} y={760} width={170 * (1 - op)} height={740} fill="#7a8088" stroke="#0d0e10" strokeWidth={5} />
-          <rect x={360 + 170 * op} y={760} width={170 * (1 - op)} height={740} fill="#747a82" stroke="#0d0e10" strokeWidth={5} />
-          <path d={`M ${200} 790 L ${200 + 150 * (1 - op)} 790`} stroke="#9aa0a8" strokeWidth={4} />
-          <rect x={590} y={1060} width={46} height={110} rx={8} fill="#3a3d44" stroke="#0d0e10" strokeWidth={4} />
+          <rect x={150} y={600} width={420} height={920} fill="#fff6d0" opacity={op * 0.07 * cabFl} />
+          <rect x={190} y={760} width={170 * (1 - op)} height={740} fill="#7a7468" stroke="#0d0b08" strokeWidth={5} />
+          <rect x={360 + 170 * op} y={760} width={170 * (1 - op)} height={740} fill="#726c60" stroke="#0d0b08" strokeWidth={5} />
+          {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${200} ${820 + i * 170} L ${200 + 150 * (1 - op)} ${820 + i * 170} M ${370 + 170 * op} ${820 + i * 170} L ${520} ${820 + i * 170}`} stroke="#8a8478" strokeWidth={3} opacity={1 - op} />)}
+          <rect x={590} y={1060} width={46} height={110} rx={8} fill="#8a6a3a" stroke="#0d0b08" strokeWidth={4} />
           <circle cx={613} cy={1095} r={10} fill="#5a1a14" />
           <circle cx={613} cy={1135} r={10} fill="#2a2a2e" />
           {/* kat rehberi panosu: 6 kat; 6'nın üstünde sökülmüş bir satır */}
-          <rect x={600} y={620} width={150} height={330} fill="#1b1d22" stroke="#0a0b0d" strokeWidth={5} />
-          <text x={675} y={652} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={17} fontWeight={700} fill="#c9c4a8">KAT REHBERİ</text>
-          <rect x={612} y={666} width={126} height={22} fill="#26292f" stroke="#3a3d44" strokeWidth={2} strokeDasharray="4 4" />
-          {[6, 5, 4, 3, 2, 1].map((k, i) => <text key={k} x={618} y={714 + i * 38} fontFamily="'Courier New', monospace" fontSize={19} fontWeight={700} fill="#d9d4b4">{k} ······</text>)}
-          {/* eski duvar telefonu (bej, çevirmeli), kablosu aşağı sarkıyor */}
+          <rect x={600} y={620} width={150} height={330} fill="#14120f" stroke="#8a6a3a" strokeWidth={5} />
+          <text x={675} y={652} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={17} fontWeight={700} fill="#d8c890">KAT REHBERİ</text>
+          <rect x={612} y={666} width={126} height={22} fill="#1e1b16" stroke="#3a3528" strokeWidth={2} strokeDasharray="4 4" />
+          {[6, 5, 4, 3, 2, 1].map((k, i) => <text key={k} x={618} y={714 + i * 38} fontFamily="'Courier New', monospace" fontSize={19} fontWeight={700} fill="#e8dcb0">{k} ······</text>)}
+          {/* eski duvar telefonu (bej, çevirmeli) */}
           <rect x={650} y={1180} width={84} height={130} rx={10} fill="#bdb49a" stroke="#0a0b0d" strokeWidth={4} />
           <rect x={640} y={1172} width={104} height={34} rx={14} fill="#a89e84" stroke="#0a0b0d" strokeWidth={4} />
           <circle cx={692} cy={1260} r={26} fill="#a89e84" stroke="#0a0b0d" strokeWidth={3} />
           <path d="M 692 1310 q -20 40 0 80 q 20 40 0 80" stroke="#8a826c" strokeWidth={5} fill="none" />
-          {/* cam giriş kapısı: yağmurlu gece sokağı */}
-          <rect x={760} y={700} width={300} height={820} fill="#0d1622" stroke="#0a0b0d" strokeWidth={10} />
-          <circle cx={960} cy={860} r={40} fill="#f2c870" opacity={0.5} />
-          <circle cx={960} cy={860} r={110} fill="#f2c870" opacity={0.08} />
+          {/* pirinç posta kutuları 1-6 */}
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <g key={i}>
+              <rect x={600 + (i % 3) * 52} y={1360 + Math.floor(i / 3) * 62} width={46} height={54} rx={4} fill="#8a6a3a" stroke="#2a1c10" strokeWidth={3} />
+              <text x={623 + (i % 3) * 52} y={1396 + Math.floor(i / 3) * 62} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={20} fontWeight={700} fill="#2a1c10">{i + 1}</text>
+            </g>
+          ))}
+          {/* cam giriş kapısı: yağmurlu gece sokağı, sokak lambası */}
+          <rect x={760} y={700} width={300} height={820} fill="url(#loSokak)" stroke="#2a241c" strokeWidth={12} />
+          <path d="M 760 760 Q 910 640 1060 760" stroke="#2a241c" strokeWidth={12} fill="none" />
+          <rect x={985} y={760} width={10} height={420} fill="#14181e" />
+          <circle cx={990} cy={760} r={26} fill="#f2c870" opacity={0.85} />
+          <circle cx={990} cy={760} r={120} fill="#f2c870" opacity={0.1} />
+          <rect x={780} y={1300} width={260} height={210} fill="#0a0e14" />
+          {new Array(16).fill(0).map((_, i) => <rect key={i} x={790 + (i % 8) * 32} y={1310 + Math.floor(i / 8) * 26} width={28} height={20} rx={4} fill="#1a2230" />)}
           {new Array(40).fill(0).map((_, i) => { const y = (fr * 26 + i * 97) % 820; const x = 770 + ((i * 53) % 280); return <path key={i} d={`M ${x} ${700 + y} l -6 30`} stroke="#8aa0b8" strokeWidth={2} opacity={0.5} />; })}
-          <path d="M 910 700 L 910 1520" stroke="#0a0b0d" strokeWidth={8} />
-          {/* zemin: parlak mermer, yansıma */}
-          <rect y={1520} width={W} height={400} fill="url(#loZemin)" />
-          <rect x={190} y={1530} width={340} height={200} fill="#7a8088" opacity={0.08} />
-          <rect x={160} y={1530} width={760} height={30} fill="#e8f2ea" opacity={0.05 * flick} />
-          {/* genel karanlık */}
-          <rect width={W} height={H} fill="#000" opacity={0.18 + (1 - flick) * 0.35} />
+          <path d="M 910 700 L 910 1520" stroke="#2a241c" strokeWidth={8} />
+          <path d="M 760 1050 L 1060 1050" stroke="#2a241c" strokeWidth={6} />
+          {/* sokak lambası ışığı içeri düşer */}
+          <path d="M 760 760 L 1060 760 L 820 1920 L 300 1920 Z" fill="url(#loHuzme)" opacity={flick} />
+          {/* yeşil ÇIKIŞ ışığı */}
+          <rect x={30} y={600} width={90} height={34} rx={4} fill="#1e8a4a" />
+          <text x={75} y={624} textAnchor="middle" fontFamily="Arial, sans-serif" fontSize={20} fontWeight={900} fill="#e8fff0">ÇIKIŞ</text>
+          <rect x={10} y={580} width={130} height={74} fill="#1e8a4a" opacity={0.12} />
+          {/* zemin: karo desenli mermer, yansımalar */}
+          <rect y={1520} width={W} height={400} fill="#1e1a16" />
+          {new Array(9).fill(0).map((_, i) => new Array(4).fill(0).map((__, j) => {
+            const x = i * 140 - 70 + (j % 2) * 70, y = 1540 + j * 100;
+            return <path key={`${i}-${j}`} d={`M ${x} ${y + 50} L ${x + 70} ${y} L ${x + 140} ${y + 50} L ${x + 70} ${y + 100} Z`} fill={(i + j) % 2 ? "#2a241e" : "#1a1612"} stroke="#3a3228" strokeWidth={2} />;
+          }))}
+          <rect x={190} y={1530} width={340} height={220} fill="#7a7468" opacity={0.07} />
+          <rect x={300} y={1530} width={480} height={30} fill="#e8f2ea" opacity={0.05 * flick} />
+          {/* masa lambasının sıcak havuzu (masa önde) */}
+          <ellipse cx={560} cy={1500} rx={360} ry={180} fill="url(#loLamba)" />
+          {/* köşe karanlığı */}
+          <rect width={W} height={H} fill="#000" opacity={0.12 + (1 - flick) * 0.35} />
         </g>
       );
     }
     case "kat7_koridor": {
-      // 1998'de yanmış arşiv katı: isli duvarlar, yanık raflar, sarkan tavan panelleri, uçuşan kül, uzakta kararan kapı.
+      // 1998'de yanmış arşiv katı: isli duvarlar, yanık kapılar (701-704), çökmüş tavan, yerde yanmış klasörler,
+      // koridor sonunda pencereden şehir ışıkları, katman katman duman, uçuşan kül; fener ışığı.
       const fr = props.frame ?? 0;
-      const VX = 540, VY = 900;
+      const VX = 540, VY = 880;
+      const door = (side: number, k: number, no: string) => {
+        // side -1 sol duvar, 1 sağ duvar; k: 0 yakın .. 1 uzak
+        const t = 0.15 + k * 0.7;
+        const xNear = side < 0 ? 0 : 1080, xFar = side < 0 ? VX - 150 : VX + 150;
+        const x1 = xNear + (xFar - xNear) * t, x2 = xNear + (xFar - xNear) * (t + 0.12);
+        const top1 = 0 + (VY - 190) * t, top2 = 0 + (VY - 190) * (t + 0.12);
+        const bot1 = 1920 - (1920 - (VY + 190)) * t, bot2 = 1920 - (1920 - (VY + 190)) * (t + 0.12);
+        const h1 = (bot1 - top1) * 0.55, h2 = (bot2 - top2) * 0.55;
+        return (
+          <g key={no}>
+            <path d={`M ${x1} ${bot1 - 10} L ${x1} ${bot1 - h1} L ${x2} ${bot2 - h2} L ${x2} ${bot2 - 6} Z`} fill="#1a1410" stroke="#4a3a2a" strokeWidth={4} />
+            <path d={`M ${x1} ${bot1 - h1} L ${x2} ${bot2 - h2} L ${x2} ${bot2 - h2 * 0.8} L ${x1} ${bot1 - h1 * 0.8} Z`} fill="#000" opacity={0.6} />
+            <text x={(x1 + x2) / 2} y={(bot1 - h1 * 0.85 + bot2 - h2 * 0.85) / 2} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={Math.max(14, 40 * (1 - k * 0.7))} fontWeight={700} fill="#8a7a60">{no}</text>
+          </g>
+        );
+      };
       return (
         <g>
           <defs>
-            <radialGradient id="k7Is" cx="0.5" cy="0.62" r="0.55">
-              <stop offset="0" stopColor="#f6e8c0" stopOpacity={0.5} />
+            <radialGradient id="k7Is" cx="0.5" cy="0.62" r="0.6">
+              <stop offset="0" stopColor="#f6e8c0" stopOpacity={0.45} />
               <stop offset="1" stopColor="#000" stopOpacity={0} />
             </radialGradient>
+            <filter id="k7Bul"><feGaussianBlur stdDeviation="24" /></filter>
           </defs>
           <rect width={W} height={H} fill="#1e1b18" />
-          {/* koridor perspektifi */}
-          <path d={`M 0 0 L 1080 0 L ${VX + 130} ${VY - 160} L ${VX - 130} ${VY - 160} Z`} fill="#2a2622" />
-          <path d={`M 0 0 L ${VX - 130} ${VY - 160} L ${VX - 130} ${VY + 160} L 0 1920 Z`} fill="#3a342e" />
-          <path d={`M 1080 0 L ${VX + 130} ${VY - 160} L ${VX + 130} ${VY + 160} L 1080 1920 Z`} fill="#342f2a" />
-          <path d={`M 0 1920 L ${VX - 130} ${VY + 160} L ${VX + 130} ${VY + 160} L 1080 1920 Z`} fill="#26221e" />
-          {/* uzak kapı */}
-          <rect x={VX - 90} y={VY - 120} width={180} height={280} fill="#050404" stroke="#2a2420" strokeWidth={4} />
-          <rect x={VX - 70} y={VY + 120} width={140} height={20} fill="#5a1a10" opacity={0.25 + 0.1 * Math.sin(fr / 9)} />
-          {/* raflar (yanık klasörler) */}
-          {[0, 1, 2, 3].map((i) => {
-            const k = 1 - i * 0.22;
-            const xL = 40 + i * 95, xR = 1040 - i * 95;
-            return (
-              <g key={i}>
-                <rect x={xL} y={VY - 380 * k} width={60 * k} height={760 * k} fill="#4a4038" stroke="#0a0908" strokeWidth={4} />
-                <rect x={xR - 60 * k} y={VY - 380 * k} width={60 * k} height={760 * k} fill="#443a32" stroke="#0a0908" strokeWidth={4} />
-                {[0, 1, 2, 3].map((j) => <rect key={j} x={xL + 6} y={VY - 360 * k + j * 180 * k} width={46 * k} height={70 * k} fill={j % 2 ? "#3a2e22" : "#1a1410"} />)}
-              </g>
-            );
-          })}
-          {/* is lekeleri ve sarkan tavan paneli */}
-          <path d="M 120 220 q 120 -60 260 20 q 80 60 200 -10 L 600 380 Q 300 300 120 420 Z" fill="#000" opacity={0.55} />
-          <path d="M 700 120 L 880 140 L 840 380 L 780 300 Z" fill="#2a2622" stroke="#0a0908" strokeWidth={5} />
+          {/* tavan, duvarlar, zemin (perspektif) */}
+          <path d={`M 0 0 L 1080 0 L ${VX + 150} ${VY - 190} L ${VX - 150} ${VY - 190} Z`} fill="#24201c" />
+          <path d={`M 0 0 L ${VX - 150} ${VY - 190} L ${VX - 150} ${VY + 190} L 0 1920 Z`} fill="#3a342e" />
+          <path d={`M 1080 0 L ${VX + 150} ${VY - 190} L ${VX + 150} ${VY + 190} L 1080 1920 Z`} fill="#342f2a" />
+          <path d={`M 0 1920 L ${VX - 150} ${VY + 190} L ${VX + 150} ${VY + 190} L 1080 1920 Z`} fill="#26221e" />
+          {/* is: duvarların üst yarısı kararmış, alevin bıraktığı dil izleri */}
+          <path d={`M 0 0 L ${VX - 150} ${VY - 190} L ${VX - 150} ${VY - 40} Q 300 500 0 760 Z`} fill="#0a0806" opacity={0.75} />
+          <path d={`M 1080 0 L ${VX + 150} ${VY - 190} L ${VX + 150} ${VY - 40} Q 800 520 1080 700 Z`} fill="#0a0806" opacity={0.75} />
+          {[0, 1, 2].map((i) => <path key={i} d={`M ${60 + i * 90} ${1100 - i * 60} q 30 -160 -10 -300 q 40 120 60 40 q 0 140 -20 260 Z`} fill="#0a0806" opacity={0.5} />)}
+          {/* yanık kapılar */}
+          {door(-1, 0.05, "701")}
+          {door(-1, 0.6, "703")}
+          {door(1, 0.15, "702")}
+          {door(1, 0.7, "704")}
+          {/* koridor sonu: kırık pencere, şehir ışıkları */}
+          <rect x={VX - 150} y={VY - 190} width={300} height={380} fill="#0a0d14" stroke="#2a2420" strokeWidth={6} />
+          <rect x={VX - 110} y={VY - 150} width={220} height={170} fill="#121a2a" />
+          {new Array(14).fill(0).map((_, i) => <rect key={i} x={VX - 100 + (i % 7) * 30} y={VY - 60 + Math.floor(i / 7) * 30} width={10} height={14} fill="#e8c878" opacity={0.25 + 0.15 * ((i * 7) % 3)} />)}
+          <path d={`M ${VX - 110} ${VY - 150} L ${VX - 30} ${VY - 60} L ${VX + 20} ${VY - 140} L ${VX + 110} ${VY - 40}`} stroke="#3a3a40" strokeWidth={3} fill="none" />
+          <path d={`M ${VX - 150} ${VY + 190} L ${VX + 150} ${VY + 190}`} stroke="#000" strokeWidth={6} />
+          {/* çökmüş tavan paneli + sarkan kablolar */}
+          <path d="M 640 90 L 860 120 L 810 420 L 720 330 Z" fill="#3a3430" stroke="#0a0908" strokeWidth={5} />
+          <path d="M 300 100 q 10 120 -20 220 M 330 110 q -20 100 10 180" stroke="#0a0908" strokeWidth={4} fill="none" />
+          {/* yerde yanık klasörler ve kâğıtlar */}
+          {[[180, 1700, -8], [300, 1620, 12], [760, 1680, -14], [880, 1760, 6], [620, 1560, 20]].map(([x, y, r], i) => (
+            <g key={i} transform={`rotate(${r} ${x} ${y})`}>
+              <rect x={x - 60} y={y - 34} width={120} height={68} fill={i % 2 ? "#3a2e22" : "#2a2018"} stroke="#0a0908" strokeWidth={4} />
+              <path d={`M ${x - 60} ${y - 34} l 30 20 l 20 -14 l 26 22 l 24 -18 l 20 10`} fill="#0a0806" />
+            </g>
+          ))}
+          {new Array(10).fill(0).map((_, i) => <rect key={i} x={200 + ((i * 89) % 700)} y={1450 + ((i * 53) % 380)} width={44} height={32} fill="#cfc4a8" opacity={0.5} transform={`rotate(${(i * 37) % 60 - 30} ${220 + ((i * 89) % 700)} ${1466 + ((i * 53) % 380)})`} />)}
           {/* tabela */}
-          <rect x={660} y={520} width={300} height={90} fill="#1e1c18" stroke="#0a0908" strokeWidth={5} transform="skewY(14)" />
-          <text x={810} y={578} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={34} fontWeight={700} fill="#9a9080" transform="skewY(14)">7. KAT · ARŞİV</text>
+          <rect x={640} y={560} width={300} height={90} fill="#1e1c18" stroke="#6a5a40" strokeWidth={5} transform="skewY(14)" />
+          <text x={790} y={618} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={34} fontWeight={700} fill="#b8a888" transform="skewY(14)">7. KAT · ARŞİV</text>
+          {/* duman katmanları */}
+          <g filter="url(#k7Bul)" opacity={0.55}>
+            {[0, 1, 2].map((i) => <ellipse key={i} cx={(i * 420 + fr * (0.6 + i * 0.3)) % 1500 - 200} cy={700 + i * 220} rx={420} ry={110} fill="#5a524a" opacity={0.35} />)}
+          </g>
           {/* fener ışığı ve kül */}
           <rect width={W} height={H} fill="url(#k7Is)" />
-          {new Array(40).fill(0).map((_, i) => { const y = (random(`ay${i}`) * 1920 + fr * (0.6 + random(`av${i}`))) % 1920; return <circle key={i} cx={(random(`ax${i}`) * 1080 + Math.sin((fr + i * 20) / 30) * 20)} cy={y} r={2 + random(`ar${i}`) * 3} fill="#c8b8a0" opacity={0.35} />; })}
+          {new Array(50).fill(0).map((_, i) => { const y = (random(`ay${i}`) * 1920 + fr * (0.6 + random(`av${i}`))) % 1920; return <circle key={i} cx={(random(`ax${i}`) * 1080 + Math.sin((fr + i * 20) / 30) * 20)} cy={y} r={2 + random(`ar${i}`) * 3} fill="#d8c8a8" opacity={0.4} />; })}
           <rect width={W} height={H} fill="#000" opacity={0.06} />
         </g>
       );
@@ -911,15 +998,31 @@ const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean }> = 
     case "lobi":
       return (
         <g>
-          <rect x={420} y={1040} width={170} height={130} rx={10} fill="#1c1e22" stroke="#0a0b0d" strokeWidth={6} />
-          <rect x={440} y={1170} width={130} height={60} fill="#16181b" />
-          <path d="M 590 1060 L 760 1000 L 760 1300 L 590 1240 Z" fill="#9ec4ff" opacity={0.12} />
-          <path d="M 440 1500 L 1080 1500 L 1080 1920 L 400 1920 Z" fill="#2a2420" stroke="#0a0b0d" strokeWidth={8} />
-          <rect x={430} y={1470} width={660} height={44} fill="#3a322c" stroke="#0a0b0d" strokeWidth={6} />
-          <rect x={470} y={1420} width={70} height={56} rx={8} fill="#c9c4b8" stroke="#0a0b0d" strokeWidth={4} />
+          {/* üç CRT monitör (arkaları bize dönük değil, yan açı): ekranlarda yeşilimsi kamera görüntüleri */}
+          {[0, 1, 2].map((i) => (
+            <g key={i}>
+              <rect x={410 + i * 0} y={960 + i * 130} width={180} height={130} rx={12} fill="#1c1d20" stroke="#0a0b0d" strokeWidth={6} transform={`skewY(${-6})`} />
+              <rect x={424} y={974 + i * 130} width={152} height={100} fill={i === 0 ? "#3a4a3a" : i === 1 ? "#34443a" : "#2e3e34"} transform={`skewY(${-6})`} />
+              <rect x={424} y={974 + i * 130} width={152} height={100} fill="#9ec4a0" opacity={0.18} transform={`skewY(${-6})`} />
+              <text x={430} y={994 + i * 130} fontFamily="'Courier New', monospace" fontSize={13} fontWeight={700} fill="#d8ffd8" transform={`skewY(${-6})`}>{["KAM 04", "KAM 01", "KAM 02"][i]}</text>
+              <rect x={490} y={1010 + i * 130} width={20} height={40} fill="#1a2018" opacity={0.7} transform={`skewY(${-6})`} />
+            </g>
+          ))}
+          <path d="M 590 980 L 780 920 L 780 1360 L 590 1360 Z" fill="#9ec4ff" opacity={0.08} />
+          {/* masa */}
+          <path d="M 400 1500 L 1080 1500 L 1080 1920 L 360 1920 Z" fill="#3a2414" stroke="#0a0b0d" strokeWidth={8} />
+          {new Array(6).fill(0).map((_, i) => <path key={i} d={`M ${420 + i * 110} 1520 L ${400 + i * 116} 1920`} stroke="#2e1c10" strokeWidth={4} />)}
+          <rect x={390} y={1468} width={700} height={44} fill="#5a3a22" stroke="#0a0b0d" strokeWidth={6} />
+          {/* yeşil abajurlu masa lambası */}
+          <path d="M 470 1468 L 470 1380" stroke="#8a6a3a" strokeWidth={8} />
+          <path d="M 410 1390 Q 470 1340 530 1390 Z" fill="#1e6a3a" stroke="#0a0b0d" strokeWidth={4} />
+          <ellipse cx={470} cy={1392} rx={58} ry={8} fill="#ffe4a0" opacity={0.9} />
+          <rect x={440} y={1462} width={60} height={10} rx={4} fill="#8a6a3a" />
+          {/* termos + defter + telsiz şarjı */}
+          <rect x={560} y={1400} width={40} height={74} rx={10} fill="#8a1a1a" stroke="#0a0b0d" strokeWidth={4} />
+          <path d="M 640 1466 L 760 1456 L 770 1470 L 646 1480 Z" fill="#e8e2cc" stroke="#0a0b0d" strokeWidth={3} />
           <rect x={980} y={1380} width={36} height={96} rx={8} fill="#1a1a1c" stroke="#0a0b0d" strokeWidth={4} />
           <path d="M 998 1380 l 0 -50" stroke="#1a1a1c" strokeWidth={6} />
-          <rect x={460} y={1600} width={560} height={14} fill="#1a1612" />
         </g>
       );
     case "ucak_kabin": {

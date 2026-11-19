@@ -298,44 +298,72 @@ const NotYakin: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-/** Dış çekim: gece, yağmur; 6 katlı eski han. Çatının üstünde, 7. kat hizasında olmayan bir pencere bir an yanar. Lobide monitör ışığı. */
+/** Dış çekim: gece, yağmur; kadrajı dolduran 6 katlı taş cepheli eski han ("BÜYÜK KARAKÖY HANI · 1952").
+ *  Çatı korkuluğunun üstünde, 7. kat hizasında olmayan bir pencere bir an yanar. Zemin katta lobi ışığı ve masadaki bekçi. */
 const DisBina: React.FC<{ dur: number }> = ({ dur }) => {
   const f = useCurrentFrame();
-  const z = interpolate(f, [0, dur], [1.0, 1.12], { ...clamp, easing: Easing.inOut(Easing.quad) });
+  const z = interpolate(f, [0, dur], [1.0, 1.1], { ...clamp, easing: Easing.inOut(Easing.quad) });
   const hayalet = (f > dur * 0.35 && f < dur * 0.35 + 5) || (f > dur * 0.5 && f < dur * 0.5 + 9) ? 1 : 0;
+  const winLit = (r: number, c: number) => (r === 2 && c === 3 ? 0.35 : 0);
   return (
     <AbsoluteFill style={{ backgroundColor: "#05070c", overflow: "hidden" }}>
-      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "540px 900px" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "540px 1000px" }}>
         <defs>
-          <linearGradient id="dbGok" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0a0e18" /><stop offset="1" stopColor="#1a2230" /></linearGradient>
+          <linearGradient id="dbGok" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#070a12" /><stop offset="1" stopColor="#1a2232" /></linearGradient>
+          <linearGradient id="dbTas" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#3a342c" /><stop offset="0.5" stopColor="#4a4238" /><stop offset="1" stopColor="#2e2a24" /></linearGradient>
+          <radialGradient id="dbLamba" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#f2c870" stopOpacity={0.5} /><stop offset="1" stopColor="#f2c870" stopOpacity={0} /></radialGradient>
         </defs>
         <rect width={1080} height={1920} fill="url(#dbGok)" />
-        {/* bina gövdesi: 6 kat */}
-        <rect x={190} y={560} width={700} height={1160} fill="#2a2622" stroke="#0a0908" strokeWidth={8} />
-        <rect x={170} y={540} width={740} height={40} fill="#3a342e" />
+        {/* komşu binalar (karanlık) */}
+        <rect x={-40} y={700} width={150} height={1100} fill="#11141a" />
+        <rect x={970} y={620} width={150} height={1180} fill="#0f1218" />
+        {/* han: taş cephe, 6 kat */}
+        <rect x={110} y={440} width={860} height={1360} fill="url(#dbTas)" stroke="#0a0908" strokeWidth={8} />
+        {/* çatı korkuluğu + saçak */}
+        <rect x={90} y={410} width={900} height={40} fill="#5a5044" stroke="#0a0908" strokeWidth={6} />
+        {new Array(18).fill(0).map((_, i) => <rect key={i} x={110 + i * 48} y={360} width={18} height={50} fill="#4a4238" />)}
+        <rect x={90} y={350} width={900} height={14} fill="#5a5044" />
+        {/* kat silmeleri + kemerli pencereler */}
         {[0, 1, 2, 3, 4, 5].map((r) => (
           <g key={r}>
-            {[0, 1, 2, 3].map((c) => <rect key={c} x={240 + c * 160} y={620 + r * 170} width={100} height={120} fill={r === 5 ? "#10131a" : "#12151c"} stroke="#0a0908" strokeWidth={5} />)}
-            <text x={160} y={700 + r * 170} textAnchor="end" fontFamily={MONO} fontSize={34} fontWeight={700} fill="#5a6070">{6 - r}</text>
+            <rect x={110} y={630 + r * 190} width={860} height={12} fill="#2a2620" />
+            {[0, 1, 2, 3, 4].map((c) => (
+              <g key={c}>
+                <path d={`M ${165 + c * 160} ${640 + r * 190 - 140} L ${165 + c * 160} ${640 + r * 190 - 30} L ${255 + c * 160} ${640 + r * 190 - 30} L ${255 + c * 160} ${640 + r * 190 - 140} Q ${210 + c * 160} ${640 + r * 190 - 185} ${165 + c * 160} ${640 + r * 190 - 140} Z`} fill="#0c0f15" stroke="#5a5044" strokeWidth={5} />
+                <rect x={165 + c * 160} y={640 + r * 190 - 140} width={90} height={110} fill="#e8c878" opacity={winLit(r, c)} />
+                <path d={`M ${210 + c * 160} ${640 + r * 190 - 160} L ${210 + c * 160} ${640 + r * 190 - 30}`} stroke="#5a5044" strokeWidth={3} />
+              </g>
+            ))}
+            <text x={95} y={570 + r * 190} textAnchor="end" fontFamily={MONO} fontSize={30} fontWeight={700} fill="#6a7080">{6 - r}</text>
           </g>
         ))}
-        {/* zemin kat lobi: cam kapı, monitör ışığı, masada küçük figür */}
-        <rect x={420} y={1560} width={240} height={160} fill="#1a2a40" stroke="#0a0908" strokeWidth={6} />
-        <rect x={430} y={1570} width={220} height={140} fill="#6a9ad8" opacity={0.25} />
-        <circle cx={560} cy={1640} r={12} fill="#0a0908" />
-        <rect x={545} y={1652} width={30} height={40} fill="#0a0908" />
-        {/* çatının üstünde olmayan 7. kat penceresi */}
-        <rect x={400} y={400} width={100} height={120} fill="#e8d8a0" opacity={hayalet * 0.85} />
-        <rect x={380} y={380} width={140} height={160} fill="#e8d8a0" opacity={hayalet * 0.15} />
-        <text x={160} y={480} textAnchor="end" fontFamily={MONO} fontSize={34} fontWeight={700} fill="#8a3a2a" opacity={0.4 + hayalet * 0.6}>7?</text>
-        {/* yağmur ve ıslak sokak */}
-        <rect y={1720} width={1080} height={200} fill="#0e1218" />
-        <rect x={420} y={1730} width={240} height={140} fill="#6a9ad8" opacity={0.08} />
-        {new Array(70).fill(0).map((_, i) => { const y = (f * 30 + i * 131) % 1920; const x = (i * 97) % 1080; return <path key={i} d={`M ${x} ${y} l -8 40`} stroke="#8aa0b8" strokeWidth={2} opacity={0.35} />; })}
+        {/* cephe yazısı */}
+        <rect x={300} y={1600} width={480} height={56} fill="#2a2620" stroke="#5a5044" strokeWidth={4} />
+        <text x={540} y={1640} textAnchor="middle" fontFamily="Georgia, serif" fontSize={34} fontWeight={700} fill="#d8c890" letterSpacing={3}>BÜYÜK KARAKÖY HANI · 1952</text>
+        {/* zemin kat: kemerli cam kapı, lobi ışığı, masada bekçi */}
+        <path d="M 420 1800 L 420 1700 Q 540 1650 660 1700 L 660 1800 Z" fill="#1a2a40" stroke="#5a5044" strokeWidth={6} />
+        <path d="M 428 1800 L 428 1706 Q 540 1660 652 1706 L 652 1800 Z" fill="#6a9ad8" opacity={0.3} />
+        <circle cx={575} cy={1740} r={11} fill="#0a0908" />
+        <rect x={560} y={1752} width={30} height={40} fill="#0a0908" />
+        {/* olmayan 7. kat: korkuluğun üstünde bir an yanan pencere */}
+        <rect x={420} y={200} width={90} height={110} fill="#e8d8a0" opacity={hayalet * 0.9} />
+        <rect x={395} y={175} width={140} height={160} fill="#e8d8a0" opacity={hayalet * 0.15} />
+        <rect x={455} y={235} width={20} height={60} fill="#0a0908" opacity={hayalet * 0.9} />
+        <text x={95} y={280} textAnchor="end" fontFamily={MONO} fontSize={30} fontWeight={700} fill="#c04a2a" opacity={0.35 + hayalet * 0.65}>7</text>
+        {/* sokak lambası, ıslak parke taşları, yansımalar, yağmur */}
+        <rect x={880} y={1300} width={14} height={520} fill="#14181e" />
+        <path d="M 887 1300 q 0 -40 -50 -40" stroke="#14181e" strokeWidth={12} fill="none" />
+        <circle cx={832} cy={1272} r={18} fill="#f2c870" />
+        <circle cx={832} cy={1300} r={240} fill="url(#dbLamba)" />
+        <rect y={1800} width={1080} height={120} fill="#0c1016" />
+        {new Array(24).fill(0).map((_, i) => <ellipse key={i} cx={(i % 8) * 140 + (Math.floor(i / 8) % 2) * 70} cy={1820 + Math.floor(i / 8) * 34} rx={60} ry={12} fill="#141a22" stroke="#0a0d12" strokeWidth={3} />)}
+        <rect x={420} y={1806} width={240} height={110} fill="#6a9ad8" opacity={0.08} />
+        <rect x={800} y={1806} width={70} height={110} fill="#f2c870" opacity={0.12} />
+        {new Array(90).fill(0).map((_, i) => { const y = (f * 30 + i * 131) % 1920; const x = (i * 97) % 1080; return <path key={i} d={`M ${x} ${y} l -8 40`} stroke="#8aa0b8" strokeWidth={2} opacity={0.35} />; })}
       </svg>
-      <div style={{ position: "absolute", left: 60, right: 60, top: 1180, textAlign: "center", fontFamily: "Inter, Arial, sans-serif", fontWeight: 900, fontSize: 72, color: "#fff", WebkitTextStroke: "3px #000", textShadow: "0 4px 18px #000" }}>Bu binada 7. kat yok.</div>
-      <div style={{ position: "absolute", left: 60, top: 150, fontFamily: MONO, fontWeight: 700, fontSize: 42, color: "#e8e2c4", textShadow: "0 0 8px #000" }}>Karaköy · Eski bir iş hanı · 03:16</div>
-      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.8) 100%)" }} />
+      <div style={{ position: "absolute", left: 60, right: 60, top: 1160, textAlign: "center", fontFamily: "Inter, Arial, sans-serif", fontWeight: 900, fontSize: 72, color: "#fff", WebkitTextStroke: "3px #000", textShadow: "0 4px 18px #000" }}>Bu binada 7. kat yok.</div>
+      <div style={{ position: "absolute", left: 60, top: 150, fontFamily: MONO, fontWeight: 700, fontSize: 42, color: "#e8e2c4", textShadow: "0 0 8px #000" }}>Karaköy · 03:16</div>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 50%, rgba(0,0,0,0.75) 100%)" }} />
     </AbsoluteFill>
   );
 };
