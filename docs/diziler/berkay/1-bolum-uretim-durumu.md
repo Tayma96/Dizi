@@ -53,3 +53,11 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 ## Bekleyen
 - Her parça: kontrol kareleri → render → kullanıcıya gönder.
 - Sonda: 6 parça birleştir → `bolumler/imza-01.mp4` (3 dk, -14 LUFS) → kullanıcıya gönder → commit ve push.
+
+
+## İlerleme (19 Kasım, zamanlanmış devam)
+- Parça 1: ekip raporlarıyla düzeltildi, 30 sn, render edildi.
+- Parça 2: senarist akışı, 30 sn, render edildi.
+- Parça 3-6: senarist metni (`raporlar/p3-p6-senarist.md`), 16 yeni yakın plan çizimi (`engine/Inserts2.tsx`), sesler üretildi, render sürüyor.
+- Kredi: Bölüm 1 toplam ~634 / 5.000.
+- Sesler: Selim = Kadir Kayışcı, Deniz = Mia.
