@@ -695,5 +695,132 @@
    "shoes": "#111"
   },
   "blush": false
+ },
+ {
+  "id": "hasta3",
+  "name": "Hasta",
+  "role": "Ortak salon: sallanan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "spiky",
+   "color": "#3a2e26",
+   "shade": "#5a4a40"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta4",
+  "name": "Hasta",
+  "role": "Ortak salon: kendi kendine konuşan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#d9a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "balding",
+   "color": "#8a8680",
+   "shade": "#aaa49c"
+  },
+  "facialHair": "beard",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta5",
+  "name": "Hasta",
+  "role": "Ortak salon: selam veren",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "buzz",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta6",
+  "name": "Hasta",
+  "role": "Ortak salon: volta atan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a3a26",
+   "shade": "#7a5a40"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta7",
+  "name": "Hasta",
+  "role": "Ortak salon: tavana bakan",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f2c8a8",
+  "skinShade": "#e0ab88",
+  "iris": "#3a3a2a",
+  "hair": {
+   "style": "longStraight",
+   "color": "#3a2a20",
+   "shade": "#5a4434"
+  },
+  "outfit": {
+   "type": "dress",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
  }
 ]

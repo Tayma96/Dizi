@@ -31,6 +31,32 @@
     "nalan": {
      "mark": "n0",
      "emotion": "mutlu"
+    },
+    "hasta3": {
+     "mark": "s1",
+     "tik": "sallan",
+     "emotion": "notr"
+    },
+    "hasta4": {
+     "mark": "s4",
+     "tik": "konus",
+     "gesture": "dusunme",
+     "emotion": "dusunceli"
+    },
+    "hasta5": {
+     "mark": "ayak_tv",
+     "gesture": "elSalla",
+     "emotion": "mutlu"
+    },
+    "hasta6": {
+     "mark": "volta",
+     "tik": "volta",
+     "emotion": "supheli"
+    },
+    "hasta7": {
+     "mark": "tavan",
+     "tik": "tavan",
+     "emotion": "notr"
     }
    },
    "beats": [
@@ -206,7 +232,11 @@
      ],
      "fade": "cikis"
     }
-   ]
+   ],
+   "ambience2": {
+    "name": "ortam/kafe_kalabalik",
+    "volume": 0.1
+   }
   }
  ]
 }

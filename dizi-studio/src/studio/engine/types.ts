@@ -37,6 +37,8 @@ export type CharState = {
   prop?: Prop;
   /** bakış yönü elle: x -1..1 (sol/sağ), y -1..1 (yukarı/aşağı); ör. duvardaki televizyona bakmak */
   bak?: { x: number; y: number };
+  /** arka plan hastalarının tekrarlayan tuhaf davranışı */
+  tik?: "sallan" | "konus" | "selam" | "volta" | "tavan";
   /** yerinde yürü (takip çekimi; mekân kayar) */
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
@@ -122,6 +124,8 @@ export type Scene = {
   rain?: boolean;
   title?: string;
   ambience?: { name: string; volume?: number };
+  /** ikinci ortam katmanı (ör. kalabalık uğultusu) */
+  ambience2?: { name: string; volume?: number };
   music?: { name: string; volume?: number; from?: number };
   /** "flashback": sepya/rüya görünümü */
   look?: "normal" | "flashback" | "soguk" | "sicak" | "tekinsiz";

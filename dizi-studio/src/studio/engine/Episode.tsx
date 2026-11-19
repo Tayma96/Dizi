@@ -122,6 +122,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       walking = bf < walkDur;
     }
     if (st.yuru) walking = true;
+    if (st.tik === "volta") {
+      // bir o yana bir bu yana volta (kendi temposunda)
+      x = p.x + Math.sin(frame / 45) * 200;
+      walking = true;
+    }
     walkX[id] = { x, walking };
     placed[id] = { ...p, x, headX: x };
   }
@@ -208,6 +213,9 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (!st || !p) return undefined;
     if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
     if (st.bak) return { yaw: st.bak.x * 0.35, lookX: st.bak.x };
+    if (st.tik === "tavan") return { yaw: 0, lookX: 0.1 };
+    if (st.tik === "sallan") return { yaw: 0, lookX: 0 };
+    if (st.tik === "volta") return { yaw: Math.cos(frame / 45) > 0 ? 0.4 : -0.4, lookX: Math.cos(frame / 45) > 0 ? 0.7 : -0.7 };
     // yürürken önüne bakar (birbirine bakarak yürümezler); ancak açıkça bakılan kişi varsa ona döner
     if (st.yuru && !st.lookAt) return { yaw: 0.3, lookX: 0.55 };
     // dizilerde kameraya bakılmaz: belirtilen kişiye, yoksa konuşana, konuşan da karşısındakine bakar
@@ -262,10 +270,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             hideLegs: ang !== undefined,
-            tilt: ang !== undefined ? -0.72 * ang : undefined,
+            tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : undefined,
+            talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : undefined,
             yaw,
             lookX,
-            lookY: st.bak ? st.bak.y : undefined,
+            lookY: st.bak ? st.bak.y : st.tik === "tavan" ? -1 : undefined,
             tears: st.tears,
             pale: st.pale,
             sweat: st.sweat,
@@ -411,6 +420,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
           <Sequence key={ts.scene.id} name={`${ts.scene.id} · ${ts.scene.title ?? ts.scene.set}`} from={ts.from} durationInFrames={ts.dur}>
             <SceneView ts={ts} colors={colors} />
             {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} /> : null}
+            {ts.scene.ambience2 ? <AmbTrack src={`ses/${ts.scene.ambience2.name}.mp3`} base={ts.scene.ambience2.volume ?? 0.1} dur={ts.dur} /> : null}
             {ts.scene.transition === "whoosh" ? <Audio src={staticFile("ses/efekt/whoosh.mp3")} volume={0.6} /> : null}
             {ts.beats.map((b) => (
               <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 6 * fps} layout="none">
