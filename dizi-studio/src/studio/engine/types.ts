@@ -86,7 +86,7 @@ export type Beat =
       /** ses seviyesi çarpanı (vars. 1) */
       vol?: number;
       /** ses efekti zinciri: kapı arkası / telefon */
-      fx?: "kapi_arkasi" | "telefon";
+      fx?: "kapi_arkasi" | "telefon" | "telefon_uzak";
       /** ek ses etiketi (ElevenLabs v3/v4) */
       tags?: string;
       /** altyazıda baştan gizlenecek kelime sayısı (ses başka bir sesle örtülür) */

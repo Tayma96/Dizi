@@ -26,6 +26,15 @@
    "speed": 1.0
   }
  },
+ "ayla": {
+  "voice_id": "i50A6Mcx7A7vVwCVZVeZ",
+  "sahip": "60514a5b02d18c1c66587075999cc80de0d46d2307bc4299f2da0f514de9a15d",
+  "ad": "i50A6Mcx7A7vVwCVZVeZ",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "baba_dg": {
   "voice_id": "t2OF8bTMamJQneB9gk1S",
   "sahip": "0f72f4518c796f68cb32cf2fc34f02645c8524672cedb14ee4dfbcfe8d72616f",

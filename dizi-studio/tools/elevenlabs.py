@@ -387,6 +387,8 @@ def visemes_from_alignment(al):
 FX = {
     "kapi_arkasi": "highpass=f=180,lowpass=f=2000,equalizer=f=350:t=q:w=1.0:g=2,aecho=0.8:0.5:14|31:0.18|0.1,apad=pad_dur=0.3",
     "telefon": "highpass=f=300,lowpass=f=3400,acompressor=threshold=-20dB:ratio=4",
+    # telefon hoparlöründen, karşı tarafın arka planından gelen uzak ses (ofis odası yansıması)
+    "telefon_uzak": "aecho=0.8:0.6:40|75:0.3|0.18,highpass=f=450,lowpass=f=2800,acompressor=threshold=-24dB:ratio=5",
     # kapı arkasından ama yakın (koğuş kapısı): daha az boğuk
     "kapi_arkasi_hafif": "highpass=f=150,lowpass=f=3200,aecho=0.8:0.4:12|25:0.15|0.08,apad=pad_dur=0.3",
     # televizyon hoparlörü
@@ -419,7 +421,7 @@ def postprocess(raw_path, out_path, fx=None):
     det = subprocess.run(["ffmpeg", "-i", raw_path, "-af", "silencedetect=n=-45dB:d=0.05", "-f", "null", "-"], capture_output=True, text=True).stderr
     m = re.search(r"silence_start: 0(?:\.0+)?\s.*?silence_end: ([\d.]+)", det, re.S)
     lead = max(0.0, float(m.group(1)) - 0.06) if m else 0.0
-    loudnorm_2pass(raw_path, out_path, target={"kapi_arkasi": -25.0, "kapi_arkasi_hafif": -19.0, "kanal": -22.0, "tv": -18.0}.get(fx or "", -16.0), extra_af=FX.get(fx or "", ""), ss=lead)
+    loudnorm_2pass(raw_path, out_path, target={"telefon_uzak": -27.0, "kapi_arkasi": -25.0, "kapi_arkasi_hafif": -19.0, "kanal": -22.0, "tv": -18.0}.get(fx or "", -16.0), extra_af=FX.get(fx or "", ""), ss=lead)
     dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out_path]).strip())
     return lead, dur
 

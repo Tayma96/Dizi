@@ -1440,5 +1440,31 @@
    "accent": "#ffffff"
   },
   "blush": true
+ },
+ {
+  "id": "ayla",
+  "name": "Ayla",
+  "role": "Deli Değilim: Taner Holding santral görevlisi (yalnızca telefonda ses)",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#3a2414",
+  "hair": {
+   "style": "bob",
+   "color": "#2a1a12",
+   "shade": "#4a3022"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2a2e3a",
+   "topShade": "#1e222c",
+   "bottom": "#2a2e3a",
+   "shoes": "#1a1a1a",
+   "accent": "#e8e8f0"
+  },
+  "blush": true
  }
 ]
