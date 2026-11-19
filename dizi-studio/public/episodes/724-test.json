@@ -1,0 +1,47 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-test",
+ "episodeNo": 0,
+ "title": "test",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "t",
+   "set": "market",
+   "time": "gunduz",
+   "look": "normal",
+   "title": "test",
+   "arka": "arka/724/kapi_bakis.png",
+   "arkaOn": "M 704 1000 L 830 990 L 830 1170 L 1080 1215 L 1080 1920 L 704 1920 Z M 860 838 L 1012 838 L 1012 975 L 880 990 Z",
+   "isaretler": {
+    "ece": {
+     "x": 935,
+     "y": 1470,
+     "size": 780
+    }
+   },
+   "cast": {
+    "ece724": {
+     "mark": "ece",
+     "emotion": "yorgun",
+     "bak": {
+      "x": -0.9,
+      "y": 0.05,
+      "yaw": -0.7
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     }
+    }
+   ]
+  }
+ ]
+}

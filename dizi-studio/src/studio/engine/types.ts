@@ -145,6 +145,12 @@ export type Scene = {
   saat?: string;
   /** takip çekimi: mekân bu hızla (px/sn) sola akar, karakterler yerinde yürür */
   kaydirma?: number;
+  /** resimli arka plan (public altında yol, ör. "arka/724/kapi_bakis.png"); verilirse çizilmiş set yerine kullanılır */
+  arka?: string;
+  /** arka plan resminin karakterlerin ÖNÜNDE kalacak kısmı: 1080x1920 koordinatında SVG path (ör. kasa bankosu) */
+  arkaOn?: string;
+  /** bu sahneye özel işaretler (setin işaretlerini ezer/ekler) */
+  isaretler?: Record<string, { x: number; y: number; size: number; sit?: boolean }>;
   /** Bilinçli ışık tasarımı (anahtar/dolgu/arka) */
   isik?: LightDesign;
   cast: Record<string, CharState>;
