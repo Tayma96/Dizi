@@ -32,3 +32,6 @@ Mitoloji (gizli, yavaş açılır): 19.11.1998 gecesi binanın 7. katı (arşiv)
 - **P4 "Telefon":** Lobideki eski duvar telefonu çalar (03:17). Genç, nefes nefese bir ses: "Abi! Yedinci katta yangın var, kapı açılmıyor! Abi neredesin?!" Cemil: "Rıza?.." Hat kesilir; Cemil telefon kablosunun duvara bağlı bile olmadığını görür.
 - **P5 "Çağrı":** Asansör kendiliğinden açılır; düğme panelinde olmayan "7" düğmesi yanıyor. Yerde yanık kenarlı bir bekçi kepi. Hoparlörden: "Yukarı çık, Cemil. Bu sefer kaçma." Cemil içeri girer, kapı kapanır, gösterge 1… 6… 7.
 - **P6 "Kat 7" (bölüm sonu):** Kapı 7. kata açılır: yanık, isli koridor, "7. KAT · ARŞİV" tabelası, duvarda "KASIM 1998" takvimi. Asansörden çıkan Cemil'in telsizi cızırdar. Kesme: KAM 01 lobi görüntüsü: Cemil hâlâ masasında oturuyor ve başını yavaşça kameraya kaldırıyor. Siyah. Kart: "Lobide oturan kim?"
+
+### Bölüm 1 kurgusu (kullanıcı önerisi: soğuk açılış)
+Sıra: P4 (telefon) → başlık "KAT 7 / 8 DAKİKA ÖNCE · 03:17" → P1 → P2 → P3 → P5 → P6. Ara bitiş kartları kesildi; tek bitiş kartı sonda ("Lobide oturan kim?"). Dosya: `bolumler/kat7-01.mp4` (2:43, -14.5 LUFS).
