@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -30,7 +30,8 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
-  lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 } } },
+  lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 }, asansor: { x: 360, y: 1560, size: 1000 } } },
+  kat7_koridor: { title: "7. kat: yanık arşiv koridoru", marks: { cemil: { x: 540, y: 1790, size: 1160 }, ileri: { x: 560, y: 1500, size: 820 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
@@ -609,6 +610,52 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <rect x={160} y={1530} width={760} height={30} fill="#e8f2ea" opacity={0.05 * flick} />
           {/* genel karanlık */}
           <rect width={W} height={H} fill="#000" opacity={0.18 + (1 - flick) * 0.35} />
+        </g>
+      );
+    }
+    case "kat7_koridor": {
+      // 1998'de yanmış arşiv katı: isli duvarlar, yanık raflar, sarkan tavan panelleri, uçuşan kül, uzakta kararan kapı.
+      const fr = props.frame ?? 0;
+      const VX = 540, VY = 900;
+      return (
+        <g>
+          <defs>
+            <radialGradient id="k7Is" cx="0.5" cy="0.62" r="0.55">
+              <stop offset="0" stopColor="#f6e8c0" stopOpacity={0.5} />
+              <stop offset="1" stopColor="#000" stopOpacity={0} />
+            </radialGradient>
+          </defs>
+          <rect width={W} height={H} fill="#1e1b18" />
+          {/* koridor perspektifi */}
+          <path d={`M 0 0 L 1080 0 L ${VX + 130} ${VY - 160} L ${VX - 130} ${VY - 160} Z`} fill="#2a2622" />
+          <path d={`M 0 0 L ${VX - 130} ${VY - 160} L ${VX - 130} ${VY + 160} L 0 1920 Z`} fill="#3a342e" />
+          <path d={`M 1080 0 L ${VX + 130} ${VY - 160} L ${VX + 130} ${VY + 160} L 1080 1920 Z`} fill="#342f2a" />
+          <path d={`M 0 1920 L ${VX - 130} ${VY + 160} L ${VX + 130} ${VY + 160} L 1080 1920 Z`} fill="#26221e" />
+          {/* uzak kapı */}
+          <rect x={VX - 90} y={VY - 120} width={180} height={280} fill="#050404" stroke="#2a2420" strokeWidth={4} />
+          <rect x={VX - 70} y={VY + 120} width={140} height={20} fill="#5a1a10" opacity={0.25 + 0.1 * Math.sin(fr / 9)} />
+          {/* raflar (yanık klasörler) */}
+          {[0, 1, 2, 3].map((i) => {
+            const k = 1 - i * 0.22;
+            const xL = 40 + i * 95, xR = 1040 - i * 95;
+            return (
+              <g key={i}>
+                <rect x={xL} y={VY - 380 * k} width={60 * k} height={760 * k} fill="#4a4038" stroke="#0a0908" strokeWidth={4} />
+                <rect x={xR - 60 * k} y={VY - 380 * k} width={60 * k} height={760 * k} fill="#443a32" stroke="#0a0908" strokeWidth={4} />
+                {[0, 1, 2, 3].map((j) => <rect key={j} x={xL + 6} y={VY - 360 * k + j * 180 * k} width={46 * k} height={70 * k} fill={j % 2 ? "#3a2e22" : "#1a1410"} />)}
+              </g>
+            );
+          })}
+          {/* is lekeleri ve sarkan tavan paneli */}
+          <path d="M 120 220 q 120 -60 260 20 q 80 60 200 -10 L 600 380 Q 300 300 120 420 Z" fill="#000" opacity={0.55} />
+          <path d="M 700 120 L 880 140 L 840 380 L 780 300 Z" fill="#2a2622" stroke="#0a0908" strokeWidth={5} />
+          {/* tabela */}
+          <rect x={660} y={520} width={300} height={90} fill="#1e1c18" stroke="#0a0908" strokeWidth={5} transform="skewY(14)" />
+          <text x={810} y={578} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={34} fontWeight={700} fill="#9a9080" transform="skewY(14)">7. KAT · ARŞİV</text>
+          {/* fener ışığı ve kül */}
+          <rect width={W} height={H} fill="url(#k7Is)" />
+          {new Array(40).fill(0).map((_, i) => { const y = (random(`ay${i}`) * 1920 + fr * (0.6 + random(`av${i}`))) % 1920; return <circle key={i} cx={(random(`ax${i}`) * 1080 + Math.sin((fr + i * 20) / 30) * 20)} cy={y} r={2 + random(`ar${i}`) * 3} fill="#c8b8a0" opacity={0.35} />; })}
+          <rect width={W} height={H} fill="#000" opacity={0.06} />
         </g>
       );
     }

@@ -159,10 +159,10 @@ const CctvLobi: React.FC<{ dur: number; mod?: string }> = ({ dur, mod = "normal"
         <rect x={470} y={1150} width={160} height={110} fill="#5a6a70" stroke="#111" strokeWidth={5} transform="rotate(-8 550 1205)" />
       </svg>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
-        {mod !== "bos" ? <Siluet x={700} y={1300} s={1.25} tilt={tilt} isim={isim} don={don} /> : null}
+        {mod !== "bos" && mod !== "bakan" ? <Siluet x={700} y={1300} s={1.25} tilt={tilt} isim={isim} don={don} /> : null}
       </svg>
       <div style={{ position: "absolute", left: 700 - 0.2 * 760, top: 1010 }}>
-        <Character look={castById("cemil")} size={760} pose={{ body: "sit", emotion: "notr", yaw: -0.3, lookX: -0.6, lookY: 0.5, seed: 3 }} />
+        <Character look={castById("cemil")} size={760} pose={mod === "bakan" ? { body: "sit", emotion: "soguk", yaw: 0, lookX: 0, lookY: interpolate(f, [dur * 0.3, dur * 0.8], [0.8, -0.6], clamp), tilt: interpolate(f, [dur * 0.3, dur * 0.8], [10, 0], clamp), seed: 3 } : { body: "sit", emotion: "notr", yaw: -0.3, lookX: -0.6, lookY: 0.5, seed: 3 }} />
       </div>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         <path d="M 420 1440 L 1060 1340 L 1080 1920 L 400 1920 Z" fill="#3a3630" stroke="#111" strokeWidth={6} />
@@ -175,8 +175,9 @@ const CctvLobi: React.FC<{ dur: number; mod?: string }> = ({ dur, mod = "normal"
 const KatGostergesi: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => {
   const f = useCurrentFrame();
   const from = Number((text ?? ["7"])[0]);
+  const to = Number((text ?? ["7", "0"])[1] ?? 0);
   const p = interpolate(f, [0, dur * 0.95], [0, 1], { ...clamp, easing: Easing.in(Easing.quad) });
-  const kat = Math.max(0, Math.round(from - p * from));
+  const kat = Math.round(from + (to - from) * p);
   return (
     <AbsoluteFill style={{ backgroundColor: "#0b0b0d" }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
@@ -185,7 +186,7 @@ const KatGostergesi: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }
         <text x={540} y={1070} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={420} fill="#ff2a1a">{kat}</text>
         <text x={540} y={1070} textAnchor="middle" fontFamily={MONO} fontWeight={700} fontSize={420} fill="#ff2a1a" opacity={0.4} filter="url(#kgP)">{kat}</text>
         <defs><filter id="kgP"><feGaussianBlur stdDeviation="16" /></filter></defs>
-        <path d="M 540 560 l -40 40 l 80 0 Z" fill="#ff2a1a" opacity={0.85} transform="rotate(180 540 580)" />
+        <path d="M 540 560 l -40 40 l 80 0 Z" fill="#ff2a1a" opacity={0.85} transform={to < from ? "rotate(180 540 580)" : undefined} />
       </svg>
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%)" }} />
     </AbsoluteFill>
@@ -331,8 +332,82 @@ const Kablo: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik" | "pano_fener" | "not_yakin" | "telefon_cal" | "kablo";
-export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik", "pano_fener", "not_yakin", "telefon_cal", "kablo"];
+/** Kabin düğme paneli: 0-6 sönük; en üstte olmaması gereken "7" kırmızı yanıp söner */
+const Dugme7: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const glow = 0.6 + 0.4 * Math.sin(f / 5);
+  const z = interpolate(f, [0, dur], [1, 1.12], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#050505", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <rect width={1080} height={1920} fill="#3a3c36" />
+        <rect x={340} y={360} width={400} height={1200} rx={30} fill="#8a8e88" stroke="#111" strokeWidth={10} />
+        {[6, 5, 4, 3, 2, 1, 0].map((k, i) => (
+          <g key={k}>
+            <circle cx={540} cy={640 + i * 130} r={46} fill="#c8ccc4" stroke="#222" strokeWidth={6} />
+            <text x={540} y={658 + i * 130} textAnchor="middle" fontFamily={MONO} fontSize={52} fontWeight={700} fill="#333">{k}</text>
+          </g>
+        ))}
+        {/* olmaması gereken 7: panelin üstüne sonradan oyulmuş gibi */}
+        <circle cx={540} cy={480} r={54} fill="#3a0806" stroke="#111" strokeWidth={6} />
+        <circle cx={540} cy={480} r={46} fill="#ff2a1a" opacity={glow} />
+        <circle cx={540} cy={480} r={110} fill="#ff2a1a" opacity={glow * 0.18} />
+        <text x={540} y={500} textAnchor="middle" fontFamily={MONO} fontSize={60} fontWeight={700} fill="#fff2e0">7</text>
+        <path d="M 470 420 l 30 -20 M 610 430 l -20 -30" stroke="#2a2a2a" strokeWidth={5} />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Kabin zemininde yanık kenarlı bekçi kepi, yaka kartı "R. KOÇ", kül */
+const Kep: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1.08, 1.0], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#050505", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})` }}>
+        <rect width={1080} height={1920} fill="#2a2b26" />
+        {new Array(60).fill(0).map((_, i) => <circle key={i} cx={random(`ks${i}`) * 1080} cy={700 + random(`ky${i}`) * 900} r={3 + random(`kr${i}`) * 10} fill="#151513" opacity={0.7} />)}
+        <ellipse cx={540} cy={1180} rx={340} ry={120} fill="#000" opacity={0.35} />
+        <path d="M 250 1100 Q 540 760 830 1100 Q 540 1180 250 1100 Z" fill="#1e2638" stroke="#000" strokeWidth={10} />
+        <path d="M 230 1110 Q 540 1260 860 1110 L 900 1160 Q 540 1320 190 1160 Z" fill="#141a26" stroke="#000" strokeWidth={10} />
+        <path d="M 640 960 q 40 30 30 80 q -20 -10 -40 10 q 0 -40 -30 -50 Z" fill="#0a0a0a" />
+        <path d="M 300 1060 l 30 -30 l 20 30 l 30 -40 l 10 50" fill="#0a0a0a" />
+        <rect x={470} y={930} width={140} height={70} rx={10} fill="#b8963e" stroke="#000" strokeWidth={6} />
+        <rect x={560} y={1330} width={220} height={60} rx={6} fill="#cfc9b4" stroke="#000" strokeWidth={5} transform="rotate(12 670 1360)" />
+        <text x={670} y={1372} textAnchor="middle" fontFamily={MONO} fontSize={38} fontWeight={700} fill="#111" transform="rotate(12 670 1360)">R. KOÇ</text>
+        <path d="M 760 1330 l 20 -10 l 10 20 l 10 -14" stroke="#0a0a0a" strokeWidth={8} fill="none" transform="rotate(12 670 1360)" />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 55%, rgba(255,240,200,0.22) 0%, rgba(0,0,0,0) 45%), radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** KASIM 1998 takvimi, isli duvarda (yakın) */
+const Takvim: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1.0, 1.1], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#050505", overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})` }}>
+        <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 50%, #5a4a3a 0%, #1a1410 55%, #050505 80%)" }} />
+        <div style={{ position: "absolute", left: 200, top: 520, width: 680, height: 860, background: "#cdbf9c", boxShadow: "0 10px 40px #000", transform: "rotate(3deg)" }}>
+          <div style={{ background: "#7a1a14", color: "#f2e6cf", fontFamily: MONO, fontWeight: 700, fontSize: 70, textAlign: "center", padding: "24px 0" }}>KASIM 1998</div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 8, padding: 30, fontFamily: MONO, fontSize: 40, color: "#2a2018" }}>
+            {new Array(30).fill(0).map((_, i) => (
+              <div key={i} style={{ textAlign: "center", padding: 6, border: i === 18 ? "5px solid #a01818" : "none", borderRadius: 40, fontWeight: i === 18 ? 900 : 400 }}>{i + 1}</div>
+            ))}
+          </div>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 80% 90%, rgba(10,8,6,0.85) 0%, rgba(0,0,0,0) 45%), radial-gradient(ellipse at 10% 20%, rgba(10,8,6,0.6) 0%, rgba(0,0,0,0) 35%)" }} />
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik" | "pano_fener" | "not_yakin" | "telefon_cal" | "kablo" | "dugme_7" | "kep" | "takvim";
+export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik", "pano_fener", "not_yakin", "telefon_cal", "kablo", "dugme_7", "kep", "takvim"];
 
 export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -345,6 +420,9 @@ export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[]
     case "not_yakin": return <NotYakin dur={dur} />;
     case "telefon_cal": return <TelefonCal dur={dur} />;
     case "kablo": return <Kablo dur={dur} />;
+    case "dugme_7": return <Dugme7 dur={dur} />;
+    case "kep": return <Kep dur={dur} />;
+    case "takvim": return <Takvim dur={dur} />;
     case "kat_gostergesi": return <KatGostergesi dur={dur} text={text} />;
   }
 };

@@ -1,0 +1,247 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p5",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Çağrı",
+ "endCard": {
+  "text": "KAT 7 · Final parçası geliyor",
+  "sub": "7. katta onu ne bekliyor?"
+ },
+ "scenes": [
+  {
+   "id": "p5",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 5 — Çağrı",
+   "saat": "0",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.28,
+    "from": 40
+   },
+   "cast": {
+    "cemil": {
+     "mark": "tel",
+     "emotion": "sok",
+     "bak": {
+      "x": -1.0,
+      "y": -0.15,
+      "yaw": -0.9
+     }
+    },
+    "riza98": {
+     "mark": "tel",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.8,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "dugme_7",
+     "dur": 2.6,
+     "sfx": [
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kep",
+     "dur": 2.6,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "uzgun",
+     "tags": "[broken voice, holding back tears]",
+     "text": "Rıza… sen o gece öldün.",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "uzgun",
+       "tears": 0.7,
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "riza98",
+     "offscreen": true,
+     "label": "ASANSÖR HOPARLÖRÜ",
+     "fx": "kanal",
+     "emotion": "soguk",
+     "tags": "[calm, cold, slow]",
+     "text": "Yukarı çık, Cemil. Bu sefer kaçma.",
+     "gapAfter": 0.6,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "tears": 0.4
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/parazit",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "mark": "asansor",
+       "emotion": "korkmus",
+       "prop": "fener",
+       "gesture": "tutuyor",
+       "tears": 0,
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.35,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "door": "kapat",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "hidden": true
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kat_gostergesi",
+     "dur": 2.8,
+     "text": [
+      "0",
+      "7"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 0.71
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.23
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.59
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.88
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.13
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.36
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.56
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 0.7,
+     "sfx": [
+      {
+       "name": "efekt/asansor_ding",
+       "volume": 0.8,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

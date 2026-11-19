@@ -1,0 +1,183 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p6",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Kat 7",
+ "endCard": {
+  "text": "KAT 7 · Bölüm 2 yarın",
+  "sub": "Lobide oturan kim? Yorumlara yaz."
+ },
+ "scenes": [
+  {
+   "id": "p6",
+   "set": "kat7_koridor",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 6 — Kat 7",
+   "ambience": {
+    "name": "ortam/ruzgar",
+    "volume": 0.25
+   },
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.3,
+    "from": 62
+   },
+   "cast": {
+    "cemil": {
+     "mark": "cemil",
+     "emotion": "korkmus",
+     "prop": "fener",
+     "gesture": "tutuyor",
+     "bak": {
+      "x": 0.2,
+      "y": -0.2
+     }
+    },
+    "riza98": {
+     "mark": "cemil",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.8,
+     "fade": "giris",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "etiket": "7. KAT",
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.4,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "fisilti",
+     "tags": "[whispers]",
+     "text": "Burası yanmıştı.",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -0.6,
+        "y": -0.3
+       }
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "takvim",
+     "dur": 2.8,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "orta",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": 0.4,
+        "y": 0.2
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telsiz_parazit",
+       "volume": 0.45,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "riza98",
+     "offscreen": true,
+     "label": "TELSİZ",
+     "fx": "telsiz",
+     "emotion": "soguk",
+     "tags": "[whispers slowly]",
+     "text": "Geç kaldın abi.",
+     "gapAfter": 0.8,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telsiz_cit",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_lobi",
+     "dur": 4.6,
+     "text": [
+      "bakan"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/parazit",
+       "volume": 0.35,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.7,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 1.0,
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.95,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
