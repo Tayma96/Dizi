@@ -1,0 +1,253 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-01-p3",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Parça 3",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "p3",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Parça 3 — Doktor",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/gizem",
+    "volume": 0.2
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "body": "yatakta",
+     "emotion": "korkmus",
+     "gesture": "tutuyor",
+     "prop": "ilac"
+    },
+    "nalan": {
+     "mark": "yatak_yani",
+     "emotion": "soguk"
+    },
+    "deniz": {
+     "mark": "doktor",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "cast": {
+      "deniz": {
+       "hidden": false,
+       "enter": "sag",
+       "emotion": "notr",
+       "gesture": "tutuyor",
+       "prop": "pano"
+      },
+      "nalan": {
+       "mark": "yatak_yani2",
+       "lookAt": "deniz"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.45,
+       "at": 0.1
+      },
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.4,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "korkmus",
+     "tags": "[trembling voice, tense]",
+     "text": "Noluyor lan, neresi burası! Ne istiyonuz benden!",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest",
+       "prop": "none",
+       "emotion": "korkmus",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "emotion": "sakin",
+     "tags": "[dryly]",
+     "text": "Hastamız yine formunda anlaşılan.",
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "sakin",
+     "tags": "[weary, fed up]",
+     "text": "Alıştık artık bu rutine.",
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "yorgun",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "korkmus",
+     "text": "Ne rutininden bahsediyorsun?",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli",
+       "lookAt": "nalan"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "sakin",
+     "tags": "[gently, comforting]",
+     "text": "Ruh ve sinir hastalıkları hastanesindesin.",
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "uzgun",
+       "lookAt": "berkay_hasta"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "emotion": "soguk",
+     "tags": "[cutting in, firm]",
+     "text": "Bak Berkay, ara sıra hafızanı tamamen kaybediyorsun. Sebebini hâlâ anlayamadık. Her seferinde de aynı muhabbeti yaşıyoruz.",
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "yaklas"
+     },
+     "cast": {
+      "deniz": {
+       "emotion": "kararli",
+       "lookAt": "berkay_hasta"
+      },
+      "nalan": {
+       "emotion": "soguk",
+       "lookAt": "deniz"
+      },
+      "berkay_hasta": {
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "uzgun",
+     "tags": "[scared and sad]",
+     "text": "Ama ben deli değilim.",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "uzgun",
+       "lookAt": "deniz"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "uzgun",
+     "tags": "[pleading, voice breaking]",
+     "text": "İyiyim ben, ben deli değilim.",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "agliyor",
+       "gesture": "ellerAcik"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "iki",
+      "on": "nalan",
+      "with": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "lookAt": "deniz",
+       "emotion": "soguk"
+      },
+      "deniz": {
+       "lookAt": "nalan",
+       "emotion": "supheli"
+      },
+      "berkay_hasta": {
+       "gesture": "rest"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
