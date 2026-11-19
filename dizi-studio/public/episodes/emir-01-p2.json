@@ -27,7 +27,22 @@
      "body": "yat",
      "zemin": true,
      "eyesClosed": 1,
-     "emotion": "baygin"
+     "emotion": "baygin",
+     "kol": {
+      "L": {
+       "upper": 40,
+       "fore": 10
+      },
+      "R": {
+       "upper": 12,
+       "fore": -20
+      }
+     },
+     "bacak": [
+      4,
+      -14
+     ],
+     "egim": -4
     },
     "yerli_bilge": {
      "mark": "yb",
@@ -60,7 +75,22 @@
      "zemin": true,
      "eyesClosed": 1,
      "emotion": "baygin",
-     "pale": 0.5
+     "pale": 0.5,
+     "kol": {
+      "L": {
+       "upper": 150,
+       "fore": 20
+      },
+      "R": {
+       "upper": 70,
+       "fore": 115
+      }
+     },
+     "bacak": [
+      -6,
+      34
+     ],
+     "egim": -10
     },
     "hostes": {
      "mark": "m2",
@@ -68,7 +98,22 @@
      "zemin": true,
      "eyesClosed": 1,
      "emotion": "baygin",
-     "pale": 0.5
+     "pale": 0.5,
+     "kol": {
+      "L": {
+       "upper": 100,
+       "fore": -15
+      },
+      "R": {
+       "upper": -25,
+       "fore": -95
+      }
+     },
+     "bacak": [
+      18,
+      42
+     ],
+     "egim": 12
     }
    },
    "beats": [

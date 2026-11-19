@@ -263,7 +263,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const ang = lieAng[id];
     return (
       <React.Fragment key={id}>
-      <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: ang !== undefined ? `rotate(${ang}deg)` : undefined, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px` }}>
+      <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: ang !== undefined ? `rotate(${ang + (st.egim ?? 0)}deg)` : undefined, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px` }}>
         <Character
           look={look}
           size={p.size}
@@ -271,8 +271,9 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           pose={{
             emotion: st.emotion,
             gesture: st.gesture as Gesture | undefined,
-            armL,
-            armR,
+            armL: st.kol?.L ?? armL,
+            armR: st.kol?.R ?? armR,
+            legRot: st.bacak,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             hideLegs: ang !== undefined && !st.zemin,

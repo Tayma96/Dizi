@@ -298,7 +298,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     }
     const leg = (side: number) => {
       const hx = side < 0 ? 172 : 228;
-      const rot = walking ? walkPhase * 16 * side : 0;
+      const rot = walking ? walkPhase * 16 * side : pose.legRot ? pose.legRot[side < 0 ? 0 : 1] : 0;
       return (
         <g key={side} transform={`rotate(${rot} ${hx} 600)`}>
           <path d={side < 0 ? "M 146 600 L 144 950 L 196 950 L 200 600 Z" : "M 200 600 L 204 950 L 256 950 L 254 600 Z"} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />

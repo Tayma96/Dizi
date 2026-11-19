@@ -45,6 +45,12 @@ export type CharState = {
   body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta";
   /** yerde/sedirde yatıyor: battaniye yok, bacaklar görünür */
   zemin?: boolean;
+  /** kol duruşu elle (derece): dağınık yatış, kırık kol vb. */
+  kol?: { L?: { upper: number; fore: number }; R?: { upper: number; fore: number } };
+  /** bacak açıları [sol, sağ] (derece, kalçadan) */
+  bacak?: [number, number];
+  /** yatarken gövdenin ek eğimi (derece) */
+  egim?: number;
   /** bakılan karakter id ya da "kamera" */
   lookAt?: string;
   tears?: number;
