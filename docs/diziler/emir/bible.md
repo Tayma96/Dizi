@@ -1,4 +1,6 @@
-# Emir: dizi defteri (adı henüz belli değil)
+# Kayıp CEO: dizi defteri
+
+> **Yayın adı: KAYIP CEO** (kullanıcı, 20 Kasım 2026). Dosyalar teknik nedenle `emir-*`.
 
 Durum: 19 Kasım 2026, ilk fikir. Kullanıcının metni aynen korunur. Bu dizi için doğaçlama izni **yok**: aradaki boşluklar yalnızca öneri olarak sunulur ya da en aza indirilir ve kullanıcıya bildirilir.
 
