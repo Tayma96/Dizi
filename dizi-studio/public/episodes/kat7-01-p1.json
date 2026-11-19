@@ -1,0 +1,344 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p1",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — 03:17",
+ "endCard": {
+  "text": "KAT 7 · Devamı yarın",
+  "sub": "Arkasındaki kimdi? Yorumlara yaz."
+ },
+ "scenes": [
+  {
+   "id": "p1",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 1 — 03:17",
+   "saat": "7",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.45
+   },
+   "cast": {
+    "cemil": {
+     "mark": "cemil",
+     "emotion": "yorgun",
+     "gesture": "tutuyor",
+     "prop": "fincan",
+     "bak": {
+      "x": -0.75,
+      "y": 0.35
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "insert",
+     "kind": "cctv_asansor",
+     "dur": 2.6,
+     "sfx": [
+      {
+       "name": "efekt/asansor_ding_uzak",
+       "volume": 0.7,
+       "at": 0.1
+      },
+      {
+       "name": "efekt/parazit",
+       "volume": 0.45,
+       "at": 1.6
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "korkmus",
+     "tags": "[whispering, confused, uneasy]",
+     "text": "Yedi mi?.. Bu bina altı katlı.",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "saskin",
+       "bak": {
+        "x": -0.75,
+        "y": 0.35
+       }
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_bos",
+     "dur": 1.6,
+     "sfx": [
+      {
+       "name": "efekt/parazit",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kat_gostergesi",
+     "dur": 2.8,
+     "text": [
+      "7"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 0.71
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.23
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.59
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.88
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.13
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.36
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.56
+      },
+      {
+       "name": "efekt/darbe",
+       "volume": 0.45,
+       "at": 1.25
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.6,
+     "turb": 0.35,
+     "saat": "0",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       },
+       "gesture": "rest",
+       "prop": "none"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/floresan_cit",
+       "volume": 0.35,
+       "at": 0.3
+      },
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4,
+       "at": 0.8
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_ding",
+       "volume": 0.85,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.55,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "door": "kapat",
+     "turb": 0.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.5,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/floresan_cit",
+       "volume": 0.4,
+       "at": 0.1
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "korkmus",
+     "tags": "[nervous short laugh, talking to himself, trying to calm down]",
+     "text": "Yaşlandın Cemil… yaşlandın.",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "orta",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "yorgun",
+       "bak": {
+        "x": -0.75,
+        "y": 0.35
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ic_cekme",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "cctv_lobi",
+     "dur": 4.4,
+     "sfx": [
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.75,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/parazit",
+       "volume": 0.25,
+       "at": 2.2
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": -0.75,
+        "y": 0.35
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "voiceover": true,
+     "label": "?",
+     "emotion": "fisilti",
+     "fx": "hayalet",
+     "tags": "[whispers slowly]",
+     "text": "Yaşlanmışsın, Cemil.",
+     "gapAfter": 0.1,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": 0.9,
+        "y": 0.0
+       }
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 0.8,
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.9,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -36,7 +36,7 @@ export type CharState = {
   gesture?: Gesture | "sarilma" | "kapiAc";
   prop?: Prop;
   /** bakış yönü elle: x -1..1 (sol/sağ), y -1..1 (yukarı/aşağı); ör. duvardaki televizyona bakmak */
-  bak?: { x: number; y: number };
+  bak?: { x: number; y: number; yaw?: number };
   /** arka plan hastalarının tekrarlayan tuhaf davranışı */
   tik?: "sallan" | "konus" | "selam" | "volta" | "tavan";
   /** yerinde yürü (takip çekimi; mekân kayar) */

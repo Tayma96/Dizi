@@ -8,6 +8,15 @@
    "speed": 1.0
   }
  },
+ "cemil": {
+  "voice_id": "anu8LIf3pYhCJFkcpxzg",
+  "sahip": "09677f050136abbac3d65d2e8ba7739d7ee9bf3e20765d78bf1256ad1204ed75",
+  "ad": "Sefik",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "deniz": {
   "voice_id": "PdYVUd1CAGSXsTvZZTNn",
   "sahip": "ad50827bd49bc3cf8315f998cdbf2e71885fde967ff265f582df732f3eef6d71",
@@ -18,6 +27,24 @@
   }
  },
  "emir": {
+  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+  "ad": "Batuhan Altınova",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "emir_kaza": {
+  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+  "ad": "Batuhan Altınova",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "emir_kulube": {
   "voice_id": "vwmWyMlmlJtiiXeCVRKn",
   "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
   "ad": "Batuhan Altınova",
@@ -75,24 +102,6 @@
   "voice_id": "Q2IX97JeHBY3vNGzgM5s",
   "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
   "ad": "Cavit (TV sunucu)",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "emir_kulube": {
-  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
-  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
-  "ad": "Batuhan Altınova",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "emir_kaza": {
-  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
-  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
-  "ad": "Batuhan Altınova",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0

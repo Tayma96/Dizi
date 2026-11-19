@@ -3,6 +3,7 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame } from "remotion";
 import { Character } from "../rig/Character";
 import { castById } from "../cast";
+import { Insert4, INSERT4_KINDS, type Insert4Kind } from "./Inserts4";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -574,8 +575,8 @@ const UcakCarpma: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert3Kind = "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
-export const INSERT3_KINDS: Insert3Kind[] = ["kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
+export type Insert3Kind = Insert4Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
+export const INSERT3_KINDS: Insert3Kind[] = [...INSERT4_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
 
 export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -595,6 +596,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "sargi_yakin": return <SargiYakin dur={dur} />;
     case "pov_acilis": return <PovAcilis dur={dur} />;
     case "ucak_carpma": return <UcakCarpma dur={dur} />;
+    case "cctv_asansor": case "cctv_bos": case "cctv_lobi": case "kat_gostergesi": return <Insert4 kind={kind} dur={dur} text={text} />;
     case "pov_kadin": return <PovKadin dur={dur} faz={(text ?? ["1"])[0]} />;
   }
 };

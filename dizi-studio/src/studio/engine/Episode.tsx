@@ -218,7 +218,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
     // yatan (baygın/uyuyan) karakter başını kimseye çevirmez
     if (st.body === "yat" || st.body === "yatakta") return { yaw: 0, lookX: 0 };
-    if (st.bak) return { yaw: st.bak.x * 0.35, lookX: st.bak.x };
+    if (st.bak) return { yaw: (st.bak as { yaw?: number }).yaw ?? st.bak.x * 0.35, lookX: st.bak.x };
     if (st.tik === "tavan") return { yaw: 0, lookX: 0.1 };
     if (st.tik === "sallan") return { yaw: 0, lookX: 0 };
     if (st.tik === "volta") return { yaw: Math.cos(frame / 45) > 0 ? 0.4 : -0.4, lookX: Math.cos(frame / 45) > 0 ? 0.7 : -0.7 };

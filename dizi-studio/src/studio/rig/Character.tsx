@@ -211,7 +211,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
 
   // --- face state ---
   const yaw = pose.yaw ?? 0;
-  const dx = yaw * 24;
+  // güçlü dönüş (|yaw| > 0.6): yüz hatları belirgin biçimde yana kayar (omuz üstünden bakış)
+  const strong = Math.sign(yaw) * Math.max(0, Math.abs(yaw) - 0.6);
+  const dx = yaw * 24 + strong * 70;
   const lookX = pose.lookX ?? yaw * 0.6;
   const lookY = pose.lookY ?? 0;
   const eyeOpenBase = face.eyeOpen * (1 - Math.max(blink, pose.eyesClosed ?? 0));
@@ -475,8 +477,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const facePath = male
     ? "M 114 150 Q 112 250 140 286 Q 170 312 200 312 Q 230 312 260 286 Q 288 250 286 150 Q 280 90 200 90 Q 120 90 114 150 Z"
     : "M 116 150 Q 112 246 146 284 Q 174 310 200 310 Q 226 310 254 284 Q 288 246 284 150 Q 278 92 200 92 Q 122 92 116 150 Z";
-  const squeezeL = 1 - Math.max(0, -yaw) * 0.3;
-  const squeezeR = 1 - Math.max(0, yaw) * 0.3;
+  const squeezeL = 1 - Math.max(0, -yaw) * 0.3 - Math.max(0, -strong) * 0.5;
+  const squeezeR = 1 - Math.max(0, yaw) * 0.3 - Math.max(0, strong) * 0.5;
   const tears = pose.tears ?? (emo === "agliyor" ? 0.8 : 0);
   const pale = pose.pale ?? (emo === "sok" ? 0.6 : 0);
   const blushAmt = (look.blush === false ? 0 : 1) * face.blush * (1 - pale);
@@ -536,7 +538,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         </g>
       ) : null}
       {pose.sweat ? <path d={`M ${280} 140 q -7 16 0 22 q 7 -6 0 -22 z`} fill="#bfe3ff" stroke="#6fa8cf" strokeWidth={2} /> : null}
-      <HairFront look={look} dx={yaw * 10} />
+      <HairFront look={look} dx={yaw * 10 + strong * 30} />
       {look.glasses ? (
         <g fill="none" stroke={look.glasses} strokeWidth={5}>
           <rect x={130 + dx} y={176} width={60} height={44} rx={14} />

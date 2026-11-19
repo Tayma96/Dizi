@@ -1120,5 +1120,31 @@
    "accent": "#1d2a44"
   },
   "blush": false
+ },
+ {
+  "id": "cemil",
+  "name": "Cemil",
+  "role": "KAT 7: gece bekçisi, 54",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#e2b08a",
+  "skinShade": "#c8966e",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "balding",
+   "color": "#8a8680",
+   "shade": "#6a6660"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "police",
+   "top": "#26324a",
+   "topShade": "#1a2336",
+   "bottom": "#1e2638",
+   "shoes": "#0e0e10"
+  },
+  "blush": false
  }
 ]

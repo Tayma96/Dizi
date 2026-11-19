@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -30,6 +30,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
+  lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
@@ -538,6 +539,69 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
         </g>
       );
     }
+    case "lobi": {
+      // Gece, eski iş hanı lobisi. Solda eski asansör + kırmızı kat göstergesi (props.saat = kat), sağda cam giriş kapısı (yağmur).
+      // props.turb = floresan titremesi; doorOpen = asansör kapısı.
+      const fr = props.frame ?? 0;
+      const tb = props.turb ?? 0;
+      const flick = tb > 0 ? (random(`lf${Math.floor(fr / 2)}`) > 1 - tb * 0.6 ? 0.25 : 1) : 1;
+      const op = Math.max(0, Math.min(1, doorOpen));
+      const kat = props.saat ?? "0";
+      const cabFl = op > 0 ? (random(`cf${Math.floor(fr / 3)}`) > 0.75 ? 0.35 : 1) : 1;
+      return (
+        <g>
+          <defs>
+            <linearGradient id="loDuvar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#23262d" />
+              <stop offset="1" stopColor="#1a1c21" />
+            </linearGradient>
+            <linearGradient id="loZemin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#2c2f36" />
+              <stop offset="1" stopColor="#15171b" />
+            </linearGradient>
+            <linearGradient id="loKabin" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#fffbe0" />
+              <stop offset="1" stopColor="#c8c4a0" />
+            </linearGradient>
+          </defs>
+          <rect width={W} height={H} fill="url(#loDuvar)" />
+          {/* mermer paneller */}
+          {[0, 1, 2, 3].map((i) => <rect key={i} x={i * 270} y={300} width={266} height={1220} fill={i % 2 ? "#262930" : "#23262c"} stroke="#17191d" strokeWidth={4} />)}
+          {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M ${i * 190 + 30} ${400 + (i % 3) * 200} q 60 80 20 200 q -30 90 40 180`} stroke="#3a3d44" strokeWidth={3} fill="none" opacity={0.6} />)}
+          {/* tavan + floresan */}
+          <rect width={W} height={300} fill="#17191d" />
+          <rect x={160} y={240} width={760} height={26} rx={8} fill="#e8f2ea" opacity={0.85 * flick} />
+          <rect x={120} y={230} width={840} height={60} fill="#e8f2ea" opacity={0.08 * flick} />
+          {/* asansör: kasa, kat göstergesi, kapılar */}
+          <rect x={150} y={600} width={420} height={920} fill="#3a3d44" stroke="#0d0e10" strokeWidth={8} />
+          <rect x={270} y={640} width={180} height={90} rx={8} fill="#0c0606" stroke="#0d0e10" strokeWidth={5} />
+          <text x={360} y={712} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={84} fill="#ff2a1a">{kat}</text>
+          <text x={360} y={712} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={84} fill="#ff2a1a" opacity={0.35} filter="url(#loParlak)">{kat}</text>
+          <defs><filter id="loParlak"><feGaussianBlur stdDeviation="8" /></filter></defs>
+          <rect x={190} y={760} width={340} height={740} fill="url(#loKabin)" opacity={cabFl} />
+          <path d="M 190 1500 L 530 1500 L 640 1700 L 80 1700 Z" fill="#fff6d0" opacity={op * 0.4 * cabFl} />
+          <rect x={150} y={600} width={420} height={920} fill="#fff6d0" opacity={op * 0.08 * cabFl} />
+          <rect x={190} y={760} width={170 * (1 - op)} height={740} fill="#7a8088" stroke="#0d0e10" strokeWidth={5} />
+          <rect x={360 + 170 * op} y={760} width={170 * (1 - op)} height={740} fill="#747a82" stroke="#0d0e10" strokeWidth={5} />
+          <path d={`M ${200} 790 L ${200 + 150 * (1 - op)} 790`} stroke="#9aa0a8" strokeWidth={4} />
+          <rect x={590} y={1060} width={46} height={110} rx={8} fill="#3a3d44" stroke="#0d0e10" strokeWidth={4} />
+          <circle cx={613} cy={1095} r={10} fill="#5a1a14" />
+          <circle cx={613} cy={1135} r={10} fill="#2a2a2e" />
+          {/* cam giriş kapısı: yağmurlu gece sokağı */}
+          <rect x={760} y={700} width={300} height={820} fill="#0d1622" stroke="#0a0b0d" strokeWidth={10} />
+          <circle cx={960} cy={860} r={40} fill="#f2c870" opacity={0.5} />
+          <circle cx={960} cy={860} r={110} fill="#f2c870" opacity={0.08} />
+          {new Array(40).fill(0).map((_, i) => { const y = (fr * 26 + i * 97) % 820; const x = 770 + ((i * 53) % 280); return <path key={i} d={`M ${x} ${700 + y} l -6 30`} stroke="#8aa0b8" strokeWidth={2} opacity={0.5} />; })}
+          <path d="M 910 700 L 910 1520" stroke="#0a0b0d" strokeWidth={8} />
+          {/* zemin: parlak mermer, yansıma */}
+          <rect y={1520} width={W} height={400} fill="url(#loZemin)" />
+          <rect x={190} y={1530} width={340} height={200} fill="#7a8088" opacity={0.08} />
+          <rect x={160} y={1530} width={760} height={30} fill="#e8f2ea" opacity={0.05 * flick} />
+          {/* genel karanlık */}
+          <rect width={W} height={H} fill="#000" opacity={0.18 + (1 - flick) * 0.35} />
+        </g>
+      );
+    }
     case "kulube": {
       // Bambu duvar, saz çatı aralığından süzülen ışık, saman + yaprak yatak, reçine kâsesi, küçük ateş.
       const fr = props.frame ?? 0;
@@ -787,6 +851,20 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean }> = ({ name, turb = 0, fincanElde }) => {
   const fr = useCurrentFrame();
   switch (name) {
+    case "lobi":
+      return (
+        <g>
+          <rect x={420} y={1040} width={170} height={130} rx={10} fill="#1c1e22" stroke="#0a0b0d" strokeWidth={6} />
+          <rect x={440} y={1170} width={130} height={60} fill="#16181b" />
+          <path d="M 590 1060 L 760 1000 L 760 1300 L 590 1240 Z" fill="#9ec4ff" opacity={0.12} />
+          <path d="M 440 1500 L 1080 1500 L 1080 1920 L 400 1920 Z" fill="#2a2420" stroke="#0a0b0d" strokeWidth={8} />
+          <rect x={430} y={1470} width={660} height={44} fill="#3a322c" stroke="#0a0b0d" strokeWidth={6} />
+          <rect x={470} y={1420} width={70} height={56} rx={8} fill="#c9c4b8" stroke="#0a0b0d" strokeWidth={4} />
+          <rect x={980} y={1380} width={36} height={96} rx={8} fill="#1a1a1c" stroke="#0a0b0d" strokeWidth={4} />
+          <path d="M 998 1380 l 0 -50" stroke="#1a1a1c" strokeWidth={6} />
+          <rect x={460} y={1600} width={560} height={14} fill="#1a1612" />
+        </g>
+      );
     case "ucak_kabin": {
       // koltuk önü masa: notlar ve kahve fincanı (türbülansta fincan titrer)
       const j = turb ? (random(`cup${fr}`) - 0.5) * 8 * turb : 0;

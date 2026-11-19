@@ -6,6 +6,27 @@
   "loop": false,
   "desc": "Yanından geçen araba."
  },
+ "efekt/asansor_ding": {
+  "file": "ses/efekt/asansor_ding.mp3",
+  "category": "efekt",
+  "duration": 2.4,
+  "loop": false,
+  "desc": "Asansör ding (tek ton, lobide yankılı)."
+ },
+ "efekt/asansor_ding_uzak": {
+  "file": "ses/efekt/asansor_ding_uzak.mp3",
+  "category": "efekt",
+  "duration": 2.4,
+  "loop": false,
+  "desc": "Asansör ding, CCTV hoparlöründen uzak ve boğuk."
+ },
+ "efekt/asansor_kapi": {
+  "file": "ses/efekt/asansor_kapi.mp3",
+  "category": "efekt",
+  "duration": 2.6,
+  "loop": false,
+  "desc": "Asansör kapısı: motor ve sürgü, sonda tok duruş."
+ },
  "efekt/ates": {
   "file": "ses/efekt/ates.mp3",
   "category": "efekt",
@@ -75,6 +96,13 @@
   "duration": 2.4,
   "loop": false,
   "desc": "Fincan tabağında titreyen porselen tıkırtısı."
+ },
+ "efekt/floresan_cit": {
+  "file": "ses/efekt/floresan_cit.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "Floresan lambanın titrerken çıtırtısı."
  },
  "efekt/fren": {
   "file": "ses/efekt/fren.mp3",
@@ -195,6 +223,13 @@
   "loop": false,
   "desc": "Kapı zili (BigSoundBank #0159) — gerçek kayıt, CC0"
  },
+ "efekt/kat_bip": {
+  "file": "ses/efekt/kat_bip.mp3",
+  "category": "efekt",
+  "duration": 0.09,
+  "loop": false,
+  "desc": "Kat göstergesi bipi."
+ },
  "efekt/kilit": {
   "file": "ses/efekt/kilit.mp3",
   "category": "efekt",
@@ -208,6 +243,20 @@
   "duration": 0.8,
   "loop": false,
   "desc": "Anahtar döner ama kilit dili oturmaz (son mandal yok) (kendi sentezimiz)."
+ },
+ "efekt/korku_drone": {
+  "file": "ses/efekt/korku_drone.mp3",
+  "category": "efekt",
+  "duration": 10.0,
+  "loop": false,
+  "desc": "Yükselen korku drone'u (10 sn), sonu kesik."
+ },
+ "efekt/korku_vurus": {
+  "file": "ses/efekt/korku_vurus.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "Korku vuruşu (stinger)."
  },
  "efekt/kosma": {
   "file": "ses/efekt/kosma.mp3",
@@ -236,6 +285,13 @@
   "duration": 0.9,
   "loop": false,
   "desc": "Şaşkınlıkla nefes çekme (gasp)."
+ },
+ "efekt/parazit": {
+  "file": "ses/efekt/parazit.mp3",
+  "category": "efekt",
+  "duration": 0.5,
+  "loop": false,
+  "desc": "CCTV paraziti (kısa patlama)."
  },
  "efekt/riser": {
   "file": "ses/efekt/riser.mp3",
@@ -439,6 +495,13 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Kuş sesleri (BigSoundBank #0222) — gerçek kayıt, CC0"
+ },
+ "ortam/lobi_gece": {
+  "file": "ses/ortam/lobi_gece.mp3",
+  "category": "ortam",
+  "duration": 38.5,
+  "loop": true,
+  "desc": "Gece lobisi: floresan uğultusu, klima, dışarıda yağmur."
  },
  "ortam/oda_tonu": {
   "file": "ses/ortam/oda_tonu.mp3",

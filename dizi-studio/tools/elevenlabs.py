@@ -395,6 +395,8 @@ FX = {
     "yanki": "aecho=0.8:0.7:70|140:0.35|0.2,apad=pad_dur=0.5",
     # havalandırma kanalı: metalik, dar bant, kısa tarak yankısı
     "kanal": "highpass=f=350,lowpass=f=3200,aecho=0.8:0.6:7|15|23:0.5|0.35|0.2,apad=pad_dur=0.4",
+    # hayalet fısıltısı: aynı ses, pes (perde -2.6 yarım ton), tempo korunur, karanlık yankı
+    "hayalet": "asetrate=44100*0.86,aresample=44100,atempo=1.1628,highpass=f=90,lowpass=f=6000,aecho=0.8:0.6:45|110:0.35|0.22,apad=pad_dur=0.8",
 }
 
 
