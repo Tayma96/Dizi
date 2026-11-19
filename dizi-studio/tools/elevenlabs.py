@@ -75,8 +75,10 @@ EMO = {
     "anlatim": ("[calm, reflective narration]", dict(stability=0.6, style=0.2)),
     # baş ağrısı, sersem uyanış
     "aci": ("[groggy, in pain]", dict(stability=0.35, style=0.5)),
+    # ani panik, acele
+    "panik": ("[panicked, urgent]", dict(stability=0.3, style=0.6)),
 }
-EMO_FALLBACK = {"saskin": "korkmus", "sok": "korkmus", "gulen": "mutlu", "kararli": "soguk", "supheli": "soguk", "yorgun": "sakin", "dusunceli": "sakin", "utangac": "sakin", "igrenmis": "ofkeli"}
+EMO_FALLBACK = {"panik": "korkmus", "saskin": "korkmus", "sok": "korkmus", "gulen": "mutlu", "kararli": "soguk", "supheli": "soguk", "yorgun": "sakin", "dusunceli": "sakin", "utangac": "sakin", "igrenmis": "ofkeli"}
 
 # Türkçe harf → ağız şekli (seslendir.py ile aynı)
 VIS = {}

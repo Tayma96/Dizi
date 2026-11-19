@@ -57,6 +57,11 @@
      "mark": "tavan",
      "tik": "tavan",
      "emotion": "notr"
+    },
+    "bakici": {
+     "mark": "k",
+     "hidden": true,
+     "emotion": "ofkeli"
     }
    },
    "beats": [
@@ -187,9 +192,9 @@
     {
      "type": "line",
      "who": "nalan",
-     "emotion": "korkmus",
-     "tags": "[hurried, tense]",
-     "text": "Hadi, odana dönelim.",
+     "emotion": "panik",
+     "tags": "[panicked, urgent]",
+     "text": "Hadi, odana dönelim. Hemen!",
      "tv": "kapali",
      "shot": {
       "type": "iki",
@@ -201,10 +206,11 @@
       "nalan": {
        "emotion": "korkmus",
        "lookAt": "berkay_hasta",
-       "gesture": "isaret",
+       "gesture": null,
        "bak": null
       },
       "berkay_hasta": {
+       "emotion": "sok",
        "bak": {
         "x": 0.6,
         "y": -0.7
@@ -216,6 +222,109 @@
        "name": "efekt/tik",
        "volume": 0.6,
        "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "bakici": {
+       "hidden": false,
+       "enter": "sol",
+       "mark": "k",
+       "emotion": "ofkeli"
+      },
+      "berkay_hasta": {
+       "emotion": "sok",
+       "bak": {
+        "x": 0.6,
+        "y": -0.7
+       }
+      },
+      "nalan": {
+       "emotion": "korkmus",
+       "mark": "n2",
+       "lookAt": "berkay_hasta",
+       "gesture": null
+      },
+      "hasta3": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": 0.8,
+        "y": 0.2
+       }
+      },
+      "hasta4": {
+       "emotion": "korkmus",
+       "gesture": "basTutma"
+      },
+      "hasta5": {
+       "emotion": "korkmus",
+       "gesture": "ellerYuzde"
+      },
+      "hasta6": {
+       "tik": null,
+       "emotion": "saskin",
+       "bak": {
+        "x": -0.6,
+        "y": 0.3
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kapi_carpma",
+       "volume": 0.5,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kosma",
+       "volume": 0.55,
+       "at": 0.1
+      },
+      {
+       "name": "efekt/riser",
+       "volume": 0.3,
+       "at": 0.3
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.7,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "bakici": {
+       "exit": "sol"
+      },
+      "berkay_hasta": {
+       "exit": "sol",
+       "bak": null
+      },
+      "nalan": {
+       "exit": "sol",
+       "gesture": null,
+       "lookAt": null
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.5,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kapi_kapanma",
+       "volume": 0.5,
+       "at": 1.5
       }
      ]
     },

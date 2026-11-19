@@ -822,5 +822,31 @@
    "shoes": "#e8e8e8"
   },
   "blush": false
+ },
+ {
+  "id": "bakici",
+  "name": "Hastabakıcı",
+  "role": "Hastabakıcı, iri yarı",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#d9a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "buzz",
+   "color": "#1e1814",
+   "shade": "#3a2e26"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#f4f5f2",
+   "topShade": "#d8dedc",
+   "bottom": "#f4f5f2",
+   "shoes": "#f2f2f2"
+  },
+  "blush": false
  }
 ]
