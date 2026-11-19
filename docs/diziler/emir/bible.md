@@ -16,3 +16,6 @@ Durum: 19 Kasım 2026, ilk fikir. Kullanıcının metni aynen korunur. Bu dizi i
 - Emir = Batuhan Altınova (ElevenLabs; sıcak, derin, orta yaş). Dış ses de Emir'in sesi (öneri; kullanıcı değiştirebilir).
 - Hostes = Günnur (genç, profesyonel).
 - Kabin uğultusu, türbülans gümbürtüsü ve motor arızası sesleri kendi sentezimiz (ücretsiz).
+
+## ElevenLabs bütçesi (kullanıcı onayı, 19 Kasım 2026)
+- Parça başına en fazla **1.000 kredi**. Her seslendirmede `--butce 1000`. Aşılacaksa DUR ve sor.
