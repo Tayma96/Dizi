@@ -106,5 +106,14 @@
    "similarity_boost": 0.8,
    "speed": 1.0
   }
+ },
+ "riza98": {
+  "voice_id": "9IVUOktoy2pc7WdsXQgd",
+  "sahip": "bfb1031b470e9c806e7dd6cf5d6733f467ddc616ed59af772d13e2b7f763057d",
+  "ad": "Ahmet Akyalcin",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
  }
 }

@@ -1147,5 +1147,30 @@
   },
   "blush": false,
   "isimlik": "C.AYDIN"
+ },
+ {
+  "id": "riza98",
+  "name": "Rıza",
+  "role": "KAT 7: Rıza (1998, genç bekçi; yalnızca ses)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "police",
+   "top": "#26324a",
+   "topShade": "#1a2336",
+   "bottom": "#1e2638",
+   "shoes": "#0e0e10"
+  },
+  "blush": false
  }
 ]

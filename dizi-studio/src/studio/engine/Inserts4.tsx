@@ -228,8 +228,111 @@ const CctvCik: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik";
-export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik"];
+/** Fener ışığında kat rehberi: 6-1 katlar; 6'nın üstünde harfleri sökülmüş satır, yapıştırıcı izlerinden "7 · ARŞİV" okunur */
+const PanoFener: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const ly = interpolate(f, [0, dur * 0.55, dur], [1260, 560, 520], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  const lx = 540 + Math.sin(f / 9) * 18;
+  const rows = ["6 · DEMİR HUKUK BÜROSU", "5 · YILDIZ TEKSTİL", "4 · —", "3 · EGE MUHASEBE", "2 · KAYA SİGORTA", "1 · USTA MATBAA"];
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#040405", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+        <defs>
+          <radialGradient id="pfIs" cx={lx / 1080} cy={ly / 1920} r="0.48">
+            <stop offset="0" stopColor="#fff2c8" stopOpacity={0.95} />
+            <stop offset="0.6" stopColor="#fff2c8" stopOpacity={0.35} />
+            <stop offset="1" stopColor="#000" stopOpacity={0} />
+          </radialGradient>
+          <mask id="pfM"><rect width={1080} height={1920} fill="url(#pfIs)" /></mask>
+        </defs>
+        <g mask="url(#pfM)">
+          <rect width={1080} height={1920} fill="#2a2c30" />
+          <rect x={100} y={300} width={880} height={1300} fill="#1b1d22" stroke="#0a0b0d" strokeWidth={10} />
+          <text x={540} y={400} textAnchor="middle" fontFamily={MONO} fontSize={64} fontWeight={700} fill="#e0dac0">KAT REHBERİ</text>
+          {/* sökülmüş satır: yapıştırıcı izleri */}
+          <rect x={140} y={460} width={800} height={110} fill="#23262c" stroke="#3a3d44" strokeWidth={4} strokeDasharray="10 8" />
+          <text x={180} y={540} fontFamily={MONO} fontSize={70} fontWeight={700} fill="#8a8a7a" opacity={0.95}>7 · ARŞİV</text>
+          {[0, 1, 2, 3, 4].map((i) => <rect key={i} x={560 + i * 70} y={490} width={50} height={60} fill="#2e3036" />)}
+          {rows.map((r, i) => <text key={r} x={180} y={690 + i * 150} fontFamily={MONO} fontSize={54} fontWeight={700} fill="#e8e2c4">{r}</text>)}
+          {/* iğnelenmiş not (köşede) */}
+          <g transform="rotate(-6 820 1480)">
+            <rect x={680} y={1400} width={260} height={170} fill="#d8c89a" />
+            <circle cx={810} cy={1412} r={10} fill="#a01818" />
+          </g>
+        </g>
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/** Sararmış not, yakın: el yazısı; imza "R." ve tarih */
+const NotYakin: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1.0, 1.08], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#040405", overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `scale(${z}) rotate(-4deg)` }}>
+        <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 48%, #fff2c8 0%, rgba(255,242,200,0.35) 38%, rgba(0,0,0,0) 62%)" }} />
+        <div style={{ position: "absolute", left: 150, top: 560, width: 780, height: 760, background: "#d6c493", boxShadow: "0 10px 40px rgba(0,0,0,0.6)" }}>
+          <div style={{ position: "absolute", left: 370, top: -14, width: 34, height: 34, borderRadius: 17, background: "#a01818" }} />
+          <div style={{ position: "absolute", left: 60, top: 90, right: 50, fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontSize: 62, lineHeight: 1.35, color: "#2a2018" }}>
+            Gece bekçisine:<br />Asansör 7'ye çıkarsa<br /><span style={{ fontWeight: 900, fontSize: 80 }}>ÇAĞIRMA.</span>
+          </div>
+          <div style={{ position: "absolute", right: 60, bottom: 60, fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontSize: 50, color: "#2a2018" }}>— R. 19.11.1998</div>
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 30% 80%, rgba(90,60,20,0.35) 0%, rgba(0,0,0,0) 40%)" }} />
+        </div>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Çalan eski duvar telefonu, yakın: ahize titrer */
+const TelefonCal: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const ring = Math.floor(f / 4) % 2 ? 1 : -1;
+  const on = (f % 60) < 36;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0a0b0d", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+        <rect width={1080} height={1920} fill="#1d2025" />
+        <rect x={290} y={560} width={500} height={760} rx={50} fill="#bdb49a" stroke="#000" strokeWidth={12} />
+        <circle cx={540} cy={1010} r={170} fill="#a89e84" stroke="#000" strokeWidth={8} />
+        {new Array(10).fill(0).map((_, i) => { const a = (i / 10) * Math.PI * 1.6 + 0.9; return <circle key={i} cx={540 + Math.cos(a) * 118} cy={1010 + Math.sin(a) * 118} r={24} fill="#1d2025" />; })}
+        <g transform={`translate(${on ? ring * 6 : 0} ${on ? -Math.abs(ring) * 4 : 0}) rotate(${on ? ring * 1.5 : 0} 540 600)`}>
+          <path d="M 240 520 Q 240 440 330 440 L 750 440 Q 840 440 840 520 L 840 600 Q 760 600 740 560 L 340 560 Q 320 600 240 600 Z" fill="#a89e84" stroke="#000" strokeWidth={12} />
+        </g>
+        <path d="M 540 1320 q -60 120 0 240 q 60 120 0 240" stroke="#8a826c" strokeWidth={14} fill="none" />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Kablo: ahizeden duvara inen kablo, ucu kesik; duvara bağlı bile değil */
+const Kablo: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const y = interpolate(f, [0, dur * 0.8], [0, -700], { ...clamp, easing: Easing.inOut(Easing.cubic) });
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0a0b0d", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `translateY(${y}px)` }}>
+        <rect width={1080} height={2700} fill="#1d2025" />
+        <rect x={340} y={100} width={400} height={500} rx={40} fill="#bdb49a" stroke="#000" strokeWidth={10} />
+        <path d="M 540 600 q -80 140 0 280 q 80 140 0 280 q -80 140 0 280 q 60 100 10 200" stroke="#8a826c" strokeWidth={14} fill="none" />
+        {/* kesik uç: bakır teller */}
+        <path d="M 550 1640 l -14 40 M 556 1642 l 4 44 M 562 1640 l 18 38" stroke="#c87a3a" strokeWidth={6} />
+        {/* duvar prizi: boş */}
+        <rect x={700} y={2050} width={150} height={110} rx={12} fill="#c9c4b8" stroke="#000" strokeWidth={6} />
+        <rect x={750} y={2085} width={50} height={36} rx={6} fill="#1a1a1a" />
+        <rect y={2200} width={1080} height={500} fill="#15171b" />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(circle at 50% 50%, rgba(255,242,200,0.18) 0%, rgba(0,0,0,0) 45%), radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+export type Insert4Kind = "cctv_asansor" | "cctv_bos" | "cctv_lobi" | "kat_gostergesi" | "arka_bos" | "cctv_cik" | "pano_fener" | "not_yakin" | "telefon_cal" | "kablo";
+export const INSERT4_KINDS: Insert4Kind[] = ["cctv_asansor", "cctv_bos", "cctv_lobi", "kat_gostergesi", "arka_bos", "cctv_cik", "pano_fener", "not_yakin", "telefon_cal", "kablo"];
 
 export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -238,6 +341,10 @@ export const Insert4: React.FC<{ kind: Insert4Kind; dur: number; text?: string[]
     case "cctv_lobi": return text?.[1] === "monitor" ? <Monitor dur={dur} zoom={[1, 1.25]}><CctvLobi dur={dur} mod={text?.[0]} /></Monitor> : <CctvLobi dur={dur} mod={text?.[0]} />;
     case "arka_bos": return <ArkaBos dur={dur} />;
     case "cctv_cik": return <CctvCik dur={dur} />;
+    case "pano_fener": return <PanoFener dur={dur} />;
+    case "not_yakin": return <NotYakin dur={dur} />;
+    case "telefon_cal": return <TelefonCal dur={dur} />;
+    case "kablo": return <Kablo dur={dur} />;
     case "kat_gostergesi": return <KatGostergesi dur={dur} text={text} />;
   }
 };

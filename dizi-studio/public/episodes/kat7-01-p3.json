@@ -1,0 +1,286 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p3",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Kat rehberi",
+ "endCard": {
+  "text": "KAT 7 · Parça 4 geliyor",
+  "sub": "Notu yazan \"R.\" kim?"
+ },
+ "scenes": [
+  {
+   "id": "p3",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 3 — Kat rehberi",
+   "saat": "7",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.28,
+    "from": 55
+   },
+   "cast": {
+    "cemil": {
+     "mark": "cemil",
+     "emotion": "korkmus",
+     "bak": {
+      "x": -1.0,
+      "y": -0.15,
+      "yaw": -0.9
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.6,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "mark": "pano",
+       "emotion": "korkmus",
+       "gesture": "tutuyor",
+       "prop": "fener",
+       "bak": {
+        "x": -0.6,
+        "y": -0.3
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.35,
+       "at": 0.2
+      }
+     ],
+     "etiket": "Kat rehberi"
+    },
+    {
+     "type": "insert",
+     "kind": "pano_fener",
+     "dur": 3.4
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "fisilti",
+     "tags": "[whispering, puzzled]",
+     "text": "Yedi… arşiv?",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "supheli",
+       "bak": {
+        "x": -0.6,
+        "y": -0.3
+       }
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "not_yakin",
+     "dur": 3.0,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.3,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "korkmus",
+     "tags": "[reading slowly, voice trembling]",
+     "text": "Asansör yediye çıkarsa… çağırma.",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -0.6,
+        "y": -0.3
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_ding",
+       "volume": 0.9,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kat_gostergesi",
+     "dur": 2.6,
+     "text": [
+      "7"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 0.66
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.14
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.48
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.75
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 1.98
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.19
+      },
+      {
+       "name": "efekt/kat_bip",
+       "volume": 0.55,
+       "at": 2.38
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "turb": 0.4,
+     "saat": "0",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/floresan_cit",
+       "volume": 0.4,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "fisilti",
+     "tags": "[terrified whisper, to himself]",
+     "text": "Çağırmadım… ben çağırmadım.",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "korkmus",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "door": "aralik",
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.5,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/korku_drone",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 0.6,
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

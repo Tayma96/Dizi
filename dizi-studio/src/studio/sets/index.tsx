@@ -30,7 +30,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
-  lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 } } },
+  lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 } } },
   kulube: { title: "Kulübe içi", marks: { yatak: { x: 560, y: 1470, size: 860 }, kadin: { x: 880, y: 1720, size: 980, sit: true } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
@@ -592,6 +592,11 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <text x={675} y={652} textAnchor="middle" fontFamily="'Courier New', monospace" fontSize={17} fontWeight={700} fill="#c9c4a8">KAT REHBERİ</text>
           <rect x={612} y={666} width={126} height={22} fill="#26292f" stroke="#3a3d44" strokeWidth={2} strokeDasharray="4 4" />
           {[6, 5, 4, 3, 2, 1].map((k, i) => <text key={k} x={618} y={714 + i * 38} fontFamily="'Courier New', monospace" fontSize={19} fontWeight={700} fill="#d9d4b4">{k} ······</text>)}
+          {/* eski duvar telefonu (bej, çevirmeli), kablosu aşağı sarkıyor */}
+          <rect x={650} y={1180} width={84} height={130} rx={10} fill="#bdb49a" stroke="#0a0b0d" strokeWidth={4} />
+          <rect x={640} y={1172} width={104} height={34} rx={14} fill="#a89e84" stroke="#0a0b0d" strokeWidth={4} />
+          <circle cx={692} cy={1260} r={26} fill="#a89e84" stroke="#0a0b0d" strokeWidth={3} />
+          <path d="M 692 1310 q -20 40 0 80 q 20 40 0 80" stroke="#8a826c" strokeWidth={5} fill="none" />
           {/* cam giriş kapısı: yağmurlu gece sokağı */}
           <rect x={760} y={700} width={300} height={820} fill="#0d1622" stroke="#0a0b0d" strokeWidth={10} />
           <circle cx={960} cy={860} r={40} fill="#f2c870" opacity={0.5} />

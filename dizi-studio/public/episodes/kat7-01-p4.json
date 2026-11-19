@@ -1,0 +1,304 @@
+{
+ "series": "kat7",
+ "seriesTitle": "KAT 7",
+ "episode": "kat7-01-p4",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Telefon",
+ "endCard": {
+  "text": "KAT 7 · Parça 5 geliyor",
+  "sub": "Rıza kim? 1998'de ne oldu?"
+ },
+ "scenes": [
+  {
+   "id": "p4",
+   "set": "lobi",
+   "time": "gece",
+   "look": "tekinsiz",
+   "title": "Parça 4 — Telefon",
+   "saat": "0",
+   "ambience": {
+    "name": "ortam/lobi_gece",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/kat7_gerilim",
+    "volume": 0.26,
+    "from": 5
+   },
+   "cast": {
+    "cemil": {
+     "mark": "pano",
+     "emotion": "korkmus",
+     "prop": "fener",
+     "gesture": "tutuyor",
+     "bak": {
+      "x": -1.0,
+      "y": -0.15,
+      "yaw": -0.9
+     }
+    },
+    "riza98": {
+     "mark": "tel",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "sfx": [
+      {
+       "name": "efekt/telefon_zil",
+       "volume": 0.85,
+       "at": 0.15
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "telefon_cal",
+     "dur": 2.0,
+     "sfx": [
+      {
+       "name": "efekt/telefon_zil",
+       "volume": 0.85,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "mark": "tel",
+       "emotion": "korkmus",
+       "prop": "none",
+       "gesture": "rest",
+       "bak": {
+        "x": -0.4,
+        "y": -0.1
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/telefon_zil",
+       "volume": 0.8,
+       "at": 0.2
+      },
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.3,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "korkmus",
+     "tags": "[hesitant, quiet]",
+     "text": "Alo?..",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "gesture": "telefon",
+       "prop": "ahize",
+       "emotion": "korkmus",
+       "bak": {
+        "x": -0.4,
+        "y": -0.1
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "riza98",
+     "offscreen": true,
+     "label": "TELEFON",
+     "fx": "telefon",
+     "emotion": "bagiriyor",
+     "tags": "[panicked, out of breath, coughing, shouting over fire]",
+     "text": "Abi! Yedinci katta yangın var! Kapı açılmıyor!",
+     "gapAfter": 0.2,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ates",
+       "volume": 0.25,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "riza98",
+     "offscreen": true,
+     "label": "TELEFON",
+     "fx": "telefon",
+     "emotion": "agliyor",
+     "tags": "[desperate, crying, screaming]",
+     "text": "Abi neredesin?! Abi!",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "tears": 0.5
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "cemil",
+     "emotion": "fisilti",
+     "tags": "[whispers, in shock]",
+     "text": "Rıza?",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "cok_yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "uzgun",
+       "tears": 0.6
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/tik",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "kablo",
+     "dur": 3.0,
+     "sfx": [
+      {
+       "name": "efekt/kalp_atisi",
+       "volume": 0.4,
+       "at": 0.6
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "yakin",
+      "on": "cemil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "gesture": "rest",
+       "prop": "none",
+       "bak": {
+        "x": -0.3,
+        "y": 0.8
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "cemil": {
+       "emotion": "sok",
+       "bak": {
+        "x": -1.0,
+        "y": -0.15,
+        "yaw": -0.9
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/asansor_ding",
+       "volume": 0.9,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/asansor_kapi",
+       "volume": 0.5,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "insert",
+     "kind": "siyah",
+     "dur": 0.6,
+     "sfx": [
+      {
+       "name": "efekt/korku_vurus",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

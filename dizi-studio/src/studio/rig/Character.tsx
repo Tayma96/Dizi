@@ -155,6 +155,24 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       );
     case "bardak":
       return <path d={`M ${x - 22} ${y - 6} L ${x - 18} ${y - 74} L ${x + 18} ${y - 74} L ${x + 22} ${y - 6} Z`} fill="#dff0ff" fillOpacity={0.8} stroke={OUT} strokeWidth={3} />;
+    case "ahize":
+      // kulakta (el) başlar, ağza doğru aşağı-içe iner
+      return (
+        <g>
+          <path d={`M ${x - 4} ${y - 6} L ${x - 40} ${y + 92}`} stroke={OUT} strokeWidth={26} strokeLinecap="round" />
+          <path d={`M ${x - 4} ${y - 6} L ${x - 40} ${y + 92}`} stroke="#bdb49a" strokeWidth={19} strokeLinecap="round" />
+          <ellipse cx={x - 44} cy={y + 98} rx={18} ry={13} fill="#a89e84" stroke={OUT} strokeWidth={3} transform={`rotate(-20 ${x - 44} ${y + 98})`} />
+          <path d={`M ${x - 44} ${y + 110} q 10 50 -10 90 q -20 40 0 80`} stroke="#8a826c" strokeWidth={4} fill="none" />
+        </g>
+      );
+    case "fener":
+      return (
+        <g>
+          <path d={`M ${x + 10} ${y - 20} L ${x + 420} ${y - 220} L ${x + 420} ${y + 200} Z`} fill="#fff6d0" opacity={0.16} />
+          <rect x={x - 12} y={y - 30} width={44} height={22} rx={6} fill="#2a2a2e" stroke={OUT} strokeWidth={3} transform={`rotate(-8 ${x} ${y})`} />
+          <rect x={x + 30} y={y - 34} width={10} height={30} rx={3} fill="#fff6d0" transform={`rotate(-8 ${x} ${y})`} />
+        </g>
+      );
     case "telsiz":
       return (
         <g>
