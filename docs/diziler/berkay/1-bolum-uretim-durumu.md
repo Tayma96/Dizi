@@ -61,3 +61,11 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Parça 3-6: senarist metni (`raporlar/p3-p6-senarist.md`), 16 yeni yakın plan çizimi (`engine/Inserts2.tsx`), sesler üretildi, render sürüyor.
 - Kredi: Bölüm 1 toplam ~634 / 5.000.
 - Sesler: Selim = Kadir Kayışcı, Deniz = Mia.
+
+## Kullanıcı geri bildirimi (19 Kasım, bölüm 1 birleşik hâli): BEĞENİLMEDİ
+- **Parça 1:** eski hâli (ilk taslak, commit 6ba6d8d sonrası `bolumler/imza-01-parca1.mp4`) daha iyiydi. Onaylanmış parça yeniden yapılmaz.
+- **Yürüyüş:** kollar adımdan önce ve aynı anda hareket ediyor (doğal değil).
+- **Sahneleme:** hemşire kapıdan girip birden kameranın önünde beliriyor, Berkay arkada kalıyor. Konumlar ve açılar tuhaf.
+- **Bakış:** karakterler konuşurken kameraya bakıyor. Dizilerde kameraya bakılmaz; birbirlerine bakmalılar (3/4, profil).
+- **Senaryo:** kullanıcının söylediklerinden çok sapılmış, ilk bölümde her şey ele verilmiş, gizem yok, tahmin edilebilir.
+- **Karar:** plan modunda yalnızca senaryoya odaklanılacak; parça parça, kısa. Görsel düzeltmeler sonra.
