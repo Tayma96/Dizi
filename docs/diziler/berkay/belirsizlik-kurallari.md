@@ -1,7 +1,25 @@
-# İmza: belirsizlik kuralları (yazarlar için bağlayıcı)
+# Deli Değilim: belirsizlik kuralları (yazarlar için bağlayıcı)
 
-**Kullanıcı kararı (18 Kasım 2026):**
-- **Büyük gerçek C (katmanlı):** hastane gerçek, ama içeride birinin yönettiği bir "oyun" var. Bu oyunu bir zamanlar Berkay kendisi tasarlamıştı.
+## GERÇEK (kullanıcı kararı, 19 Kasım 2026: önceki "C katmanlı" kararının yerine geçer)
+> "Berkay aslında hiç tımarhaneye gelmemişti. İlk defa tımarhaneye geliyor ve ilk defa tımarhanede gözünü açıyor. Oradaki herkes Berkay'ı deli olduğuna inandırmaya çalışıyor ama aslında deli değil. Psikolojik baskılarla psikolojisini bozuyorlar."
+
+- **Berkay deli değil.** Hastanede ilk günü. "183. gün", "yine başladık", "her sabah konuşuyoruz", hafıza kaybı hikâyesi, haberin "bir yıl önceki tekrar" olduğu, tablet videosu, parmaktaki mürekkep: hepsi personelin kurduğu **gaslighting** (psikolojik baskı) düzeneği.
+- Personel (Nalan, Dr. Deniz, diğerleri) bilerek ya da yönlendirilerek bu oyunu oynuyor. Arkasında Selim ve devir imzası var (Bölüm 1: "İmzayı atana kadar").
+- Eski "oyunu Berkay kendisi tasarlamıştı" fikri **iptal**.
+- Bölüm 1-2'de ekrana giren her "kanıt" sahnelenmiştir; yazarlar her birinin nasıl sahnelendiğini bilir (aşağıdaki tablo). Hastalık açıklaması artık yalnızca personelin Berkay'a söylediği yalandır.
+
+| Kanıt | Personelin yalanı | Gerçek (nasıl sahnelendi) |
+|---|---|---|
+| "183. gün", bileklikte "Kabul: 14 Mart" | 6 aydır buradasın | Bileklik ve duvar çentikleri o sabah hazırlandı |
+| "Yine başladık", "Her sabah konuşuyoruz" | Her gün hafızanı kaybediyorsun | Ezberlenmiş replikler |
+| TV haberi "bu sabah imzaladı" | Bir yıllık tekrar yayın | Haber gerçek: Berkay hastanedeyken biri onun adına imzaladı / imza sahte |
+| Tablet videosu | Dün gece sen yaptın | Uyuşturulmuşken çekildi ya da kurgulandı |
+| Parmaktaki mürekkep (#10204a) | Gece imza ritüeli | Uyurken sürüldü (Nalan'ın kapaksız kalemi) |
+
+## Hâlâ geçerli olanlar (yeni gerçeğe göre)
+
+**Eski karar (18 Kasım 2026), gerçek kısmı yukarıda değişti:**
+- ~~**Büyük gerçek C (katmanlı):** hastane gerçek, ama içeride birinin yönettiği bir "oyun" var. Bu oyunu bir zamanlar Berkay kendisi tasarlamıştı.~~ (İPTAL)
 - **Sürekli belirsizlik:** izleyici sürekli "Berkay gerçekten deli mi lan?" diye soracak (Zindan Adası mantığı). Berkay da zaman zaman gerçekten deli olduğuna inanacak.
 - **Gerçeğin bilinmesi:** yazarlar gerçeği bilir; final öncesi hiçbir bölüm onu kesin olarak doğrulamaz.
 
