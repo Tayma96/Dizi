@@ -88,7 +88,7 @@ export const TitleCard: React.FC<{ text: string; sub?: string; dur: number }> = 
 };
 
 /* ---------------- Telefon mesajı ---------------- */
-export const PhoneMessage: React.FC<{ from: string; text: string; dur: number }> = ({ from, text, dur }) => {
+export const PhoneMessage: React.FC<{ from: string; text: string; dur: number; sohbet?: { ben?: boolean; text: string; at: number }[] }> = ({ from, text, dur, sohbet }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const slide = interpolate(frame, [0, 12], [1, 0], { ...clamp, easing: Easing.bezier(0.16, 1, 0.3, 1) });
@@ -107,6 +107,15 @@ export const PhoneMessage: React.FC<{ from: string; text: string; dur: number }>
           <div style={{ display: "inline-block", maxWidth: 480, backgroundColor: "#2c2f38", color: "#fff", fontFamily: SANS, fontWeight: 800, fontSize: 44, lineHeight: 1.25, padding: "22px 30px", borderRadius: 34, borderBottomLeftRadius: 8 }}>
             {typing ? <span style={{ letterSpacing: 8 }}>{".".repeat(1 + (Math.floor(frame / 6) % 3))}</span> : text}
           </div>
+          {(sohbet ?? []).map((m, i) => {
+            const a = interpolate(frame, [m.at * fps, m.at * fps + 8], [0, 1], clamp);
+            if (a <= 0) return null;
+            return (
+              <div key={i} style={{ display: "flex", justifyContent: m.ben ? "flex-end" : "flex-start", marginTop: 26, opacity: a, translate: `0px ${(1 - a) * 30}px` }}>
+                <div style={{ maxWidth: 460, backgroundColor: m.ben ? "#1f8a5a" : "#2c2f38", color: "#fff", fontFamily: SANS, fontWeight: 800, fontSize: m.text.length <= 3 ? 90 : 44, lineHeight: 1.25, padding: m.text.length <= 3 ? "6px 18px" : "22px 30px", borderRadius: 34, borderBottomRightRadius: m.ben ? 8 : 34, borderBottomLeftRadius: m.ben ? 34 : 8 }}>{m.text}</div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </AbsoluteFill>

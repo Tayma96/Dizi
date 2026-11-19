@@ -1,10 +1,12 @@
 {
  "series": "dram",
- "seriesTitle": "Dram",
+ "seriesTitle": "Son Doğum Günü",
  "episode": "dram-01",
  "episodeNo": 1,
  "title": "Bölüm 1",
- "endCard": false,
+ "endCard": {
+  "text": "Bölüm 2 yakında"
+ },
  "scenes": [
   {
    "id": "a",
@@ -262,6 +264,552 @@
       "move": "sabit"
      },
      "siyah": true
+    }
+   ]
+  },
+  {
+   "id": "d",
+   "set": "mutfak_dg",
+   "time": "gunduz",
+   "title": "Mutfak (1 gün önce)",
+   "ambience": {
+    "name": "efekt/el_sofra",
+    "volume": 0.35
+   },
+   "music": {
+    "name": "muzik/dram_yolculuk",
+    "volume": 0.17
+   },
+   "cast": {
+    "anne_dg": {
+     "mark": "anne_ocak",
+     "emotion": "mutlu",
+     "gesture": "tutuyor",
+     "bak": {
+      "x": 0.3,
+      "y": 0.2,
+      "yaw": 0.2
+     }
+    },
+    "sila": {
+     "mark": "sila",
+     "emotion": "notr",
+     "bak": {
+      "x": 0.6,
+      "y": 0.1,
+      "yaw": 0.4
+     }
+    },
+    "ahmet": {
+     "mark": "ahmet",
+     "emotion": "mutlu",
+     "enter": "sag",
+     "lookAt": "anne_dg"
+    },
+    "baba_dg": {
+     "mark": "baba",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "ahmet",
+     "text": "Kurt gibi açım be!",
+     "emotion": "mutlu",
+     "tags": "[cheerful, hungry, playful]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "ahmet",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ahmet": {
+       "emotion": "gulen",
+       "lookAt": "anne_dg"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "sila",
+     "text": "Doymadın ki bi türlü zaten.",
+     "emotion": "alayci",
+     "tags": "[teasing little sister, sarcastic]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "sila",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sila": {
+       "emotion": "alayci",
+       "lookAt": "ahmet"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Şşşh kızım, öyle deme abine... Yemek hazır oğlum, oturun hemen. Babanı da çağır, koş!",
+     "emotion": "mutlu",
+     "tags": "[warm, motherly, gently scolding]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "anne_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "mutlu",
+       "gesture": "isaret",
+       "lookAt": "sila"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ahmet",
+     "text": "Babaaaa, yemek hazır!",
+     "emotion": "bagiriyor",
+     "tags": "[shouting]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "ahmet",
+      "move": "sabit"
+     },
+     "cast": {
+      "ahmet": {
+       "emotion": "mutlu",
+       "bak": {
+        "x": 0.95,
+        "y": 0.0,
+        "yaw": 0.7
+       }
+      },
+      "anne_dg": {
+       "gesture": "tutuyor"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Ben onu yapmayı bilmiyordum değil mi, eşşoğlu eşşek!",
+     "emotion": "alayci",
+     "tags": "[affectionate scolding, sarcastic, amused]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "alayci",
+       "gesture": "elBelde",
+       "lookAt": "ahmet"
+      },
+      "ahmet": {
+       "emotion": "utangac",
+       "lookAt": "anne_dg"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "gulen"
+      },
+      "ahmet": {
+       "emotion": "gulen"
+      },
+      "sila": {
+       "emotion": "gulen",
+       "lookAt": "anne_dg"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_aile_gulus",
+       "volume": 0.5,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.9,
+     "shot": {
+      "type": "orta",
+      "on": "baba_dg",
+      "move": "sabit"
+     },
+     "cast": {
+      "baba_dg": {
+       "hidden": false,
+       "enter": "sag",
+       "emotion": "mutlu",
+       "lookAt": "anne_dg"
+      },
+      "anne_dg": {
+       "mark": "anne_masa",
+       "emotion": "mutlu",
+       "gesture": "tutuyor",
+       "prop": "tepsi",
+       "lookAt": "baba_dg"
+      },
+      "sila": {
+       "emotion": "mutlu",
+       "lookAt": "baba_dg"
+      },
+      "ahmet": {
+       "emotion": "mutlu",
+       "lookAt": "baba_dg"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/ayak_sesleri",
+       "volume": 0.35,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "baba_dg",
+     "text": "Yarın emekli maaşı da yatar. Hanım, bi çarşıya gidelim de çekelim şu parayı.",
+     "emotion": "mutlu",
+     "tags": "[content, warm, fatherly]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "baba_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "baba_dg": {
+       "emotion": "mutlu",
+       "lookAt": "anne_dg"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Tabi tabi, benim de alacaklarım vardı zaten.",
+     "emotion": "alayci",
+     "tags": "[playful, sarcastic, teasing her husband]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "anne_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "alayci",
+       "gesture": "rest",
+       "prop": "none",
+       "lookAt": "baba_dg"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "sila": {
+       "emotion": "gulen",
+       "lookAt": "ahmet"
+      },
+      "ahmet": {
+       "emotion": "gulen",
+       "lookAt": "sila"
+      },
+      "baba_dg": {
+       "emotion": "utangac",
+       "lookAt": "anne_dg"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kikirdama",
+       "volume": 0.55,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sila": {
+       "emotion": "mutlu",
+       "gesture": "yudum",
+       "prop": "kasik",
+       "bak": {
+        "x": 0,
+        "y": 0.5
+       }
+      },
+      "ahmet": {
+       "emotion": "mutlu",
+       "gesture": "yudum",
+       "prop": "kasik",
+       "bak": {
+        "x": 0,
+        "y": 0.5
+       }
+      },
+      "baba_dg": {
+       "emotion": "mutlu",
+       "gesture": "yudum",
+       "prop": "kasik",
+       "bak": {
+        "x": 0,
+        "y": 0.5
+       }
+      },
+      "anne_dg": {
+       "emotion": "mutlu",
+       "lookAt": "ahmet"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 0.9,
+     "shot": {
+      "type": "yakin",
+      "on": "ahmet",
+      "move": "sabit"
+     },
+     "cast": {
+      "ahmet": {
+       "emotion": "saskin",
+       "gesture": "tutuyor",
+       "prop": "telefon",
+       "bak": {
+        "x": 0.1,
+        "y": 0.7
+       }
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_telefon_titresim",
+       "volume": 0.6,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "mesaj",
+     "from": "Aşkım ❤️",
+     "text": "Aşkım yarın konsere gidiyoruz dimiii",
+     "dur": 4.6,
+     "sohbet": [
+      {
+       "ben": true,
+       "text": "Kaçırmayız bitanem",
+       "at": 2.1
+      },
+      {
+       "text": "❤️",
+       "at": 3.1
+      },
+      {
+       "ben": true,
+       "text": "❤️",
+       "at": 3.6
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "orta",
+      "on": "ahmet",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ahmet": {
+       "emotion": "utangac",
+       "gesture": "rest",
+       "prop": "telefon",
+       "bak": {
+        "x": -0.6,
+        "y": 0.1,
+        "yaw": -0.4
+       }
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "set": "mutfak_dg",
+   "time": "gunduz",
+   "title": "Mutfak (final)",
+   "ambience": {
+    "name": "efekt/el_sofra",
+    "volume": 0.35
+   },
+   "music": {
+    "name": "muzik/dram_huzun",
+    "volume": 0.2
+   },
+   "cast": {
+    "anne_dg": {
+     "mark": "anne_ahmet",
+     "emotion": "mutlu",
+     "gesture": "okşa",
+     "lookAt": "ahmet"
+    },
+    "sila": {
+     "mark": "sila",
+     "emotion": "mutlu",
+     "gesture": "yudum",
+     "prop": "kasik",
+     "bak": {
+      "x": 0,
+      "y": 0.5
+     }
+    },
+    "ahmet": {
+     "mark": "ahmet",
+     "emotion": "mutlu",
+     "gesture": "tutuyor",
+     "prop": "telefon",
+     "bak": {
+      "x": 0.0,
+      "y": 0.75
+     }
+    },
+    "baba_dg": {
+     "mark": "baba",
+     "emotion": "mutlu",
+     "gesture": "yudum",
+     "prop": "kasik",
+     "bak": {
+      "x": 0,
+      "y": 0.5
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne_dg",
+     "text": "Yarın akşam erken gel oğlum, doğum günün... Bir sürprizimiz var.",
+     "emotion": "mutlu",
+     "tags": "[tender, loving, softly]",
+     "gapAfter": 0.35,
+     "shot": {
+      "type": "iki",
+      "on": "ahmet",
+      "with": "anne_dg",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "ahmet",
+     "text": "Gelirim, anne.",
+     "emotion": "sakin",
+     "tags": "[absent-minded]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "yakin",
+      "on": "ahmet",
+      "move": "sabit"
+     },
+     "cast": {
+      "ahmet": {
+       "emotion": "utangac",
+       "bak": {
+        "x": 0.0,
+        "y": 0.75
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "yakin",
+      "on": "anne_dg",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne_dg": {
+       "emotion": "mutlu",
+       "gesture": "rest",
+       "lookAt": "ahmet"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "iki",
+      "on": "ahmet",
+      "with": "anne_dg",
+      "move": "sabit"
+     },
+     "cast": {
+      "anne_dg": {
+       "exit": "sag"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ahmet",
+     "text": "Gelmedim.",
+     "emotion": "anlatim",
+     "tags": "[heartbroken, voice cracking]",
+     "gapAfter": 1.6,
+     "voiceover": true,
+     "label": "AHMET",
+     "fade": "cikis",
+     "shot": {
+      "type": "orta",
+      "on": "ahmet",
+      "move": "yaklas"
+     },
+     "hiz": 0.9
     }
    ]
   }

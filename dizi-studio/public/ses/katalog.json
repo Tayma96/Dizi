@@ -90,6 +90,13 @@
   "loop": false,
   "desc": "Raftan poşetli ekmek düşer."
  },
+ "efekt/el_aile_gulus": {
+  "file": "ses/efekt/el_aile_gulus.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A small Turkish family laughing warmly together at the dinner table, short, natural"
+ },
  "efekt/el_araba_ici": {
   "file": "ses/efekt/el_araba_ici.mp3",
   "category": "efekt",
@@ -160,6 +167,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Old electronic cash register drawer pops open by itself with a metallic ring and clunk"
  },
+ "efekt/el_kikirdama": {
+  "file": "ses/efekt/el_kikirdama.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Two teenage siblings giggling quietly, trying to hold back laughter, short"
+ },
  "efekt/el_korku_vurus": {
   "file": "ses/efekt/el_korku_vurus.mp3",
   "category": "efekt",
@@ -208,6 +222,13 @@
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Automatic sliding glass door of a small convenience store opening slowly at night, soft electric motor whir and rubber seal, followed by heavy rain from outside getting louder through the open door, realistic, close perspective"
+ },
+ "efekt/el_sofra": {
+  "file": "ses/efekt/el_sofra.mp3",
+  "category": "efekt",
+  "duration": 10.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Family dinner table ambience in a small home kitchen, spoons and forks clinking on ceramic plates, soft pot simmering on the stove, no voices"
  },
  "efekt/el_telefon_titresim": {
   "file": "ses/efekt/el_telefon_titresim.mp3",

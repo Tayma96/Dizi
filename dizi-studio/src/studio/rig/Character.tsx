@@ -72,6 +72,13 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x - 6} ${y - 52} q 6 -10 0 -20 M ${x + 6} ${y - 50} q 6 -10 0 -20`} stroke="#fff" strokeOpacity={0.6} strokeWidth={3} fill="none" />
         </g>
       );
+    case "kasik":
+      return (
+        <g>
+          <path d={`M ${x} ${y} L ${x - 6} ${y - 70}`} stroke="#c8ccd0" strokeWidth={7} strokeLinecap="round" />
+          <ellipse cx={x - 7} cy={y - 82} rx={11} ry={16} fill="#d8dce0" stroke={OUT} strokeWidth={2.5} />
+        </g>
+      );
     case "kagit":
       // A4 kural kâğıdı (elde dik tutulur)
       return (
@@ -268,6 +275,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   if (pose.gesture === "elSalla") armR.fore += Math.sin(frame / 3) * 18;
   if (pose.gesture === "krem") { armR.fore += Math.sin(frame / 2.4) * 5; armR.upper += Math.sin(frame / 2.4 + 1.2) * 3; }
   if (pose.gesture === "kafaKasi") armR.fore += Math.sin(frame / 1.7) * 9;
+  if (pose.gesture === "okşa") armL.upper += Math.sin(frame / 5) * 5;
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
     armL.upper += walkPhase * 10;

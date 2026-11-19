@@ -94,7 +94,7 @@ export type Beat =
     } & BeatCommon)
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
-  | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean } & BeatCommon)
+  | ({ type: "mesaj"; from: string; text: string; dur: number; incoming?: boolean; sohbet?: { ben?: boolean; text: string; at: number }[] } & BeatCommon)
   | ({ type: "belge"; title: string; lines: string[]; imza?: string; dur: number } & BeatCommon)
   /** ekleme (insert) yakın planı: tam ekran çizim */
   | ({ type: "insert"; kind: "bileklik" | "kapi_kolu" | "haplar" | import("./Inserts2").Insert2Kind; dur: number; text?: string[] } & BeatCommon);

@@ -362,7 +362,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           ) : b.beat.type === "yazi" ? (
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
           ) : b.beat.type === "mesaj" ? (
-            <PhoneMessage from={b.beat.from} text={b.beat.text} dur={b.dur} />
+            <PhoneMessage from={b.beat.from} text={b.beat.text} dur={b.dur} sohbet={b.beat.sohbet} />
           ) : b.beat.type === "insert" ? (
             <InsertShot kind={b.beat.kind} text={b.beat.text} dur={b.dur} />
           ) : null}

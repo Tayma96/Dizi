@@ -16,3 +16,9 @@ Durum: 19 Kasım 2026. Kullanıcı: "herkesi hüngür hüngür ağlatacak dram, 
 - Renk senaryosu: mutlu anlar sıcak (turuncu akşam, mutfak), kayıp anları siyah ve soğuk.
 - Müzik (ElevenLabs): `dram_yolculuk` (sıcak akustik, bağlama), `dram_huzun` (piyano, yas teması — dizinin ana teması).
 - Efekt (ElevenLabs): araba içi, yaklaşan kamyon kornası, fren ve kaza, kulak çınlaması.
+
+## Bölüm 1 (tamamlandı: `bolumler/dram-01.mp4`, 1:32)
+- Çalışma adı: **Son Doğum Günü** (bitiş kartında; kullanıcı onayı bekleniyor).
+- Akış: araba (dış ses, far, kaza) → siyah ("Dünyadaki en sevdiğim insan... artık yok...") → 1 GÜN ÖNCE → mutfak (kullanıcının replikleri) → A finali: anne saçını okşar "Yarın akşam erken gel oğlum, doğum günün... Bir sürprizimiz var." → Ahmet telefonda "Gelirim, anne." → anne gider → dış ses "Gelmedim." → kararma.
+- Kız arkadaşı telefonda "Aşkım ❤️" olarak kayıtlı (adı henüz yok).
+- Süreklilik: anne bordo oyalı yazma; baba gri saç-bıyık, mavi gömlek; dikiz aynasında nazar boncuğu; mutfakta çiçekli muşamba.

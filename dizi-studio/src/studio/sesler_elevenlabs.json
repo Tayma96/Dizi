@@ -188,6 +188,15 @@
    "speed": 1.0
   }
  },
+ "sila": {
+  "voice_id": "rtnDjO8siSxeTEeTVczO",
+  "sahip": "17a07ad7a7633c080be4e938b96e37fc2b9d0e5b7c634d43e5047b37d8539e63",
+  "ad": "rtnDjO8siSxeTEeTVczO",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "spiker": {
   "voice_id": "Q2IX97JeHBY3vNGzgM5s",
   "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
