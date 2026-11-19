@@ -194,8 +194,10 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   cam = clampCam({ ...cam, z });
   const flash = tb.beat.lightning ? lightning(bf, 0) : 0;
   const shakeAmt = (tb.shot.move === "sarsinti" ? 12 : 0) + flash * 16;
-  const sx = shakeAmt ? (random(`sx-${frame}`) - 0.5) * shakeAmt : 0;
-  const sy = shakeAmt ? (random(`sy-${frame}`) - 0.5) * shakeAmt : 0;
+  // türbülans: yumuşak, düşük frekanslı sarsıntı (rastgele titreme değil)
+  const tu = tb.beat.turb ?? 0;
+  const sx = (shakeAmt ? (random(`sx-${frame}`) - 0.5) * shakeAmt : 0) + (tu ? (Math.sin(frame / 2.1) * 0.6 + Math.sin(frame / 3.7) * 0.4) * 14 * tu : 0);
+  const sy = (shakeAmt ? (random(`sy-${frame}`) - 0.5) * shakeAmt : 0) + (tu ? (Math.sin(frame / 1.7 + 1) * 0.6 + Math.sin(frame / 4.3) * 0.4) * 18 * tu : 0);
 
   // door state
   let doorOpen = 0;
@@ -305,11 +307,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           filter,
         }}
       >
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow}>
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb}>
           {outsideIds.map(renderChar)}
         </SetLayer>
         {insideIds.map(renderChar)}
-        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} />
+        <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} turb={tb.beat.turb} />
       </AbsoluteFill>
       {scene.look === "flashback" ? <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(255,240,210,0) 50%, rgba(255,240,210,0.55) 100%)" }} /> : null}
       {/* overlays per beat */}

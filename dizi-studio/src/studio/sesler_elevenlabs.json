@@ -17,6 +17,15 @@
    "speed": 1.0
   }
  },
+ "emir": {
+  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+  "ad": "Batuhan Altınova",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "hasta1": {
   "voice_id": "DUnzBkwtjRWXPr6wRbmL",
   "sahip": "3c5f8ec5e254c2b5c218004fd69e258afd3afcd5a454c10b35558677050270c8",
@@ -30,6 +39,15 @@
   "voice_id": "j9K9HnBcmgA6xNWqjlX0",
   "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
   "ad": "Emin (epic)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "hostes": {
+  "voice_id": "58oUR7g9xaf9pbxNCyws",
+  "sahip": "e25a99a6ed848b49574b1a87268be51ed4b0f96d5a1409af430322581e123dac",
+  "ad": "Günnur",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0

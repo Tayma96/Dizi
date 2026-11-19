@@ -111,6 +111,8 @@ export type BeatCommon = {
   saat?: string;
   /** bu vuruşta sarsılan kapı numarası (koğuş koridoru) */
   sarsil?: number;
+  /** uçak türbülansı 0-1: kamera sarsıntısı + kabin ışığı titremesi */
+  turb?: number;
   /** televizyon bu vuruştan itibaren: "acik" | "kapali" */
   tv?: "acik" | "kapali";
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */

@@ -97,6 +97,20 @@
   "loop": false,
   "desc": "Hıçkırarak ağlama nefesleri."
  },
+ "efekt/ic_cekme": {
+  "file": "ses/efekt/ic_cekme.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "İç çekme: derin nefes alıp bırakma (erkek)."
+ },
+ "efekt/kabin_ding": {
+  "file": "ses/efekt/kabin_ding.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "Uçak kabini ikaz sesi (iki ton)."
+ },
  "efekt/kalem_cit": {
   "file": "ses/efekt/kalem_cit.mp3",
   "category": "efekt",
@@ -195,6 +209,13 @@
   "loop": false,
   "desc": "Kısa serçe cıvıltısı (kendi sentezimiz)."
  },
+ "efekt/motor_arizasi": {
+  "file": "ses/efekt/motor_arizasi.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "Jet motoru arızası: düşen türbin sesi, öksürük patlamaları (5 sn)."
+ },
  "efekt/nefes_kesilme": {
   "file": "ses/efekt/nefes_kesilme.mp3",
   "category": "efekt",
@@ -243,6 +264,20 @@
   "duration": 0.25,
   "loop": false,
   "desc": "Tokat sesi."
+ },
+ "efekt/turbulans": {
+  "file": "ses/efekt/turbulans.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "Türbülans: yavaş başlayan gövde titreşimi ve tıkırtılar (6 sn)."
+ },
+ "efekt/ucak_dis": {
+  "file": "ses/efekt/ucak_dis.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "Uçak dışı: rüzgâr, boğulan motor, patlamalar (6 sn)."
  },
  "efekt/whoosh": {
   "file": "ses/efekt/whoosh.mp3",
@@ -397,6 +432,13 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Kavşak trafiği, dış mekân (BigSoundBank #0608) — gerçek kayıt, CC0"
+ },
+ "ortam/ucak_kabin": {
+  "file": "ses/ortam/ucak_kabin.mp3",
+  "category": "ortam",
+  "duration": 38.5,
+  "loop": true,
+  "desc": "Uçak kabini: jet uğultusu (business sınıfı, seyir)."
  },
  "ortam/yagmur": {
   "file": "ses/ortam/yagmur.mp3",

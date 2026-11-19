@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -28,6 +28,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
   // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
   kogus_koridoru: { title: "Koğuş koridoru", marks: { b: { x: 380, y: 1790, size: 1150 }, n: { x: 680, y: 1790, size: 1100 } } },
+  ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 540, y: 1600, size: 1080, sit: true }, hostes: { x: 925, y: 1860, size: 1220 } } },
   ortak_salon: { title: "Ortak salon", marks: { b0: { x: -300, y: 1800, size: 960 }, n0: { x: -600, y: 1800, size: 920 }, b: { x: 330, y: 1800, size: 960 }, n: { x: 700, y: 1800, size: 920 }, s1: { x: 120, y: 1490, size: 680, sit: true }, s4: { x: 980, y: 1480, size: 680, sit: true }, ayak_tv: { x: 870, y: 1150, size: 480 }, volta: { x: 540, y: 1260, size: 420 }, tavan: { x: 220, y: 1150, size: 480 }, k: { x: 110, y: 1810, size: 1000 }, n2: { x: 540, y: 1800, size: 920 } } },
   hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 }, kapi_ic: { x: 1010, y: 1500, size: 900 }, yatak_yani2: { x: 800, y: 1500, size: 880 }, doktor: { x: 960, y: 1660, size: 1000 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
@@ -92,9 +93,9 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv }) => {
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb }) => {
   const frame = useCurrentFrame();
-  const props = { kus, saat, frame, sallanan, kaydir, tv };
+  const props = { kus, saat, frame, sallanan, kaydir, tv, turb };
   const night = time === "gece";
   switch (name) {
     case "salon":
@@ -291,6 +292,80 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
         </g>
       );
     }
+    case "ucak_kabin": {
+      // business sınıfı: pencere kenarı koltuk; dışarıda bulutların üstünde yumuşak gün ışığı
+      const fr = props.frame ?? 0;
+      const tb = props.turb ?? 0;
+      const flick = tb ? (random(`fl${Math.floor(fr / 2)}`) > 0.72 ? 0.25 : 1) : 1;
+      const wob = tb ? Math.sin(fr / 2.3) * 10 * tb + Math.sin(fr / 5.1) * 6 * tb : 0;
+      const win = (cx: number, id: string) => (
+        <g key={id}>
+          <defs>
+            <clipPath id={id}><ellipse cx={cx} cy={720} rx={104} ry={150} /></clipPath>
+            <linearGradient id={`${id}g`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#6fa8e0" />
+              <stop offset="0.6" stopColor="#bcd8ee" />
+              <stop offset="1" stopColor="#f7dcaa" />
+            </linearGradient>
+          </defs>
+          <ellipse cx={cx} cy={720} rx={140} ry={188} fill="#ddd5c8" stroke={O} strokeWidth={6} />
+          <ellipse cx={cx} cy={720} rx={118} ry={166} fill="#cfc6b7" />
+          <g clipPath={`url(#${id})`}>
+            <rect x={cx - 110} y={560} width={220} height={320} fill={`url(#${id}g)`} />
+            <circle cx={cx + 70} cy={600} r={60} fill="#fff6d8" opacity={0.7} />
+            <g transform={`translate(0 ${wob})`}>
+              {[0, 1, 2, 3, 4, 5].map((i) => {
+                const x = ((i * 130 - fr * 0.9) % 780 + 780) % 780 - 260 + cx - 130;
+                return <ellipse key={i} cx={x} cy={800 + (i % 2) * 26} rx={90 + (i % 3) * 20} ry={34} fill="#ffffff" opacity={0.92} />;
+              })}
+              <rect x={cx - 110} y={828} width={220} height={60} fill="#fbfbff" opacity={0.95} />
+            </g>
+            <rect x={cx - 110} y={560} width={220} height={52} fill="#efe8dc" />
+            <rect x={cx - 110} y={606} width={220} height={8} fill="#d5ccbe" />
+          </g>
+          <ellipse cx={cx} cy={720} rx={104} ry={150} fill="none" stroke="#b9b0a2" strokeWidth={5} />
+        </g>
+      );
+      return (
+        <g>
+          <defs>
+            <linearGradient id="kabinDuvar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#efe8dd" />
+              <stop offset="1" stopColor="#d6cdbf" />
+            </linearGradient>
+            <linearGradient id="kabinHuzme" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#fff1cc" stopOpacity={0.5} />
+              <stop offset="1" stopColor="#fff1cc" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <rect width={W} height={H} fill="url(#kabinDuvar)" />
+          {/* bagaj dolabı */}
+          <path d="M 0 0 L 1080 0 L 1080 300 Q 540 390 0 300 Z" fill="#f4efe7" stroke={O} strokeWidth={6} />
+          <path d="M 0 250 Q 540 340 1080 250" stroke="#d8d0c4" strokeWidth={5} fill="none" />
+          {[180, 540, 900].map((x) => <rect key={x} x={x - 40} y={x === 540 ? 300 : 272} width={80} height={14} rx={6} fill="#c8bfb2" />)}
+          {/* tavan ışık şeridi (titrer) */}
+          <path d="M 0 318 Q 540 408 1080 318" stroke="#fff4d6" strokeWidth={10} fill="none" opacity={0.9 * flick} />
+          {/* duvar paneli ve pencereler */}
+          <rect x={0} y={1180} width={W} height={16} fill="#c4bbad" />
+          {win(240, "kw1")}
+          {win(840, "kw2")}
+          {/* güneş huzmesi */}
+          <path d="M 330 600 L 470 560 L 1080 1500 L 760 1600 Z" fill="url(#kabinHuzme)" opacity={0.55 * flick} />
+          {/* koltuk */}
+          <rect x={318} y={820} width={444} height={800} rx={70} fill="#3b3432" stroke={O} strokeWidth={7} />
+          <rect x={350} y={850} width={380} height={140} rx={40} fill="#4a4240" />
+          <rect x={400} y={836} width={280} height={110} rx={22} fill="#f2ede4" stroke={O} strokeWidth={4} />
+          <path d="M 352 1080 L 728 1080 M 352 1260 L 728 1260" stroke="#2c2624" strokeWidth={5} />
+          <rect x={278} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
+          <rect x={722} y={1240} width={80} height={330} rx={22} fill="#332c2a" stroke={O} strokeWidth={6} />
+          {/* halı */}
+          <rect y={1620} width={W} height={300} fill="#3e4458" />
+          {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${i * 130 - 40} 1620 l 60 300`} stroke="#4a5068" strokeWidth={4} />)}
+          {/* titreşimde kabin kararması */}
+          {tb ? <rect width={W} height={H} fill="#0a0c14" opacity={(1 - flick) * 0.35 + tb * 0.08} /> : null}
+        </g>
+      );
+    }
     case "ortak_salon": {
       const fr = props.frame ?? 0;
       const on = props.tv !== "kapali";
@@ -466,8 +541,30 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 };
 
 /** Elements that sit IN FRONT of the characters. */
-const SetFG: React.FC<{ name: SetName }> = ({ name }) => {
+const SetFG: React.FC<{ name: SetName; turb?: number }> = ({ name, turb = 0 }) => {
+  const fr = useCurrentFrame();
   switch (name) {
+    case "ucak_kabin": {
+      // koltuk önü konsol + masa: notlar ve kahve fincanı (türbülansta fincan titrer)
+      const j = turb ? (random(`cup${fr}`) - 0.5) * 6 * turb : 0;
+      return (
+        <g>
+          <path d="M 262 1300 L 806 1300 L 826 1920 L 242 1920 Z" fill="#2e2827" stroke={O} strokeWidth={7} />
+          <path d="M 250 1330 L 830 1330" stroke="#3e3634" strokeWidth={6} />
+          <rect x={300} y={1420} width={480} height={300} rx={24} fill="#352e2c" stroke="#231e1d" strokeWidth={5} />
+          <rect x={236} y={1262} width={600} height={46} rx={12} fill="#6a4a32" stroke={O} strokeWidth={7} />
+          <path d="M 330 1268 L 560 1256 L 574 1276 L 338 1288 Z" fill="#f8f5ee" stroke={O} strokeWidth={4} />
+          <path d="M 352 1274 L 540 1265" stroke="#8a8a90" strokeWidth={3} />
+          <path d="M 470 1272 L 560 1268" stroke="#1d2a44" strokeWidth={5} strokeLinecap="round" />
+          <g transform={`translate(${j} ${j * 0.4})`}>
+            <ellipse cx={720} cy={1266} rx={58} ry={10} fill="#f4f0e8" stroke={O} strokeWidth={4} />
+            <path d="M 682 1226 L 758 1226 L 750 1262 Q 720 1272 690 1262 Z" fill="#fbf9f4" stroke={O} strokeWidth={5} />
+            <path d="M 758 1234 q 22 4 6 22" stroke={O} strokeWidth={5} fill="none" />
+            <ellipse cx={720} cy={1227} rx={37} ry={6} fill="#5a3a24" />
+          </g>
+        </g>
+      );
+    }
     case "salon":
       return <CoffeeTable x={340} y={1780} s={0.9} />;
     case "mutfak":
@@ -514,7 +611,9 @@ export const SetLayer: React.FC<{
   kaydir?: number;
   /** ortak salon televizyonu: "acik" | "kapali" */
   tv?: string;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv }) => {
+  /** uçak türbülansı 0-1 (ışık titremesi, bulut sarsıntısı) */
+  turb?: number;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -525,7 +624,7 @@ export const SetLayer: React.FC<{
     return (
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-          <SetFG name={name} />
+          <SetFG name={name} turb={turb} />
         </svg>
         {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       </AbsoluteFill>
@@ -534,7 +633,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />

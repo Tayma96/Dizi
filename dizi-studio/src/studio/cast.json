@@ -848,5 +848,58 @@
    "shoes": "#f2f2f2"
   },
   "blush": false
+ },
+ {
+  "id": "emir",
+  "name": "Emir",
+  "role": "Emir dizisi: zengin şirket sahibi, şık ve kaliteli, 40",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "slick",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "suit",
+   "top": "#1f2a44",
+   "topShade": "#151d30",
+   "bottom": "#1f2a44",
+   "shoes": "#0e0e10",
+   "accent": "#7a2430"
+  },
+  "blush": false
+ },
+ {
+  "id": "hostes",
+  "name": "Hostes",
+  "role": "Emir dizisi: business sınıfı hostesi",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f3cdb0",
+  "skinShade": "#e2b292",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "bun",
+   "color": "#4a2e1e",
+   "shade": "#6a4632"
+  },
+  "earrings": "#e8d08a",
+  "outfit": {
+   "type": "dress",
+   "top": "#25485a",
+   "topShade": "#1a3644",
+   "bottom": "#25485a",
+   "shoes": "#141414"
+  },
+  "blush": true
  }
 ]

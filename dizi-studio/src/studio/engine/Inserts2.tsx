@@ -3,6 +3,7 @@ import React from "react";
 import { AbsoluteFill, Easing, interpolate, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { Character } from "../rig/Character";
 import { castById } from "../cast";
+import { Insert3, INSERT3_KINDS, type Insert3Kind } from "./Inserts3";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -484,9 +485,9 @@ const TvKapali: React.FC<{ dur: number }> = ({ dur }) => {
 export type Insert2Kind =
   | "hap_avuc" | "kamera_led" | "hap_zulasi" | "icme" | "parmak"
   | "flas_plaza" | "flas_kalem" | "flas_el" | "flas_imza"
-  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah" | "kapi_yuz" | "tv_haber" | "tv_kapali";
+  | "kapi_araligi" | "kapi_golge" | "el_kalem" | "ikinci_not" | "saat" | "havalandirma" | "centik" | "siyah" | "kapi_yuz" | "tv_haber" | "tv_kapali" | Insert3Kind;
 
-export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah", "kapi_yuz", "tv_haber", "tv_kapali"];
+export const INSERT2_KINDS: Insert2Kind[] = ["hap_avuc", "kamera_led", "hap_zulasi", "icme", "parmak", "flas_plaza", "flas_kalem", "flas_el", "flas_imza", "kapi_araligi", "kapi_golge", "el_kalem", "ikinci_not", "saat", "havalandirma", "centik", "siyah", "kapi_yuz", "tv_haber", "tv_kapali", ...INSERT3_KINDS];
 
 export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -510,5 +511,6 @@ export const Insert2: React.FC<{ kind: Insert2Kind; dur: number; text?: string[]
     case "kapi_yuz": return <KapiYuz dur={dur} />;
     case "tv_haber": return <TvHaber dur={dur} />;
     case "tv_kapali": return <TvKapali dur={dur} />;
+    default: return <Insert3 kind={kind} dur={dur} text={text} />;
   }
 };
