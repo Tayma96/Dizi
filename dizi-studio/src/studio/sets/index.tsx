@@ -15,7 +15,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -26,6 +26,8 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   cocuk_odasi: { title: "Çocuk odası", marks: { sol: { x: 300, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 800, y: 1780, size: 1250 } } },
   ofis: { title: "Ofis", marks: { masa: { x: 560, y: 1640, size: 1150, sit: true }, sol: { x: 260, y: 1780, size: 1250 }, sag: { x: 840, y: 1780, size: 1250 } } },
   hastane_odasi: { title: "Hastane odası", marks: { sol: { x: 220, y: 1800, size: 1250 }, sag: { x: 860, y: 1800, size: 1250 }, yatak: { x: 470, y: 1500, size: 1050, sit: true } } },
+  // hucre1: ilk tasarım (bölüm 1 parça 1-2 bununla çekildi; süreklilik için korunur)
+  hucre1: { title: "Tımarhane odası (ilk)", marks: { yatak: { x: 590, y: 1238, size: 950 }, yatak_yani: { x: 905, y: 1575, size: 960 }, kapi: { x: 1000, y: 1600, size: 980 } } },
   hucre: { title: "Tımarhane odası", marks: { yatak: { x: 520, y: 1238, size: 820 }, orta: { x: 480, y: 1780, size: 1250 }, kapi: { x: 900, y: 1760, size: 1220 }, yatak_yani: { x: 880, y: 1720, size: 1200 }, yatak_alti: { x: 420, y: 1640, size: 1100 }, kapi_dibi: { x: 700, y: 1700, size: 1150 } } },
   hastane_koridoru: { title: "Hastane koridoru", marks: { sol: { x: 320, y: 1780, size: 1250 }, orta: { x: 540, y: 1790, size: 1270 }, sag: { x: 780, y: 1780, size: 1250 } } },
   sokak: { title: "Sokak", marks: { sol: { x: 300, y: 1800, size: 1250 }, orta: { x: 540, y: 1810, size: 1270 }, sag: { x: 790, y: 1800, size: 1250 } } },
@@ -221,6 +223,30 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
           <CellDoor x={780} y={860} s={1} open={doorOpen} />
           <IronBed x={30} y={1240} s={0.86} />
           <rect width={W} height={H} fill="url(#hucre-vig)" />
+        </g>
+      );
+    }
+    case "hucre1": {
+      const kus = props.kus;
+      return (
+        <g>
+          <Wall c1="#c9d2cb" c2="#b6c1b9" pattern="yok" />
+          <ellipse cx={180} cy={420} rx={120} ry={70} fill="#00000010" />
+          <ellipse cx={980} cy={1180} rx={90} ry={160} fill="#00000012" />
+          <TileFloor c="#b9c2bd" line="#a1aba6" />
+          <defs>
+            <clipPath id="hucre1-win"><rect x={600} y={260} width={340} height={460} /></clipPath>
+            <linearGradient id="hucre1-beam" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#fffbe8" stopOpacity="0.38" />
+              <stop offset="1" stopColor="#fffbe8" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <WindowView x={600} y={260} w={340} h={460} time={time} rain={rain} id="hucre1" flash={flash} city={false} />
+          {kus ? <g clipPath="url(#hucre1-win)">{kus}</g> : null}
+          <WindowBars x={600} y={260} w={340} h={460} />
+          <path d="M 600 720 L 940 720 L 760 1500 L 200 1500 Z" fill="url(#hucre1-beam)" />
+          <CellDoor x={900} y={860} s={1} open={doorOpen} />
+          <IronBed x={60} y={1240} s={1} />
         </g>
       );
     }

@@ -203,13 +203,13 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const st = b.cast[id];
     const p = pl[id];
     if (!st || !p) return undefined;
-    if (st.lookAt && st.lookAt !== "kamera" && pl[st.lookAt]) {
-      const d = Math.sign(pl[st.lookAt].x - p.x);
-      return { yaw: 0.35 * d * (st.flip ? -1 : 1), lookX: 0.85 * d * (st.flip ? -1 : 1) };
-    }
-    if (!st.lookAt && b.beat.type === "line" && b.beat.who !== id && pl[b.beat.who]) {
-      const d = Math.sign(pl[b.beat.who].x - p.x);
-      return { yaw: 0.3 * d, lookX: 0.8 * d };
+    if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
+    // dizilerde kameraya bakılmaz: belirtilen kişiye, yoksa konuşana, konuşan da karşısındakine bakar
+    const others = Object.keys(pl).filter((k) => k !== id && !b.cast[k]?.hidden);
+    const target = st.lookAt && pl[st.lookAt] ? st.lookAt : b.beat.type === "line" && b.beat.who !== id && pl[b.beat.who] ? b.beat.who : others[0];
+    if (target && pl[target]) {
+      const d = Math.sign(pl[target].x - p.x) || 1;
+      return { yaw: 0.5 * d * (st.flip ? -1 : 1), lookX: 1 * d * (st.flip ? -1 : 1) };
     }
     return { yaw: 0, lookX: 0 };
   };
@@ -221,20 +221,15 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const st = tb.cast[id];
     const look = castById(id);
     const speaking = tb.beat.type === "line" && tb.beat.who === id && !tb.beat.voiceover && tb.voice;
-    let yaw = 0;
-    let lookX = 0;
-    if (st.lookAt && st.lookAt !== "kamera" && placed[st.lookAt]) {
-      const dir = Math.sign(placed[st.lookAt].x - p.x);
-      yaw = 0.35 * dir * (st.flip ? -1 : 1);
-      lookX = 0.85 * dir * (st.flip ? -1 : 1);
-    } else if (!st.lookAt && tb.beat.type === "line" && tb.beat.who !== id && placed[tb.beat.who]) {
-      const dir = Math.sign(placed[tb.beat.who].x - p.x);
-      yaw = 0.3 * dir;
-      lookX = 0.8 * dir;
-    }
+    const gz = gazeOf(tb, id, placed) ?? { yaw: 0, lookX: 0 };
+    let yaw = gz.yaw;
+    let lookX = gz.lookX;
     // Jest ve baş dönüşü vuruşlar arasında yumuşak geçer (kol bir karede pozdan poza atlamaz)
     const pst = prev?.cast[id];
-    const gk = interpolate(bf, [0, 10], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+    // yürürken kollar önceki pozda kalır (kol bacaktan önce hareket etmez); yürüyüş bitince yumuşak geçiş
+    const walkingNow = walkX[id]?.walking;
+    const walkEnd = st.enter || (prevPlaced[id] && prevPlaced[id].x !== p.x) ? Math.min(tb.dur, Math.round(1.3 * fps)) : 0;
+    const gk = walkingNow ? 0 : interpolate(bf, [walkEnd, walkEnd + 10], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     const gCur = GESTURES[(st.gesture as Gesture) ?? "rest"] ?? GESTURES.rest;
     const gPrev = pst && !pst.hidden ? GESTURES[(pst.gesture as Gesture) ?? "rest"] ?? GESTURES.rest : gCur;
     const mixArm = (a: FullArm, b: FullArm): FullArm => ({ upper: a.upper + (b.upper - a.upper) * gk, fore: a.fore + (b.fore - a.fore) * gk, ul: (a.ul ?? 1) + ((b.ul ?? 1) - (a.ul ?? 1)) * gk, fl: (a.fl ?? 1) + ((b.fl ?? 1) - (a.fl ?? 1)) * gk });

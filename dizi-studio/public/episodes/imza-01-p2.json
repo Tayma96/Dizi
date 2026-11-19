@@ -1,0 +1,234 @@
+{
+ "series": "imza",
+ "seriesTitle": "İmza",
+ "episode": "imza-01-p2",
+ "episodeNo": 1,
+ "title": "Bölüm 1 — Parça 2",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "p2",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Parça 2 — İlaç",
+   "ambience": {
+    "name": "ortam/oda_tonu",
+    "volume": 0.45
+   },
+   "music": {
+    "name": "muzik/gizem",
+    "volume": 0.2
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "yatak",
+     "body": "yatakta",
+     "emotion": "korkmus"
+    },
+    "nalan": {
+     "mark": "yatak_yani",
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac",
+     "cast": {
+      "nalan": {
+       "hidden": false,
+       "enter": "sag",
+       "gesture": "tutuyor",
+       "prop": "tepsi",
+       "emotion": "notr"
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.7,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.45,
+       "at": 0.35
+      },
+      {
+       "name": "efekt/ayak_sesleri2",
+       "volume": 0.4,
+       "at": 0.7
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "sakin",
+     "text": "Günaydın Berkay, uyanmışsın.",
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "korkmus",
+     "text": "Sen kimsin, nerdeyim ben?",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "soguk",
+     "tags": "[muttering under her breath]",
+     "text": "Yine başladık.",
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "sakin",
+     "text": "Al haplarını getirdim, bunları içmelisin.",
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "gesture": "tutuyor",
+       "prop": "ilac"
+      }
+     },
+     "hiz": 0.92
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "ofkeli",
+     "text": "İçmeyeceğim. Ne olduğunu bilmeden hiçbir şey içmem.",
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "ofkeli"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "soguk",
+     "text": "İçeceksin, Berkay.",
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "emotion": "kararli"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "emotion": "bagiriyor",
+     "text": "Hayır!",
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "sabit"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "durDur",
+       "emotion": "ofkeli"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "emotion": "sakin",
+     "text": "Bunu her sabah konuşuyoruz. Sonunda hep içiyorsun.",
+     "shot": {
+      "type": "yakin",
+      "on": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "rest"
+      },
+      "nalan": {
+       "emotion": "soguk"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "nalan",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli"
+      },
+      "nalan": {
+       "gesture": "tutuyor",
+       "prop": "ilac"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.2,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "gesture": "tutuyor",
+       "prop": "ilac",
+       "emotion": "korkmus"
+      },
+      "nalan": {
+       "prop": "none",
+       "gesture": "rest"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

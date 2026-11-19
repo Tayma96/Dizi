@@ -100,13 +100,15 @@ export const Eye: React.FC<{
           strokeLinecap="round"
         />
       ) : null}
-      {old ? (
+      {look.age !== "child" ? (
+        // göz altı çizgisi: yetişkinlerde hafif, yaşlılarda belirgin (yüze doğallık verir)
         <path
           d={`M ${cx - w * 0.7} ${cy + h * 1.15} Q ${cx} ${cy + h * 1.6} ${cx + w * 0.7} ${cy + h * 1.0}`}
           fill="none"
           stroke={OUT}
-          strokeOpacity={0.35}
-          strokeWidth={2}
+          strokeOpacity={old ? 0.35 : 0.26}
+          strokeWidth={old ? 2 : 2.2}
+          strokeLinecap="round"
         />
       ) : null}
     </g>

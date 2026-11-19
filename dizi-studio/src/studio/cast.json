@@ -557,11 +557,11 @@
   "facialHair": "stubble",
   "scar": true,
   "outfit": {
-   "type": "shirt",
-   "top": "#8fa6b5",
-   "topShade": "#7790a0",
-   "bottom": "#8fa6b5",
-   "shoes": "#9aa0a4"
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
   },
   "blush": false,
   "bileklik": true

@@ -223,8 +223,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const armR: FullArm = { ...g.R, ...(pose.armR ?? {}) };
   if (pose.gesture === "elSalla") armR.fore += Math.sin(frame / 3) * 18;
   if (walking) {
+    // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
     armL.upper += walkPhase * 10;
-    armR.upper -= walkPhase * 10;
+    armR.upper += walkPhase * 10;
   }
   const shoulderOff = 72 * wx;
   const sleeve = sleeveColor(look);
