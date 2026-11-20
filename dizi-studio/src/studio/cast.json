@@ -1613,22 +1613,23 @@
     "gender": "m",
     "age": "adult",
     "build": "normal",
-    "skin": "#e2b48e",
-    "skinShade": "#c99a74",
-    "iris": "#2a2018",
+    "skin": "#c8916a",
+    "skinShade": "#ae7852",
+    "iris": "#6a8a4a",
     "hair": {
-      "style": "slick",
-      "color": "#1a1412",
-      "shade": "#3a2e28"
+      "style": "buzz",
+      "color": "#2a1e18",
+      "shade": "#4a3a30"
     },
-    "facialHair": "stubble",
+    "facialHair": "beard",
     "outfit": {
       "type": "tshirt",
-      "top": "#1c1e22",
-      "topShade": "#121316",
-      "bottom": "#3a4a62",
-      "shoes": "#2a2420"
+      "top": "#4a5638",
+      "topShade": "#3a442c",
+      "bottom": "#2a2a2e",
+      "shoes": "#3a2a1e"
     },
-    "blush": false
+    "blush": false,
+    "scar": true
   }
 ]
