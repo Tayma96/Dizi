@@ -4,6 +4,7 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 
 ## Değişmez kurallar
 - **Kullanıcı açıkça istemeden senaryo/hikâye/replik yazma.** Fikir ve öneri sunulabilir.
+  - **Kayıp CEO (dosyalar `emir-*`) için izin (20 Kasım 2026):** kullanıcı "Doğaçlama iznin var, ekleyebileceğin güzel bir detay varsa ekle" dedi. Kullanıcının metni aynen korunur; aradaki güzel ayrıntılar, geçişler ve kısa yeni replikler eklenebilir, her biri kullanıcıya açıkça belirtilir.
   - **Deli Değilim (eski adı İmza; dosyalar `imza-*`) için izin (18 Kasım 2026):** kullanıcı "konuya uygun doğaçlama yapabilirsin, sadece fire verme" dedi. Kullanıcının verdiği metin ve replikler aynen korunur; aradaki boşluklar, geçişler ve yeni replikler dizinin kurallarına (`docs/diziler/berkay/belirsizlik-kurallari.md`) uygun doğaçlanabilir. Doğaçlanan her şey kullanıcıya açıkça belirtilir.
 - **Tek kesin kural: her şey ücretsiz** (kullanıcının kendi ElevenLabs kredisi hariç; o da bütçe kurallarıyla).
 - Başka dizilerin karakter/hikâye/görsellerini kopyalama; içerik özgün olmalı.

@@ -2,7 +2,7 @@
 
 > **Yayın adı: KAYIP CEO** (kullanıcı, 20 Kasım 2026). Dosyalar teknik nedenle `emir-*`.
 
-Durum: 19 Kasım 2026, ilk fikir. Kullanıcının metni aynen korunur. Bu dizi için doğaçlama izni **yok**: aradaki boşluklar yalnızca öneri olarak sunulur ya da en aza indirilir ve kullanıcıya bildirilir.
+Durum: 19 Kasım 2026, ilk fikir. Kullanıcının metni aynen korunur. ~~Bu dizi için doğaçlama izni yok.~~ **20 Kasım 2026: kullanıcı doğaçlama izni verdi** ("ekleyebileceğin güzel bir detay varsa ekle"). Kullanıcının metni aynen korunur; eklenen her şey kullanıcıya bildirilir.
 
 ## Kimlik
 - **Ana karakter:** Emir. Zengin bir şirket sahibi, kaliteli, şık giyimli bir adam.
