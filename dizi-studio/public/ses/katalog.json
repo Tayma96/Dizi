@@ -342,6 +342,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
  },
+ "efekt/el_topuk": {
+  "file": "ses/efekt/el_topuk.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Woman's heeled shoes walking hesitantly into a hospital room on linoleum, few steps then stop"
+ },
  "efekt/el_tukurme": {
   "file": "ses/efekt/el_tukurme.mp3",
   "category": "efekt",

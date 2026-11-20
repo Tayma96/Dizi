@@ -53,6 +53,15 @@
    "speed": 1.0
   }
  },
+ "berkay_ofis": {
+  "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
+  "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
+  "ad": "Mert Aksoy",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "cemil": {
   "voice_id": "anu8LIf3pYhCJFkcpxzg",
   "sahip": "09677f050136abbac3d65d2e8ba7739d7ee9bf3e20765d78bf1256ad1204ed75",
@@ -215,10 +224,10 @@
    "speed": 1.0
   }
  },
- "berkay_ofis": {
-  "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
-  "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
-  "ad": "Mert Aksoy",
+ "zeynep_dd": {
+  "voice_id": "8eSMFxjAUgbRqmAkLPBt",
+  "sahip": "dc06dff134bdbdd1b16741be55c3d8748ef86c3ec2622ad1281157d49c8dc110",
+  "ad": "8eSMFxjAUgbRqmAkLPBt",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0

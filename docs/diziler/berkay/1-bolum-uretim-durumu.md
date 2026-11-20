@@ -91,3 +91,11 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Senarist: `raporlar/b2-p4-senarist.md` (D1: Deniz numarayı ezberden tuşlar; D2: "Teşekkürler, Ayla Hanım.").
 - Yeni ses: santral görevlisi Ayla (Elif Ozder), fx telefon. Arka plandaki "Kim arıyor, Ayla?" Berkay'ın kendi sesi (`berkay_ofis`, fx `telefon_uzak`), altyazıda isim yok.
 - Dizinin sorusu büyüdü: "deli mi?" → "bu adam kim?" İki açıklama: şirkette yerine geçen biri / Berkay kendini haberlerdeki adam sanan bir hasta.
+
+## Bölüm 2 · Parça 5 FİNAL "Ziyaretçi" (20 Kasım 2026) — `bolumler/deli-degilim-02-parca5.mp4`
+- Senarist: `raporlar/b2-p5-senarist.md` (D1 Zeynep "Yaklaşma… lütfen.", D2 Deniz "Yeter, Zeynep Hanım.").
+- Yeni karakter: **Zeynep** (`zeynep_dd`, Berkay'ın eşi?): bakır rengi uzun düz saç, deve tüyü trençkot, kırmızı oje; ses Çiğdem.
+- İpucu defteri: fotoğraf (Berkay şoför kasketiyle, siyah makam arabası, arka camda silüet, tarih damgası '19 6 14); Zeynep'in sol elinde yüzük yok; Berkay'ın sol yüzük parmağında solgun yüzük izi. "Sen onun şoförüydün. Sekiz yıl." ("onun" kim olduğu söylenmedi).
+- Sol el yakın çekimleri anatomik: elin üstü, başparmak sağda.
+
+## Bölüm 2 birleşik: `bolumler/deli-degilim-02.mp4` (3:39, -14 LUFS), bitiş kartı: "Sence Zeynep yalan mı söylüyor, yoksa Berkay mı unuttu?"

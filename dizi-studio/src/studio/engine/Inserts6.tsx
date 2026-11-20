@@ -9,8 +9,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const MONO = "'Courier New', monospace";
 const MUREKKEP = "#10204a";
 
-export type Insert6Kind = "tablet_video" | "murekkep_parmak" | "kalem_cep" | "hap_uc" | "avuc_iki";
-export const INSERT6_KINDS: Insert6Kind[] = ["tablet_video", "murekkep_parmak", "kalem_cep", "hap_uc", "avuc_iki"];
+export type Insert6Kind = "tablet_video" | "murekkep_parmak" | "kalem_cep" | "hap_uc" | "avuc_iki" | "foto_sofor" | "yuzuk_izi";
+export const INSERT6_KINDS: Insert6Kind[] = ["tablet_video", "murekkep_parmak", "kalem_cep", "hap_uc", "avuc_iki", "foto_sofor", "yuzuk_izi"];
 
 /* ---------------------------------------------------------------------------------------------
  * Tablet videosu. Deniz'in elindeki tablette, odanın köşesindeki kameradan (kamera_led açısı) çekilmiş kayıt:
@@ -470,6 +470,181 @@ const AvucIki: React.FC<{ dur: number }> = () => {
   );
 };
 
+/* ---------------------------------------------------------------------------------------------
+ * Fotoğraf: Zeynep'in parmakları arasında, kenarları hafif kıvrılmış, beyaz çerçeveli baskı. Gün ışığında plaza önü,
+ * siyah makam arabası; Berkay koyu şoför takımı ve kasketiyle arka kapıyı tutuyor, kibar gülümsüyor (kameraya değil,
+ * arabaya bakıyor). Arka camda takım elbiseli bir silüet (yüz seçilmez). Köşede eski makine tarih damgası.
+ * Renkler hafif soluk ve sıcak (eski baskı). Yavaş yaklaşma + el titremesi.
+ * ------------------------------------------------------------------------------------------- */
+const FotoSofor: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.12], clamp);
+  const jx = Math.sin(f / 6) * 2, jy = Math.cos(f / 7.5) * 1.6;
+  const base = castById("berkay_hasta");
+  const sofor = { ...base, outfit: { type: "suit" as const, top: "#1c1e24", topShade: "#121418", bottom: "#1c1e24", shoes: "#0e0e10", accent: "#f2f2ee" } };
+  const S = 560; // fotoğraf içinde Berkay'ın boyu
+  const bx = 640, by = 1370; // ayak noktası (fotoğraf koordinatı = ekran)
+  const top = by - 0.98 * S;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#3a3836", overflow: "hidden" }}>
+      {/* odanın bulanık arka planı */}
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 40%, #6a706c 0%, #3a3e3c 60%, #1a1c1c 100%)" }} />
+      <AbsoluteFill style={{ transform: `translate(${jx}px, ${jy - 190}px) scale(${z}) rotate(-3deg)`, transformOrigin: "50% 52%" }}>
+        {/* baskı: beyaz çerçeve + gölge */}
+        <div style={{ position: "absolute", left: 120, top: 520, width: 840, height: 1040, backgroundColor: "#f4f0e6", boxShadow: "0 24px 60px rgba(0,0,0,0.55)", borderRadius: 4 }} />
+        {/* resim alanı */}
+        <div style={{ position: "absolute", left: 160, top: 560, width: 760, height: 900, overflow: "hidden", filter: "sepia(0.28) saturate(0.85) contrast(0.95) brightness(1.04)" }}>
+          <svg viewBox="160 560 760 900" width={760} height={900} style={{ position: "absolute", left: 0, top: 0 }}>
+            <defs>
+              <linearGradient id="fs_gok" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9cc4e8" /><stop offset="1" stopColor="#dfe9f2" /></linearGradient>
+              <linearGradient id="fs_cam" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#3a4a5a" /><stop offset="1" stopColor="#141a22" /></linearGradient>
+              <linearGradient id="fs_govde" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#2a2c32" /><stop offset="1" stopColor="#0c0d10" /></linearGradient>
+            </defs>
+            {/* gökyüzü + cam plaza */}
+            <rect x={160} y={560} width={760} height={900} fill="url(#fs_gok)" />
+            <rect x={160} y={560} width={760} height={520} fill="#8aa4bc" />
+            {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${180 + i * 86} 560 V 1080`} stroke="#6a849c" strokeWidth={5} />)}
+            {new Array(7).fill(0).map((_, i) => <path key={i} d={`M 160 ${600 + i * 70} H 920`} stroke="#6a849c" strokeWidth={4} />)}
+            <path d="M 160 560 L 520 560 L 160 960 Z" fill="#ffffff" opacity={0.14} />
+            {/* giriş saçağı ve kaldırım */}
+            <rect x={160} y={1060} width={760} height={30} fill="#5a646c" />
+            <rect x={160} y={1090} width={760} height={370} fill="#b8b2a6" />
+            {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${160 + i * 110} 1090 L ${120 + i * 130} 1460`} stroke="#a29c90" strokeWidth={3} />)}
+            {/* siyah makam arabası (yandan, sağa bakar), arka kapı açık */}
+            <path d="M 170 1300 Q 180 1200 290 1180 L 420 1110 Q 520 1090 640 1110 L 760 1180 Q 880 1200 900 1290 L 900 1340 L 170 1340 Z" fill="url(#fs_govde)" stroke="#060608" strokeWidth={5} />
+            <path d="M 440 1120 Q 530 1104 630 1120 L 700 1176 L 400 1176 Z" fill="url(#fs_cam)" />
+            {/* arka camdaki silüet: takım elbiseli adam, yüz seçilmez */}
+            <path d="M 470 1176 L 470 1146 Q 474 1128 492 1128 Q 512 1128 514 1146 L 516 1176 Z" fill="#06080a" opacity={0.85} />
+            <path d="M 452 1176 Q 470 1150 492 1158 Q 516 1150 534 1176 Z" fill="#06080a" opacity={0.85} />
+            <path d="M 450 1124 L 520 1176" stroke="#ffffff" strokeWidth={6} opacity={0.12} />
+            <path d="M 290 1182 L 420 1116 L 430 1176 Z" fill="url(#fs_cam)" />
+            <circle cx={300} cy={1342} r={56} fill="#0a0a0c" stroke="#3a3a3e" strokeWidth={8} />
+            <circle cx={300} cy={1342} r={24} fill="#7a7c80" />
+            <circle cx={780} cy={1342} r={56} fill="#0a0a0c" stroke="#3a3a3e" strokeWidth={8} />
+            <circle cx={780} cy={1342} r={24} fill="#7a7c80" />
+            <path d="M 180 1250 H 890" stroke="#4a4c52" strokeWidth={3} />
+            <path d="M 600 1180 Q 640 1150 700 1200" stroke="#ffffff" strokeWidth={5} opacity={0.25} fill="none" />
+            {/* açık arka kapı (Berkay tutuyor) */}
+            <path d="M 700 1180 L 760 1150 L 770 1300 L 708 1330 Z" fill="#141518" stroke="#060608" strokeWidth={4} />
+          </svg>
+          {/* Berkay (şoför takımı) */}
+          <div style={{ position: "absolute", left: bx - 160 - S * 0.2, top: top - 560 }}>
+            <Character look={sofor} size={S} pose={{ emotion: "mutlu", gesture: "rest", armR: { upper: 40, fore: -40, ul: 0.9 }, yaw: 0.45, lookX: 0.7, seed: 3 }} />
+          </div>
+          {/* şoför kasketi (başın üstünde) */}
+          <svg viewBox="160 560 760 900" width={760} height={900} style={{ position: "absolute", left: 0, top: 0 }}>
+            {(() => {
+              const hx = bx + 4, hy = top + 0.07 * S;
+              return (
+                <g>
+                  <path d={`M ${hx - 66} ${hy + 18} Q ${hx - 70} ${hy - 30} ${hx} ${hy - 34} Q ${hx + 70} ${hy - 30} ${hx + 70} ${hy + 18} Z`} fill="#16181c" stroke="#060608" strokeWidth={4} />
+                  <rect x={hx - 68} y={hy + 10} width={138} height={16} rx={6} fill="#26282e" stroke="#060608" strokeWidth={3} />
+                  <path d={`M ${hx - 60} ${hy + 26} Q ${hx + 10} ${hy + 46} ${hx + 84} ${hy + 30}`} fill="#0a0a0c" stroke="#060608" strokeWidth={3} />
+                  <rect x={hx - 10} y={hy - 6} width={20} height={12} rx={3} fill="#c8a860" />
+                </g>
+              );
+            })()}
+          </svg>
+          {/* eski makine tarih damgası */}
+          <div style={{ position: "absolute", right: 22, bottom: 18, fontFamily: MONO, fontWeight: 700, fontSize: 40, color: "#ff8a3a", textShadow: "0 0 6px rgba(255,120,40,0.6)", opacity: 0.9 }}>'19 6 14</div>
+          {/* baskı dokusu: hafif gren + köşe solması */}
+          <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(60,40,20,0.25) 100%)" }} />
+        </div>
+        {/* kıvrık köşe ve kırışık çizgisi */}
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
+          <path d="M 120 1480 L 210 1560 L 120 1560 Z" fill="#d8d2c4" />
+          <path d="M 300 520 Q 420 900 380 1560" stroke="#ffffff" strokeWidth={3} opacity={0.3} fill="none" />
+          {/* Zeynep'in parmakları: sol alt ve sağ üst köşede baskıyı tutar */}
+          <g>
+            <rect x={60} y={1380} width={150} height={70} rx={35} fill="#f2cdb0" stroke="#5a3a2a" strokeWidth={4} transform="rotate(-20 135 1415)" />
+            <ellipse cx={176} cy={1396} rx={22} ry={16} fill="#f8e0cc" stroke="#c89a80" strokeWidth={2} transform="rotate(-20 176 1396)" />
+            <rect x={880} y={520} width={150} height={66} rx={33} fill="#f2cdb0" stroke="#5a3a2a" strokeWidth={4} transform="rotate(25 955 553)" />
+            <ellipse cx={912} cy={540} rx={22} ry={15} fill="#f8e0cc" stroke="#c89a80" strokeWidth={2} transform="rotate(25 912 540)" />
+          </g>
+        </svg>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/* ---------------------------------------------------------------------------------------------
+ * Yüzük izi: Berkay'ın sol eli, elin üstü (tırnaklar görünür), pijamalı dizin üstünde. Yüzük parmağının dibinde
+ * ince, keskin kenarlı solgun halka (güneş görmemiş deri) ve hafif çökük iz. Yüzük yok. Yavaş yaklaşma, odak netleşir.
+ * ------------------------------------------------------------------------------------------- */
+const YuzukIzi: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => {
+  const zeynep = text?.[0] === "zeynep";
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const blur = interpolate(f, [0, 0.5 * fps], [6, 0], clamp);
+  const z = interpolate(f, [0, dur], [1.0, 1.18], clamp);
+  const tx = Math.sin(f / 5) * 1.8, ty = Math.cos(f / 6.4) * 1.4;
+  const skin = zeynep ? "#f2cdb0" : "#e8b892";
+  const ws = zeynep ? 0.8 : 1;
+  const finger = (x: number, y: number, len: number, w0: number, ang: number, key: string, ring?: boolean) => { const w = w0 * ws; return (
+    <g key={key} transform={`translate(${x} ${y}) rotate(${ang})`}>
+      <rect x={-w / 2} y={-len} width={w} height={len + 40} rx={w / 2} fill={skin} stroke="#5a3a2a" strokeWidth={5} />
+      {/* tırnak */}
+      <path d={`M ${-w * 0.32} ${-len + w * 0.75} Q ${-w * 0.34} ${-len + w * 0.12} 0 ${-len + w * 0.08} Q ${w * 0.34} ${-len + w * 0.12} ${w * 0.32} ${-len + w * 0.75} Z`} fill={zeynep ? "#a82a36" : "#f2d4c0"} stroke={zeynep ? "#6a141c" : "#b88a70"} strokeWidth={3} />
+      <path d={`M ${-w * 0.24} ${-len + w * 0.3} Q 0 ${-len + w * 0.22} ${w * 0.24} ${-len + w * 0.3}`} stroke="#ffffff" strokeWidth={3} opacity={0.6} fill="none" />
+      {/* eklem kırışıkları (elin üstü) */}
+      {[0.38, 0.66].map((k) => <path key={k} d={`M ${-w * 0.22} ${-len * k} q ${w * 0.22} ${-6} ${w * 0.44} 0`} stroke="#c8946e" strokeWidth={3} fill="none" />)}
+      {ring ? (
+        <g>
+          {/* solgun halka: keskin kenarlı, hafif çökük */}
+          <rect x={-w / 2 + 3} y={-len * 0.2} width={w - 6} height={26} fill="#f8e2cc" />
+          <path d={`M ${-w / 2 + 3} ${-len * 0.2} H ${w / 2 - 3}`} stroke="#c8946e" strokeWidth={2.5} />
+          <path d={`M ${-w / 2 + 3} ${-len * 0.2 + 26} H ${w / 2 - 3}`} stroke="#c8946e" strokeWidth={2.5} />
+          <path d={`M ${-w / 2 + 8} ${-len * 0.2 + 13} H ${w / 2 - 8}`} stroke="#e8c8ae" strokeWidth={3} opacity={0.7} />
+        </g>
+      ) : null}
+    </g>
+  ); };
+  return (
+    <AbsoluteFill style={{ backgroundColor: zeynep ? "#c8b49a" : "#a9c4d6", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, filter: `blur(${blur.toFixed(1)}px)` }}>
+        <defs>
+          <linearGradient id="yi_isik" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffffff" stopOpacity={0.22} /><stop offset="0.6" stopColor="#ffffff" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.28} /></linearGradient>
+          <filter id="yi_sur"><feGaussianBlur stdDeviation="9" /></filter>
+        </defs>
+        <rect width={1080} height={1920} fill={zeynep ? "#c8b49a" : "#a9c4d6"} />
+        {[[-40, 300, 1120, 520], [-60, 1400, 1140, 1600]].map(([x1, y1, x2, y2], i) => <path key={i} d={`M ${x1} ${y1} Q 540 ${(y1 + y2) / 2 + 80} ${x2} ${y2}`} stroke={zeynep ? "#a8947a" : "#8aa8bc"} strokeWidth={26} fill="none" opacity={0.7} />)}
+        <g transform={`translate(${tx} ${ty}) translate(560 1050) scale(${-z} ${z}) translate(-560 -1050)`}>
+          {/* gölge */}
+          <path d="M 300 1180 Q 260 1500 360 1920 L 760 1920 Q 860 1500 840 1150 Z" fill="#6a889c" opacity={0.35} transform="translate(24 30)" filter="url(#yi_sur)" />
+          {/* elin üstü + bilek (sol el: başparmak solda) */}
+          <path d="M 360 1920 L 372 1640 Q 300 1450 300 1200 Q 300 1080 380 1060 L 760 1050 Q 840 1080 845 1200 Q 850 1420 745 1640 L 735 1920 Z" fill={skin} stroke="#5a3a2a" strokeWidth={6} />
+          {/* el üstü damarlar ve kemik çıkıntıları */}
+          <path d="M 470 1500 Q 500 1350 470 1180 M 600 1520 Q 620 1360 590 1170" stroke="#c8946e" strokeWidth={4} fill="none" opacity={0.6} />
+          {[420, 520, 620, 720].map((x) => <ellipse key={x} cx={x} cy={1100} rx={26} ry={14} fill="#f2ccaa" opacity={0.7} />)}
+          {/* başparmak (solda) */}
+          <g transform="translate(300 1330) rotate(-48)">
+            <rect x={-60} y={-290} width={120} height={330} rx={60} fill={skin} stroke="#5a3a2a" strokeWidth={6} />
+            <path d="M -30 -270 Q -32 -296 0 -300 Q 32 -296 30 -270 L 28 -226 Q 0 -218 -28 -226 Z" fill="#f2d4c0" stroke="#b88a70" strokeWidth={3} />
+          </g>
+          {finger(420, 1080, 380, 102, -8, "isaret")}
+          {finger(535, 1060, 420, 106, -2, "orta")}
+          {finger(650, 1068, 390, 102, 4, "yuzuk", !zeynep)}
+          {finger(756, 1104, 300, 90, 11, "serce")}
+          {zeynep ? (
+            <g>
+              {/* trençkot kolu (deve tüyü) ve işaret parmağında gözyaşı damlası */}
+              <path d="M 330 1720 L 780 1700 L 800 1920 L 320 1920 Z" fill="#b8865a" stroke="#5a3a20" strokeWidth={6} />
+              <path d="M 330 1720 L 780 1700" stroke="#9a6c44" strokeWidth={14} />
+              <path d="M 404 820 q -12 22 0 34 q 12 -12 0 -34 z" fill="#e8f4ff" stroke="#9ac0dc" strokeWidth={2} />
+              <circle cx={400} cy={846} r={3} fill="#ffffff" />
+            </g>
+          ) : null}
+          {/* bileklik (sol bilekte değil; çıplak bilek) */}
+        </g>
+        <rect width={1080} height={1920} fill="url(#yi_isik)" />
+        {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${-200 + i * 300} 0 L ${200 + i * 300} 1920`} stroke="#203040" strokeWidth={46} opacity={0.1} />)}
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 52% 42%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert6: React.FC<{ kind: Insert6Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "tablet_video": return <TabletVideo dur={dur} text={text} />;
@@ -477,6 +652,8 @@ export const Insert6: React.FC<{ kind: Insert6Kind; dur: number; text?: string[]
     case "kalem_cep": return <KalemCep dur={dur} />;
     case "hap_uc": return <HapUc dur={dur} />;
     case "avuc_iki": return <AvucIki dur={dur} />;
+    case "foto_sofor": return <FotoSofor dur={dur} />;
+    case "yuzuk_izi": return <YuzukIzi dur={dur} text={text} />;
     default: return null;
   }
 };

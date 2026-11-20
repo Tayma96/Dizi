@@ -1494,5 +1494,32 @@
   },
   "blush": false,
   "bileklik": true
+ },
+ {
+  "id": "zeynep_dd",
+  "name": "Zeynep",
+  "role": "Deli Değilim: Berkay'ın eşi (?), 30'lar",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f2cdb0",
+  "skinShade": "#dcb090",
+  "iris": "#4a6a3a",
+  "hair": {
+   "style": "longStraight",
+   "color": "#8a3a1e",
+   "shade": "#a8502c"
+  },
+  "outfit": {
+   "type": "coat",
+   "top": "#b8865a",
+   "topShade": "#9a6c44",
+   "bottom": "#2a2a30",
+   "shoes": "#3a2418",
+   "accent": "#f2ead8"
+  },
+  "earrings": "#d8b860",
+  "blush": true
  }
 ]

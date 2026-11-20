@@ -1,0 +1,393 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-p5",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — Parça 5 (final)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre1",
+   "time": "gunduz",
+   "look": "soguk",
+   "title": "Ziyaretçi",
+   "ambience": {
+    "name": "efekt/el_hastane_oda",
+    "volume": 0.42
+   },
+   "music": {
+    "name": "muzik/deli_tema",
+    "volume": 0.11
+   },
+   "isaretler": {
+    "ayak": {
+     "x": 400,
+     "y": 1720,
+     "size": 1040
+    },
+    "ayak_on": {
+     "x": 470,
+     "y": 1720,
+     "size": 1040
+    },
+    "zeynep": {
+     "x": 700,
+     "y": 1700,
+     "size": 990
+    },
+    "zeynep_geri": {
+     "x": 740,
+     "y": 1700,
+     "size": 990
+    },
+    "deniz_kapi": {
+     "x": 1015,
+     "y": 1600,
+     "size": 860
+    }
+   },
+   "cast": {
+    "berkay_hasta": {
+     "mark": "ayak",
+     "emotion": "supheli",
+     "murekkep": true,
+     "bak": {
+      "x": 0.8,
+      "y": 0.0,
+      "yaw": 0.55
+     }
+    },
+    "nalan": {
+     "mark": "kapi_ic",
+     "hidden": true,
+     "emotion": "notr",
+     "lookAt": "berkay_hasta"
+    },
+    "zeynep_dd": {
+     "mark": "zeynep",
+     "hidden": true,
+     "emotion": "uzgun",
+     "lookAt": "berkay_hasta"
+    },
+    "deniz": {
+     "mark": "deniz_kapi",
+     "hidden": true,
+     "emotion": "notr",
+     "lookAt": "zeynep_dd"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "door": "ac",
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "nalan": {
+       "hidden": false
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.7,
+       "at": 0.0
+      },
+      {
+       "name": "efekt/kapi_acilma",
+       "volume": 0.55,
+       "at": 0.25
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "nalan",
+     "text": "Ziyaretçin var, Berkay.",
+     "emotion": "notr",
+     "tags": "[flat, neutral, routine]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "nalan",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.1,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "nalan": {
+       "exit": "sag"
+      },
+      "zeynep_dd": {
+       "hidden": false,
+       "enter": "sag"
+      },
+      "deniz": {
+       "hidden": false
+      }
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_topuk",
+       "volume": 0.6,
+       "at": 0.2
+      }
+     ]
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Zeynep…",
+     "emotion": "notr",
+     "tags": "[relieved, breathless, almost laughing]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "mark": "ayak_on",
+       "emotion": "mutlu",
+       "lookAt": "zeynep_dd"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "zeynep_dd",
+     "text": "Yaklaşma… lütfen.",
+     "emotion": "notr",
+     "tags": "[scared, pleading, quiet]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "zeynep_dd",
+      "move": "sabit"
+     },
+     "cast": {
+      "zeynep_dd": {
+       "mark": "zeynep_geri",
+       "emotion": "korkmus"
+      },
+      "berkay_hasta": {
+       "mark": "ayak",
+       "emotion": "saskin"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Söyle şunlara. Kim olduğumu söyle.",
+     "emotion": "notr",
+     "tags": "[urgent, hopeful, desperate]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "iki",
+      "on": "berkay_hasta",
+      "with": "zeynep_dd",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "korkmus",
+       "gesture": "ellerAcik",
+       "lookAt": "zeynep_dd"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.0,
+     "shot": {
+      "type": "yakin",
+      "on": "zeynep_dd",
+      "move": "sabit"
+     },
+     "cast": {
+      "zeynep_dd": {
+       "emotion": "uzgun",
+       "bak": {
+        "x": 0.85,
+        "y": 0.05,
+        "yaw": 0.55
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "zeynep_dd",
+     "text": "Berkay… sen hiç CEO olmadın ki.",
+     "emotion": "notr",
+     "tags": "[tearful, trembling, gentle]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "orta",
+      "on": "zeynep_dd",
+      "move": "yaklas"
+     },
+     "cast": {
+      "zeynep_dd": {
+       "emotion": "agliyor",
+       "tears": 0.4,
+       "lookAt": "berkay_hasta"
+      },
+      "berkay_hasta": {
+       "gesture": "rest"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "zeynep_dd",
+     "text": "Sen onun şoförüydün. Sekiz yıl.",
+     "emotion": "notr",
+     "tags": "[quiet, broken, certain]",
+     "gapAfter": 1.6,
+     "ekle": {
+      "kind": "foto_sofor"
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Yalan söylüyorsun… Zeynep, yalan söylüyorsun lan!",
+     "emotion": "notr",
+     "tags": "[shaking, rising to a shout, desperate]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "berkay_hasta",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "ofkeli",
+       "gesture": "ellerAcik",
+       "lookAt": "zeynep_dd"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "zeynep_dd",
+     "text": "Keşke.",
+     "emotion": "notr",
+     "tags": "[crying, barely audible]",
+     "gapAfter": 0.4,
+     "shot": {
+      "type": "yakin",
+      "on": "zeynep_dd",
+      "move": "sabit"
+     },
+     "cast": {
+      "zeynep_dd": {
+       "emotion": "agliyor",
+       "tears": 0.7,
+       "gesture": "eliYuzunde"
+      },
+      "berkay_hasta": {
+       "gesture": "rest"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "deniz",
+     "text": "Yeter, Zeynep Hanım.",
+     "emotion": "notr",
+     "tags": "[calm, firm, protective]",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "deniz",
+      "move": "sabit"
+     },
+     "cast": {
+      "deniz": {
+       "lookAt": "zeynep_dd"
+      }
+     }
+    },
+    {
+     "type": "insert",
+     "kind": "yuzuk_izi",
+     "dur": 1.8,
+     "text": [
+      "zeynep"
+     ],
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.35,
+       "at": 0.4
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "yakin",
+      "on": "berkay_hasta",
+      "move": "yaklas"
+     },
+     "cast": {
+      "berkay_hasta": {
+       "emotion": "supheli",
+       "bak": {
+        "x": 0.0,
+        "y": 0.7
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "berkay_hasta",
+     "text": "Yüzüğüm yoktu. Ama izi… hâlâ oradaydı.",
+     "emotion": "notr",
+     "tags": "[calm, intimate, reflective narration, past tense]",
+     "gapAfter": 1.3,
+     "voiceover": true,
+     "label": "BERKAY",
+     "ekle": {
+      "kind": "yuzuk_izi"
+     },
+     "sfx": [
+      {
+       "name": "efekt/el_kalp_yavas",
+       "volume": 0.45,
+       "at": 0.0
+      }
+     ]
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "siyah": true,
+     "sfx": [
+      {
+       "name": "efekt/kilit",
+       "volume": 0.4,
+       "at": 0.2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

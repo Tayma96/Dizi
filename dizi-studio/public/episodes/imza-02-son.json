@@ -1,0 +1,26 @@
+{
+ "series": "imza",
+ "seriesTitle": "Deli Değilim",
+ "episode": "imza-02-son",
+ "episodeNo": 2,
+ "title": "Bölüm 2 — kart",
+ "endCard": {
+  "text": "Devamı yarın · Takip et",
+  "sub": "Sence Zeynep yalan mı söylüyor, yoksa Berkay mı unuttu?"
+ },
+ "scenes": [
+  {
+   "id": "a",
+   "set": "hucre1",
+   "time": "gunduz",
+   "cast": {},
+   "beats": [
+    {
+     "type": "action",
+     "dur": 0.3,
+     "siyah": true
+    }
+   ]
+  }
+ ]
+}
