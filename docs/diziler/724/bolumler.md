@@ -31,3 +31,19 @@ Kullanıcı senaryoyu kendisi yazdı; replikler aynen korunur, yeni replik eklen
   4. Kepenkler bir anda kapanırsa sessizce açılmasını bekle.
 - **Son:** Ece kurallara, Sabri'ye, tekrar kurallara bakar: "Abi sen ciddi misin ya" (gülümseyerek, tedirgin).
 - Yeni kadro: `ece_ev` (pijama, topuz), `ece_sivil` (hardal kazak), `anne724` (ses: Elvan). Ece'nin sağ yanağında sivilce (süreklilik: bölüm boyunca, kremli).
+
+## Bölüm 2: "İlk Gece" (20 Kasım 2026, ~1:25)
+Kullanıcı "acele et" dedi. Bible'a göre bu dizide doğaçlama serbest. Eski "Kural 1" taslağının gece sahneleri, kullanıcının 1. bölümünün devamı olarak kullanıldı. Kayıtlı sesler yeniden kullanıldı; kredi harcanmadı.
+- **Soğuk açılış (kanca), 03.00:** Kapı kendiliğinden açılır. Ece "Hoş gel…" der ve kendini durdurur. Islak ayak izleri belirir. Ardından "7/24" ve "İLK GECE · 3 SAAT ÖNCE · 00.12" yazıları gelir.
+- **Gece akışı:**
+  - Sarhoş müşteri: "Abla bir su… yok, iki su." / "Yirmi lira, abi."
+  - Selin'den mesaj gelir.
+  - Kapüşonlu biri girip çıkar. Ece: "Para üstünüz…"
+  - Kurallar kâğıdında kural 1 vurgulanır.
+- **03.00:**
+  - Ekmek kendiliğinden düşer. Ayak izleri kasaya kadar gelir, kasa çekmecesi açılır. Ece: "Demedim… hoş geldiniz demedim."
+  - Depodan Sabri'nin sesi duyulur. Kurallar kâğıdında kural 2 vurgulanır.
+  - Telefonda Sabri: "Ben evdeyim kızım. Sakın gitme."
+  - Depodan: "Ece… ben Sabri. Gel." Depo kapısı aralanır, siyah.
+- **Bitiş kartı:** "Sen olsan depoya gider miydin?"
+- **Süreklilik:** Ece market önlüğüyle; sivilce sürekliliği için `ece724` görünümüne sivilce eklendi.
