@@ -104,7 +104,7 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 - Mesaj: "Anne: Kızım uyuyamadım, iyi misin? İlk gecen nasıl geçti?" Telefonda "Servis yok" yazar. Ece: "Hadi be, hadi… bir çentik, bir çentik çek!"
 - Ece (çarpıp düşünce): "Siktir… siktir siktir."
 - Ece (adam yaklaşırken, iç ses): "Ece gülümse, müşteri velinimettir… ama bu velinimet beni yer."
-- Ece (el koparken): "Abi… abi elin… ELİN düştü abi!" Adam (umursamaz): "Olur öyle. Gece."
+- Ece (el koparken): "Abi… abi elin… ELİN düştü abi!" Adam konuşmaz; yalnızca Ece'ye bakıp korkutucu bir gülümseme yapar (kullanıcı kararı).
 - Ece (el yürürken): "Yürüyo… yürüyo amk… bunu kimse görmüyo mu?"
 - El sandviçi kasaya bırakınca adam: "Ton balıklı. Hep ton balıklı alır."
 - Ece (titreyen sesle): "On beş lira… poşet ister misiniz?"
