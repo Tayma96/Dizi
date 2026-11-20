@@ -99,4 +99,4 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - Sol el yakın çekimleri anatomik: elin üstü, başparmak sağda.
 
 ## Bölüm 2 birleşik (kullanıcı kararı: 4 parçayla biter): `bolumler/deli-degilim-02.mp4` (2:56, -14 LUFS), son: "O ses… benimdi.", bitiş kartı: "Sence telefondaki ses kimdi?"
-- Zeynep'li "Ziyaretçi" parçası Bölüm 3'ün açılışına saklandı: `bolumler/deli-degilim-03-acilis-zeynep.mp4` (JSON: imza-02-p5.json).
+- Zeynep'li "Ziyaretçi" parçası ÇOK İLERİDE kullanılacak (kullanıcı, 20 Kasım 2026): `bolumler/deli-degilim-ileride-zeynep.mp4` (JSON: imza-02-p5.json). Silinmez.

@@ -16,6 +16,12 @@
 | Tablet videosu | Dün gece sen yaptın | Uyuşturulmuşken çekildi ya da kurgulandı |
 | Parmaktaki mürekkep (#10204a) | Gece imza ritüeli | Uyurken sürüldü (Nalan'ın kapaksız kalemi) |
 
+## Berkay'ın hafızası (kullanıcı, 20 Kasım 2026)
+> "Berkay hafızasını kaybettiği için kimseyi hatırlamıyor. Zeynep'i de öyle."
+- Berkay şu an kimseyi tanımaz: eşini, ailesini, çevresini hatırlamaz. Kendi adını ve şirketini (Taner Holding) bildiğine inanır, insanları değil.
+- Bu yüzden Berkay'ın birini görüp tanıdığı sahneler (ör. Zeynep'i adıyla karşılaması) ancak hafızası geri gelmeye başladığında, çok ileride kullanılır.
+- Zeynep'li "Ziyaretçi" parçası (`imza-02-p5.json`, `bolumler/deli-degilim-ileride-zeynep.mp4`) o zamana saklandı.
+
 ## İzleyici ne biliyor? (kullanıcı kararı, 19 Kasım 2026)
 > "İzleyici de Berkay gibi şüphede kalmalı, izleyicinin de sinirini ve psikolojisini bozmalıyız."
 - Gerçeği **yalnızca yazarlar** bilir. İzleyiciye perde arkası gösterilmez (personelin kendi aralarında itiraf ettiği sahne yok).
