@@ -1631,5 +1631,33 @@
     },
     "blush": false,
     "scar": true
+  },
+  {
+    "id": "iri724",
+    "name": "İri adam",
+    "role": "7/24 B3: iri cüsseli, çirkin gece müşterisi",
+    "voice": "erkek",
+    "gender": "m",
+    "age": "adult",
+    "build": "heavy",
+    "skin": "#c9b8a6",
+    "skinShade": "#a8968a",
+    "iris": "#3a3020",
+    "hair": {
+      "style": "balding",
+      "color": "#3a3430",
+      "shade": "#5a524c"
+    },
+    "facialHair": "stubble",
+    "scar": true,
+    "mole": true,
+    "outfit": {
+      "type": "coat",
+      "top": "#3a3228",
+      "topShade": "#2a241c",
+      "bottom": "#2a2a2a",
+      "shoes": "#1a1410"
+    },
+    "blush": false
   }
 ]

@@ -9,8 +9,8 @@ const O = "#1a1412";
 const SANS = "Inter, Arial, sans-serif";
 const TEN = "#f0c8a8", TEN2 = "#dcac88", KAZAK = "#c8902a", KAZAK2 = "#a8741a";
 
-export type Insert8Kind = "on_kamera" | "raf_duzen" | "depo_kolu" | "depo_el";
-export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen", "depo_kolu", "depo_el"];
+export type Insert8Kind = "on_kamera" | "raf_duzen" | "depo_kolu" | "depo_el" | "el_kopar";
+export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen", "depo_kolu", "depo_el", "el_kopar"];
 
 /** Ece'nin gözünden: iki elinde telefon, ön kamerada kendi yüzü (ayna görüntüsü), sağ yanakta sivilce.
  *  text[0]: bildirimin düştüğü saniye ("Sabri Abi · Kuralları unutma"). text[1]: konuşma bitişi (sn). */
@@ -275,12 +275,80 @@ const DepoEl: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/** Kopan el (tezgâh üstü, yakın): iri adamın ön kolu üstten gelir; el bilekten tel tel (et lifleri) ayrılıp tezgâha düşer,
+ *  parmaklarıyla örümcek gibi yürüyüp sola (sandviç rafına) gider, üçgen sandviçle döner, sandviçi bırakır, zıplayıp kola takılır.
+ *  text[0]: başlangıç saniyesi (aynı animasyon birkaç vuruşa bölünür). */
+const ElKopar: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps + Number(text?.[0] ?? 0);
+  const ease = (x: number) => x * x * (3 - 2 * x);
+  const TEN = "#c9b8a6", TEN2 = "#a8968a", LIF = "#8a3a3a";
+  const bilekX = 640, bilekY = 760; // kolun ucu
+  const kop = interpolate(t, [0.8, 2.0], [0, 1], { ...clamp, easing: ease }); // ayrılma
+  const dus = interpolate(t, [2.0, 2.5], [0, 1], { ...clamp, easing: (x) => x * x });
+  const git = interpolate(t, [3.0, 6.0], [0, 1], clamp);
+  const don = interpolate(t, [6.6, 9.2], [0, 1], clamp);
+  const zipla = interpolate(t, [10.0, 10.6], [0, 1], { ...clamp, easing: ease });
+  let hx = bilekX, hy = bilekY + 150 * kop;
+  if (dus > 0) hy = bilekY + 150 + (1180 - bilekY - 150) * dus;
+  if (git > 0) hx = bilekX - 900 * git;
+  if (don > 0) hx = bilekX - 900 + 820 * don;
+  if (zipla > 0) { hx = hx + (bilekX - hx) * zipla; hy = 1180 + (bilekY + 20 - 1180) * zipla - Math.sin(zipla * Math.PI) * 260; }
+  const yuru = git > 0 && git < 1 || don > 0 && don < 1;
+  const adim = yuru ? Math.sin(f / 2.2) : 0;
+  const sandvic = don > 0 && zipla < 0.01 || (t >= 9.2 && t < 9.8);
+  const birakti = t >= 9.4;
+  const z = 1 + 0.04 * Math.sin(t / 3);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#d8dcde", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "50% 50%" }}>
+        <rect width={1080} height={1920} fill="#c8ccd0" />
+        {[0, 1, 2].map((r) => new Array(8).fill(0).map((_, i) => <rect key={`${r}${i}`} x={i * 140} y={120 + r * 200} width={110} height={160} fill={["#c84a3a", "#3a6ac8", "#e8c43a", "#3aa86a"][(i + r) % 4]} opacity={0.45} />))}
+        {/* tezgâh */}
+        <rect x={-20} y={1240} width={1120} height={700} fill="#c8402a" />
+        <rect x={-20} y={1200} width={1120} height={60} fill="#e8e4dc" stroke={O} strokeWidth={5} />
+        {/* bırakılan sandviç */}
+        {birakti && zipla <= 1 ? <g transform="translate(470 1150)"><path d="M 0 40 L 120 40 L 60 -50 Z" fill="#f2d8a0" stroke={O} strokeWidth={5} /><path d="M 14 30 L 106 30" stroke="#6aa84a" strokeWidth={8} /><rect x={-6} y={36} width={132} height={14} fill="#e0e8f0" opacity={0.7} /></g> : null}
+        {/* adamın kolu (üstten) + bilekteki lifler */}
+        <path d={`M ${bilekX + 300} -60 L ${bilekX} ${bilekY}`} stroke={O} strokeWidth={190} strokeLinecap="round" />
+        <path d={`M ${bilekX + 300} -60 L ${bilekX} ${bilekY}`} stroke="#3a3228" strokeWidth={178} strokeLinecap="round" />
+        <ellipse cx={bilekX} cy={bilekY + 10} rx={78} ry={40} fill="#6a2a2a" stroke={O} strokeWidth={4} />
+        {kop > 0.05 && zipla < 0.9 ? new Array(9).fill(0).map((_, i) => {
+          const ox = bilekX - 60 + i * 15, len = Math.min(1, kop * 1.4) * (1 - dus);
+          const ex = hx - 50 + i * 12, ey = hy - 60;
+          return len > 0.02 ? <path key={i} d={`M ${ox} ${bilekY + 20} Q ${(ox + ex) / 2 + Math.sin(f / 3 + i) * 20} ${(bilekY + ey) / 2} ${ex} ${ey}`} stroke={i % 2 ? LIF : "#b85a5a"} strokeWidth={5} fill="none" opacity={len} /> : null;
+        }) : null}
+        {/* el: avuç + dört parmak (bacak gibi) + başparmak */}
+        <g transform={`translate(${hx} ${hy})`}>
+          <ellipse cx={0} cy={-40} rx={80} ry={60} fill={TEN} stroke={O} strokeWidth={5} />
+          <ellipse cx={0} cy={-90} rx={50} ry={22} fill="#7a2e2e" opacity={kop > 0.5 ? 0.9 : 0} />
+          {[-1, -0.35, 0.35, 1].map((k, i) => {
+            const fx = k * 58, a = (i % 2 ? adim : -adim) * 14;
+            return (
+              <g key={i}>
+                <path d={`M ${fx} -10 L ${fx * 1.35} ${40 + a} L ${fx * 1.5} ${70}`} stroke={O} strokeWidth={36} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                <path d={`M ${fx} -10 L ${fx * 1.35} ${40 + a} L ${fx * 1.5} ${70}`} stroke={i % 2 ? TEN2 : TEN} strokeWidth={26} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              </g>
+            );
+          })}
+          <path d={`M -70 -60 Q -120 -70 -130 -30`} stroke={O} strokeWidth={36} strokeLinecap="round" fill="none" />
+          <path d={`M -70 -60 Q -120 -70 -130 -30`} stroke={TEN} strokeWidth={26} strokeLinecap="round" fill="none" />
+          {sandvic && !birakti ? <g transform="translate(-60 -150)"><path d="M 0 40 L 120 40 L 60 -50 Z" fill="#f2d8a0" stroke={O} strokeWidth={5} /><path d="M 14 30 L 106 30" stroke="#6aa84a" strokeWidth={8} /></g> : null}
+        </g>
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert8: React.FC<{ kind: Insert8Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "on_kamera": return <OnKamera dur={dur} text={text} />;
     case "raf_duzen": return <RafDuzen dur={dur} />;
     case "depo_kolu": return <DepoKolu dur={dur} />;
     case "depo_el": return <DepoEl dur={dur} />;
+    case "el_kopar": return <ElKopar dur={dur} text={text} />;
     default: return null;
   }
 };

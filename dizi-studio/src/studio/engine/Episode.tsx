@@ -342,9 +342,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     );
   };
 
-  const kepenkNow = (tb.beat as { kepenk?: string | boolean }).kepenk === "in"
+  const kepenkNow = (tb.beat as { kepenk?: string | boolean }).kepenk === "out"
+    ? interpolate(bf, [0, Math.round(1.4 * fps)], [1, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) })
+    : (tb.beat as { kepenk?: string | boolean }).kepenk === "in"
     ? interpolate(bf, [Math.round(0.1 * fps), Math.round(0.55 * fps)], [0, 1], { ...clamp, easing: (t) => t * t })
-    : (scene as { kepenk?: boolean }).kepenk || ts.beats.slice(0, bi).some((b) => (b.beat as { kepenk?: unknown }).kepenk) ? 1 : 0;
+    : (scene as { kepenk?: boolean }).kepenk || ts.beats.slice(0, bi).some((b) => (b.beat as { kepenk?: unknown }).kepenk === "in") && !ts.beats.slice(0, bi).some((b) => (b.beat as { kepenk?: unknown }).kepenk === "out") ? 1 : 0;
   const ids = Object.keys(placed).sort((a, b) => placed[a].feetY - placed[b].feetY);
   const outsideIds = scene.set === "apartman_kapisi" ? ids.filter((id) => tb.cast[id].mark === "kapi") : [];
   const insideIds = ids.filter((id) => !outsideIds.includes(id));

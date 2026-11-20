@@ -259,5 +259,14 @@
       "similarity_boost": 0.8,
       "speed": 1.0
     }
+  },
+  "iri724": {
+    "voice_id": "j9K9HnBcmgA6xNWqjlX0",
+    "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
+    "ad": "Emin (epic)",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
   }
 }
