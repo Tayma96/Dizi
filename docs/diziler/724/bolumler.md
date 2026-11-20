@@ -82,3 +82,36 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 - Depo kapısı gıcırdayarak aralanır. İçeriden kızın sesi (yavaşlatılmış, boğuk): "Ablaaa, bu çukulatadan alabilir miyim?" Kapı kenarında küçük, solgun parmaklar görünür. (Depodaki şey duyduğu sesleri taklit eder; kural 2'nin nedeni.)
 - **Kullanıcının finali:** Ece ellerini başına götürür, gözlerini kapar, avazı çıktığı kadar bağırır: "Annneeee!" Kararma. Bitiş kartı: "Depoda ne var?"
 - Birleşik bölüm: `bolumler/724-02.mp4`.
+
+## Bölüm 3 (kullanıcının metni, 20 Kasım 2026; doğaçlama ve küfür serbest; korkarken güldürmeli, uzun sessizlik olmamalı)
+**Kullanıcının metni:**
+1. **Kanca:** 2. bölümün sonundaki "Annneeee!" çığlığıyla açılır.
+2. Depodan annesinin taklit sesi gelir.
+3. Annesinden mesaj gelir (arama değil). Ece cevap yazmak ister ama sinyal yoktur.
+4. Ece kendi kendine söylenir: "Kurallara uy, kurallara uy Ece."
+5. Kepenkler açılır. Ece "İmdaaattt" diye kapıya koşar, iri cüsseli, çirkin bir adama çarpıp yere düşer.
+6. Yerde, gözünü adamdan ayırmadan geri geri sürünür.
+7. Kamera adamın yüzüne zoom yapar. Adam: "Kapalı değilsiniz demi?" Ece kekeleyerek: "Ho.. hoş geldiniz." Ece kasaya geçer.
+8. Adam sert adımlarla kasaya gelir.
+9. Ece'nin iç sesi: "Kurallar Ece kurallarrr", ardından ağlayarak: "Ama ölmek istemiyorm yaaa."
+10. Adam: "Çok açım." Ece: "San.. sandviçler şu tarafta" (ileriyi gösterir).
+11. Adamın eli kolundan kopar; tel tel, eklemden, simbiyotik gibi. El yere düşer, parmaklarıyla yürüyerek sandviç rafına gider, sandviçi alıp geri yürür, kasaya çıkar ve sandviçi bırakır. Adam elsiz kolunu uzatır, el zıplayıp koluna geri birleşir.
+
+**Not:** Özgünlük için el, başka dizilerdeki "yürüyen el"e benzetilmez. Bizimki kopuk bilekten tel tel uzanan ip benzeri dokularla, et gibi yürür.
+
+**Doğaçlama replik taslağı (üretimden önce kullanıcıya gösterilecek):**
+- Depo (annenin sesiyle): "Kızım? Ece? Aç kapıyı annem, korkma…"
+- Mesaj: "Anne: Kızım uyuyamadım, iyi misin? İlk gecen nasıl geçti?" Telefonda "Servis yok" yazar. Ece: "Hadi be, hadi… bir çentik, bir çentik çek!"
+- Ece (çarpıp düşünce): "Siktir… siktir siktir."
+- Ece (adam yaklaşırken, iç ses): "Ece gülümse, müşteri velinimettir… ama bu velinimet beni yer."
+- Ece (el koparken): "Abi… abi elin… ELİN düştü abi!" Adam (umursamaz): "Olur öyle. Gece."
+- Ece (el yürürken): "Yürüyo… yürüyo amk… bunu kimse görmüyo mu?"
+- El sandviçi kasaya bırakınca adam: "Ton balıklı. Hep ton balıklı alır."
+- Ece (titreyen sesle): "On beş lira… poşet ister misiniz?"
+- **Kanca (bölüm sonu):** Adam parayı bırakır, elini koluna taktıktan sonra eğilip fısıldar: "Depodakine selam söyle. Bu gece seni seçmiş." Kararma.
+
+**Gereken yeni varlıklar:**
+- İri, çirkin adam: kadro kaydı ve sesi.
+- Kopan el animasyonu: tel tel kopma, parmaklarla yürüme, zıplayıp kola geri takılma.
+- Kepenk kalkışı ve sürünme pozu.
+- Mesaj ekranında "Servis yok" görünümü.
