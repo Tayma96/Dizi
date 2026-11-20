@@ -14,11 +14,11 @@
       "title": "Kulübe (saat)",
       "ambience": {
         "name": "efekt/el_ada_kulube_yumusak",
-        "volume": 0.16
+        "volume": 0.36
       },
       "music": {
         "name": "muzik/kayip_ada",
-        "volume": 0.16
+        "volume": 0.26
       },
       "isaretler": {
         "arka": {
@@ -225,11 +225,11 @@
       "title": "İstanbul (son dakika)",
       "ambience": {
         "name": "efekt/el_ofis_lobi",
-        "volume": 0.14
+        "volume": 0.3
       },
       "ambience2": {
         "name": "ortam/yagmur",
-        "volume": 0.08
+        "volume": 0.18
       },
       "cast": {
         "zenith_resepsiyon": {

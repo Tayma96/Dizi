@@ -14,11 +14,11 @@
       "title": "Kulübe (yemek)",
       "ambience": {
         "name": "efekt/el_ada_kulube_yumusak",
-        "volume": 0.16
+        "volume": 0.36
       },
       "music": {
         "name": "muzik/kayip_ada",
-        "volume": 0.16,
+        "volume": 0.26,
         "from": 20
       },
       "isaretler": {
@@ -293,7 +293,7 @@
       "title": "Köy meydanı (sözleşme)",
       "ambience": {
         "name": "efekt/el_ada_meydan",
-        "volume": 0.16
+        "volume": 0.36
       },
       "cast": {
         "yerli_bilge": {
@@ -459,7 +459,7 @@
       },
       "music": {
         "name": "muzik/kayip_ada",
-        "volume": 0.14,
+        "volume": 0.22,
         "from": 30
       }
     }
