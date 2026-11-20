@@ -7,6 +7,28 @@
   "endCard": false,
   "scenes": [
     {
+      "id": "k",
+      "set": "kulube",
+      "time": "gunduz",
+      "look": "sicak",
+      "title": "Kanca (kırık telefon)",
+      "cast": {},
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "telefon_kirik",
+          "dur": 1.7,
+          "sfx": [
+            {
+              "name": "efekt/darbe",
+              "volume": 0.45,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "a",
       "set": "kulube",
       "time": "gunduz",
@@ -33,6 +55,11 @@
           "x": 300,
           "y": 1458,
           "size": 880
+        },
+        "kapi": {
+          "x": 935,
+          "y": 1520,
+          "size": 900
         }
       },
       "cast": {
@@ -50,6 +77,14 @@
         "yerli_kadin": {
           "mark": "arka",
           "emotion": "uzgun",
+          "lookAt": "emir_kulube"
+        },
+        "yerli_bilge": {
+          "mark": "kapi",
+          "hidden": true,
+          "emotion": "soguk",
+          "prop": "sopa",
+          "gesture": "tutuyor",
           "lookAt": "emir_kulube"
         }
       },
@@ -409,7 +444,7 @@
           "text": "Ooahhh hayır.",
           "emotion": "notr",
           "tags": "[exasperated groan, frustrated sigh, disappointed]",
-          "gapAfter": 1.2,
+          "gapAfter": 0.5,
           "shot": {
             "type": "orta",
             "on": "emir_kulube",
@@ -430,10 +465,74 @@
                 "y": -1
               }
             }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 2.2,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 620,
+              "cy": 1180,
+              "z": 1.3
+            }
           },
+          "cast": {
+            "yerli_bilge": {
+              "hidden": false,
+              "enter": "sag"
+            },
+            "yerli_kadin": {
+              "diz": true,
+              "emotion": "korkmus",
+              "lookAt": "yerli_bilge",
+              "gesture": "rest"
+            },
+            "emir_kulube": {
+              "emotion": "saskin",
+              "bak": {
+                "x": 0.8,
+                "y": -0.1
+              },
+              "gesture": "rest",
+              "prop": "none"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/darbe",
+              "volume": 0.55,
+              "at": 0.15
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.6,
+          "shot": {
+            "type": "yakin",
+            "on": "yerli_bilge",
+            "move": "yaklas"
+          },
+          "cast": {
+            "yerli_bilge": {
+              "emotion": "soguk",
+              "lookAt": "emir_kulube"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/riser",
+              "volume": 0.35,
+              "at": 0.0
+            }
+          ],
           "fade": "cikis"
         }
-      ]
+      ],
+      "transition": "whoosh"
     }
   ]
 }

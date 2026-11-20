@@ -764,7 +764,10 @@ const Sozlesme: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => 
   const fl = 0.85 + 0.15 * Math.sin(f / 2.3) * Math.sin(f / 5.1);
   if (faz === "ates") {
     // 0-0,7 sn: buruşuk top yukarıdan ateşin ortasına düşer · 0,7-1,7: ısıyla açılır (yatık) · ~3 sn tutar okunur · sonra yanar
-    const T = dur / fps;
+    // text[1] === "on": soğuk açılış kancası (sayfa açık başlar, hemen yanmaya başlar)
+    const on = text?.[1] === "on" ? 2.4 : 0;
+    const t = f / fps + on;
+    const T = dur / fps + on;
     const dus = interpolate(t, [0, 0.7], [0, 1], { ...clamp, easing: (x) => x * x });
     const ac = interpolate(t, [0.75, 1.8], [0, 1], { ...clamp, easing: (x) => 1 - (1 - x) ** 3 });
     const yanik = interpolate(t, [Math.min(3.2, T - 1.2), T - 0.1], [0, 1], clamp);

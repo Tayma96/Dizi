@@ -7,6 +7,37 @@
   "endCard": false,
   "scenes": [
     {
+      "id": "k",
+      "set": "koy_meydani",
+      "time": "aksam",
+      "look": "sicak",
+      "title": "Kanca (sözleşme ateşte)",
+      "cast": {},
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "sozlesme",
+          "dur": 2.0,
+          "text": [
+            "ates",
+            "on"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/ates_yumusak",
+              "volume": 0.9,
+              "at": 0.0
+            },
+            {
+              "name": "efekt/darbe",
+              "volume": 0.5,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "a",
       "set": "kulube",
       "time": "gunduz",
@@ -291,7 +322,8 @@
           }
         }
       ],
-      "altyazi": "alt"
+      "altyazi": "alt",
+      "transition": "whoosh"
     },
     {
       "id": "b",

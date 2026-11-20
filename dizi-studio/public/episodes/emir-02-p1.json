@@ -7,6 +7,31 @@
   "endCard": false,
   "scenes": [
     {
+      "id": "k",
+      "set": "zenith_merkez",
+      "time": "gunduz",
+      "look": "soguk",
+      "title": "Kanca (son dakika)",
+      "cast": {},
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "tv_son_dakika",
+          "dur": 2.1,
+          "text": [
+            "1"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/el_haber_jenerik",
+              "volume": 0.7,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "a",
       "set": "kulube",
       "time": "gunduz",
@@ -215,7 +240,8 @@
           ]
         }
       ],
-      "altyazi": "alt"
+      "altyazi": "alt",
+      "transition": "whoosh"
     },
     {
       "id": "b",
