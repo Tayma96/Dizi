@@ -47,3 +47,4 @@ Kullanıcı "acele et" dedi. Bible'a göre bu dizide doğaçlama serbest. Eski "
   - Depodan: "Ece… ben Sabri. Gel." Depo kapısı aralanır, siyah.
 - **Bitiş kartı:** "Sen olsan depoya gider miydin?"
 - **Süreklilik:** Ece market önlüğüyle; sivilce sürekliliği için `ece724` görünümüne sivilce eklendi.
+- **Kullanıcı reddetti (20 Kasım 2026):** "Çok kötü yapmışsın, senaryoyu ben yazacağım." Bu sürüm geçersiz. 2. bölümü kullanıcı yazacak; 7/24'te bundan sonra kullanıcı metni olmadan bölüm üretilmeyecek.
