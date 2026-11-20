@@ -74,8 +74,8 @@ export const Eye: React.FC<{
   const bot = cy + h * 1.1 * Math.min(1.2, 0.35 + open * 0.65);
   const squint = open < 0.85 ? Math.min(1, (0.85 - open) / 0.4) : 0;
   const shape = `M ${cx - w * s} ${cy} Q ${cx - w * 0.3 * s} ${top} ${cx + w * s} ${cy - 2} Q ${cx + w * 0.2 * s} ${bot} ${cx - w * s} ${cy} Z`;
-  const ix = cx + lookX * 7 * squeeze;
-  const iy = cy + lookY * 5;
+  const ix = cx + lookX * 10 * squeeze;
+  const iy = cy + lookY * 8;
   return (
     <g>
       <defs>

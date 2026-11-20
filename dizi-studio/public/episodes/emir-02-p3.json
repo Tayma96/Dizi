@@ -35,7 +35,7 @@
       "look": "sicak",
       "title": "Kulübe (Akilla)",
       "altyazi": "alt",
-      "direk": 560,
+      "direk": 430,
       "ambience": {
         "name": "efekt/el_ada_kulube_yumusak",
         "volume": 0.36
@@ -52,9 +52,9 @@
           "size": 860
         },
         "bas": {
-          "x": 300,
-          "y": 1458,
-          "size": 880
+          "x": 190,
+          "y": 1600,
+          "size": 900
         },
         "kapi": {
           "x": 935,
@@ -109,11 +109,12 @@
               "bak": {
                 "x": 0.2,
                 "y": -0.1
-              }
+              },
+              "sweat": true,
+              "pale": 0.2
             },
             "yerli_kadin": {
               "mark": "bas",
-              "diz": true,
               "emotion": "uzgun",
               "lookAt": "emir_kulube"
             }
@@ -146,7 +147,7 @@
           "cast": {
             "emir_kulube": {
               "body": "dogrul",
-              "dogrulma": 0.85,
+              "dogrulma": 0.95,
               "emotion": "uzgun",
               "bak": {
                 "x": -0.5,
@@ -211,6 +212,13 @@
               "bak": {
                 "x": -0.6,
                 "y": 0
+              },
+              "kol": {
+                "R": {
+                  "upper": -22,
+                  "fore": -128,
+                  "ul": 0.72
+                }
               }
             },
             "yerli_kadin": {
@@ -242,9 +250,9 @@
             "emir_kulube": {
               "gesture": "rest",
               "kol": {
-                "L": {
-                  "upper": 72,
-                  "fore": -12
+                "R": {
+                  "upper": 110,
+                  "fore": -5
                 }
               },
               "emotion": "saskin",
@@ -321,7 +329,8 @@
               "bak": {
                 "x": -0.6,
                 "y": 0
-              }
+              },
+              "kol": {}
             }
           }
         },
@@ -373,7 +382,8 @@
               "bak": {
                 "x": -0.6,
                 "y": 0
-              }
+              },
+              "kol": {}
             },
             "yerli_kadin": {
               "diz": true,
@@ -395,18 +405,25 @@
             "move": "yaklas",
             "kadraj": {
               "cx": 560,
-              "cy": 1130,
+              "cy": 1080,
               "z": 1.8
             }
           },
           "cast": {
             "emir_kulube": {
-              "gesture": "okuma",
+              "gesture": "rest",
               "prop": "telefon",
-              "emotion": "kararli",
+              "emotion": "uzgun",
               "bak": {
-                "x": -0.5,
-                "y": 0
+                "x": -1,
+                "y": -0.3
+              },
+              "kol": {
+                "R": {
+                  "upper": -72,
+                  "fore": -14,
+                  "ul": 0.9
+                }
               }
             }
           }
@@ -446,22 +463,17 @@
           "tags": "[exasperated groan, frustrated sigh, disappointed]",
           "gapAfter": 0.5,
           "shot": {
-            "type": "orta",
+            "type": "yakin",
             "on": "emir_kulube",
-            "move": "sabit",
-            "kadraj": {
-              "cx": 520,
-              "cy": 1130,
-              "z": 1.8
-            }
+            "move": "yaklas"
           },
           "cast": {
             "emir_kulube": {
               "gesture": "rest",
               "prop": "telefon",
-              "emotion": "yorgun",
+              "emotion": "saskin",
               "bak": {
-                "x": 0,
+                "x": 0.2,
                 "y": -1
               }
             }
