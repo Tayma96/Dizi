@@ -397,6 +397,31 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         </g>
       );
     }
+    if (dizK > 0) {
+      // diz çökme (önden): sol uyluk dik iner, diz yere değer, baldır geriye (görünmez) kısalır;
+      // sağ uyluk kameraya doğru kısalır, diz yukarıda, baldır dik, ayak yere basar
+      const k = dizK;
+      const sol = 175 * (1 - k);
+      const sagUy = 600 + 175 * (1 - 0.8 * k);
+      const zemin = 985 - 185 * k - 28;
+      const ayak = (x: number, y: number, key: string) => (
+        <path key={key} d={`M ${x - 26} ${y} Q ${x - 28} ${y + 32} ${x + 6} ${y + 32} L ${x + 30} ${y + 32} L ${x + 30} ${y} Z`} fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />
+      );
+      return (
+        <g>
+          {/* sol bacak: uyluk + kısalan baldır */}
+          <path d={`M 146 600 L 144 775 L 196 775 L 200 600 Z`} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+          {sol > 4 ? <path d={`M 146 772 L 146 ${775 + sol} L 194 ${775 + sol} L 196 772 Z`} fill={legFill} stroke={OUT} strokeWidth={SW} /> : null}
+          {k < 0.6 ? ayak(170, 775 + sol - 2, "al") : null}
+          <ellipse cx={170} cy={786} rx={30} ry={18 + 6 * k} fill={legFill} stroke={OUT} strokeWidth={SW} />
+          {/* sağ bacak: kısalmış uyluk, öne çıkan diz, dik baldır, basan ayak */}
+          <path d={`M 202 600 L 256 600 L ${258 + 6 * k} ${sagUy} L ${198 - 4 * k} ${sagUy} Z`} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+          <path d={`M ${204 - 2 * k} ${sagUy - 6} L ${204} ${zemin} L ${256} ${zemin} L ${256 + 4 * k} ${sagUy - 6} Z`} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+          <ellipse cx={230 + k} cy={sagUy - 4} rx={31 + 4 * k} ry={22 + 8 * k} fill={legFill} stroke={OUT} strokeWidth={SW} />
+          {ayak(230, zemin, "ar")}
+        </g>
+      );
+    }
     const leg = (side: number) => {
       const hx = side < 0 ? 172 : 228;
       const rot = walking ? walkPhase * 16 * side : pose.legRot ? pose.legRot[side < 0 ? 0 : 1] : 0;
@@ -432,8 +457,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         ) : null}
         {t === "yerli" && !male ? (
           <g>
-            <path d="M 132 590 L 112 800 Q 200 812 288 800 L 268 590 Z" fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
-            {new Array(12).fill(0).map((_, i) => <path key={i} d={`M ${118 + i * 15} 800 l -2 26`} stroke={out.bottom} strokeWidth={6} strokeLinecap="round" />)}
+            {/* diz çökünce etek öne çıkan sağ dizin üstüne dökülür; sağ kenarı kalkar, baldır ve ayak görünür */}
+            <path d={`M 132 590 L 112 800 Q 170 812 ${210 + 6 * dizK} ${800 - 26 * dizK} Q ${250 + 4 * dizK} ${800 - 96 * dizK} ${288 + 12 * dizK} ${800 - 120 * dizK} L 268 590 Z`} fill={out.bottom} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+            {dizK > 0.05 ? <path d={`M 214 ${612} Q ${246 + 10 * dizK} ${610 + 20 * dizK} ${272 + 12 * dizK} ${640 + 10 * dizK}`} stroke="#00000035" strokeWidth={5} fill="none" opacity={dizK} /> : null}
+            {new Array(12).fill(0).map((_, i) => { const x = 118 + i * 15; const yk = x < 200 ? 800 + (x - 118) * 0.05 : 800 - dizK * Math.min(120, (x - 200) * 1.3); return <path key={i} d={`M ${x} ${yk} l -2 26`} stroke={out.bottom} strokeWidth={6} strokeLinecap="round" />; })}
             <path d="M 150 660 Q 200 676 250 660" stroke="#00000030" strokeWidth={4} fill="none" />
           </g>
         ) : null}
@@ -672,7 +699,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     </g>
   );
 
-  const groundShift = 680 * (1 - age.sy) + (pose.body === "sit" ? 0 : 0);
+  const dizK = pose.body === "sit" || pose.body === "walk" ? 0 : Math.max(0, Math.min(1, pose.diz ?? 0));
+  const groundShift = 680 * (1 - age.sy) + 185 * dizK;
   const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)`;
   const torsoScale = `translate(200 470) scale(${wx} ${1 + breathe}) translate(-200 -470)`;
   const headT = `translate(0 ${-breathe * 300 + sobbing}) rotate(${(pose.tilt ?? 0) + sway * 0.6} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;

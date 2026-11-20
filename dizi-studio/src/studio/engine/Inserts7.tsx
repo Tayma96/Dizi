@@ -9,8 +9,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const SANS = "Inter, Arial, sans-serif";
 const O = "#1a1412";
 
-export type Insert7Kind = "pov_yaprak" | "kol_saati" | "tv_son_dakika" | "yemek_ust" | "sozlesme" | "omuz_bastir" | "yemek_el";
-export const INSERT7_KINDS: Insert7Kind[] = ["pov_yaprak", "kol_saati", "tv_son_dakika", "yemek_ust", "sozlesme", "omuz_bastir", "yemek_el"];
+export type Insert7Kind = "pov_yaprak" | "kol_saati" | "tv_son_dakika" | "yemek_ust" | "sozlesme" | "omuz_bastir" | "yemek_el" | "icir" | "telefon_kirik";
+export const INSERT7_KINDS: Insert7Kind[] = ["pov_yaprak", "kol_saati", "tv_son_dakika", "yemek_ust", "sozlesme", "omuz_bastir", "yemek_el", "icir", "telefon_kirik"];
 
 /* ------------------------------------------------------------------------------------------
  * POV (Emir'in gözü): saz tavan, üstüne eğilmiş kadın (B1 son karesindeki gibi kadrajda), sağ eli kalp biçimli
@@ -596,6 +596,120 @@ const YemekEl: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/* ------------------------------------------------------------------------------------------
+ * İçirme (yakın): Akilla'nın eli (sağ bilekte altın bilezik) hindistan cevizi kabuğunu Emir'in dudaklarına tutar,
+ * kabuk yavaşça eğilir; Emir içerken gözünü ondan ayırmaz (bakış kadraj dışında, solda duran kadına).
+ * ---------------------------------------------------------------------------------------- */
+const Icir: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const ease = (x: number) => x * x * (3 - 2 * x);
+  const gel = interpolate(t, [0, 0.7], [0, 1], { ...clamp, easing: ease });
+  const egim = interpolate(t, [0.7, 2.2], [0, 1], { ...clamp, easing: ease });
+  const z = interpolate(f, [0, dur], [1, 1.06], clamp);
+  const S = 3400, L = 560 - 0.2 * S, T = 820 - 0.23 * S;
+  const mx = 560, my = T + 0.268 * S;
+  const kx = interpolate(gel, [0, 1], [-260, mx - 10]), ky = interpolate(gel, [0, 1], [1500, my + 70]);
+  const yutkun = t > 1.2 && t < 2.6 ? Math.max(0, Math.sin((t - 1.2) * 6)) * 8 : 0;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#6a4a2c", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, filter: "blur(9px)" }}>
+        <rect width={1080} height={1920} fill="#7a5a32" />
+        {new Array(24).fill(0).map((_, i) => <rect key={i} x={i * 48} y={0} width={20} height={1920} fill="#5a3e20" opacity={0.6} />)}
+        <path d="M 760 0 L 880 0 L 660 1920 L 520 1920 Z" fill="#fff0c0" opacity={0.22} />
+      </svg>
+      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: "50% 45%" }}>
+        <div style={{ position: "absolute", left: L, top: T - yutkun * 0.3 }}>
+          <Character look={castById("emir_kulube")} size={S} pose={{ emotion: "notr", lookX: -0.75, lookY: -0.1, yaw: -0.12, seed: 3 }} />
+        </div>
+        <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0 }}>
+          {/* kadının ön kolu ve eli (soldan alttan) */}
+          <path d={`M -200 2000 Q ${kx - 260} ${ky + 300} ${kx - 120} ${ky + 120}`} stroke={O} strokeWidth={170} strokeLinecap="round" fill="none" />
+          <path d={`M -200 2000 Q ${kx - 260} ${ky + 300} ${kx - 120} ${ky + 120}`} stroke="#b8805a" strokeWidth={158} strokeLinecap="round" fill="none" />
+          <ellipse cx={kx - 170} cy={ky + 200} rx={92} ry={30} fill="#c9a24a" stroke={O} strokeWidth={5} transform={`rotate(-48 ${kx - 170} ${ky + 200})`} />
+          {/* kabuk: dudağa değer, içerken eğilir */}
+          <g transform={`translate(${kx} ${ky}) rotate(${-10 - 28 * egim})`}>
+            <path d="M -170 -20 Q -170 150 0 160 Q 170 150 170 -20 Z" fill="#6a4a2c" stroke={O} strokeWidth={7} />
+            {new Array(14).fill(0).map((_, i) => <path key={i} d={`M ${-150 + i * 22} ${10 + Math.abs(i - 6.5) * 4} q 4 40 -2 ${70 - Math.abs(i - 6.5) * 8}`} stroke="#8a6440" strokeWidth={4} opacity={0.7} fill="none" />)}
+            <ellipse cx={0} cy={-20} rx={170} ry={32} fill="#f4ecd8" stroke={O} strokeWidth={6} />
+            <ellipse cx={0} cy={-18} rx={146} ry={22} fill="#eef0ea" />
+          </g>
+          {/* el: kabuğu alttan kavrar */}
+          <path d={`M ${kx - 150} ${ky + 120} Q ${kx - 40} ${ky + 200} ${kx + 90} ${ky + 150}`} stroke={O} strokeWidth={84} strokeLinecap="round" fill="none" />
+          <path d={`M ${kx - 150} ${ky + 120} Q ${kx - 40} ${ky + 200} ${kx + 90} ${ky + 150}`} stroke="#b8805a" strokeWidth={72} strokeLinecap="round" fill="none" />
+          {[0, 1, 2].map((i) => <path key={i} d={`M ${kx + 40 + i * 30} ${ky + 150 - i * 8} q 30 -20 40 -70`} stroke={O} strokeWidth={36} strokeLinecap="round" fill="none" />)}
+          {[0, 1, 2].map((i) => <path key={`f${i}`} d={`M ${kx + 40 + i * 30} ${ky + 150 - i * 8} q 30 -20 40 -70`} stroke="#b8805a" strokeWidth={27} strokeLinecap="round" fill="none" />)}
+          {/* çeneden süzülen damla */}
+          {egim > 0.6 ? <circle cx={mx + 120} cy={my + 230 + (t * 60) % 120} r={9} fill="#e8f6ff" opacity={0.8} /> : null}
+        </svg>
+      </AbsoluteFill>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/* ------------------------------------------------------------------------------------------
+ * Kırık telefon (yakın): Emir'in eli telefonu Akilla'ya doğru tutar; ekranda örümcek ağı çatlağı.
+ * Başparmak yan tuşa basar; ekran bir an titrer, yanmaz.
+ * ---------------------------------------------------------------------------------------- */
+const TelefonKirik: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const z = interpolate(f, [0, dur], [1, 1.07], clamp);
+  const bas = interpolate(t, [0.4, 0.55, 0.8, 0.95], [0, 1, 1, 0], clamp);
+  const titre = t > 0.6 && t < 0.85 && f % 3 === 0 ? 0.22 : 0;
+  const SK = "#ecc19c";
+  const px = 330, py = 520, pw = 420, ph = 860;
+  const cxk = px + pw * 0.72, cyk = py + ph * 0.3;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#6a4a2c", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, filter: "blur(10px)" }}>
+        <rect width={1080} height={1920} fill="#7a5a32" />
+        {new Array(24).fill(0).map((_, i) => <rect key={i} x={i * 48} y={0} width={20} height={1920} fill="#5a3e20" opacity={0.6} />)}
+        <ellipse cx={860} cy={560} rx={120} ry={140} fill="#2a1a10" />
+        <path d="M 700 1200 Q 720 760 860 720 Q 1000 760 1020 1200 Z" fill="#c8a870" />
+      </svg>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "50% 45%" }}>
+        {/* el: ön kol alttan gelir, avuç telefonun arkasında (alt kısmı ve kenarları görünür) */}
+        <path d={`M ${px + pw / 2 + 40} ${py + ph + 80} L ${px + pw / 2 + 160} 2100`} stroke={O} strokeWidth={250} strokeLinecap="round" />
+        <path d={`M ${px + pw / 2 + 40} ${py + ph + 80} L ${px + pw / 2 + 160} 2100`} stroke={SK} strokeWidth={238} strokeLinecap="round" />
+        <path d={`M ${px + pw / 2 + 60} 1880 L ${px + pw / 2 + 420} 2100 L ${px + pw / 2 - 120} 2100 Z`} fill="#e6e0d4" stroke={O} strokeWidth={6} />
+        <ellipse cx={px + pw / 2 + 20} cy={py + ph - 60} rx={pw / 2 + 70} ry={210} fill={SK} stroke={O} strokeWidth={6} />
+        {/* telefon gövdesi */}
+        <rect x={px - 14} y={py - 14} width={pw + 28} height={ph + 28} rx={62} fill="#1a1c20" stroke={O} strokeWidth={7} />
+        <rect x={px} y={py} width={pw} height={ph} rx={50} fill="#08090b" />
+        <rect x={px} y={py} width={pw} height={ph} rx={50} fill="#9aa4b4" opacity={titre} />
+        <rect x={px + pw * 0.38} y={py + 22} width={pw * 0.24} height={22} rx={11} fill="#000" />
+        {/* yan tuş */}
+        <rect x={px + pw + 10} y={py + 230} width={14} height={110} rx={6} fill="#2a2c30" stroke={O} strokeWidth={3} />
+        {/* örümcek ağı çatlak */}
+        <defs><clipPath id="tk_ekran"><rect x={px} y={py} width={pw} height={ph} rx={50} /></clipPath></defs>
+        <g stroke="#e8eef4" strokeWidth={3} fill="none" opacity={0.75} strokeLinejoin="round" clipPath="url(#tk_ekran)">
+          {new Array(9).fill(0).map((_, i) => { const a = (i / 9) * Math.PI * 2 + 0.3; const r1 = 120 + random(`tc${i}`) * 90, r2 = 300 + random(`td${i}`) * 300; return <path key={i} d={`M ${cxk} ${cyk} L ${cxk + Math.cos(a) * r1} ${cyk + Math.sin(a) * r1} L ${cxk + Math.cos(a + 0.12) * r2} ${cyk + Math.sin(a + 0.12) * r2}`} />; })}
+          {[50, 110, 190].map((r, j) => <path key={`r${j}`} d={new Array(10).fill(0).map((_, i) => { const a = (i / 9) * Math.PI * 2 + 0.3; return `${i ? "L" : "M"} ${cxk + Math.cos(a) * r * (0.85 + random(`rr${j}${i}`) * 0.3)} ${cyk + Math.sin(a) * r * (0.85 + random(`rq${j}${i}`) * 0.3)}`; }).join(" ")} />)}
+        </g>
+        <circle cx={cxk} cy={cyk} r={14} fill="#e8eef4" opacity={0.6} />
+        {/* parmaklar telefonun sol kenarını sarar (avuçtan çıkar), başparmak sağ kenardan yan tuşa uzanır */}
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i}>
+            <path d={`M ${px - 50} ${py + ph - 120 - i * 110} Q ${px - 30} ${py + ph - 170 - i * 110} ${px + 22} ${py + ph - 175 - i * 108}`} stroke={O} strokeWidth={66} strokeLinecap="round" fill="none" />
+            <path d={`M ${px - 50} ${py + ph - 120 - i * 110} Q ${px - 30} ${py + ph - 170 - i * 110} ${px + 22} ${py + ph - 175 - i * 108}`} stroke={SK} strokeWidth={54} strokeLinecap="round" fill="none" />
+          </g>
+        ))}
+        <path d={`M ${px - 60} ${py + ph - 80} L ${px - 50} ${py + ph - 470}`} stroke={SK} strokeWidth={40} />
+        <path d={`M ${px + pw + 60} ${py + ph - 60} Q ${px + pw + 80} ${py + 520} ${px + pw + 20 - bas * 10} ${py + 300}`} stroke={O} strokeWidth={78} strokeLinecap="round" fill="none" />
+        <path d={`M ${px + pw + 60} ${py + ph - 60} Q ${px + pw + 80} ${py + 520} ${px + pw + 20 - bas * 10} ${py + 300}`} stroke={SK} strokeWidth={66} strokeLinecap="round" fill="none" />
+        <ellipse cx={px + pw + 20 - bas * 10} cy={py + 300} rx={18} ry={14} fill="#f2d8c0" opacity={0.8} />
+        {/* cam yansıması */}
+        <path d={`M ${px + 40} ${py + 60} L ${px + 140} ${py + 60} L ${px + 40} ${py + 300} Z`} fill="#ffffff" opacity={0.07} />
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 /** Taş halkalı kamp ateşi (meydan geniş planındakiyle aynı): taşlar, odunlar, katmanlı alev dilleri. h: alev yüksekliği çarpanı. */
 const KampAtesi: React.FC<{ f: number; cx: number; by: number; h: number; on?: boolean }> = ({ f, cx, by, h, on }) => {
   const katman = [
@@ -779,6 +893,8 @@ export const Insert7: React.FC<{ kind: Insert7Kind; dur: number; text?: string[]
     case "sozlesme": return <Sozlesme dur={dur} text={text} />;
     case "omuz_bastir": return <OmuzBastir dur={dur} />;
     case "yemek_el": return <YemekEl dur={dur} />;
+    case "icir": return <Icir dur={dur} />;
+    case "telefon_kirik": return <TelefonKirik dur={dur} />;
     default: return null;
   }
 };

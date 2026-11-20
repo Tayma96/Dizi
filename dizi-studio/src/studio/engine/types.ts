@@ -62,6 +62,8 @@ export type CharState = {
   murekkep?: boolean;
   /** body "dogrul" ile: en fazla bu oranda doğrulur (0-1) */
   dogrulma?: number;
+  /** diz çökme: true = beat başında 0,6 sn'de çöker (yürüyüşten sonra), "kalk" = kalkar */
+  diz?: boolean | "kalk";
   /** kısmi doğrulmadan sonra vuruş sonunda geri düşer */
   geriDus?: boolean;
   /** alnında serin yaprak */
@@ -163,6 +165,8 @@ export type Scene = {
   kaydirma?: number;
   /** resimli arka plan (public altında yol, ör. "arka/724/kapi_bakis.png"); verilirse çizilmiş set yerine kullanılır */
   arka?: string;
+  /** kulübe orta direği x konumu (karakterlerin arkasında) */
+  direk?: number;
   /** arka plan resminin karakterlerin ÖNÜNDE kalacak kısmı: 1080x1920 koordinatında SVG path (ör. kasa bankosu) */
   arkaOn?: string;
   /** bu sahneye özel işaretler (setin işaretlerini ezer/ekler) */

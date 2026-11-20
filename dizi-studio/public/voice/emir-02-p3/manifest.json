@@ -1,0 +1,570 @@
+{
+ "a_05": {
+  "key": "11f43c1360d2",
+  "file": "voice/emir-02-p3/a_05.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Emir.",
+  "duration": 1.176,
+  "asrScore": 1.0,
+  "heard": "Emir.",
+  "words": [
+   {
+    "w": "Emir.",
+    "start": 0.084,
+    "end": 1.124
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.084,
+    "v": "E"
+   },
+   {
+    "t": 0.164,
+    "v": "M"
+   },
+   {
+    "t": 0.244,
+    "v": "I"
+   },
+   {
+    "t": 0.444,
+    "v": "L"
+   },
+   {
+    "t": 0.644,
+    "v": "X"
+   },
+   {
+    "t": 1.124,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 19
+ },
+ "a_06": {
+  "key": "b609a215d9fa",
+  "file": "voice/emir-02-p3/a_06.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Sen?",
+  "duration": 0.58,
+  "asrScore": 1.0,
+  "heard": "Sen?",
+  "words": [
+   {
+    "w": "Sen?",
+    "start": 0.03,
+    "end": 0.53
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.131,
+    "v": "L"
+   },
+   {
+    "t": 0.238,
+    "v": "E"
+   },
+   {
+    "t": 0.344,
+    "v": "L"
+   },
+   {
+    "t": 0.451,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 18
+ },
+ "a_08": {
+  "key": "0304a6d09dda",
+  "file": "voice/emir-02-p3/a_08.mp3",
+  "voice": "elevenlabs:i50A6Mcx7A7vVwCVZVeZ",
+  "emotion": "notr",
+  "text": "Akilla.",
+  "duration": 0.914,
+  "asrScore": 1.0,
+  "heard": "Akilla",
+  "words": [
+   {
+    "w": "Akilla.",
+    "start": 0.07,
+    "end": 0.87
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.07,
+    "v": "A"
+   },
+   {
+    "t": 0.15,
+    "v": "L"
+   },
+   {
+    "t": 0.23,
+    "v": "I"
+   },
+   {
+    "t": 0.33,
+    "v": "L"
+   },
+   {
+    "t": 0.53,
+    "v": "A"
+   },
+   {
+    "t": 0.63,
+    "v": "X"
+   },
+   {
+    "t": 0.87,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "a_09": {
+  "key": "6e3ab982dc82",
+  "file": "voice/emir-02-p3/a_09.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Akela?",
+  "duration": 0.967,
+  "asrScore": 1.0,
+  "heard": "Akela?",
+  "words": [
+   {
+    "w": "Akela?",
+    "start": 0.277,
+    "end": 0.93
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.277,
+    "v": "A"
+   },
+   {
+    "t": 0.284,
+    "v": "L"
+   },
+   {
+    "t": 0.29,
+    "v": "E"
+   },
+   {
+    "t": 0.423,
+    "v": "L"
+   },
+   {
+    "t": 0.557,
+    "v": "A"
+   },
+   {
+    "t": 0.69,
+    "v": "X"
+   },
+   {
+    "t": 0.93,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 22
+ },
+ "a_10": {
+  "key": "6a8bf812e3d2",
+  "file": "voice/emir-02-p3/a_10.mp3",
+  "voice": "elevenlabs:i50A6Mcx7A7vVwCVZVeZ",
+  "emotion": "notr",
+  "text": "Akilla.",
+  "duration": 3.318,
+  "asrScore": 1.0,
+  "heard": "A-killa!",
+  "words": [
+   {
+    "w": "Akilla.",
+    "start": 2.592,
+    "end": 3.36
+   }
+  ],
+  "mouth": [
+   {
+    "t": 2.592,
+    "v": "A"
+   },
+   {
+    "t": 2.616,
+    "v": "L"
+   },
+   {
+    "t": 2.64,
+    "v": "I"
+   },
+   {
+    "t": 2.76,
+    "v": "L"
+   },
+   {
+    "t": 3.0,
+    "v": "A"
+   },
+   {
+    "t": 3.12,
+    "v": "X"
+   },
+   {
+    "t": 3.36,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 26
+ },
+ "a_11": {
+  "key": "348b2fae68af",
+  "file": "voice/emir-02-p3/a_11.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Akilla.",
+  "duration": 1.5,
+  "asrScore": 1.0,
+  "heard": "Akilla!",
+  "words": [
+   {
+    "w": "Akilla.",
+    "start": 0.03,
+    "end": 1.45
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.05,
+    "v": "A"
+   },
+   {
+    "t": 0.75,
+    "v": "E"
+   },
+   {
+    "t": 1.44,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "a_12": {
+  "key": "f6027b200da9",
+  "file": "voice/emir-02-p3/a_12.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Telefon... Akilla. Telefona ihtiyacım var.",
+  "duration": 3.082,
+  "asrScore": 1.0,
+  "heard": "Telefon! Akilla! Telefona ihtiyacım var!",
+  "words": [
+   {
+    "w": "Telefon...",
+    "start": 0.085,
+    "end": 0.685
+   },
+   {
+    "w": "Akilla.",
+    "start": 0.885,
+    "end": 1.565
+   },
+   {
+    "w": "Telefona",
+    "start": 1.765,
+    "end": 2.085
+   },
+   {
+    "w": "ihtiyacım",
+    "start": 2.165,
+    "end": 2.645
+   },
+   {
+    "w": "var.",
+    "start": 2.765,
+    "end": 3.125
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.085,
+    "v": "L"
+   },
+   {
+    "t": 0.125,
+    "v": "E"
+   },
+   {
+    "t": 0.165,
+    "v": "L"
+   },
+   {
+    "t": 0.205,
+    "v": "E"
+   },
+   {
+    "t": 0.245,
+    "v": "F"
+   },
+   {
+    "t": 0.325,
+    "v": "O"
+   },
+   {
+    "t": 0.405,
+    "v": "L"
+   },
+   {
+    "t": 0.685,
+    "v": "X"
+   },
+   {
+    "t": 0.885,
+    "v": "A"
+   },
+   {
+    "t": 0.965,
+    "v": "L"
+   },
+   {
+    "t": 1.045,
+    "v": "I"
+   },
+   {
+    "t": 1.125,
+    "v": "L"
+   },
+   {
+    "t": 1.285,
+    "v": "A"
+   },
+   {
+    "t": 1.365,
+    "v": "X"
+   },
+   {
+    "t": 1.765,
+    "v": "L"
+   },
+   {
+    "t": 1.805,
+    "v": "E"
+   },
+   {
+    "t": 1.845,
+    "v": "L"
+   },
+   {
+    "t": 1.885,
+    "v": "E"
+   },
+   {
+    "t": 1.925,
+    "v": "F"
+   },
+   {
+    "t": 2.005,
+    "v": "O"
+   },
+   {
+    "t": 2.032,
+    "v": "L"
+   },
+   {
+    "t": 2.058,
+    "v": "A"
+   },
+   {
+    "t": 2.085,
+    "v": "X"
+   },
+   {
+    "t": 2.165,
+    "v": "I"
+   },
+   {
+    "t": 2.245,
+    "v": "L"
+   },
+   {
+    "t": 2.325,
+    "v": "I"
+   },
+   {
+    "t": 2.405,
+    "v": "A"
+   },
+   {
+    "t": 2.485,
+    "v": "L"
+   },
+   {
+    "t": 2.565,
+    "v": "I"
+   },
+   {
+    "t": 2.605,
+    "v": "M"
+   },
+   {
+    "t": 2.645,
+    "v": "X"
+   },
+   {
+    "t": 2.765,
+    "v": "F"
+   },
+   {
+    "t": 2.805,
+    "v": "A"
+   },
+   {
+    "t": 2.845,
+    "v": "L"
+   },
+   {
+    "t": 2.885,
+    "v": "X"
+   },
+   {
+    "t": 3.125,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 35
+ },
+ "a_14": {
+  "key": "fd553ff72288",
+  "file": "voice/emir-02-p3/a_14.mp3",
+  "voice": "elevenlabs:i50A6Mcx7A7vVwCVZVeZ",
+  "emotion": "notr",
+  "text": "Telpon?",
+  "duration": 1.08,
+  "asrScore": 0.833,
+  "heard": "Telpom?",
+  "words": [
+   {
+    "w": "Telpon?",
+    "start": 0.03,
+    "end": 1.03
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.05,
+    "v": "A"
+   },
+   {
+    "t": 0.54,
+    "v": "E"
+   },
+   {
+    "t": 1.02,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 22
+ },
+ "a_15": {
+  "key": "67584236baf5",
+  "file": "voice/emir-02-p3/a_15.mp3",
+  "voice": "elevenlabs:Batuhan Altınova",
+  "emotion": "notr",
+  "text": "Ooahhh hayır.",
+  "duration": 2.9,
+  "asrScore": 0.737,
+  "heard": "Ah, ah, ayır.",
+  "words": [
+   {
+    "w": "Ooahhh",
+    "start": 1.265,
+    "end": 1.745
+   },
+   {
+    "w": "hayır.",
+    "start": 1.905,
+    "end": 2.945
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.185,
+    "v": "X"
+   },
+   {
+    "t": 1.265,
+    "v": "O"
+   },
+   {
+    "t": 1.545,
+    "v": "A"
+   },
+   {
+    "t": 1.605,
+    "v": "L"
+   },
+   {
+    "t": 1.745,
+    "v": "X"
+   },
+   {
+    "t": 1.905,
+    "v": "L"
+   },
+   {
+    "t": 2.012,
+    "v": "A"
+   },
+   {
+    "t": 2.118,
+    "v": "I"
+   },
+   {
+    "t": 2.465,
+    "v": "L"
+   },
+   {
+    "t": 2.705,
+    "v": "X"
+   },
+   {
+    "t": 2.945,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 26
+ }
+}

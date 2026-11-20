@@ -103,7 +103,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const prevPlaced: Record<string, Placed> = {};
   if (prev) for (const [id, st] of Object.entries(prev.cast)) if (!st.hidden) { const p = place(id, st, marks); if (p) prevPlaced[id] = p; }
 
-  const walkX: Record<string, { x: number; walking: boolean }> = {};
+  const walkX: Record<string, { x: number; walking: boolean; end?: number }> = {};
   for (const [id, p] of Object.entries(placed)) {
     const st = tb.cast[id];
     let x = p.x;
@@ -127,7 +127,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       x = p.x + Math.sin(frame / 45) * 200;
       walking = true;
     }
-    walkX[id] = { x, walking };
+    walkX[id] = { x, walking, end: st.enter || (prevPlaced[id] && prevPlaced[id].x !== p.x) ? walkDur : 0 };
     placed[id] = { ...p, x, headX: x };
   }
 
@@ -310,6 +310,16 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             krem: st.krem,
             murekkep: st.murekkep,
             yaprak: st.yaprak,
+            diz: (() => {
+              const pd = prev?.cast[id]?.diz;
+              if (st.diz === true) {
+                if (pd === true) return 1;
+                const ws = walkX[id]?.end ?? 0;
+                return interpolate(bf, [ws, ws + Math.round(0.6 * fps)], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+              }
+              if (st.diz === "kalk" && pd === true) return interpolate(bf, [0, Math.round(0.6 * fps)], [1, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+              return 0;
+            })(),
             wet: st.wet,
             eyesClosed: st.eyesClosed,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,
@@ -368,6 +378,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow}>
               {outsideIds.map(renderChar)}
             </SetLayer>
+            {scene.direk !== undefined ? <Direk x={scene.direk} /> : null}
             {insideIds.map(renderChar)}
             <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
           </>
@@ -403,6 +414,22 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
  *  k = 0 yatarken (göğse kadar örter, ayak kabarıklığı), k = 1 otururken (kucağı örter, diz kabarıklığı). */
 const BL_LIE: [number, number][] = [[-175, 40], [-175, -30], [-150, -68], [-60, -70], [30, -72], [110, -58], [190, -52], [215, -46], [222, -6], [222, 56], [-175, 56]];
 const BL_SIT: [number, number][] = [[-72, 40], [-72, -16], [-62, -44], [6, -44], [70, -46], [120, -66], [190, -44], [215, -40], [222, -4], [222, 56], [-72, 56]];
+/** Kulübenin orta direği: kabuklu kalın ağaç gövdesi, lif iple bağlı; yatağın arkasında (alt ucu yatak yüzeyinde kesilir). */
+const Direk: React.FC<{ x: number }> = ({ x }) => (
+  <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
+    <defs>
+      <linearGradient id="direkG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#3a2614" /><stop offset="0.35" stopColor="#7a5634" /><stop offset="0.7" stopColor="#5a3c22" /><stop offset="1" stopColor="#2a1a0c" /></linearGradient>
+    </defs>
+    <path d={`M ${x - 34} 440 Q ${x - 40} 900 ${x - 30} 1446 L ${x + 32} 1446 Q ${x + 40} 900 ${x + 30} 440 Z`} fill="url(#direkG)" stroke="#1b1412" strokeWidth={6} />
+    {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${x - 18 + (i % 3) * 14} ${520 + i * 100} q 6 30 -2 60`} stroke="#2a1a0c" strokeWidth={4} fill="none" opacity={0.7} />)}
+    {[600, 1180].map((y) => (
+      <g key={y}>
+        {[0, 1, 2].map((k) => <path key={k} d={`M ${x - 38} ${y + k * 16} Q ${x} ${y + 10 + k * 16} ${x + 38} ${y + k * 16}`} stroke="#c8a064" strokeWidth={8} fill="none" />)}
+      </g>
+    ))}
+  </svg>
+);
+
 const Blanket: React.FC<{ hx: number; hy: number; k: number }> = ({ hx, hy, k }) => {
   const P = BL_LIE.map(([x, y], i) => [hx + x + (BL_SIT[i][0] - x) * k, hy + y + (BL_SIT[i][1] - y) * k]);
   const d = `M ${P[0][0]} ${P[0][1]} L ${P[1][0]} ${P[1][1]} Q ${P[2][0]} ${P[2][1]} ${P[3][0]} ${P[3][1]} Q ${P[4][0]} ${P[4][1]} ${P[5][0]} ${P[5][1]} Q ${P[6][0]} ${P[6][1]} ${P[7][0]} ${P[7][1]} Q ${P[8][0]} ${P[8][1]} ${P[8][0]} ${P[8][1] + 20} L ${P[9][0]} ${P[9][1]} L ${P[10][0]} ${P[10][1]} Z`;

@@ -65,3 +65,20 @@ Not: Ana karakterin soyadı Özdemir; şirket Zenith Grup Holding; kaza Hint Oky
   - Altyazı kulübede aşağıda duruyor ve altında koyu zemin var.
   - TV kesmelerle kuruldu: spiker kır saçlı, portreye itiş, resepsiyonistin tepkisi.
   - Buruşturma, top hâlinde atma ve ateşte açılıp yanma gösteriliyor.
+
+## Bölüm 2, Parça 3 (kullanıcının metni, 20 Kasım 2026)
+Parça 2'nin sonundan devam eder; ikisi yan yanadır. Emir artık yarı oturmaya çalışır, zorlana zorlana, acı çeke çeke; sonra direğe sırtını verir. Kadın balıkla birlikte getirdiği suyu alır, ona içirir (diz çöker). Emir suyu içerken kızın gözlerine bakmaktadır. İçtikten sonra:
+- Emir göğsüne dokunur: "Emir." Sonra kadını gösterir: "Sen?"
+- Kadın önce anlamaz. Sonra gülümseyip kendi göğsüne dokunur: "Akilla."
+- Emir tekrarlar ama yanlış söyler. Kadın gülerek düzeltir, Emir doğru söyler. İkisinin arasındaki ilk sıcak an.
+- Emir, ekranı kırılmış telefonu göstererek: "Telefon... Akilla. Telefona ihtiyacım var."
+- Akilla anlamaz, çünkü telefonun ne olduğunu bilmez; ilk defa görmektedir. Kafası karışmış şekilde tekrarlar: "Telpon?"
+- Emir göz devirip hayal kırıklığı yaşar: "Ooahhh hayır."
+
+**Doğaçlamalar:**
+- Emir'in yanlış söyleyişi: "Akela?"
+- Akilla göz göze gelince utangaç gülümser.
+- Telefon yakın planında Emir güç tuşuna basar; ekran yanmaz.
+- Kulübeye orta direk eklendi.
+
+**Kadın karakterin adı: Akilla.**

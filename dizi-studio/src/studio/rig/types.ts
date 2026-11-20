@@ -160,6 +160,8 @@ export type Pose = {
   /** head tilt degrees */
   tilt?: number;
   body?: "stand" | "sit" | "walk";
+  /** diz çökme 0..1 (önden: sol diz yerde, sağ ayak basılı, diz yukarıda); geçiş için ara değerler */
+  diz?: number;
   /** bacakları çizme (yatakta, battaniye altında) */
   hideLegs?: boolean;
   /** bacak açıları (derece, kalçadan): [sol, sağ]; yerde dağınık yatış için */
