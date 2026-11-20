@@ -122,6 +122,10 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       walking = bf < walkDur;
     }
     if (st.yuru) walking = true;
+    if (st.tik === "titre") {
+      // korkudan titreme: küçük, düzensiz yatay sarsıntı
+      x = p.x + Math.sin(frame * 2.1) * 3.5 + Math.sin(frame * 3.7) * 2;
+    }
     if (st.tik === "volta") {
       // bir o yana bir bu yana volta (kendi temposunda)
       x = p.x + Math.sin(frame / 45) * 200;

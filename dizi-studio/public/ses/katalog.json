@@ -160,6 +160,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Heavy metal storage room door creaking open very slowly in the dark, long eerie creak"
  },
+ "efekt/el_depo_yikim": {
+  "file": "ses/efekt/el_depo_yikim.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Long chaotic crash from behind a closed storage room door, as if someone inside is violently pulling down metal shelves: shelves toppling, boxes and cans falling and rolling, heavy thuds, lasting several seconds, muffled through the door"
+ },
  "efekt/el_dingdong": {
   "file": "ses/efekt/el_dingdong.mp3",
   "category": "efekt",
@@ -320,6 +327,13 @@
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: High pitched ear ringing tinnitus after an explosion, slowly fading, muffled distant sounds"
+ },
+ "efekt/el_market_adim": {
+  "file": "ses/efekt/el_market_adim.mp3",
+  "category": "efekt",
+  "duration": 4.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Slow heavy footsteps of an unseen person walking across the tiled floor of a quiet empty convenience store at night, passing from left to right, no other sounds"
  },
  "efekt/el_market_ortam": {
   "file": "ses/efekt/el_market_ortam.mp3",

@@ -38,7 +38,7 @@ export type CharState = {
   /** bakış yönü elle: x -1..1 (sol/sağ), y -1..1 (yukarı/aşağı); ör. duvardaki televizyona bakmak */
   bak?: { x: number; y: number; yaw?: number };
   /** arka plan hastalarının tekrarlayan tuhaf davranışı */
-  tik?: "sallan" | "konus" | "selam" | "volta" | "tavan";
+  tik?: "sallan" | "konus" | "selam" | "volta" | "tavan" | "titre";
   /** yerinde yürü (takip çekimi; mekân kayar) */
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */

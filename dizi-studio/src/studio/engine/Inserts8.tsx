@@ -9,8 +9,8 @@ const O = "#1a1412";
 const SANS = "Inter, Arial, sans-serif";
 const TEN = "#f0c8a8", TEN2 = "#dcac88", KAZAK = "#c8902a", KAZAK2 = "#a8741a";
 
-export type Insert8Kind = "on_kamera" | "raf_duzen";
-export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen"];
+export type Insert8Kind = "on_kamera" | "raf_duzen" | "depo_kolu";
+export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen", "depo_kolu"];
 
 /** Ece'nin gözünden: iki elinde telefon, ön kamerada kendi yüzü (ayna görüntüsü), sağ yanakta sivilce.
  *  text[0]: bildirimin düştüğü saniye ("Sabri Abi · Kuralları unutma"). text[1]: konuşma bitişi (sn). */
@@ -161,10 +161,73 @@ const RafDuzen: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/** Depo kapısı kolu (yakın, Ece'nin gözünden): gri metal kapı, "DEPO · PERSONEL" levhası, alttaki aralıktan karanlık.
+ *  Ece'nin eli sağ alttan kola uzanır, değmeden durur, titrer, parmaklar kıvrılır ve geri çekilir. */
+const DepoKolu: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const T = dur / fps;
+  const z = interpolate(f, [0, dur], [1, 1.08], clamp);
+  const uzan = interpolate(t, [0.1, 1.0], [0, 1], { ...clamp, easing: (x) => 1 - (1 - x) ** 2 });
+  const geri = interpolate(t, [T - 0.7, T - 0.1], [0, 1], { ...clamp, easing: (x) => x * x });
+  const titre = t > 1.0 && t < T - 0.7 ? Math.sin(f * 2.3) * 4 + Math.sin(f * 3.9) * 2 : 0;
+  const kivir = interpolate(t, [1.4, 1.9], [0, 1], clamp);
+  const kx = 470, ky = 900; // kolun ekseni
+  const hx = interpolate(uzan - geri * 0.8, [0, 1], [1250, kx + 150]) + titre, hy = interpolate(uzan - geri * 0.8, [0, 1], [1500, ky + 40]) + titre * 0.5;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#2a2c30", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "44% 48%" }}>
+        <defs>
+          <linearGradient id="dk_kapi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#7a8088" /><stop offset="0.5" stopColor="#9aa0a8" /><stop offset="1" stopColor="#6a7078" /></linearGradient>
+          <linearGradient id="dk_kol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#e8ecf0" /><stop offset="1" stopColor="#8a9098" /></linearGradient>
+        </defs>
+        <rect width={1080} height={1920} fill="#d8dcde" />
+        <rect x={60} y={-40} width={860} height={1900} fill="url(#dk_kapi)" stroke={O} strokeWidth={8} />
+        {[260, 1500].map((y) => <rect key={y} x={110} y={y} width={760} height={200} rx={10} fill="none" stroke="#6a7078" strokeWidth={6} />)}
+        {/* levha */}
+        <rect x={250} y={420} width={480} height={170} rx={10} fill="#f4f0e4" stroke={O} strokeWidth={5} />
+        <text x={490} y={500} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize={72} fill="#1a1a1a">DEPO</text>
+        <text x={490} y={560} textAnchor="middle" fontFamily={SANS} fontWeight={800} fontSize={36} fill="#c8402a">PERSONEL</text>
+        {/* kilit göbeği + kol */}
+        <rect x={kx - 50} y={ky - 90} width={100} height={260} rx={14} fill="#c0c4c8" stroke={O} strokeWidth={5} />
+        <circle cx={kx} cy={ky + 110} r={14} fill="#2a2a2a" />
+        <path d={`M ${kx} ${ky} L ${kx + 260} ${ky + 6}`} stroke={O} strokeWidth={50} strokeLinecap="round" />
+        <path d={`M ${kx} ${ky} L ${kx + 260} ${ky + 6}`} stroke="url(#dk_kol)" strokeWidth={38} strokeLinecap="round" />
+        <circle cx={kx} cy={ky} r={44} fill="#c8ccd0" stroke={O} strokeWidth={5} />
+        {/* kapı altı aralık: karanlık, içeride hafif kıpırtı */}
+        <rect x={60} y={1840} width={860} height={40} fill="#050505" />
+        <rect x={60 + ((f * 9) % 860)} y={1846} width={120} height={28} fill="#1a1a1a" opacity={0.6} />
+        {/* el: sağ alttan uzanır, kola değmeden durur, titrer, geri çekilir */}
+        <g>
+          <path d={`M ${hx + 60} ${hy + 40} L 1400 ${hy + 800}`} stroke={O} strokeWidth={200} strokeLinecap="round" />
+          <path d={`M ${hx + 60} ${hy + 40} L 1400 ${hy + 800}`} stroke={TEN} strokeWidth={188} strokeLinecap="round" />
+          <path d={`M ${hx + 330} ${hy + 220} L 1400 ${hy + 900}`} stroke={KAZAK} strokeWidth={240} strokeLinecap="round" />
+          <ellipse cx={hx + 40} cy={hy + 30} rx={95} ry={80} fill={TEN} stroke={O} strokeWidth={5} />
+          {[0, 1, 2, 3].map((k) => {
+            const fx = hx - 20 - k * 6, fy = hy - 30 + k * 30;
+            const ux = fx - 90 + kivir * 50, uy = fy - 10 + kivir * 40;
+            return (
+              <g key={k}>
+                <path d={`M ${fx} ${fy} Q ${fx - 50} ${fy - 14} ${ux} ${uy}`} stroke={O} strokeWidth={40} strokeLinecap="round" fill="none" />
+                <path d={`M ${fx} ${fy} Q ${fx - 50} ${fy - 14} ${ux} ${uy}`} stroke={k % 2 ? TEN2 : TEN} strokeWidth={30} strokeLinecap="round" fill="none" />
+              </g>
+            );
+          })}
+          <path d={`M ${hx + 20} ${hy - 50} Q ${hx - 30} ${hy - 90} ${hx - 70 + kivir * 30} ${hy - 80}`} stroke={O} strokeWidth={44} strokeLinecap="round" fill="none" />
+          <path d={`M ${hx + 20} ${hy - 50} Q ${hx - 30} ${hy - 90} ${hx - 70 + kivir * 30} ${hy - 80}`} stroke={TEN} strokeWidth={34} strokeLinecap="round" fill="none" />
+        </g>
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 45% 45%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert8: React.FC<{ kind: Insert8Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "on_kamera": return <OnKamera dur={dur} text={text} />;
     case "raf_duzen": return <RafDuzen dur={dur} />;
+    case "depo_kolu": return <DepoKolu dur={dur} />;
     default: return null;
   }
 };

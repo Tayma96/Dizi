@@ -63,3 +63,13 @@ Ece adama hayranlıkla bakıyor, içinden "Çok yakışıklııı" diye geçiriy
 Ardından depodan takırtı kopuyor, sanki bir şeyler devrilmiş gibi.
 Küçük çocuk çikolatayı almış. Babası parayı uzatıyor ve esrarengiz bir şekilde "Kolay gelsin, dikkat edin gece buralar güvenli olmuyor pek" diyor. Marketten çıkıyorlar.
 (Kullanıcı: "Görüntüyü, karakter hareketlerini, detayları titizlikle yap, hata olmasın.")
+
+## Bölüm 2, Parça 2 (kullanıcının metni, 20 Kasım 2026; replikler aynen)
+Kamera saate zoom yapar, saat 01:00'e ilerler.
+Ardından kamera Ece'ye döner. Ece yorulmuştur, yorgun argın bir tiple görünür: "Çooook sıkıldımm." "Pufff, ilk günden hem yorulup hem sıkılmak ne be."
+Depodan yine patırtı gelir, ama bu sefer bir tık daha uzun sürer; sanki içeride biri varmış da rafları yıkıyormuş gibi.
+Ece "Noluyo lan zırt bırt" deyip deponun kapısına gider. Tam kapı kolunu tutacakken aklına kuralların yazılı olduğu not gelir.
+Ece: "Depodan ses duyarsan kulak asma diyodu." "Hassiktir ya, birini saklıyorlarsa?" "Lan... ya birini kaçırdılarsa?"
+Sözü bitince market kapısı açılır, zil çalar. Ece o esnada kapıya bakmıyordur. Tam "Hoş..." derken kapıya doğru döner, ancak kimse yoktur. Kasaya, yerine geri döner. 3-4 saniye sonra marketin içinde ayak sesleri vardır; biri yürüyordur ama kimse yoktur. Ne iz ne görüntü, sadece ses.
+Ece: "Annanı sikim." Korkudan titremeye başlar.
+(Yazım: "hep sıkılmak" → "hem sıkılmak", "Hasktir" → "Hassiktir", "kaçıysalar" → "kaçırdılarsa" olarak okundu.)
