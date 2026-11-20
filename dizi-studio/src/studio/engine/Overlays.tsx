@@ -7,7 +7,7 @@ import { Insert2, type Insert2Kind } from "./Inserts2";
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
 /* ---------------- Altyazı (klasik, alt kısım; satır ≤37 karakter, konuşmaya senkron parçalar) ---------------- */
-export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speakerColor?: string }> = ({ tb, speakerName, speakerColor }) => {
+export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speakerColor?: string; alt?: boolean }> = ({ tb, speakerName, speakerColor, alt }) => {
   const frame = useCurrentFrame(); // relative to the beat
   const { fps } = useVideoConfig();
   if (tb.beat.type !== "line") return null;
@@ -46,7 +46,7 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
   // (Reels/TikTok açıklama metninin üstünde kalır).
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <div style={{ position: "absolute", left: 80, right: 80, bottom: 1920 - 1450, display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
+      <div style={{ position: "absolute", left: 80, right: 80, bottom: 1920 - (alt ? 1700 : 1450), display: "flex", flexDirection: "column", alignItems: "center", opacity: inA * outA }}>
         {speakerName && !vo ? (
           <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 26, letterSpacing: 2, color: speakerColor ?? "#ffd166", marginBottom: 6, WebkitTextStroke: "6px #000", paintOrder: "stroke fill" }}>
             {speakerName.toLocaleUpperCase("tr-TR")}
@@ -64,6 +64,9 @@ export const KaraokeSubtitle: React.FC<{ tb: TBeat; speakerName?: string; speake
             WebkitTextStroke: "8px #000",
             paintOrder: "stroke fill",
             textShadow: "0 3px 10px rgba(0,0,0,0.65)",
+            background: "rgba(0,0,0,0.32)",
+            borderRadius: 18,
+            padding: "4px 22px 8px",
           }}
         >
           {chunk.map((w) => w.w).join(" ")}

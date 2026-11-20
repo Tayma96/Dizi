@@ -29,7 +29,7 @@ export const EMOTION_FACE: Record<Emotion, FaceParams> = {
   uzgun: { browInner: 12, browOuter: -6, browLift: -2, eyeOpen: 0.64, eyeSmile: false, pupil: 1, mouth: "frown", blush: 0.5 },
   agliyor: { browInner: 16, browOuter: -8, browLift: -4, eyeOpen: 0.6, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.9 },
   ofkeli: { browInner: -14, browOuter: 6, browLift: 6, eyeOpen: 0.58, eyeSmile: false, pupil: 0.85, mouth: "tight", blush: 0.7 },
-  korkmus: { browInner: 14, browOuter: 4, browLift: -6, eyeOpen: 0.82, eyeSmile: false, pupil: 0.65, mouth: "tight", blush: 0.1 },
+  korkmus: { browInner: 16, browOuter: 2, browLift: -10, eyeOpen: 1.08, eyeSmile: false, pupil: 0.6, mouth: "frown", blush: 0 },
   saskin: { browInner: 10, browOuter: 10, browLift: -10, eyeOpen: 1.0, eyeSmile: false, pupil: 0.9, mouth: "line", blush: 0.4 },
   agizAcik: { browInner: 4, browOuter: 0, browLift: -2, eyeOpen: 0.9, eyeSmile: false, pupil: 1, mouth: "open", blush: 0.2 },
   dehset: { browInner: 20, browOuter: 16, browLift: -18, eyeOpen: 1.18, eyeSmile: false, pupil: 0.42, mouth: "open", blush: 0 },

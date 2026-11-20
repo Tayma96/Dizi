@@ -44,3 +44,24 @@ Not: Ana karakterin soyadı Özdemir; şirket Zenith Grup Holding; kaza Hint Oky
   - Kadın parça 1'de kapı ağzında, ışığın içinde durur. Parça 2'de yemekle Emir'in baş ucuna gelir (sol taraf).
   - Yaşlının elindeki kâğıt, sözleşme kapağının küçük hâlidir (Z halkası).
   - Kanal adı: MERİDYEN HABER (uydurma).
+
+### Bölüm 2: kullanıcı reddinden sonra yeniden yapım (20 Kasım 2026)
+- **Kullanıcı şikâyetleri:** parça 1 anlaşılmıyor, sürekli sessizlik ve cızırtı var, diyaloglar duyulmuyor, spiker "C-E-O" diye okuyor.
+- **Ses düzeltmeleri:**
+  - Replikler −16 LUFS'a eşitlendi.
+  - Ortam sesleri replik sırasında kısılıyor (motor).
+  - Kulübe ortamı ve ateş sesindeki tizler (böcek vızıltısı, çıtırtı) süzüldü: `el_ada_kulube_yumusak`, `ates_yumusak`.
+  - Spiker `okunus` alanıyla "siyo" diye okuyor; altyazıda "CEO" yazıyor.
+- **Kullanıcı onayıyla eklenen kısa replikler (doğaçlama):**
+  - Emir (iç ses): "Yaşıyorum... Ama her yerim yanıyor."
+  - Emir (iç ses): "İkiyi yedi geçiyor... Saat, düştüğümüz anda durmuş."
+  - Kadın: "Emir?"
+  - Kadın: "Şşş..."
+  - Emir (anlatıcı): "Elli milyar dolarlık anlaşma... Bu adada bir avuç kül etmiyordu."
+- **Görüntü yönetmeninin izleme denetimi:** `raporlar/b2-goruntu-izleme.md`. P0 düzeltmeleri:
+  - POV'da kadının kendi kolu yaprağı alna götürüyor.
+  - Kadın Emir'in baş ucunda.
+  - Doğrulmada yalnız üst gövde dönüyor, bacaklar yatay kalıyor.
+  - Altyazı kulübede aşağıda duruyor ve altında koyu zemin var.
+  - TV kesmelerle kuruldu: spiker kır saçlı, portreye itiş, resepsiyonistin tepkisi.
+  - Buruşturma, top hâlinde atma ve ateşte açılıp yanma gösteriliyor.

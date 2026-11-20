@@ -172,6 +172,8 @@ export type Scene = {
   cast: Record<string, CharState>;
   beats: Beat[];
   transition?: "kesme" | "kararma" | "whoosh" | "flas" | "kaydir";
+  /** altyazı yeri: "alt" = daha aşağıda (yüzler alt bantta olduğunda) */
+  altyazi?: "alt" | "ust";
   /** Reels/Shorts için bölüm bu sahneden önce kesilebilir */
   partBreak?: boolean;
 };

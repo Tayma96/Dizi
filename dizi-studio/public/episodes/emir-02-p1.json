@@ -13,7 +13,7 @@
       "look": "sicak",
       "title": "Kulübe (saat)",
       "ambience": {
-        "name": "efekt/el_ada_kulube",
+        "name": "efekt/el_ada_kulube_yumusak",
         "volume": 0.16
       },
       "music": {
@@ -22,9 +22,9 @@
       },
       "isaretler": {
         "arka": {
-          "x": 930,
-          "y": 1440,
-          "size": 880
+          "x": 150,
+          "y": 1420,
+          "size": 860
         },
         "kapi": {
           "x": 930,
@@ -40,7 +40,7 @@
           "emotion": "aci",
           "yaprak": true,
           "bak": {
-            "x": 0.4,
+            "x": -0.45,
             "y": -0.3
           }
         },
@@ -67,16 +67,38 @@
           "gapAfter": 0.3,
           "shot": {
             "type": "genis",
-            "move": "yaklas"
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 470,
+              "cy": 1180,
+              "z": 1.35
+            }
+          },
+          "cast": {
+            "yerli_kadin": {
+              "gesture": "rest",
+              "emotion": "dusunceli",
+              "lookAt": "emir_kulube"
+            },
+            "emir_kulube": {
+              "bak": {
+                "x": -0.45,
+                "y": -0.3
+              }
+            }
           }
         },
         {
           "type": "action",
-          "dur": 3.0,
+          "dur": 3.6,
           "shot": {
-            "type": "yakin",
-            "on": "emir_kulube",
-            "move": "sabit"
+            "type": "orta",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 400,
+              "cy": 1090,
+              "z": 1.6
+            }
           },
           "cast": {
             "emir_kulube": {
@@ -88,20 +110,29 @@
               "yaprak": true,
               "bak": {
                 "x": 0.3,
-                "y": 0
+                "y": -0.1
               }
             },
             "yerli_kadin": {
               "gesture": "uzat",
-              "emotion": "korkmus"
+              "emotion": "korkmus",
+              "lookAt": "emir_kulube"
             }
           },
           "sfx": [
             {
               "name": "efekt/el_inleme",
-              "volume": 0.7,
+              "volume": 0.5,
               "at": 2.4
             }
+          ]
+        },
+        {
+          "type": "insert",
+          "kind": "kol_saati",
+          "dur": 1.5,
+          "text": [
+            "sil"
           ]
         },
         {
@@ -114,7 +145,10 @@
           "text": "İkiyi yedi geçiyor... Saat, düştüğümüz anda durmuş.",
           "gapAfter": 0.4,
           "ekle": {
-            "kind": "kol_saati"
+            "kind": "kol_saati",
+            "text": [
+              "temiz"
+            ]
           }
         },
         {
@@ -125,9 +159,15 @@
           "tags": "[tired, slow, clearly introducing himself]",
           "gapAfter": 0.3,
           "shot": {
-            "type": "orta",
+            "type": "iki",
             "on": "emir_kulube",
-            "move": "yaklas"
+            "with": "yerli_kadin",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 360,
+              "cy": 1130,
+              "z": 1.55
+            }
           },
           "cast": {
             "emir_kulube": {
@@ -135,13 +175,14 @@
               "gesture": "eliKalbinde",
               "emotion": "yorgun",
               "bak": {
-                "x": 0.45,
+                "x": -0.5,
                 "y": -0.35
               }
             },
             "yerli_kadin": {
               "gesture": "rest",
-              "emotion": "notr"
+              "emotion": "saskin",
+              "lookAt": "emir_kulube"
             }
           },
           "hiz": 0.88
@@ -153,7 +194,7 @@
           "tags": "[soft, curious, quietly, trying the word once]",
           "hiz": 0.85,
           "text": "Emir?",
-          "gapAfter": 1.3,
+          "gapAfter": 0.9,
           "shot": {
             "type": "yakin",
             "on": "yerli_kadin",
@@ -161,7 +202,7 @@
           },
           "cast": {
             "yerli_kadin": {
-              "emotion": "dusunceli",
+              "emotion": "saskin",
               "lookAt": "emir_kulube"
             }
           },
@@ -169,11 +210,12 @@
             {
               "name": "efekt/el_haber_jenerik",
               "volume": 0.5,
-              "at": 1.6
+              "at": 1.2
             }
           ]
         }
-      ]
+      ],
+      "altyazi": "alt"
     },
     {
       "id": "b",
@@ -192,7 +234,7 @@
       "cast": {
         "zenith_resepsiyon": {
           "mark": "resepsiyon",
-          "emotion": "notr",
+          "emotion": "uzgun",
           "gesture": "telefon",
           "prop": "ahize",
           "bak": {
@@ -205,11 +247,12 @@
       "beats": [
         {
           "type": "action",
-          "dur": 1.6,
+          "dur": 2.0,
           "shot": {
             "type": "genis",
             "move": "yaklas"
-          }
+          },
+          "etiket": "İSTANBUL"
         },
         {
           "type": "line",
@@ -224,7 +267,8 @@
           "ekle": {
             "kind": "tv_son_dakika",
             "text": [
-              "1"
+              "2",
+              "2.4"
             ]
           },
           "okunus": "İçerisinde Zenith Grup Holding siyosu Emir Özdemir'in bulunduğu özel uçağın sinyali kesildi."
@@ -239,11 +283,27 @@
           "fx": "tv",
           "offscreen": true,
           "label": "SPİKER",
-          "ekle": {
-            "kind": "tv_son_dakika",
-            "text": [
-              "2"
-            ]
+          "shot": {
+            "type": "orta",
+            "on": "zenith_resepsiyon",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 620,
+              "cy": 1000,
+              "z": 1.7
+            }
+          },
+          "cast": {
+            "zenith_resepsiyon": {
+              "gesture": "telefon",
+              "prop": "ahize",
+              "emotion": "uzgun",
+              "bak": {
+                "x": -0.85,
+                "y": -0.4,
+                "yaw": -0.55
+              }
+            }
           }
         },
         {
@@ -256,26 +316,39 @@
           "fx": "tv",
           "offscreen": true,
           "label": "SPİKER",
+          "okunus": "Siyo Emir Özdemir'in akıbeti henüz bilinmiyor.",
+          "ekle": {
+            "kind": "tv_son_dakika",
+            "text": [
+              "3"
+            ]
+          }
+        },
+        {
+          "type": "action",
+          "dur": 2.4,
           "shot": {
-            "type": "orta",
+            "type": "yakin",
             "on": "zenith_resepsiyon",
-            "move": "yaklas"
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 620,
+              "cy": 960,
+              "z": 2.0
+            }
           },
           "cast": {
             "zenith_resepsiyon": {
               "gesture": "rest",
-              "prop": "none",
-              "emotion": "sok"
+              "prop": "ahize",
+              "emotion": "sok",
+              "pale": 0.3,
+              "bak": {
+                "x": -0.6,
+                "y": -0.2,
+                "yaw": -0.3
+              }
             }
-          },
-          "okunus": "Siyo Emir Özdemir'in akıbeti henüz bilinmiyor."
-        },
-        {
-          "type": "action",
-          "dur": 2.0,
-          "shot": {
-            "type": "genis",
-            "move": "uzaklas"
           },
           "fade": "cikis"
         }

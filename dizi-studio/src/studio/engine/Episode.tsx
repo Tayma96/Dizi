@@ -145,8 +145,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       // kısmi doğrulma: zorlanarak kalkar (titreme), en fazla dogrulma oranı kadar; geriDus ile acıyla geri düşer
       const hedef = -90 * (1 - (st0.dogrulma ?? 0.5));
       const T = tb.dur;
-      const up = interpolate(bf, [Math.round(0.1 * fps), Math.round(0.9 * fps)], [-90, hedef], { ...clamp, easing: ss });
-      const down = st0.geriDus ? interpolate(bf, [T - Math.round(0.75 * fps), T - Math.round(0.2 * fps)], [0, 1], { ...clamp, easing: (t) => t * t }) : 0;
+      // önceki vuruşta zaten yarı doğrulmuşsa (geri düşmeden) oradan devam eder; her replikte baştan kalkmaz
+      const ps = prev?.cast[id];
+      const bas = ps && ps.body === "dogrul" && ps.dogrulma !== undefined && !ps.geriDus ? -90 * (1 - ps.dogrulma) : -90;
+      const up = interpolate(bf, [Math.round(0.1 * fps), Math.round(0.9 * fps)], [bas, hedef], { ...clamp, easing: ss });
+      const down = st0.geriDus ? interpolate(bf, [T - Math.round(1.1 * fps), T - Math.round(0.5 * fps)], [0, 1], { ...clamp, easing: (t) => t * t }) : 0;
       a = up + (-90 - up) * down + (bf > 0.9 * fps && down < 0.05 ? Math.sin(frame / 1.6) * 1.6 : 0);
     }
     lieAng[id] = a;
@@ -294,7 +297,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             legRot: st.bacak,
             prop: st.prop,
             body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
-            hideLegs: ang !== undefined && !st.zemin,
+            hideLegs: ang !== undefined,
             golgesiz: ang !== undefined,
             tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : undefined,
             talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : undefined,
@@ -315,6 +318,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
         />
       </div>
       {ang !== undefined && !tb.cast[id]?.zemin ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
+      {ang !== undefined && tb.cast[id]?.zemin ? (
+        <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: "rotate(-90deg)", transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px`, clipPath: "inset(61% -40% -10% -40%)" }}>
+          <Character look={look} size={p.size} pose={{ emotion: st.emotion, body: "stand", golgesiz: true, seed: look.name.length * 11 + id.length, armL: { upper: 4, fore: 0, ul: 0.01, fl: 0.01 }, armR: { upper: 4, fore: 0, ul: 0.01, fl: 0.01 } }} />
+        </div>
+      ) : null}
       </React.Fragment>
     );
   };
@@ -371,7 +379,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
           {b.beat.siyah ? <AbsoluteFill style={{ backgroundColor: "#000" }} /> : null}
           {b.beat.type === "line" ? (
-            <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} />
+            <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} alt={(b.beat as { altyazi?: string }).altyazi === "alt" || (scene as { altyazi?: string }).altyazi === "alt"} />
           ) : b.beat.type === "yazi" ? (
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
           ) : b.beat.type === "mesaj" ? (
@@ -380,7 +388,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             <InsertShot kind={b.beat.kind} text={b.beat.text} dur={b.dur} />
           ) : null}
           {b.beat.ekle ? <InsertShot kind={b.beat.ekle.kind as never} text={b.beat.ekle.text} dur={b.dur} /> : null}
-          {b.beat.type === "line" && b.beat.ekle ? <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} /> : null}
+          {b.beat.type === "line" && b.beat.ekle ? <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} alt={(b.beat as { altyazi?: string }).altyazi === "alt" || (scene as { altyazi?: string }).altyazi === "alt"} /> : null}
           {b.beat.etiket ? <CornerLabel text={b.beat.etiket} /> : null}
           {b.beat.fade ? <FadeOverlay mode={b.beat.fade} dur={b.dur} /> : null}
           {b.beat.gozAc ? <GozAc d={Math.round(b.beat.gozAc * fps)} /> : null}

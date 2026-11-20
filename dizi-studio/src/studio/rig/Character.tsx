@@ -110,6 +110,15 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${x - 36} ${y - 96 + i * 22} h 10 M ${x - 22} ${y - 96 + i * 22} H ${x + 36} M ${x - 22} ${y - 88 + i * 22} H ${x + 20}`} stroke="#6a6a6a" strokeWidth={2.5} />)}
         </g>
       );
+    case "kagit_top":
+      // buruşturulmuş sözleşme: avuçta düzensiz kâğıt topu
+      return (
+        <g>
+          <path d={`M ${x - 30} ${y - 4} L ${x - 20} ${y - 34} L ${x + 4} ${y - 40} L ${x + 28} ${y - 26} L ${x + 34} ${y + 2} L ${x + 22} ${y + 28} L ${x - 6} ${y + 34} L ${x - 28} ${y + 20} Z`} fill="#f2eee4" stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+          <path d={`M ${x - 18} ${y - 20} L ${x + 2} ${y - 4} L ${x + 22} ${y - 14} M ${x + 2} ${y - 4} L ${x - 4} ${y + 22} M ${x - 22} ${y + 8} L ${x - 4} ${y + 2}`} stroke="#b8b0a0" strokeWidth={2.5} fill="none" />
+          <circle cx={x + 10} cy={y - 22} r={5} fill="none" stroke="#1d2a44" strokeWidth={2} opacity={0.7} />
+        </g>
+      );
     case "sozlesme":
       // Zenith anlaşma taslağı (kapak): lacivert Z halkası, başlık, tutar çizgisi, imza alanları
       return (
@@ -208,13 +217,14 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
     case "bardak":
       return <path d={`M ${x - 22} ${y - 6} L ${x - 18} ${y - 74} L ${x + 18} ${y - 74} L ${x + 22} ${y - 6} Z`} fill="#dff0ff" fillOpacity={0.8} stroke={OUT} strokeWidth={3} />;
     case "ahize":
-      // kulakta (el) başlar, ağza doğru aşağı-içe iner
+      // telefon ahizesi: el ortadan tutar; üst uç (kulaklık) kulağa, alt uç (mikrofon) ağza doğru; kıvrık kablo aşağı sarkar
       return (
-        <g>
-          <path d={`M ${x - 4} ${y - 6} L ${x - 40} ${y + 92}`} stroke={OUT} strokeWidth={26} strokeLinecap="round" />
-          <path d={`M ${x - 4} ${y - 6} L ${x - 40} ${y + 92}`} stroke="#bdb49a" strokeWidth={19} strokeLinecap="round" />
-          <ellipse cx={x - 44} cy={y + 98} rx={18} ry={13} fill="#a89e84" stroke={OUT} strokeWidth={3} transform={`rotate(-20 ${x - 44} ${y + 98})`} />
-          <path d={`M ${x - 44} ${y + 110} q 10 50 -10 90 q -20 40 0 80`} stroke="#8a826c" strokeWidth={4} fill="none" />
+        <g transform={`rotate(-14 ${x} ${y})`}>
+          <path d={`M ${x - 6} ${y - 70} Q ${x - 16} ${y - 5} ${x - 6} ${y + 62}`} stroke={OUT} strokeWidth={30} strokeLinecap="round" fill="none" />
+          <path d={`M ${x - 6} ${y - 70} Q ${x - 16} ${y - 5} ${x - 6} ${y + 62}`} stroke="#d8d4c8" strokeWidth={22} strokeLinecap="round" fill="none" />
+          <ellipse cx={x - 2} cy={y - 78} rx={22} ry={15} fill="#c8c2b2" stroke={OUT} strokeWidth={3.5} />
+          <ellipse cx={x - 2} cy={y + 70} rx={22} ry={15} fill="#c8c2b2" stroke={OUT} strokeWidth={3.5} />
+          <path d={`M ${x - 2} ${y + 84} q 12 18 0 30 q -12 12 0 26 q 12 14 0 28 q -12 14 0 30`} stroke="#5a564c" strokeWidth={4} fill="none" />
         </g>
       );
     case "fener":

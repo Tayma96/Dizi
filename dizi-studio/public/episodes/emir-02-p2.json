@@ -13,7 +13,7 @@
       "look": "sicak",
       "title": "Kulübe (yemek)",
       "ambience": {
-        "name": "efekt/el_ada_kulube",
+        "name": "efekt/el_ada_kulube_yumusak",
         "volume": 0.16
       },
       "music": {
@@ -55,7 +55,7 @@
       "beats": [
         {
           "type": "action",
-          "dur": 2.4,
+          "dur": 3.0,
           "shot": {
             "type": "genis",
             "move": "sabit"
@@ -93,7 +93,7 @@
             "yerli_kadin": {
               "gesture": "yudum",
               "prop": "none",
-              "emotion": "mutlu"
+              "emotion": "notr"
             },
             "emir_kulube": {
               "bak": {
@@ -111,9 +111,14 @@
           "tags": "[confused, weak]",
           "gapAfter": 0.3,
           "shot": {
-            "type": "yakin",
+            "type": "orta",
             "on": "emir_kulube",
-            "move": "yaklas"
+            "move": "sabit",
+            "kadraj": {
+              "cx": 460,
+              "cy": 1230,
+              "z": 1.75
+            }
           },
           "cast": {
             "emir_kulube": {
@@ -124,8 +129,8 @@
               "emotion": "igrenmis",
               "yaprak": false,
               "bak": {
-                "x": 0,
-                "y": 0.5
+                "x": 0.35,
+                "y": 0.6
               }
             },
             "yerli_kadin": {
@@ -159,9 +164,28 @@
               }
             },
             "yerli_kadin": {
-              "emotion": "uzgun"
+              "emotion": "uzgun",
+              "lookAt": "emir_kulube"
             }
-          }
+          },
+          "shots": [
+            {
+              "at": 1.35,
+              "shot": {
+                "type": "yakin",
+                "on": "yerli_kadin",
+                "move": "yaklas"
+              }
+            },
+            {
+              "at": 2.9,
+              "shot": {
+                "type": "cok_yakin",
+                "on": "emir_kulube",
+                "move": "yaklas"
+              }
+            }
+          ]
         },
         {
           "type": "line",
@@ -192,7 +216,26 @@
               "emotion": "uzgun",
               "lookAt": "emir_kulube"
             }
-          }
+          },
+          "shots": [
+            {
+              "at": 2.3,
+              "shot": {
+                "type": "yakin",
+                "on": "yerli_kadin",
+                "move": "yaklas"
+              }
+            },
+            {
+              "at": 4.0,
+              "shot": {
+                "type": "iki",
+                "on": "emir_kulube",
+                "with": "yerli_kadin",
+                "move": "yaklas"
+              }
+            }
+          ]
         },
         {
           "type": "line",
@@ -239,7 +282,8 @@
             }
           }
         }
-      ]
+      ],
+      "altyazi": "alt"
     },
     {
       "id": "b",
@@ -275,7 +319,11 @@
         "yerli_ana": {
           "mark": "ya",
           "emotion": "notr",
-          "lookAt": "yerli_bilge"
+          "lookAt": "yerli_bilge",
+          "bak": {
+            "x": -0.6,
+            "y": 0
+          }
         }
       },
       "beats": [
@@ -288,8 +336,8 @@
           },
           "sfx": [
             {
-              "name": "efekt/ates",
-              "volume": 0.4,
+              "name": "efekt/ates_yumusak",
+              "volume": 0.9,
               "at": 0.0
             }
           ]
@@ -347,7 +395,7 @@
           "cast": {
             "yerli_bilge": {
               "gesture": "uzat",
-              "prop": "none",
+              "prop": "kagit_top",
               "flip": true,
               "emotion": "soguk"
             }
@@ -370,8 +418,8 @@
           },
           "sfx": [
             {
-              "name": "efekt/ates",
-              "volume": 0.45,
+              "name": "efekt/ates_yumusak",
+              "volume": 0.9,
               "at": 0.0
             }
           ]
@@ -394,8 +442,18 @@
       ],
       "isaretler": {
         "ya": {
-          "x": 1010,
+          "x": 980,
           "y": 1470,
+          "size": 840
+        },
+        "y1": {
+          "x": 330,
+          "y": 1620,
+          "size": 960
+        },
+        "y2": {
+          "x": 90,
+          "y": 1440,
           "size": 840
         }
       },
