@@ -340,7 +340,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       </div>
       {ang !== undefined && !tb.cast[id]?.zemin ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
       {ang !== undefined && tb.cast[id]?.zemin ? (
-        <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: "rotate(-90deg)", transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px`, clipPath: "inset(61% -40% -10% -40%)" }}>
+        <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: `rotate(${-90 + (st.egim ?? 0)}deg)`, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px`, clipPath: "inset(61% -40% -10% -40%)" }}>
           <Character look={look} size={p.size} pose={{ emotion: st.emotion, body: "stand", golgesiz: true, seed: look.name.length * 11 + id.length, armL: { upper: 4, fore: 0, ul: 0.01, fl: 0.01 }, armR: { upper: 4, fore: 0, ul: 0.01, fl: 0.01 } }} />
         </div>
       ) : null}

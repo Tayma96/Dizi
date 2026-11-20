@@ -705,7 +705,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       {look.korkunc ? (
         <g>
           {/* çökük göz çukurları (gözlerin üstüne binen gölge halkası) */}
-          {[160, 240].map((x) => <ellipse key={x} cx={x + dx} cy={200} rx={38} ry={30} fill="#2a1a22" fillOpacity={0.16} stroke="#2a1a22" strokeWidth={8} opacity={0.38} />)}
+          {[160, 240].map((x) => <ellipse key={x} cx={x + dx} cy={204} rx={36} ry={28} fill="#1e1018" opacity={0.3} />)}
           {[160, 240].map((x) => <path key={`k${x}`} d={`M ${x - 30 + dx} 228 Q ${x + dx} 246 ${x + 30 + dx} 228`} stroke="#3a1e2a" strokeWidth={6} fill="none" opacity={0.6} />)}
           {/* kanlı göz damarları */}
           {[160, 240].map((x) => <path key={`d${x}`} d={`M ${x - 22 + dx} 196 l 8 2 l 4 -3 M ${x + 22 + dx} 200 l -9 -1 l -3 4 M ${x - 18 + dx} 206 l 7 -1`} stroke="#c0282a" strokeWidth={1.6} fill="none" opacity={0.85} />)}

@@ -321,15 +321,25 @@
       "title": "Kaçış",
       "transition": "kesme",
       "isaretler": {
-        "kapi": {
-          "x": 470,
-          "y": 1141,
-          "size": 326
+        "kapi_on": {
+          "x": 520,
+          "y": 1178,
+          "size": 380
         },
         "kapi_dis": {
-          "x": 440,
-          "y": 1150,
-          "size": 470
+          "x": 430,
+          "y": 1152,
+          "size": 500
+        },
+        "dusus": {
+          "x": 470,
+          "y": 1222,
+          "size": 420
+        },
+        "geri": {
+          "x": 430,
+          "y": 1250,
+          "size": 440
         }
       },
       "cast": {
@@ -371,16 +381,26 @@
           "tags": "[screaming for help, running]",
           "offscreen": true,
           "label": "ECE",
-          "gapAfter": 0.2,
+          "gapAfter": 0.15,
           "shot": {
             "type": "genis",
-            "move": "yaklas"
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 560,
+              "cy": 1000,
+              "z": 1.55
+            }
           },
           "cast": {
             "ece_sivil": {
-              "mark": "kapi",
-              "yuruSure": 1.2,
-              "emotion": "dehset"
+              "mark": "kapi_on",
+              "yuruSure": 1.15,
+              "emotion": "dehset",
+              "bak": {
+                "x": -0.8,
+                "y": 0,
+                "yaw": -0.5
+              }
             },
             "iri724": {
               "hidden": false,
@@ -391,10 +411,82 @@
           "sfx": [
             {
               "name": "efekt/darbe",
-              "volume": 0.9,
+              "volume": 0.95,
               "at": 1.25
             }
           ]
+        },
+        {
+          "type": "action",
+          "dur": 1.0,
+          "shot": {
+            "type": "genis",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 560,
+              "cy": 1020,
+              "z": 1.7
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "mark": "dusus",
+              "yuruSure": 0.35,
+              "body": "yat",
+              "zemin": true,
+              "egim": 180,
+              "emotion": "dehset",
+              "bak": {
+                "x": -0.6,
+                "y": -0.3
+              }
+            },
+            "iri724": {
+              "emotion": "ofkeli",
+              "bak": {
+                "x": 0.6,
+                "y": 0.6
+              }
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/esya_dusme",
+              "volume": 0.8,
+              "at": 0.25
+            },
+            {
+              "name": "efekt/el_nefes_tutma",
+              "volume": 0.6,
+              "at": 0.5
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.6,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 560,
+              "cy": 1030,
+              "z": 1.8
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "mark": "geri",
+              "yuruSure": 1.5,
+              "tik": "titre"
+            },
+            "iri724": {
+              "bak": {
+                "x": 0.8,
+                "y": 0.7
+              }
+            }
+          }
         }
       ]
     },

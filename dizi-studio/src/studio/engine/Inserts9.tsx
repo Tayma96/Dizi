@@ -13,7 +13,7 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#141012";
 const SANS = "Inter, Arial, sans-serif";
 const ECE_TEN = "#f0c8a8", ECE_TEN2 = "#dcac88", KAZAK = "#c8902a", KAZAK2 = "#a8741a";
-const EL = "#c4b4a4", EL2 = "#a29282", EL3 = "#8a7a6c", TIRNAK = "#d8c8b4", ET = "#7a2a2a", LIF = "#9a3a3a";
+const EL = "#a8ac98", EL2 = "#90967e", EL3 = "#6e7462", TIRNAK = "#d4ccb0", ET = "#5a1a1e", LIF = "#7a1e24";
 const ease = (x: number) => x * x * (3 - 2 * x);
 const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
 
@@ -25,46 +25,61 @@ export const INSERT9_KINDS: Insert9Kind[] = ["telefon_mesaj", "yer_pov", "tezgah
 /** Kopuk el, sırttan/yandan (örümcek gibi parmak uçlarında). yon: 1 sağa, -1 sola. adim: yürüyüş fazı. kavra 0..1: parmaklar bir şeyi kavrar.
  *  kopuk: bilekte et + sarkan lifler. Koordinat: avuç merkezi (0,0), zemin y=+80 (s=1). */
 const KopukEl: React.FC<{ x: number; y: number; s: number; yon?: number; adim?: number; kavra?: number; kopuk?: boolean; rot?: number; f: number }> = ({ x, y, s, yon = 1, adim = 0, kavra = 0, kopuk = true, rot = 0, f }) => {
+  // parmak: 3 boğum (uzun-orta-uç), uçlara doğru incelir; boğumlarda kırışık, uçta tırnak
   const parmak = (i: number) => {
-    const d = i - 1.5; // derinlik sırası
-    const lift = Math.max(0, Math.sin(adim * Math.PI * 2 + (i % 2 ? Math.PI : 0))) * 22;
-    const bx = 46 - Math.abs(d) * 6, by = -26 + d * 15;
-    const kx = bx + 34 - kavra * 10, ky = by - 44 + kavra * 20 - lift * 0.4;
-    const tx = kx + 30 - kavra * 34, ty = 74 + d * 6 - lift - kavra * 50;
-    const w = i === 0 || i === 3 ? 0.86 : 1;
+    const d = i - 1.5;
+    const lift = Math.max(0, Math.sin(adim * Math.PI * 2 + (i % 2 ? Math.PI : 0))) * 24;
+    const L = i === 0 ? 0.82 : i === 3 ? 0.78 : i === 1 ? 1.06 : 1; // işaret, orta, yüzük, serçe
+    const bx = 50 - Math.abs(d) * 5, by = -30 + d * 16;
+    const j1x = bx + 30 * L - kavra * 8, j1y = by - 46 * L + kavra * 18 - lift * 0.5;
+    const j2x = j1x + 26 * L - kavra * 20, j2y = j1y + 40 * L - lift * 0.3 + kavra * 10;
+    const tx = j2x + 14 * L - kavra * 26, ty = 78 + d * 6 - lift - kavra * 46;
+    const w = (i === 3 ? 0.78 : i === 0 ? 0.92 : 1) * 1.0;
+    const seg = (x1: number, y1: number, x2: number, y2: number, w1: number, key: string) => (
+      <g key={key}>
+        <path d={`M ${x1} ${y1} L ${x2} ${y2}`} stroke={O} strokeWidth={w1 + 7} strokeLinecap="round" />
+        <path d={`M ${x1} ${y1} L ${x2} ${y2}`} stroke={i % 2 ? EL2 : EL} strokeWidth={w1} strokeLinecap="round" />
+      </g>
+    );
     return (
       <g key={i}>
-        <path d={`M ${bx} ${by} L ${kx} ${ky} L ${tx} ${ty}`} stroke={O} strokeWidth={30 * w} strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <path d={`M ${bx} ${by} L ${kx} ${ky} L ${tx} ${ty}`} stroke={i % 2 ? EL2 : EL} strokeWidth={22 * w} strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <circle cx={kx} cy={ky} r={8 * w} fill={EL3} opacity={0.55} />
-        <path d={`M ${kx - 6} ${ky - 2} q 6 -6 12 0`} stroke={EL3} strokeWidth={2.5} fill="none" />
-        <ellipse cx={tx + 3} cy={ty - 6} rx={6 * w} ry={8 * w} fill={TIRNAK} stroke={O} strokeWidth={2} transform={`rotate(${-30 + kavra * 40} ${tx + 3} ${ty - 6})`} />
+        {seg(bx, by, j1x, j1y, 25 * w, "a")}
+        {seg(j1x, j1y, j2x, j2y, 21 * w, "b")}
+        {seg(j2x, j2y, tx, ty, 17 * w, "c")}
+        <path d={`M ${j1x - 8} ${j1y - 3} q 8 -7 16 0 M ${j1x - 6} ${j1y + 3} q 6 -4 12 0`} stroke={EL3} strokeWidth={2} fill="none" />
+        <path d={`M ${j2x - 5} ${j2y - 4} q 6 -4 11 1`} stroke={EL3} strokeWidth={1.8} fill="none" />
+        <path d={`M ${tx - 2} ${ty - 14} q 7 2 8 12 q -6 3 -11 0 Z`} fill={TIRNAK} stroke={O} strokeWidth={1.8} />
       </g>
     );
   };
   return (
     <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s * yon} ${s})`}>
-      {/* gölge */}
-      <ellipse cx={14} cy={84} rx={86} ry={14} fill="#000" opacity={0.28} />
-      {/* arka parmaklar (derinde) */}
+      <ellipse cx={14} cy={86} rx={92} ry={15} fill="#000" opacity={0.3} />
       {[3, 2].map(parmak)}
-      {/* bilek: et, kemik ucu, lifler */}
       {kopuk ? (
         <g>
-          {new Array(7).fill(0).map((_, i) => <path key={i} d={`M ${-62} ${-30 + i * 8} q ${-24 - (i % 3) * 8} ${6 + Math.sin(f / 5 + i) * 6} ${-34 - (i % 2) * 12} ${18 + i * 2}`} stroke={i % 2 ? LIF : "#b85a5a"} strokeWidth={4} fill="none" strokeLinecap="round" />)}
-          <ellipse cx={-62} cy={-6} rx={18} ry={34} fill={ET} stroke={O} strokeWidth={3} />
-          <ellipse cx={-62} cy={-8} rx={7} ry={10} fill="#e8dcc8" />
+          {/* bilek: ıslak, koyu simbiyot lifleri sarkar ve kıvranır */}
+          {new Array(11).fill(0).map((_, i) => {
+            const yy = -36 + i * 7, sw = Math.sin(f / 4 + i * 1.3);
+            return <path key={i} d={`M -60 ${yy} q ${-22 - (i % 3) * 10} ${8 + sw * 9} ${-38 - (i % 2) * 16} ${20 + i * 2 + sw * 6} q -8 6 -6 14`} stroke={i % 3 === 0 ? "#2a0a10" : i % 2 ? LIF : "#a83a40"} strokeWidth={i % 3 === 0 ? 6 : 4} fill="none" strokeLinecap="round" />;
+          })}
+          <ellipse cx={-62} cy={-6} rx={19} ry={36} fill={ET} stroke={O} strokeWidth={3} />
+          <ellipse cx={-62} cy={-10} rx={7} ry={11} fill="#e2d6c0" stroke="#8a7a60" strokeWidth={1.5} />
+          <ellipse cx={-58} cy={8} rx={5} ry={7} fill="#e2d6c0" opacity={0.8} />
+          <path d="M -66 -30 q 4 18 -2 40" stroke="#ff8a8a" strokeWidth={2} opacity={0.5} fill="none" />
         </g>
       ) : null}
-      {/* avuç sırtı */}
-      <path d="M -62 -40 Q -20 -58 40 -46 Q 66 -30 62 4 Q 54 30 20 34 Q -30 36 -62 26 Z" fill={EL} stroke={O} strokeWidth={4} strokeLinejoin="round" />
-      <path d="M -40 -34 Q 0 -44 40 -34" stroke={EL2} strokeWidth={3} fill="none" />
-      {[-24, -8, 8, 24].map((k) => <path key={k} d={`M ${-30} ${k * 0.6 - 4} L ${36} ${k - 6}`} stroke={EL3} strokeWidth={2} opacity={0.5} />)}
-      <path d="M -20 -10 q 10 -8 20 2 M 0 6 q 12 -6 22 4" stroke="#6a7a9a" strokeWidth={2} fill="none" opacity={0.5} />
-      {/* başparmak (yakın tarafta) */}
-      <path d={`M -10 26 Q 20 ${56 - kavra * 20} ${44 - kavra * 30} ${70 - kavra * 44}`} stroke={O} strokeWidth={30} strokeLinecap="round" fill="none" />
-      <path d={`M -10 26 Q 20 ${56 - kavra * 20} ${44 - kavra * 30} ${70 - kavra * 44}`} stroke={EL} strokeWidth={22} strokeLinecap="round" fill="none" />
-      {/* ön parmaklar */}
+      {/* el sırtı: biçim, tendonlar, damarlar, boğum çıkıntıları */}
+      <path d="M -62 -42 Q -26 -60 34 -52 Q 64 -40 64 -2 Q 60 28 26 36 Q -28 40 -62 28 Z" fill={EL} stroke={O} strokeWidth={4.5} strokeLinejoin="round" />
+      <path d="M -50 -36 Q -10 -50 38 -40" stroke={EL2} strokeWidth={4} fill="none" opacity={0.7} />
+      {[-30, -14, 2, 18].map((k, i) => <path key={k} d={`M -46 ${k * 0.55 - 6} Q 0 ${k * 0.8 - 8} ${44} ${k - 10 + i * 2}`} stroke={EL3} strokeWidth={3} fill="none" opacity={0.55} />)}
+      <path d="M -40 -12 q 14 -10 26 2 q 10 10 24 -2 M -30 10 q 16 -6 30 4" stroke="#5a6a7a" strokeWidth={2.5} fill="none" opacity={0.55} />
+      {[-30, -12, 6, 22].map((k) => <ellipse key={k} cx={50} cy={k} rx={9} ry={7} fill={EL2} stroke={EL3} strokeWidth={1.5} />)}
+      {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${-30 + i * 9} ${-44 + (i % 3) * 4} l 2 -5`} stroke={EL3} strokeWidth={1.5} opacity={0.6} />)}
+      {/* başparmak (2 boğum) */}
+      <path d={`M -8 26 L ${18 - kavra * 6} ${52 - kavra * 14} L ${42 - kavra * 26} ${74 - kavra * 40}`} stroke={O} strokeWidth={34} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d={`M -8 26 L ${18 - kavra * 6} ${52 - kavra * 14} L ${42 - kavra * 26} ${74 - kavra * 40}`} stroke={EL} strokeWidth={26} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <path d={`M ${36 - kavra * 26} ${62 - kavra * 40} q 8 3 9 13 q -6 3 -12 0 Z`} fill={TIRNAK} stroke={O} strokeWidth={1.8} />
       {[1, 0].map(parmak)}
     </g>
   );
@@ -209,15 +224,16 @@ const TelefonMesaj: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
           <path d="M -120 2100 L -20 1860" stroke={KAZAK} strokeWidth={260} strokeLinecap="round" />
           {[0, 1, 2].map((i) => <path key={i} d={`M ${px - 30} ${py + ph - 420 - i * 120} q 40 -10 70 10`} stroke={O} strokeWidth={56} strokeLinecap="round" fill="none" />)}
           {[0, 1, 2].map((i) => <path key={`k${i}`} d={`M ${px - 30} ${py + ph - 420 - i * 120} q 40 -10 70 10`} stroke={ECE_TEN} strokeWidth={44} strokeLinecap="round" fill="none" />)}
-          {/* sağ el: başparmak ekrana dokunur */}
+          {/* sağ el: kısa, dolgun başparmak ekrana dokunur; avuç ve diğer parmaklar telefonun sağ altında */}
           <g transform={`translate(${px + thumbX} ${py + thumbY + bas * 6})`}>
-            <path d="M 0 0 Q 160 260 420 620 L 700 900" stroke={O} strokeWidth={96} strokeLinecap="round" fill="none" />
-            <path d="M 0 0 Q 160 260 420 620 L 700 900" stroke={ECE_TEN} strokeWidth={84} strokeLinecap="round" fill="none" />
-            <ellipse cx={8} cy={14} rx={30} ry={24} fill="#f8dcc8" opacity={0.85} />
-            <path d="M 420 620 L 900 700 L 900 1400 L 300 1200 Z" fill={ECE_TEN} stroke={O} strokeWidth={5} />
-            <path d="M 600 900 L 1100 1000 L 1100 1500 L 500 1400 Z" fill={KAZAK} stroke={O} strokeWidth={5} />
-            <path d="M 560 880 L 900 960" stroke={KAZAK2} strokeWidth={8} />
-            <path d="M 200 380 q 30 30 40 70" stroke={ECE_TEN2} strokeWidth={5} fill="none" />
+            <path d="M 260 330 Q 420 380 560 520 L 760 820 L 260 900 Q 120 640 170 420 Z" fill={ECE_TEN} stroke={O} strokeWidth={6} strokeLinejoin="round" />
+            <path d="M 520 620 L 900 760 L 900 1300 L 420 1150 Z" fill={KAZAK} stroke={O} strokeWidth={6} />
+            <path d="M 470 640 L 860 780" stroke={KAZAK2} strokeWidth={9} />
+            <path d="M 4 10 Q 50 150 190 330" stroke={O} strokeWidth={128} strokeLinecap="round" fill="none" />
+            <path d="M 4 10 Q 50 150 190 330" stroke={ECE_TEN} strokeWidth={116} strokeLinecap="round" fill="none" />
+            <path d="M 70 150 q 26 18 52 12" stroke={ECE_TEN2} strokeWidth={5} fill="none" />
+            <path d="M -22 -6 Q 4 -36 34 -14 Q 40 18 14 30 Q -14 26 -22 -6 Z" fill="#f8e0d0" stroke={ECE_TEN2} strokeWidth={3} />
+            <path d="M 230 520 q 40 10 70 40" stroke={ECE_TEN2} strokeWidth={5} fill="none" />
           </g>
         </svg>
       </AbsoluteFill>
@@ -293,7 +309,7 @@ const TezgahEl: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const { fps } = useVideoConfig();
   const mod = text?.[0] ?? "ayril";
   const t = f / fps + Number(text?.[1] ?? 0);
-  const bilek = { x: 820, y: 1000 };
+  const bilek = { x: 760, y: 1070 };
   const per = (y: number) => 0.85 + ((y - 980) / 620) * 0.75; // derinlik ölçeği
   // ---- el konumu
   let hx = bilek.x - 40, hy = bilek.y + 40, yon = -1, kavra = 0, adim = 0, kopuk = false, rot = 0, sandEl = false;
@@ -303,7 +319,7 @@ const TezgahEl: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
     const dus = interpolate(t, [1.8, 2.2], [0, 1], { ...clamp, easing: (x) => x * x });
     const dogrul = interpolate(t, [2.3, 2.9], [0, 1], { ...clamp, easing: ease });
     const git = interpolate(t, [3.0, 4.6], [0, 1], clamp);
-    lifGer = ger * (1 - dus);
+    lifGer = t < 2.6 ? ger : Math.max(0, 1 - (t - 2.6) * 4);
     kopuk = ger > 0.6;
     hx = bilek.x - 40 - 30 * ger; hy = bilek.y + 40 + 20 * ger;
     if (dus > 0) { hx = lerp(hx, 700, dus); hy = lerp(hy, 1180, dus); rot = 160 * (1 - dogrul) * Math.min(1, dus * 2); }
@@ -345,21 +361,22 @@ const TezgahEl: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const flk = random(`te${Math.floor(f / 3)}`) > 0.93 ? 0.88 : 1;
   return (
     <AbsoluteFill style={{ backgroundColor: "#1a1c20", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, filter: "blur(7px)" }}>
+        <rect width={1080} height={1100} fill="#9ea4ac" />
+        {[0, 1, 2].map((r) => new Array(8).fill(0).map((_, i) => <rect key={`${r}${i}`} x={i * 140} y={160 + r * 240} width={110} height={190} fill={["#c84a3a", "#3a6ac8", "#e8c43a", "#3aa86a"][(i + r) % 4]} opacity={0.45} />))}
+      </svg>
+      {/* dev adam tezgâhın karşısında: yüzü Ece'ye (aşağı) bakar, alttan ışık */}
+      <div style={{ position: "absolute", left: 600 - 0.2 * 2600, top: -250, filter: `brightness(${0.82 * flk}) contrast(1.1)` }}>
+        <Character look={castById("iri724")} size={2600} pose={{ emotion: mod === "ayril" && t > 2.4 && t < 3.4 ? "alayci" : "soguk", lookX: -0.1, lookY: 0.55, yaw: -0.06, seed: 4, armR: { upper: 0, fore: 0, ul: 0.01, fl: 0.01 } }} />
+      </div>
+      <AbsoluteFill style={{ background: "linear-gradient(0deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.35) 100%)" }} />
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, filter: `brightness(${flk})` }}>
         <defs>
           <linearGradient id="tz_ust" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#d8d4cc" /><stop offset="1" stopColor="#f0ece4" /></linearGradient>
-          <filter id="tz_bl"><feGaussianBlur stdDeviation="7" /></filter>
         </defs>
-        {/* arka: market (bulanık) */}
-        <g filter="url(#tz_bl)">
-          <rect width={1080} height={1000} fill="#c8ccd2" />
-          {[0, 1, 2].map((r) => new Array(8).fill(0).map((_, i) => <rect key={`${r}${i}`} x={i * 140} y={160 + r * 240} width={110} height={190} fill={["#c84a3a", "#3a6ac8", "#e8c43a", "#3aa86a"][(i + r) % 4]} opacity={0.5} />))}
-        </g>
-        {/* adamın gövdesi (karşıda, devasa, koyu palto) */}
-        <g filter="url(#tz_bl)">
-          <path d="M 380 1040 Q 380 520 640 380 Q 900 260 1180 380 L 1180 1040 Z" fill="#2a241e" />
-          <path d="M 640 380 Q 760 330 860 360 L 820 1040 L 600 1040 Z" fill="#1c1814" />
-        </g>
+        {/* adamın sağ kolu: omuzdan dirseğe, ön kol tezgâhta, bilek bize doğru */}
+        <path d={`M 900 700 Q 960 930 ${bilek.x + 90} ${bilek.y - 30}`} stroke={O} strokeWidth={214} strokeLinecap="round" fill="none" />
+        <path d={`M 900 700 Q 960 930 ${bilek.x + 90} ${bilek.y - 30}`} stroke="#2a241e" strokeWidth={200} strokeLinecap="round" fill="none" />
         {/* tezgâh üstü */}
         <path d="M -40 1040 L 1120 1040 L 1180 1920 L -100 1920 Z" fill="url(#tz_ust)" />
         <path d="M -40 1040 L 1120 1040" stroke="#8a867e" strokeWidth={6} />
@@ -384,20 +401,25 @@ const TezgahEl: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         ) : null}
         {/* sandviç */}
         {sandGorun && adamAl < 0.98 ? <Sandvic x={sx} y={sy} s={per(sy) * 1.5} rot={sandRot} barkodYuz={eceEl > 0.5} /> : null}
-        {/* adamın kolu (koyu kol, bilek tezgâhta) */}
-        <path d={`M 1200 700 L ${bilek.x} ${bilek.y}`} stroke={O} strokeWidth={200} strokeLinecap="round" />
-        <path d={`M 1200 700 L ${bilek.x} ${bilek.y}`} stroke="#2e2822" strokeWidth={188} strokeLinecap="round" />
-        <path d={`M ${bilek.x + 60} ${bilek.y - 70} Q ${bilek.x + 90} ${bilek.y - 10} ${bilek.x + 60} ${bilek.y + 50}`} stroke="#1c1814" strokeWidth={10} fill="none" />
+        {/* manşet (ön kolun ucu, tezgâhta) */}
+        <path d={`M ${bilek.x + 20} ${bilek.y - 90} Q ${bilek.x + 60} ${bilek.y - 10} ${bilek.x + 10} ${bilek.y + 70}`} stroke="#1c1814" strokeWidth={12} fill="none" />
         {/* bilek ucu: el yokken çıplak et ve lifler */}
         {kopuk || lifGer > 0 ? (
           <g>
             <ellipse cx={bilek.x - 20} cy={bilek.y + 30} rx={46} ry={34} fill={ET} stroke={O} strokeWidth={4} />
             <ellipse cx={bilek.x - 20} cy={bilek.y + 28} rx={14} ry={11} fill="#e8dcc8" />
-            {new Array(10).fill(0).map((_, i) => {
-              const ox = bilek.x - 50 + i * 7, oy = bilek.y + 30 + (i % 3) * 4;
-              const L = lifGer > 0.02 ? 1 : 0.35;
-              const ex = lifGer > 0.02 ? hx + 50 - i * 6 : ox - 10 - (i % 4) * 8, ey = lifGer > 0.02 ? hy - 30 : oy + 30 + (i % 3) * 14 + Math.sin(f / 4 + i) * 6;
-              return <path key={i} d={`M ${ox} ${oy} Q ${(ox + ex) / 2 + Math.sin(f / 3 + i) * 14} ${(oy + ey) / 2 + 10} ${ex} ${ey}`} stroke={i % 2 ? LIF : "#c86a6a"} strokeWidth={3.5} fill="none" opacity={L} />;
+            {new Array(16).fill(0).map((_, i) => {
+              const ox = bilek.x - 56 + i * 6, oy = bilek.y + 22 + (i % 4) * 5;
+              const ger = lifGer > 0.02;
+              const ex = ger ? hx + 70 - i * 7 : ox - 8 - (i % 4) * 9, ey = ger ? hy - 30 + (i % 3) * 8 : oy + 34 + (i % 3) * 16 + Math.sin(f / 4 + i) * 7;
+              const sag = ger ? 40 + (i % 5) * 18 : 10;
+              const w = i % 4 === 0 ? 7 : i % 2 ? 4.5 : 3;
+              return (
+                <g key={i} opacity={ger ? Math.min(1, lifGer * 1.4) : 0.45}>
+                  <path d={`M ${ox} ${oy} Q ${(ox + ex) / 2 + Math.sin(f / 3 + i) * 16} ${(oy + ey) / 2 + sag} ${ex} ${ey}`} stroke={i % 4 === 0 ? "#2a0a10" : i % 2 ? LIF : "#a83a40"} strokeWidth={w} fill="none" strokeLinecap="round" />
+                  {i % 3 === 0 ? <path d={`M ${ox} ${oy} Q ${(ox + ex) / 2 + Math.sin(f / 3 + i) * 16} ${(oy + ey) / 2 + sag - 2} ${ex} ${ey}`} stroke="#ffc8c8" strokeWidth={1.2} fill="none" opacity={0.5} /> : null}
+                </g>
+              );
             })}
           </g>
         ) : null}
