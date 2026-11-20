@@ -115,3 +115,27 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 - Kopan el animasyonu: tel tel kopma, parmaklarla yürüme, zıplayıp kola geri takılma.
 - Kepenk kalkışı ve sürünme pozu.
 - Mesaj ekranında "Servis yok" görünümü.
+
+### Bölüm 3: kullanıcı reddetti (20 Kasım 2026). Yeniden yapım şartnamesi
+**Genel sorun:** Her şey oldu bittiye getirilmiş, akış çok kötü.
+
+1. **Çığlıktan sonra:** Depodan anne sesi geldiğinde Ece hemen normale dönmeyecek. Şokun etkisi sürecek (donup kalma, nefes nefese, titreme), sese doğru yavaşça dönecek.
+2. **Mesaj:**
+   - Telefon önce Ece'nin elinde olacak: titreşim, Ece telefonu cebinden çıkarır.
+   - Ekranda annenin mesajı görünür (Ece'nin gözünden, elde telefon).
+   - Ece cevap yazmaya çalışır (klavye, yazılan metin), gönderir. Ekranda "Mesaj gönderilemedi" uyarısı ve "Servis yok" / sinyal çubukları boş görünür, net okunur.
+   - Ece kameraya bakmayacak, bakışı telefonda olacak.
+3. **Kepenk:**
+   - Adam kepenk açılınca içeride belirmeyecek.
+   - Kepenk açılır, Ece kurtulduğunu sanıp aceleyle ve korkuyla kapıya koşar.
+   - Tam kapıdan çıkacakken dışarıdan o adam gelir; Ece ona çarpıp yere düşer.
+   - Ece yerde, gözünü adamdan ayırmadan geri geri sürünür.
+4. **Adam:** Korkutucu, iri yarı, kocaman, gerçekten ürkütücü biri olmalı. Mevcut karakter yetersiz: devasa gövde, kafa yapısı, yüz.
+5. **El sahnesi:**
+   - Kamera açısı yeniden kurulacak.
+   - El gerçekten rafların arasında gezecek ve rafa uzanıp sandviçi alacak.
+   - Elin anatomisi (parmak eklemleri, avuç) ve sandviçin biçimi (paketli üçgen sandviç, etiket, barkod) detaylı çizilecek.
+   - El sandviçle kasaya tırmanıp sandviçi bırakır.
+   - Ece korkarak sandviçi alır, barkodunu okutur (bip), kasaya koyar.
+   - O esnada el adamın koluyla birleşir. Adam sandviçi alır, parayı öder, öyle gider.
+6. **Diyalog:** "Bunu kimse görmüyo mu amk" çıkarılacak. Gerçekte kimse korkudan böyle tepki vermez. Ece'nin tepkileri korkuyla tutarlı olacak: donma, kekeleme, nefes.
