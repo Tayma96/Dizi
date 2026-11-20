@@ -9,8 +9,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const SANS = "Inter, Arial, sans-serif";
 const O = "#1a1412";
 
-export type Insert7Kind = "pov_yaprak" | "kol_saati" | "tv_son_dakika" | "yemek_ust" | "sozlesme" | "omuz_bastir";
-export const INSERT7_KINDS: Insert7Kind[] = ["pov_yaprak", "kol_saati", "tv_son_dakika", "yemek_ust", "sozlesme", "omuz_bastir"];
+export type Insert7Kind = "pov_yaprak" | "kol_saati" | "tv_son_dakika" | "yemek_ust" | "sozlesme" | "omuz_bastir" | "yemek_el";
+export const INSERT7_KINDS: Insert7Kind[] = ["pov_yaprak", "kol_saati", "tv_son_dakika", "yemek_ust", "sozlesme", "omuz_bastir", "yemek_el"];
 
 /* ------------------------------------------------------------------------------------------
  * POV (Emir'in gözü): saz tavan, üstüne eğilmiş kadın (B1 son karesindeki gibi kadrajda), sağ eli kalp biçimli
@@ -533,6 +533,69 @@ const OmuzBastir: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/* ------------------------------------------------------------------------------------------
+ * Yemek (Emir'in elinde, onun bakışından): sol eli (bilekte durmuş saat, yaprak sargı) yarım hindistan cevizi
+ * kabuğunu tutar; içinde süt beyazı su hafifçe çalkalanır. Arka planda bulanık kulübe ve kadının silueti.
+ * ---------------------------------------------------------------------------------------- */
+const YemekEl: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const z = interpolate(f, [0, dur], [1, 1.08], clamp);
+  const sal = Math.sin(f / 7) * 3; // el titrer
+  const SK = "#ecc19c", SK2 = "#d8a67f";
+  const cx = 540 + sal, cy = 900;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#6a4a2c", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, filter: "blur(10px)" }}>
+        <rect width={1080} height={1920} fill="#7a5a32" />
+        {new Array(24).fill(0).map((_, i) => <rect key={i} x={i * 48} y={0} width={20} height={1920} fill="#5a3e20" opacity={0.6} />)}
+        <path d="M 760 0 L 880 0 L 660 1920 L 520 1920 Z" fill="#fff0c0" opacity={0.25} />
+        {/* kadın silueti (arkada, solda) */}
+        <ellipse cx={170} cy={520} rx={110} ry={130} fill="#2a1a10" />
+        <path d="M 40 1100 Q 60 700 170 660 Q 280 700 300 1100 Z" fill="#b8955a" />
+      </svg>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "50% 48%" }}>
+        <defs>
+          <radialGradient id="ye_su" cx="0.42" cy="0.38" r="0.7"><stop offset="0" stopColor="#fbf8f0" /><stop offset="1" stopColor="#dfe4e0" /></radialGradient>
+        </defs>
+        {/* ön kol (alttan, sol el): yırtık beyaz manşet, yaprak sargı, saat */}
+        <path d={`M ${cx - 60} ${cy + 260} L ${cx + 260} 2100`} stroke={O} strokeWidth={300} strokeLinecap="round" />
+        <path d={`M ${cx - 60} ${cy + 260} L ${cx + 260} 2100`} stroke={SK} strokeWidth={286} strokeLinecap="round" />
+        <path d={`M ${cx + 140} ${cy + 900} L ${cx + 420} 2100 L ${cx - 60} 2100 L ${cx - 40} ${cy + 980} Z`} fill="#e6e0d4" stroke={O} strokeWidth={6} />
+        <path d={`M ${cx - 40} ${cy + 980} l 40 -40 l 30 50 l 40 -60 l 30 40 l 40 -30`} stroke={O} strokeWidth={5} fill="none" />
+        {/* saat (bilek) */}
+        <g transform={`rotate(-24 ${cx + 40} ${cy + 560})`}>
+          <rect x={cx - 120} y={cy + 500} width={330} height={120} fill="#3a2418" stroke={O} strokeWidth={5} />
+          <circle cx={cx + 40} cy={cy + 560} r={92} fill="#c0c4c8" stroke={O} strokeWidth={5} />
+          <circle cx={cx + 40} cy={cy + 560} r={74} fill="#1f2a44" />
+          <path d={`M ${cx + 40} ${cy + 560} L ${cx + 40 + Math.sin(1.108) * 40} ${cy + 560 - Math.cos(1.108) * 40} M ${cx + 40} ${cy + 560} L ${cx + 40 + Math.sin(0.733) * 60} ${cy + 560 - Math.cos(0.733) * 60}`} stroke="#e8ecf0" strokeWidth={7} strokeLinecap="round" />
+          <path d={`M ${cx + 70} ${cy + 590} l 14 -10 l 6 -14 M ${cx + 70} ${cy + 590} l -12 -4`} stroke="#fff" strokeWidth={2} opacity={0.7} />
+        </g>
+        {/* yaprak sargı (bileğin üstünde) */}
+        <path d={`M ${cx - 170} ${cy + 700} Q ${cx + 60} ${cy + 640} ${cx + 300} ${cy + 720} L ${cx + 320} ${cy + 800} Q ${cx + 60} ${cy + 720} ${cx - 150} ${cy + 790} Z`} fill="#5f8a3a" stroke="#2e4a1e" strokeWidth={5} />
+        {/* avuç: kabuğun altında */}
+        <ellipse cx={cx} cy={cy + 240} rx={250} ry={150} fill={SK} stroke={O} strokeWidth={6} />
+        {/* yarım hindistan cevizi kabuğu (lifli, düzensiz kenar) */}
+        <path d={new Array(32).fill(0).map((_, i) => { const a = (i / 32) * Math.PI * 2; const r = 1 + (random(`ye${i}`) - 0.5) * 0.05; return `${i ? "L" : "M"} ${cx + Math.cos(a) * 300 * r} ${cy + Math.sin(a) * 200 * r}`; }).join(" ") + " Z"} fill="#6a4a2c" stroke={O} strokeWidth={7} strokeLinejoin="round" />
+        {new Array(48).fill(0).map((_, i) => { const a = (i / 48) * Math.PI * 2; return <path key={i} d={`M ${cx + Math.cos(a) * 250} ${cy + Math.sin(a) * 165} L ${cx + Math.cos(a + 0.04) * 298} ${cy + Math.sin(a + 0.04) * 198}`} stroke="#8a6440" strokeWidth={4} opacity={0.8} />; })}
+        <ellipse cx={cx} cy={cy} rx={250} ry={165} fill="#f4ecd8" stroke="#d8ccb0" strokeWidth={4} />
+        <ellipse cx={cx} cy={cy + 6} rx={215} ry={138} fill="url(#ye_su)" />
+        <ellipse cx={cx - 60 + Math.sin(f / 9) * 14} cy={cy - 40} rx={80} ry={18} fill="#ffffff" opacity={0.7} />
+        <ellipse cx={cx} cy={cy + 6} rx={120 + (f % 45) * 2} ry={(120 + (f % 45) * 2) * 0.64} fill="none" stroke="#ffffff" strokeWidth={3} opacity={Math.max(0, 0.45 - (f % 45) / 100)} />
+        {/* parmaklar kabuğu yanlardan sarar (başparmak solda) */}
+        <path d={`M ${cx - 300} ${cy + 120} Q ${cx - 330} ${cy + 20} ${cx - 270} ${cy - 40}`} stroke={O} strokeWidth={66} strokeLinecap="round" fill="none" />
+        <path d={`M ${cx - 300} ${cy + 120} Q ${cx - 330} ${cy + 20} ${cx - 270} ${cy - 40}`} stroke={SK} strokeWidth={54} strokeLinecap="round" fill="none" />
+        {[0, 1, 2, 3].map((i) => (
+          <g key={i}>
+            <path d={`M ${cx + 230 - i * 6} ${cy + 170 - i * 50} Q ${cx + 330} ${cy + 120 - i * 55} ${cx + 300 - i * 8} ${cy + 60 - i * 58}`} stroke={O} strokeWidth={56} strokeLinecap="round" fill="none" />
+            <path d={`M ${cx + 230 - i * 6} ${cy + 170 - i * 50} Q ${cx + 330} ${cy + 120 - i * 55} ${cx + 300 - i * 8} ${cy + 60 - i * 58}`} stroke={i % 2 ? SK2 : SK} strokeWidth={45} strokeLinecap="round" fill="none" />
+          </g>
+        ))}
+      </svg>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 48%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 /** Taş halkalı kamp ateşi (meydan geniş planındakiyle aynı): taşlar, odunlar, katmanlı alev dilleri. h: alev yüksekliği çarpanı. */
 const KampAtesi: React.FC<{ f: number; cx: number; by: number; h: number; on?: boolean }> = ({ f, cx, by, h, on }) => {
   const katman = [
@@ -592,7 +655,7 @@ const Sozlesme: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => 
     const ac = interpolate(t, [0.75, 1.8], [0, 1], { ...clamp, easing: (x) => 1 - (1 - x) ** 3 });
     const yanik = interpolate(t, [Math.min(3.2, T - 1.2), T - 0.1], [0, 1], clamp);
     const cx = 540, by = 1560;
-    const topX = interpolate(dus, [0, 1], [700, cx]), topY = interpolate(dus, [0, 1], [-200, by - 90]);
+    const topX = interpolate(dus, [0, 1], [700, cx]), topY = interpolate(dus, [0, 1], [-200, by - 60]);
     const sc = interpolate(ac, [0, 1], [0.22, 0.98]);
     const alevH = 0.75 + 0.25 * ac + yanik * 0.4;
     return (
@@ -620,7 +683,7 @@ const Sozlesme: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => 
               <path d="M -18 -20 L 2 -4 L 22 -14 M 2 -4 L -4 22 M -22 8 L -4 2" stroke="#b8b0a0" strokeWidth={2} fill="none" />
             </g>
           ) : (
-            <g transform={`translate(${cx} ${by - 330}) rotate(${-5 + Math.sin(f / 9) * 1}) scale(${sc} ${sc * 0.66}) translate(-350 -480)`}>
+            <g transform={`translate(${cx} ${by - 150}) rotate(${-4 + Math.sin(f / 9) * 0.6}) scale(${sc * 0.8} ${sc * 0.46}) translate(-350 -480)`}>
               <SozlesmeSayfa yanik={yanik} buruşma={0.9 - 0.45 * ac} />
             </g>
           )}
@@ -715,6 +778,7 @@ export const Insert7: React.FC<{ kind: Insert7Kind; dur: number; text?: string[]
     case "yemek_ust": return <YemekUst dur={dur} />;
     case "sozlesme": return <Sozlesme dur={dur} text={text} />;
     case "omuz_bastir": return <OmuzBastir dur={dur} />;
+    case "yemek_el": return <YemekEl dur={dur} />;
     default: return null;
   }
 };

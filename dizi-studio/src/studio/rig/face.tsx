@@ -20,7 +20,7 @@ export type FaceParams = {
 };
 
 export const EMOTION_FACE: Record<Emotion, FaceParams> = {
-  aci: { browInner: 13, browOuter: -4, browLift: 4, eyeOpen: 0.42, eyeSmile: false, pupil: 0.9, mouth: "tight", blush: 0.1 },
+  aci: { browInner: 18, browOuter: -6, browLift: 6, eyeOpen: 0.3, eyeSmile: false, pupil: 0.9, mouth: "frown", blush: 0.1 },
   /** baygın: gevşek yüz, düz ağız, hafif acı izi; gülümseme yok */
   baygin: { browInner: 5, browOuter: -3, browLift: 3, eyeOpen: 0.5, eyeSmile: false, pupil: 1, mouth: "flat", blush: 0 },
   notr: { browInner: 0, browOuter: 0, browLift: 0, eyeOpen: 1, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.4 },
@@ -206,16 +206,20 @@ export const Mouth: React.FC<{ viseme: Viseme | null; rest: FaceParams["mouth"];
         </g>
       );
     }
+    // konuşurken ağız köşeleri duygudan gelir: üzgün/korkmuş/acılı yüzde köşeler aşağıda kalır (sırıtma olmaz)
+    const dn = rest === "frown" || rest === "wavy" ? 1 : rest === "tight" || rest === "flat" ? 0.6 : rest === "line" ? 0.35 : 0;
+    const cyK = cy + 7 * dn; // köşeler
+    const w = s.w * (1 - 0.18 * dn);
     return (
       <g>
         <path
-          d={`M ${cx - s.w} ${cy} Q ${cx} ${cy - 5} ${cx + s.w} ${cy} Q ${cx} ${cy + h * 1.5 + 4} ${cx - s.w} ${cy} Z`}
+          d={`M ${cx - w} ${cyK} Q ${cx} ${cy - 5 - 3 * dn} ${cx + w} ${cyK} Q ${cx} ${cy + h * 1.5 + 4} ${cx - w} ${cyK} Z`}
           fill={inside}
           stroke={OUT}
           strokeWidth={4}
           strokeLinejoin="round"
         />
-        {s.teeth ? <path d={`M ${cx - s.w * 0.75} ${cy + 1} Q ${cx} ${cy - 2} ${cx + s.w * 0.75} ${cy + 1} L ${cx + s.w * 0.6} ${cy + 5} Q ${cx} ${cy + 3} ${cx - s.w * 0.6} ${cy + 5} Z`} fill={teeth} /> : null}
+        {s.teeth ? <path d={`M ${cx - w * 0.6} ${cy + 1 + 3 * dn} Q ${cx} ${cy - 2 - 2 * dn} ${cx + w * 0.6} ${cy + 1 + 3 * dn} L ${cx + w * 0.5} ${cy + 5 + 3 * dn} Q ${cx} ${cy + 3} ${cx - w * 0.5} ${cy + 5 + 3 * dn} Z`} fill={teeth} /> : null}
         {s.f ? <path d={`M ${cx - s.w * 0.7} ${cy + 1} L ${cx + s.w * 0.7} ${cy + 1} L ${cx + s.w * 0.6} ${cy + 6} L ${cx - s.w * 0.6} ${cy + 6} Z`} fill={teeth} /> : null}
         {h > 10 ? <path d={`M ${cx - s.w * 0.5} ${cy + h * 1.2} Q ${cx} ${cy + h * 0.7} ${cx + s.w * 0.5} ${cy + h * 1.2}`} fill={tongue} /> : null}
       </g>

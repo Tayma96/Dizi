@@ -109,7 +109,7 @@
           "text": "Ne ki bu?",
           "emotion": "notr",
           "tags": "[confused, weak]",
-          "gapAfter": 0.3,
+          "gapAfter": 0.6,
           "shot": {
             "type": "orta",
             "on": "emir_kulube",
@@ -137,6 +137,9 @@
               "gesture": "rest",
               "emotion": "mutlu"
             }
+          },
+          "ekle": {
+            "kind": "yemek_el"
           }
         },
         {
@@ -264,7 +267,12 @@
             "type": "yakin",
             "on": "emir_kulube",
             "move": "uzaklas",
-            "angle": "ust"
+            "angle": "ust",
+            "kadraj": {
+              "cx": 330,
+              "cy": 1300,
+              "z": 1.9
+            }
           },
           "cast": {
             "emir_kulube": {
@@ -386,7 +394,24 @@
         },
         {
           "type": "action",
-          "dur": 1.4,
+          "dur": 0.55,
+          "shot": {
+            "type": "orta",
+            "on": "yerli_bilge",
+            "move": "sabit"
+          },
+          "cast": {
+            "yerli_bilge": {
+              "gesture": "elSalla",
+              "prop": "kagit_top",
+              "flip": true,
+              "emotion": "soguk"
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 0.5,
           "shot": {
             "type": "orta",
             "on": "yerli_bilge",
@@ -395,11 +420,18 @@
           "cast": {
             "yerli_bilge": {
               "gesture": "uzat",
-              "prop": "kagit_top",
+              "prop": "none",
               "flip": true,
               "emotion": "soguk"
             }
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/whoosh",
+              "volume": 0.35,
+              "at": 0.0
+            }
+          ]
         },
         {
           "type": "line",
@@ -434,7 +466,15 @@
           "cast": {
             "yerli_bilge": {
               "gesture": "rest",
-              "flip": false
+              "flip": false,
+              "prop": "none",
+              "bak": {
+                "x": -0.3,
+                "y": 0.5
+              }
+            },
+            "yerli_genc": {
+              "lookAt": "yerli_bilge"
             }
           },
           "fade": "cikis"
@@ -447,7 +487,7 @@
           "size": 840
         },
         "y1": {
-          "x": 330,
+          "x": 390,
           "y": 1620,
           "size": 960
         },
