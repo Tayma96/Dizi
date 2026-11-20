@@ -1,236 +1,245 @@
 {
- "ahmet": {
-  "voice_id": "KKeCA7uY2AJH3qyXgvpo",
-  "sahip": "e03f7eccb0ee12c1d47ce27abb631b568997c7f87dfd0e35529b81b9ddada0f2",
-  "ad": "KKeCA7uY2AJH3qyXgvpo",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
+  "ahmet": {
+    "voice_id": "KKeCA7uY2AJH3qyXgvpo",
+    "sahip": "e03f7eccb0ee12c1d47ce27abb631b568997c7f87dfd0e35529b81b9ddada0f2",
+    "ad": "KKeCA7uY2AJH3qyXgvpo",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "anne724": {
+    "voice_id": "JgYekNWmelei0oWTtYie",
+    "sahip": "0d06d501e2656152f3023cd43e51fea6403c5d7ba2283ffc62e91a6a7390cf81",
+    "ad": "JgYekNWmelei0oWTtYie",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "anne_dg": {
+    "voice_id": "Hvrobr8BhLPfiaSv2cHi",
+    "sahip": "4003729bd2c71989e34c8e2c5c713147deb493c36497880f332e3fa841f2418a",
+    "ad": "Hvrobr8BhLPfiaSv2cHi",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "ayla": {
+    "voice_id": "i50A6Mcx7A7vVwCVZVeZ",
+    "sahip": "60514a5b02d18c1c66587075999cc80de0d46d2307bc4299f2da0f514de9a15d",
+    "ad": "i50A6Mcx7A7vVwCVZVeZ",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "baba_dg": {
+    "voice_id": "t2OF8bTMamJQneB9gk1S",
+    "sahip": "0f72f4518c796f68cb32cf2fc34f02645c8524672cedb14ee4dfbcfe8d72616f",
+    "ad": "t2OF8bTMamJQneB9gk1S",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "berkay_hasta": {
+    "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
+    "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
+    "ad": "Mert Aksoy",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "berkay_ofis": {
+    "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
+    "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
+    "ad": "Mert Aksoy",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "cemil": {
+    "voice_id": "anu8LIf3pYhCJFkcpxzg",
+    "sahip": "09677f050136abbac3d65d2e8ba7739d7ee9bf3e20765d78bf1256ad1204ed75",
+    "ad": "Sefik",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "deniz": {
+    "voice_id": "PdYVUd1CAGSXsTvZZTNn",
+    "sahip": "ad50827bd49bc3cf8315f998cdbf2e71885fde967ff265f582df732f3eef6d71",
+    "ad": "Mia",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "ece724": {
+    "voice_id": "o9DOmAyPjfFu8AfoFAnM",
+    "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
+    "ad": "Nazlı Yeni",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "ece_ev": {
+    "voice_id": "o9DOmAyPjfFu8AfoFAnM",
+    "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
+    "ad": "Nazlı Yeni",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "ece_sivil": {
+    "voice_id": "o9DOmAyPjfFu8AfoFAnM",
+    "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
+    "ad": "Nazlı Yeni",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "emir": {
+    "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+    "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+    "ad": "Batuhan Altınova",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "emir_kaza": {
+    "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+    "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+    "ad": "Batuhan Altınova",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "emir_kulube": {
+    "voice_id": "vwmWyMlmlJtiiXeCVRKn",
+    "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
+    "ad": "Batuhan Altınova",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "hasta1": {
+    "voice_id": "DUnzBkwtjRWXPr6wRbmL",
+    "sahip": "3c5f8ec5e254c2b5c218004fd69e258afd3afcd5a454c10b35558677050270c8",
+    "ad": "Mark (anxious)",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "hasta2": {
+    "voice_id": "j9K9HnBcmgA6xNWqjlX0",
+    "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
+    "ad": "Emin (epic)",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "hostes": {
+    "voice_id": "58oUR7g9xaf9pbxNCyws",
+    "sahip": "e25a99a6ed848b49574b1a87268be51ed4b0f96d5a1409af430322581e123dac",
+    "ad": "Günnur",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "nalan": {
+    "voice_id": "uvU9jrgGLWNPeNA4NgNT",
+    "sahip": "be807c36f8506e14d6d37254720b5163ab289dd44401a2532223584fc12eea7b",
+    "ad": "İrem - Authoritarian",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "riza98": {
+    "voice_id": "9IVUOktoy2pc7WdsXQgd",
+    "sahip": "bfb1031b470e9c806e7dd6cf5d6733f467ddc616ed59af772d13e2b7f763057d",
+    "ad": "Ahmet Akyalcin",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "sabri": {
+    "voice_id": "MuOq11XzQTthwLhmGZ2V",
+    "sahip": "9e46ff55f2d9efaf1ab7b5acbc5f3415a7280d5a01ce1b2f69c05d327fdf36d4",
+    "ad": "Nihat",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "sarhos724": {
+    "voice_id": "Dzgub2SzfGvifooR4JMV",
+    "sahip": "f0d1207528476696cf00d74c0cf6c00aea0c404cca67943deb3ddc8dd37973a6",
+    "ad": "Furkan",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "selim": {
+    "voice_id": "j82ax9yhzfYwq9lDvRWL",
+    "sahip": "50fa846ac7597ddc729c33b64e3bec6347727ebc8131f83546a724b817bc2b5b",
+    "ad": "Kadir Kayışcı",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "sila": {
+    "voice_id": "rtnDjO8siSxeTEeTVczO",
+    "sahip": "17a07ad7a7633c080be4e938b96e37fc2b9d0e5b7c634d43e5047b37d8539e63",
+    "ad": "rtnDjO8siSxeTEeTVczO",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "spiker": {
+    "voice_id": "Q2IX97JeHBY3vNGzgM5s",
+    "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
+    "ad": "Cavit (TV sunucu)",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "zeynep_dd": {
+    "voice_id": "8eSMFxjAUgbRqmAkLPBt",
+    "sahip": "dc06dff134bdbdd1b16741be55c3d8748ef86c3ec2622ad1281157d49c8dc110",
+    "ad": "8eSMFxjAUgbRqmAkLPBt",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "yerli_kadin": {
+    "voice_id": "i50A6Mcx7A7vVwCVZVeZ",
+    "sahip": "60514a5b02d18c1c66587075999cc80de0d46d2307bc4299f2da0f514de9a15d",
+    "ad": "i50A6Mcx7A7vVwCVZVeZ",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
   }
- },
- "anne724": {
-  "voice_id": "JgYekNWmelei0oWTtYie",
-  "sahip": "0d06d501e2656152f3023cd43e51fea6403c5d7ba2283ffc62e91a6a7390cf81",
-  "ad": "JgYekNWmelei0oWTtYie",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "anne_dg": {
-  "voice_id": "Hvrobr8BhLPfiaSv2cHi",
-  "sahip": "4003729bd2c71989e34c8e2c5c713147deb493c36497880f332e3fa841f2418a",
-  "ad": "Hvrobr8BhLPfiaSv2cHi",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "ayla": {
-  "voice_id": "i50A6Mcx7A7vVwCVZVeZ",
-  "sahip": "60514a5b02d18c1c66587075999cc80de0d46d2307bc4299f2da0f514de9a15d",
-  "ad": "i50A6Mcx7A7vVwCVZVeZ",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "baba_dg": {
-  "voice_id": "t2OF8bTMamJQneB9gk1S",
-  "sahip": "0f72f4518c796f68cb32cf2fc34f02645c8524672cedb14ee4dfbcfe8d72616f",
-  "ad": "t2OF8bTMamJQneB9gk1S",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "berkay_hasta": {
-  "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
-  "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
-  "ad": "Mert Aksoy",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "berkay_ofis": {
-  "voice_id": "z2ObNnp0E5ZGeTlSXkX0",
-  "sahip": "24c5546213aaa70d5e43242ae71e6844466b299b924fd8700e01edc51651fbf5",
-  "ad": "Mert Aksoy",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "cemil": {
-  "voice_id": "anu8LIf3pYhCJFkcpxzg",
-  "sahip": "09677f050136abbac3d65d2e8ba7739d7ee9bf3e20765d78bf1256ad1204ed75",
-  "ad": "Sefik",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "deniz": {
-  "voice_id": "PdYVUd1CAGSXsTvZZTNn",
-  "sahip": "ad50827bd49bc3cf8315f998cdbf2e71885fde967ff265f582df732f3eef6d71",
-  "ad": "Mia",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "ece724": {
-  "voice_id": "o9DOmAyPjfFu8AfoFAnM",
-  "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
-  "ad": "Nazlı Yeni",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "ece_ev": {
-  "voice_id": "o9DOmAyPjfFu8AfoFAnM",
-  "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
-  "ad": "Nazlı Yeni",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "ece_sivil": {
-  "voice_id": "o9DOmAyPjfFu8AfoFAnM",
-  "sahip": "7c072be0a20904bf77404e14d233998a8923689f4d44a1034075b033b49c53fd",
-  "ad": "Nazlı Yeni",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "emir": {
-  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
-  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
-  "ad": "Batuhan Altınova",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "emir_kaza": {
-  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
-  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
-  "ad": "Batuhan Altınova",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "emir_kulube": {
-  "voice_id": "vwmWyMlmlJtiiXeCVRKn",
-  "sahip": "18de1f969db001509a9a02746d96e289b8a37f1b20df835d1c9fba7009be85f0",
-  "ad": "Batuhan Altınova",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "hasta1": {
-  "voice_id": "DUnzBkwtjRWXPr6wRbmL",
-  "sahip": "3c5f8ec5e254c2b5c218004fd69e258afd3afcd5a454c10b35558677050270c8",
-  "ad": "Mark (anxious)",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "hasta2": {
-  "voice_id": "j9K9HnBcmgA6xNWqjlX0",
-  "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
-  "ad": "Emin (epic)",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "hostes": {
-  "voice_id": "58oUR7g9xaf9pbxNCyws",
-  "sahip": "e25a99a6ed848b49574b1a87268be51ed4b0f96d5a1409af430322581e123dac",
-  "ad": "Günnur",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "nalan": {
-  "voice_id": "uvU9jrgGLWNPeNA4NgNT",
-  "sahip": "be807c36f8506e14d6d37254720b5163ab289dd44401a2532223584fc12eea7b",
-  "ad": "İrem - Authoritarian",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "riza98": {
-  "voice_id": "9IVUOktoy2pc7WdsXQgd",
-  "sahip": "bfb1031b470e9c806e7dd6cf5d6733f467ddc616ed59af772d13e2b7f763057d",
-  "ad": "Ahmet Akyalcin",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "sabri": {
-  "voice_id": "MuOq11XzQTthwLhmGZ2V",
-  "sahip": "9e46ff55f2d9efaf1ab7b5acbc5f3415a7280d5a01ce1b2f69c05d327fdf36d4",
-  "ad": "Nihat",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "sarhos724": {
-  "voice_id": "Dzgub2SzfGvifooR4JMV",
-  "sahip": "f0d1207528476696cf00d74c0cf6c00aea0c404cca67943deb3ddc8dd37973a6",
-  "ad": "Furkan",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "selim": {
-  "voice_id": "j82ax9yhzfYwq9lDvRWL",
-  "sahip": "50fa846ac7597ddc729c33b64e3bec6347727ebc8131f83546a724b817bc2b5b",
-  "ad": "Kadir Kayışcı",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "sila": {
-  "voice_id": "rtnDjO8siSxeTEeTVczO",
-  "sahip": "17a07ad7a7633c080be4e938b96e37fc2b9d0e5b7c634d43e5047b37d8539e63",
-  "ad": "rtnDjO8siSxeTEeTVczO",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "spiker": {
-  "voice_id": "Q2IX97JeHBY3vNGzgM5s",
-  "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
-  "ad": "Cavit (TV sunucu)",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "zeynep_dd": {
-  "voice_id": "8eSMFxjAUgbRqmAkLPBt",
-  "sahip": "dc06dff134bdbdd1b16741be55c3d8748ef86c3ec2622ad1281157d49c8dc110",
-  "ad": "8eSMFxjAUgbRqmAkLPBt",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- }
 }

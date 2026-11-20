@@ -311,7 +311,7 @@ def lines_from_episode(script):
                 emo = "notr"
             if who not in cast:
                 raise SystemExit(f"Bilinmeyen karakter: {who}")
-            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "tags": b.get("tags", ""), "hiz": b.get("hiz"), "fx": b.get("fx")})
+            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "okunus": b.get("okunus"), "tags": b.get("tags", ""), "hiz": b.get("hiz"), "fx": b.get("fx")})
     return out
 
 
@@ -319,7 +319,8 @@ def build_text(line, model):
     tag = EMO[line["emotion"]][0] if model in TAG_MODELS else ""
     extra = line.get("tags", "") if model in TAG_MODELS else ""
     pre = " ".join(t for t in (tag, extra) if t)
-    return (pre + " " + line["text"]).strip() if pre else line["text"]
+    metin = line.get("okunus") or line["text"]  # okunuş (ör. CEO -> siyo) yalnız seslendirmede; altyazı text'i kullanır
+    return (pre + " " + metin).strip() if pre else metin
 
 
 def words_from_alignment(al, text_original):

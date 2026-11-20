@@ -464,12 +464,14 @@ const MusicTrack: React.FC<{ src: string; base: number; dur: number; speaking: [
   return <Audio src={staticFile(src)} loop trimBefore={Math.round(startSec * fps)} volume={base * fadeIn * fadeOut * (1 - 0.55 * d)} />;
 };
 
-const AmbTrack: React.FC<{ src: string; base: number; dur: number; fadeIn?: boolean; fadeOut?: boolean }> = ({ src, base, dur, fadeIn = true, fadeOut = true }) => {
+const AmbTrack: React.FC<{ src: string; base: number; dur: number; fadeIn?: boolean; fadeOut?: boolean; speaking?: [number, number][]; offset?: number }> = ({ src, base, dur, fadeIn = true, fadeOut = true, speaking = [], offset = 0 }) => {
   const f = useCurrentFrame();
+  // replik sırasında ortam sesi geri çekilir (diyalog her zaman önde)
+  const d = ducked(f + offset, speaking, 10);
   // aynı ortam bir sonraki sahnede sürüyorsa kesmede "delik" açılmasın diye sönme yapılmaz
   const a = fadeIn ? interpolate(f, [0, 10], [0, 1], clamp) : 1;
   const b = fadeOut ? interpolate(f, [dur - 10, dur], [1, 0], clamp) : 1;
-  return <Audio src={staticFile(src)} loop volume={base * a * b} />;
+  return <Audio src={staticFile(src)} loop volume={base * a * b * (1 - 0.6 * d)} />;
 };
 
 /* ------------------------------ episode ------------------------------ */
@@ -500,8 +502,8 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
         {tl.scenes.map((ts, si) => (
           <Sequence key={ts.scene.id} name={`${ts.scene.id} · ${ts.scene.title ?? ts.scene.set}`} from={ts.from} durationInFrames={ts.dur}>
             <SceneView ts={ts} colors={colors} />
-            {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} fadeIn={tl.scenes[si - 1]?.scene.ambience?.name !== ts.scene.ambience.name} fadeOut={tl.scenes[si + 1]?.scene.ambience?.name !== ts.scene.ambience.name} /> : null}
-            {ts.scene.ambience2 ? <AmbTrack src={`ses/${ts.scene.ambience2.name}.mp3`} base={ts.scene.ambience2.volume ?? 0.1} dur={ts.dur} /> : null}
+            {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} fadeIn={tl.scenes[si - 1]?.scene.ambience?.name !== ts.scene.ambience.name} fadeOut={tl.scenes[si + 1]?.scene.ambience?.name !== ts.scene.ambience.name} speaking={allSpeaking} offset={ts.from} /> : null}
+            {ts.scene.ambience2 ? <AmbTrack src={`ses/${ts.scene.ambience2.name}.mp3`} base={ts.scene.ambience2.volume ?? 0.1} dur={ts.dur} speaking={allSpeaking} offset={ts.from} /> : null}
             {ts.scene.transition === "whoosh" ? <Audio src={staticFile("ses/efekt/whoosh.mp3")} volume={0.6} /> : null}
             {ts.beats.map((b) => (
               <Sequence key={b.index} from={b.from} durationInFrames={b.dur + 6 * fps} layout="none">
