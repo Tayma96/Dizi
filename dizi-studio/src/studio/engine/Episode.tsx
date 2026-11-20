@@ -108,7 +108,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     const st = tb.cast[id];
     let x = p.x;
     let walking = false;
-    const walkDur = Math.min(tb.dur, Math.round(1.3 * fps));
+    const walkDur = Math.min(tb.dur, Math.round(((st as { yuruSure?: number }).yuruSure ?? 1.3) * fps));
+    let derin: { feetY: number; size: number; top: number } | null = null;
     if (st.enter) {
       const from = st.enter === "sol" ? -300 : 1380;
       x = interpolate(bf, [0, walkDur], [from, p.x], clamp);
@@ -117,9 +118,14 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       const to = st.exit === "sol" ? -300 : 1380;
       x = interpolate(bf, [tb.dur - walkDur, tb.dur], [p.x, to], clamp);
       walking = bf > tb.dur - walkDur;
-    } else if (prevPlaced[id] && prevPlaced[id].x !== p.x) {
-      x = interpolate(bf, [0, walkDur], [prevPlaced[id].x, p.x], clamp);
-      walking = bf < walkDur;
+    } else if (prevPlaced[id] && (prevPlaced[id].x !== p.x || prevPlaced[id].feetY !== p.feetY || prevPlaced[id].size !== p.size)) {
+      // işaretten işarete yürüme: yatay konum + derinlik (ayak hizası, boy) birlikte, yumuşak
+      const q = interpolate(bf, [0, walkDur], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+      const P = prevPlaced[id];
+      x = P.x + (p.x - P.x) * q;
+      const feetY = P.feetY + (p.feetY - P.feetY) * q, size = P.size + (p.size - P.size) * q;
+      derin = { feetY, size, top: P.top + (p.top - P.top) * q };
+      walking = bf < walkDur && prevPlaced[id].x !== p.x;
     }
     if (st.yuru) walking = true;
     if (st.tik === "titre") {
@@ -132,7 +138,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       walking = true;
     }
     walkX[id] = { x, walking, end: st.enter || (prevPlaced[id] && prevPlaced[id].x !== p.x) ? walkDur : 0 };
-    placed[id] = { ...p, x, headX: x };
+    placed[id] = derin ? { ...p, x, headX: x, feetY: derin.feetY, size: derin.size, top: derin.top, headY: p.headY + (derin.top - p.top) } : { ...p, x, headX: x };
   }
 
   // yatma / doğrulma: kalçadan dönüş açısı; baş konumu kameranın takibi için güncellenir

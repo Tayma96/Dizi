@@ -1640,23 +1640,23 @@
     "gender": "m",
     "age": "adult",
     "build": "heavy",
-    "skin": "#c9b8a6",
-    "skinShade": "#a8968a",
-    "iris": "#3a3020",
+    "skin": "#b8aa98",
+    "skinShade": "#968878",
+    "iris": "#1a1410",
     "hair": {
-      "style": "balding",
+      "style": "bald",
       "color": "#3a3430",
       "shade": "#5a524c"
     },
-    "facialHair": "stubble",
+    "facialHair": "beard",
     "scar": true,
     "mole": true,
     "outfit": {
       "type": "coat",
-      "top": "#3a3228",
-      "topShade": "#2a241c",
-      "bottom": "#2a2a2a",
-      "shoes": "#1a1410"
+      "top": "#2a241e",
+      "topShade": "#1c1814",
+      "bottom": "#1a1a1a",
+      "shoes": "#100c0a"
     },
     "blush": false
   }

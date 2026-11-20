@@ -66,6 +66,8 @@ export type CharState = {
   diz?: boolean | "kalk";
   /** önlük: "giy" = bu vuruş boyunca giyer (animasyon), true = giyili */
   onluk?: "giy" | true;
+  /** işaretler arası yürüme/sürünme süresi (sn, vars. 1,3) */
+  yuruSure?: number;
   /** kısmi doğrulmadan sonra vuruş sonunda geri düşer */
   geriDus?: boolean;
   /** alnında serin yaprak */

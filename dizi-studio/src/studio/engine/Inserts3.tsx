@@ -8,6 +8,7 @@ import { Insert5, INSERT5_KINDS, type Insert5Kind } from "./Inserts5";
 import { Insert6, INSERT6_KINDS, type Insert6Kind } from "./Inserts6";
 import { Insert7, INSERT7_KINDS, type Insert7Kind } from "./Inserts7";
 import { Insert8, INSERT8_KINDS, type Insert8Kind } from "./Inserts8";
+import { Insert9, INSERT9_KINDS, type Insert9Kind } from "./Inserts9";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -579,8 +580,8 @@ const UcakCarpma: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert3Kind = Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
-export const INSERT3_KINDS: Insert3Kind[] = [...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
+export type Insert3Kind = Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | Insert9Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
+export const INSERT3_KINDS: Insert3Kind[] = [...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, ...INSERT9_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
 
 export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -604,6 +605,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "cctv_asansor": case "cctv_bos": case "cctv_lobi": case "kat_gostergesi": case "arka_bos": case "cctv_cik": case "pano_fener": case "not_yakin": case "telefon_cal": case "kablo": case "dugme_7": case "kep": case "takvim": case "dis_bina": return <Insert4 kind={kind} dur={dur} text={text} />;
     case "pov_yaprak": case "kol_saati": case "tv_son_dakika": case "yemek_ust": case "sozlesme": case "omuz_bastir": case "yemek_el": case "icir": case "telefon_kirik": return <Insert7 kind={kind} dur={dur} text={text} />;
     case "on_kamera": case "raf_duzen": case "depo_kolu": case "depo_el": case "el_kopar": return <Insert8 kind={kind} dur={dur} text={text} />;
+    case "telefon_mesaj": case "yer_pov": case "tezgah_el": case "el_raf": return <Insert9 kind={kind} dur={dur} text={text} />;
     case "tablet_video": case "murekkep_parmak": case "kalem_cep": case "hap_uc": case "avuc_iki": case "foto_sofor": case "yuzuk_izi": return <Insert6 kind={kind} dur={dur} text={text} />;
     case "pov_kadin": return <PovKadin dur={dur} faz={(text ?? ["1"])[0]} />;
   }
