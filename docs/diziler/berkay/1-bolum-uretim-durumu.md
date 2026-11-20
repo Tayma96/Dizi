@@ -98,4 +98,5 @@ Plan: `1-bolum-plan-oneri.md`. Kurallar: `belirsizlik-kurallari.md`. Senarist ya
 - İpucu defteri: fotoğraf (Berkay şoför kasketiyle, siyah makam arabası, arka camda silüet, tarih damgası '19 6 14); Zeynep'in sol elinde yüzük yok; Berkay'ın sol yüzük parmağında solgun yüzük izi. "Sen onun şoförüydün. Sekiz yıl." ("onun" kim olduğu söylenmedi).
 - Sol el yakın çekimleri anatomik: elin üstü, başparmak sağda.
 
-## Bölüm 2 birleşik: `bolumler/deli-degilim-02.mp4` (3:39, -14 LUFS), bitiş kartı: "Sence Zeynep yalan mı söylüyor, yoksa Berkay mı unuttu?"
+## Bölüm 2 birleşik (kullanıcı kararı: 4 parçayla biter): `bolumler/deli-degilim-02.mp4` (2:56, -14 LUFS), son: "O ses… benimdi.", bitiş kartı: "Sence telefondaki ses kimdi?"
+- Zeynep'li "Ziyaretçi" parçası Bölüm 3'ün açılışına saklandı: `bolumler/deli-degilim-03-acilis-zeynep.mp4` (JSON: imza-02-p5.json).
