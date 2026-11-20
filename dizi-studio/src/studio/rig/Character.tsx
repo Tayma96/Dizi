@@ -675,8 +675,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <ellipse cx={148 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
         <ellipse cx={252 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
       </g>
-      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={face.pupil} squeeze={squeezeL} uid={`${uid}l`} />
-      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} />
+      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} />
+      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} />
       <Brow cx={160 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeL} />
       <Brow cx={240 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
@@ -702,7 +702,33 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <path d={`M ${160 + dx} 274 Q ${200 + dx} 246 ${240 + dx} 274 Q ${224 + dx} 268 ${200 + dx} 264 Q ${176 + dx} 268 ${160 + dx} 274 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} />
       ) : null}
       {look.facialHair === "goatee" ? <path d={`M ${186 + dx} 292 Q ${200 + dx} 312 ${214 + dx} 292 L ${210 + dx} 302 Q ${200 + dx} 306 ${190 + dx} 302 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={3} /> : null}
+      {look.korkunc ? (
+        <g>
+          {/* çökük göz çukurları (gözlerin üstüne binen gölge halkası) */}
+          {[160, 240].map((x) => <ellipse key={x} cx={x + dx} cy={200} rx={38} ry={30} fill="#2a1a22" fillOpacity={0.16} stroke="#2a1a22" strokeWidth={8} opacity={0.38} />)}
+          {[160, 240].map((x) => <path key={`k${x}`} d={`M ${x - 30 + dx} 228 Q ${x + dx} 246 ${x + 30 + dx} 228`} stroke="#3a1e2a" strokeWidth={6} fill="none" opacity={0.6} />)}
+          {/* kanlı göz damarları */}
+          {[160, 240].map((x) => <path key={`d${x}`} d={`M ${x - 22 + dx} 196 l 8 2 l 4 -3 M ${x + 22 + dx} 200 l -9 -1 l -3 4 M ${x - 18 + dx} 206 l 7 -1`} stroke="#c0282a" strokeWidth={1.6} fill="none" opacity={0.85} />)}
+          {/* yüzü çapraz kesen dikişli yara */}
+          <path d={`M ${126 + dx} 140 Q ${158 + dx} 210 ${196 + dx} 300`} stroke="#6a2a2a" strokeWidth={7} fill="none" strokeLinecap="round" />
+          <path d={`M ${126 + dx} 140 Q ${158 + dx} 210 ${196 + dx} 300`} stroke="#b86a6a" strokeWidth={2.5} fill="none" strokeLinecap="round" />
+          {[0.15, 0.32, 0.5, 0.68, 0.85].map((q, i) => {
+            const x = 126 + (196 - 126) * q + dx, y = 140 + (300 - 140) * q;
+            return <path key={i} d={`M ${x - 9} ${y - 3} L ${x + 9} ${y + 3}`} stroke="#2a1414" strokeWidth={2.5} />;
+          })}
+          {/* yanak çukurları */}
+          <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
+        </g>
+      ) : null}
       <Mouth viseme={vis} rest={face.mouth} cx={200 + dx * 1.1} cy={274} amp={amp} scream={emo === "dehset"} />
+      {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
+        <g>
+          {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}
+          <path d={`M ${176 + dx} 278 Q ${200 + dx} 292 ${226 + dx} 276 L ${222 + dx} 286 Q ${200 + dx} 300 ${180 + dx} 288 Z`} fill="#2a0c0c" stroke={OUT} strokeWidth={2.5} />
+          {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M ${182 + i * 7 + dx} ${280 + Math.abs(i - 2.5) * 0.8} l 3.5 8 l 3.5 -8 Z`} fill="#d8cc9a" stroke="#6a5a3a" strokeWidth={1} />)}
+          <path d={`M ${196 + dx} 274 l 2 6 l -2 4`} stroke="#8a2a2a" strokeWidth={1.5} fill="none" />
+        </g>
+      ) : null}
       {tears > 0 ? (
         <g opacity={Math.min(1, tears * 2)}>
           {[160 + dx - 12, 240 + dx + 12].map((x, i) => {

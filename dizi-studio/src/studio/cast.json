@@ -1640,9 +1640,9 @@
     "gender": "m",
     "age": "adult",
     "build": "heavy",
-    "skin": "#b8aa98",
-    "skinShade": "#968878",
-    "iris": "#1a1410",
+    "skin": "#a8ac98",
+    "skinShade": "#88907a",
+    "iris": "#c8b860",
     "hair": {
       "style": "bald",
       "color": "#3a3430",
@@ -1658,6 +1658,7 @@
       "bottom": "#1a1a1a",
       "shoes": "#100c0a"
     },
-    "blush": false
+    "blush": false,
+    "korkunc": true
   }
 ]

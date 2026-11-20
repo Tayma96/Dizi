@@ -123,6 +123,8 @@ export type Look = {
     accent?: string;
   };
   glasses?: string;
+  /** korkunç yüz: çökük göz çukurları, kanlı gözler, iğne ucu göz bebekleri, dikişli yara, çatlak dudak, sivri dişler */
+  korkunc?: boolean;
   earrings?: string;
   blush?: boolean;
   mole?: boolean;

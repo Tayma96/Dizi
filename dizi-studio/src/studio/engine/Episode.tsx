@@ -406,6 +406,9 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
           {b.beat.siyah ? <AbsoluteFill style={{ backgroundColor: "#000" }} /> : null}
+          {(b.beat as { altIsik?: boolean }).altIsik || (scene as { altIsik?: boolean }).altIsik ? (
+            <AbsoluteFill style={{ background: "linear-gradient(0deg, rgba(255,90,40,0.22) 0%, rgba(120,20,10,0.06) 38%, rgba(0,0,0,0.25) 62%, rgba(0,0,0,0.62) 100%)", mixBlendMode: "multiply" }} />
+          ) : null}
           {(b.beat as { karanlik?: number }).karanlik || (scene as { karanlik?: number }).karanlik ? (() => {
             const a = (b.beat as { karanlik?: number }).karanlik ?? (scene as { karanlik?: number }).karanlik ?? 0;
             const isik = (b.beat as { isik?: boolean }).isik;
