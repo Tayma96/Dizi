@@ -464,12 +464,23 @@ const ElRaf: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
     [0, 180, 1780, 1.6, 0], [1.6, 560, 1420, 0.95, 0], [2.6, 800, 1470, 1.15, 0], [3.6, 860, 1080, 1.15, -78],
     [4.3, 880, 1040, 1.15, -78], [4.7, 860, 1500, 1.15, 0], [7.0, 140, 1880, 1.75, 0],
   ];
-  let i = 0;
-  while (i < key.length - 2 && t > key[i + 1][0]) i++;
-  const [t0, x0, y0, s0, r0] = key[i], [t1, x1, y1, s1, r1] = key[i + 1];
-  const k = Math.max(0, Math.min(1, (t - t0) / (t1 - t0)));
-  const kk = i === 4 ? k * k : ease(k);
-  const hx = lerp(x0, x1, kk), hy = lerp(y0, y1, kk), hs = lerp(s0, s1, kk), hr = lerp(r0, r1, kk);
+  const konum = (tt: number) => {
+    let i = 0;
+    while (i < key.length - 2 && tt > key[i + 1][0]) i++;
+    const [t0, x0, y0, s0, r0] = key[i], [t1, x1, y1, s1, r1] = key[i + 1];
+    const k = Math.max(0, Math.min(1, (tt - t0) / (t1 - t0)));
+    const kk = i === 4 ? k * k : ease(k);
+    return { x: lerp(x0, x1, kk), y: lerp(y0, y1, kk), s: lerp(s0, s1, kk), r: lerp(r0, r1, kk) };
+  };
+  const { x: hx, y: hy, s: hs, r: hr } = konum(t);
+  // kan izi: elin yerde yürüdüğü her an bilekten sarkan lifler zemine sürtünür (rafa tırmanırken iz yok)
+  const iz: { x: number; y: number; s: number; tt: number }[] = [];
+  for (let tt = 0.05; tt < t; tt += 0.07) {
+    if (tt > 2.6 && tt < 4.75) continue;
+    const p = konum(tt);
+    const yn = tt > 4.7 ? -1 : 1;
+    iz.push({ x: p.x - yn * 66 * p.s * 0.9, y: p.y + 74 * p.s * 0.9, s: p.s, tt });
+  }
   const yuruyor = !(t > 3.6 && t < 4.3) && !(t > 4.3 && t < 4.75);
   const adim = yuruyor ? t * 2.6 : 0;
   const yon = t > 4.7 ? -1 : 1;
@@ -512,6 +523,21 @@ const ElRaf: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         {[0, 1, 2].map((m) => (m === 0 && aldi ? null : <Sandvic key={`b${m}`} x={850 + m * 88} y={1060 - m * 12} s={0.66} />))}
         {[0, 1].map((m) => <Sandvic key={`c${m}`} x={860 + m * 96} y={1450 - m * 12} s={0.7} />)}
         <rect x={760} y={300} width={22} height={1260} fill="#9aa4aa" />
+        {/* kan izi: sürtme lekesi + damlalar (yaşa göre koyulaşır) */}
+        <g>
+          {iz.map((p, j) => {
+            const yas = t - p.tt;
+            const renk = yas > 1.2 ? "#4a0e10" : "#7a1418";
+            return (
+              <g key={j} opacity={0.85}>
+                <ellipse cx={p.x} cy={p.y} rx={20 * p.s} ry={6 * p.s} fill={renk} />
+                {j % 3 === 0 ? <ellipse cx={p.x + Math.sin(j * 2.1) * 18 * p.s} cy={p.y + Math.cos(j * 1.7) * 7 * p.s} rx={5 * p.s} ry={3 * p.s} fill="#5a0c0e" /> : null}
+                {j % 5 === 0 ? <path d={`M ${p.x - 14 * p.s} ${p.y - 3 * p.s} l ${-10 * p.s} ${-2 * p.s}`} stroke="#3a0808" strokeWidth={2.5 * p.s} /> : null}
+              </g>
+            );
+          })}
+          {iz.length > 1 ? <path d={"M " + iz.map((p) => `${p.x} ${p.y}`).join(" L ")} stroke="#6a1014" strokeWidth={9 * (iz[iz.length - 1]?.s ?? 1)} fill="none" strokeLinecap="round" strokeLinejoin="round" opacity={0.55} /> : null}
+        </g>
         {/* el + taşınan sandviç */}
         <KopukEl x={hx} y={hy} s={hs * 0.9} yon={yon} adim={adim} kavra={t > 4.1 && t < 4.7 ? 1 : kavra} rot={hr} f={f} />
         {aldi ? <Sandvic x={hx + (yon > 0 ? 70 : -70) * hs} y={hy - 40 * hs} s={hs * 0.62} rot={yon > 0 ? -10 : 10} /> : null}
