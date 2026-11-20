@@ -43,6 +43,7 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   krem: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 122, ul: 0.41, fl: 1.03 } },
   yuzGoster: { L: { upper: 6, fore: 0 }, R: { upper: 85, fore: 119, ul: 0.41, fl: 0.8 } },
   kafaKasi: { L: { upper: 6, fore: 0 }, R: { upper: 150, fore: 76, ul: 0.9, fl: 0.88 } },
+  basTut: { L: { upper: 150, fore: 56, ul: 0.78, fl: 0.75 }, R: { upper: 150, fore: 56, ul: 0.78, fl: 0.75 } },
   raf: { L: { upper: 34, fore: -78, ul: 0.85 }, R: { upper: 44, fore: -64, ul: 0.85 } },
   uzat: { L: { upper: 6, fore: 0 }, R: { upper: 52, fore: -34, ul: 0.72, fl: 0.9 } },
 };

@@ -62,6 +62,7 @@ export type Emotion =
 export type Gesture =
   | "rest"
   | "raf"
+  | "basTut"
   | "yudum"
   | "okuma"
   | "elBelde"

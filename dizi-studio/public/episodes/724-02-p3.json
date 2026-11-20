@@ -1,0 +1,451 @@
+{
+  "series": "724",
+  "seriesTitle": "7/24",
+  "episode": "724-02-p3",
+  "episodeNo": 2,
+  "title": "Bölüm 2 — Parça 3",
+  "endCard": {
+    "text": "7/24 · Bölüm 3 yakında",
+    "sub": "Depoda ne var?"
+  },
+  "scenes": [
+    {
+      "id": "a",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "01:05",
+      "title": "Sessizlik",
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "emotion": "korkmus",
+          "tik": "titre",
+          "tears": 0.25,
+          "bak": {
+            "x": -0.1,
+            "y": 0.2
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 2.4,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_market_adim",
+              "volume": 1.0,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.6,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "dehset",
+              "bak": {
+                "x": 0,
+                "y": 0.5
+              }
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_nefes_tutma",
+              "volume": 0.6,
+              "at": 0.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "01:05",
+      "title": "Kepenk",
+      "cast": {},
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.6,
+          "kepenk": "in",
+          "turb": 1,
+          "shot": {
+            "type": "genis",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 540,
+              "cy": 900,
+              "z": 1.05
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_kepenk",
+              "volume": 0.95,
+              "at": 0.05
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.0,
+          "turb": 1,
+          "karanlik": 0.55,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 540,
+              "cy": 900,
+              "z": 1.08
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_korku_vurus",
+              "volume": 0.45,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "01:05",
+      "title": "Karanlık",
+      "karanlik": 0.6,
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "emotion": "dehset",
+          "tik": "titre",
+          "tears": 0.3,
+          "gesture": "eliYuzunde",
+          "bak": {
+            "x": 0,
+            "y": 0.1
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.6,
+          "turb": 1,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit"
+          },
+          "cast": {
+            "ece_sivil": {
+              "diz": true
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "kurallar",
+          "dur": 1.8,
+          "text": [
+            "4"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/kalp_atisi",
+              "volume": 0.5,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "insert",
+          "kind": "telefon_ekran",
+          "dur": 1.6,
+          "sfx": [
+            {
+              "name": "efekt/telefon_titresim",
+              "volume": 0.8,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Abi...",
+          "emotion": "notr",
+          "tags": "[terrified whisper, barely audible]",
+          "gapAfter": 0.3,
+          "isik": true,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "diz": true,
+              "gesture": "telefon",
+              "prop": "telefon",
+              "emotion": "korkmus"
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "sabri",
+          "offscreen": true,
+          "label": "TELEFON · SABRİ ABİ",
+          "fx": "telefon",
+          "text": "Kızım… bu gece markete sarı saçlı küçük bir kız geldi mi? Babasıyla?",
+          "emotion": "notr",
+          "tags": "[worried, slow, quiet]",
+          "gapAfter": 0.3,
+          "isik": true,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "shots": [
+            {
+              "at": 2.6,
+              "shot": {
+                "type": "genis",
+                "move": "yaklas",
+                "kadraj": {
+                  "cx": 540,
+                  "cy": 1250,
+                  "z": 1.0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Geldi abi… Çikolata aldılar.",
+          "emotion": "notr",
+          "tags": "[whispering, confused, scared]",
+          "gapAfter": 0.3,
+          "isik": true,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "sabit"
+          }
+        },
+        {
+          "type": "action",
+          "dur": 1.8,
+          "isik": true,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "saskin"
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "sabri",
+          "offscreen": true,
+          "label": "TELEFON · SABRİ ABİ",
+          "fx": "telefon",
+          "text": "Kızım… o baba kız iki yıl önce tam marketin önünde kaza geçirdi. İkisi de… Her sene bu gece gelirler.",
+          "emotion": "notr",
+          "tags": "[voice trembling with fear, slow, grave]",
+          "gapAfter": 0.3,
+          "isik": true,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 540,
+              "cy": 1330,
+              "z": 1.45
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "dehset"
+            }
+          },
+          "shots": [
+            {
+              "at": 4.2,
+              "shot": {
+                "type": "cok_yakin",
+                "on": "ece_sivil",
+                "move": "yaklas",
+                "kadraj": {
+                  "cx": 540,
+                  "cy": 1300,
+                  "z": 2.4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.0,
+          "isik": true,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "sabit"
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_hat_kapanma",
+              "volume": 0.6,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.4,
+          "karanlik": 0.72,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 800,
+              "cy": 1080,
+              "z": 1.2
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "gesture": "rest",
+              "prop": "none",
+              "emotion": "dehset",
+              "bak": {
+                "x": 0.9,
+                "y": -0.1,
+                "yaw": 0.6
+              }
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_depo_kapi",
+              "volume": 0.85,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "01:06",
+      "title": "Depo",
+      "karanlik": 0.0,
+      "cast": {},
+      "beats": [
+        {
+          "who": "kiz724",
+          "text": "Ablaaa, bu çukulatadan alabilir miyimm?",
+          "emotion": "notr",
+          "tags": "[little girl, sweet, childish, high-pitched, pleading]",
+          "gapAfter": 0.6,
+          "offscreen": true,
+          "label": "DEPO",
+          "ekle": {
+            "kind": "depo_el"
+          },
+          "type": "line"
+        }
+      ]
+    },
+    {
+      "id": "e",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "01:06",
+      "title": "Çığlık",
+      "karanlik": 0.6,
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "diz": true,
+          "emotion": "dehset",
+          "tears": 0.4,
+          "gesture": "basTut",
+          "eyesClosed": 1,
+          "bak": {
+            "x": 0,
+            "y": 0
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Annneeee!",
+          "emotion": "notr",
+          "tags": "[screaming at the top of her lungs, terrified, long scream]",
+          "gapAfter": 0.1,
+          "turb": 1,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 540,
+              "cy": 1310,
+              "z": 2.0
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "siyah",
+          "dur": 0.8,
+          "sfx": [
+            {
+              "name": "efekt/el_korku_vurus",
+              "volume": 0.7,
+              "at": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

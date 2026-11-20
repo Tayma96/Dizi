@@ -342,6 +342,9 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     );
   };
 
+  const kepenkNow = (tb.beat as { kepenk?: string | boolean }).kepenk === "in"
+    ? interpolate(bf, [Math.round(0.1 * fps), Math.round(0.55 * fps)], [0, 1], { ...clamp, easing: (t) => t * t })
+    : (scene as { kepenk?: boolean }).kepenk || ts.beats.slice(0, bi).some((b) => (b.beat as { kepenk?: unknown }).kepenk) ? 1 : 0;
   const ids = Object.keys(placed).sort((a, b) => placed[a].feetY - placed[b].feetY);
   const outsideIds = scene.set === "apartman_kapisi" ? ids.filter((id) => tb.cast[id].mark === "kapi") : [];
   const insideIds = ids.filter((id) => !outsideIds.includes(id));
@@ -384,6 +387,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
               {outsideIds.map(renderChar)}
             </SetLayer>
             {scene.direk !== undefined ? <Direk x={scene.direk} /> : null}
+            {(scene.set as string) === "market_kapi" && kepenkNow > 0 ? <Kepenk k={kepenkNow} /> : null}
             {insideIds.map(renderChar)}
             <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
           </>
@@ -394,6 +398,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
           {b.beat.siyah ? <AbsoluteFill style={{ backgroundColor: "#000" }} /> : null}
+          {(b.beat as { karanlik?: number }).karanlik || (scene as { karanlik?: number }).karanlik ? (() => {
+            const a = (b.beat as { karanlik?: number }).karanlik ?? (scene as { karanlik?: number }).karanlik ?? 0;
+            const isik = (b.beat as { isik?: boolean }).isik;
+            return <AbsoluteFill style={{ background: isik ? `radial-gradient(ellipse 60% 38% at 50% 58%, rgba(150,190,255,0.10) 0%, rgba(0,0,10,${a * 0.35}) 40%, rgba(0,0,8,${a}) 85%)` : `rgba(0,0,8,${a})` }} />;
+          })() : null}
           {b.beat.type === "line" ? (
             <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} alt={(b.beat as { altyazi?: string }).altyazi === "alt" || (scene as { altyazi?: string }).altyazi === "alt"} />
           ) : b.beat.type === "yazi" ? (
@@ -434,6 +443,29 @@ const Direk: React.FC<{ x: number }> = ({ x }) => (
     ))}
   </svg>
 );
+
+/** Market kepengi: cam vitrinin önüne yukarıdan iner (oluklu metal, kilit dili, toz). k: 0..1 */
+const Kepenk: React.FC<{ k: number }> = ({ k }) => {
+  const top = 420, bot = 1190, h = (bot - top) * k;
+  return (
+    <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
+      <defs>
+        <linearGradient id="kpG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#8a9096" /><stop offset="0.5" stopColor="#6a7076" /><stop offset="1" stopColor="#4a5056" /></linearGradient>
+        <clipPath id="kpC"><rect x={-20} y={top} width={1120} height={h} /></clipPath>
+      </defs>
+      <g clipPath="url(#kpC)">
+        <rect x={-20} y={top} width={1120} height={bot - top} fill="url(#kpG)" />
+        {new Array(Math.ceil((bot - top) / 26)).fill(0).map((_, i) => {
+          const y = top + h - (bot - top) + i * 26;
+          return <g key={i}><path d={`M -20 ${y} H 1100`} stroke="#3a3e42" strokeWidth={4} /><path d={`M -20 ${y + 6} H 1100`} stroke="#a8aeb4" strokeWidth={3} opacity={0.6} /></g>;
+        })}
+        <rect x={-20} y={top + h - 40} width={1120} height={40} fill="#3a3e42" />
+        <rect x={500} y={top + h - 34} width={80} height={24} rx={4} fill="#c8a03a" stroke="#1b1412" strokeWidth={3} />
+      </g>
+      <rect x={-20} y={top - 30} width={1120} height={34} fill="#2a2e32" />
+    </svg>
+  );
+};
 
 const Blanket: React.FC<{ hx: number; hy: number; k: number }> = ({ hx, hy, k }) => {
   const P = BL_LIE.map(([x, y], i) => [hx + x + (BL_SIT[i][0] - x) * k, hy + y + (BL_SIT[i][1] - y) * k]);

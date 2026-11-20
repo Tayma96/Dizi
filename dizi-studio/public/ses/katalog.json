@@ -286,6 +286,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Old electronic cash register drawer pops open by itself with a metallic ring and clunk"
  },
+ "efekt/el_kepenk": {
+  "file": "ses/efekt/el_kepenk.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Metal roller shutters of a small shop slamming down violently all at once at night, loud rattling crash and a heavy metallic bang at the end, short echo"
+ },
  "efekt/el_kikirdama": {
   "file": "ses/efekt/el_kikirdama.mp3",
   "category": "efekt",

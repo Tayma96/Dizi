@@ -9,8 +9,8 @@ const O = "#1a1412";
 const SANS = "Inter, Arial, sans-serif";
 const TEN = "#f0c8a8", TEN2 = "#dcac88", KAZAK = "#c8902a", KAZAK2 = "#a8741a";
 
-export type Insert8Kind = "on_kamera" | "raf_duzen" | "depo_kolu";
-export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen", "depo_kolu"];
+export type Insert8Kind = "on_kamera" | "raf_duzen" | "depo_kolu" | "depo_el";
+export const INSERT8_KINDS: Insert8Kind[] = ["on_kamera", "raf_duzen", "depo_kolu", "depo_el"];
 
 /** Ece'nin gözünden: iki elinde telefon, ön kamerada kendi yüzü (ayna görüntüsü), sağ yanakta sivilce.
  *  text[0]: bildirimin düştüğü saniye ("Sabri Abi · Kuralları unutma"). text[1]: konuşma bitişi (sn). */
@@ -223,11 +223,64 @@ const DepoKolu: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
+/** Depo kapısı (karanlıkta, yakın): kapı gıcırdayarak birkaç santim aralanır, aralık simsiyah.
+ *  Kapının kenarında yavaşça küçük, solgun bir çocuk eli belirir; parmaklar kenarı kavrar. Floresan titrer. */
+const DepoEl: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const z = interpolate(f, [0, dur], [1.0, 1.18], { ...clamp, easing: (x) => x * x });
+  const acik = interpolate(t, [0.2, 1.6], [0, 1], { ...clamp, easing: (x) => x * x * (3 - 2 * x) });
+  const el = interpolate(t, [1.9, 3.2], [0, 1], { ...clamp, easing: (x) => x * x * (3 - 2 * x) });
+  const flk = random(`de${Math.floor(f / 2)}`) > 0.86 ? 0.35 : 1;
+  const gapX = 600, gapW = 20 + 170 * acik; // kapı sağa doğru açılır (menteşe solda)
+  const SOL = "#d8dcd6", SOL2 = "#b8bcb4";
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#060708", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ transform: `scale(${z})`, transformOrigin: "60% 50%" }}>
+        <defs>
+          <linearGradient id="de_k" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#3a3e44" /><stop offset="1" stopColor="#5a6068" /></linearGradient>
+        </defs>
+        {/* duvar (loş) */}
+        <rect width={1080} height={1920} fill="#2a2c2e" />
+        {/* kapı kanadı (aralığın solunda) + kasa */}
+        <rect x={120} y={-20} width={gapX - 120} height={1960} fill="url(#de_k)" stroke="#0a0a0a" strokeWidth={8} />
+        <rect x={210} y={420} width={300} height={110} rx={6} fill="#c8c4b8" opacity={0.6} />
+        <text x={360} y={498} textAnchor="middle" fontFamily={SANS} fontWeight={900} fontSize={60} fill="#1a1a1a" opacity={0.7}>DEPO</text>
+        <path d={`M ${gapX - 80} 900 L ${gapX - 260} 906`} stroke="#9aa0a6" strokeWidth={34} strokeLinecap="round" />
+        {/* aralık: zifiri karanlık */}
+        <rect x={gapX} y={-20} width={gapW} height={1960} fill="#000" />
+        <rect x={gapX + gapW} y={-20} width={1080} height={1960} fill="#1c1e20" />
+        <rect x={gapX + gapW} y={-20} width={28} height={1960} fill="#3a3e42" />
+        {/* küçük el: kapının kenarını içeriden kavrar */}
+        {el > 0 ? (
+          <g transform={`translate(${gapX + 14 - (1 - el) * 60} 960) scale(2.6)`} opacity={Math.min(1, el * 1.5)}>
+            {/* elin sırtı aralıkta (karanlıktan çıkar) */}
+            <path d="M 6 -14 Q 40 -20 60 10 L 60 110 Q 30 120 6 104 Z" fill="#9a9e98" opacity={0.55} />
+            {[0, 1, 2, 3].map((k) => (
+              <g key={k}>
+                <path d={`M 10 ${k * 30} Q ${-24 - k * 2} ${k * 30 - 6} ${-34 - (k === 1 || k === 2 ? 8 : 0)} ${k * 30 + 10}`} stroke="#0a0a0a" strokeWidth={24} strokeLinecap="round" fill="none" />
+                <path d={`M 10 ${k * 30} Q ${-24 - k * 2} ${k * 30 - 6} ${-34 - (k === 1 || k === 2 ? 8 : 0)} ${k * 30 + 10}`} stroke={k % 2 ? SOL2 : SOL} strokeWidth={16} strokeLinecap="round" fill="none" />
+                <ellipse cx={-34 - (k === 1 || k === 2 ? 8 : 0)} cy={k * 30 + 10} rx={6} ry={5} fill="#8a8a86" />
+              </g>
+            ))}
+          </g>
+        ) : null}
+        {/* yerdeki ışık şeridi (titrer) */}
+        <path d={`M 0 1860 L 1080 1830 L 1080 1920 L 0 1920 Z`} fill="#c8d0d8" opacity={0.12 * flk} />
+      </svg>
+      <AbsoluteFill style={{ background: `rgba(0,0,0,${flk < 1 ? 0.45 : 0})` }} />
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 58% 52%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert8: React.FC<{ kind: Insert8Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "on_kamera": return <OnKamera dur={dur} text={text} />;
     case "raf_duzen": return <RafDuzen dur={dur} />;
     case "depo_kolu": return <DepoKolu dur={dur} />;
+    case "depo_el": return <DepoEl dur={dur} />;
     default: return null;
   }
 };

@@ -73,3 +73,12 @@ Ece: "Depodan ses duyarsan kulak asma diyodu." "Hassiktir ya, birini saklıyorla
 Sözü bitince market kapısı açılır, zil çalar. Ece o esnada kapıya bakmıyordur. Tam "Hoş..." derken kapıya doğru döner, ancak kimse yoktur. Kasaya, yerine geri döner. 3-4 saniye sonra marketin içinde ayak sesleri vardır; biri yürüyordur ama kimse yoktur. Ne iz ne görüntü, sadece ses.
 Ece: "Annanı sikim." Korkudan titremeye başlar.
 (Yazım: "hep sıkılmak" → "hem sıkılmak", "Hasktir" → "Hassiktir", "kaçıysalar" → "kaçırdılarsa" olarak okundu.)
+
+## Bölüm 2, Parça 3 (20 Kasım 2026; kullanıcı A seçeneğini onayladı, replikler benim önerim + kullanıcının finali)
+Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virgül) kullanıcının yazdığı gibi kalır.
+- Ayak sesleri kasanın tam önünde durur, sessizlik olur. Kepenkler kendiliğinden iner (kural 4), floresanlar titrer, karanlık çöker.
+- Ece tezgâhın arkasına çöker, eliyle ağzını kapatır. 4. kural vurgulanır.
+- Telefon gelir, arayan Sabri Abi. Ece: "Abi..." Sabri: "Kızım… bu gece markete sarı saçlı küçük bir kız geldi mi? Babasıyla?" Ece: "Geldi abi… Çikolata aldılar." Sabri: "Kızım… o baba kız iki yıl önce tam marketin önünde kaza geçirdi. İkisi de… Her sene bu gece gelirler." Hat kesilir.
+- Depo kapısı gıcırdayarak aralanır. İçeriden kızın sesi (yavaşlatılmış, boğuk): "Ablaaa, bu çukulatadan alabilir miyim?" Kapı kenarında küçük, solgun parmaklar görünür. (Depodaki şey duyduğu sesleri taklit eder; kural 2'nin nedeni.)
+- **Kullanıcının finali:** Ece ellerini başına götürür, gözlerini kapar, avazı çıktığı kadar bağırır: "Annneeee!" Kararma. Bitiş kartı: "Depoda ne var?"
+- Birleşik bölüm: `bolumler/724-02.mp4`.
