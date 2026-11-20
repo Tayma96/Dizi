@@ -90,6 +90,20 @@
   "loop": false,
   "desc": "Raftan poşetli ekmek düşer."
  },
+ "efekt/el_ada_kulube": {
+  "file": "ses/efekt/el_ada_kulube.mp3",
+  "category": "efekt",
+  "duration": 12.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Inside a tropical island straw hut at midday, gentle wind through palm leaves, distant ocean waves, tropical birds and insects, soft creak of the hut, no voices"
+ },
+ "efekt/el_ada_meydan": {
+  "file": "ses/efekt/el_ada_meydan.mp3",
+  "category": "efekt",
+  "duration": 12.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Tropical island village square, crackling campfire, distant waves, faint murmur of villagers speaking an unknown language, birds"
+ },
  "efekt/el_aile_gulus": {
   "file": "ses/efekt/el_aile_gulus.mp3",
   "category": "efekt",
@@ -167,6 +181,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Violent car crash: loud tire screech skid then massive metal impact, shattering windshield glass, debris, then sudden silence"
  },
+ "efekt/el_haber_jenerik": {
+  "file": "ses/efekt/el_haber_jenerik.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Breaking news TV sting, short urgent orchestral news intro hit with ticking, broadcast style"
+ },
  "efekt/el_hastane_koridor": {
   "file": "ses/efekt/el_hastane_koridor.mp3",
   "category": "efekt",
@@ -201,6 +222,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: A single sheet of paper handed over across a counter, crisp paper rustle"
+ },
+ "efekt/el_kagit_atese": {
+  "file": "ses/efekt/el_kagit_atese.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Crumpling a thick sheet of paper in a fist, then tossing it into a crackling fire, paper catches and burns with a whoosh"
  },
  "efekt/el_kalem_tik": {
   "file": "ses/efekt/el_kalem_tik.mp3",
@@ -292,6 +320,13 @@
   "duration": 2.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Young woman sharply inhaling in fear and holding her breath, close microphone"
+ },
+ "efekt/el_ofis_lobi": {
+  "file": "ses/efekt/el_ofis_lobi.mp3",
+  "category": "efekt",
+  "duration": 10.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Quiet corporate office lobby at night, air conditioning hum, distant phone ringing, a TV playing softly, no clear voices"
  },
  "efekt/el_ofis_telefon": {
   "file": "ses/efekt/el_ofis_telefon.mp3",
@@ -817,6 +852,13 @@
   "duration": 90.0,
   "loop": false,
   "desc": "ElevenLabs Music: Dark cinematic horror underscore for a night security guard alone in an old building. Slow, sparse and unsettling: deep sub-bass drone, a faint heartbeat-like low pulse, dissonant high sustained strings that slowly swell, occasional distant metallic scrapes and reversed piano notes. No melody, no drums, no vocals. Builds tension very gradually, never resolves."
+ },
+ "muzik/kayip_ada": {
+  "file": "ses/muzik/kayip_ada.mp3",
+  "category": "muzik",
+  "duration": 50.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Emotional cinematic underscore for a castaway CEO on a remote Indian Ocean island, soft hand drums, distant wooden flute, warm strings, mystery and melancholy, slowly building, no vocals"
  },
  "muzik/market_gerilim": {
   "file": "ses/muzik/market_gerilim.mp3",
