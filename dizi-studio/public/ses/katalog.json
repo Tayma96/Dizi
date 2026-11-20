@@ -146,6 +146,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Heavy metal hospital room door pushed open, then shut hard with a lock bolt clack, reverberant"
  },
+ "efekt/el_depo_devrilme": {
+  "file": "ses/efekt/el_depo_devrilme.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Muffled crash from behind a closed storage room door: stacked cardboard boxes and tin cans toppling over and rolling on a concrete floor, then silence"
+ },
  "efekt/el_depo_kapi": {
   "file": "ses/efekt/el_depo_kapi.mp3",
   "category": "efekt",

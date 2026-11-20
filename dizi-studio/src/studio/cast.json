@@ -1578,5 +1578,57 @@
       "accent": "#c8102e"
     },
     "blush": false
+  },
+  {
+    "id": "kiz724",
+    "name": "Küçük kız",
+    "role": "7/24: gece markete gelen 7 yaşlarında sarı saçlı, mavi gözlü kız",
+    "voice": "kadin",
+    "gender": "f",
+    "age": "child",
+    "build": "slim",
+    "skin": "#f6d8c4",
+    "skinShade": "#e8bca4",
+    "iris": "#3a86d8",
+    "hair": {
+      "style": "longWavy",
+      "color": "#f0cc5a",
+      "shade": "#d8b040"
+    },
+    "outfit": {
+      "type": "dress",
+      "top": "#f4a8c0",
+      "topShade": "#e088a8",
+      "bottom": "#f4a8c0",
+      "shoes": "#f8f8f8",
+      "accent": "#ffffff"
+    },
+    "blush": true
+  },
+  {
+    "id": "adam724",
+    "name": "Baba",
+    "role": "7/24: kızın babası, yakışıklı, kaslı, esrarengiz",
+    "voice": "erkek",
+    "gender": "m",
+    "age": "adult",
+    "build": "normal",
+    "skin": "#e2b48e",
+    "skinShade": "#c99a74",
+    "iris": "#2a2018",
+    "hair": {
+      "style": "slick",
+      "color": "#1a1412",
+      "shade": "#3a2e28"
+    },
+    "facialHair": "stubble",
+    "outfit": {
+      "type": "tshirt",
+      "top": "#1c1e22",
+      "topShade": "#121316",
+      "bottom": "#3a4a62",
+      "shoes": "#2a2420"
+    },
+    "blush": false
   }
 ]

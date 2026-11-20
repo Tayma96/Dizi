@@ -64,6 +64,8 @@ export type CharState = {
   dogrulma?: number;
   /** diz çökme: true = beat başında 0,6 sn'de çöker (yürüyüşten sonra), "kalk" = kalkar */
   diz?: boolean | "kalk";
+  /** önlük: "giy" = bu vuruş boyunca giyer (animasyon), true = giyili */
+  onluk?: "giy" | true;
   /** kısmi doğrulmadan sonra vuruş sonunda geri düşer */
   geriDus?: boolean;
   /** alnında serin yaprak */

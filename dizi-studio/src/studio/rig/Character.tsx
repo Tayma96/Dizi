@@ -111,6 +111,22 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${x - 36} ${y - 96 + i * 22} h 10 M ${x - 22} ${y - 96 + i * 22} H ${x + 36} M ${x - 22} ${y - 88 + i * 22} H ${x + 20}`} stroke="#6a6a6a" strokeWidth={2.5} />)}
         </g>
       );
+    case "cikolata":
+      return (
+        <g transform={`rotate(-12 ${x} ${y})`}>
+          <rect x={x - 16} y={y - 70} width={32} height={84} rx={4} fill="#5a2a8a" stroke={OUT} strokeWidth={3} />
+          <rect x={x - 16} y={y - 40} width={32} height={22} fill="#f2c21a" />
+          <path d={`M ${x - 16} ${y - 70} l 4 -8 l 8 6 l 8 -6 l 8 6 l 4 -6 L ${x + 16} ${y - 70}`} fill="#c0c4cc" stroke={OUT} strokeWidth={2} />
+        </g>
+      );
+    case "para":
+      return (
+        <g transform={`rotate(-20 ${x} ${y})`}>
+          <rect x={x - 40} y={y - 46} width={80} height={40} rx={3} fill="#7ab88a" stroke={OUT} strokeWidth={2.5} />
+          <circle cx={x} cy={y - 26} r={10} fill="none" stroke="#3a7a4a" strokeWidth={2} />
+          <text x={x - 30} y={y - 12} fontFamily="Arial" fontSize={10} fontWeight={800} fill="#2a5a3a">50</text>
+        </g>
+      );
     case "kagit_top":
       // buruşturulmuş sözleşme: avuçta düzensiz kâğıt topu
       return (
@@ -324,6 +340,24 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   if (pose.gesture === "okşa") armL.upper += Math.sin(frame / 5) * 5;
   if (pose.gesture === "havaImzaSol") { const st = Math.floor(frame / 7); armR.fore += (random(`hs${st}`) - 0.5) * 16; armR.upper += (random(`hu${st}`) - 0.5) * 8; }
   if (pose.gesture === "havaImza") { armL.fore += Math.sin(frame / 2.2) * 9 + Math.sin(frame / 5.3) * 5; armL.upper += Math.cos(frame / 3.1) * 5; }
+  if (pose.gesture === "raf") { armR.fore += Math.sin(frame / 4) * 12; armR.upper += Math.sin(frame / 6) * 6; armL.fore += Math.cos(frame / 5) * 9; }
+  // önlük giyme: kollar ara pozlarla akar (elde katlı → başın üstüne → boyna geçirir → arkadan bağlar)
+  const onl = pose.onluk;
+  if (onl !== undefined && onl < 1) {
+    const K: [number, FullArm][] = [
+      [0, { upper: 12, fore: -62, ul: 0.8 }], [0.26, { upper: 12, fore: -62, ul: 0.8 }], [0.44, { upper: 162, fore: -16, ul: 1 }],
+      [0.56, { upper: 162, fore: -16, ul: 1 }], [0.72, { upper: 38, fore: -112, ul: 0.8 }], [0.86, { upper: -14, fore: 26, ul: 0.9, fl: 0.55 }], [1, { upper: 6, fore: 0, ul: 1 }],
+    ];
+    let i = 0;
+    while (i < K.length - 2 && onl > K[i + 1][0]) i++;
+    const [a0, A] = K[i], [a1, B] = K[i + 1];
+    const u = Math.max(0, Math.min(1, (onl - a0) / Math.max(1e-6, a1 - a0)));
+    const e = u * u * (3 - 2 * u);
+    const mix = (x?: number, y?: number) => (x ?? 1) + ((y ?? 1) - (x ?? 1)) * e;
+    const arm: FullArm = { upper: A.upper + (B.upper - A.upper) * e, fore: A.fore + (B.fore - A.fore) * e, ul: mix(A.ul, B.ul), fl: mix(A.fl, B.fl) };
+    Object.assign(armL, arm);
+    Object.assign(armR, arm);
+  }
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
     armL.upper += walkPhase * 10;
@@ -781,6 +815,48 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             ) : null}
           </g>
         </g>
+        {onl !== undefined ? (
+          <g transform={bodyT}>
+            <g transform={torsoScale}>
+              {(() => {
+                const OR = "#e8701a", ORK = "#b8520e";
+                const onlukSekil = (
+                  <g>
+                    <path d="M 166 396 L 234 396 L 238 470 L 268 486 L 262 722 Q 200 732 138 722 L 132 486 L 162 470 Z" fill={OR} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+                    <path d="M 170 402 L 230 402" stroke={ORK} strokeWidth={3} />
+                    <rect x={170} y={560} width={60} height={46} rx={6} fill="none" stroke={ORK} strokeWidth={3} />
+                    <text x={200} y={650} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={800} fontSize={16} fill="#fff4e6">CAN MARKET</text>
+                  </g>
+                );
+                if (onl < 0.26) {
+                  // elde katlı önlük (göğüs hizasında, iki elin arasında)
+                  return (
+                    <g>
+                      <rect x={158} y={470} width={84} height={58} rx={6} fill={OR} stroke={OUT} strokeWidth={3.5} />
+                      <path d="M 160 492 L 240 492 M 160 510 L 240 510" stroke={ORK} strokeWidth={3} />
+                      <path d="M 186 470 q 14 -18 28 0" stroke="#3a2a1a" strokeWidth={3} fill="none" />
+                    </g>
+                  );
+                }
+                const ust = onl < 0.44 ? 470 + (78 - 470) * ((onl - 0.26) / 0.18) : onl < 0.56 ? 78 : onl < 0.72 ? 78 + (396 - 78) * (((onl - 0.56) / 0.16) ** 1.4) : 396;
+                const giyili = onl >= 0.72;
+                return (
+                  <g>
+                    {giyili ? <path d="M 170 398 L 184 334 M 230 398 L 216 334" stroke={OR} strokeWidth={8} strokeLinecap="round" /> : <path d={`M 168 ${ust + 2} Q 200 ${ust - 70} 232 ${ust + 2}`} stroke={OR} strokeWidth={8} fill="none" />}
+                    <g transform={`translate(0 ${ust - 396})`}>{onlukSekil}</g>
+                    {giyili ? (
+                      <g opacity={Math.min(1, (onl - 0.72) / 0.1)}>
+                        <path d={`M 134 488 Q 112 ${496 + 10 * (1 - onl)} 104 ${520}`} stroke={OR} strokeWidth={7} fill="none" strokeLinecap="round" />
+                        <path d={`M 266 488 Q 288 ${496 + 10 * (1 - onl)} 296 ${520}`} stroke={OR} strokeWidth={7} fill="none" strokeLinecap="round" />
+                        {onl >= 0.98 ? <g><rect x={214} y={420} width={36} height={16} rx={3} fill="#f4f4f0" stroke={OUT} strokeWidth={2} /><text x={232} y={432} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={800} fontSize={10} fill="#222">ECE</text></g> : null}
+                      </g>
+                    ) : null}
+                  </g>
+                );
+              })()}
+            </g>
+          </g>
+        ) : null}
         <g transform={bodyT}>
           <Arm side="l" a={armL} />
           <Arm side="r" a={armR} />

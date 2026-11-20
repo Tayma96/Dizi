@@ -1,0 +1,717 @@
+{
+  "series": "724",
+  "seriesTitle": "7/24",
+  "episode": "724-02-p1",
+  "episodeNo": 2,
+  "title": "Bölüm 2 — Parça 1",
+  "endCard": false,
+  "scenes": [
+    {
+      "id": "a",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "23:04",
+      "title": "Ön kamera",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "cast": {},
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "voiceover": false,
+          "offscreen": true,
+          "text": "Hala yaşıyon mu sen lanet.",
+          "emotion": "notr",
+          "tags": "[annoyed, muttering to a pimple, disgusted]",
+          "gapAfter": 1.2,
+          "label": "ECE",
+          "ekle": {
+            "kind": "on_kamera",
+            "text": [
+              "1.2",
+              "1.7"
+            ]
+          },
+          "sfx": [
+            {
+              "name": "efekt/bildirim",
+              "volume": 0.7,
+              "at": 1.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "23:04",
+      "title": "Kasa (önlük)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "music": {
+        "name": "muzik/market_gerilim",
+        "volume": 0.16
+      },
+      "transition": "whoosh",
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "emotion": "kararli",
+          "gesture": "rest",
+          "bak": {
+            "x": 0,
+            "y": 0.1
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Tamamm, ilk iş günü modumuz yukarııı!",
+          "emotion": "notr",
+          "tags": "[cheerful, pumping herself up, playful]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "mutlu",
+              "kol": {
+                "R": {
+                  "upper": 150,
+                  "fore": -40
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 3.4,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit"
+          },
+          "cast": {
+            "ece_sivil": {
+              "kol": {},
+              "onluk": "giy",
+              "emotion": "kararli",
+              "bak": {
+                "x": 0,
+                "y": 0.2
+              }
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 2.4,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "onluk": true,
+              "gesture": "raf",
+              "emotion": "notr",
+              "bak": {
+                "x": 0.2,
+                "y": 0.8
+              }
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "raf_duzen",
+          "dur": 2.6,
+          "sfx": [
+            {
+              "name": "efekt/el_otomatik_kapi",
+              "volume": 0.45,
+              "at": 1.5
+            },
+            {
+              "name": "efekt/el_dingdong",
+              "volume": 0.75,
+              "at": 1.7
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 0.6,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "sabit"
+          },
+          "cast": {
+            "ece_sivil": {
+              "gesture": "rest",
+              "emotion": "sok",
+              "bak": {
+                "x": -0.2,
+                "y": 0
+              }
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_nefes_tutma",
+              "volume": 0.5,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Hoş geldiniz!",
+          "emotion": "notr",
+          "tags": "[startled, quickly, forcing a polite tone]",
+          "gapAfter": 0.2,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "mutlu",
+              "bak": {
+                "x": 0,
+                "y": -0.05
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "23:06",
+      "title": "Kapı (kız)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "isaretler": {
+        "kiz": {
+          "x": 500,
+          "y": 1990,
+          "size": 1300
+        },
+        "baba": {
+          "x": 800,
+          "y": 2010,
+          "size": 1330
+        }
+      },
+      "cast": {
+        "kiz724": {
+          "mark": "kiz",
+          "emotion": "mutlu",
+          "gesture": "tutuyor",
+          "prop": "cikolata",
+          "bak": {
+            "x": 0,
+            "y": -0.6
+          }
+        },
+        "adam724": {
+          "mark": "baba",
+          "hidden": true,
+          "emotion": "notr"
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.4,
+          "shot": {
+            "type": "genis",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 540,
+              "cy": 560,
+              "z": 1.45
+            }
+          },
+          "sfx": []
+        },
+        {
+          "type": "action",
+          "dur": 1.3,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 520,
+              "cy": 1350,
+              "z": 1.5
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "kiz724",
+          "text": "Ablaaa, bu çukulatadan alabilir miyimm?",
+          "emotion": "notr",
+          "tags": "[little girl, sweet, childish, high-pitched, pleading]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "kiz724",
+            "move": "yaklas"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "23:06",
+      "title": "Kasa (Ece)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "emotion": "mutlu",
+          "bak": {
+            "x": -0.1,
+            "y": 0.7
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Alabilirsin prenses. Ama sen neden bu saatte teksin? Anne baban nerde, bakayım senin?",
+          "emotion": "notr",
+          "tags": "[warm, smiling, then a little worried]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          }
+        }
+      ]
+    },
+    {
+      "id": "e",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "23:06",
+      "title": "Kapı (baba)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "isaretler": {
+        "kiz": {
+          "x": 500,
+          "y": 1990,
+          "size": 1300
+        },
+        "baba": {
+          "x": 800,
+          "y": 2010,
+          "size": 1330
+        },
+        "kapi": {
+          "x": 550,
+          "y": 1262,
+          "size": 640
+        }
+      },
+      "cast": {
+        "kiz724": {
+          "mark": "kiz",
+          "emotion": "mutlu",
+          "gesture": "tutuyor",
+          "prop": "cikolata",
+          "bak": {
+            "x": 0,
+            "y": -0.6
+          }
+        },
+        "adam724": {
+          "mark": "kapi",
+          "hidden": true,
+          "emotion": "mutlu"
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.6,
+          "door": "ac",
+          "shot": {
+            "type": "genis",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 560,
+              "cy": 1150,
+              "z": 1.2
+            }
+          },
+          "cast": {
+            "adam724": {
+              "hidden": false,
+              "enter": "sag",
+              "mark": "kapi"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_otomatik_kapi",
+              "volume": 0.4,
+              "at": 0.0
+            },
+            {
+              "name": "efekt/el_dingdong",
+              "volume": 0.6,
+              "at": 0.15
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "who": "adam724",
+          "text": "Burdayımm. Çikolata için koşturdu içeri hemen.",
+          "emotion": "notr",
+          "tags": "[deep warm voice, charming, relaxed]",
+          "gapAfter": 0.2,
+          "shot": {
+            "type": "orta",
+            "on": "adam724",
+            "move": "yaklas"
+          },
+          "cast": {
+            "adam724": {
+              "emotion": "mutlu",
+              "bak": {
+                "x": -0.2,
+                "y": 0
+              },
+              "mark": "baba"
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "adam724",
+          "text": "İstediğini al, aşkım.",
+          "emotion": "notr",
+          "tags": "[softly, loving, to his little daughter]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "adam724",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 640,
+              "cy": 1180,
+              "z": 1.05
+            }
+          },
+          "cast": {
+            "adam724": {
+              "lookAt": "kiz724",
+              "emotion": "mutlu"
+            },
+            "kiz724": {
+              "lookAt": "adam724"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "f",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "23:07",
+      "title": "Kasa (yakışıklı)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "emotion": "utangac",
+          "bak": {
+            "x": 0.2,
+            "y": 0
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "voiceover": true,
+          "text": "Çok yakışıklııı...",
+          "emotion": "notr",
+          "tags": "[dreamy inner voice, swooning, whisper]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "utangac",
+              "bak": {
+                "x": 0.2,
+                "y": -0.05
+              }
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Kendine gel, Ece.",
+          "emotion": "notr",
+          "tags": "[shaking her head, scolding herself, quick]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "sabit"
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "kararli",
+              "tik": "sallan"
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 1.8,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 790,
+              "cy": 1080,
+              "z": 1.2
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "tik": null,
+              "emotion": "korkmus",
+              "bak": {
+                "x": 0.9,
+                "y": -0.1,
+                "yaw": 0.6
+              }
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_depo_devrilme",
+              "volume": 0.85,
+              "at": 0.05
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "23:07",
+      "title": "Kapı (uyarı)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "music": {
+        "name": "muzik/market_gerilim",
+        "volume": 0.2,
+        "from": 10
+      },
+      "isaretler": {
+        "kiz": {
+          "x": 500,
+          "y": 1990,
+          "size": 1300
+        },
+        "baba": {
+          "x": 800,
+          "y": 2010,
+          "size": 1330
+        }
+      },
+      "cast": {
+        "kiz724": {
+          "mark": "kiz",
+          "emotion": "mutlu",
+          "gesture": "tutuyor",
+          "prop": "cikolata",
+          "bak": {
+            "x": 0,
+            "y": -0.6
+          }
+        },
+        "adam724": {
+          "mark": "baba",
+          "emotion": "notr",
+          "gesture": "uzat",
+          "prop": "para",
+          "bak": {
+            "x": -0.1,
+            "y": 0
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.2,
+          "shot": {
+            "type": "iki",
+            "on": "adam724",
+            "with": "kiz724",
+            "move": "sabit"
+          }
+        },
+        {
+          "type": "line",
+          "who": "adam724",
+          "text": "Kolay gelsin. Dikkat edin, gece buralar güvenli olmuyor pek.",
+          "emotion": "notr",
+          "tags": "[low, calm, mysterious, a faint knowing smile]",
+          "gapAfter": 0.5,
+          "shot": {
+            "type": "yakin",
+            "on": "adam724",
+            "move": "yaklas"
+          },
+          "cast": {
+            "adam724": {
+              "gesture": "rest",
+              "prop": "none",
+              "emotion": "soguk",
+              "bak": {
+                "x": -0.05,
+                "y": 0
+              }
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 2.0,
+          "door": "ac",
+          "shot": {
+            "type": "genis",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 560,
+              "cy": 1150,
+              "z": 1.2
+            }
+          },
+          "cast": {
+            "adam724": {
+              "exit": "sag"
+            },
+            "kiz724": {
+              "exit": "sag"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_otomatik_kapi",
+              "volume": 0.4,
+              "at": 0.6
+            },
+            {
+              "name": "efekt/el_dingdong",
+              "volume": 0.55,
+              "at": 0.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "h",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "23:08",
+      "title": "Kasa (son)",
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.32
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "kasiyer",
+          "onluk": true,
+          "emotion": "korkmus",
+          "bak": {
+            "x": 0.8,
+            "y": -0.1,
+            "yaw": 0.5
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 2.2,
+          "door": "kapat",
+          "shot": {
+            "type": "cok_yakin",
+            "on": "ece_sivil",
+            "move": "yaklas"
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_korku_vurus",
+              "volume": 0.5,
+              "at": 1.0
+            }
+          ],
+          "fade": "cikis"
+        }
+      ]
+    }
+  ]
+}

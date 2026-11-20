@@ -48,3 +48,18 @@ Kullanıcı "acele et" dedi. Bible'a göre bu dizide doğaçlama serbest. Eski "
 - **Bitiş kartı:** "Sen olsan depoya gider miydin?"
 - **Süreklilik:** Ece market önlüğüyle; sivilce sürekliliği için `ece724` görünümüne sivilce eklendi.
 - **Kullanıcı reddetti (20 Kasım 2026):** "Çok kötü yapmışsın, senaryoyu ben yazacağım." Bu sürüm geçersiz. 2. bölümü kullanıcı yazacak; 7/24'te bundan sonra kullanıcı metni olmadan bölüm üretilmeyecek.
+
+## Bölüm 2, Parça 1 (kullanıcının metni, 20 Kasım 2026; replikler aynen)
+Yine FPS kamerayla başlıyoruz, Ece'nin gözünden. Ece telefonun ön kamerasını açmış, yüzündeki sivilceye bakıyor ve sivilceye "Hala yaşıyon mu sen lanet" diyor.
+Bunu söylerken yukarıdan Sabri Abi'den mesaj geliyor: "Kuralları unutma"
+Kamera, Sabri'yi çektiği o kasaya dönük açıya geliyor. Ece "Tamamm ilk iş günü modumuz yukarııı" diyerek marketin iş önlüğünü alıp giyiyor (giyme animasyonu güzel olmalı).
+Önlüğü giydikten sonra önündeki rafları, ardından arkasındaki rafları düzenliyor. Arkasındaki rafları düzenlerken haliyle kapıya da arkası dönük. O esnada kapıdan biri giriyor ve kapı zil sesi duyuluyor.
+Ece anlık bir irkilip hemen önünü dönüyor ve "Hoş geldiniz" diyor.
+Bir anda kimseyi göremiyor, şaşırıyor. Ama o an gelenin aslında kısa boylu, 7 yaşlarında küçük bir kız çocuğu olduğunu görüyor. Kız sarı saçlı, mavi gözlü, tatlı bir şey.
+Kız: "Ablaaa bu çukulatadan alabilirmiyimm?"
+Ece: "Alabilirsin prenses ama sen neden bu saatte teksin? Anne baban nerde bakim senin"
+O esnada markete yakışıklı, kaslı bir adam giriyor: "Burdayımm, çikolata için koşturdu içeri hemen." Kızına bakarak: "İstediğini al aşkım."
+Ece adama hayranlıkla bakıyor, içinden "Çok yakışıklııı" diye geçiriyor. Ardından yüzünü sağa sola silkeleyerek "Kendine gel Ece" diyor.
+Ardından depodan takırtı kopuyor, sanki bir şeyler devrilmiş gibi.
+Küçük çocuk çikolatayı almış. Babası parayı uzatıyor ve esrarengiz bir şekilde "Kolay gelsin, dikkat edin gece buralar güvenli olmuyor pek" diyor. Marketten çıkıyorlar.
+(Kullanıcı: "Görüntüyü, karakter hareketlerini, detayları titizlikle yap, hata olmasın.")

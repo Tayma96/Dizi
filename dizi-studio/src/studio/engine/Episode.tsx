@@ -310,6 +310,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             krem: st.krem,
             murekkep: st.murekkep,
             yaprak: st.yaprak,
+            onluk: st.onluk === "giy" ? interpolate(bf, [Math.round(0.15 * fps), Math.max(Math.round(0.2 * fps), tb.dur - Math.round(0.25 * fps))], [0, 1], clamp) : st.onluk === true ? 1 : undefined,
             diz: (() => {
               const pd = prev?.cast[id]?.diz;
               if (st.diz === true) {

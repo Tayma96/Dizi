@@ -241,5 +241,23 @@
       "similarity_boost": 0.8,
       "speed": 1.0
     }
+  },
+  "kiz724": {
+    "voice_id": "rtnDjO8siSxeTEeTVczO",
+    "sahip": "17a07ad7a7633c080be4e938b96e37fc2b9d0e5b7c634d43e5047b37d8539e63",
+    "ad": "rtnDjO8siSxeTEeTVczO",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
+  "adam724": {
+    "voice_id": "j82ax9yhzfYwq9lDvRWL",
+    "sahip": "50fa846ac7597ddc729c33b64e3bec6347727ebc8131f83546a724b817bc2b5b",
+    "ad": "Kadir Kayışcı",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
   }
 }
