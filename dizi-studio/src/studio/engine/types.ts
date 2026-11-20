@@ -60,6 +60,12 @@ export type CharState = {
   krem?: boolean;
   /** sağ elde mürekkep */
   murekkep?: boolean;
+  /** body "dogrul" ile: en fazla bu oranda doğrulur (0-1) */
+  dogrulma?: number;
+  /** kısmi doğrulmadan sonra vuruş sonunda geri düşer */
+  geriDus?: boolean;
+  /** alnında serin yaprak */
+  yaprak?: boolean;
   wet?: boolean;
   flip?: boolean;
   /** 3D: gövdenin dönüşü (derece). Verilmezse işaretin yönü / bakılan kişi kullanılır */

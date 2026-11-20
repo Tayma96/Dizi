@@ -32,3 +32,15 @@ O esnada enkazda bulunanları yerlilerin meydanına getirmişlerdir. Yaşlı ada
 
 Kullanıcı: "Görüntü yönetmeni ve senaristi devreye sok, çok ince ayrıntı çalışılmasını istiyorum. 1. bölümün son 2 parçası aşırı amatörceydi, bu sefer düzgün yapın!"
 Not: Ana karakterin soyadı Özdemir; şirket Zenith Grup Holding; kaza Hint Okyanusu açıkları; saat 14:07'de durdu.
+
+### Bölüm 2: üretim notları (20 Kasım 2026)
+- Parçalar: `emir-02-p1` (kulübe + İstanbul'daki Zenith genel merkezi, TV haberi), `emir-02-p2` (yemek, bastırma, köy meydanında sözleşme ateşte). Videolar: `bolumler/kayip-ceo-02-parca1.mp4` ve `bolumler/kayip-ceo-02-parca2.mp4`.
+- Doğaçlamalar (kullanıcının metni aynen korundu, yeni replik yok):
+  - D2: Emir saatin camındaki kumu başparmağıyla silip tekrar bakar.
+  - D3: TV haberi Zenith resepsiyonunda izlenir; resepsiyonist ahizeyi yavaşça indirir.
+  - D4: Kadın yemeği güvensin diye önce kendisi bir lokma alır.
+  - D5: Bastırma yakın çekimde gösterilir: Emir kadının bileğini kavrar, sonra eli gevşeyip düşer.
+- Görsel süreklilik:
+  - Kadın parça 1'de kapı ağzında, ışığın içinde durur. Parça 2'de yemekle Emir'in baş ucuna gelir (sol taraf).
+  - Yaşlının elindeki kâğıt, sözleşme kapağının küçük hâlidir (Z halkası).
+  - Kanal adı: MERİDYEN HABER (uydurma).

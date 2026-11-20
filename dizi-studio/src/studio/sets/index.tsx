@@ -1,5 +1,6 @@
 /* Mekân kütüphanesi. Her mekân iki katman verir: "bg" (karakterlerin arkası) ve "fg" (önü: masa, tezgâh vb.).
    `MARKS` karakterlerin duracağı önerilen noktalardır (x = karakter merkezi, y = ayak çizgisi, size = boy px). */
+import { ZenithBG, ZenithFG, KoyMeydaniBG, KoyMeydaniFG, EMIR2_MARKS } from "./emir2";
 import { MutfakDgBG, MutfakDgFG, MUTFAK_DG_MARKS } from "./mutfak_dg";
 import { ArabaBG, ArabaFG, ARABA_MARKS } from "./araba";
 import { Banyo724BG, Banyo724FG, BANYO724_MARKS, type BanyoView } from "./banyo724";
@@ -19,7 +20,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market" | "market_genel" | "market_kapi" | "market_kasa" | "banyo_ayna" | "banyo_kapi" | "araba_on" | "mutfak_dg";
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market" | "market_genel" | "market_kapi" | "market_kasa" | "banyo_ayna" | "banyo_kapi" | "araba_on" | "mutfak_dg" | "zenith_merkez" | "koy_meydani";
 
 export type Mark = { x: number; y: number; size: number; sit?: boolean };
 
@@ -35,6 +36,8 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   ucak_kabin: { title: "Uçak kabini (business)", marks: { emir: { x: 430, y: 1600, size: 1060, sit: true }, hostes: { x: 830, y: 1860, size: 1200 } } },
   sahil_enkaz: { title: "Sahil: uçak enkazı", marks: { emir: { x: 560, y: 1730, size: 860 }, y1: { x: 210, y: 1500, size: 960 }, y2: { x: 110, y: 1430, size: 880 }, yb: { x: 820, y: 1520, size: 980 }, ya: { x: 960, y: 1440, size: 860 }, m1: { x: 760, y: 1420, size: 640 }, m2: { x: 300, y: 1330, size: 560 } } },
   lobi: { title: "Gece lobisi (iş hanı)", marks: { cemil: { x: 790, y: 1660, size: 1060, sit: true }, ayak: { x: 760, y: 1800, size: 1180 }, pano: { x: 640, y: 1760, size: 1120 }, tel: { x: 690, y: 1780, size: 1120 }, asansor: { x: 360, y: 1560, size: 1000 } } },
+  zenith_merkez: { title: "Zenith Grup genel merkezi, resepsiyon (yağmurlu)", marks: EMIR2_MARKS.zenith_merkez },
+  koy_meydani: { title: "Ada köyü meydanı (altın saat)", marks: EMIR2_MARKS.koy_meydani },
   mutfak_dg: { title: "Ailenin mutfağı (akşam)", marks: MUTFAK_DG_MARKS },
   araba_on: { title: "Babanın arabası · ön camdan", marks: ARABA_MARKS },
   banyo_ayna: { title: "Ece'nin banyosu · ayna (FPS)", marks: BANYO724_MARKS.ayna },
@@ -112,6 +115,8 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
 const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean; iz?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer, iz = 0 }) => {
   const frame = useCurrentFrame();
   if (name === "mutfak_dg") return <MutfakDgBG frame={frame} />;
+  if (name === "zenith_merkez") return <ZenithBG frame={frame} />;
+  if (name === "koy_meydani") return <KoyMeydaniBG frame={frame} />;
   if (name === "araba_on") return <ArabaBG frame={frame} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724BG view={name.slice(6) as BanyoView} frame={frame} doorOpen={doorOpen} />;
   if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724BG view={name.slice(7) as MarketView} frame={frame} doorOpen={doorOpen} saat={saat ?? "03:00"} iz={iz} turb={turb ?? 0} />;
@@ -1114,6 +1119,8 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean; doorOpen?: number }> = ({ name, turb = 0, fincanElde, doorOpen = 0 }) => {
   const fr = useCurrentFrame();
   if (name === "mutfak_dg") return <MutfakDgFG frame={fr} />;
+  if (name === "zenith_merkez") return <ZenithFG frame={fr} />;
+  if (name === "koy_meydani") return <KoyMeydaniFG frame={fr} />;
   if (name === "araba_on") return <ArabaFG frame={fr} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724FG view={name.slice(6) as BanyoView} frame={fr} doorOpen={0} />;
   if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} />;

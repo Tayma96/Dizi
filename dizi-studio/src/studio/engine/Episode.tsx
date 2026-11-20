@@ -136,8 +136,19 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   for (const [id, p] of Object.entries(placed)) {
     const b = tb.cast[id].body;
     if (b !== "yat" && b !== "dogrul" && b !== "yatakta") continue;
-    const already = b === "yatakta" || (b === "dogrul" && prev?.cast[id]?.body === "dogrul");
-    const a = b === "yat" ? -90 : already ? 0 : interpolate(bf, [Math.round(0.15 * fps), Math.round(1.45 * fps)], [-90, 0], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+    const st0 = tb.cast[id];
+    const kismi = b === "dogrul" && st0.dogrulma !== undefined;
+    const already = b === "yatakta" || (b === "dogrul" && !kismi && prev?.cast[id]?.body === "dogrul");
+    const ss = (t: number) => t * t * (3 - 2 * t);
+    let a = b === "yat" ? -90 : already ? 0 : interpolate(bf, [Math.round(0.15 * fps), Math.round(1.45 * fps)], [-90, 0], { ...clamp, easing: ss });
+    if (kismi) {
+      // kısmi doğrulma: zorlanarak kalkar (titreme), en fazla dogrulma oranı kadar; geriDus ile acıyla geri düşer
+      const hedef = -90 * (1 - (st0.dogrulma ?? 0.5));
+      const T = tb.dur;
+      const up = interpolate(bf, [Math.round(0.1 * fps), Math.round(0.9 * fps)], [-90, hedef], { ...clamp, easing: ss });
+      const down = st0.geriDus ? interpolate(bf, [T - Math.round(0.75 * fps), T - Math.round(0.2 * fps)], [0, 1], { ...clamp, easing: (t) => t * t }) : 0;
+      a = up + (-90 - up) * down + (bf > 0.9 * fps && down < 0.05 ? Math.sin(frame / 1.6) * 1.6 : 0);
+    }
     lieAng[id] = a;
     // baş merkezi: kalça → boyun (gövde ekseni), boyun → baş (baş kameraya doğru -0.72a geri döner)
     const r = (a * Math.PI) / 180;
@@ -224,7 +235,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (!st || !p) return undefined;
     if (st.lookAt === "kamera") return { yaw: 0, lookX: 0 };
     // yatan (baygın/uyuyan) karakter başını kimseye çevirmez
-    if (st.body === "yat" || st.body === "yatakta") return { yaw: 0, lookX: 0 };
+    if (st.body === "yat" || st.body === "yatakta") return { yaw: 0, lookX: st.bak ? st.bak.x : 0 };
     if (st.bak) return { yaw: (st.bak as { yaw?: number }).yaw ?? st.bak.x * 0.35, lookX: st.bak.x };
     if (st.tik === "tavan") return { yaw: 0, lookX: 0.1 };
     if (st.tik === "sallan") return { yaw: 0, lookX: 0 };
@@ -295,6 +306,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             sweat: st.sweat,
             krem: st.krem,
             murekkep: st.murekkep,
+            yaprak: st.yaprak,
             wet: st.wet,
             eyesClosed: st.eyesClosed,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,

@@ -1,0 +1,264 @@
+{
+  "series": "emir",
+  "seriesTitle": "Kayıp CEO",
+  "episode": "emir-02-p1",
+  "episodeNo": 2,
+  "title": "Bölüm 2 — Parça 1",
+  "endCard": false,
+  "scenes": [
+    {
+      "id": "a",
+      "set": "kulube",
+      "time": "gunduz",
+      "look": "sicak",
+      "title": "Kulübe (saat)",
+      "ambience": {
+        "name": "efekt/el_ada_kulube",
+        "volume": 0.45
+      },
+      "music": {
+        "name": "muzik/kayip_ada",
+        "volume": 0.13
+      },
+      "isaretler": {
+        "arka": {
+          "x": 930,
+          "y": 1440,
+          "size": 880
+        },
+        "kapi": {
+          "x": 930,
+          "y": 1560,
+          "size": 900
+        }
+      },
+      "cast": {
+        "emir_kulube": {
+          "mark": "yatak",
+          "body": "yat",
+          "zemin": true,
+          "emotion": "aci",
+          "yaprak": true,
+          "bak": {
+            "x": 0.4,
+            "y": -0.3
+          }
+        },
+        "yerli_kadin": {
+          "mark": "arka",
+          "emotion": "dusunceli",
+          "lookAt": "emir_kulube"
+        }
+      },
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "pov_yaprak",
+          "dur": 3.2
+        },
+        {
+          "type": "action",
+          "dur": 2.6,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas"
+          }
+        },
+        {
+          "type": "action",
+          "dur": 3.4,
+          "shot": {
+            "type": "yakin",
+            "on": "emir_kulube",
+            "move": "sabit"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "dogrul",
+              "dogrulma": 0.42,
+              "geriDus": true,
+              "gesture": "eliKalbinde",
+              "emotion": "aci",
+              "yaprak": true,
+              "bak": {
+                "x": 0.3,
+                "y": 0
+              }
+            },
+            "yerli_kadin": {
+              "gesture": "uzat",
+              "emotion": "korkmus"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_inleme",
+              "volume": 0.7,
+              "at": 2.4
+            }
+          ]
+        },
+        {
+          "type": "insert",
+          "kind": "kol_saati",
+          "dur": 3.4
+        },
+        {
+          "type": "line",
+          "who": "emir_kulube",
+          "text": "Emir.",
+          "emotion": "notr",
+          "tags": "[tired, slow, clearly introducing himself]",
+          "gapAfter": 0.6,
+          "shot": {
+            "type": "orta",
+            "on": "emir_kulube",
+            "move": "yaklas"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "yat",
+              "gesture": "eliKalbinde",
+              "emotion": "yorgun",
+              "bak": {
+                "x": 0.45,
+                "y": -0.35
+              }
+            },
+            "yerli_kadin": {
+              "gesture": "rest",
+              "emotion": "notr"
+            }
+          },
+          "hiz": 0.88
+        },
+        {
+          "type": "action",
+          "dur": 2.8,
+          "shot": {
+            "type": "yakin",
+            "on": "yerli_kadin",
+            "move": "yaklas"
+          },
+          "cast": {
+            "yerli_kadin": {
+              "emotion": "dusunceli",
+              "lookAt": "emir_kulube"
+            }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_haber_jenerik",
+              "volume": 0.55,
+              "at": 1.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "set": "zenith_merkez",
+      "time": "gunduz",
+      "look": "soguk",
+      "title": "İstanbul (son dakika)",
+      "ambience": {
+        "name": "efekt/el_ofis_lobi",
+        "volume": 0.4
+      },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.15
+      },
+      "cast": {
+        "zenith_resepsiyon": {
+          "mark": "resepsiyon",
+          "emotion": "notr",
+          "gesture": "telefon",
+          "prop": "ahize",
+          "bak": {
+            "x": -0.85,
+            "y": -0.4,
+            "yaw": -0.55
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 1.6,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas"
+          }
+        },
+        {
+          "type": "line",
+          "who": "spiker",
+          "text": "İçerisinde Zenith Grup Holding CEO'su Emir Özdemir'in bulunduğu özel uçağın sinyali kesildi.",
+          "emotion": "notr",
+          "tags": "[professional news anchor, clear diction, says C-E-O as 'si-ay-o']",
+          "gapAfter": 0.2,
+          "fx": "tv",
+          "offscreen": true,
+          "label": "SPİKER",
+          "ekle": {
+            "kind": "tv_son_dakika",
+            "text": [
+              "1"
+            ]
+          }
+        },
+        {
+          "type": "line",
+          "who": "spiker",
+          "text": "Hint Okyanusu açıklarında son sinyal alınan uçaktan şu anda herhangi bir haber alınamıyor.",
+          "emotion": "notr",
+          "tags": "[professional, measured, serious news anchor]",
+          "gapAfter": 0.2,
+          "fx": "tv",
+          "offscreen": true,
+          "label": "SPİKER",
+          "ekle": {
+            "kind": "tv_son_dakika",
+            "text": [
+              "2"
+            ]
+          }
+        },
+        {
+          "type": "line",
+          "who": "spiker",
+          "text": "CEO Emir Özdemir'in akıbeti henüz bilinmiyor.",
+          "emotion": "notr",
+          "tags": "[professional, grave, slower]",
+          "gapAfter": 0.6,
+          "fx": "tv",
+          "offscreen": true,
+          "label": "SPİKER",
+          "shot": {
+            "type": "orta",
+            "on": "zenith_resepsiyon",
+            "move": "yaklas"
+          },
+          "cast": {
+            "zenith_resepsiyon": {
+              "gesture": "rest",
+              "prop": "none",
+              "emotion": "sok"
+            }
+          }
+        },
+        {
+          "type": "action",
+          "dur": 2.0,
+          "shot": {
+            "type": "genis",
+            "move": "uzaklas"
+          },
+          "fade": "cikis"
+        }
+      ]
+    }
+  ]
+}

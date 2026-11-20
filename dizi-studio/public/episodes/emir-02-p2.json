@@ -1,0 +1,388 @@
+{
+  "series": "emir",
+  "seriesTitle": "Kayıp CEO",
+  "episode": "emir-02-p2",
+  "episodeNo": 2,
+  "title": "Bölüm 2 — Parça 2",
+  "endCard": false,
+  "scenes": [
+    {
+      "id": "a",
+      "set": "kulube",
+      "time": "gunduz",
+      "look": "sicak",
+      "title": "Kulübe (yemek)",
+      "ambience": {
+        "name": "efekt/el_ada_kulube",
+        "volume": 0.45
+      },
+      "music": {
+        "name": "muzik/kayip_ada",
+        "volume": 0.12,
+        "from": 20
+      },
+      "isaretler": {
+        "arka": {
+          "x": 150,
+          "y": 1420,
+          "size": 860
+        },
+        "kapi": {
+          "x": 930,
+          "y": 1560,
+          "size": 900
+        }
+      },
+      "cast": {
+        "emir_kulube": {
+          "mark": "yatak",
+          "body": "yat",
+          "zemin": true,
+          "emotion": "yorgun",
+          "yaprak": true,
+          "bak": {
+            "x": 0.4,
+            "y": -0.3
+          }
+        },
+        "yerli_kadin": {
+          "mark": "arka",
+          "hidden": true,
+          "emotion": "mutlu",
+          "lookAt": "emir_kulube"
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 2.4,
+          "shot": {
+            "type": "genis",
+            "move": "sabit"
+          },
+          "cast": {
+            "yerli_kadin": {
+              "hidden": false,
+              "enter": "sag",
+              "prop": "hindistan",
+              "gesture": "tutuyor"
+            },
+            "emir_kulube": {
+              "bak": {
+                "x": 0.8,
+                "y": -0.2
+              }
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "yemek_ust",
+          "dur": 3.0
+        },
+        {
+          "type": "action",
+          "dur": 1.8,
+          "shot": {
+            "type": "iki",
+            "on": "yerli_kadin",
+            "with": "emir_kulube",
+            "move": "sabit"
+          },
+          "cast": {
+            "yerli_kadin": {
+              "gesture": "yudum",
+              "prop": "none",
+              "emotion": "mutlu"
+            },
+            "emir_kulube": {
+              "bak": {
+                "x": -0.5,
+                "y": -0.2
+              }
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "emir_kulube",
+          "text": "Ne ki bu?",
+          "emotion": "notr",
+          "tags": "[confused, weak]",
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "yakin",
+            "on": "emir_kulube",
+            "move": "yaklas"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "dogrul",
+              "dogrulma": 0.4,
+              "gesture": "tutuyor",
+              "prop": "hindistan",
+              "emotion": "igrenmis",
+              "yaprak": false,
+              "bak": {
+                "x": 0,
+                "y": 0.5
+              }
+            },
+            "yerli_kadin": {
+              "gesture": "rest",
+              "emotion": "mutlu"
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "emir_kulube",
+          "text": "Nerdeyim ben? Mürettebat nerde? Pilot, hostes, onlar?",
+          "emotion": "notr",
+          "tags": "[anxious, rising panic, voice breaking]",
+          "gapAfter": 0.15,
+          "shot": {
+            "type": "cok_yakin",
+            "on": "emir_kulube",
+            "move": "yaklas"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "dogrul",
+              "dogrulma": 0.4,
+              "gesture": "rest",
+              "prop": "none",
+              "emotion": "korkmus",
+              "bak": {
+                "x": -0.4,
+                "y": -0.2
+              }
+            },
+            "yerli_kadin": {
+              "emotion": "uzgun"
+            }
+          }
+        },
+        {
+          "type": "line",
+          "who": "emir_kulube",
+          "text": "Gitmeliyim, işim başımdan aşkın, anlaşmayı yapmak için görüşmeye gitmem gerekiyor.",
+          "emotion": "notr",
+          "tags": "[desperate, insistent, strained]",
+          "gapAfter": 0.2,
+          "shot": {
+            "type": "iki",
+            "on": "emir_kulube",
+            "with": "yerli_kadin",
+            "move": "yaklas"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "dogrul",
+              "dogrulma": 0.45,
+              "emotion": "korkmus",
+              "sweat": true,
+              "tears": 0.25,
+              "bak": {
+                "x": -0.5,
+                "y": -0.1
+              }
+            },
+            "yerli_kadin": {
+              "emotion": "uzgun",
+              "lookAt": "emir_kulube"
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "omuz_bastir",
+          "dur": 3.0,
+          "sfx": [
+            {
+              "name": "efekt/el_inleme",
+              "volume": 0.55,
+              "at": 1.0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.8,
+          "shot": {
+            "type": "yakin",
+            "on": "emir_kulube",
+            "move": "uzaklas",
+            "angle": "ust"
+          },
+          "cast": {
+            "emir_kulube": {
+              "body": "yat",
+              "emotion": "uzgun",
+              "tears": 0.3,
+              "bak": {
+                "x": 0,
+                "y": -0.6
+              }
+            },
+            "yerli_kadin": {
+              "gesture": "rest",
+              "emotion": "uzgun"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "set": "koy_meydani",
+      "time": "aksam",
+      "look": "sicak",
+      "title": "Köy meydanı (sözleşme)",
+      "ambience": {
+        "name": "efekt/el_ada_meydan",
+        "volume": 0.45
+      },
+      "cast": {
+        "yerli_bilge": {
+          "mark": "yb",
+          "emotion": "dusunceli",
+          "gesture": "tutuyor",
+          "prop": "sozlesme",
+          "bak": {
+            "x": 0,
+            "y": 0.6
+          }
+        },
+        "yerli_genc": {
+          "mark": "y1",
+          "emotion": "saskin",
+          "lookAt": "yerli_bilge"
+        },
+        "yerli_genc2": {
+          "mark": "y2",
+          "emotion": "notr",
+          "lookAt": "yerli_bilge"
+        },
+        "yerli_ana": {
+          "mark": "ya",
+          "emotion": "notr",
+          "lookAt": "yerli_bilge"
+        }
+      },
+      "beats": [
+        {
+          "type": "action",
+          "dur": 3.0,
+          "shot": {
+            "type": "genis",
+            "move": "yaklas"
+          },
+          "sfx": [
+            {
+              "name": "efekt/ates",
+              "volume": 0.4,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "insert",
+          "kind": "sozlesme",
+          "dur": 3.0,
+          "text": [
+            "tut"
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.8,
+          "shot": {
+            "type": "orta",
+            "on": "yerli_bilge",
+            "move": "yaklas",
+            "angle": "alt"
+          },
+          "cast": {
+            "yerli_bilge": {
+              "emotion": "soguk",
+              "bak": {
+                "x": 0,
+                "y": 0.5
+              }
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "sozlesme",
+          "dur": 2.2,
+          "text": [
+            "burus"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/el_kagit_atese",
+              "volume": 0.7,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.4,
+          "shot": {
+            "type": "orta",
+            "on": "yerli_bilge",
+            "move": "sabit"
+          },
+          "cast": {
+            "yerli_bilge": {
+              "gesture": "uzat",
+              "prop": "none",
+              "flip": true,
+              "emotion": "soguk"
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "sozlesme",
+          "dur": 3.6,
+          "text": [
+            "ates"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/ates",
+              "volume": 0.6,
+              "at": 0.0
+            }
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 2.6,
+          "shot": {
+            "type": "genis",
+            "move": "uzaklas"
+          },
+          "cast": {
+            "yerli_bilge": {
+              "gesture": "rest",
+              "flip": false
+            }
+          },
+          "fade": "cikis"
+        }
+      ],
+      "isaretler": {
+        "ya": {
+          "x": 1010,
+          "y": 1470,
+          "size": 840
+        }
+      }
+    }
+  ]
+}

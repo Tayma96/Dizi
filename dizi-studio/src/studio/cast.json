@@ -1521,5 +1521,33 @@
   },
   "earrings": "#d8b860",
   "blush": true
+ },
+ {
+  "id": "zenith_resepsiyon",
+  "name": "Resepsiyonist",
+  "role": "Kayıp CEO: Zenith genel merkezi resepsiyonisti (sözsüz)",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8c0a0",
+  "skinShade": "#d0a080",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "bun",
+   "color": "#1a1210",
+   "shade": "#3a2a20"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#1e2430",
+   "topShade": "#141820",
+   "bottom": "#1e2430",
+   "shoes": "#0a0a0c",
+   "accent": "#e8e8ee"
+  },
+  "earrings": "#e8e8e8",
+  "glasses": "#1a1a1a",
+  "blush": false
  }
 ]

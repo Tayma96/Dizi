@@ -84,6 +84,16 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <circle cx={x} cy={y - 60} r={5} fill="#3a3e44" />
         </g>
       );
+    case "hindistan":
+      // yarım hindistan cevizi kabuğu, içinde su
+      return (
+        <g>
+          <path d={`M ${x - 40} ${y - 40} Q ${x - 44} ${y + 10} ${x} ${y + 14} Q ${x + 44} ${y + 10} ${x + 40} ${y - 40} Z`} fill="#6a4a2c" stroke={OUT} strokeWidth={3.5} />
+          <ellipse cx={x} cy={y - 40} rx={40} ry={11} fill="#f4ecd8" stroke={OUT} strokeWidth={3} />
+          <ellipse cx={x} cy={y - 39} rx={32} ry={7} fill="#cfe4e8" />
+          <path d={`M ${x - 30} ${y - 24} q 10 6 20 0 M ${x + 4} ${y - 12} q 10 6 20 0`} stroke="#4a321c" strokeWidth={2} fill="none" />
+        </g>
+      );
     case "kasik":
       return (
         <g>
@@ -98,6 +108,20 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <rect x={x - 46} y={y - 128} width={92} height={128} rx={3} fill="#fbfaf4" stroke={OUT} strokeWidth={3.5} />
           <rect x={x - 26} y={y - 118} width={52} height={9} fill="#b81818" />
           {[0, 1, 2, 3].map((i) => <path key={i} d={`M ${x - 36} ${y - 96 + i * 22} h 10 M ${x - 22} ${y - 96 + i * 22} H ${x + 36} M ${x - 22} ${y - 88 + i * 22} H ${x + 20}`} stroke="#6a6a6a" strokeWidth={2.5} />)}
+        </g>
+      );
+    case "sozlesme":
+      // Zenith anlaşma taslağı (kapak): lacivert Z halkası, başlık, tutar çizgisi, imza alanları
+      return (
+        <g transform={`rotate(-6 ${x} ${y})`}>
+          <rect x={x - 46} y={y - 128} width={92} height={128} rx={3} fill="#f8f5ee" stroke={OUT} strokeWidth={3.5} />
+          <circle cx={x} cy={y - 108} r={9} fill="none" stroke="#1d2a44" strokeWidth={2.5} />
+          <circle cx={x + 7} cy={y - 115} r={2} fill="#c9a24a" />
+          <path d={`M ${x - 26} ${y - 90} H ${x + 26}`} stroke="#1d2a44" strokeWidth={3} />
+          <path d={`M ${x - 30} ${y - 70} H ${x + 30}`} stroke="#1d2a44" strokeWidth={6} />
+          {[0, 1, 2].map((i) => <path key={i} d={`M ${x - 32} ${y - 50 + i * 12} H ${x + (i === 2 ? 8 : 32)}`} stroke="#9aa0b0" strokeWidth={2} />)}
+          <path d={`M ${x - 34} ${y - 12} H ${x - 6} M ${x + 6} ${y - 12} H ${x + 34}`} stroke="#1d2a44" strokeWidth={1.5} />
+          <path d={`M ${x - 40} ${y - 30} q 20 10 40 0`} stroke="#c8b890" strokeWidth={6} opacity={0.5} fill="none" />
         </g>
       );
     case "mektup":
@@ -586,6 +610,14 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       <Brow cx={240 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
       {look.mole ? <circle cx={236 + dx} cy={262} r={3} fill="#5a3a2a" /> : null}
+      {pose.yaprak ? (
+        <g transform={`rotate(-8 ${200 + dx} 140)`}>
+          <path d={`M ${120 + dx} 150 Q ${200 + dx} 96 ${290 + dx} 140 Q ${206 + dx} 176 ${120 + dx} 150 Z`} fill="#5f8a3a" stroke="#2e4a1e" strokeWidth={3} />
+          <path d={`M ${126 + dx} 150 Q ${206 + dx} 136 ${286 + dx} 141`} stroke="#9cc46a" strokeWidth={3} fill="none" />
+          {[150, 180, 210, 240, 265].map((x2) => <path key={x2} d={`M ${x2 + dx} ${148 - (x2 - 150) * 0.06} l 10 -16 M ${x2 + dx} ${148 - (x2 - 150) * 0.06} l 12 12`} stroke="#9cc46a" strokeWidth={2} />)}
+          <circle cx={230 + dx} cy={136} r={3.5} fill="#e8f6ff" opacity={0.9} />
+        </g>
+      ) : null}
       {look.sivilce ? (
         <g>
           <ellipse cx={252 + dx} cy={240} rx={17} ry={14} fill="#e8706a" opacity={0.45} />

@@ -32,6 +32,7 @@ export const GESTURES3D: Record<Gesture | "sarilma" | "kapiAc", { L: HandT; R: H
   basTutma: { L: REST, R: CHEEK },
   krem: { L: REST, R: CHEEK },
   golge: { L: REST, R: CHEEK },
+  bastir: { L: REST, R: REST },
   havaImza: { L: CHEEK, R: REST },
   havaImzaSol: { L: REST, R: CHEEK },
   kolTut: { L: REST, R: REST },

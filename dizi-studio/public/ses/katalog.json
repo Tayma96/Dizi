@@ -209,6 +209,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Phone call ending, short hang-up beep tones through a speaker"
  },
+ "efekt/el_inleme": {
+  "file": "ses/efekt/el_inleme.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Man groaning in pain, short, weak, trying to sit up, close"
+ },
  "efekt/el_islak_adim": {
   "file": "ses/efekt/el_islak_adim.mp3",
   "category": "efekt",
