@@ -18,3 +18,9 @@ Dal: `claude/affectionate-allen-dxvfpb`. Önce `bash tools/kurulum.sh` (dizi-stu
 - Bitince: render → −14 LUFS → `bolumler/724-04.mp4`. Teslimden önce **ilk 10 saniye saniye saniye analiz edilip kullanıcıya rapor verilir, talimat beklenir.**
 - Kullanıcı baş dönüşü örneğini (ornekler/b4-ornek-bas-donusu.mp4) onayladı: "Beğendim beğendim devam".
 - **Kullanıcı kararı:** 2.5D yalnızca özel hareketlerde (arkadan çekim, baş çevirme vb.) kullanılır, isteğe bağlı (opt-in). Diğer bütün çekimler eski 2D yapıyla; izleyici buna alıştı, varsayılan rig görünümü değişmez.
+
+## Son durum (limit %94'te)
+- `724-04.json` + `public/voice/724-04/` HAZIR (genel yönetmen; kuru çalıştırma 0 replik). Fısıltı iki satıra bölündü (a_01 / b_01).
+- Görüntü yönetmeni JSON'daki yeni alanları uyguluyordu: depoAcik, paltoOmuz, isaretler (kasa_agzi, depo_esik, depo_on), siluet, tasma, yutkun, onluk "cikar", sacDagin, onluk_top + yereAt, gozSok + bakSure, body "sendele" + sendeleAt, yarimGolge, ambalaj, basEgim; eklemeler kosu_takip, ambalaj_parmak, kapi_arka text[3] zaman kayması. Bilinmeyen jest adı Character.tsx:339'da çöküyor, güvenli hale getirilmeli.
+- Sonra: kare kontrolü → tam render → −14 LUFS → `bolumler/724-04.mp4` → ilk 10 sn saniye saniye analiz → kullanıcıya rapor, talimat bekle.
+- Render tarayıcısı: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`
