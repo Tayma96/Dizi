@@ -167,3 +167,29 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 - 2.5D: yalnızca özel hareketlerde (arkadan çekim, baş çevirme); geri kalan her şey eski 2D yapı (kullanıcı kararı).
 - **Teslim öncesi denetim (kullanıcı talimatı):** her şey bitince video saniye saniye analiz edilir. Önce yalnızca ilk 10 saniye analiz edilip kullanıcıya rapor verilir; sonra kullanıcının talimatı beklenir.
 - **Kullanıcı kararları (22 Kasım 2026, planlardan sonra):** kredi üst sınırı bu bölüm için 5.000 (replikler + ElevenLabs efektleri: yutkunma vb.); bölüm "aşırı profesyonel" olmalı (200 bin izleyici bekliyor). Depodaki "ece": okunur sürüm. Görüntü planı soruları: önerilenlerle (açılış adamın yüzünden Ece'ye kesme; koşunun sonunda depo eşiğinde flu siluet; göz göze anında normal şok gözü; son kare Sabri yakın, hafif alt açı, ifadesiz; arkadan çekimde önlük bağcığı yok).
+
+## Bölüm 5 (kullanıcının metni, 22 Kasım 2026; replikler ve noktalama AYNEN)
+Ece sabriye bakar "sabri abi?" Der. 
+Sabri gülerek "sakin kız sakin ilk iş günü şakası..   gece vardıyasına ilk defa başlayan herkese yaptığımız şaka" der.
+
+Ece şok olmuş ama hala tedirgindir:" abi sen benle taştaş mı geçiyorsun"der. (Taştaş taşak demektir ama taştaş deyince anlarlar)
+
+Sabri kıkırdar, "depoya gel çay yaptım içte sakinleş biraz" der. 
+Ece 1 adım attığı anda omzunu bir el tutar. (Kamera eceye dönüktür) omzundaki el görünür ama kimin olduğu görünmez.
+
+Ece irkilir biri dokunduğu an:"hoaa" der korkup.
+
+Dönüp baktığında omzuna elini koyanda sabri abidir.
+
+Gerçek sabri abi:"Ona inanma kızım, o ben değilim"der.
+
+Ece:" ne dönüyo lan burda!" Der bıkmış ve korkmuş şekilde.
+
+Deponun önündeki sahte sabri abi'nin yüzü yanmış maske gibi akmaya başlar, akan yüzün arkasında böcek yüzü belirir, yüzündeki insan derisini soyar(simbiyot gibi parçalaya parçalaya soyar deriyi ve kendi gerçek hamamböceği yüzünü gösterir) devasa ayakta duran bir hamamböceğine dönüşür. Korkutucu bir hamamböceğidir. (Yüzüyle birlikte vücudunu vsde soyar). 
+
+Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip "abi vallahi büyük hayranınım." Der. 
+
+### Bölüm 5: kullanıcı talimatı
+- Görüntü yönetmeni gece 03:00'te (limit yenilenince) başlar. Sahneleri didik didik eder; çizimler ve animasyonlar profesyonel ve dört dörtlük olmalı, her saniye incelenir.
+- O oturumda video TESLİM EDİLMEZ; oturumun tamamı yalnız mükemmelleştirmeye harcanır. Render'ı kullanıcı öğlen isteyecek.
+- Notlar: "taştaş" = taşak (argo, izleyici anlar). Omuzdaki el sahnesinde kamera Ece'ye dönük, el görünür ama sahibi görünmez. Dönüşüm: yüz yanmış maske gibi akar, arkasında böcek yüzü; deri simbiyot gibi parça parça soyulur (yüz ve vücut), devasa ayakta duran korkutucu hamamböceği.
