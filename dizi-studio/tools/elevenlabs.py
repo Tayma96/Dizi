@@ -311,7 +311,7 @@ def lines_from_episode(script):
                 emo = "notr"
             if who not in cast:
                 raise SystemExit(f"Bilinmeyen karakter: {who}")
-            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "okunus": b.get("okunus"), "tags": b.get("tags", ""), "hiz": b.get("hiz"), "fx": b.get("fx")})
+            out.append({"id": f"{sc['id']}_{i + 1:02d}", "who": who, "emotion": emo, "text": b["text"], "okunus": b.get("okunus"), "tags": b.get("tags", ""), "hiz": b.get("hiz"), "fx": b.get("fx"), "stab": b.get("stab")})
     return out
 
 
@@ -454,6 +454,8 @@ def cmd_seslendir(args):
         text = build_text(l, model)
         v = vmap[l["who"]]
         extra = "".join(f"|{k}={l[k]}" for k in ("hiz", "fx") if l.get(k))
+        if l.get("stab") is not None:  # repliğe özel stabilite; alan yoksa anahtar eskisiyle aynı kalır
+            extra += f"|stab={l['stab']}"
         key = hashlib.sha1(f"el|{model}|{v['voice_id']}|{json.dumps(v.get('ayar', {}), sort_keys=True)}|{l['emotion']}|{text}{extra}".encode()).hexdigest()[:12]
         cached = manifest.get(l["id"], {}).get("key") == key and os.path.exists(os.path.join(ROOT, "public", manifest[l["id"]]["file"]))
         if cached and l["id"] not in redo:
@@ -491,6 +493,8 @@ def cmd_seslendir(args):
         vs.update(entry.get("ayar", {}))
         if l.get("hiz"):
             vs["speed"] = float(l["hiz"])
+        if l.get("stab") is not None:  # v3/v4: yalnız 0.0 (Creative) / 0.5 (Natural) / 1.0 (Robust)
+            vs["stability"] = float(l["stab"])
         body = {"text": text, "model_id": model, "voice_settings": vs, "seed": int(key[:8], 16) % 4294967295}
         if model in LANG_MODELS:
             body["language_code"] = "tr"

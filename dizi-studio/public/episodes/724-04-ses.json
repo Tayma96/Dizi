@@ -1,0 +1,101 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-04-ses",
+ "episodeNo": 4,
+ "title": "Bölüm 4 · ses kayıtları (geçici; asıl bölüm 724-04.json)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "iri724",
+     "text": "Depodakine selam söyle. Bu gece seni seçmiş.",
+     "emotion": "notr",
+     "tags": "[leaning in, whisper, menacing]",
+     "gapAfter": 0.6
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "sıçarım işinedeee marketinedeee",
+     "emotion": "notr",
+     "tags": "[fed up, ranting, whiny angry]",
+     "okunus": "sıçarım işinedeeee… marketinedeeeeee!",
+     "stab": 0.0,
+     "gapAfter": 0.0
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ece",
+     "emotion": "notr",
+     "offscreen": true,
+     "label": "DEPO",
+     "gapAfter": 0.6
+    }
+   ]
+  },
+  {
+   "id": "d",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "vallahi bastım vallahi bastım kaç kaç kaç kaç",
+     "emotion": "notr",
+     "tags": "[panicked, fast, breathless, crying-laughing]",
+     "okunus": "vallahi bastım vallahi bastım kaç kaç kaç kaaaç!",
+     "hiz": 1.15,
+     "stab": 0.0,
+     "gapAfter": 0.5
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Nereye gidiyosun kızım.",
+     "emotion": "notr",
+     "tags": "[calm, low, unhurried]",
+     "gapAfter": 0.8
+    }
+   ]
+  }
+ ]
+}

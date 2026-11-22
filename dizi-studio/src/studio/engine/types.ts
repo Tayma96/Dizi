@@ -105,6 +105,10 @@ export type Beat =
       gizle?: number;
       /** okuma hızı (ElevenLabs speed) */
       hiz?: number;
+      /** seslendirmede okunuş (altyazı text'i kullanır) */
+      okunus?: string;
+      /** repliğe özel ElevenLabs stabilitesi (v3/v4: 0 / 0.5 / 1) */
+      stab?: number;
     } & BeatCommon)
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
