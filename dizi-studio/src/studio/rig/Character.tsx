@@ -119,6 +119,25 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
           <path d={`M ${x - 16} ${y - 70} l 4 -8 l 8 6 l 8 -6 l 8 6 l 4 -6 L ${x + 16} ${y - 70}`} fill="#c0c4cc" stroke={OUT} strokeWidth={2} />
         </g>
       );
+    case "onluk_top":
+      // buruşturulmuş turuncu önlük: kumaş top, kıvrımlar, sarkan askı
+      return (
+        <g>
+          <path d={`M ${x - 40} ${y - 6} Q ${x - 46} ${y - 44} ${x - 14} ${y - 52} Q ${x + 18} ${y - 64} ${x + 40} ${y - 36} Q ${x + 52} ${y - 4} ${x + 30} ${y + 22} Q ${x} ${y + 36} ${x - 28} ${y + 22} Z`} fill="#e8701a" stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+          <path d={`M ${x - 26} ${y - 30} q 14 10 30 -4 M ${x - 8} ${y + 6} q 16 -14 32 -2 M ${x + 6} ${y - 44} q -2 16 10 24`} stroke="#b8520e" strokeWidth={3} fill="none" />
+          <path d={`M ${x + 30} ${y + 18} q 18 26 6 52`} stroke="#e8701a" strokeWidth={7} fill="none" strokeLinecap="round" />
+        </g>
+      );
+    case "ambalaj":
+      // boş çikolata ambalajı (B2'deki kızın çikolatası): mor, sarı bant, yırtık uç, gümüş folyo; parmaklar arasında
+      return (
+        <g transform={`rotate(-18 ${x} ${y})`}>
+          <path d={`M ${x - 22} ${y - 96} L ${x + 22} ${y - 92} L ${x + 20} ${y + 6} L ${x - 20} ${y + 4} Z`} fill="#5a2a8a" stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+          <rect x={x - 21} y={y - 56} width={42} height={24} fill="#f2c21a" transform={`rotate(2 ${x} ${y - 44})`} />
+          <path d={`M ${x - 22} ${y - 96} l 6 -10 l 7 8 l 8 -12 l 7 10 l 6 -6 L ${x + 22} ${y - 92}`} fill="#c8ccd4" stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />
+          <path d={`M ${x - 14} ${y - 80} q 10 6 24 -2 M ${x - 12} ${y - 20} q 12 -6 22 4`} stroke="#3a1a5a" strokeWidth={2.5} fill="none" />
+        </g>
+      );
     case "para":
       return (
         <g transform={`rotate(-20 ${x} ${y})`}>
@@ -313,7 +332,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const walkPhase = walking ? Math.sin(frame / 5) : 0;
   // koşu: döngü 0.6 sn (iki adım); basışta gövde aşağı, havada yukarı
   const running = pose.body === "kos";
-  const runPh = running ? ((frame + (pose.kosFaz ?? 0)) * 2 * Math.PI) / (0.6 * fps) : 0;
+  const runPh = running ? pose.kosPh ?? ((frame + (pose.kosFaz ?? 0)) * 2 * Math.PI) / (0.6 * fps) : 0;
   const runU = Math.sin(runPh);
   const bob = walking ? Math.abs(Math.cos(frame / 5)) * -8 : running ? -18 * Math.abs(Math.cos(runPh)) + 6 : 0;
 
@@ -323,7 +342,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const strong = Math.sign(yaw) * Math.max(0, Math.abs(yaw) - 0.6);
   const dx = yaw * 24 + strong * 70;
   const lookX = pose.lookX ?? yaw * 0.6;
-  const lookY = pose.lookY ?? 0;
+  const lookY = (pose.lookY ?? 0) + 0.3 * (pose.yutkun !== undefined && pose.yutkun > 0 && pose.yutkun < 1 ? Math.sin(Math.PI * pose.yutkun) : 0);
   const eyeOpenBase = face.eyeOpen * (1 - Math.max(blink, pose.eyesClosed ?? 0));
   const time = pose.speech ? (frame - pose.speech.from) / fps : -1;
   let vis: Viseme | null = pose.speech ? currentViseme(pose.speech.cues, time) : null;
@@ -331,11 +350,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const opts: Viseme[] = ["A", "E", "L", "O", "M", "I", "L", "A"];
     vis = opts[Math.floor(random(`t-${seed}-${Math.floor(frame / 3)}`) * opts.length)];
   }
+  const yk = pose.yutkun !== undefined && pose.yutkun > 0 && pose.yutkun < 1 ? Math.sin(Math.PI * pose.yutkun) : 0;
   const amp = emo === "dehset" ? 1.45 : emo === "ofkeli" || emo === "korkmus" || emo === "sok" ? 1.25 : emo === "uzgun" || emo === "yorgun" ? 0.8 : 1;
   const browColor = look.age === "old" && !["hijab"].includes(look.hair.style) ? "#7d746c" : look.hair.style === "hijab" ? "#4a3428" : look.hair.color;
 
   // --- arms ---
-  const g = GESTURES[pose.gesture ?? "rest"];
+  const g = GESTURES[pose.gesture ?? "rest"] ?? GESTURES.rest;
   const armL: FullArm = { ...g.L, ...(pose.armL ?? {}) };
   const armR: FullArm = { ...g.R, ...(pose.armR ?? {}) };
   if (pose.gesture === "elSalla") armR.fore += Math.sin(frame / 3) * 18;
@@ -345,8 +365,24 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   if (pose.gesture === "havaImzaSol") { const st = Math.floor(frame / 7); armR.fore += (random(`hs${st}`) - 0.5) * 16; armR.upper += (random(`hu${st}`) - 0.5) * 8; }
   if (pose.gesture === "havaImza") { armL.fore += Math.sin(frame / 2.2) * 9 + Math.sin(frame / 5.3) * 5; armL.upper += Math.cos(frame / 3.1) * 5; }
   if (pose.gesture === "raf") { armR.fore += Math.sin(frame / 4) * 12; armR.upper += Math.sin(frame / 6) * 6; armL.fore += Math.cos(frame / 5) * 9; }
+  // önlük çıkarma (B4): giymenin tersi + başın üstünde at kuyruğuna takılma (iki sert çekiş) + kurtulma
+  const oc = pose.onlukCikar;
+  let takil = 0, cekis = 0;
+  let onlCik: number | undefined;
+  if (oc !== undefined) {
+    const k = Math.max(0, Math.min(1, oc));
+    if (k < 0.15) onlCik = 1 - 0.28 * (k / 0.15);
+    else if (k < 0.3) onlCik = 0.72 - 0.16 * ((k - 0.15) / 0.15);
+    else if (k < 0.75) {
+      takil = Math.min(1, (k - 0.3) / 0.05);
+      const j = (k - 0.3) / 0.45; // iki çekiş
+      cekis = Math.max(0, Math.sin(j * Math.PI * 2 * 2 - 0.4)) ** 2;
+      onlCik = 0.56 - 0.03 * cekis;
+    } else if (k < 0.85) { takil = 1 - (k - 0.75) / 0.1; onlCik = 0.53 - 0.09 * ((k - 0.75) / 0.1); }
+    else onlCik = 0.44 - 0.19 * ((k - 0.85) / 0.15);
+  }
   // önlük giyme: kollar ara pozlarla akar (elde katlı → başın üstüne → boyna geçirir → arkadan bağlar)
-  const onl = pose.onluk;
+  const onl = onlCik ?? pose.onluk;
   if (onl !== undefined && onl < 1) {
     const K: [number, FullArm][] = [
       [0, { upper: 12, fore: -62, ul: 0.8 }], [0.26, { upper: 12, fore: -62, ul: 0.8 }], [0.44, { upper: 162, fore: -16, ul: 1 }],
@@ -362,6 +398,24 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     Object.assign(armL, arm);
     Object.assign(armR, arm);
   }
+  if (cekis > 0) { armL.upper -= 14 * cekis; armR.upper -= 14 * cekis; armL.fore -= 10 * cekis; armR.fore -= 10 * cekis; }
+  // yere çarpma (sağ el, elde prop): hazırlıkta kol başın üstüne kalkar, çarpmada aşağı iner
+  const ya = pose.yereAt;
+  let propGizle = false;
+  if (ya !== undefined && ya > -0.5) {
+    const kf: [number, number, number][] = [[-0.5, -4, -78], [-0.08, 150, -38], [0.0, 120, -20], [0.12, 12, -6], [0.5, 6, 0]];
+    let i = 0;
+    while (i < kf.length - 2 && ya > kf[i + 1][0]) i++;
+    const [t0, u0, f0] = kf[i], [t1, u1, f1] = kf[i + 1];
+    const e = Math.max(0, Math.min(1, (ya - t0) / (t1 - t0)));
+    const ee = e * e * (3 - 2 * e);
+    armR.upper = u0 + (u1 - u0) * ee; armR.fore = f0 + (f1 - f0) * ee; armR.ul = 1; armR.fl = 1;
+    propGizle = ya > 0.04;
+  }
+  // sendeleme: kollar savrulur
+  const sk = pose.sendeleK;
+  const sLean = sk !== undefined && sk > 0 && sk < 1 ? Math.sin(Math.PI * sk) * (1 - 0.3 * sk) : 0;
+  if (sLean > 0) { armL.upper += 70 * sLean; armL.fore -= 30 * sLean; armR.upper += 45 * sLean; armR.fore += 20 * sLean; }
   if (running) {
     // kol pompalama (önden): öne gelen kolun eli göğse çıkar, kısalır (kameraya yaklaşır); geriye giden el kalçaya iner
     // ön kol kameraya döner: kısalır (fl), el gövdenin yanında göğüs hizasına çıkar; gövdenin önünden çaprazlamaz
@@ -414,7 +468,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
               <path d={`M ${sx + 12} ${hy + 4} q 6 14 2 26`} stroke="#10204a" strokeWidth={5} strokeLinecap="round" opacity={0.6} fill="none" />
             </g>
           ) : null}
-          {side === "r" && pose.prop && pose.prop !== "none" ? (
+          {side === "r" && pose.prop && pose.prop !== "none" && !propGizle ? (
             <g transform={`rotate(${-(a.upper + a.fore) * dir} ${sx} ${hy + 12})`}>
               <HandProp prop={pose.prop} x={sx} y={hy + 12} look={look} />
               <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />
@@ -685,8 +739,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <ellipse cx={148 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
         <ellipse cx={252 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
       </g>
-      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} />
-      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} />
+      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} />
+      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} />
       <Brow cx={160 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeL} />
       <Brow cx={240 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
@@ -730,7 +784,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
         </g>
       ) : null}
-      <Mouth viseme={vis} rest={face.mouth} cx={200 + dx * 1.1} cy={274} amp={amp} scream={emo === "dehset"} />
+      <Mouth viseme={vis} rest={yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
           {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}
@@ -752,6 +806,15 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       ) : null}
       {pose.sweat ? <path d={`M ${280} 140 q -7 16 0 22 q 7 -6 0 -22 z`} fill="#bfe3ff" stroke="#6fa8cf" strokeWidth={2} /> : null}
       <HairFront look={look} dx={yaw * 10 + strong * 30} />
+      {pose.sacDagin ? (
+        <g stroke={look.hair.color} strokeWidth={3.5} fill="none" strokeLinecap="round">
+          <path d={`M ${150 + dx} 90 q -16 -14 -10 -30`} />
+          <path d={`M ${232 + dx} 84 q 12 -18 28 -18`} stroke={look.hair.shade} />
+          <path d={`M ${116 + dx * 0.4} 168 q -16 12 -12 32`} />
+          <path d={`M ${286 + dx * 0.4} 164 q 14 10 12 30`} stroke={look.hair.shade} />
+          <path d={`M ${196 + dx} 82 q -4 -16 6 -24`} />
+        </g>
+      ) : null}
       {look.glasses ? (
         <g fill="none" stroke={look.glasses} strokeWidth={5}>
           <rect x={130 + dx} y={176} width={60} height={44} rx={14} />
@@ -771,10 +834,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
 
   const dizK = pose.body === "sit" || pose.body === "walk" ? 0 : Math.max(0, Math.min(1, pose.diz ?? 0));
   const groundShift = 680 * (1 - age.sy) + 185 * dizK;
-  const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)${running ? ` rotate(${2.4 * runU} 200 600)` : ""}`;
+  const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)${running ? ` rotate(${2.4 * runU} 200 600)` : ""}${sLean > 0 ? ` translate(0 ${24 * sLean}) rotate(${-13 * sLean} 200 980)` : ""}`;
   const torsoScale = `translate(200 470) scale(${wx} ${1 + breathe}) translate(-200 -470)`;
   const runTilt = running ? 3.2 * Math.sin(runPh - 0.6) : 0;
-  const headT = `translate(0 ${-breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0)}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
+  const yutY = 5 * yk;
+  const sTilt = -8 * sLean;
+  const headT = `translate(0 ${-breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
 
   return (
     <svg
@@ -819,6 +884,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {/* neck */}
           <path d="M 180 290 L 180 336 Q 200 346 220 336 L 220 290 Z" fill={look.hair.style === "hijab" ? look.hair.color : skin} stroke={OUT} strokeWidth={SW} />
           <path d="M 182 318 Q 200 330 218 318" fill="none" stroke={look.skinShade} strokeWidth={6} opacity={look.hair.style === "hijab" ? 0 : 1} />
+          {yk > 0 ? <path d={`M 193 ${330 - 22 * yk} q 7 -7 14 0`} fill="none" stroke={look.skinShade} strokeWidth={5} strokeLinecap="round" opacity={0.9} /> : null}
           {look.kolye ? (
             <g>
               <path d="M 168 334 Q 200 378 232 334" stroke="#6a4a2a" strokeWidth={3} fill="none" />
@@ -829,6 +895,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <g transform={bodyT}>
           <g transform={headT}>
             <Head />
+            {takil > 0 ? (
+              <path d={`M 252 124 C 284 ${100 - 30 * takil} ${268 - 6 * cekis} ${44 - 34 * takil - 10 * cekis} 238 ${34 - 30 * takil - 14 * cekis} C 234 ${54 - 20 * takil} 250 94 240 128 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={4} strokeLinejoin="round" opacity={Math.min(1, takil * 1.5)} />
+            ) : null}
             {look.kan ? (
               <g opacity={Math.min(1, look.kan)}>
                 {/* alında yarık + kaş üstünde pıhtı */}

@@ -56,7 +56,10 @@ export const Eye: React.FC<{
   flip?: boolean;
   squeeze?: number;
   uid: string;
-}> = ({ cx, cy, look, lookX, lookY, open, smile, pupil, flip, squeeze = 1, uid }) => {
+  /** anime şok gözü 0..1: göz akı büyür, iris/bebek nokta olur, parlama söner */
+  sok?: number;
+}> = ({ cx, cy, look, lookX, lookY, open: open0, smile, pupil, flip, squeeze = 1, uid, sok = 0 }) => {
+  const open = sok > 0 ? open0 + (1.42 - open0) * sok : open0;
   const w = 22 * squeeze;
   const h = 15;
   const clipId = `eye-${uid}`;
@@ -74,8 +77,8 @@ export const Eye: React.FC<{
   const bot = cy + h * 1.1 * Math.min(1.2, 0.35 + open * 0.65);
   const squint = open < 0.85 ? Math.min(1, (0.85 - open) / 0.4) : 0;
   const shape = `M ${cx - w * s} ${cy} Q ${cx - w * 0.3 * s} ${top} ${cx + w * s} ${cy - 2} Q ${cx + w * 0.2 * s} ${bot} ${cx - w * s} ${cy} Z`;
-  const ix = cx + lookX * 10 * squeeze;
-  const iy = cy + lookY * 8;
+  const ix = cx + lookX * (10 + 5 * sok) * squeeze;
+  const iy = cy + lookY * (8 + 3 * sok);
   return (
     <g>
       <defs>
@@ -85,10 +88,10 @@ export const Eye: React.FC<{
       </defs>
       <path d={shape} fill="#fdfaf5" />
       <g clipPath={`url(#${clipId})`}>
-        <circle cx={ix} cy={iy} r={11.5} fill={look.iris} />
-        <circle cx={ix} cy={iy} r={6 * pupil} fill="#120c0a" />
-        <circle cx={ix + 4} cy={iy - 4} r={3.2} fill="#fff" />
-        <circle cx={ix - 4} cy={iy + 4} r={1.4} fill="#fff" opacity={0.8} />
+        <circle cx={ix} cy={iy} r={11.5 - 7.6 * sok} fill={look.iris} />
+        <circle cx={ix} cy={iy} r={6 * pupil * (1 - sok) + 2.1 * sok} fill="#120c0a" />
+        <circle cx={ix + 4} cy={iy - 4} r={3.2} fill="#fff" opacity={1 - sok} />
+        <circle cx={ix - 4} cy={iy + 4} r={1.4} fill="#fff" opacity={0.8 * (1 - sok)} />
       </g>
       {squint > 0 ? (
         <path d={`M ${cx - w * 0.8 * s} ${cy + 2} Q ${cx} ${bot + 3} ${cx + w * 0.85 * s} ${cy}`} fill="none" stroke={OUT} strokeWidth={2.6} strokeOpacity={0.35 + squint * 0.4} strokeLinecap="round" />

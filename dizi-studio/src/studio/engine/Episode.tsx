@@ -10,7 +10,7 @@ import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleC
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
 import { GESTURES, type FullArm } from "../rig/gestures";
-import type { CharState, EpisodeProps, EpisodeScript, Shot, VoiceManifest } from "./types";
+import type { Beat, CharState, EpisodeProps, EpisodeScript, Shot, VoiceManifest } from "./types";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const SPEAKER_COLORS = ["#ffd166", "#9fd8b8", "#ff9fb2", "#a8c8ff", "#ffb37a", "#d6b8ff", "#c8e88a"];
@@ -234,6 +234,36 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     if (d === "acik") doorOpen = 1;
     if (d === "aralik") doorOpen = i === bi ? interpolate(bf, [0, 30], [0, 0.14], clamp) : 0.14;
   }
+  // 7/24 B4: depo kapısı (sahne tabanı + vuruşta { v, at } ile çarparak açılma; küçük geri tepme)
+  let depoNow: number | undefined = scene.depoAcik;
+  for (let i = 0; i <= bi; i++) {
+    const d = ts.beats[i].beat.depoAcik;
+    if (d === undefined) continue;
+    if (typeof d === "number") depoNow = d;
+    else if (i < bi) depoNow = d.v;
+    else {
+      const a0 = Math.round(d.at * fps);
+      const from = depoNow ?? 0.08;
+      depoNow = bf < a0 ? from : bf < a0 + 5 ? from + (d.v - from) * ((bf - a0) / 5) ** 2 : d.v - 0.08 * Math.exp(-(bf - a0 - 5) / 3) * Math.abs(Math.sin((bf - a0 - 5) / 1.6));
+    }
+  }
+  // banko sarsıntısı: sendeleyen karakter bankoya çarptığında
+  let sarsNow = 0;
+  for (const [cid, cs] of Object.entries(tb.cast)) {
+    const pcs = prev?.cast[cid];
+    if (cs.body === "sendele" && cs.sendeleAt !== undefined && pcs?.sendeleAt !== cs.sendeleAt) {
+      const t = bf / fps - cs.sendeleAt;
+      if (t > 0.28 && t < 0.8) sarsNow = Math.max(sarsNow, 1 - (t - 0.28) / 0.52);
+    }
+  }
+  const marketEk = { depoAcik: depoNow, agiz: !!scene.isaretler?.kasa_agzi, sars: sarsNow };
+  // ön plan palto omzu (iri adam): sahnede var, "sil" vuruşunda sola kayıp çıkar
+  let paltoNow = scene.paltoOmuz ? 1 : 0;
+  for (let i = 0; i <= bi; i++) {
+    const v = ts.beats[i].beat.paltoOmuz;
+    if (v === true) paltoNow = 1;
+    if (v === "sil") paltoNow = i < bi ? 0 : 1 - interpolate(bf, [Math.round(0.15 * fps), Math.round(1.05 * fps)], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+  }
   // 7/24: ıslak ayak izleri (beat.iz = izlerin belirme süresi, sn; sonraki vuruşlarda kalır)
   let izNow = 0;
   for (let i = 0; i <= bi; i++) {
@@ -267,6 +297,20 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
   const prevLook: Record<string, { yaw: number; lookX: number } | undefined> = {};
   if (prev) for (const id of Object.keys(placed)) prevLook[id] = gazeOf(prev, id, { ...prevPlaced, ...Object.fromEntries(Object.entries(placed).filter(([k]) => !prevPlaced[k])) });
 
+  // 7/24 B4 alanları: tek seferlik eylemler yalnız ayarlandıkları vuruşta oynar (kalıcı durum tekrar oynatmaz)
+  const yeniB4 = (st: CharState, pst: CharState | undefined, bfr: number, dur: number) => {
+    const t = bfr / fps;
+    const gv = st.gozSok === true ? 1 : Number(st.gozSok || 0);
+    const gp = pst?.gozSok === true ? 1 : Number(pst?.gozSok || 0);
+    return {
+      gozSok: gv > 0 ? (gp >= gv ? gv : interpolate(bfr, [0, 4], [gp, gv], clamp)) : undefined,
+      yutkun: st.yutkun !== undefined && pst?.yutkun !== st.yutkun ? (t - st.yutkun) / 0.7 : undefined,
+      onlukCikar: st.onluk === "cikar" && pst?.onluk !== "cikar" ? interpolate(bfr, [Math.round(0.05 * fps), dur - Math.round(0.1 * fps)], [0, 1], clamp) : undefined,
+      sacDagin: st.sacDagin,
+      yereAt: st.yereAt !== undefined && pst?.yereAt !== st.yereAt ? t - st.yereAt : undefined,
+      sendeleK: st.body === "sendele" && st.sendeleAt !== undefined && pst?.sendeleAt !== st.sendeleAt ? (t - st.sendeleAt) / 0.55 : undefined,
+    };
+  };
   const renderChar = (id: string) => {
     const p = placed[id];
     const st = tb.cast[id];
@@ -280,7 +324,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
     // yürürken kollar önceki pozda kalır (kol bacaktan önce hareket etmez); yürüyüş bitince yumuşak geçiş
     const walkingNow = walkX[id]?.walking && !st.yuru;
     const walkEnd = st.enter || (prevPlaced[id] && prevPlaced[id].x !== p.x) ? Math.min(tb.dur, Math.round(1.3 * fps)) : 0;
-    const gk = walkingNow ? 0 : interpolate(bf, [walkEnd, walkEnd + 10], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
+    const gk = walkingNow ? 0 : interpolate(bf, [walkEnd, walkEnd + (st.bakSure ? Math.round(st.bakSure * fps) : 10)], [0, 1], { ...clamp, easing: (t) => t * t * (3 - 2 * t) });
     const gCur = GESTURES[(st.gesture as Gesture) ?? "rest"] ?? GESTURES.rest;
     const gPrev = pst && !pst.hidden ? GESTURES[(pst.gesture as Gesture) ?? "rest"] ?? GESTURES.rest : gCur;
     const mixArm = (a: FullArm, b: FullArm): FullArm => ({ upper: a.upper + (b.upper - a.upper) * gk, fore: a.fore + (b.fore - a.fore) * gk, ul: (a.ul ?? 1) + ((b.ul ?? 1) - (a.ul ?? 1)) * gk, fl: (a.fl ?? 1) + ((b.fl ?? 1) - (a.fl ?? 1)) * gk });
@@ -305,11 +349,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             armL: st.kol?.L ?? armL,
             armR: st.kol?.R ?? armR,
             legRot: st.bacak,
-            prop: st.prop,
+            prop: st.prop === "onluk_top" && pst?.yereAt !== undefined ? undefined : st.prop,
             body: st.body === "kos" ? "kos" : walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             hideLegs: ang !== undefined,
             golgesiz: ang !== undefined,
-            tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : undefined,
+            tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : st.basEgim !== undefined ? (pst?.basEgim === st.basEgim ? st.basEgim : interpolate(bf, [0, Math.round(0.8 * fps)], [pst?.basEgim ?? 0, st.basEgim], { ...clamp, easing: (t) => t * t * (3 - 2 * t) })) : undefined,
             talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : undefined,
             yaw,
             lookX,
@@ -332,12 +376,18 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
               return 0;
             })(),
             wet: st.wet,
+            ...yeniB4(st, pst, bf, tb.dur),
             eyesClosed: st.eyesClosed,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,
             seed: look.name.length * 11 + id.length,
           }}
         />
       </div>
+      {st.yarimGolge ? (
+        <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, filter: "brightness(0.22) saturate(0.6)", WebkitMaskImage: "linear-gradient(to left, black 0%, black 30%, transparent 58%)", maskImage: "linear-gradient(to left, black 0%, black 30%, transparent 58%)", opacity: typeof st.yarimGolge === "number" ? st.yarimGolge : 0.85 }}>
+          <Character look={look} size={p.size} pose={{ emotion: st.emotion, armL: st.kol?.L ?? armL, armR: st.kol?.R ?? armR, prop: st.prop, body: walkX[id]?.walking ? "walk" : "stand", yaw, lookX, lookY: st.bak ? st.bak.y : undefined, tilt: st.basEgim, golgesiz: true, seed: look.name.length * 11 + id.length }} />
+        </div>
+      ) : null}
       {ang !== undefined && !tb.cast[id]?.zemin ? <Blanket hx={p.x} hy={p.feetY} k={(ang + 90) / 90} /> : null}
       {ang !== undefined && tb.cast[id]?.zemin ? (
         <div style={{ position: "absolute", left: p.x - p.size * 0.2, top: p.top, transform: `rotate(${-90 + (st.egim ?? 0)}deg)`, transformOrigin: `${p.size * 0.2}px ${p.size * 0.6}px`, clipPath: "inset(61% -40% -10% -40%)" }}>
@@ -391,17 +441,43 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           </>
         ) : (
           <>
-            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow}>
+            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow} market={marketEk}>
               {outsideIds.map(renderChar)}
             </SetLayer>
             {scene.direk !== undefined ? <Direk x={scene.direk} /> : null}
             {(scene.set as string) === "market_kapi" && kepenkNow > 0 ? <Kepenk k={kepenkNow} /> : null}
             {insideIds.map(renderChar)}
-            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} />
+            <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} market={marketEk} />
           </>
         )}
       </AbsoluteFill>
       {scene.look === "flashback" ? <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, rgba(255,240,210,0) 50%, rgba(255,240,210,0.55) 100%)" }} /> : null}
+      {paltoNow > 0.001 ? (
+        <AbsoluteFill style={{ pointerEvents: "none" }}>
+          <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+            <defs><filter id="paltoBl"><feGaussianBlur stdDeviation="22" /></filter></defs>
+            <g filter="url(#paltoBl)" transform={`translate(${-560 * (1 - paltoNow)} ${Math.sin(frame / 14) * 6})`}>
+              <path d="M -120 520 Q 120 470 250 640 Q 320 760 300 1100 L 330 1920 L -120 1920 Z" fill="#141210" />
+              <path d="M 150 560 Q 240 640 262 820" stroke="#3a342c" strokeWidth={26} fill="none" opacity={0.6} />
+            </g>
+          </svg>
+        </AbsoluteFill>
+      ) : null}
+      {tb.beat.siluet ? (() => {
+        const k = bf / Math.max(1, tb.dur);
+        const x = tb.beat.siluet === "sol" ? 700 - 820 * k : 380 + 820 * k;
+        return (
+          <AbsoluteFill style={{ pointerEvents: "none" }}>
+            <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+              <defs><filter id="silBl"><feGaussianBlur stdDeviation="7" /></filter><clipPath id="silCam"><rect x={0} y={430} width={1080} height={760} /></clipPath></defs>
+              <g clipPath="url(#silCam)" opacity={0.55 * Math.min(1, (1 - k) * 4)} filter="url(#silBl)" transform={`translate(${x} ${Math.abs(Math.sin(frame / 4)) * -6})`}>
+                <ellipse cx={0} cy={700} rx={34} ry={42} fill="#05070a" />
+                <path d="M -30 736 L 30 736 Q 92 760 96 840 L 88 1200 L -88 1200 L -96 840 Q -92 760 -30 736 Z" fill="#05070a" />
+              </g>
+            </svg>
+          </AbsoluteFill>
+        );
+      })() : null}
       {/* overlays per beat */}
       {ts.beats.map((b) => (
         <Sequence key={b.index} from={b.from} durationInFrames={b.dur} layout="none">
@@ -414,7 +490,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             const isik = (b.beat as { isik?: boolean }).isik;
             return <AbsoluteFill style={{ background: isik ? `radial-gradient(ellipse 60% 38% at 50% 58%, rgba(150,190,255,0.10) 0%, rgba(0,0,10,${a * 0.35}) 40%, rgba(0,0,8,${a}) 85%)` : `rgba(0,0,8,${a})` }} />;
           })() : null}
-          {b.beat.type === "line" ? (
+          {b.beat.type === "line" && b.beat.tasma ? null : b.beat.type === "line" ? (
             <KaraokeSubtitle tb={b} speakerName={b.beat.label !== undefined ? b.beat.label || undefined : castById(b.beat.who).name} speakerColor={colors[b.beat.who]} alt={(b.beat as { altyazi?: string }).altyazi === "alt" || (scene as { altyazi?: string }).altyazi === "alt"} />
           ) : b.beat.type === "yazi" ? (
             <TitleCard text={b.beat.text} sub={b.beat.sub} dur={b.dur} />
@@ -430,6 +506,15 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           {b.beat.gozAc ? <GozAc d={Math.round(b.beat.gozAc * fps)} /> : null}
         </Sequence>
       ))}
+      {ts.beats.filter((b) => b.beat.type === "line" && b.beat.tasma).map((b) => {
+        const d = b.voice ? Math.max(b.dur, b.voice.from + b.voice.dur + Math.round(0.25 * fps)) : b.dur;
+        const lb = b.beat as Extract<Beat, { type: "line" }>;
+        return (
+          <Sequence key={`tasma${b.index}`} from={b.from} durationInFrames={d} layout="none">
+            <KaraokeSubtitle tb={{ ...b, dur: d }} speakerName={lb.label !== undefined ? lb.label || undefined : castById(lb.who).name} speakerColor={colors[lb.who]} alt={(scene as { altyazi?: string }).altyazi === "alt"} />
+          </Sequence>
+        );
+      })}
       <SceneTransition kind={scene.transition} />
     </AbsoluteFill>
   );
