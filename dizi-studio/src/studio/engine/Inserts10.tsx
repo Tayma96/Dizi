@@ -11,8 +11,8 @@ const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = (x: number) => { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); };
 const easeOut = (x: number) => 1 - (1 - Math.max(0, Math.min(1, x))) ** 3;
 
-export type Insert10Kind = "kapi_arka" | "kosu_takip";
-export const INSERT10_KINDS: Insert10Kind[] = ["kapi_arka", "kosu_takip"];
+export type Insert10Kind = "kapi_arka" | "kosu_takip" | "depo_acik" | "ambalaj_parmak";
+export const INSERT10_KINDS: Insert10Kind[] = ["kapi_arka", "kosu_takip", "depo_acik", "ambalaj_parmak"];
 
 /** Baş dönüşü eğrisi: 180 (arka) → 350 (kameraya ~10°). Profilde (≈270) kısa ürkek duraklama. */
 export const donusAci = (u: number) => {
@@ -26,8 +26,11 @@ export const donusAci = (u: number) => {
 /** Kapıda Ece, kamera arkasında (kapıya bakar). text[0]: dönüş başlangıcı (sn), text[1]: dönüş süresi (sn),
  *  text[2]: "son" verilirse dönüşün bittiği poz baştan gösterilir (tepki çekimi). */
 const KapiArka: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
-  const f = useCurrentFrame();
+  const f0 = useCurrentFrame();
   const { fps } = useVideoConfig();
+  // text[3]: zaman kayması (tek eğri birkaç vuruşa bölünür; varış animasyonu her vuruşta baştan oynamaz)
+  const kay = Number(text?.[3] || 0);
+  const f = f0 + Math.round(kay * fps);
   const t = f / fps;
   const ece = castById("ece_sivil");
   const tBas = Number(text?.[0] ?? 1.4);
@@ -98,13 +101,26 @@ const KosuTakip: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) =>
   const t = f / fps;
   const ece = castById("ece_sivil");
   const p = Math.min(1, t / Math.max(0.5, dur));
-  const ph = (f * 2 * Math.PI) / (0.6 * fps);
+  const ph0 = (f * 2 * Math.PI) / (0.6 * fps);
   // el kamerası: her basışta küçük sarsıntı
-  const shY = 5 * Math.abs(Math.cos(ph)) - 2.5, shX = 3.5 * Math.sin(ph * 0.5);
   const sBG = 1.2 - 0.2 * easeOut(p), sFG = 1.55 - 0.55 * easeOut(p);
-  const silT = text?.[0] === "yok" ? Infinity : Number(text?.[0] ?? dur - 0.55);
+  // text[0]: ayak basış zamanları ("0.00,0.40,…") ya da siluet anı; text[1]: siluet anı ya da "sendele"
+  const adimlar = text?.[0]?.includes(",") ? text[0].split(",").map(Number) : null;
+  const silRaw = adimlar ? text?.[1] : text?.[0];
+  const silT = silRaw === "yok" ? Infinity : Number(silRaw ?? dur - 0.55);
   const silA = interpolate(t, [silT, silT + 0.25], [0, 0.85], clamp);
-  const sendele = text?.[1] === "sendele" ? Math.max(0, 1 - t / 0.35) : 0;
+  const sendele = text?.[1] === "sendele" || (adimlar && adimlar[0] < 0.05) ? Math.max(0, 1 - t / 0.35) : 0;
+  // koşu fazı basışlara kilitli: basış anında faz = π/2 + kπ (gövde en aşağıda)
+  const kosPh = (() => {
+    if (!adimlar || adimlar.length < 2) return undefined;
+    const A = adimlar;
+    if (t <= A[0]) return Math.PI / 2 + Math.PI * ((t - A[0]) / 0.3);
+    for (let i = 0; i < A.length - 1; i++) if (t < A[i + 1]) return Math.PI / 2 + Math.PI * (i + (t - A[i]) / (A[i + 1] - A[i]));
+    const per = A[A.length - 1] - A[A.length - 2];
+    return Math.PI / 2 + Math.PI * (A.length - 1 + (t - A[A.length - 1]) / per);
+  })();
+  const ph = kosPh ?? ph0;
+  const shY = 5 * Math.abs(Math.cos(ph)) - 2.5, shX = 3.5 * Math.sin(ph * 0.5);
   const size = 3000;
   return (
     <AbsoluteFill style={{ backgroundColor: "#1a1c20", overflow: "hidden" }}>
@@ -124,9 +140,88 @@ const KosuTakip: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) =>
       </svg>
       {/* Ece: bel üstü, kadrajda sabit boy (kamera onunla gider) */}
       <div style={{ position: "absolute", left: 540 - size * 0.2 + shX * 0.3, top: 90 + shY * 0.3, transform: `rotate(${-7 * sendele}deg) translate(${-40 * sendele}px, ${30 * sendele}px)`, transformOrigin: "50% 60%" }}>
-        <Character look={ece} size={size} pose={{ emotion: "dehset", body: "kos", lookX: 0.28, lookY: -0.1, talk: [[0, 9999]], seed: 31, sweat: true, golgesiz: true, hideLegs: true, pale: 0.15 }} />
+        <Character look={ece} size={size} pose={{ emotion: "dehset", body: "kos", kosPh: kosPh, lookX: 0.28, lookY: -0.1, talk: [[0, 9999]], seed: 31, sweat: true, golgesiz: true, hideLegs: true, pale: 0.15 }} />
       </div>
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/** Ece'nin gözünden DEPO: kapı ardına kadar açık, içi zifiri; eşikte hiçbir şey. Yavaş yaklaşma. */
+const DepoAcik: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const z = interpolate(f, [0, dur * fps], [1, 1.12], clamp);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0a0b0d", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <linearGradient id="da10d" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#c9ced0" /><stop offset="1" stopColor="#9aa0a4" /></linearGradient>
+          <radialGradient id="da10v" cx="0.5" cy="0.5" r="0.7"><stop offset="0.45" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.7} /></radialGradient>
+        </defs>
+        <g transform={`translate(540 960) scale(${z}) translate(-540 -960)`}>
+          <rect width={1080} height={1920} fill="url(#da10d)" />
+          <rect x={210} y={250} width={660} height={1500} fill="#5a6066" stroke="#2a2e32" strokeWidth={10} />
+          <rect x={250} y={290} width={580} height={1460} fill="#020203" />
+          {/* duvara yaslanmış kanat */}
+          <path d="M 250 290 L 300 330 L 300 1712 L 250 1750 Z" fill="#4a5056" stroke="#2a2e32" strokeWidth={6} />
+          <circle cx={288} cy={1010} r={9} fill="#c8ccd0" />
+          {/* zeminde floresanın ince yansıması */}
+          <path d="M 330 1750 L 790 1750 L 700 1600 L 420 1600 Z" fill="#3a4048" opacity={0.25} />
+          <rect x={360} y={170} width={360} height={64} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={4} />
+          <text x={540} y={214} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={40} fill="#1a1a1a">DEPO · PERSONEL</text>
+          <rect y={1750} width={1080} height={170} fill="#b8bdbe" />
+        </g>
+        <rect width={1080} height={1920} fill="url(#da10v)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/** Sabri'nin parmakları (yakın): boş çikolata ambalajını çevirir. Mor ambalaj, sarı bant, yırtık gümüş uç. */
+const AmbalajParmak: React.FC<{ dur: number }> = ({ dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const rot = -14 + 22 * ease(t / Math.max(0.5, dur * 0.8));
+  const z = interpolate(t, [0, dur], [1, 1.1], clamp);
+  const TEN = "#d8a47c", TEN2 = "#c08a64", O = "#2b1d1a";
+  const kr = Math.sin(t * 9) * 1.5; // hışırtı titreşimi
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#121418", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <radialGradient id="ap10" cx="0.45" cy="0.42" r="0.6"><stop offset="0" stopColor="#3a3c40" /><stop offset="1" stopColor="#0c0d10" /></radialGradient>
+        </defs>
+        <rect width={1080} height={1920} fill="url(#ap10)" />
+        <g transform={`translate(540 900) scale(${z}) translate(-540 -900)`}>
+          {/* hırka kolu (gri, örgü) */}
+          <path d="M 1080 1500 L 720 1180 Q 660 1130 700 1060 L 1080 1240 Z" fill="#6a6a66" stroke={O} strokeWidth={6} />
+          {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${760 + i * 60} ${1150 + i * 30} l 40 -80`} stroke="#525250" strokeWidth={5} />)}
+          <path d="M 700 1060 Q 690 1110 720 1180" stroke="#d8d0c0" strokeWidth={14} fill="none" />
+          {/* el sırtı */}
+          <path d="M 712 1080 Q 640 1000 560 980 Q 470 960 430 1000 Q 410 1040 450 1070 Q 520 1110 600 1150 Q 680 1180 720 1170 Z" fill={TEN} stroke={O} strokeWidth={6} strokeLinejoin="round" />
+          {/* yüzük, işaret ve baş parmak ambalajı kıstırır */}
+          <g transform={`rotate(${rot} 470 900)`}>
+            <path d={`M 400 ${640 + kr} L 540 ${652 - kr} L 548 1010 L 392 1004 Z`} fill="#5a2a8a" stroke={O} strokeWidth={6} strokeLinejoin="round" />
+            <rect x={396} y={790} width={148} height={78} fill="#f2c21a" transform="rotate(1.5 470 829)" />
+            <path d="M 400 640 l 18 -34 l 22 26 l 26 -38 l 24 32 l 22 -24 L 540 652" fill="#c8ccd4" stroke={O} strokeWidth={5} strokeLinejoin="round" />
+            <path d="M 420 700 q 40 18 100 -6 M 418 940 q 52 -20 108 8" stroke="#3a1a5a" strokeWidth={5} fill="none" />
+            <path d="M 470 660 L 476 1000" stroke="#7a4aa8" strokeWidth={4} opacity={0.6} />
+          </g>
+          {/* işaret parmağı (üstte) */}
+          <path d="M 560 990 Q 520 930 470 905 Q 430 890 418 910 Q 412 932 440 948 Q 500 980 540 1030 Z" fill={TEN} stroke={O} strokeWidth={6} strokeLinejoin="round" />
+          <path d="M 425 905 q 8 -10 20 -4" stroke="#e8c8b0" strokeWidth={6} fill="none" />
+          <path d="M 470 915 q 6 14 -4 24 M 505 945 q 6 12 -2 22" stroke={TEN2} strokeWidth={4} fill="none" />
+          {/* baş parmak (altta) */}
+          <path d="M 600 1130 Q 520 1100 470 1060 Q 440 1035 452 1012 Q 470 994 500 1012 Q 560 1050 640 1080 Z" fill={TEN} stroke={O} strokeWidth={6} strokeLinejoin="round" />
+          <path d="M 460 1018 q 10 -8 22 0" stroke="#e8c8b0" strokeWidth={6} fill="none" />
+          {/* eklem çizgileri, yaşlı el */}
+          <path d="M 600 1020 q 12 10 8 24 M 640 1060 q 14 6 12 22 M 560 1060 q -6 14 4 26" stroke={TEN2} strokeWidth={4} fill="none" />
+          <path d="M 640 1120 q 30 -10 50 6" stroke="#6a8aa8" strokeWidth={3} opacity={0.5} fill="none" />
+        </g>
+        <rect width={1080} height={1920} fill="#000" opacity={0.12} />
+      </svg>
     </AbsoluteFill>
   );
 };
@@ -135,6 +230,8 @@ export const Insert10: React.FC<{ kind: Insert10Kind; dur: number; text?: string
   switch (kind) {
     case "kapi_arka": return <KapiArka dur={dur} text={text} />;
     case "kosu_takip": return <KosuTakip dur={dur} text={text} />;
+    case "depo_acik": return <DepoAcik dur={dur} />;
+    case "ambalaj_parmak": return <AmbalajParmak dur={dur} />;
     default: return null;
   }
 };
