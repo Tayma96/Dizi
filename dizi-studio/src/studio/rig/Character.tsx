@@ -311,7 +311,11 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const sway = Math.sin((frame + seed * 7) / 40) * 1.2;
   const walking = pose.body === "walk";
   const walkPhase = walking ? Math.sin(frame / 5) : 0;
-  const bob = walking ? Math.abs(Math.cos(frame / 5)) * -8 : 0;
+  // koşu: döngü 0.6 sn (iki adım); basışta gövde aşağı, havada yukarı
+  const running = pose.body === "kos";
+  const runPh = running ? ((frame + (pose.kosFaz ?? 0)) * 2 * Math.PI) / (0.6 * fps) : 0;
+  const runU = Math.sin(runPh);
+  const bob = walking ? Math.abs(Math.cos(frame / 5)) * -8 : running ? -18 * Math.abs(Math.cos(runPh)) + 6 : 0;
 
   // --- face state ---
   const yaw = pose.yaw ?? 0;
@@ -357,6 +361,11 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const arm: FullArm = { upper: A.upper + (B.upper - A.upper) * e, fore: A.fore + (B.fore - A.fore) * e, ul: mix(A.ul, B.ul), fl: mix(A.fl, B.fl) };
     Object.assign(armL, arm);
     Object.assign(armR, arm);
+  }
+  if (running) {
+    // kol pompalama (önden): öne gelen kolun eli göğse çıkar, kısalır (kameraya yaklaşır); geriye giden el kalçaya iner
+    Object.assign(armL, { upper: 18 + 12 * runU, fore: -92 - 36 * runU, ul: 0.86 - 0.13 * runU, fl: 1 - 0.08 * runU });
+    Object.assign(armR, { upper: 18 - 12 * runU, fore: -92 + 36 * runU, ul: 0.86 + 0.13 * runU, fl: 1 + 0.08 * runU });
   }
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)
@@ -458,7 +467,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     }
     const leg = (side: number) => {
       const hx = side < 0 ? 172 : 228;
-      const rot = walking ? walkPhase * 16 * side : pose.legRot ? pose.legRot[side < 0 ? 0 : 1] : 0;
+      const rot = walking ? walkPhase * 16 * side : running ? runU * 28 * side : pose.legRot ? pose.legRot[side < 0 ? 0 : 1] : 0;
       return (
         <g key={side} transform={`rotate(${rot} ${hx} 600)`}>
           <path d={side < 0 ? "M 146 600 L 144 950 L 196 950 L 200 600 Z" : "M 200 600 L 204 950 L 256 950 L 254 600 Z"} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
@@ -761,9 +770,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
 
   const dizK = pose.body === "sit" || pose.body === "walk" ? 0 : Math.max(0, Math.min(1, pose.diz ?? 0));
   const groundShift = 680 * (1 - age.sy) + 185 * dizK;
-  const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)`;
+  const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)${running ? ` rotate(${2.4 * runU} 200 600)` : ""}`;
   const torsoScale = `translate(200 470) scale(${wx} ${1 + breathe}) translate(-200 -470)`;
-  const headT = `translate(0 ${-breathe * 300 + sobbing}) rotate(${(pose.tilt ?? 0) + sway * 0.6} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
+  const runTilt = running ? 3.2 * Math.sin(runPh - 0.6) : 0;
+  const headT = `translate(0 ${-breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0)}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
 
   return (
     <svg
@@ -777,7 +787,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         {/* back hair (follows the head) */}
         <g transform={bodyT}>
           <g transform={headT}>
-            <HairBack look={look} dx={yaw * 10} sway={sway * 2} />
+            <HairBack look={look} dx={yaw * 10} sway={sway * 2 + (running ? 26 * Math.sin(runPh - 1.1) : 0)} />
           </g>
         </g>
         <g transform={bodyT}>

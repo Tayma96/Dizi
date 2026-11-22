@@ -240,7 +240,7 @@ export const Bas25D: React.FC<Bas25DProps> = ({ look, aci, emotion = "notr", loo
   }
 
   /* ---- ışık ---- */
-  const cool = 1 - isik;
+  const cool = (1 - isik) * 0.6;
   const shadeSide = Math.sin(f) >= 0 ? -1 : 1; // gölge, yüzün baktığı yönün tersindeki kenarda
   const clipId = `b25${uid}`;
 
@@ -271,7 +271,7 @@ export const Bas25D: React.FC<Bas25DProps> = ({ look, aci, emotion = "notr", loo
         {skinD ? <path d={skinD} fill="#c9d6e0" opacity={pale * 0.45} /> : null}
         {/* soğuk ışık (kapıdan gelen şafak) ve kenar gölgesi */}
         {skinD ? <path d={skinD} fill="#4a6a9a" opacity={0.22 * cool} /> : null}
-        {skinD ? <path d={skinD} fill="#2a1a14" opacity={0.28 * back} /> : null}
+        {skinD ? <path d={skinD} fill="#2a1a14" opacity={0.22 * back * back} /> : null}
         <rect x={CX + shadeSide * 40 - (shadeSide < 0 ? 140 : 0)} y={60} width={140} height={280} fill="#000" opacity={0.07} />
         {/* saç akışı */}
         {strands.map((d, i) => <path key={i} d={d} stroke={hairS} strokeWidth={4} fill="none" strokeLinecap="round" opacity={0.75} />)}
@@ -355,34 +355,66 @@ export type Govde25DProps = {
   uid: string;
 };
 
-/** Arkadan gövde: sırt, ense, kollar (yan sarkık), kazak dikişleri. aci 180 = tam arka; 180'den sapma omuzları döndürür. */
+/** Her açıdan gövde (elips kesitli): sırt/göğüs, kazak dikişleri, kollar. aci: Bas25D ile aynı kural
+ *  (0 önden, 180 arkadan, 270 = yüz kadraj soluna). Yakın kollar gövdenin önünde, uzaktaki arkasında çizilir. */
 export const Govde25D: React.FC<Govde25DProps> = ({ look, aci, omuz = 0 }) => {
   const wx = look.build === "slim" ? 0.9 : look.build === "heavy" ? 1.24 : 1;
   const out = look.outfit;
-  const psi = (aci - 180) * D2R; // 0 = tam arka
-  const k = Math.cos(psi); // omuz genişliği
-  const shift = Math.sin(psi) * 30;
-  const sh = 72 * wx;
-  const lx = 200 - sh * k + shift, rx = 200 + sh * k + shift;
-  const yS = 352 - omuz;
-  const body = `M ${200 - 72 * k + shift} ${340 - omuz} Q 200 ${318 - omuz} ${200 + 72 * k + shift} ${340 - omuz} Q ${200 + 90 * k + shift} 360 ${200 + 82 * k + shift} 470 L ${200 + 68 * k + shift} 640 L ${200 - 68 * k + shift} 640 L ${200 - 82 * k + shift} 470 Q ${200 - 90 * k + shift} 360 ${200 - 72 * k + shift} ${340 - omuz} Z`;
-  const sleeve = out.top;
-  const arm = (x: number, s: number) => `M ${x - 23} ${yS} A 23 23 0 0 1 ${x + 23} ${yS} L ${x + 22 + s * 8} 640 L ${x - 20 + s * 8} 640 Z`;
+  const f = aci * D2R;
+  const cf = Math.cos(f), sf = Math.sin(f);
+  // kesit yarı genişlik W(y) ve yarı derinlik D(y)
+  const Wy = (y: number) => wx * (y < 360 ? 70 + 12 * ((y - 330) / 30) : y < 470 ? 82 - 2 * ((y - 360) / 110) : 80 - 12 * ((y - 470) / 170));
+  const Dy = (y: number) => Wy(y) * 0.62;
+  const ext = (y: number) => Math.hypot(Wy(y) * cf, Dy(y) * sf);
+  const ys = [330, 340, 360, 400, 440, 470, 520, 580, 640];
+  const R: [number, number][] = ys.map((y): [number, number] => [200 + ext(y), y === 330 ? 330 - omuz : y]);
+  const L: [number, number][] = ys.map((y): [number, number] => [200 - ext(y), y === 330 ? 330 - omuz : y]).reverse();
+  const body = `M ${200 - ext(330) * 0.7} ${330 - omuz} Q 200 ${316 - omuz} ${200 + ext(330) * 0.7} ${330 - omuz} ${pts(R).replace("M", "L")} ${pts(L).replace("M", "L")} Z`;
+  // yüzey noktası (λ: 0 göğüs ortası, 180 sırt ortası)
+  const sp = (lam: number, y: number) => {
+    const l = lam * D2R;
+    const x = Wy(y) * Math.sin(l), z = Dy(y) * Math.cos(l);
+    let nx = Math.sin(l) / Wy(y), nz = Math.cos(l) / Dy(y);
+    const n = Math.hypot(nx, nz);
+    nx /= n; nz /= n;
+    return { X: 200 + x * cf + z * sf, Z: -x * sf + z * cf, nz: -nx * sf + nz * cf };
+  };
+  const seam = (lam: number, y1: number, y2: number) => {
+    const a: [number, number][] = [];
+    for (let y = y1; y <= y2; y += 20) { const p = sp(lam, y); if (p.nz > 0.05) a.push([p.X, y]); }
+    return a.length > 1 ? pts(a) : "";
+  };
+  // kollar: omuz noktası λ=±90 (biraz dışarıda), sarkık
+  const arm = (side: 1 | -1) => {
+    const p = sp(90 * side, 360);
+    const X = 200 + (Wy(360) + 4) * side * cf;
+    const Z = -(Wy(360) + 4) * side * sf;
+    const tilt = side * (4 + 3 * Math.abs(cf));
+    const d = `M ${X - 23} ${352 - omuz} A 23 23 0 0 1 ${X + 23} ${352 - omuz} L ${X + 21 + tilt} 640 L ${X - 21 + tilt} 640 Z`;
+    return { d, Z, X, p };
+  };
+  const arms = [arm(1), arm(-1)];
+  const ArmG = ({ a }: { a: (typeof arms)[number] }) => (
+    <g>
+      <path d={a.d} fill={out.top} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
+      <path d={`M ${a.X} ${370 - omuz} L ${a.X + 2} 630`} stroke={out.topShade} strokeWidth={4} opacity={0.5} />
+    </g>
+  );
+  const backSeam = seam(180, 360, 600);
+  const blade = (lam: number) => { const p = sp(lam, 425); return p.nz > 0.15 ? `M ${p.X - 17} 418 q 17 22 34 6` : ""; };
+  const neckBack = sp(180, 336), neckFront = sp(0, 336);
   return (
     <g>
-      {/* kollar gövdenin arkasında: gövde iç yarılarını örter, omuz başları yuvarlak kalır */}
-      <path d={arm(lx, -1)} fill={sleeve} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
-      <path d={arm(rx, 1)} fill={sleeve} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
-      <g transform={`translate(200 470) scale(${wx} 1) translate(-200 -470)`}>
-        <path d={body} fill={out.top} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
-        {/* kürek kemikleri ve sırt çizgisi */}
-        <path d={`M ${200 - 46 * k + shift} 420 q 18 22 34 8 M ${200 + 46 * k + shift} 420 q -18 22 -34 8`} stroke={out.topShade} strokeWidth={5} fill="none" opacity={0.8} />
-        <path d={`M ${200 + shift} 360 L ${200 + shift} 600`} stroke={out.topShade} strokeWidth={4} opacity={0.45} />
-        <path d={`M ${200 - 70 * k + shift} 612 Q ${200 + shift} 624 ${200 + 70 * k + shift} 612`} stroke={out.topShade} strokeWidth={6} fill="none" />
-        {/* arka yaka */}
-        <path d={`M ${178 + shift} ${334 - omuz} Q ${200 + shift} ${344 - omuz} ${222 + shift} ${334 - omuz}`} stroke={OUT} strokeWidth={3.5} fill="none" />
-      </g>
-      <path d={`M ${lx + 14} ${yS + 20} L ${lx + 10} 630 M ${rx - 14} ${yS + 20} L ${rx - 10} 630`} stroke={out.topShade} strokeWidth={4} opacity={0.6} />
+      {arms.map((a, i) => (a.Z < 0 ? <ArmG key={i} a={a} /> : null))}
+      <path d={body} fill={out.top} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
+      {/* gölge tarafı */}
+      <path d={body} fill="#000" opacity={0.08 * Math.abs(sf)} />
+      {backSeam ? <path d={backSeam} stroke={out.topShade} strokeWidth={4} fill="none" opacity={0.45} /> : null}
+      {[150, -150].map((l) => { const d = blade(l); return d ? <path key={l} d={d} stroke={out.topShade} strokeWidth={5} fill="none" opacity={0.75} /> : null; })}
+      <path d={`M ${200 - ext(612) + 4} 612 Q 200 624 ${200 + ext(612) - 4} 612`} stroke={out.topShade} strokeWidth={6} fill="none" />
+      {neckBack.nz > 0.1 ? <path d={`M ${neckBack.X - 22} ${334 - omuz} Q ${neckBack.X} ${344 - omuz} ${neckBack.X + 22} ${334 - omuz}`} stroke={OUT} strokeWidth={3.5} fill="none" opacity={Math.min(1, neckBack.nz * 2)} /> : null}
+      {neckFront.nz > 0.1 ? <path d={`M ${neckFront.X - 28} ${330 - omuz} Q ${neckFront.X} ${362 - omuz} ${neckFront.X + 28} ${330 - omuz}`} stroke={OUT} strokeWidth={4} fill="none" opacity={Math.min(1, neckFront.nz * 2)} /> : null}
+      {arms.map((a, i) => (a.Z >= 0 ? <ArmG key={i} a={a} /> : null))}
     </g>
   );
 };

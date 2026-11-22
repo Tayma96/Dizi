@@ -42,7 +42,7 @@ export type CharState = {
   /** yerinde yürü (takip çekimi; mekân kayar) */
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
-  body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta";
+  body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta" | "kos";
   /** yerde/sedirde yatıyor: battaniye yok, bacaklar görünür */
   zemin?: boolean;
   /** kol duruşu elle (derece): dağınık yatış, kırık kol vb. */

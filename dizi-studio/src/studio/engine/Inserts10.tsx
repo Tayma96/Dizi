@@ -4,7 +4,8 @@ import React from "react";
 import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { castById } from "../cast";
 import { Bas25D, Govde25D } from "../rig/head25d";
-import { Market724BG } from "../sets/market724";
+import { Character } from "../rig/Character";
+import { Market724BG, Market724FG } from "../sets/market724";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = (x: number) => { const t = Math.max(0, Math.min(1, x)); return t * t * (3 - 2 * t); };
@@ -42,7 +43,8 @@ const KapiArka: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const ileri = 34 * Math.exp(-3.2 * tv) * Math.cos(8.5 * tv) - 6 * ease((tv - 0.1) / 0.3) * 0;
   const sal = 12 * Math.exp(-2.5 * tv) * Math.sin(7 * tv + 0.6) + (u > 0 && u < 1 ? -16 * Math.sin(Math.PI * u) : 0);
   const omuz = son ? 6 : interpolate(t, [0, 0.35, 0.8, tBas], [0, 3, 6, 6], clamp) + Math.sin(t * 6) * (t < 0.8 ? 1.5 : 0);
-  const govdeAci = 180 + 16 * ease((u - 0.55) / 0.45);
+  // gövde başı takip eder (boyun burkulması ≤ ~95°): 180 → 255
+  const govdeAci = son ? 255 : 180 + 75 * ease((u - 0.3) / 0.7);
   const varis = son ? 1 : easeOut(t / 0.45);
   // kamera: varışta hafif öne kayar; dönüşte yavaş yaklaşma
   const S = 3.0 * (1.05 - 0.05 * varis) * (1 + 0.1 * ease(u));
@@ -68,7 +70,7 @@ const KapiArka: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
           <Bas25D look={ece} aci={aci} katman="arka" kuyrukIleri={ileri} kuyrukSal={sal} uid="ka10k" />
           <Govde25D look={ece} aci={govdeAci} omuz={omuz} uid="ka10g" />
           <g transform={`translate(0 ${-omuz * 0.6})`}>
-            <Bas25D look={ece} aci={aci} emotion="sok" lookX={lookX} lookY={-0.05} pale={0.42} dagin={1} kuyrukIleri={ileri} kuyrukSal={sal} isik={isik} kenar={0.8} uid="ka10" />
+            <Bas25D look={ece} aci={aci} emotion="sok" lookX={lookX} lookY={-0.05} pale={0.3} dagin={1} kuyrukIleri={ileri} kuyrukSal={sal} isik={isik} kenar={0.8} uid="ka10" />
           </g>
         </g>
         <rect width={1080} height={1920} fill="url(#ka10vin)" />
@@ -77,9 +79,62 @@ const KapiArka: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   );
 };
 
+/** DEPO eşiğinde flu koyu siluet (kasa görünümü koordinatında; yüz seçilmez). a: 0..1 görünürlük, adim: 0..1 eşikten çıkış */
+export const DepoSiluet: React.FC<{ a: number; adim?: number }> = ({ a, adim = 0 }) => (
+  <g opacity={a} filter="url(#ka10sil)">
+    <defs><filter id="ka10sil"><feGaussianBlur stdDeviation="9" /></filter></defs>
+    <g transform={`translate(${1032 - 40 * adim} ${10 * adim}) scale(${1 + 0.06 * adim})`}>
+      <ellipse cx={0} cy={600} rx={58} ry={70} fill="#06070a" />
+      <path d="M -40 660 L 40 660 Q 118 690 122 780 L 112 1340 L -112 1340 L -122 780 Q -118 690 -40 660 Z" fill="#06070a" />
+    </g>
+  </g>
+);
+
+/** Karşıdan bel üstü koşu; kamera Ece'yle geri geri gider (arka plan katmanları uzaklaşır).
+ *  text[0]: siluetin belirdiği sn (vars. dur-0.55; "yok" = siluet yok), text[1]: "sendele" → ilk 0.35 sn sendelemenin sonu. */
+const KosuTakip: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const ece = castById("ece_sivil");
+  const p = Math.min(1, t / Math.max(0.5, dur));
+  const ph = (f * 2 * Math.PI) / (0.6 * fps);
+  // el kamerası: her basışta küçük sarsıntı
+  const shY = 5 * Math.abs(Math.cos(ph)) - 2.5, shX = 3.5 * Math.sin(ph * 0.5);
+  const sBG = 1.2 - 0.2 * easeOut(p), sFG = 1.55 - 0.55 * easeOut(p);
+  const silT = text?.[0] === "yok" ? Infinity : Number(text?.[0] ?? dur - 0.55);
+  const silA = interpolate(t, [silT, silT + 0.25], [0, 0.85], clamp);
+  const sendele = text?.[1] === "sendele" ? Math.max(0, 1 - t / 0.35) : 0;
+  const size = 3000;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#1a1c20", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+        <defs><filter id="kt10bl"><feGaussianBlur stdDeviation="5" /></filter><filter id="kt10bl2"><feGaussianBlur stdDeviation="2.5" /></filter></defs>
+        <g transform={`translate(${shX} ${shY})`}>
+          {/* uzak katman: arka duvar, sigara dolabı, DEPO */}
+          <g filter="url(#kt10bl)" transform={`translate(540 820) scale(${sBG}) translate(-540 -820)`}>
+            <Market724BG view="kasa" frame={f} doorOpen={0} saat="06:03" iz={0} turb={0} />
+            <DepoSiluet a={silA} adim={interpolate(t, [silT, silT + 0.6], [0, 1], clamp)} />
+          </g>
+          {/* orta katman: banko (hızlı uzaklaşır, sağ alta kayar) */}
+          <g filter="url(#kt10bl2)" transform={`translate(${560 + 40 * (1 - p)} ${1520 + 120 * (1 - easeOut(p))}) scale(${sFG}) translate(-540 -1520)`}>
+            <Market724FG view="kasa" frame={f} doorOpen={0} saat="" iz={0} turb={0} />
+          </g>
+        </g>
+      </svg>
+      {/* Ece: bel üstü, kadrajda sabit boy (kamera onunla gider) */}
+      <div style={{ position: "absolute", left: 540 - size * 0.2 + shX * 0.3, top: 90 + shY * 0.3, transform: `rotate(${-7 * sendele}deg) translate(${-40 * sendele}px, ${30 * sendele}px)`, transformOrigin: "50% 60%" }}>
+        <Character look={ece} size={size} pose={{ emotion: "dehset", body: "kos", lookX: 0.28, lookY: -0.1, talk: [[0, 9999]], seed: 31, sweat: true, golgesiz: true, hideLegs: true, pale: 0.15 }} />
+      </div>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
 export const Insert10: React.FC<{ kind: Insert10Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "kapi_arka": return <KapiArka dur={dur} text={text} />;
+    case "kosu_takip": return <KosuTakip dur={dur} text={text} />;
     default: return null;
   }
 };
@@ -96,7 +151,7 @@ export const Donus25DSheet: React.FC = () => {
           <g key={a} transform={`translate(${i * 400} 40)`}>
             <g transform="translate(200 470) scale(1.35) translate(-200 -330)">
               <Bas25D look={ece} aci={a} katman="arka" uid={`sk${i}`} />
-              {a !== 0 ? <Govde25D look={ece} aci={180 + (a > 300 ? 16 : 0)} uid={`s${i}`} /> : null}
+              <Govde25D look={ece} aci={a === 0 ? 0 : 180 + Math.min(75, Math.max(0, a - 180) * 0.45)} uid={`s${i}`} />
               <Bas25D look={ece} aci={a} emotion="sok" lookX={a === 350 ? 0.3 : 0} pale={0.3} dagin={1} uid={`sh${i}`} />
             </g>
             <text x={200} y={840} textAnchor="middle" fontFamily="Arial" fontWeight={800} fontSize={40} fill="#222">{etiket[i]}</text>

@@ -163,7 +163,10 @@ export type Pose = {
   yaw?: number;
   /** head tilt degrees */
   tilt?: number;
-  body?: "stand" | "sit" | "walk";
+  /** kos: bel üstü karşıdan koşu döngüsü (0.3 sn adım); sendele: tek seferlik öne savrulma (sendeleK ile) */
+  body?: "stand" | "sit" | "walk" | "kos";
+  /** koşu fazı kaydırma (kare) */
+  kosFaz?: number;
   /** diz çökme 0..1 (önden: sol diz yerde, sağ ayak basılı, diz yukarıda); geçiş için ara değerler */
   diz?: number;
   /** önlük giyme ilerlemesi 0..1 (0: elde katlı, 0,45: başın üstünde, 0,7: üstüne iner, 1: giyili, bağlı) */

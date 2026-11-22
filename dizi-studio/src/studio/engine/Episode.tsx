@@ -306,7 +306,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             armR: st.kol?.R ?? armR,
             legRot: st.bacak,
             prop: st.prop,
-            body: walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
+            body: st.body === "kos" ? "kos" : walkX[id]?.walking ? "walk" : p.sit ? "sit" : "stand",
             hideLegs: ang !== undefined,
             golgesiz: ang !== undefined,
             tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : undefined,
