@@ -161,7 +161,7 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 5. Doğaçlama: önlüğü çıkarırken at kuyruğuna takılması eklenir.
 
 ### Bölüm 4: kamera ve ses kararları (22 Kasım 2026)
-- İlk "vallahi bastım": Ece kasanın arkasından çıkarken. İkinci "vallahi bastım kaç kaç kaç kaç": kapıya koşarken; kamera önde, bel üstü, Ece'yle birlikte hareket eder; yüzde korku + panik + komik ifade.
+- "Vallahi bastım vallahi bastım kaç kaç kaç kaç" TEK PARÇA, KESİNTİSİZ (tek meme, arada boşluk yok). Ses başlarken Ece kasanın arkasından çıkar, ses sürerken kapıya koşar, son "kaç" kapıya varış. Koşuda kamera önde, bel üstü, Ece'yle birlikte hareket eder; yüzde korku + panik + komik ifade.
 - Kapıda: yakın çekim, kamera Ece'nin arkasından kapıya bakar. Sabri'nin lafı bitince Ece donar, başını yavaşça çevirir, kamerayla göz göze gelir.
 - Ses: "vallahi bastım ... kaç kaç kaç kaç" hızlı, panik ve komik; Ece'nin doğallığı ve samimiyeti korunur (izleyici bunu seviyor). Orijinal meme sesi kullanılmaz, Ece'nin sesiyle.
 - Motor önerisi: 2.5D (2D çizim + karakter dönüş açıları + katmanlı derinlikli kamera); kullanıcı onayı bekleniyor.
