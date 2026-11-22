@@ -17,7 +17,7 @@ import { random } from "remotion";
  * ===================================================================================== */
 
 export type MarketView = "genel" | "kapi" | "kasa";
-export type MarketProps = { view: MarketView; frame: number; doorOpen: number; saat: string; iz: number; turb: number };
+export type MarketProps = { view: MarketView; frame: number; doorOpen: number; saat: string; iz: number; turb: number; /** B4: depo kapısı 0..1 (verilmezse eski aralık çizimi) */ depoAcik?: number; /** B4: bankonun solunda kasa ağzı açıklığı */ agiz?: boolean; /** B4: banko sarsıntısı 0..1 */ sars?: number };
 
 const W = 1080;
 const H = 1920;
@@ -429,7 +429,7 @@ const KapiFG: React.FC<MarketProps> = () => (
 
 /* =================================== KASA =================================== */
 // Kapı tarafından kasaya ters açı: Ece önden/yarım profil, arkasında sigara dolabı, solda vitrin köşesi, sağda DEPO kapısı.
-const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb }) => {
+const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb, depoAcik }) => {
   const fl = flicker(frame, turb);
   const op = Math.max(0, Math.min(1, doorOpen));
   const sec = 14 + Math.floor(frame / 30);
@@ -506,7 +506,14 @@ const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb }) => {
       {/* sağ arka: DEPO · PERSONEL koridoru (karanlık, aralık) */}
       <rect x={955} y={330} width={140} height={1010} fill="#5a6066" stroke="#2a2e32" strokeWidth={6} />
       <rect x={975} y={350} width={110} height={990} fill="#0a0b0d" />
-      <path d="M 975 350 L 1035 372 L 1035 1318 L 975 1340 Z" fill="#4a5056" stroke="#2a2e32" strokeWidth={4} />
+      {depoAcik === undefined ? (
+        <path d="M 975 350 L 1035 372 L 1035 1318 L 975 1340 Z" fill="#4a5056" stroke="#2a2e32" strokeWidth={4} />
+      ) : (() => {
+        // kanat menteşeden (sol) içeri açılır: açıldıkça daralır; tam açıkta duvara yaslanmış ince şerit
+        const w = Math.max(6, 104 * (1 - Math.max(0, Math.min(1.1, depoAcik))));
+        const dy = 22 * (1 - w / 104) + 2;
+        return <path d={`M 975 350 L ${975 + w} ${350 + dy} L ${975 + w} ${1340 - dy} L 975 1340 Z`} fill="#4a5056" stroke="#2a2e32" strokeWidth={4} />;
+      })()}
       <circle cx={1022} cy={860} r={7} fill="#c8ccd0" />
       <rect x={950} y={262} width={130} height={56} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
       <text x={1015} y={286} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={22} fill="#1a1a1a">DEPO</text>
@@ -523,8 +530,12 @@ const KasaBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, turb }) => {
 };
 
 /** kasa: banko (Ece'nin belinden aşağısını örter) */
-const KasaFG: React.FC<MarketProps> = () => (
-  <g>
+const KasaFG: React.FC<MarketProps> = ({ agiz, sars = 0, frame }) => {
+  const sx = sars > 0 ? (random(`ks${frame}`) - 0.5) * 14 * sars : 0;
+  const sy = sars > 0 ? (random(`ky${frame}`) - 0.5) * 8 * sars : 0;
+  return (
+  <g transform={`translate(${sx} ${sy})`} clipPath={agiz ? "url(#kasaAgziClip)" : undefined}>
+    {agiz ? <defs><clipPath id="kasaAgziClip"><rect x={232} y={0} width={1080} height={1920} /></clipPath></defs> : null}
     {/* üst tabla */}
     <path d="M 0 1440 L 1080 1440 L 1080 1500 L 0 1500 Z" fill="#f2f0ea" stroke="#5a4a40" strokeWidth={5} />
     <path d="M 0 1440 L 1080 1440" stroke="#ffffff" strokeWidth={4} opacity={0.8} />
@@ -542,9 +553,11 @@ const KasaFG: React.FC<MarketProps> = () => (
     <rect x={760} y={1360} width={70} height={90} rx={10} fill="#1a1c20" stroke="#0a0b0d" strokeWidth={4} />
     <rect x={770} y={1372} width={50} height={30} fill="#3a6aa8" />
     <rect x={860} y={1290} width={190} height={160} rx={8} fill="#e8e8e0" stroke="#5a4a40" strokeWidth={5} />
-    {[0, 1, 2, 3].map((i) => <rect key={i} x={872 + i * 44} y={1304} width={36} height={132} fill={PAKET[(i + 3) % PAKET.length]} />)}
+    {[0, 1, 2, 3].map((i) => <rect key={i} x={872 + i * 44} y={1304} width={36} height={132} fill={PAKET[(i + 3) % PAKET.length]} transform={sars > 0.3 ? `rotate(${(i % 2 ? 1 : -1) * 18 * sars} ${890 + i * 44} 1436)` : undefined} />)}
+    {agiz ? <g><rect x={226} y={1440} width={14} height={480} fill="#8a2a18" stroke="#2a1410" strokeWidth={4} /><path d="M 232 1440 L 232 1920" stroke="#f2f0ea" strokeWidth={3} opacity={0.5} /></g> : null}
   </g>
-);
+  );
+};
 
 export const Market724BG: React.FC<MarketProps> = (p) => (p.view === "genel" ? <GenelBG {...p} /> : p.view === "kapi" ? <KapiBG {...p} /> : <KasaBG {...p} />);
 export const Market724FG: React.FC<MarketProps> = (p) => (p.view === "genel" ? <GenelFG {...p} /> : p.view === "kapi" ? <KapiFG {...p} /> : <KasaFG {...p} />);
@@ -553,5 +566,5 @@ export const Market724FG: React.FC<MarketProps> = (p) => (p.view === "genel" ? <
 export const MARKET724_MARKS = {
   genel: { ece: { x: 885, y: 1218, size: 404 }, kasiyer: { x: 885, y: 1218, size: 404 }, kapi: { x: 445, y: 1141, size: 326 } },
   kapi: { kapi: { x: 550, y: 1262, size: 640 }, musteri: { x: 470, y: 1990, size: 1300 } },
-  kasa: { ece: { x: 540, y: 1960, size: 1180 }, kasiyer: { x: 540, y: 1960, size: 1180 } },
+  kasa: { ece: { x: 540, y: 1960, size: 1180 }, kasiyer: { x: 540, y: 1960, size: 1180 }, kasa_agzi: { x: 320, y: 2050, size: 1260 }, depo_esik: { x: 1000, y: 1345, size: 900 }, depo_on: { x: 880, y: 1345, size: 900 } },
 };

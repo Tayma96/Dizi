@@ -112,14 +112,15 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean; iz?: number }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer, iz = 0 }) => {
+type MarketEk = { depoAcik?: number; agiz?: boolean; sars?: number };
+const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean; iz?: number; market?: MarketEk }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer, iz = 0, market }) => {
   const frame = useCurrentFrame();
   if (name === "mutfak_dg") return <MutfakDgBG frame={frame} />;
   if (name === "zenith_merkez") return <ZenithBG frame={frame} />;
   if (name === "koy_meydani") return <KoyMeydaniBG frame={frame} />;
   if (name === "araba_on") return <ArabaBG frame={frame} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724BG view={name.slice(6) as BanyoView} frame={frame} doorOpen={doorOpen} />;
-  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724BG view={name.slice(7) as MarketView} frame={frame} doorOpen={doorOpen} saat={saat ?? "03:00"} iz={iz} turb={turb ?? 0} />;
+  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724BG view={name.slice(7) as MarketView} frame={frame} doorOpen={doorOpen} saat={saat ?? "03:00"} iz={iz} turb={turb ?? 0} {...market} />;
   const props = { kus, saat, frame, sallanan, kaydir, tv, turb, kemer };
   const night = time === "gece";
   switch (name) {
@@ -1116,14 +1117,14 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
 };
 
 /** Elements that sit IN FRONT of the characters. */
-const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean; doorOpen?: number }> = ({ name, turb = 0, fincanElde, doorOpen = 0 }) => {
+const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean; doorOpen?: number; market?: MarketEk }> = ({ name, turb = 0, fincanElde, doorOpen = 0, market }) => {
   const fr = useCurrentFrame();
   if (name === "mutfak_dg") return <MutfakDgFG frame={fr} />;
   if (name === "zenith_merkez") return <ZenithFG frame={fr} />;
   if (name === "koy_meydani") return <KoyMeydaniFG frame={fr} />;
   if (name === "araba_on") return <ArabaFG frame={fr} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724FG view={name.slice(6) as BanyoView} frame={fr} doorOpen={0} />;
-  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} />;
+  if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} {...market} />;
   switch (name) {
     case "market":
       return (
@@ -1247,7 +1248,9 @@ export const SetLayer: React.FC<{
   fincanElde?: boolean;
   /** 7/24: ıslak ayak izlerinin ilerlemesi 0-1 */
   iz?: number;
-}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb, kemer, fincanElde, iz }) => {
+  /** 7/24 B4: market ek durumu (depo kapısı, kasa ağzı, banko sarsıntısı) */
+  market?: MarketEk;
+}> = ({ name, layer, time = "gunduz", rain, flash = 0, doorOpen = 0, children, kus, saat, sallanan, kaydir, tv, turb, kemer, fincanElde, iz, market }) => {
   const frame = useCurrentFrame();
   void frame;
   // special sets with their own HTML structure
@@ -1258,7 +1261,7 @@ export const SetLayer: React.FC<{
     return (
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-          <SetFG name={name} turb={turb} fincanElde={fincanElde} doorOpen={doorOpen} />
+          <SetFG name={name} turb={turb} fincanElde={fincanElde} doorOpen={doorOpen} market={market} />
         </svg>
         {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       </AbsoluteFill>
@@ -1267,7 +1270,7 @@ export const SetLayer: React.FC<{
   return (
     <AbsoluteFill>
       <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H}>
-        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} kemer={kemer} iz={iz} />
+        <SetBG name={name} time={time} rain={rain} flash={flash} doorOpen={doorOpen} kus={kus} saat={saat} sallanan={sallanan} kaydir={kaydir} tv={tv} turb={turb} kemer={kemer} iz={iz} market={market} />
       </svg>
       {LIGHT[time] ? <AbsoluteFill style={LIGHT[time]!} /> : null}
       <AbsoluteFill style={{ backgroundColor: "#cfe0ff", opacity: flash * 0.3, mixBlendMode: "screen" }} />

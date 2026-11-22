@@ -42,7 +42,23 @@ export type CharState = {
   /** yerinde yürü (takip çekimi; mekân kayar) */
   yuru?: boolean;
   /** yat: yatakta uzanık (kalçadan 90°); dogrul: yattığı yerden oturur hâle doğrulur (bir kez oynar) */
-  body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta" | "kos";
+  body?: "stand" | "sit" | "walk" | "yat" | "dogrul" | "yatakta" | "kos" | "sendele";
+  /** body "sendele": vuruş içinde başlama anı (sn) */
+  sendeleAt?: number;
+  /** anime şok gözleri (1 = tam) */
+  gozSok?: number | boolean;
+  /** yutkunma başlangıcı (vuruş içinde sn) */
+  yutkun?: number;
+  /** önlük takılmasından kalan dağınık saç */
+  sacDagin?: boolean;
+  /** elindeki prop'u yere çarpma anı (vuruş içinde sn) */
+  yereAt?: number;
+  /** bakış geçiş süresi (sn) */
+  bakSure?: number;
+  /** yüzün yarısı depo karanlığında (sağdan gölge) */
+  yarimGolge?: boolean | number;
+  /** baş yana eğimi (derece) */
+  basEgim?: number;
   /** yerde/sedirde yatıyor: battaniye yok, bacaklar görünür */
   zemin?: boolean;
   /** kol duruşu elle (derece): dağınık yatış, kırık kol vb. */
@@ -65,7 +81,7 @@ export type CharState = {
   /** diz çökme: true = beat başında 0,6 sn'de çöker (yürüyüşten sonra), "kalk" = kalkar */
   diz?: boolean | "kalk";
   /** önlük: "giy" = bu vuruş boyunca giyer (animasyon), true = giyili */
-  onluk?: "giy" | true;
+  onluk?: "giy" | true | "cikar" | false;
   /** işaretler arası yürüme/sürünme süresi (sn, vars. 1,3) */
   yuruSure?: number;
   /** kısmi doğrulmadan sonra vuruş sonunda geri düşer */
@@ -151,6 +167,16 @@ export type BeatCommon = {
   gozAc?: number;
   /** 7/24: ıslak ayak izleri bu kadar saniyede belirir (0 = sil); sonraki vuruşlarda kalır */
   iz?: number;
+  /** 7/24 B4: depo kapısı açıklığı (0..1) ya da { v, at }: vuruşun at. saniyesinde v'ye çarparak açılır */
+  depoAcik?: number | { v: number; at: number };
+  /** ön planda iri adamın flu palto omzu: "sil" = sola kayıp çıkar */
+  paltoOmuz?: boolean | "sil";
+  /** cam ardında yağmurda yürüyüp kaybolan siluet */
+  siluet?: "sol" | "sag";
+  /** takip çekimi işareti (kosu_takip eklemesiyle) */
+  takip?: boolean;
+  /** replik sesi ve altyazısı sonraki vuruşlara taşar (line) */
+  tasma?: boolean;
   /** bu vuruş boyunca ekranda bir ekleme yakın planı (ör. replik konuşulurken flaş görüntüsü) */
   ekle?: { kind: string; text?: string[] };
 };
@@ -165,6 +191,10 @@ export type Scene = {
   /** ikinci ortam katmanı (ör. kalabalık uğultusu) */
   ambience2?: { name: string; volume?: number };
   music?: { name: string; volume?: number; from?: number };
+  /** 7/24 B4: depo kapısı açıklığı 0..1 (kasa görünümü) */
+  depoAcik?: number;
+  /** ön planda iri adamın flu palto omzu */
+  paltoOmuz?: boolean;
   /** "flashback": sepya/rüya görünümü */
   look?: "normal" | "flashback" | "soguk" | "sicak" | "tekinsiz";
   /** hücre saati (ör. "07:14"); vuruşta `saat` ile değişebilir */
