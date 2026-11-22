@@ -153,12 +153,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: A small Turkish family laughing warmly together at the dinner table, short, natural"
  },
+ "efekt/el_ambalaj": {
+  "file": "ses/efekt/el_ambalaj.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: fingers slowly crinkling an empty torn plastic candy bar wrapper, sparse crisp crackles, quiet room, close"
+ },
  "efekt/el_araba_ici": {
   "file": "ses/efekt/el_araba_ici.mp3",
   "category": "efekt",
   "duration": 12.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Interior of an old sedan car driving at steady speed in the evening, low engine hum, tire rumble on asphalt, soft wind noise, no music, no voices"
+ },
+ "efekt/el_ayakkabi_gicirti": {
+  "file": "ses/efekt/el_ayakkabi_gicirti.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: single quick sneaker squeak on a glossy tiled floor, sudden start of a sprint"
  },
  "efekt/el_banyo_kapi": {
   "file": "ses/efekt/el_banyo_kapi.mp3",
@@ -377,6 +391,27 @@
   "loop": false,
   "desc": "ElevenLabs SFX: High pitched ear ringing tinnitus after an explosion, slowly fading, muffled distant sounds"
  },
+ "efekt/el_kumas_burus": {
+  "file": "ses/efekt/el_kumas_burus.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: angrily crumpling a cotton apron into a ball with both hands, dense fabric scrunching, close"
+ },
+ "efekt/el_kumas_dus": {
+  "file": "ses/efekt/el_kumas_dus.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: soft crumpled cloth ball landing on a tiled supermarket floor, soft dull thud"
+ },
+ "efekt/el_kumas_firlat": {
+  "file": "ses/efekt/el_kumas_firlat.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a crumpled cloth ball thrown, short quick air swish, no impact"
+ },
  "efekt/el_market_adim": {
   "file": "ses/efekt/el_market_adim.mp3",
   "category": "efekt",
@@ -411,6 +446,20 @@
   "duration": 6.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Busy corporate office background heard faintly through a phone speaker, distant chatter, keyboard typing, phone ringing far away"
+ },
+ "efekt/el_onluk_cekistir": {
+  "file": "ses/efekt/el_onluk_cekistir.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cloth strap snagged in long hair ponytail, two short sharp tugs, fabric and hair rubbing, elastic stretch, close, no voice"
+ },
+ "efekt/el_onluk_cikar": {
+  "file": "ses/efekt/el_onluk_cikar.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: pulling a cotton work apron off over the head quickly, fabric rustle, close, no voice"
  },
  "efekt/el_otomatik_kapi": {
   "file": "ses/efekt/el_otomatik_kapi.mp3",
@@ -454,6 +503,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
  },
+ "efekt/el_tezgah_carpma": {
+  "file": "ses/efekt/el_tezgah_carpma.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: shin hitting the edge of a wooden shop counter, hollow wooden knock, small plastic gum display and pens rattling and falling, sneaker scuff"
+ },
  "efekt/el_topuk": {
   "file": "ses/efekt/el_topuk.mp3",
   "category": "efekt",
@@ -481,6 +537,13 @@
   "duration": 1.2,
   "loop": false,
   "desc": "ElevenLabs SFX: Fast cinematic whoosh swipe transition, airy, short"
+ },
+ "efekt/el_yutkunma": {
+  "file": "ses/efekt/el_yutkunma.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: close-up human gulp, a single deep audible nervous swallow, throat click then wet gulp, dry mouth, very close microphone, no breathing, no music"
  },
  "efekt/el_zaman_atla": {
   "file": "ses/efekt/el_zaman_atla.mp3",
