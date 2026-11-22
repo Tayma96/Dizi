@@ -27,6 +27,13 @@
   "loop": false,
   "desc": "Tek koşu adımı 4 (BigSoundBank #0165 ayak_sesleri2'den türev, CC0)."
  },
+ "efekt/ambalaj": {
+  "file": "ses/efekt/ambalaj.mp3",
+  "category": "efekt",
+  "duration": 0.94,
+  "loop": false,
+  "desc": "B4: Çikolata ambalajı hışırtısı (el_ambalaj); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
  "efekt/araba_gecis": {
   "file": "ses/efekt/araba_gecis.mp3",
   "category": "efekt",
@@ -75,6 +82,13 @@
   "duration": 7.94,
   "loop": false,
   "desc": "Ayak sesleri 2 (BigSoundBank #0165) — gerçek kayıt, CC0"
+ },
+ "efekt/ayakkabi_gicirti": {
+  "file": "ses/efekt/ayakkabi_gicirti.mp3",
+  "category": "efekt",
+  "duration": 0.42,
+  "loop": false,
+  "desc": "B4: Spor ayakkabı fayans gıcırtısı (el_ayakkabi_gicirti); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
  },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
@@ -755,6 +769,27 @@
   "loop": false,
   "desc": "Koşan ayak sesleri."
  },
+ "efekt/kumas_burus": {
+  "file": "ses/efekt/kumas_burus.mp3",
+  "category": "efekt",
+  "duration": 0.94,
+  "loop": false,
+  "desc": "B4: Önlüğü buruşturma (el_kumas_burus); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/kumas_dus": {
+  "file": "ses/efekt/kumas_dus.mp3",
+  "category": "efekt",
+  "duration": 0.55,
+  "loop": false,
+  "desc": "B4: Önlük yere 'pof' düşer (el_kumas_dus); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/kumas_firlat": {
+  "file": "ses/efekt/kumas_firlat.mp3",
+  "category": "efekt",
+  "duration": 0.44,
+  "loop": false,
+  "desc": "B4: Kumaş fırlatma hışırtısı (el_kumas_firlat); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
  "efekt/kus_cik": {
   "file": "ses/efekt/kus_cik.mp3",
   "category": "efekt",
@@ -775,6 +810,20 @@
   "duration": 0.9,
   "loop": false,
   "desc": "Şaşkınlıkla nefes çekme (gasp)."
+ },
+ "efekt/onluk_cekistir": {
+  "file": "ses/efekt/onluk_cekistir.mp3",
+  "category": "efekt",
+  "duration": 1.23,
+  "loop": false,
+  "desc": "B4: Önlük at kuyruğuna takılıp çekiştirilir (el_onluk_cekistir); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/onluk_cikar": {
+  "file": "ses/efekt/onluk_cikar.mp3",
+  "category": "efekt",
+  "duration": 1.15,
+  "loop": false,
+  "desc": "B4: Önlüğü baştan çıkarma (el_onluk_cikar, kırpılmış); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
  },
  "efekt/otomatik_kapi": {
   "file": "ses/efekt/otomatik_kapi.mp3",
@@ -846,6 +895,13 @@
   "loop": false,
   "desc": "Telsiz paraziti (2 sn)."
  },
+ "efekt/tezgah_carpma": {
+  "file": "ses/efekt/tezgah_carpma.mp3",
+  "category": "efekt",
+  "duration": 0.84,
+  "loop": false,
+  "desc": "B4: İncik tezgâha çarpar + sakız standı tıngırtısı (el_tezgah_carpma, tıngırtı +14 dB); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
+ },
  "efekt/tik": {
   "file": "ses/efekt/tik.mp3",
   "category": "efekt",
@@ -901,6 +957,13 @@
   "duration": 1.2,
   "loop": false,
   "desc": "İki yudum su, yutkunma (kendi sentezimiz)."
+ },
+ "efekt/yutkunma": {
+  "file": "ses/efekt/yutkunma.mp3",
+  "category": "efekt",
+  "duration": 0.71,
+  "loop": false,
+  "desc": "B4: Derin korku yutkunması (el_yutkunma'dan tek yutkunma kesildi); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
  },
  "gonderme/gonderme1_125x": {
   "file": "ses/gonderme/gonderme1_125x.mp3",
