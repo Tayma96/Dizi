@@ -300,7 +300,7 @@
           "cast": {
             "ece_sivil": {
               "emotion": "ofkeli",
-              "gesture": "onlukTut"
+              "gesture": "tutuyor"
             }
           }
         },
@@ -349,8 +349,8 @@
               "onluk": false,
               "sacDagin": true,
               "prop": "onluk_top",
-              "gesture": "yereAt",
-              "jestAt": 1.6,
+              "gesture": "tutuyor",
+              "yereAt": 1.6,
               "emotion": "ofkeli"
             }
           },
