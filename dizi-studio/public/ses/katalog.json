@@ -1,4 +1,32 @@
 {
+ "efekt/adim_kosu_1": {
+  "file": "ses/efekt/adim_kosu_1.mp3",
+  "category": "efekt",
+  "duration": 0.37,
+  "loop": false,
+  "desc": "Tek koşu adımı 1 (BigSoundBank #0165 ayak_sesleri2'den türev, CC0)."
+ },
+ "efekt/adim_kosu_2": {
+  "file": "ses/efekt/adim_kosu_2.mp3",
+  "category": "efekt",
+  "duration": 0.37,
+  "loop": false,
+  "desc": "Tek koşu adımı 2 (BigSoundBank #0165 ayak_sesleri2'den türev, CC0)."
+ },
+ "efekt/adim_kosu_3": {
+  "file": "ses/efekt/adim_kosu_3.mp3",
+  "category": "efekt",
+  "duration": 0.37,
+  "loop": false,
+  "desc": "Tek koşu adımı 3 (BigSoundBank #0165 ayak_sesleri2'den türev, CC0)."
+ },
+ "efekt/adim_kosu_4": {
+  "file": "ses/efekt/adim_kosu_4.mp3",
+  "category": "efekt",
+  "duration": 0.37,
+  "loop": false,
+  "desc": "Tek koşu adımı 4 (BigSoundBank #0165 ayak_sesleri2'den türev, CC0)."
+ },
  "efekt/araba_gecis": {
   "file": "ses/efekt/araba_gecis.mp3",
   "category": "efekt",
@@ -82,6 +110,20 @@
   "duration": 4.0,
   "loop": false,
   "desc": "Dramatik darbe/sting (gerçek ortaya çıkınca)."
+ },
+ "efekt/depo_ece": {
+  "file": "ses/efekt/depo_ece.mp3",
+  "category": "efekt",
+  "duration": 2.14,
+  "loop": false,
+  "desc": "Depodan kalın 'ece': Sabri'nin 724-01/c_15 kaydından türev (-4 yt, alt oktav, depo yankısı), -17 LUFS."
+ },
+ "efekt/depo_kapi_kisa": {
+  "file": "ses/efekt/depo_kapi_kisa.mp3",
+  "category": "efekt",
+  "duration": 1.65,
+  "loop": false,
+  "desc": "Depo kapısı kısa açılış: el_depo_kapi'nin ilk 1,6 sn'si (türev)."
  },
  "efekt/ekmek_dusme": {
   "file": "ses/efekt/ekmek_dusme.mp3",
