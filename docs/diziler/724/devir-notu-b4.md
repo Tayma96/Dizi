@@ -25,3 +25,13 @@ Dal: `claude/affectionate-allen-dxvfpb`. Önce `bash tools/kurulum.sh` (dizi-stu
 - Sonra: kare kontrolü → tam render → −14 LUFS → `bolumler/724-04.mp4` → ilk 10 sn saniye saniye analiz → kullanıcıya rapor, talimat bekle.
 - Render tarayıcısı: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`
 - Tüm görsel alanlar bağlandı (8c209b8). Kalan tek iş: render (komut yukarıda, --concurrency=4) → loudness → bolumler/724-04.mp4 → ilk 10 sn analizi.
+
+## RENDER ALINDI (22 Kasım 2026)
+`bolumler/724-04.mp4` (45,6 sn, −14 LUFS) kullanıcıya gönderildi. İlk 10 sn analizi verildi; kullanıcının talimatı bekleniyor. Önerilen düzeltmeler:
+1. 4–6 sn ölü an (Ece yalnız, tepkisiz) kısaltılsın.
+2. 6–8,4 sn kapı geniş çekimi 1,2 sn'ye insin, adam silueti netleşsin (şu an okunmuyor). Saat 06:03 süreklilik kontrolü.
+3. Ece'nin ifadesi 2. sn'den itibaren korkmuş olsun (şu an somurtkan/sinirli okunuyor).
+4. Yutkunma görsel olarak belirginleşsin (gırtlak + omuz); yakın çekimde başın üstü kesik.
+5. Adamın başına hafif eğilme/yaklaşma; başın üstündeki kırmızı ışıklı nesne anlaşılmıyor.
+GY'nin bildirdiği riskler: ambalaj_parmak elleri kaba; Sabri son yakın planı fazla karanlık (yarimGolge 0.6); önlük topu düşerken görünmüyor.
+Kalanı (10. sn sonrası) kullanıcı isterse aynı şekilde saniye saniye analiz edilir.
