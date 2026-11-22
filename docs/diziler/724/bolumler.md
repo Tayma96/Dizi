@@ -159,3 +159,10 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 3. Gözler, anime tarzı: faltaşı gibi açılır, göz bebekleri nokta kadar küçülür. Yüz "korkudan ölmüş" gibidir. Ece yalnız gözleriyle yavaşça depoya bakar; göz bebeği nokta kadar olsa da bakış yönü okunmalıdır.
 4. 3. kural kancası bu parçadan sonra kurulacak (şimdi değil).
 5. Doğaçlama: önlüğü çıkarırken at kuyruğuna takılması eklenir.
+
+### Bölüm 4: kamera ve ses kararları (22 Kasım 2026)
+- İlk "vallahi bastım": Ece kasanın arkasından çıkarken. İkinci "vallahi bastım kaç kaç kaç kaç": kapıya koşarken; kamera önde, bel üstü, Ece'yle birlikte hareket eder; yüzde korku + panik + komik ifade.
+- Kapıda: yakın çekim, kamera Ece'nin arkasından kapıya bakar. Sabri'nin lafı bitince Ece donar, başını yavaşça çevirir, kamerayla göz göze gelir.
+- Ses: "vallahi bastım ... kaç kaç kaç kaç" hızlı, panik ve komik; Ece'nin doğallığı ve samimiyeti korunur (izleyici bunu seviyor). Orijinal meme sesi kullanılmaz, Ece'nin sesiyle.
+- Motor önerisi: 2.5D (2D çizim + karakter dönüş açıları + katmanlı derinlikli kamera); kullanıcı onayı bekleniyor.
+- **Teslim öncesi denetim (kullanıcı talimatı):** her şey bitince video saniye saniye analiz edilir. Önce yalnızca ilk 10 saniye analiz edilip kullanıcıya rapor verilir; sonra kullanıcının talimatı beklenir.
