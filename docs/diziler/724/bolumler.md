@@ -152,3 +152,10 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
 9. Sabri Abi'nin sesiyle: "Nereye gidiyosun kızım."
 10. Ece bir anda donar, başını yavaş yavaş çevirip bakar. Depodan çıkan kişi Sabri Abi'dir.
 (Kullanıcı: önce yalnız senarist incelesin; kamera açıları görüntü yönetmeniyle ayrıca konuşulacak.)
+
+### Bölüm 4: kullanıcı kararları (senarist raporundan sonra)
+1. Depodan çıkan kişi gerçek Sabri'dir.
+2. Finalde Sabri'nin parmaklarında 2. bölümdeki küçük kızın çikolata ambalajı görünür.
+3. Gözler, anime tarzı: faltaşı gibi açılır, göz bebekleri nokta kadar küçülür. Yüz "korkudan ölmüş" gibidir. Ece yalnız gözleriyle yavaşça depoya bakar; göz bebeği nokta kadar olsa da bakış yönü okunmalıdır.
+4. 3. kural kancası bu parçadan sonra kurulacak (şimdi değil).
+5. Doğaçlama: önlüğü çıkarırken at kuyruğuna takılması eklenir.
