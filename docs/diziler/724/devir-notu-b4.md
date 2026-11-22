@@ -24,3 +24,4 @@ Dal: `claude/affectionate-allen-dxvfpb`. Önce `bash tools/kurulum.sh` (dizi-stu
 - Görüntü yönetmeni JSON'daki yeni alanları uyguluyordu: depoAcik, paltoOmuz, isaretler (kasa_agzi, depo_esik, depo_on), siluet, tasma, yutkun, onluk "cikar", sacDagin, onluk_top + yereAt, gozSok + bakSure, body "sendele" + sendeleAt, yarimGolge, ambalaj, basEgim; eklemeler kosu_takip, ambalaj_parmak, kapi_arka text[3] zaman kayması. Bilinmeyen jest adı Character.tsx:339'da çöküyor, güvenli hale getirilmeli.
 - Sonra: kare kontrolü → tam render → −14 LUFS → `bolumler/724-04.mp4` → ilk 10 sn saniye saniye analiz → kullanıcıya rapor, talimat bekle.
 - Render tarayıcısı: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`
+- Tüm görsel alanlar bağlandı (8c209b8). Kalan tek iş: render (komut yukarıda, --concurrency=4) → loudness → bolumler/724-04.mp4 → ilk 10 sn analizi.
