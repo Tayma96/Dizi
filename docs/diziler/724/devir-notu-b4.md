@@ -16,3 +16,4 @@ Dal: `claude/affectionate-allen-dxvfpb`. Önce `bash tools/kurulum.sh` (dizi-stu
 ## Kurallar
 - ElevenLabs: önce kuru çalıştırma + maliyet, kullanıcıya açık onay sorusu, sonra `--onayla`. Anahtar ortamda ağ sırrı olarak durur (`ELEVENLABS_API_KEY=` boş verilir, proxy ekler); yeni hesapta/ortamda kullanıcı bu sırrı kendisi eklemeli.
 - Bitince: render → −14 LUFS → `bolumler/724-04.mp4`. Teslimden önce **ilk 10 saniye saniye saniye analiz edilip kullanıcıya rapor verilir, talimat beklenir.**
+- Kullanıcı baş dönüşü örneğini (ornekler/b4-ornek-bas-donusu.mp4) onayladı: "Beğendim beğendim devam".

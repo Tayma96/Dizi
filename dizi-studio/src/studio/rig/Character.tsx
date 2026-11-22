@@ -364,8 +364,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   }
   if (running) {
     // kol pompalama (önden): öne gelen kolun eli göğse çıkar, kısalır (kameraya yaklaşır); geriye giden el kalçaya iner
-    Object.assign(armL, { upper: 18 + 12 * runU, fore: -92 - 36 * runU, ul: 0.86 - 0.13 * runU, fl: 1 - 0.08 * runU });
-    Object.assign(armR, { upper: 18 - 12 * runU, fore: -92 + 36 * runU, ul: 0.86 + 0.13 * runU, fl: 1 + 0.08 * runU });
+    // ön kol kameraya döner: kısalır (fl), el gövdenin yanında göğüs hizasına çıkar; gövdenin önünden çaprazlamaz
+    Object.assign(armL, { upper: 15 - 5 * runU, fore: -40 - 24 * runU, ul: 0.875 - 0.085 * runU, fl: 0.74 - 0.22 * runU });
+    Object.assign(armR, { upper: 15 + 5 * runU, fore: -40 + 24 * runU, ul: 0.875 + 0.085 * runU, fl: 0.74 + 0.22 * runU });
   }
   if (walking) {
     // kollar bacaklarla zıt fazda: sol bacak öne → sağ kol öne (dir işaretleri ters olduğu için iki kola aynı işaret)

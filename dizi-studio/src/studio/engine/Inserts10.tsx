@@ -70,7 +70,7 @@ const KapiArka: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
           <Bas25D look={ece} aci={aci} katman="arka" kuyrukIleri={ileri} kuyrukSal={sal} uid="ka10k" />
           <Govde25D look={ece} aci={govdeAci} omuz={omuz} uid="ka10g" />
           <g transform={`translate(0 ${-omuz * 0.6})`}>
-            <Bas25D look={ece} aci={aci} emotion="sok" lookX={lookX} lookY={-0.05} pale={0.3} dagin={1} kuyrukIleri={ileri} kuyrukSal={sal} isik={isik} kenar={0.8} uid="ka10" />
+            <Bas25D look={ece} aci={aci} emotion={u > 0.55 ? "korkmus" : "sok"} lookX={lookX} lookY={-0.05} pale={0.3} dagin={1} kuyrukIleri={ileri} kuyrukSal={sal} isik={isik} kenar={0.8} uid="ka10" />
           </g>
         </g>
         <rect width={1080} height={1920} fill="url(#ka10vin)" />
