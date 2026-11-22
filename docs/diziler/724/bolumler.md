@@ -139,3 +139,16 @@ Kullanıcının uyarısı: yazım hataları düzeltilebilir, ama noktalama (virg
    - Ece korkarak sandviçi alır, barkodunu okutur (bip), kasaya koyar.
    - O esnada el adamın koluyla birleşir. Adam sandviçi alır, parayı öder, öyle gider.
 6. **Diyalog:** "Bunu kimse görmüyo mu amk" çıkarılacak. Gerçekte kimse korkudan böyle tepki vermez. Ece'nin tepkileri korkuyla tutarlı olacak: donma, kekeleme, nefes.
+
+## Bölüm 4 (kullanıcının metni, 22 Kasım 2026; replikler ve noktalama aynen)
+1. 3. bölümün son anıyla, "...seni seçmiş" sözüyle açılır.
+2. Kamera Ece'ye döner. Ece korku içindedir (titreme yok). Korku anında insanların yaptığı gibi belirgin, derin bir yutkunma yapar.
+3. Önlüğünü çıkarır, buruşturur ve yere atar. Bunu yaparken: "sıçarım işinedeee marketinedeee". Sondaki "dee"ler uzun, biraz sinirli, sitem gibi.
+4. Tam cümlesi biterken deponun kapısı açılır, kalın, korkutucu bir ses: "ece".
+5. Ece önlüğü yere attığı o an depodaki sesi duyunca beti benzi atar, gözleri bembeyaz olur, göz bebekleri yavaşça depoya doğru döner.
+6. Ardından (meme) "vallahi bastım vallahi bastım kaç kaç kaç kaç" der.
+7. Söylerken kaçmaya çalışır, kasaya bacağı takılır, sendeler ama düşmez.
+8. Tam çıkış kapısına geldiğinde, yani son "kaç" kelimesini söylerken (toplam 4 kez "kaç"), depodaki kişi dışarı çıkmıştır.
+9. Sabri Abi'nin sesiyle: "Nereye gidiyosun kızım."
+10. Ece bir anda donar, başını yavaş yavaş çevirip bakar. Depodan çıkan kişi Sabri Abi'dir.
+(Kullanıcı: önce yalnız senarist incelesin; kamera açıları görüntü yönetmeniyle ayrıca konuşulacak.)
