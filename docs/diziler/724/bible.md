@@ -28,3 +28,8 @@ Durum: 19 Kasım 2026. Kullanıcı: "kurallı korku, 7/24 market" (The Rules'tan
 - **Sağ ön:** kasa; Ece kasanın arkasında, yüzü **sola, kapıya** dönük; arkasında sigara rafı.
 - **Arka duvar:** solda DEPO kapısı, sağda buzdolapları. Ortada iki raf koridoru.
 - Müşteriler soldan (kapıdan) girer, kasanın önünde Ece'nin karşısında durur, sola çıkar. İç mekân aydınlık (gece filtresi yok), dışarısı karanlık.
+
+## İzleyici geri bildirimi (Bölüm 3 sonrası, 22 Kasım 2026)
+- Kullanıcının yazdığı diyaloglar çok sevildi.
+- Ece'nin küfürlü, doğal konuşması ve uyandırdığı sempati dizinin güçlü yanı. Bu ton korunur: korkarken güldüren, gerçekçi tepkiler.
+- Senaryoyu kullanıcı yazar. Senarist yardımcısı inceler ve öneri sunar; metin kullanıcının onayı olmadan değişmez, noktalamaya dokunulmaz.
