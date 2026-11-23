@@ -211,6 +211,33 @@
      "gapAfter": 0.3
     }
    ]
+  },
+  {
+   "id": "j",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "hıığğ abi vallahi büyük hayranınım.",
+     "emotion": "notr",
+     "okunus": "[terrified gasp] Hıııığ! [panicked, breathless, voice trembling] Abi, vallahi büyük hayranınım!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "hıığğ abi vallahi büyük hayranınım.",
+     "emotion": "notr",
+     "okunus": "[sharp scared gasp] Hığ! [terrified, shaky, high-pitched] Abi vallahi büyük hay-ra-nı-nım!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
   }
  ]
 }

@@ -6,7 +6,7 @@
   python3 tools/ses_724_05.py kirp ID BAS SON   # repliği [BAS, SON] saniye aralığına kırpar; words/mouth kaydırılır
   python3 tools/ses_724_05.py olc      # bütün repliklerin LUFS / tepe ölçümü
   python3 tools/ses_724_05.py efekt    # efekt/el_* -> efekt/b5_* (baş kırpma, tepe -3 dBFS / ortam -20 LUFS) + kükremeyi 2,1 sn'ye kısaltır
-  python3 tools/ses_724_05.py muzik [KESME]  # muzik/b5_donusum_tam (h başından KESME sn'de kükremeyle kesilir; varsayılan 16.78)
+  python3 tools/ses_724_05.py muzik [KESME]  # muzik/b5_donusum_tam (h başından KESME sn'de kükremeyle kesilir; varsayılan 17.31)
 
 Manifest anahtarları, elevenlabs.py'nin 724-05.json alanlarından hesapladığı anahtarla aynı tutulur;
 böylece `seslendir` bu satırları önbellekte sayar ve yeniden üretmez (B4 yöntemi, raporlar/b4-ses.md §1.3).
@@ -199,15 +199,15 @@ def cmd_efekt():
 
 
 # Müzik: h sahnesinin başından (dönüşüm) kükremenin başına kadar. Sahne h 12,5 sn (eklemeler sabit),
-# i_01 + i_02 = 44 + 79 kare; kükreme vuruşu h başından 16,60 sn sonra, kükreme sesi +0,18 -> 16,78 sn'de müzik keskin kesilir
+# i_01 + i_02 = 55 + 84 kare (panik çekimleri); kükreme vuruşu h başından 17,13 sn sonra, kükreme sesi +0,18 -> 17,31 sn'de müzik keskin kesilir
 # (kükreme tek başına kalır, ardından "lülü?" sessizliği). Dosya 30 sn'ye sessizlikle doldurulur (motor müziği döngüye alır).
-MUZIK_KESME = 16.78
+MUZIK_KESME = 17.31
 
 
 def cmd_muzik(kesme=MUZIK_KESME):
     M = os.path.join(ROOT, "public", "ses", "muzik")
     fc = (f"[0:a]atrim=0:13.0,asetpts=N/SR/TB,afade=t=out:st=12.3:d=0.7[a];"
-          f"[1:a]atrim=4.0:9.2,asetpts=N/SR/TB,afade=t=in:d=0.8,volume=0.45,adelay=12000|12000[b];"
+          f"[1:a]atrim=4.0:{min(9.9, 4.0 + kesme - 12.0 + 0.3):.2f},asetpts=N/SR/TB,afade=t=in:d=0.8,volume=0.45,adelay=12000|12000[b];"
           f"[a][b]amix=inputs=2:normalize=0:duration=longest,atrim=0:{kesme:.3f},afade=t=out:st={kesme - 0.03:.3f}:d=0.03,apad=whole_dur=30[o]")
     tmp = os.path.join(M, "b5_donusum_tam.tmp.wav")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", os.path.join(M, "b5_donusum.mp3"), "-i", os.path.join(ROOT, "public", "ses", "efekt", "korku_drone.mp3"),

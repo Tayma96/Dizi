@@ -1,0 +1,922 @@
+{
+ "a_01": {
+  "key": "924f2e9b2606",
+  "file": "voice/724-05/a_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "sabri abi?",
+  "duration": 1.75,
+  "asrScore": 1.0,
+  "heard": "Sabri abi...",
+  "words": [
+   {
+    "w": "sabri",
+    "start": 0.52,
+    "end": 0.7
+   },
+   {
+    "w": "abi?",
+    "start": 0.76,
+    "end": 1.699
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.52,
+    "v": "L"
+   },
+   {
+    "t": 0.56,
+    "v": "A"
+   },
+   {
+    "t": 0.62,
+    "v": "M"
+   },
+   {
+    "t": 0.66,
+    "v": "L"
+   },
+   {
+    "t": 0.69,
+    "v": "I"
+   },
+   {
+    "t": 0.78,
+    "v": "A"
+   },
+   {
+    "t": 0.9,
+    "v": "M"
+   },
+   {
+    "t": 0.97,
+    "v": "I"
+   },
+   {
+    "t": 1.6,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 14,
+  "zaman_duzeltme": "sabri başlangıcı enerji zarfına göre 0.52 sn (ElevenLabs hizalaması geç)"
+ },
+ "c_01": {
+  "key": "cee1d9efc3d2",
+  "file": "voice/724-05/c_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "abi sen benle taştaş mı geçiyorsun",
+  "duration": 3.474,
+  "asrScore": 0.967,
+  "heard": "Abi sen benimle taş taş mı geçiyorsun?",
+  "words": [
+   {
+    "w": "abi",
+    "start": 0.96,
+    "end": 1.28
+   },
+   {
+    "w": "sen",
+    "start": 1.36,
+    "end": 1.6
+   },
+   {
+    "w": "benle",
+    "start": 1.68,
+    "end": 1.92
+   },
+   {
+    "w": "taştaş",
+    "start": 2.0,
+    "end": 2.4
+   },
+   {
+    "w": "mı",
+    "start": 2.48,
+    "end": 2.56
+   },
+   {
+    "w": "geçiyorsun",
+    "start": 2.64,
+    "end": 3.44
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.96,
+    "v": "A"
+   },
+   {
+    "t": 1.08,
+    "v": "M"
+   },
+   {
+    "t": 1.2,
+    "v": "I"
+   },
+   {
+    "t": 1.28,
+    "v": "X"
+   },
+   {
+    "t": 1.36,
+    "v": "L"
+   },
+   {
+    "t": 1.44,
+    "v": "E"
+   },
+   {
+    "t": 1.52,
+    "v": "L"
+   },
+   {
+    "t": 1.68,
+    "v": "M"
+   },
+   {
+    "t": 1.707,
+    "v": "E"
+   },
+   {
+    "t": 1.733,
+    "v": "L"
+   },
+   {
+    "t": 1.84,
+    "v": "E"
+   },
+   {
+    "t": 1.92,
+    "v": "X"
+   },
+   {
+    "t": 2.0,
+    "v": "L"
+   },
+   {
+    "t": 2.08,
+    "v": "A"
+   },
+   {
+    "t": 2.16,
+    "v": "L"
+   },
+   {
+    "t": 2.293,
+    "v": "A"
+   },
+   {
+    "t": 2.347,
+    "v": "L"
+   },
+   {
+    "t": 2.4,
+    "v": "X"
+   },
+   {
+    "t": 2.48,
+    "v": "M"
+   },
+   {
+    "t": 2.52,
+    "v": "I"
+   },
+   {
+    "t": 2.56,
+    "v": "X"
+   },
+   {
+    "t": 2.64,
+    "v": "L"
+   },
+   {
+    "t": 2.68,
+    "v": "E"
+   },
+   {
+    "t": 2.72,
+    "v": "L"
+   },
+   {
+    "t": 2.8,
+    "v": "I"
+   },
+   {
+    "t": 2.88,
+    "v": "O"
+   },
+   {
+    "t": 2.933,
+    "v": "L"
+   },
+   {
+    "t": 3.04,
+    "v": "U"
+   },
+   {
+    "t": 3.12,
+    "v": "L"
+   },
+   {
+    "t": 3.2,
+    "v": "X"
+   },
+   {
+    "t": 3.44,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "d2_01": {
+  "key": "73b9c3bb82ef",
+  "file": "voice/724-05/d2_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ.",
+  "duration": 4.441,
+  "asrScore": 1.0,
+  "heard": "Şaka mı? Abi bir adamın eli yürüdü. Eli!",
+  "words": [
+   {
+    "w": "Şaka",
+    "start": 0.24,
+    "end": 0.56
+   },
+   {
+    "w": "mı?..",
+    "start": 0.64,
+    "end": 1.36
+   },
+   {
+    "w": "Abi",
+    "start": 1.48,
+    "end": 1.88
+   },
+   {
+    "w": "bir",
+    "start": 2.0,
+    "end": 2.16
+   },
+   {
+    "w": "adamın",
+    "start": 2.24,
+    "end": 2.56
+   },
+   {
+    "w": "eli",
+    "start": 2.64,
+    "end": 2.88
+   },
+   {
+    "w": "yürüdü…",
+    "start": 2.92,
+    "end": 3.48
+   },
+   {
+    "w": "ELİ.",
+    "start": 3.7,
+    "end": 4.4
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.24,
+    "v": "L"
+   },
+   {
+    "t": 0.32,
+    "v": "A"
+   },
+   {
+    "t": 0.4,
+    "v": "L"
+   },
+   {
+    "t": 0.48,
+    "v": "A"
+   },
+   {
+    "t": 0.64,
+    "v": "M"
+   },
+   {
+    "t": 0.72,
+    "v": "I"
+   },
+   {
+    "t": 0.8,
+    "v": "X"
+   },
+   {
+    "t": 1.48,
+    "v": "A"
+   },
+   {
+    "t": 1.54,
+    "v": "M"
+   },
+   {
+    "t": 1.6,
+    "v": "I"
+   },
+   {
+    "t": 1.76,
+    "v": "X"
+   },
+   {
+    "t": 2.0,
+    "v": "M"
+   },
+   {
+    "t": 2.053,
+    "v": "I"
+   },
+   {
+    "t": 2.107,
+    "v": "L"
+   },
+   {
+    "t": 2.16,
+    "v": "X"
+   },
+   {
+    "t": 2.24,
+    "v": "A"
+   },
+   {
+    "t": 2.28,
+    "v": "L"
+   },
+   {
+    "t": 2.32,
+    "v": "A"
+   },
+   {
+    "t": 2.36,
+    "v": "M"
+   },
+   {
+    "t": 2.4,
+    "v": "I"
+   },
+   {
+    "t": 2.48,
+    "v": "L"
+   },
+   {
+    "t": 2.56,
+    "v": "X"
+   },
+   {
+    "t": 2.64,
+    "v": "E"
+   },
+   {
+    "t": 2.72,
+    "v": "L"
+   },
+   {
+    "t": 2.8,
+    "v": "I"
+   },
+   {
+    "t": 2.96,
+    "v": "U"
+   },
+   {
+    "t": 3.013,
+    "v": "L"
+   },
+   {
+    "t": 3.067,
+    "v": "U"
+   },
+   {
+    "t": 3.12,
+    "v": "L"
+   },
+   {
+    "t": 3.2,
+    "v": "U"
+   },
+   {
+    "t": 3.28,
+    "v": "X"
+   },
+   {
+    "t": 3.707,
+    "v": "E"
+   },
+   {
+    "t": 3.72,
+    "v": "L"
+   },
+   {
+    "t": 3.88,
+    "v": "I"
+   },
+   {
+    "t": 4.04,
+    "v": "X"
+   },
+   {
+    "t": 4.4,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 32,
+  "zaman_duzeltme": "ELİ. başlangıcı enerji zarfına göre 3.7 sn (ElevenLabs hizalaması geç)"
+ },
+ "e_02": {
+  "key": "d6640ba8ddc6",
+  "file": "voice/724-05/e_02.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "hoaa",
+  "duration": 0.679,
+  "asrScore": 0.5,
+  "heard": "Huah!",
+  "words": [
+   {
+    "w": "hoaa",
+    "start": 0.08,
+    "end": 0.64
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.08,
+    "v": "L"
+   },
+   {
+    "t": 0.16,
+    "v": "O"
+   },
+   {
+    "t": 0.24,
+    "v": "A"
+   },
+   {
+    "t": 0.48,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 8,
+  "kirpma": "[0.64-1.28]"
+ },
+ "g_01": {
+  "key": "53a3b7c6e3da",
+  "file": "voice/724-05/g_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "ne dönüyo lan burda!",
+  "duration": 1.567,
+  "asrScore": 0.941,
+  "heard": "Ne dönüyor lan burada?",
+  "words": [
+   {
+    "w": "ne",
+    "start": 0.16,
+    "end": 0.32
+   },
+   {
+    "w": "dönüyo",
+    "start": 0.36,
+    "end": 0.64
+   },
+   {
+    "w": "lan",
+    "start": 0.76,
+    "end": 0.88
+   },
+   {
+    "w": "burda!",
+    "start": 0.96,
+    "end": 1.52
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.16,
+    "v": "L"
+   },
+   {
+    "t": 0.24,
+    "v": "E"
+   },
+   {
+    "t": 0.36,
+    "v": "L"
+   },
+   {
+    "t": 0.4,
+    "v": "O"
+   },
+   {
+    "t": 0.453,
+    "v": "L"
+   },
+   {
+    "t": 0.507,
+    "v": "U"
+   },
+   {
+    "t": 0.56,
+    "v": "I"
+   },
+   {
+    "t": 0.6,
+    "v": "O"
+   },
+   {
+    "t": 0.64,
+    "v": "X"
+   },
+   {
+    "t": 0.76,
+    "v": "L"
+   },
+   {
+    "t": 0.8,
+    "v": "A"
+   },
+   {
+    "t": 0.84,
+    "v": "L"
+   },
+   {
+    "t": 0.96,
+    "v": "M"
+   },
+   {
+    "t": 0.987,
+    "v": "U"
+   },
+   {
+    "t": 1.013,
+    "v": "L"
+   },
+   {
+    "t": 1.16,
+    "v": "A"
+   },
+   {
+    "t": 1.28,
+    "v": "X"
+   },
+   {
+    "t": 1.52,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 21
+ },
+ "i_01": {
+  "key": "9b536ae02819",
+  "file": "voice/724-05/i_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "hıığğ",
+  "duration": 1.463,
+  "asrScore": 0.462,
+  "heard": "Hıh! Hıh! Ah!",
+  "words": [
+   {
+    "w": "hıığğ",
+    "start": 0.02,
+    "end": 1.38
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.02,
+    "v": "U"
+   },
+   {
+    "t": 0.3,
+    "v": "X"
+   },
+   {
+    "t": 0.5,
+    "v": "A"
+   },
+   {
+    "t": 0.86,
+    "v": "X"
+   },
+   {
+    "t": 1.18,
+    "v": "I"
+   },
+   {
+    "t": 1.4,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "turetim": "724-05-ses/i_01 [0.04-1.47] (tek nefes çekimi, bölündü)",
+  "kredi": 0
+ },
+ "i_02": {
+  "key": "c784fecfb39e",
+  "file": "voice/724-05/i_02.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "abi vallahi büyük hayranınım.",
+  "duration": 2.482,
+  "asrScore": 1.0,
+  "heard": "Abi, vallahi büyük hayranınım.",
+  "words": [
+   {
+    "w": "abi",
+    "start": 0.37,
+    "end": 0.81
+   },
+   {
+    "w": "vallahi",
+    "start": 0.93,
+    "end": 1.41
+   },
+   {
+    "w": "büyük",
+    "start": 1.45,
+    "end": 1.65
+   },
+   {
+    "w": "hayranınım.",
+    "start": 1.73,
+    "end": 2.501
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.37,
+    "v": "A"
+   },
+   {
+    "t": 0.45,
+    "v": "M"
+   },
+   {
+    "t": 0.53,
+    "v": "I"
+   },
+   {
+    "t": 0.69,
+    "v": "X"
+   },
+   {
+    "t": 0.93,
+    "v": "F"
+   },
+   {
+    "t": 1.01,
+    "v": "A"
+   },
+   {
+    "t": 1.063,
+    "v": "L"
+   },
+   {
+    "t": 1.17,
+    "v": "A"
+   },
+   {
+    "t": 1.25,
+    "v": "L"
+   },
+   {
+    "t": 1.33,
+    "v": "I"
+   },
+   {
+    "t": 1.45,
+    "v": "M"
+   },
+   {
+    "t": 1.47,
+    "v": "U"
+   },
+   {
+    "t": 1.49,
+    "v": "I"
+   },
+   {
+    "t": 1.543,
+    "v": "U"
+   },
+   {
+    "t": 1.597,
+    "v": "L"
+   },
+   {
+    "t": 1.65,
+    "v": "X"
+   },
+   {
+    "t": 1.73,
+    "v": "L"
+   },
+   {
+    "t": 1.757,
+    "v": "A"
+   },
+   {
+    "t": 1.783,
+    "v": "I"
+   },
+   {
+    "t": 1.81,
+    "v": "L"
+   },
+   {
+    "t": 1.89,
+    "v": "A"
+   },
+   {
+    "t": 1.97,
+    "v": "L"
+   },
+   {
+    "t": 2.05,
+    "v": "I"
+   },
+   {
+    "t": 2.09,
+    "v": "L"
+   },
+   {
+    "t": 2.13,
+    "v": "I"
+   },
+   {
+    "t": 2.21,
+    "v": "M"
+   },
+   {
+    "t": 2.29,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "turetim": "724-05-ses/i_01 [1.47-3.971] (tek nefes çekimi, bölündü)",
+  "kredi": 0
+ },
+ "i_05": {
+  "key": "b3c8603439f0",
+  "file": "voice/724-05/i_05.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "lülü?",
+  "duration": 0.784,
+  "asrScore": 0.5,
+  "heard": "Lulu?",
+  "words": [
+   {
+    "w": "lülü?",
+    "start": 0.08,
+    "end": 0.58
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.08,
+    "v": "L"
+   },
+   {
+    "t": 0.12,
+    "v": "U"
+   },
+   {
+    "t": 0.27,
+    "v": "L"
+   },
+   {
+    "t": 0.32,
+    "v": "U"
+   },
+   {
+    "t": 0.58,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v3",
+  "kredi": 14,
+  "turetim": "724-05-lulu3/l_01 (eleven_v3, [timid, coaxing, small voice] Lülü?) 0-0.74 sn. v4 her yazımda 'Lulu' (isim) okudu; v3 iki hecede de ü (F2 ~2050-2170 Hz). Anahtar 724-05.json alanlarından hesaplandı (önbellek korunur). Yedek: kuru/i_05_v4_Lulu.mp3"
+ },
+ "i_06": {
+  "key": "4fb253892e90",
+  "file": "voice/724-05/i_06.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "bu da mı olmadı?",
+  "duration": 1.541,
+  "asrScore": 1.0,
+  "heard": "Bu da mı olmadı?",
+  "words": [
+   {
+    "w": "bu",
+    "start": 0.132,
+    "end": 0.292
+   },
+   {
+    "w": "da",
+    "start": 0.372,
+    "end": 0.452
+   },
+   {
+    "w": "mı",
+    "start": 0.492,
+    "end": 0.532
+   },
+   {
+    "w": "olmadı?",
+    "start": 0.612,
+    "end": 1.492
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.132,
+    "v": "M"
+   },
+   {
+    "t": 0.212,
+    "v": "U"
+   },
+   {
+    "t": 0.372,
+    "v": "L"
+   },
+   {
+    "t": 0.412,
+    "v": "A"
+   },
+   {
+    "t": 0.492,
+    "v": "M"
+   },
+   {
+    "t": 0.512,
+    "v": "I"
+   },
+   {
+    "t": 0.612,
+    "v": "O"
+   },
+   {
+    "t": 0.692,
+    "v": "L"
+   },
+   {
+    "t": 0.772,
+    "v": "M"
+   },
+   {
+    "t": 0.852,
+    "v": "A"
+   },
+   {
+    "t": 0.932,
+    "v": "L"
+   },
+   {
+    "t": 1.012,
+    "v": "I"
+   },
+   {
+    "t": 1.332,
+    "v": "X"
+   },
+   {
+    "t": 1.492,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 21
+ }
+}
