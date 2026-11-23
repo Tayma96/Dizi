@@ -39,3 +39,4 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - Göbekli adam: yalnız göbek büyütülmüş, yetersiz ve fazla sempatik. İstenen: 1 yıldır evden çıkmamış, biraz çirkin, KİLOLU olduğu her yerinden belli (yüz, gıdı, kollar, bacaklar, ense; yalnız göbek değil).
 - Kurye: kask aşırı büyük duruyor; gerçekçi oranda küçült.
 - Beyaz oda final: çok fazla düğme; oda biraz büyütülsün, düğme sayısı %30 azaltılsın.
+- Beyaz oda kıyafeti (kullanıcı): ortak tulum YOK; her karakter kendi kıyafetiyle; her birinin kendine has tarzı ve karakteristik özelliği görünüşüne yansımalı.
