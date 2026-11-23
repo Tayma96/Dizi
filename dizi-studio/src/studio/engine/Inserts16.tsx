@@ -67,7 +67,7 @@ const rot = (p: V2, c: V2, deg: number): V2 => {
  * İki IK çözümünden: el omuzdan belirgin yukarıdaysa dirsek gövdeden DIŞA, değilse AŞAĞI bakan seçilir (dirsek asla ters kırılmaz). */
 const ikDogal = (S0: V2, T: V2, L1: number, L2: number, merkezX: number): { E: V2; H: V2 } => {
   const a = ik(S0, T, L1, L2, 1), b = ik(S0, T, L1, L2, -1);
-  if (T[1] < S0[1] - L1 * 0.35) {
+  if (T[1] < S0[1] - L1 * 1.3) {
     const dis = (E: V2) => Math.abs(E[0] - merkezX);
     return dis(a.E) >= dis(b.E) ? a : b;
   }
