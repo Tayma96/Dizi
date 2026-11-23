@@ -55,6 +55,8 @@ const basamak = <T,>(k: [number, T][] | undefined, t: number, def: T): T => {
 };
 const aralik = (r: number[][] | undefined, t: number) => (r ?? []).some(([a, b]) => t >= a && t < b);
 const O = "#2b1d1a";
+/** makinenin üstü: bırakılan sepetin yeri */
+const MAK_SEPET: V2 = [450, 1095];
 const camT = (cx: number, cy: number, z: number, sx = 0, sy = 0) => `translate(${540 + sx}px, ${960 + sy}px) scale(${z}) translate(${-cx}px, ${-cy}px)`;
 const rot = (p: V2, c: V2, deg: number): V2 => {
   const r = (deg * Math.PI) / 180, dx = p[0] - c[0], dy = p[1] - c[1];
@@ -159,16 +161,21 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
     }
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
     const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : -6 * S;
-    if (tut) esyalar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
+    // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");
   // kirli sepeti sağ kalçada (sağ kol sarar; el sepetin arkasında kalır)
   let sepet: React.ReactNode = null;
-  if (kf1(q.sepet, tg, 0) > 0.5) {
-    const [hx, hy] = rot([left + 300 * S, top - parmak + 600 * S], [piv[0], piv[1] - parmak], egil);
+  const birak = q.sepetBirak as number[] | undefined;
+  if (kf1(q.sepet, tg, 0) > 0.5 && !(birak && tg >= birak[1])) {
+    const [hx0, hy0] = rot([left + 300 * S, top - parmak + 600 * S], [piv[0], piv[1] - parmak], egil);
+    const u = birak ? sstep(birak[0], birak[1], tg) : 0;
+    const hx = hx0 + (MAK_SEPET[0] - hx0) * u, hy = hy0 + (MAK_SEPET[1] - hy0) * u - 60 * Math.sin(Math.PI * u);
+    const sc = S + (1.2 - S) * u;
     sepet = (
-      <g transform={`translate(${hx.toFixed(1)} ${hy.toFixed(1)}) rotate(${(-8 + egil).toFixed(1)}) scale(${S.toFixed(3)})`}>
+      <g transform={`translate(${hx.toFixed(1)} ${hy.toFixed(1)}) rotate(${(-8 + egil + 4 * u).toFixed(1)}) scale(${sc.toFixed(3)})`}>
         <path d="M -95 -50 L 95 -50 L 80 80 L -80 80 Z" fill="#c8a070" stroke={O} strokeWidth={5} />
         {[-20, 15, 50].map((yy) => <path key={yy} d={`M ${-92 + (yy + 50) * 0.11} ${yy} H ${92 - (yy + 50) * 0.11}`} stroke="#8a6440" strokeWidth={5} />)}
         <path d="M -92 -48 Q -50 -100 0 -76 Q 50 -110 94 -48 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
@@ -210,17 +217,39 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <linearGradient id="b7_pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffd08a" /><stop offset="1" stopColor="#ff9a5a" /></linearGradient>
           </defs>
           <Banyo724BG view="kapi" frame={f} doorOpen={kf1(p.kapi, tg, 1)} />
-          {/* gün batımı penceresi (buzlu), makinenin üstünde */}
-          <rect x={330} y={470} width={230} height={300} fill="url(#b7_pen)" stroke="#f4f0e8" strokeWidth={14} />
+          {/* pencere (buzlu): gece (kasım, 18:00 karanlık) ya da gün batımı */}
+          {p.gece ? (
+            <g>
+              <rect x={330} y={470} width={230} height={300} fill="#1c2440" stroke="#f4f0e8" strokeWidth={14} />
+              {[[360, 560], [410, 640], [500, 520], [520, 690], [380, 700]].map(([wx, wy], i) => <rect key={i} x={wx} y={wy} width={18} height={14} fill="#ffcf70" opacity={0.55} />)}
+              <rect x={330} y={470} width={230} height={300} fill="#8aa0c8" opacity={0.18} />
+            </g>
+          ) : (
+            <rect x={330} y={470} width={230} height={300} fill="url(#b7_pen)" stroke="#f4f0e8" strokeWidth={14} />
+          )}
           <path d="M 445 470 V 770 M 330 620 H 560" stroke="#f4f0e8" strokeWidth={8} />
-          <rect x={330} y={470} width={230} height={300} fill="#fff" opacity={0.12} />
-          {/* sepet makinenin üstüne bırakılmış (p.makineSepet) */}
-          {p.makineSepet ? (
+          <rect x={330} y={470} width={230} height={300} fill="#fff" opacity={0.08} />
+          {/* çamaşır makinesi: kapak AÇIK (menteşe solda), tamburda çamaşırlar; atılanlar içeride görünür */}
+          <circle cx={449} cy={1385} r={92} fill="#3a4248" stroke="#7a7e80" strokeWidth={10} />
+          <circle cx={449} cy={1385} r={70} fill="#4a545c" />
+          <path d="M 395 1420 Q 430 1370 480 1400 Q 505 1440 470 1450 Q 420 1460 395 1420 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={3} />
+          {tg >= 1.1 ? <path d="M 430 1372 Q 470 1350 500 1380 Q 480 1405 440 1398 Z" fill="#7ab0d8" stroke="#5a8ab0" strokeWidth={3} /> : null}
+          {tg >= 3.55 ? <path d="M 455 1408 l 30 -10 l 6 14 l -28 12 Z" fill="#f2efe6" stroke="#d8503a" strokeWidth={3} /> : null}
+          <ellipse cx={338} cy={1385} rx={34} ry={104} fill="#c8d4da" stroke="#7a7e80" strokeWidth={10} />
+          <ellipse cx={338} cy={1385} rx={18} ry={80} fill="#9ab0bc" opacity={0.7} />
+          {/* sepet makinenin üstünde (p.makineSepet: zaman eşiği) */}
+          {p.makineSepet !== undefined && tg >= p.makineSepet ? (
             <g transform="translate(450 1095) rotate(-4) scale(1.2)">
               <path d="M -95 -50 L 95 -50 L 80 55 L -80 55 Z" fill="#c8a070" stroke={O} strokeWidth={5} />
               {[-20, 15].map((yy) => <path key={yy} d={`M ${-92 + (yy + 50) * 0.11} ${yy} H ${92 - (yy + 50) * 0.11}`} stroke="#8a6440" strokeWidth={5} />)}
               <path d="M -92 -48 Q -50 -100 0 -76 Q 50 -110 94 -48 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
               <path d="M -60 -52 Q -30 -86 20 -66" stroke="#7ab0d8" strokeWidth={24} strokeLinecap="round" fill="none" />
+            </g>
+          ) : null}
+          {/* cebi boşaltılmış kot, sepetin yanında makinenin üstünde (p.makineKot: zaman eşiği) */}
+          {p.makineKot !== undefined && tg >= p.makineKot ? (
+            <g transform="translate(548 1150) rotate(-80) scale(0.75 1.1)">
+              <path d="M -50 -90 L 50 -90 L 58 80 L 12 84 L 2 -10 L -8 84 L -56 80 Z" fill="#34466a" stroke={O} strokeWidth={5} />
             </g>
           ) : null}
         </svg>
@@ -244,7 +273,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <linearGradient id="b7_h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffb060" stopOpacity={0.55 * isik} /><stop offset="1" stopColor="#ff8a40" stopOpacity={0} /></linearGradient>
             <filter id="b7_bl"><feGaussianBlur stdDeviation="18" /></filter>
           </defs>
-          <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />
+          {p.gece ? <ellipse cx={620} cy={260} rx={620} ry={760} fill="#ffcf90" opacity={0.22} filter="url(#b7_bl)" /> : <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />}
           {new Array(18).fill(0).map((_, i) => {
             const u = ((i * 0.137 + tg * 0.03) % 1);
             const xx = 420 + u * 600 + Math.sin(tg + i) * 20, yy = 560 + u * 1100 + ((i * 97) % 160);
