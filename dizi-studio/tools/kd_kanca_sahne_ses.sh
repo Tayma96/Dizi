@@ -19,6 +19,6 @@ f+="[6]adelay=1333|1333,volume=-11dB,atrim=0:$KES,afade=t=out:st=2.34:d=0.025,$p
 f+="[7]adelay=1600|1600,volume=-8dB,atrim=0:$KES,afade=t=out:st=2.34:d=0.025,$p[nef2];"
 f+="[8]adelay=2000|2000,volume=2dB,atrim=0:$KES,afade=t=out:st=2.352:d=0.014,$p[miz];"
 f+="[9]adelay=2733|2733,volume=2dB,$p[k2];"
-f+="[oda][nef][duur][k1][bol][alm][nef2][miz][k2]amix=inputs=9:normalize=0,atrim=0:$SON,volume=3dB,alimiter=limit=0.8:level=false[a]"
+f+="[oda][nef][duur][k1][bol][alm][nef2][miz][k2]amix=inputs=9:normalize=0,atrim=0:$SON,volume=2dB,alimiter=limit=0.78:level=false[a]"
 ffmpeg -loglevel error -y -i "$V" "${args[@]}" -filter_complex "$f" -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 192k -ar 48000 "$O"
 ffmpeg -i "$O" -af ebur128=peak=true -f null - 2>&1 | grep -E "^\s+I:|Peak:" | tail -2
