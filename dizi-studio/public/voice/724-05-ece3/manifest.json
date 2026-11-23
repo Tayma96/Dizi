@@ -924,5 +924,146 @@
   "model": "eleven_v3",
   "hesap": "proxy",
   "kredi": 17
+ },
+ "l_03": {
+  "key": "782da89958a3",
+  "file": "voice/724-05-ece3/l_03.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "lülü?",
+  "duration": 1.071,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "lülü?",
+    "start": 0.155,
+    "end": 1.04
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.155,
+    "v": "L"
+   },
+   {
+    "t": 0.16,
+    "v": "U"
+   },
+   {
+    "t": 0.293,
+    "v": "L"
+   },
+   {
+    "t": 0.427,
+    "v": "U"
+   },
+   {
+    "t": 0.56,
+    "v": "X"
+   },
+   {
+    "t": 1.04,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v3",
+  "hesap": "proxy",
+  "kredi": 19
+ },
+ "l_04": {
+  "key": "a5bce3aca78f",
+  "file": "voice/724-05-ece3/l_04.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "lülü?",
+  "duration": 0.496,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "lülü?",
+    "start": 0.198,
+    "end": 0.611
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.198,
+    "v": "L"
+   },
+   {
+    "t": 0.211,
+    "v": "U"
+   },
+   {
+    "t": 0.344,
+    "v": "L"
+   },
+   {
+    "t": 0.478,
+    "v": "U"
+   },
+   {
+    "t": 0.611,
+    "v": "X"
+   },
+   {
+    "t": 0.611,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v3",
+  "hesap": "proxy",
+  "kredi": 24
+ },
+ "l_05": {
+  "key": "f4275cf03465",
+  "file": "voice/724-05-ece3/l_05.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "lülü?",
+  "duration": 1.019,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "lülü?",
+    "start": 0.971,
+    "end": 0.971
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.971,
+    "v": "L"
+   },
+   {
+    "t": 0.971,
+    "v": "U"
+   },
+   {
+    "t": 0.971,
+    "v": "L"
+   },
+   {
+    "t": 0.971,
+    "v": "U"
+   },
+   {
+    "t": 0.971,
+    "v": "X"
+   },
+   {
+    "t": 0.971,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v3",
+  "hesap": "proxy",
+  "kredi": 16
  }
 }

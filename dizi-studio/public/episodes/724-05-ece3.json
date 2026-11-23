@@ -164,6 +164,36 @@
      "okunus": "Lülü?",
      "stab": 0.0,
      "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[scared, trembling, coaxing, small voice]",
+     "okunus": "Lülü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[voice trembling, high-pitched, coaxing, small voice]",
+     "okunus": "Lülü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[terrified, coaxing, small voice]",
+     "okunus": "Lülüü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
     }
    ]
   }
