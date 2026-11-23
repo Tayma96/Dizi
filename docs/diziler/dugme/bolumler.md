@@ -18,3 +18,9 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - "4-1-2-3-5": doğrusal olmayan kurgu. Açılış 4 (beyaz oda, uyanış) → 3. sn'den sonra dizi adı → 1, 2, 3 (kaçırılmalar, geriye dönüş) → 5 (odaya dönüş, düğme, final).
 - Telif: "manifest şarkısı" ve TikTok'taki şarkılar gerçek şarkı olamaz (telif). Benzer tarzda ÖZGÜN şarkı/ritim üretilir. "Aslan hediyesi" genel bir canlı yayın hediyesi olarak çizilir, platform logosu kullanılmaz.
 - Özgünlük: beyaz odada duvardan düğmeler ve rastgele nesneler çıkması fikri, Hitoshi Matsumoto'nun "Symbol" (2009) filmini andırıyor. Kopya olmaması için kendi kurallarımız, dört yabancı, kaçırılma gizemi ve Türk komedi tonu öne çıkarılmalı.
+
+## Kullanıcı kararları (23 Kasım 2026)
+- Dizinin adı: **Kırmızı Düğme** (3. saniyeden sonra ekrana gelir).
+- 4. kişi: kaçırılanlardan biri DEĞİL; tasarlanıp gösterilecek ama aslında "içeriden biri" (kaçıranların adamı).
+- Replikler: sonra karar verilecek; önce mekânlar ve karakterler tasarlanır.
+- İzleyici kitlesi: 13-25 yaş arası kızlar (Manifest hayranı). Şarkı telife takılmadan çözülecek.
