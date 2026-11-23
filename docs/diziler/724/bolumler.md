@@ -210,3 +210,9 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - Saat göstergesi: 08:00 (duvar saati, B5'teki saat hatası tekrar etmesin).
 - Replikler yalnız kullanıcınınkiler: Sabri "bitti artık", Ece "aaaaa", Sabri "Şhh bitti kızım bitti tamam"; Ece hıçkıra hıçkıra ağlar. Yeni replik eklenmez (öneri gelirse kullanıcıya sorulur).
 - Ses: 7/24 kredi genel onayı geçerli; v4, aynı ses kimlikleri (Sabri = Nihat, Ece = Nazlı Yeni). Ece'nin ağlaması gerçek, sakin değil. Fon müziği hüzünlü ve huzurlu, özgün.
+
+### Bölüm 6, Parça 1: kullanıcı kararları (senarist raporundan sonra, 23 Kasım 2026)
+- **Son kare yok:** parça sarılma ve hıçkırıkla biter; ek görsel ipucu (ambalaj, depo eşiği vb.) eklenmez.
+- **Sabri (kullanıcı, aynen):** "O 5. Bölümdeki gerçek Sabri sandığımız da gerçek Sabri değilmiş. Bu seferki gerçekten gerçek Sabri." → Markete dışarıdan gelen Sabri gerçek; B5'teki omuzdaki "gerçek Sabri" de anomaliydi. (Dizi hafızasına işlenecek.)
+- **Saat (kullanıcı):** açılışta kırmızı dijital saatte **07:24** (dizinin adına gönderme); sonra saat **07:30**'a atlar, sanki sabah vardiyası 07:30'da başlıyor. Metindeki 08:00 yerine 07:30 kullanılır; Sabri vardiyaya gelir.
+- **Ece'nin yumruğu:** sarılmada Ece önce kaskatı, Sabri'nin göğsüne bir kez yumrukla vurur, sonra çözülür (replik yok). Simit düşürme YOK.

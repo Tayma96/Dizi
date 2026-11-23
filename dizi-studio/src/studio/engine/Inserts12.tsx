@@ -112,7 +112,7 @@ const MB_LEGS: [number, number, number, number, number][] = [
   [14, 2, 4, 26, 1],
   [12, 16, 44, -18, 1.25],
 ];
-const MiniDefs: React.FC<{ uid: string }> = ({ uid }) => (
+export const MiniDefs: React.FC<{ uid: string }> = ({ uid }) => (
   <defs>
     <radialGradient id={`${uid}mbw`} cx="0.4" cy="0.35" r="0.8"><stop offset="0" stopColor={K.k3} /><stop offset="0.6" stopColor={K.k2} /><stop offset="1" stopColor={K.k1} /></radialGradient>
     {[0, 1, 2, 3].map((ph) => {
@@ -160,7 +160,7 @@ const MiniDefs: React.FC<{ uid: string }> = ({ uid }) => (
   </defs>
 );
 /** tek böcek örneği: (x,y) ekran, a = gidiş yönü (radyan), s = boy (px), sq = dikey basıklık (zemin perspektifi) */
-const Mb: React.FC<{ uid: string; x: number; y: number; a: number; s: number; ph: number; sq?: number; o?: number }> = ({ uid, x, y, a, s, ph, sq = 1, o }) => (
+export const Mb: React.FC<{ uid: string; x: number; y: number; a: number; s: number; ph: number; sq?: number; o?: number }> = ({ uid, x, y, a, s, ph, sq = 1, o }) => (
   <use href={`#${uid}mb${((Math.floor(ph) % 4) + 4) % 4}`} transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${(s / 100).toFixed(3)} ${((s / 100) * sq).toFixed(3)}) rotate(${((a * 180) / Math.PI + 90).toFixed(1)})`} opacity={o} />
 );
 
@@ -284,7 +284,7 @@ const P2Kasa: React.FC<{ text?: string[] }> = ({ text }) => {
  *  KEPENK (kapı görünümü, cam vitrinin dışında): iniş (yerçekimi + sekme), vuruş göçükleri
  *  (çıtalar göçüğün etrafında bükülür), titreşim, toz. Dünya koordinatı (kapı görünümü).
  * ===================================================================================== */
-type Gocuk = { t: number; x: number; y: number; r: number; d: number };
+export type Gocuk = { t: number; x: number; y: number; r: number; d: number };
 const KEP_TOP = 420, KEP_BOT = 1190;
 const kepenkK = (t: number, t0: number | undefined): number => {
   if (t0 === undefined || t0 === null) return 0;
@@ -296,7 +296,7 @@ const kepenkK = (t: number, t0: number | undefined): number => {
   return 1 - 0.035 * Math.exp(-b * 18) * Math.abs(Math.sin(b * 30));
 };
 const gocukDerin = (g: Gocuk, t: number) => (t < g.t ? 0 : g.d * (1 - Math.exp(-(t - g.t) * 60)));
-const Kepenk2: React.FC<{ k: number; t: number; f: number; gocuk: Gocuk[]; uid: string; x0?: number; x1?: number; top?: number; bot?: number; aralik?: number }> = ({ k, t, f, gocuk, uid, x0 = -40, x1 = 1120, top = KEP_TOP, bot = KEP_BOT, aralik = 26 }) => {
+export const Kepenk2: React.FC<{ k: number; t: number; f: number; gocuk: Gocuk[]; uid: string; x0?: number; x1?: number; top?: number; bot?: number; aralik?: number }> = ({ k, t, f, gocuk, uid, x0 = -40, x1 = 1120, top = KEP_TOP, bot = KEP_BOT, aralik = 26 }) => {
   if (k <= 0.001) return null;
   const h = (bot - top) * Math.min(1, k);
   // titreşim: son vuruştan sonra sönümlü

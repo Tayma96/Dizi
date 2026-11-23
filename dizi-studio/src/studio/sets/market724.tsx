@@ -17,7 +17,7 @@ import { random } from "remotion";
  * ===================================================================================== */
 
 export type MarketView = "genel" | "kapi" | "kasa";
-export type MarketProps = { view: MarketView; frame: number; doorOpen: number; saat: string; iz: number; turb: number; /** B4: depo kapısı 0..1 (verilmezse eski aralık çizimi) */ depoAcik?: number; /** B4: bankonun solunda kasa ağzı açıklığı */ agiz?: boolean; /** B4: banko sarsıntısı 0..1 */ sars?: number };
+export type MarketProps = { view: MarketView; frame: number; doorOpen: number; saat: string; iz: number; turb: number; /** B4: depo kapısı 0..1 (verilmezse eski aralık çizimi) */ depoAcik?: number; /** B4: bankonun solunda kasa ağzı açıklığı */ agiz?: boolean; /** B4: banko sarsıntısı 0..1 */ sars?: number; /** B6 (opt-in, kapı): gece sokağı yerine çizilecek dış görünüm */ dis?: React.ReactNode; /** B6 (opt-in, kapı): dışla cam/kapı arasında kalan katman (kepenk) */ kepenkKatman?: React.ReactNode };
 
 const W = 1080;
 const H = 1920;
@@ -324,7 +324,7 @@ const GenelFG: React.FC<MarketProps> = () => (
 /* =================================== KAPI =================================== */
 // Kasanın yanından kapıya bakış. Duvar düzlemi: tavan y=380, zemin y=1250 (3 m → 290 px/m). Kaçış noktası (540, 786).
 const KVY = 786, KFL = 1250, KS = 290;
-const KapiBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => {
+const KapiBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb, dis, kepenkKatman }) => {
   const fl = flicker(frame, turb);
   const op = Math.max(0, Math.min(1, doorOpen));
   const dx1 = 300, dx2 = 800, dTop = KFL - 2.2 * KS; // kapı 500 px (~1.7 m), 2.2 m
@@ -354,14 +354,15 @@ const KapiBG: React.FC<MarketProps> = ({ frame, doorOpen, saat, iz, turb }) => {
       {/* ön duvar (iç) */}
       <rect y={380} width={W} height={KFL - 380} fill="#d2d6d8" />
       {/* cam vitrin: tüm genişlik; dışarısı */}
-      <Sokak id="k724s" x={0} y={420} w={W} h={KFL - 420 - 60} ufuk={ufuk} frame={frame} yogun={1.4} />
+      {dis ?? <Sokak id="k724s" x={0} y={420} w={W} h={KFL - 420 - 60} ufuk={ufuk} frame={frame} yogun={1.4} />}
+      {kepenkKatman ?? null}
       {/* camdaki yansımalar */}
       <g clipPath="url(#k724cam)">
         {[90, 420, 860].map((x, i) => <path key={i} d={`M ${x} 420 l 150 700`} stroke="#ffffff" strokeWidth={22} opacity={0.045} />)}
         <rect x={180} y={430} width={720} height={26} fill="#ffffff" opacity={0.06 * fl} />
       </g>
       {/* açık kapı aralığından içeri esen yağmur */}
-      {op > 0.05 ? new Array(16).fill(0).map((_, i) => {
+      {op > 0.05 && !dis ? new Array(16).fill(0).map((_, i) => {
         const yy = dTop + ((frame * 38 + i * 71) % (KFL - dTop + 120));
         const xx = mid - sl + ((i * 53) % 100) / 100 * sl * 2;
         return <path key={i} d={`M ${xx} ${yy} l -4 22`} stroke="#b8d0e4" strokeWidth={2.5} opacity={0.5 * op} />;

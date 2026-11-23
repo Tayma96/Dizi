@@ -350,4 +350,15 @@ export type Pose = {
   dudakTitre?: number;
   /** 7/24 B5 p2 (opt-in): ağzı tek elle kapatır ("sag" = kadraj sağındaki el); öteki kol serbest */
   agizKapaEl?: "sag" | "sol";
+  /** 7/24 B6 (opt-in): popo üstü yere çökme 0..1 (1: yerde oturur, dizler yukarıda, ayaklar önde); ara değerler çöküş */
+  yerOtur?: number;
+  /** 7/24 B6 (opt-in): hıçkırarak ağlama şiddeti 0..1 (kendi ritmi: 2-3 hızlı içe çekiş + uzun sarsıntılı veriş;
+   *  omuzlar sıçrar, baş sarsılır, gözler sıkılır, ağız açılıp kapanır) */
+  hickir?: number;
+  /** 7/24 B6 (opt-in): hıçkırık ritminin faz kayması (sn) */
+  hickirFaz?: number;
+  /** 7/24 B6 (opt-in): ağlama ağzı açıklığı 0..1 (köşeler aşağı, üst dişler, titreyen alt dudak); konuşurken vizem öncelikli */
+  aglaAgiz?: number;
+  /** 7/24 B6 (opt-in): kolu çizme (sarılmada kol ayrıca çizilir) */
+  kolGizle?: "l" | "r" | "ikisi";
 };
