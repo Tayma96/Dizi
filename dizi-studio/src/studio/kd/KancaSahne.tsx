@@ -12,7 +12,7 @@ import { egri, serit, Hacim, type P, type Isik } from "./cizim";
  *
  * Çekim planı (30 fps) — kullanıcı geri bildirimi: odanın tamamı GÖSTERİLMEZ (final sürprizi), bağırış DUYULUR,
  * mızrak bölümü acele etmez (süre zorunluluğu yok):
- *  Ç1   0-17  POV yakın-orta: önümüzde birkaç düğme (oda açılmaz, kenarlar kararır); kuryenin iki kolu, sağ el uzanır.
+ *  Ç1   0-17  POV yakın-orta: düz beyaz duvarda TEK düğme (çok düğme = final sürprizi; derz yok); kuryenin iki kolu, sağ el uzanır.
  *             8: "Duuuuur!" (soldan, ses + altyazı)
  *  Ç2  18-30  YAKIN (tek yakın, doruk): parmak basar; başlık çöker, LED, sayaç döner (klik A @21)
  *  Ç3  31-118 POV: bir an sessizlik → 36 kilit "klak" → 38-58 kanatlar yavaşça kayar, kırmızı ikaz ışığı;
@@ -118,7 +118,8 @@ export const KdKancaSahne: React.FC = () => {
   const nabiz = frame >= Z.kanat + 2 ? Math.max(0, Math.sin((frame - Z.kanat - 2) / 4.5)) : 0;
   const kirmizi = frame >= Z.kanat + 2 ? 0.12 + 0.24 * nabiz : 0.03;
   const durum: OdaDurum = {
-    derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 417, kirmizi, t,
+    // SÜRPRİZ: odada çok düğme olduğu bölüm sonunda açılır → kancada yalnız TEK düğme, derzsiz düz duvar
+    derz: 0, dalga: -1, anaBas: 1, anaLed: 1, sayac: 417, kirmizi, t, kaide: false,
     ozelBas: { petek: hedefP, bas, led, sayac: hedefP.no + (frame >= Z.klik ? 1 : 0) },
     bolmeler: frame >= Z.kilit ? [{ petek: bolmeP, acik }] : [],
   };

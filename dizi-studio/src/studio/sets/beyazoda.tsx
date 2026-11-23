@@ -357,7 +357,8 @@ export const BeyazOda: React.FC<{ k: Kam; durum: OdaDurum; karakterler?: OdaKara
         const led = u > 0 && u < 1.6 ? 1 - Math.max(0, u - 0.6) : blink * Math.min(1, durum.dalga / 2);
         d = { cikis: oz ? 1 : cik, bas: oz?.bas ?? 0, led: oz ? Math.max(oz.led, led * 0.5) : led, sayac: oz?.sayac };
       } else {
-        d = { cikis: 1, bas: oz!.bas, led: oz!.led, sayac: oz!.sayac };
+        if (!oz) continue; // düğme dalgası yokken yalnız özel düğme (kanca: tek düğme, sürpriz korunur)
+        d = { cikis: 1, bas: oz.bas, led: oz.led, sayac: oz.sayac };
       }
       list.push({ z: pc.z, el: <Dugme key={`d${p.id}`} k={k} c={p.c} t1={s.t1} t2={s.t2} n={s.n} d={d} no={p.no} /> });
     }
