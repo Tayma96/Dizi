@@ -200,3 +200,13 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - **Kullanıcı kararı (23 Kasım 2026), kredi:** "Maaliyetleri onaylıyorum. Efektler, fon müzikleri, dialoglar konusunda maaliyet sorup durma mevcut krediden istediğin kadar harcayabilirsin." → 7/24 için ElevenLabs harcamasında her seferinde onay sorulmaz; yine de kredi asla aşılmaz (aracın yedek payı korunur), harcama kullanıcıya raporlanır.
 - **Kullanıcı geri bildirimi (23 Kasım 2026):** Ece'nin B5 replikleri çok sakin; hepsi korkmuş, panik ve biraz sert tonla yeniden üretilecek. (Kalıcı ders: Ece korku sahnelerinde asla sakin/düz okunmaz.)
 - **Bitiş kartı (kullanıcı kararı, 23 Kasım 2026; metin AYNEN, yalnız yazım düzeltildi):** "Kural 3'ü hatırlayan var mı?" / "Sen olsan napardın?" / "Yorumlara yaz." Görünüm: şimdiki koyu, "bitti" hissi veren ton OLMAYACAK; parlak, davetkâr, yoruma çeken (son karenin üstüne bindirme, yorum balonu/ok, canlı animasyon). Kısa tutulur. Bundan sonraki bölümlerde de kart yorum çağrısı olarak tasarlanır.
+
+## Bölüm 6, Parça 1 (kullanıcının metni, 23 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+6. Bölümde şöyle yapalım. Ece artık öleceğini düşünüp çıkmaza girdiğini hissettiğinde kepenk açılır. Gün ağarıyordur güneş ufuktan ucunu göstermiş ve ışık yaymaya başlamıştır, marketin içi güneş girdiği an normale dönüyor o yüzden güneş ışığı ufuktan az bir şey vurduğunu görelim yavaş yavaş Ece'nin üstündeki böcekler toza dönsün. Güneş yavaş yavaş yükseldikçe ışığın çarptığı tüm canavar anomali vs unsurlarını yavaş yavaş toza dönüştürsün.  Ece götünün üstüne oturup ağlasın. O an hüzünlü ve huzurlu bir fon müziği çalsın. Saat 08:00 güneş marketin içini aydınlatıyor. Normale dönmüş içerisi, Sabri markete gelir Ece'yi ağlarken görür "bitti artık" der Ece korkar "aaaaa" diye bağırır. "Şhh bitti kızım bitti tamam" der sarılır Sabri. Ece hıçkıra hıçkıra ağlamaktadır. 1. Parçamız bu.
+
+### Bölüm 6, Parça 1: notlar (Claude)
+- Başlangıç noktası: B5 Parça 2'nin sonu (Ece böcek selinin içinde yalnız, fısıltılar, sert kararma). B6 oradan, Ece'nin çaresiz anından açılır.
+- Kurallar: güneş ışığı değdiği anomaliyi yavaş yavaş toza çevirir (dizinin kuralıyla tutarlılık dizi hafızasında denetlenir). Işığın çarptığı yer temizlenir, gölgede kalan henüz değil.
+- Saat göstergesi: 08:00 (duvar saati, B5'teki saat hatası tekrar etmesin).
+- Replikler yalnız kullanıcınınkiler: Sabri "bitti artık", Ece "aaaaa", Sabri "Şhh bitti kızım bitti tamam"; Ece hıçkıra hıçkıra ağlar. Yeni replik eklenmez (öneri gelirse kullanıcıya sorulur).
+- Ses: 7/24 kredi genel onayı geçerli; v4, aynı ses kimlikleri (Sabri = Nihat, Ece = Nazlı Yeni). Ece'nin ağlaması gerçek, sakin değil. Fon müziği hüzünlü ve huzurlu, özgün.
