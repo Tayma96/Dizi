@@ -9,6 +9,7 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - **Tek kesin kural: her şey ücretsiz** (kullanıcının kendi ElevenLabs kredisi hariç; o da bütçe kurallarıyla).
 - Başka dizilerin karakter/hikâye/görsellerini kopyalama; içerik özgün olmalı.
 - Her şey ücretsiz ve ticari kullanıma uygun olmalı (MIT/OFL/CC0 ya da kendi sentezimiz). Tek istisna: kullanıcının kendi ElevenLabs kredisi.
+- **Kırmızı Düğme (dosyalar `kd-*`) için ElevenLabs sınırı (kullanıcı, 23 Kasım 2026): bölüm başına en fazla 4.000 kredi** (replik + efekt + müzik + yeniden çekimler dahil). Takip: `docs/diziler/dugme/bolumler.md` bütçe tablosu.
 - **ElevenLabs kredisi asla aşılmaz.** Önce kuru çalıştırma + maliyet, kullanıcı onayı, sonra `--onayla`. Önce hesap1 (~6 bin), sonra hesap2 (~60 bin). Ayrıntı: `.claude/skills/elevenlabs-seslendirme/SKILL.md`
 
 **Kullanıcı kararı (23 Kasım 2026): alt ajan (Agent aracı) ÇALIŞTIRILMAZ.** Her ajan sıfırdan okuyup limiti hızla tüketiyor. Genel yönetmen, görüntü yönetmeni, ses yönetmeni ve senarist yardımcısı görevlerinin hepsini ana oturum kendisi yapar; aşağıdaki ajan tanımları yalnız görev tarifi olarak okunur.
