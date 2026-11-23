@@ -1,7 +1,6 @@
 import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
-import { castById } from "../cast";
-import { BeyazOda, Mizrak, petekBul, proj, type Kam, type OdaDurum, type OdaKarakter } from "../sets/beyazoda";
+import { BeyazOda, Mizrak, petekBul, proj, type Kam, type OdaDurum } from "../sets/beyazoda";
 import { KD_BASLIK } from "../engine/KirmiziDugme";
 import { SANS } from "../../dizi/fonts";
 import { egri, serit, Hacim, type P, type Isik } from "./cizim";
@@ -11,17 +10,19 @@ import { egri, serit, Hacim, type P, type Isik } from "./cizim";
  * Kullanıcının metni: göz kamerası; önümüzde kırmızı düğmelerden biri; basarken yandan biri "duuuur!" diye bağırır;
  * basılmış olur; karşısındaki bölme açılır ve göğse doğru bir mızrak fırlar; sonra dizi başlar. Düğmeye basan: kurye.
  *
- * Çekim planı (30 fps):
- *  Ç1  0-21  POV orta-genel: oda, duvarda düğmeler, arkada diğerleri (kim nerede kurulur); kuryenin iki kolu,
- *            sağ eli düğmeye uzanır, kamera elde ve nefes alır. 13: "Duuuur!" (soldan; altyazı)
- *  Ç2 22-31  YAKIN (tek yakın, doruk): eldivenli parmak mantar düğmeye basar; başlık çöker, LED, sayaç döner (klik A @24)
- *  Ç3 32-61  POV: düğmenin üstündeki (karşıdaki) bölmenin kilidi açılır, kırmızı ikaz ışığı; 42'de mızrak
- *            (ilk 6 kare ağır, sonra hızlanır), kamera ucu izler, kol geri çekilir.
- *  62-65     sert kesme, siyah, sessiz
- *  66-110    başlık: siyah üstüne "KIRMIZI DÜĞME" (74'te aynı klik ile belirir); fragman efekti yok.
+ * Çekim planı (30 fps) — kullanıcı geri bildirimi: odanın tamamı GÖSTERİLMEZ (final sürprizi), bağırış DUYULUR,
+ * mızrak bölümü acele etmez (süre zorunluluğu yok):
+ *  Ç1   0-17  POV yakın-orta: önümüzde birkaç düğme (oda açılmaz, kenarlar kararır); kuryenin iki kolu, sağ el uzanır.
+ *             8: "Duuuuur!" (soldan, ses + altyazı)
+ *  Ç2  18-30  YAKIN (tek yakın, doruk): parmak basar; başlık çöker, LED, sayaç döner (klik A @21)
+ *  Ç3  31-118 POV: bir an sessizlik → 36 kilit "klak" → 38-58 kanatlar yavaşça kayar, kırmızı ikaz ışığı;
+ *             kamera bölmeye kalkar → 60-80 karanlıkta mızrağın ucu belirir, yavaşça dışarı süzülür (parlama)
+ *             → 80 fırlar: 80-92 ağır çekim, 92-118 hızlanır; kamera ucu izler, kol geri çekilir
+ *  118-124    sert kesme, siyah, sessiz
+ *  124-170    başlık: siyah üstüne "KIRMIZI DÜĞME" (132'de aynı klik ile belirir)
  * ===================================================================================== */
 
-export const KS = { dur: 13, yakin: 22, klik: 24, pov2: 32, kilit: 33, kanat: 34, mizrak: 42, kes: 62, baslik: 66, yazi: 74, son: 110 };
+export const KS = { dur: 8, yakin: 18, klik: 21, pov2: 31, kilit: 36, kanat: 38, kanatSon: 58, uc: 60, mizrak: 80, agirSon: 92, kes: 118, baslik: 124, yazi: 132, son: 170 };
 
 const cl = (v: number) => Math.max(0, Math.min(1, v));
 const ease = (v: number) => { const x = cl(v); return x * x * (3 - 2 * x); };
@@ -82,7 +83,7 @@ const KuryeKol: React.FC<{ id: string; bilek: P; aci: number; s?: number; isaret
 };
 
 /* ---------------- sahne ---------------- */
-const KAM0 = { x: 2.85, y: 1.62, z: 2.05 };
+const KAM0 = { x: 3.0, y: 1.62, z: 3.3 };
 
 export const KdKancaSahne: React.FC = () => {
   const frame = useCurrentFrame();
@@ -104,22 +105,18 @@ export const KdKancaSahne: React.FC = () => {
     );
   }
 
-  const hedefP = petekBul("sag", 4, 1.32, 3.55);
+  const hedefP = petekBul("sag", 4, 1.32, 3.3);
   const bolmeP = petekBul("sag", 4, hedefP.c[1] + 0.73, hedefP.c[2]);
-  const karakterler: OdaKarakter[] = [
-    { look: castById("kd_gobek_oda"), x: 1.1, z: 5.5, pose: { emotion: frame >= Z.dur + 2 ? "korkmus" : "saskin", seed: 4 } },
-    { look: castById("kd_influencer_oda"), x: 2.1, z: 6.3, pose: { emotion: frame >= Z.dur + 2 ? "korkmus" : "supheli", seed: 7 } },
-    { look: castById("kd_dorduncu_teyze"), x: 0.75, z: 7.3, pose: { emotion: "notr", seed: 9 } },
-  ];
-  const bak = (c: number[], kx = KAM0.x, ky = KAM0.y, kz = KAM0.z) => ({
+  const bak = (c: number[], kx: number, ky: number, kz: number) => ({
     yaw: (Math.atan2(c[0] - kx, c[2] - kz) * 180) / Math.PI,
     pitch: (Math.atan2(c[1] - ky, Math.hypot(c[0] - kx, c[2] - kz)) * 180) / Math.PI,
   });
 
   const bas = cl((frame - (Z.klik - 1)) / 3);
   const led = frame >= Z.klik ? (Math.floor((frame - Z.klik) / 2) % 2 ? 0.45 : 1) : 0;
-  const acik = frame >= Z.kanat ? ease((frame - Z.kanat) / 8) : 0;
-  const kirmizi = frame >= Z.kanat ? 0.14 + 0.22 * Math.max(0, Math.sin((frame - Z.kanat) / 3)) : 0.04;
+  const acik = frame >= Z.kanat ? ease((frame - Z.kanat) / (Z.kanatSon - Z.kanat)) : 0;
+  const nabiz = frame >= Z.kanat + 2 ? Math.max(0, Math.sin((frame - Z.kanat - 2) / 4.5)) : 0;
+  const kirmizi = frame >= Z.kanat + 2 ? 0.12 + 0.24 * nabiz : 0.03;
   const durum: OdaDurum = {
     derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 417, kirmizi, t,
     ozelBas: { petek: hedefP, bas, led, sayac: hedefP.no + (frame >= Z.klik ? 1 : 0) },
@@ -139,64 +136,82 @@ export const KdKancaSahne: React.FC = () => {
           <KuryeKol id="yk" bilek={[hp.x + 210 + (1 - it) * 120, hp.y + 330 + (1 - it) * 200]} aci={-0.42} s={1.9} bas={bas} />
           <rect width={1080} height={1920} fill="#ff1a2a" opacity={frame >= Z.klik && frame < Z.klik + 4 ? 0.22 * (1 - (frame - Z.klik) / 4) : 0} />
         </svg>
+        <Altyazi frame={frame} />
       </AbsoluteFill>
     );
   }
 
-  /* Ç1 ve Ç3: POV */
+  /* Ç1 ve Ç3: POV, duvara 1 m: yalnız önümüzdeki birkaç düğme; oda açılmaz */
   const pov1 = frame < Z.yakin;
   const yaklas = pov1 ? ease(frame / Z.yakin) : 1;
-  const KX = KAM0.x + 0.28 * yaklas, KY = KAM0.y - 0.04 * yaklas, KZ = KAM0.z + 0.55 * yaklas;
-  const b0 = bak([4, hedefP.c[1] + 0.12, hedefP.c[2] + 0.35], KX, KY, KZ); // başta oda derinliği de görünür (düğme sağda)
-  const b1 = bak([4, hedefP.c[1] * 0.6 + bolmeP.c[1] * 0.4, hedefP.c[2]], KX, KY, KZ);
-  const b2 = bak([4, bolmeP.c[1] - 0.1, bolmeP.c[2]], KX, KY, KZ);
-  const yon0 = pov1 ? { yaw: b0.yaw * (1 - yaklas * 0.0) - 28 * (1 - yaklas), pitch: b0.pitch } : b1;
-  const kalk = ease((frame - Z.kilit) / 9);
-  // mızrak
-  const mizrakK = cl((frame - Z.mizrak) / (Z.kes - Z.mizrak));
-  const agir = mizrakK < 0.26 ? mizrakK * 0.35 : 0.091 + (mizrakK - 0.26) * 1.23; // ilk 6 kare ağır çekim, sonra hızlanır
-  const e = 0.9 * cl(agir) ** 1.1;
+  const KX = KAM0.x + 0.12 * yaklas, KY = KAM0.y, KZ = KAM0.z;
+  const b1 = bak([4, hedefP.c[1] * 0.64 + bolmeP.c[1] * 0.36, hedefP.c[2]], KX, KY, KZ);
+  const b2 = bak([4, bolmeP.c[1] - 0.05, bolmeP.c[2]], KX, KY, KZ);
+  const kalk = ease((frame - (Z.kilit + 2)) / 22); // kamera yavaşça bölmeye kalkar
+  // mızrak: 60-80 karanlıktan yavaşça süzülür; 80 fırlar (80-92 ağır, sonra hızlı)
   const gogus: [number, number, number] = [KX + 0.12, KY - 0.27, KZ];
-  const bas0: [number, number, number] = [bolmeP.c[0] + 0.35, bolmeP.c[1], bolmeP.c[2]];
-  const uc: [number, number, number] = [bas0[0] + (gogus[0] - bas0[0]) * e, bas0[1] + (gogus[1] - bas0[1]) * e, bas0[2] + (gogus[2] - bas0[2]) * e];
-  const yonM: [number, number, number] = [gogus[0] - bas0[0], gogus[1] - bas0[1], gogus[2] - bas0[2]];
-  const izle = ease((frame - Z.mizrak) / 10) * 0.75;
+  const ic: [number, number, number] = [bolmeP.c[0] + 0.3, bolmeP.c[1], bolmeP.c[2]];
+  const yonM: [number, number, number] = [gogus[0] - ic[0], gogus[1] - ic[1], gogus[2] - ic[2]];
+  const cik = frame >= Z.uc ? ease((frame - Z.uc) / (Z.mizrak - Z.uc)) * 0.14 : 0; // süzülme (yolun %14'ü)
+  const firla = frame >= Z.mizrak ? (frame < Z.agirSon ? ((frame - Z.mizrak) / (Z.agirSon - Z.mizrak)) * 0.1 : 0.1 + (((frame - Z.agirSon) / (Z.kes - Z.agirSon)) ** 1.25) * 0.66) : 0;
+  const e = cik + firla;
+  const uc: [number, number, number] = [ic[0] + yonM[0] * e, ic[1] + yonM[1] * e, ic[2] + yonM[2] * e];
+  const mizrakK = cl((frame - Z.mizrak) / (Z.kes - Z.mizrak));
+  const izle = ease((frame - Z.agirSon) / 12) * 0.75;
   const ucP = (Math.atan2(uc[1] - KY, Math.max(0.05, Math.hypot(uc[0] - KX, uc[2] - KZ))) * 180) / Math.PI;
-  const yaw = pov1 ? yon0.yaw : b1.yaw + (b2.yaw - b1.yaw) * kalk;
-  const pitch0 = pov1 ? yon0.pitch : b1.pitch + (b2.pitch - b1.pitch) * kalk;
+  const yaw = b1.yaw + (b2.yaw - b1.yaw) * kalk;
+  const pitch0 = b1.pitch + (b2.pitch - b1.pitch) * kalk;
   const pitch = pitch0 + (ucP - pitch0) * izle;
-  const darbe = frame >= Z.mizrak ? 2 + 9 * mizrakK : 0;
-  const el = elde(frame, pov1 ? 1 : 0.6);
-  const tt = titre(frame, darbe + (frame >= Z.pov2 && frame < Z.pov2 + 3 ? 4 : 0));
-  const k: Kam = { x: KX, y: KY, z: KZ, yaw, pitch, f: 860, cy: 960, sx: el.sx + tt.sx, sy: el.sy + tt.sy };
+  const darbe = frame >= Z.agirSon ? 2 + 10 * mizrakK : frame >= Z.mizrak ? 1.5 : 0;
+  const el = elde(frame, pov1 ? 1 : frame < Z.uc ? 0.5 : 0.8);
+  const tt = titre(frame, darbe + (frame >= Z.kilit && frame < Z.kilit + 3 ? 3 : 0));
+  // kamera biraz geri çekilir (korku): kanatlar açılırken
+  const geri = ease((frame - Z.kanat) / 30) * 0.12;
+  // mızrak karanlıkta belirirken kamera bölmeye yavaşça itilir (dehşet zoom'u); fırlayınca sabit
+  const itil = ease((frame - (Z.uc - 6)) / (Z.mizrak - Z.uc + 6));
+  const k: Kam = { x: KX - geri + itil * 0.28, y: KY + itil * 0.08, z: KZ, yaw, pitch, f: 860 + itil * 220, cy: 960, sx: el.sx + tt.sx, sy: el.sy + tt.sy };
   const hp = proj(k, hedefP.c);
-  // kollar
+  // kollar: basıştan sonra el düğmede kalır; kilit sesiyle hafif geri çekilir; fırlayınca kaçar
   const uzan = pov1 ? ease((frame - 2) / (Z.yakin - 4)) : 1;
-  const cekil = ease((frame - (Z.mizrak + 2)) / 8);
-  const sagBilek: P = [hp.x + 150 + (1 - uzan) * 260 + cekil * 420, hp.y + 260 + (1 - uzan) * 520 + cekil * 900];
+  const irkil = ease((frame - Z.kilit) / 5) * 0.35;
+  const cekil = ease((frame - (Z.mizrak + 1)) / 9);
+  const sagBilek: P = [hp.x + 150 + (1 - uzan) * 260 + irkil * 120 + cekil * 420, hp.y + 260 + (1 - uzan) * 520 + irkil * 260 + cekil * 900];
   const solBilek: P = [150 + Math.sin(frame / 7) * 8 - cekil * 40, 1830 + Math.sin(frame / 9) * 10 + cekil * 200];
   const blur = frame > Z.kes - 5 ? (frame - (Z.kes - 5)) * 2.4 : 0;
-  const altyazi = frame >= Z.dur && frame < Z.dur + 20;
+  const parilti = frame >= Z.uc && frame < Z.mizrak + 4 ? Math.max(0, Math.sin(((frame - Z.uc) / 14) * Math.PI)) : 0;
+  const pu = proj(k, uc);
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <defs>
           <filter id="ks_blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation={`${blur * 0.4} ${blur}`} /></filter>
-          <radialGradient id="ks_vin" cx="0.5" cy="0.48" r="0.75"><stop offset="0.6" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#140006" stopOpacity={0.5} /></radialGradient>
+          <radialGradient id="ks_vin" cx="0.5" cy="0.46" r="0.7"><stop offset="0.42" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#0a0004" stopOpacity={0.82} /></radialGradient>
+          <radialGradient id="ks_par"><stop offset="0" stopColor="#ffffff" stopOpacity={0.95} /><stop offset="1" stopColor="#ffffff" stopOpacity={0} /></radialGradient>
         </defs>
         <g filter={blur > 0.5 ? "url(#ks_blur)" : undefined}>
-          <BeyazOda k={k} durum={durum} karakterler={karakterler} frame={frame} ekstra={frame >= Z.mizrak - 1 ? <Mizrak k={k} uc={uc} yon={yonM} /> : null} />
+          <BeyazOda k={k} durum={durum} frame={frame} ekstra={frame >= Z.uc ? <Mizrak k={k} uc={uc} yon={yonM} /> : null} />
         </g>
-        {/* kollar (ön planda, oda ışığında) */}
+        {/* mızrak ucunda soğuk parlama (karanlıktan beliriş) */}
+        {parilti > 0 && pu.z > 0.2 ? <circle cx={pu.x} cy={pu.y} r={60 + 40 * parilti} fill="url(#ks_par)" opacity={parilti * 0.8} /> : null}
+        {/* hız çizgileri: yalnız hızlanınca */}
+        {frame >= Z.agirSon + 2 ? new Array(30).fill(0).map((_, i) => {
+          const a = random(`kz${i}`) * Math.PI * 2;
+          const r0 = 440 + random(`kr${i}${Math.floor(frame / 2)}`) * 260;
+          return <path key={i} d={`M ${pu.x + Math.cos(a) * r0} ${pu.y + Math.sin(a) * r0} L ${pu.x + Math.cos(a) * (r0 + 600)} ${pu.y + Math.sin(a) * (r0 + 600)}`} stroke="#ffffff" strokeWidth={7} opacity={0.4 * mizrakK} />;
+        }) : null}
         <KuryeKol id="sol" bilek={solBilek} aci={0.32} s={1.15} isaret={false} sol />
-        {frame < Z.mizrak + 10 ? <KuryeKol id="sag" bilek={sagBilek} aci={-0.5 + uzan * 0.06} s={1.15} bas={frame >= Z.klik ? 1 : 0} /> : null}
-        <rect width={1080} height={1920} fill="url(#ks_vin)" opacity={frame >= Z.kanat ? 1 : 0.55} />
+        {frame < Z.mizrak + 12 ? <KuryeKol id="sag" bilek={sagBilek} aci={-0.5 + uzan * 0.06} s={1.15} bas={frame >= Z.klik ? 1 : 0} /> : null}
+        {/* oda açılmasın: güçlü kenar kararması (dar, boğucu bakış) */}
+        <rect width={1080} height={1920} fill="url(#ks_vin)" />
       </svg>
-      {altyazi ? (
-        <div style={{ position: "absolute", left: 0, right: 0, bottom: 300, textAlign: "center", fontFamily: SANS, fontWeight: 900, fontSize: 64, color: "#fff", WebkitTextStroke: "10px #000", paintOrder: "stroke fill" }}>
-          — Duuuur!
-        </div>
-      ) : null}
+      <Altyazi frame={frame} />
     </AbsoluteFill>
   );
 };
+
+const Altyazi: React.FC<{ frame: number }> = ({ frame }) =>
+  frame >= KS.dur && frame < KS.dur + 34 ? (
+    <div style={{ position: "absolute", left: 0, right: 0, bottom: 300, textAlign: "center", fontFamily: SANS, fontWeight: 900, fontSize: 64, color: "#fff", WebkitTextStroke: "10px #000", paintOrder: "stroke fill" }}>
+      — Duuuuur!
+    </div>
+  ) : null;

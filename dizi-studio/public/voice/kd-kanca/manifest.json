@@ -1,0 +1,49 @@
+{
+ "kanca_01": {
+  "key": "628ef6baf532",
+  "file": "voice/kd-kanca/kanca_01.mp3",
+  "voice": "elevenlabs:Hakan",
+  "emotion": "bagiriyor",
+  "text": "Duuuuur!",
+  "duration": 1.332,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Duuuuur!",
+    "start": 0.167,
+    "end": 1.047
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.06,
+    "v": "X"
+   },
+   {
+    "t": 0.167,
+    "v": "L"
+   },
+   {
+    "t": 0.287,
+    "v": "U"
+   },
+   {
+    "t": 0.687,
+    "v": "L"
+   },
+   {
+    "t": 0.807,
+    "v": "X"
+   },
+   {
+    "t": 1.047,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 12
+ }
+}

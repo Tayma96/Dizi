@@ -1,0 +1,9 @@
+{
+  "episode": "kd-kanca",
+  "title": "Kırmızı Düğme · B1 açılış (kanca) sesleri",
+  "scenes": [
+    {"id": "kanca", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_gobek", "emotion": "bagiriyor", "tags": "[panicked]", "text": "Duuuuur!"}
+    ]}
+  ]
+}
