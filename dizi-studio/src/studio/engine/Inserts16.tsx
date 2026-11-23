@@ -89,6 +89,15 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
         <path d="M 14 -60 L 46 -60 L 44 -24 L 30 -16 L 16 -24 Z" fill="#3c5078" stroke={O} strokeWidth={3} />
       </g>
     );
+  if (n === "parmak")  // dik işaret parmağı (böcek anteni)
+    return (
+      <g transform={tr}>
+        <path d="M 0 0 L 0 -62" stroke={O} strokeWidth={22} strokeLinecap="round" />
+        <path d="M 0 0 L 0 -62" stroke="#f0c8a8" strokeWidth={15} strokeLinecap="round" />
+        <path d="M 0 -64 q 10 -30 30 -40" stroke={O} strokeWidth={4} fill="none" />
+        <circle cx={32} cy={-106} r={6} fill={O} />
+      </g>
+    );
   if (n === "deste" || n === "para")
     return (
       <g transform={tr}>
@@ -160,7 +169,7 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
       H = [omuz[0] + sgn * Math.sin(up) * (L1 + L2) * 0.9, omuz[1] + Math.cos(up) * (L1 + L2) * 0.9];
     }
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
-    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : -6 * S;
+    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
     if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
   };
@@ -229,16 +238,16 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           )}
           <path d="M 445 470 V 770 M 330 620 H 560" stroke="#f4f0e8" strokeWidth={8} />
           <rect x={330} y={470} width={230} height={300} fill="#fff" opacity={0.08} />
-          {/* çamaşır makinesi: kapak AÇIK (menteşe solda), tamburda çamaşırlar; atılanlar içeride görünür */}
-          <circle cx={449} cy={1385} r={92} fill="#3a4248" stroke="#7a7e80" strokeWidth={10} />
+          {/* çamaşır makinesi: kapak AÇIK (opt-in p.makineAcik; menteşe solda), tamburda çamaşırlar */}
+          {p.makineAcik ? <g><circle cx={449} cy={1385} r={92} fill="#3a4248" stroke="#7a7e80" strokeWidth={10} />
           <circle cx={449} cy={1385} r={70} fill="#4a545c" />
           <path d="M 395 1420 Q 430 1370 480 1400 Q 505 1440 470 1450 Q 420 1460 395 1420 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={3} />
           {tg >= 1.1 ? <path d="M 430 1372 Q 470 1350 500 1380 Q 480 1405 440 1398 Z" fill="#7ab0d8" stroke="#5a8ab0" strokeWidth={3} /> : null}
           {tg >= 3.55 ? <path d="M 455 1408 l 30 -10 l 6 14 l -28 12 Z" fill="#f2efe6" stroke="#d8503a" strokeWidth={3} /> : null}
           <ellipse cx={338} cy={1385} rx={34} ry={104} fill="#c8d4da" stroke="#7a7e80" strokeWidth={10} />
-          <ellipse cx={338} cy={1385} rx={18} ry={80} fill="#9ab0bc" opacity={0.7} />
+          <ellipse cx={338} cy={1385} rx={18} ry={80} fill="#9ab0bc" opacity={0.7} /></g> : null}
           {/* sepet makinenin üstünde (p.makineSepet: zaman eşiği) */}
-          {p.makineSepet !== undefined && tg >= p.makineSepet ? (
+          {p.makineSepet === true || (typeof p.makineSepet === "number" && tg >= p.makineSepet) ? (
             <g transform="translate(450 1095) rotate(-4) scale(1.2)">
               <path d="M -95 -50 L 95 -50 L 80 55 L -80 55 Z" fill="#c8a070" stroke={O} strokeWidth={5} />
               {[-20, 15].map((yy) => <path key={yy} d={`M ${-92 + (yy + 50) * 0.11} ${yy} H ${92 - (yy + 50) * 0.11}`} stroke="#8a6440" strokeWidth={5} />)}
