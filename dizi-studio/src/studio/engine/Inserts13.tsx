@@ -182,8 +182,8 @@ const ECE_BOCEK: [number, number, number, number][] = [
 ];
 
 /* ------------------------------------------------------------------ iki kemikli kol (sarılma) */
-type V2 = [number, number];
-const ik = (S: V2, T: V2, L1: number, L2: number, bukum: 1 | -1): { E: V2; H: V2 } => {
+export type V2 = [number, number];
+export const ik = (S: V2, T: V2, L1: number, L2: number, bukum: 1 | -1): { E: V2; H: V2 } => {
   const dx = T[0] - S[0], dy = T[1] - S[1];
   let d = Math.hypot(dx, dy);
   const maxD = (L1 + L2) * 0.995;
@@ -196,7 +196,7 @@ const ik = (S: V2, T: V2, L1: number, L2: number, bukum: 1 | -1): { E: V2; H: V2
 };
 const OUT = "#2b1d1a";
 /** iki parçalı kol: dış çizgi + dolgu (eklemler yuvarlak, kopmaz) */
-const Kol: React.FC<{ S: V2; E: V2; H: V2; w: number; renk: string; manset?: string; el?: string; elYok?: boolean }> = ({ S, E, H, w, renk, manset, el, elYok }) => {
+export const Kol: React.FC<{ S: V2; E: V2; H: V2; w: number; renk: string; manset?: string; el?: string; elYok?: boolean }> = ({ S, E, H, w, renk, manset, el, elYok }) => {
   const d = `M ${S[0].toFixed(1)} ${S[1].toFixed(1)} L ${E[0].toFixed(1)} ${E[1].toFixed(1)} L ${H[0].toFixed(1)} ${H[1].toFixed(1)}`;
   const ang = Math.atan2(H[1] - E[1], H[0] - E[0]);
   const mx = H[0] - Math.cos(ang) * w * 0.55, my = H[1] - Math.sin(ang) * w * 0.55;

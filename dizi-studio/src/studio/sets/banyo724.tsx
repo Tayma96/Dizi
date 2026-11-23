@@ -169,10 +169,7 @@ const KapiBG: React.FC<BanyoProps> = ({ doorOpen }) => {
       <path d="M 405 1350 Q 440 1320 480 1345" stroke="#ffffff" strokeWidth={8} opacity={0.5} fill="none" />
       <rect x={350} y={1100} width={64} height={62} rx={8} fill="#3a8ad0" stroke="#1a4a78" strokeWidth={4} />
       <rect x={364} y={1088} width={36} height={16} rx={4} fill="#f0d040" />
-      <path d="M 590 1600 L 760 1600 L 740 1770 L 610 1770 Z" fill="#c8a070" stroke="#6a4a2a" strokeWidth={5} />
-      {[1630, 1670, 1710, 1750].map((y) => <path key={y} d={`M ${596 + (y - 1600) * 0.12} ${y} H ${754 - (y - 1600) * 0.12}`} stroke="#8a6440" strokeWidth={4} />)}
-      <path d="M 600 1600 Q 640 1556 690 1580 Q 730 1550 756 1600 Z" fill="#e8a0b8" stroke={"#a86078"} strokeWidth={4} />
-      <path d="M 640 1600 Q 660 1570 700 1590" stroke="#34466a" strokeWidth={22} strokeLinecap="round" fill="none" />
+      {/* kirli sepeti B7 sahnesinde önde çizilir (Inserts16) */}
       {/* zemin */}
       <path d="M 300 1560 L 1080 1560 L 1080 1920 L 0 1920 Z" fill="#b8c4c0" />
       {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${300 + i * 98} 1560 L ${i * 135} 1920`} stroke="#a4b0ac" strokeWidth={3} />)}
