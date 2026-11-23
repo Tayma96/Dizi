@@ -308,6 +308,35 @@ export type CharacterProps = {
   flip?: boolean;
 };
 
+/** 7/24 B5 p2 (opt-in): iki el ağzın üstünde (sağ el altta, sol el üstte; parmaklar yukarı-içe), bilekte kazak manşeti.
+ *  Baş grubunun içinde çizilir: nefes ve baş salınımıyla birlikte hareket eder. k: 0..1 (eller aşağıdan gelir) */
+const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number }> = ({ look, k, dx, titre }) => {
+  const kk = Math.max(0, Math.min(1, k));
+  const e = kk * kk * (3 - 2 * kk);
+  const yOff = (1 - e) * 120;
+  const sleeve = sleeveColor(look);
+  const hand = (side: 1 | -1, x: number, y: number, rot: number) => (
+    <g transform={`translate(${x} ${y + yOff}) rotate(${rot + titre * 1.6 * side}) scale(0.92)`}>
+      {/* bilek + manşet (önkol kadraj altından gelir) */}
+      <path d="M -22 26 L -26 96 L 26 96 L 22 26 Z" fill={look.skin} stroke={OUT} strokeWidth={3.5} />
+      <path d="M -30 58 Q 0 66 30 58 L 34 120 L -34 120 Z" fill={sleeve} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+      <path d="M -28 66 Q 0 74 28 66" stroke="#000" strokeOpacity={0.18} strokeWidth={4} fill="none" />
+      {/* avuç + dört parmak (uçlar yuvarlak) */}
+      <path d="M -31 32 L -32 -4 Q -33 -40 -24 -44 Q -16 -47 -12 -36 Q -9 -52 0 -52 Q 9 -52 11 -40 Q 16 -50 23 -46 Q 31 -41 32 -22 L 31 32 Q 0 42 -31 32 Z" fill={look.skin} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+      <path d="M -12 -34 L -12 -6 M 11 -38 L 10 -8 M -1 -48 L -1 -10" stroke={OUT} strokeWidth={2.4} strokeOpacity={0.55} fill="none" strokeLinecap="round" />
+      <path d="M -26 10 Q 0 18 26 8" stroke={look.skinShade} strokeWidth={5} fill="none" opacity={0.6} />
+      {/* başparmak (iç yanda) */}
+      <path d={`M ${30 * side} 14 Q ${46 * side} 0 ${40 * side} -18 Q ${34 * side} -26 ${28 * side} -14 Z`} fill={look.skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+    </g>
+  );
+  return (
+    <g opacity={Math.min(1, kk * 3)}>
+      {hand(1, 172 + dx * 1.05, 282, 30)}
+      {hand(-1, 228 + dx * 1.05, 292, -30)}
+    </g>
+  );
+};
+
 export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 1000, style, flip }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -941,6 +970,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <g transform={bodyT}>
           <g transform={headT}>
             <Head />
+            {pose.agizKapa ? <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} /> : null}
             {takil > 0 ? (
               <path d={`M 252 124 C 284 ${100 - 30 * takil} ${268 - 6 * cekis} ${44 - 34 * takil - 10 * cekis} 238 ${34 - 30 * takil - 14 * cekis} C 234 ${54 - 20 * takil} 250 94 240 128 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={4} strokeLinejoin="round" opacity={Math.min(1, takil * 1.5)} />
             ) : null}

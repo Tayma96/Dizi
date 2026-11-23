@@ -232,4 +232,8 @@ export type Pose = {
   kahkaha?: number;
   /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
   omuzDus?: number;
+  /** 7/24 B5 p2 (opt-in): iki eliyle ağzını kapatır 0..1 (eller aşağıdan gelir); kolları çağıran ayarlar */
+  agizKapa?: number;
+  /** 7/24 B5 p2 (opt-in): ağzı kapalı ellerin titremesi 0..1 */
+  elTitre?: number;
 };

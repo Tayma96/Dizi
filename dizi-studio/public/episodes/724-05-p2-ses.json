@@ -1,0 +1,14 @@
+{
+ "not": "B5 2. parça ses planı. Bu dosya bölüm JSON'u DEĞİLDİR. 'uretim' yalnız ElevenLabs üretim kaynağıdır; içindeki satırlar senaryo repliği değildir (fısıltının sözü kullanıcının kararıdır: yalnız 'Ece…'). Plan ve zamanlar tools/ses_724_05_p2.py tarafından 'plan' anahtarına yazılır.",
+ "episode": "724-05-p2-ses",
+ "uretim": [
+  {"id": "f1", "who": "sabri", "model": "eleven_v4", "text": "Ece…", "okunus": "Ece…", "tags": "[whispering, very close to the ear, slow, breathy, menacing]", "stab": 0.5},
+  {"id": "f2", "who": "sabri", "model": "eleven_v4", "text": "Ece…", "okunus": "Eceee…", "tags": "[whispers, intimate, creepy, drawn out, barely audible]", "stab": 0.0},
+  {"id": "f3", "who": "sabri", "model": "eleven_v4", "text": "Ece…", "okunus": "Ece…", "tags": "[soft raspy whisper, sinister, smiling]", "stab": 0.0},
+  {"id": "f4", "who": "sabri", "model": "eleven_v3", "text": "Ece…", "okunus": "Ece…", "tags": "[whispers] [breathy] [slowly]", "stab": 0.0},
+  {"id": "f5", "who": "sabri", "model": "eleven_v3", "text": "Ece…", "okunus": "E… ce…", "tags": "[whispering, menacing, very close]", "stab": 0.5},
+  {"id": "f6", "who": "sabri", "model": "eleven_v3", "text": "Ece…", "okunus": "Eceee…", "tags": "[whispers] [drawn out] [creepy]", "stab": 0.0},
+  {"id": "n1", "who": "ece_sivil", "model": "eleven_v3", "text": "(sözsüz: titrek, bastırılmış nefes)", "okunus": "Hhh… hhh…", "tags": "[terrified, trying not to make a sound] [trembling breath through the nose]", "stab": 0.0},
+  {"id": "n2", "who": "ece_sivil", "model": "eleven_v3", "text": "(sözsüz: bastırılmış hıçkırık, yutkunma)", "okunus": "Hhk… mm…", "tags": "[suppressed sob, mouth closed] [swallows hard]", "stab": 0.0}
+ ]
+}
