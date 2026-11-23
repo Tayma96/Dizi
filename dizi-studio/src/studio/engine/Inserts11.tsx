@@ -383,15 +383,16 @@ const ORTA: Pt[] = [[200, 330], [208, 360], [194, 392], [206, 424], [192, 458], 
 const GPARCA: GParca[] = [
   { id: "su", poly: [[-80, 330], ...ORTA.slice(0, 10), [-80, 650]], hinge: [96, 420], yon: -1, t0: 0.62, sure: 0.55, kop: 1.05, zemin: 1000, donus: -78, yirtik: ORTA.slice(0, 10) },
   { id: "sgu", poly: [[480, 330], [480, 650], ...rev(ORTA.slice(0, 10))], hinge: [304, 420], yon: 1, t0: 0.68, sure: 0.55, kop: 1.12, zemin: 1000, donus: 82, yirtik: ORTA.slice(0, 10) },
-  { id: "sa", poly: [[-80, 650], ...ORTA.slice(9), [200, 1060], [-80, 1060]], hinge: [140, 980], yon: -1, t0: 1.0, sure: 0.5, kop: 1.35, zemin: 1000, donus: -60, yirtik: ORTA.slice(9) },
-  { id: "sga", poly: [[480, 650], [480, 1060], [200, 1060], ...rev(ORTA.slice(9))], hinge: [260, 980], yon: 1, t0: 1.05, sure: 0.5, kop: 1.4, zemin: 1000, donus: 64, yirtik: ORTA.slice(9) },
+  { id: "sa", poly: [[-80, 650], ...ORTA.slice(9), [200, 1060], [-80, 1060]], hinge: [160, 1000], yon: -1, t0: 1.0, sure: 0.5, kop: 1.35, zemin: 1000, donus: -60, yirtik: ORTA.slice(9) },
+  { id: "sga", poly: [[480, 650], [480, 1060], [200, 1060], ...rev(ORTA.slice(9))], hinge: [240, 1000], yon: 1, t0: 1.05, sure: 0.5, kop: 1.4, zemin: 1000, donus: 64, yirtik: ORTA.slice(9) },
 ];
 /** gövde parçası: menteşede katlanır, kopunca yerçekimiyle düşer, yere çarpıp seker ve yatar */
 const gParcaMat = (pc: GParca, t: number, buyu: number): { m: Mat; ters: boolean } => {
   const u = clamp01((t - pc.t0) / pc.sure);
   const e = u * u * (3 - 2 * u);
   const phi = (e * 72 + Math.sin(u * Math.PI * 3) * 7 * (1 - u)) * (Math.PI / 180);
-  const sx = Math.cos(phi);
+  const cok = pc.id === "sa" || pc.id === "sga";
+  const sx = cok ? 1 + 0.35 * e : Math.cos(phi);
   const kt = Math.max(0, t - pc.kop);
   const g = 2400;
   const h = pc.hinge;
@@ -406,7 +407,7 @@ const gParcaMat = (pc: GParca, t: number, buyu: number): { m: Mat; ters: boolean
   // böcek büyüdükçe kenara itilir
   const dx = pc.yon * (40 * e + 120 * buyu + 90 * sstep(0, tf, kt));
   const r = (rot * Math.PI) / 180, c = Math.cos(r), s2 = Math.sin(r);
-  const sy = 1 - 0.1 * e;
+  const sy = cok ? 1 - 0.88 * e : 1 - 0.1 * e;
   const a = c * sx, b = s2 * sx, cc = -s2 * sy, d = c * sy;
   return { m: [a, b, cc, d, h[0] + dx - (a * h[0] + cc * h[1]), h[1] + dy - (b * h[0] + d * h[1])], ters: sx < 0 };
 };
@@ -442,7 +443,8 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   // eğriler
   const kivran = (1 - sstep(0.5, 0.9, t)) * sstep(0, 0.1, t);
   const acilB = yay(Math.max(0, t - 0.75) / 0.9, 0.42, 9);
-  const buyu = yay(Math.max(0, t - 1.05) / 1.7, 0.45, 7.5);
+  // büyüme: yavaş başlar, hızlanır, tavana yaklaşınca yavaşlar; küçük taşma ve geri oturma (kütle hissi)
+  const buyu = sstep(1.0, 2.5, t) + 0.05 * Math.sin(Math.PI * sstep(2.3, 3.1, t));
   const kalkan = sstep(1.1, 2.0, t);
   const kanat = 0.05 + 0.95 * sstep(2.1, 2.5, t) - 0.4 * sstep(2.9, 3.6, t);
   const mand = 0.55 + 0.45 * sstep(2.3, 2.5, t) - 0.3 * sstep(3.3, 3.9, t) + 0.15 * Math.sin(t * 7) * sstep(3.6, 4, t);
@@ -457,7 +459,7 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const bs = s0 + (s1 - s0) * buyu;
   // kamera: büyümeyi izler (aşağıdan yukarı tilt + uzaklaşma)
   // kamera büyümeyi biraz geriden, sönümlü izler (baş kadrajdan çıkmaz)
-  const camK = clamp01(yay(Math.max(0, t - 1.0) / 1.7, 0.75, 6.5));
+  const camK = sstep(0.95, 2.6, t);
   const camZ = 1.72 - 0.44 * camK;
   const camY = 1290 - 250 * camK;
   const sars = (sstep(0.0, 0.05, t) * (1 - sstep(0.1, 0.6, t)) * 10 + (kivilcim >= 0 ? 18 * Math.exp(-kivilcim * 5) : 0) + 8 * sstep(1.2, 1.4, t) * (1 - sstep(1.4, 1.9, t)));
@@ -481,7 +483,7 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             <feComposite in="nA" in2="et" operator="in" result="lif" />
             <feMerge><feMergeNode in="et" /><feMergeNode in="lif" /></feMerge>
           </filter>
-          <linearGradient id={`${uid}golG`} x1="0" y1="0" x2="0" y2="1"><stop offset="0.2" stopColor="#fff" stopOpacity={0} /><stop offset="1" stopColor="#fff" stopOpacity={0.62} /></linearGradient>
+          <linearGradient id={`${uid}golG`} x1="0" y1="0" x2="0" y2="1"><stop offset="0.3" stopColor="#fff" stopOpacity={0} /><stop offset="1" stopColor="#fff" stopOpacity={0.45} /></linearGradient>
           <mask id={`${uid}golM`} maskUnits="userSpaceOnUse" x={-2000} y={-2000} width={6000} height={6000}><rect x={-2000} y={-200} width={6000} height={2000} fill={`url(#${uid}golG)`} /></mask>
           <filter id={`${uid}siyah`}><feColorMatrix type="matrix" values="0 0 0 0 0.02  0 0 0 0 0.01  0 0 0 0 0.02  0 0 0 1 0" /></filter>
           <filter id={`${uid}beyaz`}><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0" /></filter>
@@ -574,7 +576,7 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
           }) : null}
         </g>
         <rect width={1080} height={1920} fill="url(#dgisik)" opacity={fl} />
-        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.75} />
+        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.55} />
         <rect width={1080} height={1920} fill="#2a6040" opacity={0.07} />
         <rect width={1080} height={1920} fill={`url(#${uid}vin)`} />
       </svg>
