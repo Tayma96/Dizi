@@ -204,61 +204,58 @@
   "words": [
    {
     "w": "sabri",
-    "start": 0.693,
-    "end": 0.819
+    "start": 0.52,
+    "end": 0.7
    },
    {
     "w": "abi?",
-    "start": 0.899,
+    "start": 0.76,
     "end": 1.699
    }
   ],
   "mouth": [
    {
-    "t": 0.693,
+    "t": 0.52,
     "v": "L"
    },
    {
-    "t": 0.709,
+    "t": 0.56,
     "v": "A"
    },
    {
-    "t": 0.724,
+    "t": 0.62,
     "v": "M"
    },
    {
-    "t": 0.739,
+    "t": 0.66,
     "v": "L"
    },
    {
-    "t": 0.779,
+    "t": 0.69,
     "v": "I"
    },
    {
-    "t": 0.899,
+    "t": 0.78,
     "v": "A"
    },
    {
-    "t": 1.032,
+    "t": 0.9,
     "v": "M"
    },
    {
-    "t": 1.166,
+    "t": 0.97,
     "v": "I"
    },
    {
-    "t": 1.299,
-    "v": "X"
-   },
-   {
-    "t": 1.699,
+    "t": 1.6,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 14
+  "kredi": 14,
+  "zaman_duzeltme": "sabri başlangıcı enerji zarfına göre 0.52 sn (ElevenLabs hizalaması geç)"
  },
  "b_01": {
   "key": "a65a2859bed1",
@@ -1132,7 +1129,7 @@
    },
    {
     "w": "ELİ.",
-    "start": 3.827,
+    "start": 3.7,
     "end": 4.4
    }
   ],
@@ -1262,19 +1259,19 @@
     "v": "X"
    },
    {
-    "t": 3.827,
+    "t": 3.707,
     "v": "E"
    },
    {
-    "t": 3.84,
+    "t": 3.72,
     "v": "L"
    },
    {
-    "t": 4.0,
+    "t": 3.88,
     "v": "I"
    },
    {
-    "t": 4.16,
+    "t": 4.04,
     "v": "X"
    },
    {
@@ -1285,7 +1282,8 @@
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 32
+  "kredi": 32,
+  "zaman_duzeltme": "ELİ. başlangıcı enerji zarfına göre 3.7 sn (ElevenLabs hizalaması geç)"
  },
  "e_02": {
   "key": "d6640ba8ddc6",
@@ -1612,8 +1610,8 @@
   "emotion": "notr",
   "text": "lülü?",
   "duration": 0.784,
-  "asrScore": null,
-  "heard": null,
+  "asrScore": 0.5,
+  "heard": "Lulu?",
   "words": [
    {
     "w": "lülü?",
