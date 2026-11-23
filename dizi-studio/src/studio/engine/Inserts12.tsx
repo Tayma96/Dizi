@@ -793,16 +793,19 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
       const Yb = RAF_Y[rr] + 0.02;
       const T = Math.sqrt((2 * Yb) / 9.8);
       const dd = t - (tz - T);
+      // çekim başında zaten düşmekte olan paketin kümesi yok (kesmede birden belirmesin)
+      if (tz - T < 0.1) return;
       const ust = urunUst(sd, rr, zz);
       const kid = `${uid}kk${j}`;
       if (dd < 0) kirpTanim.push(<clipPath key={kid} id={kid}><path d={`M -6000 -6000 H 8000 V 8000 H -6000 Z ${urunQ(sd, rr, zz)}`} clipRule="evenodd" /></clipPath>);
-      for (let m = 0; m < 7; m++) {
+      for (let m = 0; m < 5; m++) {
         const zr = (random(`kz${j}${m}`) - 0.5) * 0.13;
         const yr = Yb + 0.05 + random(`ky${j}${m}`) * (ust - Yb - 0.06);
         let Y = yr, Zg = Zc + zr, dY = 1, dZ = 0;
         if (dd < 0) {
-          // paketin arkasında kıpırdanma: antenler üst kenardan hafifçe taşabilir
-          Y = Math.min(yr, ust - 0.6 * L_C) + 0.015 * Math.sin(t * 7 + m);
+          // paketin arkasında gizli; paket sallanmaya başlayınca anten uçları üst kenardan taşar
+          const yuksel = sstep(-0.7, -0.35, dd);
+          Y = ust - (1.75 - 0.6 * yuksel) * L_C - m * 0.012 + 0.01 * yuksel * Math.sin(t * 9 + m);
         } else {
           const g = Math.max(0, dd - 0.15 - m * 0.06);
           const v = 0.22 + random(`kv${j}${m}`) * 0.15;
@@ -815,7 +818,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
         const X = sd * KX * 0.99;
         const [x, y] = P(X, Y, Zg);
         const a = yuzA(X, Zg, Y, dZ, dY) + Math.sin(t * 6 + m) * 0.15;
-        const el = <Mb key={`kb${j}${m}`} uid={uid} x={x} y={y} a={a} s={(0.1 * KF_) / Zg} ph={t * (dd < 0 ? 4 : 15) + m} sq={0.8} />;
+        const el = <Mb key={`kb${j}${m}`} uid={uid} x={x} y={y} a={a} s={(0.085 * KF_) / Zg} ph={t * (dd < 0 ? 4 : 15) + m} sq={0.8} />;
         kume.push(dd < 0 ? <g key={`kg${j}${m}`} clipPath={`url(#${kid})`}>{el}</g> : el);
       }
     });

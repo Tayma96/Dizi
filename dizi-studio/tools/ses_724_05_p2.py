@@ -1064,7 +1064,7 @@ def cmd_kur():
             return -99.0
 
     # grup bus'ları: hedef gürlük (bölümünde) + tepe tavanı -3 dBFS (4x örneklenmiş). Böylece son sınırlayıcı yalnız birkaç dB çalışır.
-    BUS = {"kepenk": (14.0, 22.0, -15.0), "bocek": (22.0, 33.0, -14.5), "isik": (5.0, 14.0, -20.5),
+    BUS = {"kepenk": (14.0, 22.0, -14.0), "bocek": (22.0, 33.0, -14.5), "isik": (5.0, 14.0, -20.5),
            "ece": (33.0, 39.0, -30.0), "fisilti": (49.3, 54.0, -19.0)}
     TEPE_BUS = {"sub": -10.0, "drone": -21.0}  # alt frekans: LUFS (K-ağırlık) neredeyse saymaz; tepeye göre seviyelenir
     bus_kazanc = {}
