@@ -307,72 +307,96 @@ export const KdDugmeOrnek: React.FC = () => {
   );
 };
 
-/* ------------------------------------------------------------------ kanca (B1 ilk 3 sn) */
-export const KdKanca: React.FC<{ kol?: KolTuru }> = ({ kol = "notr" }) => {
+/* ------------------------------------------------------------------ kanca (B1 ilk ~2 sn + logo)
+ * Kullanıcının metni: göz kamerası; önümüzde kırmızı düğmelerden biri; basarken yandan biri "duuuur!" diye bağırır;
+ * basılmış olur, KARŞISINDAKİ bölme açılır ve göğse doğru bir mızrak fırlar; sonra dizi başlar.
+ * Kurgu (30 fps): 0 el zaten uzanıyor · 13 "DUUUR!" (soldan) · 22-25 basış (klik A @23) · 30 bölme kilidi · 31-40 kanatlar
+ * · 39-62 mızrak göğse (kamera ucu izler) · 62 sert kesme (siyah, sessiz) · 65 logo (düğme düşer, @74 aynı klik) · 128 son.
+ * Bölme, düğmenin hemen üstündeki petek: mızrak 1,4 m'den doğrudan göğse gelir, ekranı doldurur (çarpmadan kesilir). */
+export const KANCA = { dur: 13, bas: 22, klik: 23, kilit: 30, kanat: 31, mizrak: 39, kes: 62, logo: 65, son: 128 };
+export const KdKanca: React.FC<{ kol?: KolTuru }> = ({ kol = "kurye" }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
-  const KX = 3.15, KY = 1.6, KZ = 3.2;
-  const hedefP = petekBul("sag", 4, 1.3, 3.45);
-  const bolmeP = petekBul("sol", -4, 1.35, 3.2);
-  if (frame >= 90) {
-    return <AbsoluteFill style={{ backgroundColor: "#eef4f7" }}><KdLogo t={(frame - 90) / 30} /></AbsoluteFill>;
+  const Z = KANCA;
+  if (frame >= Z.logo) {
+    return <AbsoluteFill style={{ backgroundColor: "#eef4f7" }}><KdLogo t={(frame - Z.logo) / 30} /></AbsoluteFill>;
   }
-  if (frame >= 88) return <AbsoluteFill style={{ backgroundColor: "#000" }} />;
-  // kamera: önce sağ duvardaki düğmeye bakar, basınca karşı (sol) duvara savrulur
-  const yaw0 = (Math.atan2(hedefP.c[0] - KX, hedefP.c[2] - KZ) * 180) / Math.PI;
-  const pitch0 = (Math.atan2(hedefP.c[1] - KY, Math.hypot(hedefP.c[0] - KX, hedefP.c[2] - KZ)) * 180) / Math.PI;
-  const don = ease((frame - 37) / 11);
-  const yaw = yaw0 + (-90 - yaw0) * don;
-  const pitch = pitch0 + (-3 - pitch0) * don;
-  const savrulma = frame > 37 && frame < 48 ? Math.sin(((frame - 37) / 11) * Math.PI) : 0;
-  const elTit = frame < 36 ? 2.5 : 0;
-  const mizrakK = cl((frame - 60) / 27);
-  const darbe = frame >= 60 ? 6 + 10 * mizrakK : 0;
-  const k: Kam = { x: KX, y: KY, z: KZ, yaw, pitch, f: 980, cy: 900, ...titresim(frame, elTit + darbe + savrulma * 10) };
-  const bas = cl((frame - 30) / 4);
-  const led = frame >= 31 ? (Math.floor((frame - 31) / 2) % 2 ? 0.4 : 1) : 0;
-  const acik = frame >= 48 ? ease((frame - 48) / 10) : 0;
-  const durum: OdaDurum = {
-    derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 417, kirmizi: frame >= 31 ? 0.18 + 0.18 * Math.max(0, Math.sin(t * 10)) : 0.1, t,
-    ozelBas: { petek: hedefP, bas, led, sayac: hedefP.no + (frame >= 32 ? 1 : 0) },
-    bolmeler: [{ petek: bolmeP, acik }],
+  if (frame >= Z.kes) return <AbsoluteFill style={{ backgroundColor: "#000" }} />;
+  const KX = 2.6, KY = 1.62, KZ = 3.2;
+  const hedefP = petekBul("sag", 4, 1.3, 3.2);
+  const bolmeP = petekBul("sag", 4, hedefP.c[1] + 0.73, hedefP.c[2]);
+  const bak = (c: number[]) => ({
+    yaw: (Math.atan2(c[0] - KX, c[2] - KZ) * 180) / Math.PI,
+    pitch: (Math.atan2(c[1] - KY, Math.hypot(c[0] - KX, c[2] - KZ)) * 180) / Math.PI,
+  });
+  // kamera: önce düğmeyle bölme arasına (düğme alt üçte birde), kilit sesiyle bölmeye doğru hafif kalkar
+  const orta = [4, hedefP.c[1] * 0.62 + bolmeP.c[1] * 0.38, hedefP.c[2]];
+  const b0 = bak(orta), b1 = bak([4, bolmeP.c[1] - 0.12, bolmeP.c[2]]);
+  const kalk = ease((frame - Z.kilit) / 10);
+  const mizrakK = cl((frame - Z.mizrak) / (Z.kes - Z.mizrak));
+  const itme = ease(frame / Z.bas) * 0.12; // basışa doğru hafif öne eğilme
+  const darbe = frame >= Z.mizrak ? 3 + 9 * mizrakK : 0;
+  const basSarsinti = frame >= Z.bas && frame < Z.bas + 4 ? 4 : 0;
+  const elTit = frame < Z.bas ? 1.6 : 0;
+  const KXi = KX + itme, KYi = KY - itme * 0.3;
+  // mızrağın ucu (kamera onu izler: izleyici mızrağın üstüne geldiğini görür)
+  const gogus: [number, number, number] = [KX + 0.12, KY - 0.27, KZ];
+  const bas0: [number, number, number] = [bolmeP.c[0] + 0.35, bolmeP.c[1], bolmeP.c[2]];
+  const e = 0.9 * mizrakK ** 1.15;
+  const uc: [number, number, number] = [bas0[0] + (gogus[0] - bas0[0]) * e, bas0[1] + (gogus[1] - bas0[1]) * e, bas0[2] + (gogus[2] - bas0[2]) * e];
+  const izle = ease((frame - Z.mizrak) / 10) * 0.75;
+  const ucY = (Math.atan2(uc[1] - KYi, Math.max(0.05, Math.hypot(uc[0] - KXi, uc[2] - KZ))) * 180) / Math.PI;
+  const yaw1 = b0.yaw + (b1.yaw - b0.yaw) * kalk;
+  const pitch1 = b0.pitch + (b1.pitch - b0.pitch) * kalk;
+  const k: Kam = {
+    x: KXi, y: KYi, z: KZ,
+    yaw: yaw1, pitch: pitch1 + (ucY - pitch1) * izle,
+    f: 900, cy: 960, ...titresim(frame, elTit + darbe + basSarsinti),
   };
-  // mızrak: bölmenin içinden göğse (kameranın 0,35 m altı) doğru; çarpmadan kesilir
-  const hedefGogus: [number, number, number] = [KX, KY - 0.36, KZ];
-  const bas0: [number, number, number] = [bolmeP.c[0] - 0.5, bolmeP.c[1], bolmeP.c[2]];
-  const e = 0.93 * mizrakK ** 1.7;
-  const uc: [number, number, number] = [bas0[0] + (hedefGogus[0] - bas0[0]) * e, bas0[1] + (hedefGogus[1] - bas0[1]) * e, bas0[2] + (hedefGogus[2] - bas0[2]) * e];
-  const yon: [number, number, number] = [hedefGogus[0] - bas0[0], hedefGogus[1] - bas0[1], hedefGogus[2] - bas0[2]];
+  const bas = cl((frame - Z.bas) / 3);
+  const led = frame >= Z.klik ? (Math.floor((frame - Z.klik) / 2) % 2 ? 0.45 : 1) : 0;
+  const acik = frame >= Z.kanat ? ease((frame - Z.kanat) / 9) : 0;
+  const durum: OdaDurum = {
+    derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 417,
+    kirmizi: frame >= Z.kanat ? 0.16 + 0.2 * Math.max(0, Math.sin((frame - Z.kanat) / 3)) : 0.08, t,
+    ozelBas: { petek: hedefP, bas, led, sayac: hedefP.no + (frame >= Z.klik ? 1 : 0) },
+    // kilit açılana kadar bölme görünmez (düz petek): sürpriz ele verilmez
+    bolmeler: frame >= Z.kilit ? [{ petek: bolmeP, acik }] : [],
+  };
+  const yon: [number, number, number] = [gogus[0] - bas0[0], gogus[1] - bas0[1], gogus[2] - bas0[2]];
   const hp = proj(k, hedefP.c);
-  const yaklas = ease(frame / 26);
-  const elGorunur = frame < 46;
-  const elCekil = ease((frame - 36) / 10);
-  const blur = savrulma * 46 + (frame > 78 ? (frame - 78) * 1.2 : 0);
+  const yaklas = ease(frame / Z.bas);
+  const elCekil = ease((frame - (Z.mizrak + 1)) / 9);
+  const elGorunur = frame < Z.mizrak + 10;
+  const blur = frame > Z.kes - 6 ? (frame - (Z.kes - 6)) * 2.2 : 0;
+  const duurK = frame >= Z.dur ? ease((frame - Z.dur) / 3) : 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <defs>
-          <filter id="kk_blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation={`${blur} ${blur * 0.12}`} /></filter>
+          <filter id="kk_blur" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation={`${blur * 0.4} ${blur}`} /></filter>
+          <radialGradient id="kk_vin" cx="0.5" cy="0.5" r="0.72"><stop offset="0.55" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#1a0006" stopOpacity={0.55} /></radialGradient>
         </defs>
         <g filter={blur > 0.5 ? "url(#kk_blur)" : undefined}>
-          <BeyazOda k={k} durum={durum} frame={frame} ekstra={frame >= 60 ? <Mizrak k={k} uc={uc} yon={yon} /> : null} />
+          <BeyazOda k={k} durum={durum} frame={frame} ekstra={frame >= Z.mizrak - 2 ? <Mizrak k={k} uc={uc} yon={yon} /> : null} />
         </g>
-        {/* hız çizgileri (mızrak yaklaşırken) */}
-        {frame >= 66 ? new Array(26).fill(0).map((_, i) => {
+        {/* hız çizgileri: mızrak yaklaşırken kenarlardan merkeze */}
+        {frame >= Z.mizrak + 6 ? new Array(30).fill(0).map((_, i) => {
           const a = random(`kz${i}`) * Math.PI * 2;
-          const r0 = 380 + random(`kr${i}${Math.floor(frame / 2)}`) * 200;
           const pu = proj(k, uc);
-          return <path key={i} d={`M ${pu.x + Math.cos(a) * r0} ${pu.y + Math.sin(a) * r0} L ${pu.x + Math.cos(a) * (r0 + 500)} ${pu.y + Math.sin(a) * (r0 + 500)}`} stroke="#ffffff" strokeWidth={6} opacity={0.35 * mizrakK} />;
+          const r0 = 420 + random(`kr${i}${Math.floor(frame / 2)}`) * 260;
+          return <path key={i} d={`M ${pu.x + Math.cos(a) * r0} ${pu.y + Math.sin(a) * r0} L ${pu.x + Math.cos(a) * (r0 + 600)} ${pu.y + Math.sin(a) * (r0 + 600)}`} stroke="#ffffff" strokeWidth={7} opacity={0.4 * mizrakK} />;
         }) : null}
-        {elGorunur ? <FpsEl x={hp.x + (1 - yaklas) * 220 + elCekil * 300} y={hp.y + 10 + (1 - yaklas) * 700 + elCekil * 900} s={1.25} aci={-30} kol={kol} bas={bas} /> : null}
-        {/* "DUUUR!" yandan bağırış (sessiz prototipte yazıyla) */}
-        {frame >= 16 && frame < 44 ? (
-          <g transform={`translate(${70 + (random(`du${frame}`) - 0.5) * 10} 600) rotate(-8) scale(${ease((frame - 16) / 4)})`}>
-            <text x={0} y={0} fontFamily={KD_BASLIK} fontWeight={800} fontSize={150} fill="#ffffff" stroke="#c8101e" strokeWidth={16} paintOrder="stroke" strokeLinejoin="round">DUUUR!</text>
+        {elGorunur ? <FpsEl x={hp.x + (1 - yaklas) * 160 + elCekil * 380} y={hp.y + 14 + (1 - yaklas) * 520 + elCekil * 1000} s={1.3} aci={-28} kol={kol} bas={bas} /> : null}
+        {/* "DUUUR!": sesin geldiği soldan girer (sessiz izleyen için de okunur) */}
+        {frame >= Z.dur && frame < Z.mizrak ? (
+          <g transform={`translate(${60 - (1 - duurK) * 300 + (random(`du${frame}`) - 0.5) * 12} 560) rotate(-9) scale(${0.6 + 0.4 * duurK})`} opacity={frame > Z.mizrak - 5 ? (Z.mizrak - frame) / 5 : 1}>
+            <text x={0} y={0} fontFamily={KD_BASLIK} fontWeight={800} fontSize={160} fill="#ffffff" stroke="#c8101e" strokeWidth={18} paintOrder="stroke" strokeLinejoin="round">DUUUR!</text>
           </g>
         ) : null}
+        <rect width={1080} height={1920} fill="url(#kk_vin)" opacity={frame >= Z.kanat ? 1 : 0.5} />
       </svg>
-      {frame >= 31 && frame < 35 ? <AbsoluteFill style={{ backgroundColor: "#ff1a2a", opacity: 0.4 }} /> : null}
+      {frame >= Z.klik && frame < Z.klik + 4 ? <AbsoluteFill style={{ backgroundColor: "#ff1a2a", opacity: 0.3 * (1 - (frame - Z.klik) / 4) }} /> : null}
     </AbsoluteFill>
   );
 };

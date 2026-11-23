@@ -58,7 +58,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="KDKadro" component={KDKadro} durationInFrames={60} fps={30} width={4440} height={5080} />
         <Composition id="KDMekanlar" component={KDMekanlar} durationInFrames={60} fps={30} width={2712} height={2780} />
         <Composition id="KDDugmeOrnek" component={KdDugmeOrnek} durationInFrames={180} fps={30} width={1080} height={1920} />
-        <Composition id="KDKanca" component={KdKanca} durationInFrames={126} fps={30} width={1080} height={1920} defaultProps={{ kol: "notr" as const }} />
+        <Composition id="KDKanca" component={KdKanca} durationInFrames={128} fps={30} width={1080} height={1920} defaultProps={{ kol: "kurye" as const }} />
         <Composition id="KDStil" component={KDStil} durationInFrames={30} fps={30} width={4400} height={2640} />
         <Composition id="KDGobekOrnek" component={KdGobekOrnek} durationInFrames={150} fps={30} width={1080} height={1920} />
         <Composition id="KDStil2" component={KDStil2} durationInFrames={30} fps={30} width={4300} height={2920} />
