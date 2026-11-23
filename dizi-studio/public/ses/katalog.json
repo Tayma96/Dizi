@@ -1000,6 +1000,41 @@
   "loop": false,
   "desc": "Kat göstergesi bipi."
  },
+ "efekt/kd_bolme_acilis": {
+  "file": "ses/efekt/kd_bolme_acilis.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: heavy metal hatch unlocking with a sharp mechanical clack, then hydraulic hiss as two sliding doors slide open into the wall"
+ },
+ "efekt/kd_ikaz_alarm": {
+  "file": "ses/efekt/kd_ikaz_alarm.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: low pulsing warning alarm, deep rhythmic emergency tone in a closed room, ominous, not shrill"
+ },
+ "efekt/kd_mizrak_firlama": {
+  "file": "ses/efekt/kd_mizrak_firlama.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: spear launched by a powerful spring mechanism, metallic twang then a fast whoosh flying straight toward the camera"
+ },
+ "efekt/kd_nefes_mont": {
+  "file": "ses/efekt/kd_nefes_mont.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: young man's tense nervous breathing close to microphone, one shaky inhale, nylon jacket sleeve rustle as he reaches his arm forward"
+ },
+ "efekt/kd_oda_tonu": {
+  "file": "ses/efekt/kd_oda_tonu.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: very soft, gentle room tone of a sterile empty white room, faint low fluorescent light hum in the far background, calm, no buzzing, no clicks, seamless"
+ },
  "efekt/kilit": {
   "file": "ses/efekt/kilit.mp3",
   "category": "efekt",
