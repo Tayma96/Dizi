@@ -1,78 +1,46 @@
 {
- "not": "B5 2. parça ses planı. Bu dosya bölüm JSON'u DEĞİLDİR. 'plan' tools/ses_724_05_p2.py kur/olc tarafından yazılır (kesin zamanlar, olaylar, doğrulama). 'uretim' yalnız ElevenLabs üretim kaynağıdır, senaryo repliği değildir. Fısıltının sözü kullanıcı kararıdır: Sabri'nin sesiyle 3x 'Ece…', annenin sesiyle 3x 'Kızım…'. 23 Kasım 2026: ElevenLabs hesabı ödeme sorunu (401 payment_issue) yüzünden üretim yapamadı; fısıltılar mevcut kayıtlardan (724-01 c_15/c_08, 724-03 a_02, 724-b1 a_07) LPC ile türetildi. Hesap açılınca 'python3 tools/ses_724_05_p2.py uret' taze varyantları üretir (kuru çalıştırma varsayılan).",
+ "not": "B5 2. parça ses planı. Bu dosya bölüm JSON'u DEĞİLDİR. 'plan' tools/ses_724_05_p2.py kur/olc tarafından yazılır (kesin zamanlar, olaylar, doğrulama). 'uretim' yalnız ElevenLabs üretim kaynağıdır, senaryo repliği değildir. Fısıltının sözü kullanıcı kararıdır: Sabri'nin sesiyle 3x 'Ece…', annenin sesiyle 3x 'Kızım…'. 23 Kasım 2026: ElevenLabs hesabı ödeme sorunu (401 payment_issue) yüzünden üretim yapamadı; fısıltılar mevcut kayıtlardan (724-01 c_15/c_08, 724-03 a_02, 724-b1 a_07) LPC ile türetildi. Kullanıcı kararı: bütün sesler eleven_v4. Hesap açılınca: (1) python3 tools/ses_724_05_p2.py uret --butce 700 [--onayla]; (2) /opt/tts/venv/bin/python tools/ses_724_05_p2.py sec (Whisper + tını benzerliği, 'secim' yazar); (3) kur; (4) olc. 'secim' boşsa kur eski LPC fısıltılarını kullanır.",
  "episode": "724-05-p2-ses",
  "uretim": [
   {
-   "id": "f1",
+   "id": "s1",
    "who": "sabri",
    "model": "eleven_v4",
    "text": "Ece…",
    "okunus": "Ece…",
-   "tags": "[whispering, very close to the ear, slow, breathy, menacing]",
-   "stab": 0.5
+   "tags": "[whispering, low, calm, very close]",
+   "stab": 0.5,
+   "hedef": "W1"
   },
   {
-   "id": "f2",
+   "id": "s2",
+   "who": "sabri",
+   "model": "eleven_v4",
+   "text": "Ece…",
+   "okunus": "Ece…",
+   "tags": "[breathy whisper, menacing, slow]",
+   "stab": 0.0,
+   "hedef": "W3"
+  },
+  {
+   "id": "s3",
    "who": "sabri",
    "model": "eleven_v4",
    "text": "Ece…",
    "okunus": "Eceee…",
-   "tags": "[whispers, intimate, creepy, drawn out, barely audible]",
-   "stab": 0.0
+   "tags": "[whispers right into the ear, drawn out, sinister]",
+   "stab": 0.0,
+   "hedef": "W6"
   },
   {
-   "id": "f3",
+   "id": "s4",
    "who": "sabri",
    "model": "eleven_v4",
    "text": "Ece…",
    "okunus": "Ece…",
-   "tags": "[soft raspy whisper, sinister, smiling]",
-   "stab": 0.0
-  },
-  {
-   "id": "f4",
-   "who": "sabri",
-   "model": "eleven_v3",
-   "text": "Ece…",
-   "okunus": "Ece…",
-   "tags": "[whispers] [breathy] [slowly]",
-   "stab": 0.0
-  },
-  {
-   "id": "f5",
-   "who": "sabri",
-   "model": "eleven_v3",
-   "text": "Ece…",
-   "okunus": "E… ce…",
-   "tags": "[whispering, menacing, very close]",
-   "stab": 0.5
-  },
-  {
-   "id": "f6",
-   "who": "sabri",
-   "model": "eleven_v3",
-   "text": "Ece…",
-   "okunus": "Eceee…",
-   "tags": "[whispers] [drawn out] [creepy]",
-   "stab": 0.0
-  },
-  {
-   "id": "n1",
-   "who": "ece_sivil",
-   "model": "eleven_v3",
-   "text": "(sözsüz: titrek, bastırılmış nefes)",
-   "okunus": "Hhh… hhh…",
-   "tags": "[terrified, trying not to make a sound] [trembling breath through the nose]",
-   "stab": 0.0
-  },
-  {
-   "id": "n2",
-   "who": "ece_sivil",
-   "model": "eleven_v3",
-   "text": "(sözsüz: bastırılmış hıçkırık, yutkunma)",
-   "okunus": "Hhk… mm…",
-   "tags": "[suppressed sob, mouth closed] [swallows hard]",
-   "stab": 0.0
+   "tags": "[raspy whisper, cold, intimate]",
+   "stab": 0.0,
+   "hedef": "yedek"
   },
   {
    "id": "a1",
@@ -80,26 +48,59 @@
    "model": "eleven_v4",
    "text": "Kızım…",
    "okunus": "Kızım…",
-   "tags": "[whispering, sweet, loving, very close to the ear]",
-   "stab": 0.0
+   "tags": "[sweet, loving whisper, very close]",
+   "stab": 0.0,
+   "hedef": "W2"
   },
   {
    "id": "a2",
    "who": "anne724",
    "model": "eleven_v4",
    "text": "Kızım…",
-   "okunus": "Kızııım…",
-   "tags": "[whispers, tender, coaxing, drawn out]",
-   "stab": 0.0
+   "okunus": "Kızım?",
+   "tags": "[tender whisper, coaxing, smiling]",
+   "stab": 0.0,
+   "hedef": "W4"
   },
   {
    "id": "a3",
    "who": "anne724",
    "model": "eleven_v4",
    "text": "Kızım…",
-   "okunus": "Kızım?",
-   "tags": "[soft breathy whisper, warm, smiling, creepy]",
-   "stab": 0.0
+   "okunus": "Kızııım…",
+   "tags": "[soft breathy whisper, drawn out, warm]",
+   "stab": 0.0,
+   "hedef": "W5"
+  },
+  {
+   "id": "a4",
+   "who": "anne724",
+   "model": "eleven_v4",
+   "text": "Kızım…",
+   "okunus": "Kızım…",
+   "tags": "[whispers, gentle, creepy sweet]",
+   "stab": 0.5,
+   "hedef": "yedek"
+  },
+  {
+   "id": "n1",
+   "who": "ece_sivil",
+   "model": "eleven_v4",
+   "text": "(sözsüz: titrek, bastırılmış nefes)",
+   "okunus": "Hhh… hhh…",
+   "tags": "[terrified, holding breath, trembling breath through the nose]",
+   "stab": 0.0,
+   "hedef": "E 35,00 / F 48,50"
+  },
+  {
+   "id": "n2",
+   "who": "ece_sivil",
+   "model": "eleven_v4",
+   "text": "(sözsüz: bastırılmış hıçkırık)",
+   "okunus": "Hmm… hk…",
+   "tags": "[suppressed sob, hand over mouth]",
+   "stab": 0.0,
+   "hedef": "E 38,05"
   }
  ],
  "plan": {
@@ -1582,5 +1583,6 @@
     }
    ]
   }
- }
+ },
+ "secim": {}
 }
