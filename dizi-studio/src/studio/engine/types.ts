@@ -107,6 +107,8 @@ export type CharState = {
   yagmur?: number;
   /** 7/24 B5: kahkaha sarsıntısı 0..1 */
   kahkaha?: number;
+  /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
+  omuzDus?: number;
   /** 7/24 B5: nefes çekme (hıığğ) başlangıcı (vuruş içinde sn), tek sefer */
   hik?: number;
   /** 7/24 B5: vuruş içinde bakış anahtar kareleri (kafa çevirmeler): at sn, x -1..1, yaw */

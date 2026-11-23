@@ -875,7 +875,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const yutY = 5 * yk;
   const sTilt = -8 * sLean;
   const kah = pose.kahkaha ? Math.min(1, pose.kahkaha) * Math.abs(Math.sin(frame * 0.95)) : 0;
-  const omzY = 14 * hikK + 7 * kah;
+  const omzY = 14 * hikK + 7 * kah - 12 * Math.min(1, pose.omuzDus ?? 0);
   const headT = `translate(0 ${-omzY * 1.35 - breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis - 4 * hikK - 3 * kah} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
 
   return (

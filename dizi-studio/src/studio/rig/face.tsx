@@ -15,7 +15,7 @@ export type FaceParams = {
   eyeSmile: boolean;
   pupil: number;
   /** resting mouth */
-  mouth: "line" | "smile" | "grin" | "frown" | "open" | "o" | "smirk" | "tight" | "wavy" | "flat";
+  mouth: "line" | "smile" | "grin" | "frown" | "open" | "o" | "smirk" | "tight" | "wavy" | "flat" | "isir";
   blush: number;
 };
 
@@ -43,6 +43,7 @@ export const EMOTION_FACE: Record<Emotion, FaceParams> = {
   kararli: { browInner: -8, browOuter: 2, browLift: 3, eyeOpen: 0.68, eyeSmile: false, pupil: 1, mouth: "tight", blush: 0.4 },
   sahteGulus: { browInner: 2, browOuter: 3, browLift: -3, eyeOpen: 1.04, eyeSmile: false, pupil: 0.72, mouth: "grin", blush: 0 },
   zorGulumse: { browInner: 17, browOuter: 4, browLift: -9, eyeOpen: 1.12, eyeSmile: false, pupil: 0.55, mouth: "grin", blush: 0.1 },
+  mahcup: { browInner: 15, browOuter: -5, browLift: -3, eyeOpen: 0.78, eyeSmile: false, pupil: 1.05, mouth: "isir", blush: 1.25 },
   igrenmis: { browInner: -8, browOuter: -2, browLift: 4, eyeOpen: 0.55, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.3 },
 };
 
@@ -258,6 +259,15 @@ export const Mouth: React.FC<{ viseme: Viseme | null; rest: FaceParams["mouth"];
       return <path d={`M ${cx - 16} ${cy + 4} Q ${cx - 8} ${cy - 3} ${cx} ${cy + 3} Q ${cx + 8} ${cy + 9} ${cx + 16} ${cy + 2}`} {...stroke} />;
     case "flat":
       return <path d={`M ${cx - 13} ${cy + 1} L ${cx + 13} ${cy + 1}`} {...stroke} />;
+    case "isir":
+      // utangaç sırıtma: köşeler hafif yukarı, üst dişler alt dudağı ısırır (dudak şişkin)
+      return (
+        <g>
+          <path d={`M ${cx - 16} ${cy - 3} Q ${cx} ${cy + 9} ${cx + 16} ${cy - 3}`} {...stroke} strokeWidth={4} />
+          <path d={`M ${cx - 7} ${cy + 1} L ${cx + 7} ${cy + 1} L ${cx + 6} ${cy + 6} L ${cx - 6} ${cy + 6} Z`} fill={teeth} stroke={OUT} strokeWidth={2} strokeLinejoin="round" />
+          <path d={`M ${cx - 9} ${cy + 7} Q ${cx} ${cy + 13} ${cx + 9} ${cy + 7}`} fill="none" stroke={lip} strokeWidth={3.5} strokeLinecap="round" />
+        </g>
+      );
     default:
       return <path d={`M ${cx - 14} ${cy} Q ${cx} ${cy + 4} ${cx + 14} ${cy}`} {...stroke} />;
   }

@@ -5,7 +5,7 @@ import { castById } from "../cast";
 import { Character } from "../rig/Character";
 import type { Emotion } from "../rig/types";
 import { Market724BG } from "../sets/market724";
-import { Anten, BocekKafa, DevBocek, K, clamp01, kapsul, sstep, yay } from "./bocek";
+import { Anten, BocekKafa, DevBocek, K, PronotumArka, PronotumSiper, clamp01, kapsul, sstep, yay } from "./bocek";
 import { Bas25D, Govde25D } from "../rig/head25d";
 
 export type Insert11Kind = "omuz_el" | "donusum_yuz" | "donusum_govde" | "bocek_dev" | "bocek_yakin" | "ece_yakin" | "ece_sirt" | "sabri_omuz" | "bocek_golge";
@@ -95,37 +95,46 @@ const parcaMat = (pc: Parca, t: number): { m: Mat; ters: boolean; a: number } =>
   return { m: [a, b, cc, d, ex, fy], ters: (pc.eksen === "x" ? sx : sy) < 0, a: kt > 0.5 ? Math.max(0, 1 - (kt - 0.5) * 3) : 1 };
 };
 
-/** Simbiyot lifi: gerilir, incelir, eşikte kopar ve iki ucu kıvrılarak geri çekilir. */
-const Lif: React.FC<{ a: Pt; b: Pt; b0: Pt; maxL: number; w: number; t: number; seed: number; kopT?: number }> = ({ a, b, b0, maxL, w, t, seed }) => {
+/** Simbiyot lifi (B3 KopukEl liflerinin kalın, ıslak siyah-kırmızı dili): iki ucu bağlı gerilir, incelir;
+ *  parça tarafında deri şeridi çeker; eşikte kopar: kafa tarafı anında geri çekilir, parça tarafı parçaya bağlı sallanır. */
+const Lif: React.FC<{ a: Pt; b: Pt; b0: Pt; maxL: number; w: number; t: number; seed: number; ten?: string }> = ({ a, b, b0, maxL, w, t, seed, ten = "#b07a58" }) => {
   const L = Math.hypot(b[0] - a[0], b[1] - a[1]);
   const L0 = Math.max(4, Math.hypot(b0[0] - a[0], b0[1] - a[1]));
   if (L < 2) return null;
-  const col = seed % 3 === 0 ? K.lif2 : seed % 2 ? K.lif : "#a83a40";
+  const col = seed % 3 === 0 ? K.lif2 : seed % 2 ? K.lif : "#8a2a30";
+  const dx = (b[0] - a[0]) / L, dy = (b[1] - a[1]) / L;
   if (L <= maxL) {
     const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
-    const nx = -(b[1] - a[1]) / L, ny = (b[0] - a[0]) / L;
-    const wob = Math.sin(t * 9 + seed) * 3 * (1 - L / maxL);
-    const sag = 0.12 * L;
-    const ww = Math.max(0.8, w * Math.sqrt(L0 / L));
+    const gerg = L / maxL;
+    const wob = Math.sin(t * 9 + seed) * 4 * (1 - gerg);
+    const sag = 0.16 * L * (1 - 0.6 * gerg);
+    const ww = Math.max(1.6, w * Math.sqrt(L0 / Math.max(L0, L)) * (1 - 0.35 * gerg));
+    const d = `M ${a[0]} ${a[1]} Q ${mx - dy * wob} ${my + dx * wob + sag} ${b[0]} ${b[1]}`;
+    // parça ucundan sökülen deri şeridi
+    const sk = Math.min(0.35, 18 / L);
+    const sx = b[0] - (b[0] - a[0]) * sk, sy = b[1] - (b[1] - a[1]) * sk + sag * 0.3;
     return (
-      <g>
-        <path d={`M ${a[0]} ${a[1]} Q ${mx + nx * wob} ${my + ny * wob + sag} ${b[0]} ${b[1]}`} stroke={col} strokeWidth={ww + 1.2} fill="none" strokeLinecap="round" />
-        <path d={`M ${a[0]} ${a[1]} Q ${mx + nx * wob} ${my + ny * wob + sag} ${b[0]} ${b[1]}`} stroke="#e07070" strokeWidth={ww * 0.3} fill="none" opacity={0.5} strokeLinecap="round" />
+      <g strokeLinecap="round" fill="none">
+        <path d={d} stroke="#120406" strokeWidth={ww + 2.2} />
+        <path d={d} stroke={col} strokeWidth={ww} />
+        <path d={d} stroke="#e88080" strokeWidth={ww * 0.25} opacity={0.45} />
+        <path d={`M ${b[0]} ${b[1]} L ${sx} ${sy}`} stroke={ten} strokeWidth={ww * 1.5} opacity={0.9} />
+        <path d={`M ${b[0]} ${b[1]} L ${sx} ${sy}`} stroke="#2a1410" strokeWidth={1.2} opacity={0.6} />
       </g>
     );
   }
-  // koptu: iki uç geri çekilir, kıvrılır (sönümlü)
-  const over = Math.min(1, (L - maxL) / 90);
-  const r = 0.35 * maxL * (1 - 0.6 * over);
-  const dx = (b[0] - a[0]) / L, dy = (b[1] - a[1]) / L;
+  // koptu: kafa ucu hızla geri çekilir (söner); parça ucu parçaya bağlı kıvrılır
+  const over = (L - maxL) / 50;
+  const r = Math.max(10, 0.32 * maxL * Math.exp(-over * 0.4));
   const curl = 0.8 + 0.6 * Math.sin(seed);
-  const ucA: Pt = [a[0] + dx * r * 0.7 - dy * r * 0.4 * curl, a[1] + dy * r * 0.7 + dx * r * 0.4 * curl + r * 0.5];
-  const ucB: Pt = [b[0] - dx * r * 0.6 + dy * r * 0.3 * curl, b[1] - dy * r * 0.6 + r * 0.6];
-  if (over >= 1) return null;
+  const ucB: Pt = [b[0] - dx * r * 0.6 + dy * r * 0.35 * curl, b[1] - dy * r * 0.6 + r * 0.7];
+  const kafaA = Math.max(0, 1 - over * 2.5);
+  const ucA: Pt = [a[0] + dx * r * 0.35 * kafaA, a[1] + dy * r * 0.35 * kafaA + 4];
   return (
-    <g stroke={col} fill="none" strokeLinecap="round" strokeWidth={w * 0.8} opacity={1 - over}>
-      <path d={`M ${a[0]} ${a[1]} Q ${a[0] + dx * r * 0.5} ${a[1] + dy * r * 0.5 + r * 0.2} ${ucA[0]} ${ucA[1]}`} />
-      <path d={`M ${b[0]} ${b[1]} Q ${b[0] - dx * r * 0.4} ${b[1] + r * 0.3} ${ucB[0]} ${ucB[1]}`} />
+    <g fill="none" strokeLinecap="round">
+      {kafaA > 0 ? <path d={`M ${a[0]} ${a[1]} L ${ucA[0]} ${ucA[1]}`} stroke={col} strokeWidth={w * 0.9} opacity={kafaA} /> : null}
+      <path d={`M ${b[0]} ${b[1]} Q ${b[0] - dx * r * 0.4} ${b[1] + r * 0.3} ${ucB[0]} ${ucB[1]}`} stroke="#120406" strokeWidth={w * 0.8 + 2} />
+      <path d={`M ${b[0]} ${b[1]} Q ${b[0] - dx * r * 0.4} ${b[1] + r * 0.3} ${ucB[0]} ${ucB[1]}`} stroke={col} strokeWidth={w * 0.8} />
     </g>
   );
 };
@@ -135,7 +144,7 @@ const Damla: React.FC<{ x: number; y: number; L: number; w: number; renk: string
   if (L < 2) return null;
   const y0 = FY(y);
   const q = (k: number) => Math.sin(seed * 1.7 + k * 5.3 + t * 1.5) * w * 0.12;
-  const neck = w * 0.5, bulb = w * (0.7 + 0.35 * Math.min(1, L / 70));
+  const neck = w * 0.42, bulb = w * (0.42 + 0.2 * Math.min(1, L / 70));
   const yb = y0 + L;
   const d = `M ${x - w * 1.25} ${y0 - 6} C ${x - w * 0.9 + q(1)} ${y0 + L * 0.25} ${x - neck + q(2)} ${y0 + L * 0.55} ${x - neck * 0.9} ${yb - bulb * 0.6} C ${x - bulb * 1.15} ${yb - bulb * 0.2} ${x - bulb} ${yb + bulb} ${x} ${yb + bulb} C ${x + bulb} ${yb + bulb} ${x + bulb * 1.15} ${yb - bulb * 0.2} ${x + neck * 0.9} ${yb - bulb * 0.6} C ${x + neck + q(3)} ${y0 + L * 0.55} ${x + w * 0.9 + q(4)} ${y0 + L * 0.25} ${x + w * 1.25} ${y0 - 6} Z`;
   const k = (t * 0.9 + seed * 0.37) % 1;
@@ -237,7 +246,7 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const uid = "dy";
   const yuzRenk = (k: number) => {
     // ten → yanık kahve
-    const a = [0xd8, 0xa4, 0x7c], b = [0x7a, 0x3e, 0x22];
+    const a = [0xd8, 0xa4, 0x7c], b = [0x46, 0x1a, 0x0e];
     return `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * k)).join(",")})`;
   };
   // kabarcıklar (yanık)
@@ -293,8 +302,10 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             <g filter={`url(#${uid}melt)`} clipPath={`url(#${uid}base)`}>{rig}</g>
             {/* böcek kafası: deri açıldıkça görünür */}
             <g clipPath={`url(#${uid}kafa)`}>
-              <g transform={`translate(${kafaCx} ${kafaCy}) scale(${0.93 + 0.05 * acil})`}>
-                <BocekKafa t={t} mand={mand} anten={anten} antenBuk={46} parlak={1} salya={sstep(3.1, 3.6, t)} isik={fl} uid={`${uid}k`} />
+              <g transform={`translate(${kafaCx} ${kafaCy + 10 * sstep(3.7, 4.2, t)}) rotate(${(4 * Math.sin(t * 2.3) + 3 * Math.sin(t * 5.1)) * sstep(3.4, 3.9, t)}) scale(${(0.93 + 0.05 * acil) * (1 + 0.06 * sstep(3.8, 4.3, t))})`}>
+                <g transform="translate(0 770)"><PronotumArka uid={`${uid}p`} kk={sstep(2.7, 3.9, t)} isik={fl} /></g>
+                <BocekKafa t={t} mand={mand} anten={anten} antenBuk={46} antenSal={1 + 0.8 * sstep(3.5, 4, t)} parlak={1} salya={sstep(3.1, 3.6, t)} isik={fl} uid={`${uid}k`} siper={0.5 * sstep(3.0, 3.8, t)} />
+                <g transform="translate(0 770)"><PronotumSiper uid={`${uid}p`} kk={sstep(2.7, 3.9, t)} isik={fl} /></g>
               </g>
             </g>
             {/* lifler: deri parçasının yırtık kenarı ↔ kafa yüzeyi */}
@@ -304,7 +315,7 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
                   const b0 = HP(p);
                   const a: Pt = [b0[0] + (kafaCx - b0[0]) * 0.07, b0[1] + (kafaCy - b0[1]) * 0.07];
                   const sd = li * 13 + i * 7 + pc.id.charCodeAt(0);
-                  return <Lif key={`${pc.id}${li}${i}`} a={a} b={app(m, b0)} b0={b0} maxL={50 + random(`lm${sd}`) * 110} w={3 + random(`lw${sd}`) * 3.5} t={t} seed={sd} />;
+                  return <Lif key={`${pc.id}${li}${i}`} a={a} b={app(m, b0)} b0={b0} maxL={110 + random(`lm${sd}`) * 150} w={5.5 + random(`lw${sd}`) * 5} t={t} seed={sd} ten={yuzRenk(0.35 + 0.6 * yanik)} />;
                 }),
               ),
             )}
@@ -315,7 +326,7 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
                 {ters ? (
                   // iç yüz: çiğ et, lifli
                   <g>
-                    <path d={`${pc.poly.map((p, i) => `${i ? "L" : "M"} ${p[0]} ${FY(p[1])}`).join(" ")} Z`} fill={K.et} stroke={OUTR} strokeWidth={4} strokeLinejoin="round" />
+                    <path d={`${pc.poly.map((p, i) => `${i ? "L" : "M"} ${p[0]} ${FY(p[1])}`).join(" ")} Z`} fill={K.et} stroke={yuzRenk(0.5)} strokeWidth={14} strokeLinejoin="round" />
                     <g clipPath={`url(#${uid}c${pc.id})`}>
                       {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${60 + i * 34} ${FY(40)} q 14 ${140} -6 ${300}`} stroke="#5a0e14" strokeWidth={5} fill="none" opacity={0.6} />)}
                       <rect x={0} y={0} width={400} height={400} fill="#000" opacity={0.25} />
@@ -349,9 +360,9 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
                 </g>
                 {/* eriyen deri damlaları (parçayla birlikte hareket eder) */}
                 {ters ? null : pc.damla.map(([x, y, L, w, tb], i) => (
-                  <Damla key={i} x={x} y={y} L={L * 1.3 * sstep(tb - 0.35, tb + 1.2, t) * (1 + 0.5 * sstep(tb + 1.2, 3.2, t)) * (0.4 + 0.6 * akis)} w={w} renk={yuzRenk(0.2 + 0.55 * yanik)} t={t} seed={i + pc.id.length * 3} />
+                  <Damla key={i} x={x} y={y} L={L * 1.3 * sstep(tb - 0.35, tb + 1.2, t) * (1 + 0.5 * sstep(tb + 1.2, 3.2, t)) * (0.4 + 0.6 * akis)} w={w} renk={yuzRenk(0.35 + 0.6 * yanik)} t={t} seed={i + pc.id.length * 3} />
                 ))}
-                {pc.id === "j" && !ters ? <Perde S={70 * sstep(0.7, 2.1, t)} renk={yuzRenk(0.2 + 0.55 * yanik)} t={t} /> : null}
+                {pc.id === "j" && !ters ? <Perde S={70 * sstep(0.7, 2.1, t)} renk={yuzRenk(0.35 + 0.6 * yanik)} t={t} /> : null}
               </g>
             ))}
           </g>

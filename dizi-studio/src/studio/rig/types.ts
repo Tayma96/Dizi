@@ -61,7 +61,9 @@ export type Emotion =
   /** 7/24 B5: sahte gülüş: ağız kocaman sırıtır, gözler gülmez (açık, donuk) */
   | "sahteGulus"
   /** 7/24 B5: korkudan zoraki gülümseme: kaşlar korkuyla yukarıda, ağız dişleri gösteren sırıtış */
-  | "zorGulumse";
+  | "zorGulumse"
+  /** 7/24 B5: mahçup: kaşlar yukarı-içe, gözler kaçamak, utangaç sırıtma + dudak ısırma, yanaklar kızarık */
+  | "mahcup";
 
 export type Gesture =
   | "rest"
@@ -228,4 +230,6 @@ export type Pose = {
   hik?: number;
   /** 7/24 B5: kahkaha sarsıntısı (omuzlar, baş) 0..1 */
   kahkaha?: number;
+  /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
+  omuzDus?: number;
 };

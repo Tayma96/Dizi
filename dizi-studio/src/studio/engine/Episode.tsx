@@ -395,6 +395,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             mumParlak: st.mumParlak,
             yagmur: st.yagmur,
             kahkaha: st.kahkaha,
+            omuzDus: st.omuzDus,
             hik: st.hik !== undefined && pst?.hik !== st.hik ? (bf / fps - st.hik) / 0.8 : undefined,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,
             seed: look.name.length * 11 + id.length,
