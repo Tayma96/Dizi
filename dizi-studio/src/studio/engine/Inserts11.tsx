@@ -894,6 +894,10 @@ const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const t2 = Number(text?.[2] ?? 99);
   const lx = Number(text?.[3] ?? 0.45), pale = Number(text?.[4] ?? 0.3);
   const ek = text?.[5] || "";
+  // text[6] === "los": komşu karanlık çekimlere uyum (opt-in): arka plan ~%28, karakter ~%62 parlaklık, doygunluk düşük
+  const los = text?.[6] === "los";
+  const bgF = los ? "brightness(0.28) saturate(0.6)" : undefined;
+  const chF = los ? "brightness(0.62) saturate(0.62)" : undefined;
   const hikT = ek.startsWith("hik") ? Number(ek.slice(3) || 0.1) : -1;
   const size = 2900;
   const z = 1 + 0.04 * (t / 3);
@@ -901,7 +905,7 @@ const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const rx = ruz ? (random(`rz${f}`) - 0.5) * 10 * ruz + 8 * ruz : 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#0c1018", overflow: "hidden" }}>
-      <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0, filter: bgF }}>
         <defs>
           <filter id="eybl"><feGaussianBlur stdDeviation="9" /></filter>
           <radialGradient id="eykapi" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#7a9ad8" stopOpacity={0.55} /><stop offset="1" stopColor="#7a9ad8" stopOpacity={0} /></radialGradient>
@@ -911,11 +915,11 @@ const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         </g>
         <ellipse cx={470} cy={980} rx={520} ry={760} fill="url(#eykapi)" opacity={0.7} />
       </svg>
-      <div style={{ position: "absolute", left: 540 - 200 * (size / 1000) * z + rx, top: 740 - 200 * (size / 1000) * z, transform: `scale(${z}) skewX(${-3 * ruz}deg)`, transformOrigin: "0 0" }}>
+      <div style={{ position: "absolute", left: 540 - 200 * (size / 1000) * z + rx, top: 740 - 200 * (size / 1000) * z, transform: `scale(${z}) skewX(${-3 * ruz}deg)`, transformOrigin: "0 0", filter: chF }}>
         <Character look={ece} size={size} pose={{ emotion: ruz > 0.3 ? "aci" : t < t2 ? e1 : e2, lookX: lx, lookY: -0.05, pale, sacDagin: true, golgesiz: true, seed: 41, eyesClosed: ruz > 0.3 ? 0.85 : undefined, tilt: -5 * ruz, hik: hikT >= 0 && t > hikT ? (t - hikT) / 0.8 : undefined, sweat: ek === "ter", gozSok: ek === "goz" ? Math.min(1, t / 0.12) : undefined }} />
       </div>
       {ruz > 0 ? (
-        <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+        <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0, filter: chF }}>
           {/* kükremenin üfürüğü: kafadan sağa savrulan saç tutamları, rüzgâr çizgileri */}
           {new Array(9).fill(0).map((_, i) => {
             const y0 = 330 + i * 34, x0 = 600 + (i % 3) * 30;

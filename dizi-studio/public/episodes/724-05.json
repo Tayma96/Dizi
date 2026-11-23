@@ -759,25 +759,25 @@
                   "at": 0,
                   "x": -0.9,
                   "y": -0.1,
-                  "yaw": -0.7
+                  "yaw": -0.42
                 },
                 {
                   "at": 0.33,
                   "x": 1,
                   "y": 0,
-                  "yaw": 1
+                  "yaw": 0.45
                 },
                 {
                   "at": 0.62,
                   "x": -0.9,
                   "y": -0.1,
-                  "yaw": -0.7
+                  "yaw": -0.42
                 },
                 {
                   "at": 0.82,
                   "x": 1,
                   "y": 0,
-                  "yaw": 1
+                  "yaw": 0.45
                 }
               ]
             }
@@ -1115,7 +1115,8 @@
             "99",
             "0.3",
             "0.6",
-            "ruzgar"
+            "ruzgar",
+            "los"
           ]
         },
         {
@@ -1123,11 +1124,11 @@
           "who": "ece_sivil",
           "text": "lülü?",
           "emotion": "notr",
-          "tags": "[scared, trembling, coaxing, small voice]",
+          "tags": "[manic, sing-song]",
           "okunus": "Lülü?",
           "stab": 0.0,
-          "sure": 0.7,
-          "gapAfter": 0.7,
+          "sure": 1.31,
+          "gapAfter": 0.4,
           "shot": {
             "type": "yakin",
             "on": "ece_sivil",
@@ -1192,10 +1193,10 @@
           "who": "ece_sivil",
           "text": "bu da mı olmadı?",
           "emotion": "notr",
-          "tags": "[whimpering, shaky, nervous laugh]",
+          "tags": "[hysterical, cracking]",
           "okunus": "Bu da mı olmadı?!",
           "stab": 0.0,
-          "sure": 1.4,
+          "sure": 1.65,
           "gapAfter": 0.3,
           "shot": {
             "type": "orta",

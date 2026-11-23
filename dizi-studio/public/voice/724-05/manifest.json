@@ -1623,152 +1623,164 @@
   "zaman_duzeltme": "kelime zamanları Whisper + enerji zarfıyla elle düzeltildi; ağız işaretleri bu zamanlardan harf harf üretildi"
  },
  "i_05": {
-  "key": "e625ddaf8406",
+  "key": "f582c108fe83",
   "file": "voice/724-05/i_05.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
   "text": "lülü?",
-  "duration": 0.836,
-  "asrScore": 0.5,
-  "heard": "Lulu",
+  "duration": 1.306,
+  "asrScore": null,
+  "heard": null,
   "words": [
    {
     "w": "lülü?",
-    "start": 0.12,
-    "end": 0.64
+    "start": 0.09,
+    "end": 0.95
    }
   ],
   "mouth": [
    {
-    "t": 0.12,
+    "t": 0.09,
     "v": "L"
    },
    {
-    "t": 0.25,
+    "t": 0.105,
     "v": "U"
    },
    {
-    "t": 0.38,
+    "t": 0.31,
     "v": "L"
    },
    {
-    "t": 0.51,
+    "t": 0.515,
     "v": "U"
    },
    {
-    "t": 0.64,
-    "v": "X"
-   }
-  ],
-  "kaynak": "elevenlabs",
-  "model": "eleven_v3",
-  "hesap": "proxy",
-  "kredi": 19,
-  "turetim": "724-05-ece3/l_03 [0.0-0.8] (panik yeniden çekim, 23 Kasım); v3: iki hecede ü (F2 ~1.900-2.100 Hz)",
-  "zaman_duzeltme": "kelime zamanları Whisper + enerji zarfıyla elle düzeltildi; ağız işaretleri bu zamanlardan harf harf üretildi"
- },
- "i_06": {
-  "key": "011c9a20464f",
-  "file": "voice/724-05/i_06.mp3",
-  "voice": "elevenlabs:Nazlı Yeni",
-  "emotion": "notr",
-  "text": "bu da mı olmadı?",
-  "duration": 2.09,
-  "asrScore": 1.0,
-  "heard": "Bu da mı olmadı?",
-  "words": [
-   {
-    "w": "bu",
-    "start": 0.19,
-    "end": 0.42
-   },
-   {
-    "w": "da",
-    "start": 0.42,
-    "end": 0.6
-   },
-   {
-    "w": "mı",
-    "start": 0.6,
-    "end": 0.8
-   },
-   {
-    "w": "olmadı?",
-    "start": 0.8,
-    "end": 1.77
-   }
-  ],
-  "mouth": [
-   {
-    "t": 0.19,
-    "v": "M"
-   },
-   {
-    "t": 0.305,
-    "v": "U"
-   },
-   {
-    "t": 0.42,
+    "t": 0.72,
     "v": "X"
    },
    {
-    "t": 0.42,
-    "v": "L"
-   },
-   {
-    "t": 0.51,
-    "v": "A"
-   },
-   {
-    "t": 0.6,
-    "v": "X"
-   },
-   {
-    "t": 0.6,
-    "v": "M"
-   },
-   {
-    "t": 0.7,
-    "v": "I"
-   },
-   {
-    "t": 0.8,
-    "v": "X"
-   },
-   {
-    "t": 0.8,
-    "v": "O"
-   },
-   {
-    "t": 0.962,
-    "v": "L"
-   },
-   {
-    "t": 1.123,
-    "v": "M"
-   },
-   {
-    "t": 1.285,
-    "v": "A"
-   },
-   {
-    "t": 1.447,
-    "v": "L"
-   },
-   {
-    "t": 1.608,
-    "v": "I"
-   },
-   {
-    "t": 1.77,
+    "t": 0.95,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 21,
-  "turetim": "724-05-ece4/k_02 [1.28-3.37] (panik yeniden çekim, 23 Kasım)",
-  "zaman_duzeltme": "kelime zamanları Whisper + enerji zarfıyla elle düzeltildi; ağız işaretleri bu zamanlardan harf harf üretildi"
+  "kredi": 10,
+  "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.09-0.95 sn) doğrusal eşlendi",
+  "konusma": [
+   0.09,
+   0.95
+  ],
+  "turetim": "724-05-manik/L1_01 (manik yeniden çekim, 23 Kasım)"
+ },
+ "i_06": {
+  "key": "c7047eb2fbcd",
+  "file": "voice/724-05/i_06.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "bu da mı olmadı?",
+  "duration": 1.646,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bu",
+    "start": 0.16,
+    "end": 0.284
+   },
+   {
+    "w": "da",
+    "start": 0.346,
+    "end": 0.408
+   },
+   {
+    "w": "mı",
+    "start": 0.471,
+    "end": 0.533
+   },
+   {
+    "w": "olmadı?",
+    "start": 0.595,
+    "end": 1.34
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.16,
+    "v": "M"
+   },
+   {
+    "t": 0.222,
+    "v": "U"
+   },
+   {
+    "t": 0.284,
+    "v": "X"
+   },
+   {
+    "t": 0.346,
+    "v": "L"
+   },
+   {
+    "t": 0.377,
+    "v": "A"
+   },
+   {
+    "t": 0.408,
+    "v": "X"
+   },
+   {
+    "t": 0.471,
+    "v": "M"
+   },
+   {
+    "t": 0.502,
+    "v": "I"
+   },
+   {
+    "t": 0.595,
+    "v": "O"
+   },
+   {
+    "t": 0.657,
+    "v": "L"
+   },
+   {
+    "t": 0.719,
+    "v": "M"
+   },
+   {
+    "t": 0.781,
+    "v": "A"
+   },
+   {
+    "t": 0.843,
+    "v": "L"
+   },
+   {
+    "t": 0.905,
+    "v": "I"
+   },
+   {
+    "t": 1.029,
+    "v": "X"
+   },
+   {
+    "t": 1.34,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16,
+  "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.16-1.34 sn) doğrusal eşlendi",
+  "konusma": [
+   0.16,
+   1.34
+  ],
+  "turetim": "724-05-manik/B1_01 (manik yeniden çekim, 23 Kasım)"
  }
 }
