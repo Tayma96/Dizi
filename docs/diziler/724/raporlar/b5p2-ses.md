@@ -141,6 +141,52 @@ Bütün sahne aynı motorla çizildi (floresan tavanda, kepenkler cephede, böce
   - Ece'nin bastırılmış hıçkırığı: 724-05-ece4/j_02'nin kullanılmamış çekiminden (0,60-1,00, eliyle ağzını kapatmış gibi alçak geçirgen).
 - Kullanıcı ödemeyi tamamlarsa: `python3 tools/ses_724_05_p2.py uret` (kuru çalıştırma, sonra `--onayla --butce`). Taze varyantlar `724-05-p2-ses.json` → `uretim` içinde hazır: 6 Sabri, 3 anne, 2 Ece sözsüz; tahmini ≈ 550 kredi.
 
+### 5a. Kullanıcı kararı: bütün sesler eleven_v4 (henüz uygulanamadı, hazır)
+Kullanıcı, fısıltıların eski kayıtlardan türetilmesi yerine **eleven_v4 ile gerçek fısıltı** üretilmesini istedi:
+- Sabri = Nihat, anne = anne724, Ece = Nazlı Yeni.
+- Ece'nin sözsüz nefesleri de v4 ile denenecek.
+
+Hesap ödeme sorunu yüzünden üretim yapılamadı; akış hazır:
+
+```bash
+cd dizi-studio
+python3 tools/ses_724_05_p2.py uret --butce 700                  # kuru: 10 varyant ≈ 455 kredi (tavan 2.000)
+python3 tools/ses_724_05_p2.py uret --butce 700 --onayla
+B5P2_WHISPER=<model> /opt/tts/venv/bin/python tools/ses_724_05_p2.py sec   # Whisper + tını benzerliği -> 'secim'
+/opt/tts/venv/bin/python tools/ses_724_05_p2.py kur              # aynı binaural zincir, aynı W1-W6 yolları/zamanları
+B5P2_WHISPER=<model> /opt/tts/venv/bin/python tools/ses_724_05_p2.py olc
+```
+
+**`sec` nasıl seçer:**
+- Her fısıltı için `uretim`deki `hedef` alanına (W1-W6) bakar.
+- Whisper'da "ece" / "kızım" duyulmayan varyantı eler.
+- Kalanları, önceki bölümlerdeki aynı sesin kayıtlarına MFCC tını zarfı benzerliğiyle sıralar: Sabri için 724-01 c_15 / c_08 ve 724-05 f_01, anne için 724-03 a_02 ve 724-b1 a_07. Amaç tını uzaklaşmasın.
+
+**`kur` seçilen v4 dosyasıyla ne yapar:**
+- LPC'yi atlar; yalnız hafif sahte dokuyu uygular.
+- Başlangıç zamanları W1-W5 için aynı kalır, yollar yeni süreye orantılı ölçeklenir.
+- W6 her durumda en yakın anı 54,00 kesmesine denk gelecek şekilde konur.
+- Kesin zamanlar `724-05-p2-ses.json` → `plan.fisiltilar` içine yazılır. Görüntü yönetmeni bunlara bağlı; v4 sonrası W1-W5 bitişleri birkaç yüz ms değişebilir, başlangıçlar değişmez.
+
+**v4 riskleri:**
+- v4'ün sözsüz nefesi (n1/n2) kelime okuyabilir. Whisper bir kelime duyarsa kullanıcıya sorulacak; mevcut nefesler (el_nefes_tutma, sentez titrek nefes, yutkunma) yedektir.
+- v4 çok kısa fısıltıda tekrar üretebilir (B5'te "Hoaa!" ve "Lülü?" ikişer kez okunmuştu). `sec`, sessizlik kırpmasını yapıyor; tekrar varsa elle kırpılır (`ses_724_05.py kirp` yöntemi).
+
+### 5b. Hangi ses hangi modelle (bu teslimdeki dosyalar)
+
+| Ses | Şu anki kaynak | Model | v4 kararından sonra |
+|---|---|---|---|
+| W1 / W6 Sabri "Ece…" | 724-01 c_15 (B1 depo çağrısı) → LPC fısıltı | eleven_v4 (B1'de üretildi) + kendi işlememiz | uretim s1 / s3 (eleven_v4 gerçek fısıltı) |
+| W3 Sabri "Ece…" | 724-01 c_08 → LPC fısıltı | eleven_v4 (B1) + işleme | uretim s2 |
+| W2 / W5 Anne "Kızım…" | 724-03 a_02 (B3 taklit) → LPC fısıltı | eleven_v4 (B3) + işleme | uretim a1 / a3 |
+| W4 Anne "Kızım…" | 724-b1 a_07 → LPC fısıltı | eleven_v4 (B1) + işleme | uretim a2 |
+| Ece: nefes tutma | efekt/el_nefes_tutma | ElevenLabs SFX | aynı (yedek) |
+| Ece: titrek nefes (35,00 ve 48,50) | kendi sentezimiz | — | uretim n1 (eleven_v4) |
+| Ece: bastırılmış hıçkırık (38,05) | 724-05-ece4 j_02 kullanılmamış çekim | eleven_v4 (B5) | uretim n2 (eleven_v4) |
+| Ece: yutkunma | efekt/yutkunma | ElevenLabs SFX (B4) | aynı |
+| Kepenk, floresan, böcek, düşmeler | el_* / b5_* + kendi sentezimiz | ElevenLabs SFX + sentez | aynı |
+| Nefesler (Sabri/anne), uğultu, tıklar, alt frekans | kendi sentezimiz | — | aynı |
+
 ## 6. Görüntü yönetmeninden ve motordan beklenenler
 1. **Ses tek parça.**
    - Ses, parçanın ilk sahnesinde `"music": {"name": "efekt/b5p2_tam", "volume": 1.0}` olarak verilir. Başka music, ambience, sfx, line olmamalı.
