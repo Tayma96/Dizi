@@ -1,0 +1,171 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-05-ece3",
+ "episodeNo": 5,
+ "title": "B5 Ece panik çekimleri (geçici)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "sabri abi?",
+     "emotion": "notr",
+     "tags": "[terrified, panicked, breathless, voice trembling]",
+     "okunus": "Sabri abi?!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "abi sen benle taştaş mı geçiyorsun",
+     "emotion": "notr",
+     "tags": "[panicked, angry, voice trembling, fast]",
+     "okunus": "Abi sen benle taştaş mı geçiyorsun?!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "d2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ.",
+     "emotion": "notr",
+     "tags": "[panicked, breathless, fast]",
+     "okunus": "Şaka mı?.. Abi, bir adamın eli yürüdü… [shouting] Eli!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "e",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "hoaa",
+     "emotion": "notr",
+     "tags": "[terrified scream, startled]",
+     "okunus": "Hoaa!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "g",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ne dönüyo lan burda!",
+     "emotion": "notr",
+     "tags": "[shouting, panicked, angry]",
+     "okunus": "Ne dönüyo lan burda!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "i",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "hıığğ abi vallahi büyük hayranınım.",
+     "emotion": "notr",
+     "okunus": "[terrified gasp] Hıııığ! [panicked, breathless, voice trembling, fast] Abi, vallahi büyük hayranınım!",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "k",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "bu da mı olmadı?",
+     "emotion": "notr",
+     "tags": "[embarrassed, terrified, voice trembling, half whisper]",
+     "okunus": "Bu da mı olmadı?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "l",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[terrified, voice trembling, whimpering]",
+     "okunus": "Lülü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[scared, shaky high-pitched whisper]",
+     "okunus": "Lülü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}
