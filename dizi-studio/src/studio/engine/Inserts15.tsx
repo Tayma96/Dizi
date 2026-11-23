@@ -125,19 +125,20 @@ const ParaSay: React.FC<{ kim: "ece" | "anne" }> = ({ kim }) => {
   );
 };
 
-const KulakCek: React.FC<{ dur: number }> = ({ dur }) => {
+const KulakCek: React.FC<{ dur: number; sol?: boolean }> = ({ dur, sol }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = f / fps;
   const kalk = ease(interpolate(t, [0.25, 0.7], [0, 1], cl)) - 0.15 * ease(interpolate(t, [dur - 0.5, dur], [0, 1], cl));
   const sars = Math.sin(t * 22) * 4 * kalk;
-  const egim = 9 * kalk; // baş kulağın çekildiği yana (kadraj sağı) eğilir
+  const egim = (sol ? -9 : 9) * kalk; // baş kulağın çekildiği yana eğilir
   const size = 3000, S = size / 1000;
   const left = 540 - 200 * S, top = 300 - kalk * 160 + sars;
   // sağ kulak (rig 290,238), baş dönüş merkezi (200,300) etrafında egim kadar döner
   const r = (egim * Math.PI) / 180;
-  const ex = 200 + (290 - 200) * Math.cos(r) - (238 - 300) * Math.sin(r);
-  const ey = 300 + (290 - 200) * Math.sin(r) + (238 - 300) * Math.cos(r);
+  const kxR = sol ? 110 : 290; // sol: kadraj solundaki kulak
+  const ex = 200 + (kxR - 200) * Math.cos(r) - (238 - 300) * Math.sin(r);
+  const ey = 300 + (kxR - 200) * Math.sin(r) + (238 - 300) * Math.cos(r);
   const kx = left + ex * S, ky = top + ey * S;
   return (
     <AbsoluteFill>
@@ -146,13 +147,13 @@ const KulakCek: React.FC<{ dur: number }> = ({ dur }) => {
         <Arka />
       </svg>
       <div style={{ position: "absolute", left, top }}>
-        <Character look={castById("ece_ev")} size={size} pose={{ emotion: "aci", tilt: egim, lookX: 0.4, lookY: -0.3, yaw: 0.15, talk: t > 0.3 && t < dur - 0.3 ? [[f - 2, f + 2]] : undefined, tears: 0.3, seed: 41 }} />
+        <Character look={castById("ece_ev")} size={size} pose={{ emotion: "aci", tilt: egim, lookX: sol ? -0.4 : 0.4, lookY: -0.3, yaw: sol ? -0.15 : 0.15, talk: t > 0.3 && t < dur - 0.3 ? [[f - 2, f + 2]] : undefined, tears: 0.3, seed: 41 }} />
       </div>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         {/* annenin eli kulağı iki parmakla çimdikler; kol sağ üstten gelir */}
-        <path d={`M 1300 -200 L ${kx + 70} ${ky - 60}`} stroke={O} strokeWidth={230} strokeLinecap="round" />
-        <path d={`M 1300 -200 L ${kx + 70} ${ky - 60}`} stroke={KOL.anne[0]} strokeWidth={220} strokeLinecap="round" />
-        <g transform={`translate(${kx} ${ky}) rotate(${-35 + egim})`}>
+        <path d={`M ${sol ? -220 : 1300} -200 L ${kx + (sol ? -70 : 70)} ${ky - 60}`} stroke={O} strokeWidth={230} strokeLinecap="round" />
+        <path d={`M ${sol ? -220 : 1300} -200 L ${kx + (sol ? -70 : 70)} ${ky - 60}`} stroke={KOL.anne[0]} strokeWidth={220} strokeLinecap="round" />
+        <g transform={`translate(${kx} ${ky}) ${sol ? "scale(-1 1)" : ""} rotate(${-35 + (sol ? -egim : egim)})`}>
           <rect x={30} y={-150} width={170} height={60} rx={26} fill={KOL.anne[1]} stroke={O} strokeWidth={6} transform="rotate(-50 115 -120)" />
           <path d="M 20 -40 Q 70 -140 160 -110 Q 190 -40 120 20 Q 60 50 20 10 Z" fill={KOL.anne[2]} stroke={O} strokeWidth={7} />
           {/* başparmak önde, işaret parmağı arkada: kulak memesi arada */}
@@ -168,6 +169,6 @@ export const Insert15: React.FC<{ kind: Insert15Kind; dur: number; text?: string
   switch (kind) {
     case "cep_deste": return <CepDeste sol={text?.[0] === "sol"} />;
     case "para_say": return <ParaSay kim={text?.[0] === "anne" ? "anne" : "ece"} />;
-    case "kulak_cek": return <KulakCek dur={dur} />;
+    case "kulak_cek": return <KulakCek dur={dur} sol={text?.[0] === "sol"} />;
   }
 };

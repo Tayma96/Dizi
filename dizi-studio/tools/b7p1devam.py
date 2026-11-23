@@ -135,6 +135,8 @@ def vuruslar():
     for ad, kim, metin, tk, gap in SIRA[1:-1]:
         if ad == "E03":
             ek = {"kind": "para_say", "text": ["ece"]}
+        elif ad == "E05":  # kulak çekme: Ece'nin yakın planı (kullanıcı tercihi)
+            ek = {"kind": "kulak_cek", "text": ["sol"]}
         else:
             ek = b7(T[ad], cam[ad])
         b = {"type": "line", "who": kim, "text": metin, "emotion": "notr", "gapAfter": gap, "_take": tk, "ekle": ek}
