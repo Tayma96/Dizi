@@ -151,9 +151,19 @@ const KulakCek: React.FC<{ dur: number; sol?: boolean }> = ({ dur, sol }) => {
       </div>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute" }}>
         {/* annenin eli kulağı iki parmakla çimdikler; kol sağ üstten gelir */}
-        <path d={`M ${sol ? -220 : 1300} -200 L ${kx + (sol ? -70 : 70)} ${ky - 60}`} stroke={O} strokeWidth={230} strokeLinecap="round" />
-        <path d={`M ${sol ? -220 : 1300} -200 L ${kx + (sol ? -70 : 70)} ${ky - 60}`} stroke={KOL.anne[0]} strokeWidth={220} strokeLinecap="round" />
-        <g transform={`translate(${kx} ${ky}) ${sol ? "scale(-1 1)" : ""} rotate(${-35 + (sol ? -egim : egim)})`}>
+        {/* sol (B7): anne Ece'nin solunda, omuz hizasında durur → kol soldan, hafif aşağıdan YATAY gelir */}
+        {sol ? (
+          <>
+            <path d={`M -300 ${ky + 300} L ${kx - 144} ${ky + 83}`} stroke={O} strokeWidth={230} strokeLinecap="round" />
+            <path d={`M -300 ${ky + 300} L ${kx - 144} ${ky + 83}`} stroke={KOL.anne[0]} strokeWidth={220} strokeLinecap="round" />
+          </>
+        ) : (
+          <>
+            <path d={`M 1300 -200 L ${kx + 70} ${ky - 60}`} stroke={O} strokeWidth={230} strokeLinecap="round" />
+            <path d={`M 1300 -200 L ${kx + 70} ${ky - 60}`} stroke={KOL.anne[0]} strokeWidth={220} strokeLinecap="round" />
+          </>
+        )}
+        <g transform={`translate(${kx} ${ky}) ${sol ? `scale(-1 1) rotate(${76 - egim})` : `rotate(${-35 + egim})`}`}>
           <rect x={30} y={-150} width={170} height={60} rx={26} fill={KOL.anne[1]} stroke={O} strokeWidth={6} transform="rotate(-50 115 -120)" />
           <path d="M 20 -40 Q 70 -140 160 -110 Q 190 -40 120 20 Q 60 50 20 10 Z" fill={KOL.anne[2]} stroke={O} strokeWidth={7} />
           {/* başparmak önde, işaret parmağı arkada: kulak memesi arada */}
