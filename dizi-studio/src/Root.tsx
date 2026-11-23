@@ -12,6 +12,7 @@ import { CastSheet, EmotionSheet, GestureSheet, MouthSheet, SetSheet } from "./s
 import { B4Ornek, Donus25DSheet } from "./studio/engine/Inserts10";
 import { B5Ornek, BocekSheet } from "./studio/engine/Inserts11";
 import { Lab12 } from "./studio/engine/Lab12";
+import { B5P2Kare } from "./studio/engine/Inserts12";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -74,6 +75,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="B5OrnekDev" component={B5Ornek} durationInFrames={78} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_dev" as const, text: [] as string[] }} />
         <Composition id="B5OrnekYakin" component={B5Ornek} durationInFrames={66} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_yakin" as const, text: [] as string[] }} />
         <Composition id="B5OrnekKukreme" component={B5Ornek} durationInFrames={45} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_kukreme" as const, text: [] as string[] }} />
+        <Composition id="B5P2Kare" component={B5P2Kare} durationInFrames={90} fps={30} width={1080} height={1920} defaultProps={{ kind: "p2_kasa" as const, text: [] as string[] }} />
         <Composition id="Lab12" component={Lab12} durationInFrames={30} fps={30} width={1080} height={1920} defaultProps={{ mode: "kapi" }} />
         <Composition id="Agizlar" component={MouthSheet} durationInFrames={90} fps={30} width={1540} height={880} />
       </Folder>

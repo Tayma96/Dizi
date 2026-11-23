@@ -236,4 +236,6 @@ export type Pose = {
   agizKapa?: number;
   /** 7/24 B5 p2 (opt-in): ağzı kapalı ellerin titremesi 0..1 */
   elTitre?: number;
+  /** 7/24 B5 p2 (opt-in): dudak titremesi 0..1 */
+  dudakTitre?: number;
 };

@@ -313,7 +313,7 @@ export type CharacterProps = {
 const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number }> = ({ look, k, dx, titre }) => {
   const kk = Math.max(0, Math.min(1, k));
   const e = kk * kk * (3 - 2 * kk);
-  const yOff = (1 - e) * 120;
+  const yOff = (1 - e) * 60;
   const sleeve = sleeveColor(look);
   const hand = (side: 1 | -1, x: number, y: number, rot: number) => (
     <g transform={`translate(${x} ${y + yOff}) rotate(${rot + titre * 1.6 * side}) scale(0.92)`}>
@@ -330,7 +330,7 @@ const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number
     </g>
   );
   return (
-    <g opacity={Math.min(1, kk * 3)}>
+    <g opacity={kk < 0.5 ? 0 : 1}>
       {hand(1, 172 + dx * 1.05, 282, 30)}
       {hand(-1, 228 + dx * 1.05, 292, -30)}
     </g>
@@ -494,8 +494,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {!shortSleeve && out.type === "tracksuit" ? <path d={`M ${sx + 12} ${ey} L ${sx + 10} ${hy}`} stroke="#fff" strokeWidth={5} /> : null}
           {!shortSleeve ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
           {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
-          <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />
-          <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
+          {(pose.agizKapa ?? 0) > 0.5 ? null : <circle cx={sx} cy={hy + 12} r={21} fill={skin} stroke={OUT} strokeWidth={SW} />}
+          {(pose.agizKapa ?? 0) > 0.5 ? null : <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />}
           {side === "l" && pose.murekkep ? (
             <g>
               <circle cx={sx - 6} cy={hy + 24} r={7} fill="#10204a" opacity={0.9} />
@@ -828,7 +828,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
         </g>
       ) : null}
+      {pose.dudakTitre ? (
+        <g transform={`translate(${200 + dx * 1.1} ${274 + 2 * yk + 1.6 * pose.dudakTitre * Math.sin(frame * 2.3)}) scale(${1 + 0.07 * pose.dudakTitre * Math.sin(frame * 3.1)} ${1 + 0.12 * pose.dudakTitre * Math.sin(frame * 2.7 + 1)}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})`}>
+          <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+        </g>
+      ) : (
       <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+      )}
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
           {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}
@@ -970,7 +976,6 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <g transform={bodyT}>
           <g transform={headT}>
             <Head />
-            {pose.agizKapa ? <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} /> : null}
             {takil > 0 ? (
               <path d={`M 252 124 C 284 ${100 - 30 * takil} ${268 - 6 * cekis} ${44 - 34 * takil - 10 * cekis} 238 ${34 - 30 * takil - 14 * cekis} C 234 ${54 - 20 * takil} 250 94 240 128 Z`} fill={look.hair.color} stroke={OUT} strokeWidth={4} strokeLinejoin="round" opacity={Math.min(1, takil * 1.5)} />
             ) : null}
@@ -1045,6 +1050,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <Arm side="r" a={armR} />
           </g>
         </g>
+        {pose.agizKapa ? (
+          <g transform={bodyT}>
+            <g transform={headT}>
+              <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} />
+            </g>
+          </g>
+        ) : null}
       </g>
     </svg>
   );
