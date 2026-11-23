@@ -94,12 +94,19 @@ sahneler = [
      "music": {"name": "efekt/b6p2_alt", "volume": 1.0, "duck": False}, "beats": []},
     {"id": "b", "set": "market_kapi", "time": "gunduz", "title": "Kaçış", "transition": "kesme", "cast": {},
      "beats": [{"type": "insert", "kind": "b6_dis", "dur": 3.0, "text": [json.dumps(dict(DIS, t0=0), ensure_ascii=False)]}]},
-    {"id": "c", "set": "ev_antre", "time": "gunduz", "title": "Kapı", "transition": "kesme",
-     "isaretler": {"ece_esik": {"x": 560, "y": 1560, "size": 950}},
+    {"id": "c", "set": "ev_antre_ac", "time": "gunduz", "title": "Kapı açılır", "transition": "kesme",
+     "isaretler": {"ece_esik": {"x": 560, "y": 1560, "size": 930}},
+     "cast": {ECE: {"mark": "ece_esik", **AGLA, "hickir": 0.9, "aglaAgiz": 0.5, "hidden": True}},
+     "beats": [
+         act(0.7, {"type": "genis", "move": "sabit", "kadraj": {"cx": 560, "cy": 1060, "z": 1.05}}),
+         act(1.4, {"type": "genis", "move": "yaklas", "kadraj": {"cx": 560, "cy": 1060, "z": 1.05}}, {ECE: {"hidden": False}}, door="ac"),
+     ]},
+    {"id": "c2", "set": "ev_antre", "time": "gunduz", "title": "Kilit, zincir", "transition": "kesme",
+     "isaretler": {"ece_esik": {"x": 560, "y": 1560, "size": 930}},
      "cast": {ECE: {"mark": "ece_esik", **AGLA, "hickir": 0.9, "aglaAgiz": 0.5}},
      "beats": [
-         act(1.2, {"type": "genis", "move": "yaklas", "kadraj": {"cx": 560, "cy": 1060, "z": 1.05}}, door="ac"),
-         act(1.4, {"type": "orta", "on": ECE, "move": "yaklas"}, {ECE: {"mark": "ece_kapi", "yuruSure": 0.7, "bak": {"x": 0.6, "y": 0}}}, door="kapat"),
+         act(0.7, {"type": "orta", "on": ECE, "move": "yaklas"}, {ECE: {"mark": "ece_kapi", "yuruSure": 0.6, "bak": {"x": 0.6, "y": 0}}}, door="acik"),
+         act(0.8, {"type": "orta", "on": ECE, "move": "yaklas"}, {ECE: {"bak": {"x": 0.6, "y": 0}}}, door="kapat"),
          {"type": "insert", "kind": "ev_anahtar", "dur": 1.4},
          {"type": "insert", "kind": "ev_zincir", "dur": 1.3},
      ]},
@@ -169,11 +176,12 @@ def main():
         (f"{S}/efekt/kosma.mp3", b0, -10, (0, c0 - b0), 0.05, 0.3),
         (f"{CK}/K1_01.mp3", b0, -2, (0, c0 - b0 + 0.2), 0.05, 0.3),
         # ev: kapı, kilit, zincir
-        (f"{S}/efekt/kapi_kapanma.mp3", T("c", 1, 0.9), -4, None, 0, 0.3),
-        (f"{S}/efekt/kilit.mp3", T("c", 2, 0.25), -2, None, 0, 0),
-        (f"{S}/efekt/kilit.mp3", T("c", 2, 0.8), -2, None, 0, 0),
-        (f"{S}/efekt/kilit_yarim.mp3", T("c", 3, 0.2), -3, None, 0, 0),
-        (f"{S}/efekt/el_tablet_kilit.mp3", T("c", 3, 1.05), -6, None, 0, 0.2),
+        (f"{S}/efekt/kilit_yarim.mp3", T("c", 0, 0.15), -6, None, 0, 0),       # dışarıdan anahtar
+        (f"{S}/efekt/kapi_kapanma.mp3", T("c2", 1, 0.2), -4, None, 0, 0.3),
+        (f"{S}/efekt/kilit.mp3", T("c2", 2, 0.25), -2, None, 0, 0),
+        (f"{S}/efekt/kilit.mp3", T("c2", 2, 0.8), -2, None, 0, 0),
+        (f"{S}/efekt/kilit_yarim.mp3", T("c2", 3, 0.2), -3, None, 0, 0),
+        (f"{S}/efekt/el_tablet_kilit.mp3", T("c2", 3, 1.05), -6, None, 0, 0.2),
         (f"{CK}/../../724-06/cekim/C2_01.mp3", T("c", 0, 0.2), -10, (0, 2.6), 0.1, 0.4),  # merdivenden hıçkırık
         # yerde ağlama (anne konuşurken de sürer, kısık)
         (f"{CK}/../../724-06/cekim/C1_01.mp3", d0, 0, None, 0.05, 0.6),

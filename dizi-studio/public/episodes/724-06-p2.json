@@ -102,15 +102,76 @@
   },
   {
    "id": "c",
-   "set": "ev_antre",
+   "set": "ev_antre_ac",
    "time": "gunduz",
-   "title": "Kapı",
+   "title": "Kapı açılır",
    "transition": "kesme",
    "isaretler": {
     "ece_esik": {
      "x": 560,
      "y": 1560,
-     "size": 950
+     "size": 930
+    }
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "ece_esik",
+     "emotion": "agliyor",
+     "tears": 1,
+     "sacDagin": true,
+     "onluk": false,
+     "pale": 0.25,
+     "hickir": 0.9,
+     "aglaAgiz": 0.5,
+     "hidden": true
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 0.7,
+     "shot": {
+      "type": "genis",
+      "move": "sabit",
+      "kadraj": {
+       "cx": 560,
+       "cy": 1060,
+       "z": 1.05
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas",
+      "kadraj": {
+       "cx": 560,
+       "cy": 1060,
+       "z": 1.05
+      }
+     },
+     "cast": {
+      "ece_sivil": {
+       "hidden": false
+      }
+     },
+     "door": "ac"
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "Kilit, zincir",
+   "transition": "kesme",
+   "isaretler": {
+    "ece_esik": {
+     "x": 560,
+     "y": 1560,
+     "size": 930
     }
    },
    "cast": {
@@ -128,21 +189,7 @@
    "beats": [
     {
      "type": "action",
-     "dur": 1.2,
-     "shot": {
-      "type": "genis",
-      "move": "yaklas",
-      "kadraj": {
-       "cx": 560,
-       "cy": 1060,
-       "z": 1.05
-      }
-     },
-     "door": "ac"
-    },
-    {
-     "type": "action",
-     "dur": 1.4,
+     "dur": 0.7,
      "shot": {
       "type": "orta",
       "on": "ece_sivil",
@@ -151,7 +198,25 @@
      "cast": {
       "ece_sivil": {
        "mark": "ece_kapi",
-       "yuruSure": 0.7,
+       "yuruSure": 0.6,
+       "bak": {
+        "x": 0.6,
+        "y": 0
+       }
+      }
+     },
+     "door": "acik"
+    },
+    {
+     "type": "action",
+     "dur": 0.8,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_sivil": {
        "bak": {
         "x": 0.6,
         "y": 0

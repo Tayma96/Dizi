@@ -23,7 +23,7 @@ export const H = 1920;
 
 export type SetName =
   | "salon" | "mutfak" | "yatak_odasi" | "cocuk_odasi" | "ofis" | "hastane_odasi" | "hastane_koridoru"
-  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market" | "market_genel" | "market_kapi" | "market_kasa" | "banyo_ayna" | "banyo_kapi" | "ev_antre" | "ev_antre_z" | "araba_on" | "mutfak_dg" | "zenith_merkez" | "koy_meydani"
+  | "sokak" | "kafe" | "sinif" | "mezarlik" | "villa" | "karakol" | "park" | "apartman_kapisi" | "koridor" | "merdiven" | "hucre" | "hucre1" | "kogus_koridoru" | "ortak_salon" | "ucak_kabin" | "sahil_enkaz" | "kulube" | "lobi" | "kat7_koridor" | "market" | "market_genel" | "market_kapi" | "market_kasa" | "banyo_ayna" | "banyo_kapi" | "ev_antre" | "ev_antre_z" | "ev_antre_ac" | "araba_on" | "mutfak_dg" | "zenith_merkez" | "koy_meydani"
   /* Kırmızı Düğme (kd_*) */
   | "kd_beyaz_oda" | "kd_ev" | "kd_market_onu" | "kd_cadde_takip" | "kd_cadde_kavsak" | "kd_yayin";
 
@@ -55,6 +55,7 @@ export const SET_INFO: Record<SetName, { title: string; marks: Record<string, Ma
   banyo_kapi: { title: "Ece'nin banyosu · kapı", marks: BANYO724_MARKS.kapi },
   ev_antre: { title: "Ece'nin evi · antre", marks: EV724_MARKS },
   ev_antre_z: { title: "Ece'nin evi · antre (zincir takılı)", marks: EV724_MARKS },
+  ev_antre_ac: { title: "Ece'nin evi · antre (Ece kapının arkasında, kanat önde)", marks: EV724_MARKS },
   market_genel: { title: "Can Market · genel", marks: MARKET724_MARKS.genel },
   market_kapi: { title: "Can Market · kapı", marks: MARKET724_MARKS.kapi },
   market_kasa: { title: "Can Market · kasa", marks: MARKET724_MARKS.kasa },
@@ -139,7 +140,7 @@ const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: 
   if (name === "koy_meydani") return <KoyMeydaniBG frame={frame} />;
   if (name === "araba_on") return <ArabaBG frame={frame} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724BG view={name.slice(6) as BanyoView} frame={frame} doorOpen={doorOpen} />;
-  if (name === "ev_antre" || name === "ev_antre_z") return <Ev724BG frame={frame} doorOpen={doorOpen} zincir={name === "ev_antre_z"} />;
+  if (name === "ev_antre" || name === "ev_antre_z" || name === "ev_antre_ac") return <Ev724BG frame={frame} doorOpen={doorOpen} zincir={name === "ev_antre_z"} kanatOnde={name === "ev_antre_ac"} />;
   if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724BG view={name.slice(7) as MarketView} frame={frame} doorOpen={doorOpen} saat={saat ?? "03:00"} iz={iz} turb={turb ?? 0} {...market} />;
   const props = { kus, saat, frame, sallanan, kaydir, tv, turb, kemer };
   const night = time === "gece";
@@ -1147,7 +1148,7 @@ const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean; door
   if (name === "kd_yayin") return <KdYayinFG frame={fr} />;
   if (name === "araba_on") return <ArabaFG frame={fr} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724FG view={name.slice(6) as BanyoView} frame={fr} doorOpen={0} />;
-  if (name === "ev_antre" || name === "ev_antre_z") return <Ev724FG frame={fr} doorOpen={0} zincir={false} />;
+  if (name === "ev_antre" || name === "ev_antre_z" || name === "ev_antre_ac") return <Ev724FG frame={fr} doorOpen={doorOpen} zincir={false} kanatOnde={name === "ev_antre_ac"} />;
   if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} {...market} />;
   switch (name) {
     case "market":

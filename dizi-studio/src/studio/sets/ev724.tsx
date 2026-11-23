@@ -8,7 +8,7 @@ import React from "react";
  * Işık: salondan sağdan sıcak sabah ışığı (anahtar), tavanda kapalı aplik; kapı tarafı biraz gölgede.
  * ===================================================================================== */
 
-export type EvProps = { frame: number; doorOpen: number; zincir: boolean };
+export type EvProps = { frame: number; doorOpen: number; zincir: boolean; /** kanat karakterlerin ÖNÜNDE (FG) çizilir: Ece sahanlıkta, kapının arkasında */ kanatOnde?: boolean };
 
 const W = 1080;
 const H = 1920;
@@ -74,7 +74,7 @@ const Kanat: React.FC<{ op: number; zincir: boolean }> = ({ op, zincir }) => {
   );
 };
 
-export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir }) => (
+export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir, kanatOnde }) => (
   <g>
     <defs>
       <linearGradient id="ev_duvar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#d8c8a8" /><stop offset="1" stopColor="#e8d8b8" /></linearGradient>
@@ -116,8 +116,8 @@ export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir }) => (
     <path d="M 0 1600 H 1080 V 1920 H 0 Z" fill="url(#ev_zemin)" />
     {new Array(10).fill(0).map((_, i) => <path key={i} d={`M ${i * 130 - 60} 1600 L ${i * 170 - 330} 1920`} stroke="#6a4428" strokeWidth={3} opacity={0.6} />)}
     <path d="M 360 1610 L 740 1610 L 790 1700 L 310 1700 Z" fill="#8a3a3a" stroke="#5a2424" strokeWidth={4} />
-    {/* kanat */}
-    <Kanat op={doorOpen} zincir={zincir} />
+    {/* kanat (kanatOnde ise FG'de, karakterlerin önünde) */}
+    {kanatOnde ? null : <Kanat op={doorOpen} zincir={zincir} />}
     {/* salon ışığı ve vinyet */}
     <rect width={W} height={H} fill="url(#ev_salon)" />
     <rect width={W} height={H} fill="url(#ev_vin)" />
@@ -125,9 +125,11 @@ export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir }) => (
 );
 
 /** Salon penceresinden gelen sabah güneşi: çapraz huzmeler + uçuşan toz (karakterleri de aydınlatır) */
-export const Ev724FG: React.FC<EvProps> = ({ frame }) => {
+export const Ev724FG: React.FC<EvProps> = ({ frame, doorOpen, zincir, kanatOnde }) => {
   const t = frame / 30;
   return (
+    <g>
+    {kanatOnde ? <Kanat op={doorOpen} zincir={zincir} /> : null}
     <g style={{ mixBlendMode: "screen" }}>
       <defs>
         <linearGradient id="evf_h" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffd890" stopOpacity={0.42} /><stop offset="1" stopColor="#ffb860" stopOpacity={0} /></linearGradient>
@@ -141,6 +143,7 @@ export const Ev724FG: React.FC<EvProps> = ({ frame }) => {
         const y = 700 + ((i * 211) % 1100) + Math.sin(t * 0.9 + i) * 18;
         return <circle key={i} cx={x} cy={y} r={2 + (i % 3)} fill="#fff0c8" opacity={0.35 + 0.3 * Math.abs(Math.sin(t * 1.3 + i))} />;
       })}
+    </g>
     </g>
   );
 };
