@@ -41,6 +41,8 @@ export const EMOTION_FACE: Record<Emotion, FaceParams> = {
   yorgun: { browInner: 4, browOuter: -4, browLift: 2, eyeOpen: 0.55, eyeSmile: false, pupil: 1, mouth: "line", blush: 0.2 },
   soguk: { browInner: -4, browOuter: 0, browLift: 2, eyeOpen: 0.6, eyeSmile: false, pupil: 0.9, mouth: "flat", blush: 0.1 },
   kararli: { browInner: -8, browOuter: 2, browLift: 3, eyeOpen: 0.68, eyeSmile: false, pupil: 1, mouth: "tight", blush: 0.4 },
+  sahteGulus: { browInner: 2, browOuter: 3, browLift: -3, eyeOpen: 1.04, eyeSmile: false, pupil: 0.72, mouth: "grin", blush: 0 },
+  zorGulumse: { browInner: 17, browOuter: 4, browLift: -9, eyeOpen: 1.12, eyeSmile: false, pupil: 0.55, mouth: "grin", blush: 0.1 },
   igrenmis: { browInner: -8, browOuter: -2, browLift: 4, eyeOpen: 0.55, eyeSmile: false, pupil: 1, mouth: "wavy", blush: 0.3 },
 };
 

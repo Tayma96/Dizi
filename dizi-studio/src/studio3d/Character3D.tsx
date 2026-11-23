@@ -43,6 +43,8 @@ export const GESTURES3D: Record<Gesture | "sarilma" | "kapiAc", { L: HandT; R: H
   raf: { L: REST, R: CHEEK },
   basTut: { L: REST, R: CHEEK },
   uzat: { L: REST, R: CHEEK },
+  cagir: { L: { t: [0.3, 0.42, 0.25], pole: [1, -1, 0] }, R: REST },
+  ellerKenetli: { L: { t: [0.03, 0.42, 0.24], pole: [1, -1, 0] }, R: { t: [0.03, 0.42, 0.24], pole: [1, -1, 0] } },
   eliKalbinde: { L: REST, R: { t: [-0.04, 0.33, 0.17], pole: [1, -1, 0] } },
   omuzSilk: { L: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] }, R: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] } },
   yumruk: { L: { t: [0.2, 0.14, 0.13], pole: [0.5, 0, -1] }, R: { t: [0.2, 0.14, 0.13], pole: [0.5, 0, -1] } },

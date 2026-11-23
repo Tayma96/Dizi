@@ -1229,6 +1229,33 @@
     "blush": false
   },
   {
+    "id": "sabri_sahte",
+    "name": "Sabri",
+    "role": "7/24 B5: depodaki şey, Sabri kılığında (görünüş Sabri ile aynı; göz kırpmaz, mum gibi parlar)",
+    "voice": "erkek",
+    "gender": "m",
+    "age": "old",
+    "build": "heavy",
+    "skin": "#d8a47c",
+    "skinShade": "#c08a64",
+    "iris": "#2a1a10",
+    "hair": {
+      "style": "balding",
+      "color": "#9a948c",
+      "shade": "#7a746c"
+    },
+    "facialHair": "mustache",
+    "outfit": {
+      "type": "cardigan",
+      "top": "#6a6a66",
+      "topShade": "#525250",
+      "bottom": "#3a3530",
+      "shoes": "#2a1a10",
+      "accent": "#d8d0c0"
+    },
+    "blush": false
+  },
+  {
     "id": "sarhos724",
     "name": "Müşteri",
     "role": "7/24: gece yarısı sarhoş müşteri",

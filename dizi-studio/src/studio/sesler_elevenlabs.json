@@ -188,6 +188,15 @@
       "speed": 1.0
     }
   },
+  "sabri_sahte": {
+    "voice_id": "MuOq11XzQTthwLhmGZ2V",
+    "sahip": "9e46ff55f2d9efaf1ab7b5acbc5f3415a7280d5a01ce1b2f69c05d327fdf36d4",
+    "ad": "Nihat",
+    "ayar": {
+      "similarity_boost": 0.8,
+      "speed": 1.0
+    }
+  },
   "sarhos724": {
     "voice_id": "Dzgub2SzfGvifooR4JMV",
     "sahip": "f0d1207528476696cf00d74c0cf6c00aea0c404cca67943deb3ddc8dd37973a6",

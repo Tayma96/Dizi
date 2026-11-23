@@ -314,8 +314,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
   const seed = pose.seed ?? look.name.length * 7;
   const emo = pose.emotion ?? "notr";
-  const face = EMOTION_FACE[emo];
-  const blink = useBlink(seed);
+  // 7/24 B5: nefes çekme (hıığğ): hızlı içe çekiş, kısa tutma, yarım bırakma
+  const hikK = pose.hik !== undefined && pose.hik > 0 ? Math.min(1, pose.hik / 0.28) ** 0.6 * (1 - 0.45 * Math.max(0, Math.min(1, (pose.hik - 0.75) / 0.25))) : 0;
+  const face0 = EMOTION_FACE[emo];
+  const face = hikK > 0 ? { ...face0, eyeOpen: face0.eyeOpen + 0.28 * hikK, browLift: face0.browLift - 8 * hikK, browInner: face0.browInner + 4 * hikK } : face0;
+  const blink0 = useBlink(seed);
+  const blink = pose.kirpmaz ? 0 : blink0;
   const age = AGE[look.age];
   const wx = BUILD[look.build];
   const male = look.gender === "m";
@@ -359,6 +363,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const armL: FullArm = { ...g.L, ...(pose.armL ?? {}) };
   const armR: FullArm = { ...g.R, ...(pose.armR ?? {}) };
   if (pose.gesture === "elSalla") armR.fore += Math.sin(frame / 3) * 18;
+  if (pose.gesture === "cagir") { const c = Math.sin(frame / 3.2); armL.fore += 22 * c; armL.upper += 4 * c; }
   if (pose.gesture === "krem") { armR.fore += Math.sin(frame / 2.4) * 5; armR.upper += Math.sin(frame / 2.4 + 1.2) * 3; }
   if (pose.gesture === "kafaKasi") armR.fore += Math.sin(frame / 1.7) * 9;
   if (pose.gesture === "okşa") armL.upper += Math.sin(frame / 5) * 5;
@@ -723,6 +728,16 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       ) : null}
       <path d={facePath} fill={skin} stroke={OUT} strokeWidth={SW} />
       <path d={facePath} fill="#c9d6e0" opacity={pale * 0.45} />
+      {pose.mumParlak ? (
+        <g opacity={Math.min(1, pose.mumParlak)}>
+          {/* mum/maske parlaklığı: yüz fazla pürüzsüz ve ıslak görünür */}
+          <path d={facePath} fill="#f4e6d4" opacity={0.16} />
+          <ellipse cx={196 + dx} cy={128} rx={46} ry={13} fill="#ffffff" opacity={0.5} transform={`rotate(-6 ${196 + dx} 128)`} />
+          <ellipse cx={150 + dx} cy={232} rx={13} ry={7} fill="#ffffff" opacity={0.42} />
+          <ellipse cx={252 + dx} cy={230} rx={11} ry={6} fill="#ffffff" opacity={0.36} />
+          <ellipse cx={206 + dx} cy={236} rx={5} ry={7} fill="#ffffff" opacity={0.5} />
+        </g>
+      ) : null}
       <path d={`M ${262 - Math.min(0, dx)} 180 Q 276 240 248 282 Q 270 270 280 230 Q 286 190 278 160 Z`} fill={look.skinShade} opacity={0.55} />
       {old ? (
         <g stroke={OUT} strokeOpacity={0.3} strokeWidth={2.5} fill="none">
@@ -784,7 +799,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
         </g>
       ) : null}
-      <Mouth viseme={vis} rest={yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+      <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
           {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}
@@ -822,6 +837,26 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${190 + dx} 194 Q ${200 + dx} 186 ${210 + dx} 194 M ${130 + dx} 192 L 114 186 M ${270 + dx} 192 L 286 186`} />
         </g>
       ) : null}
+      {pose.yagmur ? (
+        <g opacity={Math.min(1, pose.yagmur)}>
+          {/* yağmurda ıslanmış baş: tepede damlalar, şakaktan süzülen su, çeneden damlayan damla */}
+          {[[150, 112], [232, 104], [186, 96], [262, 140], [128, 150], [204, 120]].map(([x, y], i) => (
+            <path key={i} d={`M ${x + dx * 0.5} ${y} q -4 9 0 13 q 4 -4 0 -13 z`} fill="#d8ecff" stroke="#6fa8cf" strokeWidth={1.6} />
+          ))}
+          {[0, 1].map((i) => {
+            const per = 38 + i * 11;
+            const k = ((frame + i * 17) % per) / per;
+            const x = i ? 284 + dx * 0.3 : 118 + dx * 0.3;
+            return <path key={`s${i}`} d={`M ${x} ${170 + 70 * k} q -3 7 0 10 q 3 -3 0 -10 z`} fill="#d8ecff" stroke="#6fa8cf" strokeWidth={1.4} opacity={k < 0.9 ? 1 : 0} />;
+          })}
+          {(() => {
+            const per = 27;
+            const k = (frame % per) / per;
+            const y = k < 0.55 ? 314 + 6 * (k / 0.55) : 320 + 220 * ((k - 0.55) / 0.45) ** 2;
+            return <path d={`M ${200 + dx} ${y} q -4 9 0 13 q 4 -4 0 -13 z`} fill="#d8ecff" stroke="#6fa8cf" strokeWidth={1.6} />;
+          })()}
+        </g>
+      ) : null}
       {pose.wet ? (
         <g fill="#bfe3ff" stroke="#6fa8cf" strokeWidth={1.5}>
           <path d="M 130 210 q -4 10 0 14 q 4 -4 0 -14 z" />
@@ -839,7 +874,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const runTilt = running ? 3.2 * Math.sin(runPh - 0.6) : 0;
   const yutY = 5 * yk;
   const sTilt = -8 * sLean;
-  const headT = `translate(0 ${-breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
+  const kah = pose.kahkaha ? Math.min(1, pose.kahkaha) * Math.abs(Math.sin(frame * 0.95)) : 0;
+  const omzY = 14 * hikK + 7 * kah;
+  const headT = `translate(0 ${-omzY * 1.35 - breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis - 4 * hikK - 3 * kah} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
 
   return (
     <svg
@@ -859,7 +896,16 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <g transform={bodyT}>
           {pose.hideLegs ? null : <Legs />}
           <g transform={torsoScale}>
+            <g transform={omzY ? `translate(0 ${-omzY * 0.6})` : undefined}>
             <Torso />
+            {pose.yagmur ? (
+              <g opacity={Math.min(1, pose.yagmur) * 0.85}>
+                {/* ıslak omuzlar ve yaka: kumaş koyulaşır */}
+                <path d="M 128 340 Q 200 320 272 340 Q 288 360 284 410 Q 240 396 200 420 Q 160 396 116 410 Q 112 360 128 340 Z" fill="#0c1420" opacity={0.32} />
+                {[[150, 380], [238, 372], [206, 440], [170, 470], [252, 452]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r={4} fill="#0c1420" opacity={0.35} />)}
+              </g>
+            ) : null}
+            </g>
             {look.isimlik ? (
               <g>
                 <rect x={210} y={396} width={66} height={20} rx={3} fill="#e8e6dc" stroke={OUT} strokeWidth={2.5} />
@@ -964,8 +1010,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           </g>
         ) : null}
         <g transform={bodyT}>
+          <g transform={omzY ? `translate(0 ${-omzY})` : undefined}>
           <Arm side="l" a={armL} />
           <Arm side="r" a={armR} />
+          </g>
         </g>
       </g>
     </svg>

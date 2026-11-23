@@ -46,4 +46,6 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   basTut: { L: { upper: 150, fore: 56, ul: 0.78, fl: 0.75 }, R: { upper: 150, fore: 56, ul: 0.78, fl: 0.75 } },
   raf: { L: { upper: 34, fore: -78, ul: 0.85 }, R: { upper: 44, fore: -64, ul: 0.85 } },
   uzat: { L: { upper: 6, fore: 0 }, R: { upper: 52, fore: -34, ul: 0.72, fl: 0.9 } },
+  cagir: { L: { upper: 30, fore: -112, ul: 0.86, fl: 0.9 }, R: { upper: 6, fore: 0 } },
+  ellerKenetli: { L: { upper: -6, fore: -134, ul: 0.74, fl: 0.92 }, R: { upper: -6, fore: -134, ul: 0.74, fl: 0.92 } },
 };

@@ -10,6 +10,7 @@ import { Cast3D, Emotions3D, Gestures3D, Turnaround3D } from "./studio3d/Sheets3
 import { Episode, calculateEpisodeMetadata } from "./studio/engine/Episode";
 import { CastSheet, EmotionSheet, GestureSheet, MouthSheet, SetSheet } from "./studio/sheets/Sheets";
 import { B4Ornek, Donus25DSheet } from "./studio/engine/Inserts10";
+import { B5Ornek, BocekSheet } from "./studio/engine/Inserts11";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -65,6 +66,9 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="Donus25D" component={Donus25DSheet} durationInFrames={30} fps={30} width={2400} height={900} />
         <Composition id="B4OrnekBas" component={B4Ornek} durationInFrames={132} fps={30} width={1080} height={1920} defaultProps={{ kind: "kapi_arka" as const, text: ["1.4", "2.4"] }} />
         <Composition id="B4OrnekKosu" component={B4Ornek} durationInFrames={96} fps={30} width={1080} height={1920} defaultProps={{ kind: "kosu_takip" as const, text: [] as string[] }} />
+        <Composition id="Bocek" component={BocekSheet} durationInFrames={60} fps={30} width={3200} height={1500} />
+        <Composition id="B5OrnekYuz" component={B5Ornek} durationInFrames={141} fps={30} width={1080} height={1920} defaultProps={{ kind: "donusum_yuz" as const, text: [] as string[] }} />
+        <Composition id="B5OrnekGovde" component={B5Ornek} durationInFrames={144} fps={30} width={1080} height={1920} defaultProps={{ kind: "donusum_govde" as const, text: [] as string[] }} />
         <Composition id="Agizlar" component={MouthSheet} durationInFrames={90} fps={30} width={1540} height={880} />
       </Folder>
       <Folder name="Kutuphane-3D">

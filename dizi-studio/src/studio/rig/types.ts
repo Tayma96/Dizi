@@ -57,7 +57,11 @@ export type Emotion =
   /** "Aç ağzını": ağız açık, yüz nötr */
   | "agizAcik"
   /** çığlık: dehşet, gözler fal taşı, kaşlar en yukarıda */
-  | "dehset";
+  | "dehset"
+  /** 7/24 B5: sahte gülüş: ağız kocaman sırıtır, gözler gülmez (açık, donuk) */
+  | "sahteGulus"
+  /** 7/24 B5: korkudan zoraki gülümseme: kaşlar korkuyla yukarıda, ağız dişleri gösteren sırıtış */
+  | "zorGulumse";
 
 export type Gesture =
   | "rest"
@@ -95,7 +99,11 @@ export type Gesture =
   /** kafa kaşıma */
   | "kafaKasi"
   /** elindeki kâğıdı uzatma */
-  | "uzat";
+  | "uzat"
+  /** 7/24 B5: "gel" diye el sallayarak çağırma (sol kol, önkol kıvrılır) */
+  | "cagir"
+  /** 7/24 B5: iki el göğüs önünde kenetli (hayran pozu) */
+  | "ellerKenetli";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
@@ -210,4 +218,14 @@ export type Pose = {
   /** Breathing intensity multiplier (1 normal, 3 panting) */
   breath?: number;
   seed?: number;
+  /** 7/24 B5: göz kırpmaz (sahte Sabri) */
+  kirpmaz?: boolean;
+  /** 7/24 B5: yüzde mum gibi, maske gibi parlaklık 0..1 */
+  mumParlak?: number;
+  /** 7/24 B5: yağmurda ıslanmış (omuzlar koyu, başta damlalar, çeneden damlayan su) 0..1 */
+  yagmur?: number;
+  /** 7/24 B5: nefes çekme (hıığğ) ilerlemesi 0..1 */
+  hik?: number;
+  /** 7/24 B5: kahkaha sarsıntısı (omuzlar, baş) 0..1 */
+  kahkaha?: number;
 };
