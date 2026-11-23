@@ -75,11 +75,34 @@ const KAYIT = [0, 300, 800, 1080].map((x) => (x - 540) / 290);
 const ECE_C = 1.616, SABRI_C = 1.88;
 
 /* ------------------------------------------------------------------ ışık durumu */
-type Durum = { t: number; k: number; tan: number; sun: number; ex: number; ed: number; eh: number; ehw: number; yan: number; ece: boolean; oy: number };
+type Delik = { x: number; y: number; X: number; D: number; panel: number };
+type Durum = { t: number; k: number; tan: number; sun: number; ex: number; ed: number; eh: number; ehw: number; yan: number; ece: boolean; oy: number; delik: Delik[] };
+/** B5 p2'de kepengi göçerten vuruşlar (kapı görünümü, dünya koordinatı): göçükler kalıcı; bazıları delinmiş */
+export const B5_GOCUK: number[][] = [[300, 700], [760, 900], [500, 520], [160, 1000], [880, 640], [420, 1080], [640, 760], [220, 560], [960, 1050], [560, 980], [340, 880], [560, 820]];
+const DELIKLI = [0, 1, 5, 6, 8, 9, 10];
+const PANEL: [number, number][] = [[-40, 300], [300, 800], [800, 1120]];
+const panelK = (p: Prm, k: number, i: number) => {
+  const ac = p.acGecik ?? [0.0, 0.06, 0.03];
+  return Math.max(0, Math.min(1, (k - ac[i]) / Math.max(0.2, 1 - ac[i])));
+};
 const durum = (p: Prm, tg: number): Durum => {
   const oy = kf1(p.eceOtur, tg, 0);
   const [ex, ed] = kf(p.eceYer, tg, [0.25, 3.3]);
-  return { t: tg, k: kf1(p.ac, tg, 0), tan: kf1(p.tanA, tg, 0.35), sun: kf1(p.gunes, tg, 1), ex, ed, eh: 1.5 - 0.64 * oy, ehw: 0.2 + 0.16 * oy, yan: p.yan ?? 0.1, ece: p.ece !== false, oy };
+  const k = kf1(p.ac, tg, 0), tan = kf1(p.tanA, tg, 0.38), sun = kf1(p.gunes, tg, 1), yan = p.yan ?? 0.1;
+  const delik: Delik[] = [];
+  if (p.delik !== false && sun > 0.04) {
+    for (const i of DELIKLI) {
+      const [gx, gy0] = (p.gocuk ?? B5_GOCUK)[i] ?? [0, 0];
+      const panel = PANEL.findIndex(([a, b]) => gx >= a && gx < b);
+      const y = gy0 - 770 * panelK(p, k, panel);
+      if (y < 430) continue;
+      const h = (1250 - y) / 290;
+      const D = h / tan;
+      const X = (gx - 540) / 290 + yan * D;
+      delik.push({ x: gx, y, X, D, panel });
+    }
+  }
+  return { t: tg, k, tan, sun, ex, ed, eh: 1.5 - 0.64 * oy, ehw: 0.2 + 0.16 * oy, yan, ece: p.ece !== false, oy, delik };
 };
 const dFar = (s: Durum) => (s.sun > 0.04 && s.k > 0.002 ? hOpen(s.k) / s.tan : -1);
 const golgede = (X: number, D: number, s: Durum) => {
@@ -89,7 +112,9 @@ const golgede = (X: number, D: number, s: Durum) => {
   const q = Math.max(0, (D - s.ed) / L);
   return Math.abs(X - s.yan * (D - s.ed) - s.ex) < s.ehw * (1 - 0.45 * q);
 };
-const zemindeIsik = (X: number, D: number, s: Durum) => D <= dFar(s) && !golgede(X, D, s);
+const DELIK_R = 0.075;
+const delikte = (X: number, D: number, s: Durum) => s.delik.some((d) => Math.hypot(X - d.X, (D - d.D) * 0.8) < DELIK_R);
+const zemindeIsik = (X: number, D: number, s: Durum) => ((D <= dFar(s) || delikte(X, D, s)) && !golgede(X, D, s));
 /** Ece'nin gövdesinde ışık bandının üstü (m, zeminden); ışık ona ulaşmadıysa -1 */
 const eceIsikUst = (s: Durum) => (dFar(s) >= s.ed ? hOpen(s.k) - s.ed * s.tan : -1);
 const durumlar = (p: Prm, fps: number, tg: number): Durum[] => {
@@ -152,6 +177,8 @@ const ECE_BOCEK: [number, number, number, number][] = [
   [152, 950, -80, 50], [252, 935, -100, 48], [166, 840, -70, 52], [238, 790, -95, 50], [158, 720, -85, 54], [246, 668, -92, 50],
   [140, 590, -62, 54], [262, 540, -112, 52], [182, 480, -80, 50], [226, 440, -100, 48], [126, 420, -48, 50], [284, 410, -128, 52],
   [204, 572, -90, 46], [156, 384, -70, 46], [300, 470, -100, 46], [98, 500, -80, 48],
+  // en son: yanağında, göz kenarında (sivilcenin karşı yanağı)
+  [150, 236, -60, 34],
 ];
 
 /* ------------------------------------------------------------------ iki kemikli kol (sarılma) */
@@ -283,8 +310,7 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
   const red = (p.red ?? 0.9) * (1 - gun);
   const Df = dFar(s);
   const yb = 1190 - 770 * s.k;
-  const ac = p.acGecik ?? [0.0, 0.06, 0.03];
-  const kAc = (i: number) => Math.max(0, Math.min(1, (s.k - ac[i]) / Math.max(0.2, 1 - ac[i])));
+  const kAc = (i: number) => panelK(p, s.k, i);
   const floresan = kf1(p.floresan, tg, 0);
   const zerreler: Zerre[] = [];
   const emberler: React.ReactNode[] = [];
@@ -310,17 +336,27 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
 
   /* --------------------- zemin halısı (böcek seli) */
   const sel = p.sel !== false;
+  const tozIzi: React.ReactNode[] = [];
+  if (!sel && p.tozIzi) {
+    for (const h of HALI) {
+      if (random(`ti${h.id}`) > 0.55) continue;
+      const sc = sD(h.D), x = xX(h.X, h.D), y = yD(h.D);
+      if (y < 1240 || y > 2050) continue;
+      tozIzi.push(<ellipse key={`t${h.id}`} cx={x.toFixed(1)} cy={y.toFixed(1)} rx={(h.r * sc * 0.75).toFixed(1)} ry={(h.r * sc * (EH / (D0 - h.D)) * 0.7).toFixed(1)} fill="#8a8276" opacity={0.2 * p.tozIzi} />);
+    }
+  }
   const haliEl: React.ReactNode[] = [];
   const haliOn: React.ReactNode[] = [];
   if (sel) {
     for (const h of HALI) {
       const tl = ilk(arr, (q) => zemindeIsik(h.X, h.D, q));
       const pp = isFinite(tl) ? (tg - tl) / 1.7 : -1;
-      if (pp >= 1) continue;
       const sc = sD(h.D);
       const x = xX(h.X, h.D), y = yD(h.D);
       if (y < 1240 || y > 2050) continue;
       const rx = h.r * sc, ry = h.r * sc * (EH / (D0 - h.D)) * 1.15;
+      if (pp >= 0.5) tozIzi.push(<ellipse key={`t${h.id}`} cx={x.toFixed(1)} cy={y.toFixed(1)} rx={(rx * 0.75).toFixed(1)} ry={(ry * 0.6).toFixed(1)} fill="#8a8276" opacity={(0.2 * sstep(0.5, 1, pp)).toFixed(3)} />);
+      if (pp >= 1) continue;
       const pat = sc < 360 ? "A" : sc < 470 ? "B" : sc < 600 ? "C" : "D";
       const o = pp < 0 ? 1 : 1 - sstep(0.12, 0.92, pp);
       const el = <ellipse key={h.id} cx={x.toFixed(1)} cy={y.toFixed(1)} rx={rx.toFixed(1)} ry={ry.toFixed(1)} fill={`url(#${uid}tm${pat})`} opacity={o.toFixed(3)} />;
@@ -378,9 +414,9 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
       const pp = isFinite(tl) ? (tg - tl) / 1.8 : -1;
       if (pp >= 1) return;
       const yur = pp >= 0 ? tl : tg;
-      const ly2 = ly - 10 * Math.sin(yur * 1.3 + i) - (i % 3) * 3 * yur;
-      const lx2 = lx + 6 * Math.sin(yur * 2.1 + i * 1.7);
-      const [x, y] = eceP(lx2, Math.max(330, ly2));
+      const ly2 = ly - 10 * Math.sin(yur * 1.3 + i) - (i % 3) * 0.6 * Math.min(yur, 12);
+      const lx2 = lx + (ly < 330 ? 3 : 6) * Math.sin(yur * 2.1 + i * 1.7);
+      const [x, y] = eceP(lx2, ly < 330 ? ly + 3 * Math.sin(yur * 1.7) : Math.max(330, ly2));
       const a = (aDeg * Math.PI) / 180 + 0.25 * Math.sin(yur * 3 + i);
       const ph = pp >= 0 ? tl * 12 : tg * 12 + i;
       const o = pp < 0 ? 1 : 1 - sstep(0.3, 0.95, pp);
@@ -411,7 +447,9 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
     const [sX, sDd] = kf(sp.yol, tg, [-0.4, 3.15]);
     const dz = kf1(sp.diz, tg, 0);
     const sar = kf1(sp.saril, tg, 0);
-    const egil = kf1(sp.egil, tg, 0);
+    let darbe = 0;
+    for (const h of sp.darbe ?? []) { const d = tg - h; if (d >= 0 && d < 0.7) darbe = Math.max(darbe, Math.exp(-d * 7) * Math.sin(Math.min(Math.PI, d * 14))); }
+    const egil = kf1(sp.egil, tg, 0) - 5 * darbe;
     const size = SABRI_C * sD(sDd);
     const S = size / 1000;
     const fx = xX(sX, sDd), fy = yD(sDd);
@@ -441,12 +479,12 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
       const restR: V2 = [Sr[0] + 18 * S, Sr[1] + 255 * S], restL: V2 = [Sl[0] - 18 * S, Sl[1] + 255 * S];
       const uzakOmuz = eceP(200 + 72 * 0.9 - 4, 346, true);
       const okşa = sp.okşa !== false ? Math.sin(tg * 3.2) * 10 * eS : 0;
-      const bas = eceP(200 - 64 + okşa / eS * 0.3, 168 + okşa / eS, false);
-      const basT: V2 = rot([bas[0], bas[1]], eceP(200, 300), 0);
+      // ön kol: el Ece'nin başının üstüne-arkasına (tepe, kadraj solu); dirsek yukarıda, kol yüzün üstünden geçmez
+      const basT = eceP(172 + (okşa / eS) * 0.25, 96 + (okşa / eS) * 0.5, false);
       const u1 = sstep(0, 0.75, sar), u2 = sstep(0.25, 1, sar);
       const T1: V2 = [restR[0] + (uzakOmuz[0] - restR[0]) * u1, restR[1] + (uzakOmuz[1] - restR[1]) * u1];
       const T2: V2 = [restL[0] + (basT[0] - restL[0]) * u2, restL[1] + (basT[1] - restL[1]) * u2];
-      const a1 = ik(Sr, T1, L1, L2, 1), a2 = ik(Sl, T2, L1, L2, -1);
+      const a1 = ik(Sr, T1, L1, L2, 1), a2 = ik(Sl, T2, L1, L2, (sp.bukum ?? 1) as 1 | -1);
       const renk = sabri.outfit.top;
       kolArka = <Kol S={Sr} E={a1.E} H={a1.H} w={wArm} renk={renk} manset={sabri.outfit.topShade} elYok />;
       kolOn = (
@@ -456,15 +494,15 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
         </g>
       );
     }
-    if (gun > 0.3) golgeSabri = [[sX, sDd]];
+    golgeSabri = [[sX, sDd, dz]];
   }
 
   /* --------------------- ışık haritası (multiply) */
-  const amb = mixC([0.07, 0.05, 0.065], [0.8, 0.79, 0.76], gun);
+  const amb = mixC([0.07, 0.05, 0.065], [0.6, 0.63, 0.7], gun);
   const bounce = s.sun * Math.min(1, Math.max(0, Df) / 4.2) * (1 - gun);
   const ambB = mixC(amb, [amb[0] + 0.17, amb[1] + 0.11, amb[2] + 0.06], bounce);
-  const ambF = mixC(ambB, [Math.max(ambB[0], 0.92), Math.max(ambB[1], 0.93), Math.max(ambB[2], 0.94)], floresan);
-  const sunC = mixC([1, 0.84, 0.62], [1, 0.92, 0.78], gun).map((v) => v * s.sun);
+  const ambF = mixC(ambB, [Math.max(ambB[0], 0.7), Math.max(ambB[1], 0.72), Math.max(ambB[2], 0.76)], floresan);
+  const sunC = mixC([1, 0.84, 0.62], [1, 0.8, 0.55], gun).map((v) => v * s.sun);
   const Dm = Math.min(Df, 4.6);
   const yan = s.yan;
   const yamaD = Df > 0 ? poly([[xX(-2.8, 0), yD(0)], [xX(2.8, 0), yD(0)], [xX(2.8 + yan * Dm, Dm), yD(Dm)], [xX(-2.8 + yan * Dm, Dm), yD(Dm)]]) : "";
@@ -494,7 +532,7 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
       motlar.push(<circle key={i} cx={xX(X, D)} cy={yD(D) - Y * sc} r={(0.004 * sc).toFixed(2)} fill="#fff0c8" opacity={(0.7 * gl * s.sun).toFixed(3)} />);
     }
   }
-  const saat = basamak<string>(p.saat, tg, "07:21");
+  const saat = basamak<string>(p.saat, tg, "07:24");
   const grade = mixC([0.72, 1.14, 0.96], [1.06, 1.04, 1.02], Math.max(gun, 0.55 * bounce));
   const op = p.acilis ? 1 - sstep(p.t0 ?? 0, (p.t0 ?? 0) + p.acilis, tg) : 0;
   /* --------------------- karakter ışığı: ışık haritası karakterleri ETKİLEMEZ (camın ardındaki dış ışık onları
@@ -560,7 +598,13 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
             dis={<Safak uid={uid} sabah={gun} gunesY={kf1(p.gunesY, tg, 0)} t={tg} />}
             kepenkKatman={
               <g>
-                {[[-40, 300], [300, 800], [800, 1120]].map(([a, b], i) => <Kepenk2 key={i} k={1 - kAc(i)} t={tg} f={f} gocuk={[]} uid={`${uid}kp${i}`} x0={a} x1={b} />)}
+                {PANEL.map(([a, b], i) => <Kepenk2 key={i} k={1 - kAc(i)} t={tg} f={f} gocuk={((p.gocuk ?? B5_GOCUK) as number[][]).filter(([gx]) => gx >= a && gx < b).map(([gx, gy]) => ({ t: -100, x: gx, y: gy - 770 * kAc(i), r: 90, d: 20 }))} uid={`${uid}kp${i}`} x0={a} x1={b} />)}
+                {s.delik.map((d, i) => (
+                  <g key={`dl${i}`}>
+                    <ellipse cx={d.x} cy={d.y} rx={7} ry={4} fill="#fff4d0" />
+                    <ellipse cx={d.x} cy={d.y} rx={18} ry={10} fill="#ffcf80" opacity={0.5 * s.sun} />
+                  </g>
+                ))}
                 {/* kepengin alt kenarından sızan çizgi ışık (aralık çok darken) */}
                 {s.k > 0 && s.k < 0.08 ? <rect x={0} y={yb - 3} width={1080} height={6} fill="#ffe2a0" opacity={0.9} /> : null}
                 {s.k > 0.001 && s.sun > 0.04 ? (
@@ -579,7 +623,7 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
               <feDisplacementMap in="SourceGraphic" in2="n" scale={26} xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
-          <g filter={`url(#${uid}yirt)`}>{haliEl}{haliOn}</g>
+          <g filter={`url(#${uid}yirt)`}>{tozIzi}{haliEl}{haliOn}</g>
           {bocekArka}
           {bocekOn}
           <ZerreKatman z={zerreler.filter((q) => !q.parlak)} parlak={false} renk="#8a7a66" carp={0.8} />
@@ -595,13 +639,15 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
             <rect x={-1200} y={-1200} width={3480} height={4320} fill={rgb(ambF)} />
             {red > 0.01 ? <ellipse cx={540} cy={520} rx={1400} ry={1750} fill={`url(#${uid}rd)`} style={{ mixBlendMode: "screen" }} /> : null}
             {yamaD ? <path d={yamaD} fill={rgb(sunC)} style={{ mixBlendMode: "screen" }} /> : null}
+            {s.delik.map((d, i) => (d.D < 4.6 && d.D > dFar(s) ? <ellipse key={`dz${i}`} cx={xX(d.X, d.D)} cy={yD(d.D)} rx={DELIK_R * sD(d.D)} ry={DELIK_R * sD(d.D) * (EH / (D0 - d.D)) * 1.25} fill={rgb(sunC)} style={{ mixBlendMode: "screen" }} /> : null))}
             {/* gölgeler: Ece (ve Sabri) ile vitrin kayıtları */}
             {eceVar && Df > 0 ? <path d={golgePoly(s.ex, s.ed, s.eh, s.ehw)} fill={rgb(ambF)} /> : null}
-            {golgeSabri && Df > 0 ? golgeSabri.map(([X, D], i) => <path key={i} d={golgePoly(X, D, 1.2, 0.22)} fill={rgb(ambF)} opacity={0.7} />) : null}
+            {golgeSabri && Df > 0 ? golgeSabri.map(([X, D, dz2], i) => <path key={i} d={golgePoly(X, D, 1.7 - 0.6 * dz2, 0.26)} fill={rgb(ambF)} opacity={0.85} />) : null}
             {Df > 0 ? KAYIT.map((X, i) => <path key={i} d={poly([[xX(X - 0.03, 0), yD(0)], [xX(X + 0.03, 0), yD(0)], [xX(X + 0.03 + yan * Dm, Dm), yD(Dm)], [xX(X - 0.03 + yan * Dm, Dm), yD(Dm)]])} fill={rgb(ambF)} opacity={0.8} />) : null}
             {/* kendi ışığı olanlar: dış (açık aralık), LED saat, neon */}
             {s.k > 0.001 ? <rect x={-60} y={yb} width={1200} height={1190 - yb} fill="#fff" /> : null}
             <rect x={380} y={290} width={320} height={110} fill="#fff" />
+            {floresan > 0.01 ? <rect x={170} y={140} width={740} height={90} fill="#fff" opacity={floresan} /> : null}
             <rect x={840} y={550} width={220} height={80} fill="#fff" opacity={0.8} />
           </g>
         </svg>
@@ -622,6 +668,17 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
               })}
             </g>
           ) : null}
+          {s.delik.map((d, i) => {
+            const Dz = Math.min(d.D, 4.6), sc = sD(Dz);
+            const fx = xX(d.X, Dz), fy = yD(Dz);
+            const w = 0.05 * sc;
+            return (
+              <g key={`dh${i}`} opacity={0.55 * s.sun * (1 - 0.6 * gun)}>
+                <path d={poly([[d.x - 3, d.y], [d.x + 3, d.y], [fx + w, fy], [fx - w, fy]])} fill="#ffe2a0" filter={`url(#${uid}gb2)`} />
+                <path d={poly([[d.x - 1, d.y], [d.x + 1, d.y], [fx + w * 0.35, fy], [fx - w * 0.35, fy]])} fill="#fff6dc" opacity={0.8} />
+              </g>
+            );
+          })}
           {motlar}
           <g filter={`url(#${uid}gb2)`}>{emberler}</g>
           <ZerreKatman z={zerreGlow} parlak renk="#ffe6a8" carp={0.95} />
@@ -991,7 +1048,7 @@ const B6Dis: React.FC<{ text?: string[] }> = ({ text }) => {
               return (
                 <g key={i}>
                   <rect x={a + 10} y={kepTop} width={b - a - 20} height={kepBot - kepTop} fill={`url(#${uid}ic)`} />
-                  {i === 1 ? <text x={(a + b) / 2} y={kepTop + 60} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={34} fill="#ff3a24" opacity={0.85}>07:21</text> : null}
+                  {i === 1 ? <text x={(a + b) / 2} y={kepTop + 60} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={34} fill="#ff3a24" opacity={0.85}>{basamak<string>(p.saat, tg, "07:24")}</text> : null}
                   {kb > 0.02 ? <path d={`M ${a + 10} ${kepBot} L ${b - 10} ${kepBot} L ${b - 10 - 30} ${kepBot - 40 * kb} L ${a + 10 + 50} ${kepBot - 40 * kb} Z`} fill="#ffcf88" opacity={0.5 * sicak} /> : null}
                   {kb > 0.02 ? new Array(9).fill(0).map((_, j) => {
                     const x = a + 30 + ((j * 97 + i * 31) % (b - a - 60));
