@@ -24,3 +24,7 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - 4. kişi: kaçırılanlardan biri DEĞİL; tasarlanıp gösterilecek ama aslında "içeriden biri" (kaçıranların adamı).
 - Replikler: sonra karar verilecek; önce mekânlar ve karakterler tasarlanır.
 - İzleyici kitlesi: 13-25 yaş arası kızlar (Manifest hayranı). Şarkı telife takılmadan çözülecek.
+
+## B1 ilk 3 saniye kancası (kullanıcının metni, 23 Kasım 2026; aynen)
+İlk 3 saniye kancamız şöyle olacak, fps kamerayla yani birinin gözünden önümüzde kırmızı düğmelerden biri duracak ona basarken yandan birş bağırarak "duuuur" diyecek, adam düğmeye basmış olacak ve karşısındaki bölme açılıp adamın göğsüne doğru bir mızrak fırlayacak. Sonra dizi başlıcak işte
+- Not (Claude): Bu kanca 4-1-2-3-5 yapısındaki "4"ün (geleceğin) bir anı; mızrak göğse ulaşmadan dizi adına sert kesme önerilir (kan yok, platform kuralları ve 13-25 kitlesi için uygun; merak maksimum).
