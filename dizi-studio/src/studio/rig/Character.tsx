@@ -349,7 +349,7 @@ export type CharacterProps = {
 
 /** 7/24 B5 p2 (opt-in): iki el ağzın üstünde (sağ el altta, sol el üstte; parmaklar yukarı-içe), bilekte kazak manşeti.
  *  Baş grubunun içinde çizilir: nefes ve baş salınımıyla birlikte hareket eder. k: 0..1 (eller aşağıdan gelir) */
-const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number }> = ({ look, k, dx, titre }) => {
+const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number; tek?: "sag" | "sol" }> = ({ look, k, dx, titre, tek }) => {
   const kk = Math.max(0, Math.min(1, k));
   const e = kk * kk * (3 - 2 * kk);
   const yOff = (1 - e) * 60;
@@ -370,8 +370,12 @@ const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number
   );
   return (
     <g opacity={kk < 0.5 ? 0 : 1}>
-      {hand(1, 172 + dx * 1.05, 282, 30)}
-      {hand(-1, 228 + dx * 1.05, 292, -30)}
+      {tek === "sag" ? hand(-1, 212 + dx * 1.05, 290, -18) : tek === "sol" ? hand(1, 188 + dx * 1.05, 286, 18) : (
+        <>
+          {hand(1, 172 + dx * 1.05, 282, 30)}
+          {hand(-1, 228 + dx * 1.05, 292, -30)}
+        </>
+      )}
     </g>
   );
 };
@@ -545,7 +549,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {!shortSleeve && !sivali ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
           <BilekEk look={look} side={side} sx={sx} hy={hy} />
           {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
-          {(pose.agizKapa ?? 0) > 0.5 ? null : (
+          {(pose.agizKapa ?? 0) > 0.5 && (!pose.agizKapaEl || (pose.agizKapaEl === "sag") === (side === "r")) ? null : (
             <>
             <circle cx={sx} cy={hy + 12} r={21 * (1 + 0.22 * kilo)} fill={handFill} stroke={OUT} strokeWidth={SW} />
             {look.tirnak ? [-11, -1, 9].map((dxn) => <ellipse key={dxn} cx={sx + dxn} cy={hy + 30} rx={3.6} ry={5} fill={look.tirnak} stroke={OUT} strokeWidth={1.5} />) : null}
@@ -1208,7 +1212,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         {pose.agizKapa ? (
           <g transform={bodyT}>
             <g transform={headT}>
-              <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} />
+              <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} tek={pose.agizKapaEl} />
             </g>
           </g>
         ) : null}

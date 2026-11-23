@@ -348,4 +348,6 @@ export type Pose = {
   elTitre?: number;
   /** 7/24 B5 p2 (opt-in): dudak titremesi 0..1 */
   dudakTitre?: number;
+  /** 7/24 B5 p2 (opt-in): ağzı tek elle kapatır ("sag" = kadraj sağındaki el); öteki kol serbest */
+  agizKapaEl?: "sag" | "sol";
 };

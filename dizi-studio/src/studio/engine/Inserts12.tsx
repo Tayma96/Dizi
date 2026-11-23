@@ -417,9 +417,25 @@ const P2Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
   const armRest = { upper: 6, fore: 0 };
   const mix = (a: { upper: number; fore: number; ul?: number; fl?: number }, b: { upper: number; fore: number; ul?: number; fl?: number }, k: number) => ({ upper: a.upper + (b.upper - a.upper) * k, fore: a.fore + (b.fore - a.fore) * k, ul: (a.ul ?? 1) + ((b.ul ?? 1) - (a.ul ?? 1)) * k, fl: (a.fl ?? 1) + ((b.fl ?? 1) - (a.fl ?? 1)) * k });
   const reach = { upper: 62, fore: -18, ul: 0.95, fl: 1 };
-  const armL = mix(mix(armRest, armMouth, ak), reach, uz);
+  let armL = mix(mix(armRest, armMouth, ak), reach, uz);
   const armR = mix(armRest, armMouth, ak);
-  const eceSize = 1560, eceX = 610 + tit, eceFeet = 2330 - 18 * irk;
+  // sessiz boğuşma (opt-in `bogusma`): kadraj sağındaki el ağızda, öteki kol panikle silkeler; gövde ürperir, sendeler
+  const bg = p.bogusma as Prm | undefined;
+  let tekEl: "sag" | "sol" | undefined;
+  let bTit = 0, bTilt = 0, bX = 0, bY = 0;
+  if (bg) {
+    const [u, fo, ul, fl, osc] = kf(bg.kolL, t, [6, 0, 1, 1, 0]);
+    const sw = osc * (Math.sin(t * 44) * 0.7 + Math.sin(t * 29 + 1) * 0.3);
+    armL = { upper: u + sw * 0.35, fore: fo + sw, ul, fl };
+    tekEl = basamak<string>(bg.tekEl, t, "sag") === "iki" ? undefined : "sag";
+    const [sh] = kf(bg.titre, t, [1]);
+    bTit = (Math.sin(t * 51) * 4 + Math.sin(t * 33) * 2.5) * sh;
+    bY = Math.abs(Math.sin(t * 23)) * 6 * sh;
+    const [eg, ox] = kf(bg.egim, t, [0, 0]);
+    bTilt = eg + Math.sin(t * 17) * 2.5 * sh;
+    bX = ox;
+  }
+  const eceSize = 1560, eceX = 610 + tit + bTit + bX, eceFeet = 2330 - 18 * irk - bY;
   const saSize = 1180, saX = 440, saFeet = 1790 - 14 * irk;
   const [ob] = kf(p.omuzBocek, t, [0]);
   const [an] = kf(p.anten, t, [0]);
@@ -455,7 +471,7 @@ const P2Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
           </div>
         ) : null}
         <div style={{ position: "absolute", left: eceX - eceSize * 0.2, top: eceFeet - 0.98 * eceSize }}>
-          <Character look={ece} size={eceSize} pose={{ emotion: emo, lookX: lx, lookY: ly, yaw, pale: p.pale ?? 0.7, sacDagin: true, tears: gy, armL, armR, agizKapa: ak, elTitre: 1, dudakTitre: p.dudak ?? 0, golgesiz: false, seed: 41, eyesClosed: (() => {
+          <Character look={ece} size={eceSize} pose={{ emotion: emo, lookX: lx, lookY: ly, yaw, pale: p.pale ?? 0.7, sacDagin: true, tears: gy, armL, armR, agizKapa: ak, agizKapaEl: tekEl, tilt: bg ? bTilt : undefined, elTitre: 1, dudakTitre: p.dudak ?? 0, golgesiz: false, seed: 41, eyesClosed: (() => {
             const base = p.gozKapa ? kf(p.gozKapa, t, [0])[0] : 0;
             let w = 0;
             if (p.irkGoz) for (const h of hits) { const d = t - h; if (d >= 0 && d < 0.3) w = Math.max(w, 0.85 * (1 - d / 0.3)); }
@@ -467,6 +483,7 @@ const P2Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
           <Market724FG view="kapi" frame={f} doorOpen={0} saat="" iz={0} turb={0} />
           <MiniDefs uid={uid} />
           {ob > 0 ? <OmuzBocek uid={uid} t={p.donBocek !== undefined ? Math.min(t, p.donBocek) : t} k={ob} sx={eceX} top={eceFeet - 0.98 * eceSize} size={eceSize} /> : null}
+          {bg ? <SilkBocek uid={uid} t={t} sx={eceX} top={eceFeet - 0.98 * eceSize} size={eceSize} silk={bg.silk ?? []} yagan={bg.yagan ?? []} /> : null}
         </svg>
       </AbsoluteFill>
       {an > 0 ? <AntenFG t={t} k={an} /> : null}
@@ -475,6 +492,40 @@ const P2Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
       <Siyah o={op} />
     </AbsoluteFill>
   );
+};
+
+/** boğuşma böcekleri: `yagan` [t0, x, yKonma] yukarıdan (kadraj dışından) düşüp gövdeye konar; `silk` [t0, x0, y0, x1, y1, tSilk, yön]
+ *  kazaktan tırmanır, el çarptığında dönerek kadraj dışına savrulur. Koordinatlar rig birimi (x 0..400, y 0..1000). */
+const SilkBocek: React.FC<{ uid: string; t: number; sx: number; top: number; size: number; silk: number[][]; yagan: number[][] }> = ({ uid, t, sx, top, size, silk, yagan }) => {
+  const S = size / 1000;
+  const X = (lx: number) => sx - 200 * S + lx * S, Y = (ly: number) => top + ly * S;
+  const out: React.ReactNode[] = [];
+  yagan.forEach(([t0, lx, ly], i) => {
+    const d = t - t0;
+    if (d < 0) return;
+    const T = 0.32;
+    const k = Math.min(1, d / T);
+    const yy = -700 + (ly + 700) * k * k;
+    const sek = d > T ? Math.max(0, Math.sin((d - T) * 20) * Math.exp(-(d - T) * 8)) * 14 : 0;
+    const a = d < T ? Math.PI / 2 + d * 9 : -Math.PI / 2 + Math.sin(t * 7 + i) * 0.4 - 0.3 * (d - T);
+    out.push(<Mb key={`y${i}`} uid={uid} x={X(lx + (d > T ? Math.sin(t * 5 + i) * 6 : 0))} y={Y(yy - sek - (d > T ? 30 * (d - T) : 0))} a={a} s={52 * S} ph={t * 13 + i} />);
+  });
+  silk.forEach(([t0, x0, y0, x1, y1, ts, yon], i) => {
+    const d = t - t0;
+    if (d < 0) return;
+    if (t < ts) {
+      const u = Math.min(1, d / Math.max(0.1, ts - t0));
+      const lx = x0 + (x1 - x0) * u + Math.sin(t * 9 + i) * 5, ly = y0 + (y1 - y0) * u;
+      out.push(<Mb key={`s${i}`} uid={uid} x={X(lx)} y={Y(ly)} a={Math.atan2(y1 - y0, x1 - x0) + Math.sin(t * 7 + i) * 0.25} s={48 * S} ph={t * 13 + i} />);
+    } else {
+      // el çarptı: dönerek savrulur (kadraj dışına)
+      const e = t - ts;
+      const lx = x1 + yon * 900 * e, ly = y1 - 500 * e + 1400 * e * e;
+      if (e > 0.9) return;
+      out.push(<Mb key={`s${i}`} uid={uid} x={X(lx)} y={Y(ly)} a={e * 22 * yon} s={48 * S} ph={t * 30 + i} />);
+    }
+  });
+  return <g>{out}</g>;
 };
 
 /** omza ve kola tırmanan küçük böcekler (Ece'nin sağ omzu = kadraj solu, sol kolu = kadraj sağı) */
@@ -620,7 +671,10 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
           const T = Math.sqrt((2 * Yb) / 9.8);
           const d = t - (zor - T);
           if (d < 0) {
-            urunler.push(<path key={`u${seed}`} d={yuzX(X * 0.995, Z1, Z2, Y0 + 0.02, ust)} fill={renk} stroke="#1b1412" strokeWidth={Math.max(0.6, 2.4 / Zc)} />);
+            // ses olayından önce sallanır (arkasındaki küme iter)
+            const sal = p.kume && d > -0.7 ? side * (3 + 5 * (1 + d / 0.7)) * Math.sin(d * 38) * (1 + d / 0.7) : 0;
+            const [bx, by] = P(X, Y0 + 0.02, Zc);
+            urunler.push(<path key={`u${seed}`} d={yuzX(X * 0.995, Z1, Z2, Y0 + 0.02, ust)} fill={renk} stroke="#1b1412" strokeWidth={Math.max(0.6, 2.4 / Zc)} transform={sal ? `rotate(${sal.toFixed(2)} ${bx.toFixed(1)} ${by.toFixed(1)})` : undefined} />);
           } else {
             const yy = Math.max(0.03, Yb + ph / 2 - 4.9 * d * d);
             const xx = X - side * Math.min(0.2, 0.35 * d);
@@ -670,31 +724,100 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
   }
   // böcek örnekleri
   const bocekler: React.ReactNode[] = [];
-  // 1) tek tük çıkış: ürün aralıklarından anten, sonra böcek (yalnız sol rafın yakın kısmı ve sağ raf)
-  const CIK: [number, number, number, number][] = [
-    // side, raf, Z, başlangıç (c0'dan sonra sn)
-    [-1, 2, 1.62, 0], [-1, 1, 1.82, 0.55], [-1, 3, 2.02, 0.9], [-1, 2, 2.22, 1.15], [1, 2, 1.7, 1.3], [-1, 0, 1.42, 1.45], [-1, 1, 2.42, 1.6], [1, 1, 1.9, 1.75], [-1, 3, 1.62, 1.85], [-1, 2, 2.62, 1.95], [1, 3, 2.1, 2.05], [-1, 1, 1.42, 2.1], [-1, 0, 2.02, 2.2], [1, 0, 1.5, 2.25], [-1, 2, 1.22, 2.3], [-1, 3, 2.42, 2.35], [1, 2, 2.3, 2.4], [-1, 1, 2.82, 2.45], [-1, 0, 2.62, 2.5], [1, 1, 2.5, 2.55],
+  // 1) tek tük çıkış (görünür bir kaynaktan): her böcek bir paketin ARKASINDAN çıkar. Paket dörtgeni kırpma maskesiyle
+  //    böceği örter; böcek baş önde yukarı süründükçe önce anten uçları, sonra baş, sonra gövde paketin üst kenarından
+  //    sıyrılır, kısa bir duraksamadan sonra raf boşluğunda yoluna devam eder. Ölçek ya da saydamlıkla "belirme" yok.
+  const L_C = 0.11;
+  const yuzA = (X: number, Z: number, Y: number, dZ: number, dY: number) => {
+    const [x1, y1] = P(X, Y, Z), [x2, y2] = P(X, Y + dY * 0.01, Z + dZ * 0.01);
+    return Math.atan2(y2 - y1, x2 - x1);
+  };
+  const urunUst = (side: number, r: number, zi: number) => RAF_Y[r] + 0.02 + [0.3, 0.16, 0.24, 0.12, 0.28, 0.2][(zi * 7 + r * 3 + (side > 0 ? 2 : 0)) % 6];
+  const urunQ = (side: number, r: number, zi: number) => yuzX(side * KX * 0.995, 0.8 + zi * 0.2, 0.97 + zi * 0.2, RAF_Y[r] + 0.02, urunUst(side, r, zi));
+  const CIK2: [number, number, number, number, number][] = [
+    // side, raf, slot, başlangıç (c0'dan sonra sn), çıkış yönü (Z eğimi)
+    [-1, 2, 4, 0.0, 0.25], [-1, 1, 5, 0.45, -0.3], [-1, 3, 6, 0.8, 0.35], [-1, 2, 7, 1.05, -0.2], [1, 2, 4, 1.2, 0.3], [-1, 0, 3, 1.3, 0.2], [-1, 1, 8, 1.45, -0.35], [1, 1, 5, 1.55, -0.25], [-1, 3, 4, 1.65, 0.15], [-1, 2, 9, 1.75, -0.3], [1, 3, 6, 1.85, 0.25], [-1, 1, 3, 1.9, 0.3], [-1, 0, 6, 2.0, -0.2], [1, 0, 3, 2.05, 0.2], [-1, 2, 2, 2.1, 0.35], [-1, 3, 8, 2.15, -0.25], [1, 2, 7, 2.2, -0.3], [-1, 1, 10, 2.25, 0.25], [-1, 0, 9, 2.3, -0.2], [1, 1, 8, 2.35, 0.3],
   ];
-  if (t >= c0) {
-    CIK.forEach(([side, r, Zg, ts], i) => {
+  const kirpTanim: React.ReactNode[] = [];
+  if (t >= c0 - 0.001) {
+    CIK2.forEach(([side, r, zi, ts, eg], i) => {
       const d = t - c0 - ts;
-      if (d < 0 || Zg < ZN) return;
+      if (d < 0) return;
+      const Zc = 0.885 + zi * 0.2;
+      if (Zc < ZN) return;
       const X = side * KX * 0.99;
-      const Y0 = RAF_Y[r] + 0.14 + 0.05 * Math.sin(i);
-      const cikK = Math.min(1, (d - 0.55) / 0.35);
-      const dy = -0.09 * Math.max(0, d - 0.9) - 0.02 * Math.sin(d * 3 + i);
-      const dz = (random(`cz${i}`) - 0.5) * 0.25 * Math.max(0, d - 0.6);
-      const [x, y] = P(X, Y0 + dy, Zg + dz);
-      const a = Math.PI / 2 + (random(`ca${i}`) - 0.5) * 1.6 + Math.sin(d * 5 + i) * 0.3;
-      if (d < 0.55) {
-        // önce yalnız antenler: ürün aralığından yoklar
-        const L0 = ((0.12 * KF_) / Zg) * Math.min(1, d / 0.3);
-        const w1 = Math.sin(d * 13 + i) * 0.5, w2 = Math.sin(d * 11 + i + 2) * 0.5;
-        bocekler.push(<path key={`ca${i}`} d={`M ${x} ${y} q ${-side * L0 * 0.5} ${-L0 * (0.3 + w1)} ${-side * L0 * (0.9 + 0.2 * w2)} ${-L0 * (0.2 + w1)} M ${x + 3} ${y} q ${-side * L0 * 0.6} ${L0 * (0.1 + w2)} ${-side * L0} ${L0 * (0.35 + w2)}`} stroke="#2a1208" strokeWidth={Math.max(1.6, 3.2 / Zg)} fill="none" strokeLinecap="round" />);
-        return;
+      const ust = urunUst(side, r, zi);
+      // ilerleme (gövde uzunluğu cinsinden): gizli → anten uçları (0,5) → duraksama → gövde dışarı (2,4) → yol
+      const ilk = sstep(0, 0.5, d) * 0.5;
+      const kip = d > 0.5 && d < 1.15 ? 0.06 * Math.sin((d - 0.5) * 17) : 0;
+      const cik = sstep(1.15, 1.95, d) * 1.9;
+      const yol = Math.max(0, d - 1.95) * 0.05;
+      const s0 = -1.75 + ilk + cik + kip;
+      let Y = ust + s0 * L_C;
+      let Zg = Zc + s0 * L_C * eg * 0.5;
+      let dZ = eg, dY = 1;
+      if (d > 1.95) {
+        // raf boşluğunda yana döner (Z yönünde), hafif kıvrılarak ilerler
+        const don = sstep(1.95, 2.35, d);
+        dZ = eg + (Math.sign(eg) * 1 - eg) * don;
+        dY = 1 - 0.95 * don;
+        Zg += Math.sign(eg) * yol * 1.2 + 0.01 * Math.sin(d * 4 + i);
+        Y += yol * 0.15 + 0.008 * Math.sin(d * 6 + i);
       }
-      const s = ((0.11 * KF_) / Zg) * (0.45 + 0.55 * cikK);
-      bocekler.push(<Mb key={`c${i}`} uid={uid} x={x} y={y} a={a} s={s} ph={d * 14 + i} sq={0.8} />);
+      const [x, y] = P(X, Y, Zg);
+      const a = yuzA(X, Zg, Y, dZ, dY) + Math.sin(d * 5 + i) * 0.12;
+      const s = (L_C * KF_) / Zg;
+      const kid = `${uid}kc${i}`;
+      kirpTanim.push(
+        <clipPath key={kid} id={kid}>
+          <path d={`M -6000 -6000 H 8000 V 8000 H -6000 Z ${urunQ(side, r, zi)}`} clipRule="evenodd" />
+        </clipPath>
+      );
+      // duraksamada antenler yoklar (evre yavaş ilerler), yürürken hızlı
+      const ph = d < 1.15 ? d * 5 + i : d * 14 + i;
+      bocekler.push(
+        <g key={`c${i}`} clipPath={`url(#${kid})`}>
+          <Mb uid={uid} x={x} y={y} a={a} s={s} ph={ph} sq={0.8} />
+        </g>
+      );
+    });
+  }
+  // devrilen paketin arkasından dökülen küme (yalnız `kume` açıkken): paket raftayken onun arkasında gizli (kırpma),
+  // paket düşerken düşen paketin altında kalır, sonra boşalan yuvadan aşağı dökülür
+  const kume: React.ReactNode[] = [];
+  if (p.kume) {
+    Object.entries(zorla).forEach(([k, tz], j) => {
+      const [sd, rr, zz] = k.split("|").map(Number);
+      const Zc = 0.885 + zz * 0.2;
+      if (Zc < ZN) return;
+      const Yb = RAF_Y[rr] + 0.02;
+      const T = Math.sqrt((2 * Yb) / 9.8);
+      const dd = t - (tz - T);
+      const ust = urunUst(sd, rr, zz);
+      const kid = `${uid}kk${j}`;
+      if (dd < 0) kirpTanim.push(<clipPath key={kid} id={kid}><path d={`M -6000 -6000 H 8000 V 8000 H -6000 Z ${urunQ(sd, rr, zz)}`} clipRule="evenodd" /></clipPath>);
+      for (let m = 0; m < 7; m++) {
+        const zr = (random(`kz${j}${m}`) - 0.5) * 0.13;
+        const yr = Yb + 0.05 + random(`ky${j}${m}`) * (ust - Yb - 0.06);
+        let Y = yr, Zg = Zc + zr, dY = 1, dZ = 0;
+        if (dd < 0) {
+          // paketin arkasında kıpırdanma: antenler üst kenardan hafifçe taşabilir
+          Y = Math.min(yr, ust - 0.6 * L_C) + 0.015 * Math.sin(t * 7 + m);
+        } else {
+          const g = Math.max(0, dd - 0.15 - m * 0.06);
+          const v = 0.22 + random(`kv${j}${m}`) * 0.15;
+          Y = yr - v * g;
+          Zg = Zc + zr + (random(`kd${j}${m}`) - 0.5) * 0.25 * g;
+          dY = -1;
+          dZ = (random(`kd${j}${m}`) - 0.5) * 0.5;
+          if (Y < 0.03) Y = 0.03;
+        }
+        const X = sd * KX * 0.99;
+        const [x, y] = P(X, Y, Zg);
+        const a = yuzA(X, Zg, Y, dZ, dY) + Math.sin(t * 6 + m) * 0.15;
+        const el = <Mb key={`kb${j}${m}`} uid={uid} x={x} y={y} a={a} s={(0.1 * KF_) / Zg} ph={t * (dd < 0 ? 4 : 15) + m} sq={0.8} />;
+        kume.push(dd < 0 ? <g key={`kg${j}${m}`} clipPath={`url(#${kid})`}>{el}</g> : el);
+      }
     });
   }
   // 2) erime kenarından dökülenler (rafların yüzünden aşağı)
@@ -704,6 +827,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
       if (Zg < ZN) continue;
       const ey = erY(Zg, side);
       if (ey > 2.0) continue;
+      if (p.dusenSel && Zg < Zf - 0.2) continue;
       const fall = (t * (0.9 + random(`ef${side}${i}`) * 0.8) + random(`eo${side}${i}`)) % 1;
       const Y = ey - fall * (ey + 0.05);
       if (Y < 0) continue;
@@ -717,7 +841,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
       const u = random(`zu${i}`);
       const dz = -0.35 + random(`zd${i}`) * 1.3;
       const Zg = Zf + dz + 0.08 * Math.sin(t * 3 + i);
-      if (Zg < Math.max(ZN, 0.32) || Zg > KZ_END) continue;
+      if (Zg < Math.max(ZN, 0.32) || Zg > (p.selDuvar ? KZ_END - 0.05 : KZ_END)) continue;
       const Xg = -KX * 0.96 + u * KX * 1.92 + 0.05 * Math.sin(t * 4 + i * 1.7);
       const [x, y] = P(Xg, 0.005, Zg);
       const s = (0.085 * KF_) / Zg;
@@ -815,6 +939,8 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
               </g>
             ) : null;
           })}
+          <defs>{kirpTanim}</defs>
+          {kume}
           {dusenler}
           {/* zemin seli */}
           {selD ? (
@@ -826,7 +952,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
           {bocekler}
           {p.ucan !== undefined ? <UcanBocek uid={uid} t={t - p.ucan} /> : null}
           {/* zemin çekimi: önde Ece'nin bacakları (arkadan), sel ayakkabıların etrafından akar */}
-          {eceBacak ? <EceBacak P={P} t={t} Zf={Zf} uid={uid} Z={p.bacakZ ?? 0.62} /> : null}
+          {eceBacak ? <EceBacak P={P} t={t} Zf={Zf} uid={uid} Z={p.bacakZ ?? 0.62} tepki={p.tepki} /> : null}
           {/* karanlık: yalnız yanan floresanların havuzu aydınlık */}
           <rect x={-2000} y={-2000} width={5000} height={6000} fill="#020203" opacity={p.karanlik ?? 0.9} mask={`url(#${uid}km)`} />
           {/* floresan armatürler (karanlığın üstünde: kendi ışığı) */}
@@ -862,14 +988,33 @@ const UcanBocek: React.FC<{ uid: string; t: number }> = ({ uid, t }) => {
 };
 
 /** zemin çekimi: Ece arkadan (kot + beyaz spor ayakkabı), sel ayakkabılara ulaşır, birkaçı topuğa tırmanır */
-const EceBacak: React.FC<{ P: (X: number, Y: number, Z: number) => [number, number]; t: number; Zf: number; uid: string; Z: number }> = ({ P, t, Zf, uid, Z }) => {
+const EceBacak: React.FC<{ P: (X: number, Y: number, Z: number) => [number, number]; t: number; Zf: number; uid: string; Z: number; tepki?: Prm }> = ({ P, t, Zf, uid, Z: Z0, tepki }) => {
   const tr = Math.sin(t * 40) * 0.004;
-  const bacak = (Xc: number) => {
+  // sessiz boğuşma (opt-in `tepki`): sel ayakkabıya varınca bacak silkelenir, geri geri sendeler, yukarıdan inen el paçayı silkeler
+  const tp = tepki ?? {};
+  const legZ = (side: number) => {
+    const [a0] = side < 0 ? kf(tp.geriSol, t, [0]) : kf(tp.geriSag, t, [0]);
+    return Z0 - (tepki ? a0 : 0);
+  };
+  const legLift = (side: number) => {
+    if (!tepki) return { lift: 0, sx: 0 };
+    const [lf, sk] = side < 0 ? kf(tp.solBacak, t, [0, 0]) : kf(tp.sagBacak, t, [0, 0]);
+    return { lift: lf * (0.7 + 0.3 * Math.abs(Math.sin(t * 19 + side))), sx: sk * Math.sin(t * 57 + side * 2) };
+  };
+  /** bacağa bağlı nokta (y: zeminden yükseklik, m) → ekran */
+  const legP = (side: number, dx: number, Y: number): [number, number] => {
+    const Z = legZ(side);
+    const { lift, sx } = legLift(side);
+    const k = Math.max(0, 1 - Y / 1.1);
+    return P(side * 0.09 + dx + tr + sx * k, Y + lift * k, Z);
+  };
+  const bacak = (side: number) => {
     const w = 0.065;
-    const a = P(Xc - w + tr, 0.1, Z), b = P(Xc + w + tr, 0.1, Z), c = P(Xc + w * 1.15 + tr, 1.1, Z), d = P(Xc - w * 1.15 + tr, 1.1, Z);
-    const s1 = P(Xc - 0.06, 0, Z - 0.02), s2 = P(Xc + 0.06, 0, Z - 0.02), s3 = P(Xc + 0.055, 0.11, Z), s4 = P(Xc - 0.055, 0.11, Z);
+    const Z = legZ(side);
+    const a = legP(side, -w, 0.1), b = legP(side, w, 0.1), c = P(side * 0.09 + w * 1.15 + tr, 1.1, Z), d = P(side * 0.09 - w * 1.15 + tr, 1.1, Z);
+    const s1 = legP(side, -0.06, -0.0), s2 = legP(side, 0.06, -0.0), s3 = legP(side, 0.055, 0.11), s4 = legP(side, -0.055, 0.11);
     return (
-      <g key={Xc}>
+      <g key={side}>
         <path d={`M ${a[0]} ${a[1]} L ${b[0]} ${b[1]} L ${c[0]} ${c[1]} L ${d[0]} ${d[1]} Z`} fill="#34466a" stroke="#1b1412" strokeWidth={5} />
         <path d={`M ${(a[0] + b[0]) / 2} ${a[1]} L ${(c[0] + d[0]) / 2} ${c[1]}`} stroke="#22304e" strokeWidth={6} opacity={0.6} />
         <path d={`M ${s1[0]} ${s1[1]} Q ${(s1[0] + s2[0]) / 2} ${s1[1] + 14} ${s2[0]} ${s2[1]} L ${s3[0]} ${s3[1]} Q ${(s3[0] + s4[0]) / 2} ${s3[1] - 18} ${s4[0]} ${s4[1]} Z`} fill="#f0f0f0" stroke="#1b1412" strokeWidth={5} strokeLinejoin="round" />
@@ -877,23 +1022,61 @@ const EceBacak: React.FC<{ P: (X: number, Y: number, Z: number) => [number, numb
       </g>
     );
   };
-  const W = P(0.2, 0.95, Z)[0] - P(0, 0.95, Z)[0];
-  // ayakkabılara tırmanan böcekler (sel yetişince)
-  const yet = Math.max(0, Math.min(1, (Z + 0.35 - Zf) / 0.4));
+  const W = P(0.2, 0.95, Z0)[0] - P(0, 0.95, Z0)[0];
+  // tırmananlar: sel ayakkabıya VARDIĞINDA zeminden başlar (sel kütlesinin içinden), paça boyunca yükselir;
+  // el çarptığında savrulur. [bacak, dx, başlangıç gecikmesi, hedef yükseklik, savrulma anı]
+  const var_ = tepki ? sstep(Z0 + 0.05, Z0 - 0.12, Zf) : Math.max(0, Math.min(1, (Z0 + 0.35 - Zf) / 0.4));
+  const tVar = tp.varis ?? 0;
+  const tirmanan: number[][] = tepki
+    ? tp.tirman ?? []
+    : new Array(7).fill(0).map((_, i) => [i % 2 ? 1 : -1, (random(`ab${i}`) - 0.5) * 0.1, i * 0.12, (i % 3 === 0 ? 1.6 : 0.9) * 0.1, 99]);
+  const elT = tp.el as number[] | undefined; // [iniş, kalkış]
+  const elVar = elT ? sstep(elT[0], elT[0] + 0.22, t) * (1 - sstep(elT[1] - 0.2, elT[1], t)) : 0;
+  const elY = 0.32 + 0.12 * Math.sin(t * 9.5), elDx = 0.07 * Math.sin(t * 41);
   return (
     <g>
-      <ellipse cx={P(0, 0, Z)[0]} cy={P(0, 0, Z)[1] + 4} rx={W * 1.4} ry={22} fill="#000" opacity={0.35} />
-      {bacak(-0.09)}
-      {bacak(0.09)}
-      {yet > 0
-        ? new Array(7).fill(0).map((_, i) => {
-            const Xc = i % 2 ? 0.09 : -0.09;
-            const u = Math.max(0, Math.min(1, yet * 1.6 - i * 0.12));
-            if (u <= 0) return null;
-            const [x, y] = P(Xc + (random(`ab${i}`) - 0.5) * 0.1, 0.02 + 0.1 * u * (i % 3 === 0 ? 1.6 : 0.9), Z - 0.06);
-            return <Mb key={i} uid={uid} x={x} y={y} a={-Math.PI / 2 + (random(`aa${i}`) - 0.5) * 0.8} s={(0.09 * KF_) / Z} ph={t * 15 + i} />;
-          })
-        : null}
+      <ellipse cx={P(0, 0, Z0)[0]} cy={P(0, 0, Z0)[1] + 4} rx={W * 1.4} ry={22} fill="#000" opacity={0.35} />
+      {bacak(-1)}
+      {bacak(1)}
+      {tirmanan.map(([side, dx, gec, hedef, savr], i) => {
+        if (!tepki) {
+          const u = Math.max(0, Math.min(1, var_ * 1.6 - gec));
+          if (u <= 0) return null;
+          const [x, y] = P(side * 0.09 + dx, 0.02 + hedef * u, Z0 - 0.06);
+          return <Mb key={i} uid={uid} x={x} y={y} a={-Math.PI / 2 + (random(`aa${i}`) - 0.5) * 0.8} s={(0.09 * KF_) / Z0} ph={t * 15 + i} />;
+        }
+        const d = t - tVar - gec;
+        if (d < 0) return null;
+        const Z = legZ(side);
+        if (t < savr) {
+          const Y = Math.min(hedef, 0.01 + 0.16 * d);
+          const [x, y] = legP(side, dx + 0.01 * Math.sin(t * 8 + i), Y);
+          return <Mb key={i} uid={uid} x={x} y={y - 10} a={-Math.PI / 2 + Math.sin(t * 7 + i) * 0.35} s={(0.09 * KF_) / Z} ph={t * 15 + i} />;
+        }
+        const e = t - savr;
+        if (e > 0.8) return null;
+        const Y0 = Math.min(hedef, 0.01 + 0.16 * (savr - tVar - gec));
+        const [x0, y0] = legP(side, dx, Y0);
+        const yon = side < 0 ? -1 : 1;
+        return <Mb key={i} uid={uid} x={x0 + yon * 1300 * e} y={y0 - 900 * e + 2200 * e * e} a={e * 25 * yon} s={(0.09 * KF_) / Z} ph={t * 30 + i} />;
+      })}
+      {elVar > 0.001 ? (() => {
+        // yukarıdan (kadraj dışından) inen el: sol paçayı hızlı hızlı silkeler
+        const [hx, hy] = legP(-1, elDx, elY + (1 - elVar) * 1.4);
+        const [ax, ay] = P(-0.02, 1.9, legZ(-1) - 0.05);
+        const hw = (0.05 * KF_) / legZ(-1);
+        return (
+          <g>
+            <path d={`M ${ax} ${ay} L ${hx + hw * 0.4} ${hy - hw * 1.4}`} stroke="#1b1412" strokeWidth={hw * 1.55 + 10} strokeLinecap="round" />
+            <path d={`M ${ax} ${ay} L ${hx + hw * 0.4} ${hy - hw * 1.4}`} stroke="#c8902a" strokeWidth={hw * 1.55} strokeLinecap="round" />
+            <g transform={`translate(${hx} ${hy}) rotate(${12 + 18 * Math.sin(t * 41)})`}>
+              <path d={`M ${-hw * 0.8} ${-hw * 1.5} L ${-hw * 0.9} ${hw * 0.6} Q ${-hw * 0.85} ${hw * 1.3} ${-hw * 0.4} ${hw * 1.25} Q 0 ${hw * 1.45} ${hw * 0.4} ${hw * 1.25} Q ${hw * 0.9} ${hw * 1.2} ${hw * 0.85} ${hw * 0.5} L ${hw * 0.75} ${-hw * 1.5} Z`} fill="#f0c8a8" stroke="#1b1412" strokeWidth={5} strokeLinejoin="round" />
+              <path d={`M ${-hw * 0.4} ${hw * 0.2} L ${-hw * 0.4} ${hw * 1.1} M 0 ${hw * 0.2} L 0 ${hw * 1.3} M ${hw * 0.4} ${hw * 0.2} L ${hw * 0.4} ${hw * 1.1}`} stroke="#1b1412" strokeWidth={3} opacity={0.5} />
+              <path d={`M ${-hw * 0.95} ${-hw * 1.5} L ${hw * 0.85} ${-hw * 1.5}`} stroke="#a8741a" strokeWidth={hw * 0.5} />
+            </g>
+          </g>
+        );
+      })() : null}
     </g>
   );
 };

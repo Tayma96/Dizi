@@ -800,7 +800,8 @@ def yanik_zarf(n, seed, zemin_c_db, zemin_d_db):
     z = np.zeros(n)
     m1 = (t >= 14.12) & (t < 14.75)
     u = (t[m1] - 14.12) / 0.63
-    flutter = 6.0 * filt(r.standard_normal(m1.sum()), "band", [7, 18], 1) * 20
+    fl = filt(r.standard_normal(m1.sum()), "band", [7, 18], 1)
+    flutter = -np.clip(np.abs(fl) / (np.std(fl) + 1e-12) * 5.0, 0, 15)  # yalnız aşağı yönlü kopmalar (dB)
     z[m1] = zemin_c_db * u ** 0.7 + flutter * (1 - u)
     z[(t >= 14.75) & (t < 21.9)] = zemin_c_db
     m3 = (t >= 21.9) & (t < 23.0)
@@ -1087,7 +1088,7 @@ def cmd_kur():
     for it in range(4):
         y_l, _ = limiter(mix * db2a(gain), -2.0)
         gain += (-14.0 - meter.integrated_loudness(y_l))
-    gain = min(gain, 3.5)
+    gain = min(gain, 4.0)
     y, lim_g = limiter(mix * db2a(gain), -2.0)
     L = meter.integrated_loudness(y)
     print(f"master: kazanç {gain:+.2f} dB, {L:.2f} LUFS, son sınırlayıcı en çok {20 * np.log10(lim_g.min()):.1f} dB (en derin an {np.argmin(lim_g) / SR:.2f} sn), >1 dB baskı {100 * np.mean(lim_g < db2a(-1)):.2f}% süre", flush=True)
