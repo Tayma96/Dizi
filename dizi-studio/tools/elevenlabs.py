@@ -531,7 +531,7 @@ def cmd_seslendir(args):
 
 
 def cmd_efekt(args):
-    est = int(max(1.0, args.sure) * 40)  # kaba tahmin; gerçek maliyet abonelik farkından okunur
+    est = int(max(1.0, args.sure) * 12) + 5  # ölçülen: 5 efekt, 14,5 sn → 145 kredi (≈10 kr/sn); gerçek maliyet abonelik farkından okunur (bakiye geç yansıyabilir)
     say(f"Ses efekti '{args.isim}': \"{args.tarif}\" ({args.sure} sn). Tahmini maliyet ≈ {est} kredi (kaba tahmin).")
     if not args.onayla:
         say("KURU ÇALIŞTIRMA — kredi harcanmadı. --onayla ile üretin.")
