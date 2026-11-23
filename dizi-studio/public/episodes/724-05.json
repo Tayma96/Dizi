@@ -295,6 +295,108 @@
       ]
     },
     {
+      "id": "d2",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Bir adamın eli yürüdü",
+      "look": "soguk",
+      "karanlik": 0.12,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "ece_on",
+          "emotion": "supheli",
+          "pale": 0.3,
+          "sacDagin": true,
+          "onluk": false,
+          "gesture": "ellerAcik",
+          "bak": {
+            "x": 0.45,
+            "y": -0.05
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ.",
+          "emotion": "notr",
+          "tags": "[skeptical, then rising panic, stressing the last word]",
+          "sure": 3.2,
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1255,
+              "z": 1.45
+            }
+          },
+          "shots": [
+            {
+              "at": 2.35,
+              "shot": {
+                "type": "yakin",
+                "on": "ece_sivil",
+                "move": "yaklas",
+                "kadraj": {
+                  "cx": 610,
+                  "cy": 1240,
+                  "z": 2.05
+                }
+              }
+            }
+          ],
+          "cast": {
+            "ece_sivil": {
+              "bakSira": [
+                {
+                  "at": 0,
+                  "x": 0.45,
+                  "y": -0.05,
+                  "yaw": 0.2
+                },
+                {
+                  "at": 1.0,
+                  "x": -0.2,
+                  "y": 0.25,
+                  "yaw": -0.1
+                },
+                {
+                  "at": 2.35,
+                  "x": 0.5,
+                  "y": -0.05,
+                  "yaw": 0.25
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
       "id": "e",
       "set": "market_kapi",
       "time": "gunduz",
@@ -679,9 +781,9 @@
           "who": "ece_sivil",
           "text": "hıığğ",
           "emotion": "notr",
-          "tags": "[sharp inhale, terrified]",
+          "tags": "[sharp inhale, terrified, flows straight into next line]",
           "sure": 0.9,
-          "gapAfter": 0.1,
+          "gapAfter": 0.0,
           "turb": 0.25,
           "shot": {
             "type": "yakin",
