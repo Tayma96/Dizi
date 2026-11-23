@@ -63,6 +63,32 @@ const rot = (p: V2, c: V2, deg: number): V2 => {
   return [c[0] + dx * Math.cos(r) - dy * Math.sin(r), c[1] + dx * Math.sin(r) + dy * Math.cos(r)];
 };
 
+/* ------------------------------------------------------------------ doğal kol: dirsek kendiliğinden seçilir, kol yumuşak kavisle çizilir
+ * İki IK çözümünden: el omuzdan belirgin yukarıdaysa dirsek gövdeden DIŞA, değilse AŞAĞI bakan seçilir (dirsek asla ters kırılmaz). */
+const ikDogal = (S0: V2, T: V2, L1: number, L2: number, merkezX: number): { E: V2; H: V2 } => {
+  const a = ik(S0, T, L1, L2, 1), b = ik(S0, T, L1, L2, -1);
+  if (T[1] < S0[1] - L1 * 0.35) {
+    const dis = (E: V2) => Math.abs(E[0] - merkezX);
+    return dis(a.E) >= dis(b.E) ? a : b;
+  }
+  return a.E[1] >= b.E[1] ? a : b;
+};
+const KolYumusak: React.FC<{ S: V2; E: V2; H: V2; w: number; renk: string; manset?: string; el: string }> = ({ S, E, H, w, renk, manset, el }) => {
+  // kontrol noktası: eğri dirsekten geçsin (Q eğrisi orta noktası = E)
+  const C: V2 = [2 * E[0] - (S[0] + H[0]) / 2, 2 * E[1] - (S[1] + H[1]) / 2];
+  const d = `M ${S[0].toFixed(1)} ${S[1].toFixed(1)} Q ${C[0].toFixed(1)} ${C[1].toFixed(1)} ${H[0].toFixed(1)} ${H[1].toFixed(1)}`;
+  const ang = Math.atan2(H[1] - C[1], H[0] - C[0]);
+  const mx = H[0] - Math.cos(ang) * w * 0.6, my = H[1] - Math.sin(ang) * w * 0.6;
+  return (
+    <g>
+      <path d={d} stroke={O} strokeWidth={w * 2.36} fill="none" strokeLinecap="round" />
+      <path d={d} stroke={renk} strokeWidth={w * 2} fill="none" strokeLinecap="round" />
+      {manset ? <path d={`M ${mx - Math.sin(ang) * w * 0.85} ${my + Math.cos(ang) * w * 0.85} L ${mx + Math.sin(ang) * w * 0.85} ${my - Math.cos(ang) * w * 0.85}`} stroke={manset} strokeWidth={w * 0.5} /> : null}
+      <circle cx={H[0]} cy={H[1]} r={w * 0.95} fill={el} stroke={O} strokeWidth={w * 0.18} />
+    </g>
+  );
+};
+
 /* ------------------------------------------------------------------ eşyalar (el ölçeğinde, s = karakter ölçeği) */
 const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }> = ({ n, x, y, s, a = 0 }) => {
   const tr = `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${s.toFixed(3)})`;
@@ -157,11 +183,17 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
     let H: V2;
     if (ozel) {
       const [hx, hy] = kf(side === "L" ? q.elL : q.elR, tg, [omuz[0], omuz[1] + 250 * S]);
-      const bk = side === "L" ? q.bukumL : q.bukumR;
-      const bukum = (Array.isArray(bk) ? basamak<number>(bk as [number, number][], tg, side === "L" ? 1 : -1) : bk ?? (side === "L" ? 1 : -1)) as 1 | -1;
-      const r = ik(omuz, [hx, hy], L1, L2, bukum);
+      let r: { E: V2; H: V2 };
+      if (q.dogalKol) {
+        r = ikDogal(omuz, [hx, hy], L1, L2, piv[0]);
+        kollar.push(<KolYumusak key={side} S={omuz} E={r.E} H={r.H} w={w} renk={renk} manset={manset} el={look.skin} />);
+      } else {
+        const bk = side === "L" ? q.bukumL : q.bukumR;
+        const bukum = (Array.isArray(bk) ? basamak<number>(bk as [number, number][], tg, side === "L" ? 1 : -1) : bk ?? (side === "L" ? 1 : -1)) as 1 | -1;
+        r = ik(omuz, [hx, hy], L1, L2, bukum);
+        kollar.push(<Kol key={side} S={omuz} E={r.E} H={r.H} w={w} renk={renk} manset={manset} el={look.skin} />);
+      }
       H = r.H;
-      kollar.push(<Kol key={side} S={omuz} E={r.E} H={r.H} w={w} renk={renk} manset={manset} el={look.skin} />);
     } else {
       // rig kolu: elin yaklaşık yeri (eşya için): omuzdan aşağı, upper açısıyla
       const up = ((side === "L" ? kolL[0] : kolR[0]) * Math.PI) / 180;
