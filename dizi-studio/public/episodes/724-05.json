@@ -54,7 +54,9 @@
           "who": "ece_sivil",
           "text": "sabri abi?",
           "emotion": "notr",
-          "tags": "[scared, whisper, unsure]",
+          "tags": "[scared, hesitant, quiet]",
+          "okunus": "Sabri abi?",
+          "stab": 0.0,
           "sure": 1.0,
           "gapAfter": 0.15,
           "shot": {
@@ -118,7 +120,9 @@
           "who": "sabri_sahte",
           "text": "sakin kız sakin ilk iş günü şakası..   gece vardıyasına ilk defa başlayan herkese yaptığımız şaka",
           "emotion": "notr",
-          "tags": "[laughing, warm, teasing]",
+          "tags": "[warm, teasing, amused]",
+          "okunus": "[laughs] Sakin kız, sakin! İlk iş günü şakası... [chuckling] gece vardıyasına ilk defa başlayan herkese yaptığımız şaka.",
+          "stab": 0.0,
           "sure": 5.6,
           "tasma": true,
           "gapAfter": -3.2,
@@ -214,7 +218,9 @@
           "who": "ece_sivil",
           "text": "abi sen benle taştaş mı geçiyorsun",
           "emotion": "notr",
-          "tags": "[nervous laugh, half relieved, suspicious]",
+          "tags": "[half laughing, nervous, suspicious]",
+          "okunus": "Abi sen benle taştaş mı geçiyorsun?",
+          "stab": 0.0,
           "sure": 2.3,
           "gapAfter": 0.25,
           "shot": {
@@ -278,7 +284,9 @@
           "who": "sabri_sahte",
           "text": "depoya gel çay yaptım içte sakinleş biraz",
           "emotion": "notr",
-          "tags": "[chuckles, soft, inviting]",
+          "tags": "[soft, warm, inviting]",
+          "okunus": "[chuckles] Depoya gel, çay yaptım, içte sakinleş biraz.",
+          "stab": 0.0,
           "sure": 3.0,
           "gapAfter": 0.55,
           "shot": {
@@ -341,7 +349,9 @@
           "who": "ece_sivil",
           "text": "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ.",
           "emotion": "notr",
-          "tags": "[skeptical, then rising panic, stressing the last word]",
+          "tags": "[skeptical, rising panic]",
+          "okunus": "Şaka mı?.. Abi, bir adamın eli yürüdü… [emphatic] Eli!",
+          "stab": 0.0,
           "sure": 3.2,
           "gapAfter": 0.3,
           "shot": {
@@ -451,7 +461,9 @@
           "who": "ece_sivil",
           "text": "hoaa",
           "emotion": "notr",
-          "tags": "[startled gasp, short]",
+          "tags": "[startled yelp]",
+          "okunus": "Hoaa!",
+          "stab": 0.0,
           "sure": 0.6,
           "gapAfter": 0.15,
           "offscreen": true,
@@ -517,6 +529,7 @@
           "text": "Ona inanma kızım, o ben değilim",
           "emotion": "notr",
           "tags": "[urgent, low, out of breath]",
+          "okunus": "Ona inanma kızım… o ben değilim.",
           "sure": 2.4,
           "gapAfter": 0.35,
           "door": "acik",
@@ -614,7 +627,9 @@
           "who": "ece_sivil",
           "text": "ne dönüyo lan burda!",
           "emotion": "notr",
-          "tags": "[fed up, scared, shouting]",
+          "tags": "[exasperated, scared, shouting]",
+          "okunus": "Ne dönüyo lan burda!",
+          "stab": 0.0,
           "sure": 1.5,
           "gapAfter": 0.35,
           "ekle": {
@@ -781,7 +796,9 @@
           "who": "ece_sivil",
           "text": "hıığğ",
           "emotion": "notr",
-          "tags": "[sharp inhale, terrified, flows straight into next line]",
+          "tags": "[sharp terrified gasp]",
+          "okunus": "Hıııığ!",
+          "stab": 0.0,
           "sure": 0.9,
           "gapAfter": 0.0,
           "turb": 0.25,
@@ -812,9 +829,11 @@
           "who": "ece_sivil",
           "text": "abi vallahi büyük hayranınım.",
           "emotion": "notr",
-          "tags": "[terrified, forced cheerful, trembling]",
+          "tags": "[panicked, forced nervous smile]",
+          "okunus": "Abi, vallahi büyük hayranınım.",
+          "stab": 0.0,
           "sure": 2.2,
-          "gapAfter": 0.4,
+          "gapAfter": 0.15,
           "turb": 0.2,
           "shot": {
             "type": "orta",
@@ -832,6 +851,141 @@
               "gesture": "ellerKenetli",
               "sweat": true,
               "tears": 0.25
+            }
+          },
+          "ekle": {
+            "kind": "bocek_golge",
+            "text": [
+              "1"
+            ]
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "bocek_kukreme",
+          "dur": 1.4
+        },
+        {
+          "type": "insert",
+          "kind": "ece_yakin",
+          "dur": 0.9,
+          "text": [
+            "dehset",
+            "dehset",
+            "99",
+            "0.3",
+            "0.6",
+            "ruzgar"
+          ]
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "lülü?",
+          "emotion": "notr",
+          "tags": "[timid, hopeful, coaxing, small voice]",
+          "okunus": "Lülü?",
+          "stab": 0.0,
+          "sure": 0.7,
+          "gapAfter": 1.0,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1240,
+              "z": 2.05
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "zorGulumse",
+              "gesture": "ellerKenetli",
+              "sacDagin": true,
+              "tears": 0.2,
+              "sweat": true,
+              "bakSira": [
+                {
+                  "at": 0,
+                  "x": 0.35,
+                  "y": -0.35,
+                  "yaw": 0.15
+                },
+                {
+                  "at": 0.95,
+                  "x": -0.6,
+                  "y": 0.15,
+                  "yaw": -0.1
+                },
+                {
+                  "at": 1.3,
+                  "x": 0.35,
+                  "y": -0.35,
+                  "yaw": 0.15
+                },
+                {
+                  "at": 1.55,
+                  "x": -0.5,
+                  "y": 0.25,
+                  "yaw": -0.15
+                }
+              ]
+            }
+          },
+          "ekle": {
+            "kind": "bocek_golge",
+            "text": [
+              "1"
+            ]
+          }
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "bu da mı olmadı?",
+          "emotion": "notr",
+          "tags": "[embarrassed, nervous, small voice]",
+          "okunus": "Bu da mı olmadı?",
+          "stab": 0.0,
+          "sure": 1.4,
+          "gapAfter": 0.3,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1255,
+              "z": 1.45
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "mahcup",
+              "gesture": "kafaKasi",
+              "omuzDus": 1,
+              "tears": 0.15,
+              "bakSira": [
+                {
+                  "at": 0,
+                  "x": -0.55,
+                  "y": 0.3,
+                  "yaw": -0.2
+                },
+                {
+                  "at": 0.9,
+                  "x": 0.3,
+                  "y": -0.3,
+                  "yaw": 0.1
+                },
+                {
+                  "at": 1.15,
+                  "x": -0.55,
+                  "y": 0.3,
+                  "yaw": -0.2
+                }
+              ]
             }
           },
           "ekle": {
