@@ -16,7 +16,9 @@ export type HairStyle =
   /** Kırmızı Düğme: dağınık, yataktan kalkmış saç (tepede kalkık tutam) */
   | "daginik"
   /** Kırmızı Düğme: uzun katlı saç + perde kakül, uçları renkli (hair.uc) */
-  | "perdeli";
+  | "perdeli"
+  /** Kırmızı Düğme: seyrek, yağlı, dağınık saç (tepe açılmış, alına yapışık tutamlar, yağ parlaması) */
+  | "yagli";
 
 export type Outfit =
   | "tshirt"
@@ -175,6 +177,28 @@ export type Look = {
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
   /* ---- Kırmızı Düğme (hepsi isteğe bağlı) ---- */
+  /** bütün vücut kilosu 0..1: geniş yüz + gıdı, kalın boyun/ense, kalın kol ve bacak, geniş kalça */
+  kilo?: number;
+  /** 1 haftalık sakal: noktalı kirli sakal yoğunluğu 0..1 (maske gibi düz dolgu değil) */
+  sakalNokta?: number;
+  /** şiş, morumsu göz altları */
+  gozAlti?: boolean;
+  /** kollarda/omuzlarda kıl */
+  kil?: boolean;
+  /** giyside lekeler */
+  leke?: boolean;
+  /** üstünde cips kırıntıları */
+  kirinti?: boolean;
+  /** tek terlik: sağ ayakta yalnız çorap */
+  tekTerlik?: boolean;
+  /** kask izi: saçta basık halka, alında ter parlaması */
+  kaskIzi?: boolean;
+  /** kablolu kulaklık (kulaktan göğse sarkan beyaz kablo) */
+  kulaklikKablo?: boolean;
+  /** takma tırnak rengi */
+  tirnak?: string;
+  /** kalp toka rengi (perdeli saçta yıldızların yerine) */
+  kalpToka?: string;
   /** göbek 0..1 (öne/yana taşan yuvarlak karın) */
   gobek?: number;
   /** atlet göbekte yukarı sıyrılmış: altta ince ten şeridi + göbek deliği */

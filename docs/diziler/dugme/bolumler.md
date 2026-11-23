@@ -41,3 +41,4 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - Beyaz oda final: çok fazla düğme; oda biraz büyütülsün, düğme sayısı %30 azaltılsın.
 - Beyaz oda kıyafeti (kullanıcı): ortak tulum YOK; her karakter kendi kıyafetiyle; her birinin kendine has tarzı ve karakteristik özelliği görünüşüne yansımalı.
 - 4. kişi (kullanıcı): mevcut A/B/C yerine daha ORİJİNAL, daha karakteristik, SEVİLECEK ama KOMİK bir tip; yine 'içeriden biri'.
+- **Stil kararı yönü (kullanıcı, 23 Kasım 2026):** "Yüzlerce kişi Remotion'dan video yapıyor, karakterler hep birbirine benziyor. Biraz farklılık yapıp bizim karakterleri sahiplenip 'aaa bu Berkay'ın dizisindeki karakterler' dedirtmemiz lazım." → Kırmızı Düğme için tanınır, imza bir çizim stili aranacak (stil denemesi kullanıcıya gösterilip seçilecek).

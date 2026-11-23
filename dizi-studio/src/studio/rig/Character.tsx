@@ -4,7 +4,7 @@ import { Brow, EMOTION_FACE, Eye, Mouth, OUT } from "./face";
 import { GESTURES, type FullArm } from "./gestures";
 import { HairBack, HairFront } from "./hair";
 import type { Look, MouthCue, Pose, Prop, Viseme } from "./types";
-import { BilekEk, Gobek, TelefonYatay, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
+import { BilekEk, Gobek, TelefonYatay, YuzEk, KulaklikKablo, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
 
 const SW = 4;
 const AHIZE_DX = 34, AHIZE_ROT = 22; // ahize yüzün yanında: üst uç kulakta, alt uç ağız köşesinin dışında
@@ -337,7 +337,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const blink0 = useBlink(seed);
   const blink = pose.kirpmaz ? 0 : blink0;
   const age = AGE[look.age];
-  const wx = BUILD[look.build];
+  const kilo = Math.max(0, Math.min(1, look.kilo ?? 0));
+  const wx = BUILD[look.build] * (1 + 0.14 * kilo);
   const male = look.gender === "m";
   const skin = look.skin;
   const out = look.outfit;
@@ -463,8 +464,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     const ey = 355 + ul;
     const hy = ey + fl;
     // Eklemler yuvarlak uçlu: omuz ve dirsek döndükçe parçalar daima örtüşür (boşluk açılmaz).
-    const upperD = `M ${sx - 22} 352 A 22 22 0 0 1 ${sx + 22} 352 Q ${sx + 24} ${355 + ul * 0.6} ${sx + 19} ${ey} A 19 19 0 0 1 ${sx - 19} ${ey} Q ${sx - 25} ${355 + ul * 0.6} ${sx - 22} 352 Z`;
-    const foreD = `M ${sx - 19} ${ey} A 19 19 0 0 1 ${sx + 19} ${ey} L ${sx + 16} ${hy} L ${sx - 16} ${hy} Z`;
+    // kilo: kollar kalınlaşır (omuz, dirsek, bilek)
+    const AW = 22 * (1 + 0.55 * kilo), EW = 19 * (1 + 0.55 * kilo), HW = 16 * (1 + 0.6 * kilo);
+    const upperD = `M ${sx - AW} 352 A ${AW} ${AW} 0 0 1 ${sx + AW} 352 Q ${sx + AW + 2} ${355 + ul * 0.6} ${sx + EW} ${ey} A ${EW} ${EW} 0 0 1 ${sx - EW} ${ey} Q ${sx - AW - 3} ${355 + ul * 0.6} ${sx - AW} 352 Z`;
+    const foreD = `M ${sx - EW} ${ey} A ${EW} ${EW} 0 0 1 ${sx + EW} ${ey} L ${sx + HW} ${hy} L ${sx - HW} ${hy} Z`;
     const armFill = shortSleeve ? skin : sleeve;
     const handFill = look.eldiven ?? skin;
     const sivali = !!look.sivali;
@@ -476,19 +479,23 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={foreD} fill={OUT} stroke={OUT} strokeWidth={SW * 2} strokeLinejoin="round" />
         </g>
         <path d={upperD} fill={armFill} />
+        {look.kil && shortSleeve ? <g stroke={look.hair.color} strokeWidth={2} opacity={0.5} strokeLinecap="round">{[0.15, 0.3, 0.45, 0.6, 0.75].map((q, i) => <path key={i} d={`M ${sx + (i % 2 ? 6 : -8)} ${355 + ul * q} l ${i % 2 ? 4 : -4} 6`} />)}</g> : null}
         {look.sargi && side === "l" ? <rect x={sx - 27} y={360 + ul * 0.55} width={54} height={30} rx={9} fill="#5f8a3a" stroke={OUT} strokeWidth={3} /> : null}
         {shortSleeve && out.type !== "atlet" ? (
           <path d={`M ${sx - 24} 352 A 24 24 0 0 1 ${sx + 24} 352 L ${sx + 25} ${355 + ul * 0.45} L ${sx - 25} ${355 + ul * 0.45} Z`} fill={out.top} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
         ) : null}
         <g transform={`rotate(${a.fore * dir} ${sx} ${ey})`}>
           <path d={foreD} fill={sivali ? skin : armFill} />
+          {look.kil && shortSleeve ? <g stroke={look.hair.color} strokeWidth={2} opacity={0.55} strokeLinecap="round">{[0.2, 0.35, 0.5, 0.65, 0.8].map((q, i) => <path key={i} d={`M ${sx + (i % 2 ? 5 : -7)} ${ey + (hy - ey) * q} l ${i % 2 ? 4 : -4} 6`} />)}</g> : null}
           {sivali ? <rect x={sx - 21} y={ey - 6} width={42} height={22} rx={6} fill={sleeve} stroke={OUT} strokeWidth={3} /> : null}
           {out.type === "kurye" ? <rect x={sx - 18} y={ey + fl * 0.38} width={36} height={14} fill="#e4eaee" stroke={OUT} strokeWidth={2.5} /> : null}
           {!shortSleeve && out.type === "tracksuit" ? <path d={`M ${sx + 12} ${ey} L ${sx + 10} ${hy}`} stroke="#fff" strokeWidth={5} /> : null}
           {!shortSleeve && !sivali ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
           <BilekEk look={look} side={side} sx={sx} hy={hy} />
           {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
-          <circle cx={sx} cy={hy + 12} r={21} fill={handFill} stroke={OUT} strokeWidth={SW} />
+          <circle cx={sx} cy={hy + 12} r={21 * (1 + 0.22 * kilo)} fill={handFill} stroke={OUT} strokeWidth={SW} />
+          {look.tirnak ? [-11, -1, 9].map((dxn) => <ellipse key={dxn} cx={sx + dxn} cy={hy + 30} rx={3.6} ry={5} fill={look.tirnak} stroke={OUT} strokeWidth={1.5} />) : null}
+          {look.kil ? <path d={`M ${sx - 8} ${hy + 4} l 3 -5 M ${sx + 2} ${hy + 2} l 3 -5 M ${sx + 10} ${hy + 6} l 3 -5`} stroke={look.hair.color} strokeWidth={1.8} opacity={0.6} /> : null}
           <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
           {side === "l" && pose.murekkep ? (
             <g>
@@ -499,7 +506,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {side === "r" && pose.prop && pose.prop !== "none" && !propGizle ? (
             <g transform={`rotate(${-(a.upper + a.fore) * dir} ${sx} ${hy + 12})`}>
               <HandProp prop={pose.prop} x={sx} y={hy + 12} look={look} />
-              <circle cx={sx} cy={hy + 12} r={21} fill={handFill} stroke={OUT} strokeWidth={SW} />
+              <circle cx={sx} cy={hy + 12} r={21 * (1 + 0.22 * kilo)} fill={handFill} stroke={OUT} strokeWidth={SW} />
             </g>
           ) : null}
         </g>
@@ -512,6 +519,32 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const AyakEk = ({ side }: { side: -1 | 1 }) => {
     const m = (d: string) => d;
     const ayna = side < 0 ? undefined : "translate(400 0) scale(-1 1)";
+    if (look.tavsanTerlik) {
+      // tavşan terlik: tüylü yuvarlak gövde, iki uzun kulak, minik göz ve pembe burun; taban tertemiz beyaz
+      const c = look.tavsanTerlik;
+      return (
+        <g transform={ayna}>
+          <path d="M 120 972 Q 116 992 146 992 L 204 992 L 204 972 Z" fill="#ffffff" stroke={OUT} strokeWidth={3} />
+          <path d="M 122 970 Q 112 930 152 924 L 204 926 L 204 976 L 132 978 Z" fill={c} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+          <ellipse cx={138} cy={918} rx={8} ry={22} fill={c} stroke={OUT} strokeWidth={3} transform="rotate(-24 138 918)" />
+          <ellipse cx={156} cy={914} rx={8} ry={22} fill={c} stroke={OUT} strokeWidth={3} transform="rotate(-6 156 914)" />
+          <ellipse cx={138} cy={920} rx={3.5} ry={13} fill="#ffb0c8" transform="rotate(-24 138 920)" />
+          <ellipse cx={156} cy={916} rx={3.5} ry={13} fill="#ffb0c8" transform="rotate(-6 156 916)" />
+          <circle cx={136} cy={950} r={3} fill={OUT} />
+          <ellipse cx={126} cy={958} rx={4} ry={3} fill="#ff8aac" />
+        </g>
+      );
+    }
+    if (look.terlik && look.tekTerlik && side === 1) {
+      // tek terlik: bu ayakta yalnız çorap (kaçırılırken terliğin biri düşmüş); başparmakta delik
+      return (
+        <g transform={ayna}>
+          <path d="M 134 948 Q 124 980 158 980 L 200 980 L 200 944 Z" fill="#e6e2d8" stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+          <ellipse cx={140} cy={964} rx={6} ry={5} fill={skin} stroke={OUT} strokeWidth={2} />
+          <path d="M 160 956 q 10 4 20 0" stroke="#bdb6a6" strokeWidth={2.5} fill="none" />
+        </g>
+      );
+    }
     if (look.terlik) {
       return (
         <g transform={ayna}>
@@ -542,8 +575,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d="M 140 600 L 120 700 L 196 712 L 200 640 L 204 712 L 280 700 L 260 600 Z" fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
           <path d="M 126 696 L 132 880 L 186 880 L 194 706 Z" fill={legFill} stroke={OUT} strokeWidth={SW} />
           <path d="M 206 706 L 214 880 L 268 880 L 274 696 Z" fill={legFill} stroke={OUT} strokeWidth={SW} />
-          {look.terlik ? null : <path d="M 124 876 Q 120 908 156 908 L 190 908 L 190 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
-          {look.terlik ? null : <path d="M 210 876 L 210 908 L 244 908 Q 280 908 276 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
+          {look.terlik || look.tavsanTerlik ? null : <path d="M 124 876 Q 120 908 156 908 L 190 908 L 190 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
+          {look.terlik || look.tavsanTerlik ? null : <path d="M 210 876 L 210 908 L 244 908 Q 280 908 276 876 Z" fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
           {look.serit ? <path d="M 133 704 L 138 874 M 267 704 L 262 874" stroke={look.serit} strokeWidth={6} /> : null}
           <g transform="translate(-14 -70)"><AyakEk side={-1} /></g>
           <g transform="translate(12 -70)"><AyakEk side={1} /></g>
@@ -588,13 +621,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
               {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${(side < 0 ? 150 : 210) + i * 10} 928 v 18`} stroke="#b8bec0" strokeWidth={2} />)}
             </g>
           ) : null}
-          {look.terlik ? null : <path d={side < 0 ? "M 138 946 Q 136 978 170 978 L 198 978 L 198 946 Z" : "M 202 946 L 202 978 L 230 978 Q 264 978 262 946 Z"} fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
+          {look.terlik || look.tavsanTerlik ? null : <path d={side < 0 ? "M 138 946 Q 136 978 170 978 L 198 978 L 198 946 Z" : "M 202 946 L 202 978 L 230 978 Q 264 978 262 946 Z"} fill={out.shoes === "skin" ? skin : out.shoes} stroke={OUT} strokeWidth={SW} />}
           <AyakEk side={side as -1 | 1} />
         </g>
       );
     };
     return (
-      <g>
+      <g transform={kilo ? `translate(200 0) scale(${1 + 0.32 * kilo} 1) translate(-200 0)` : undefined}>
         {leg(-1)}
         {leg(1)}
       </g>
@@ -762,7 +795,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
 
   // --- head ---
   const old = look.age === "old";
-  const facePath = male
+  const facePath = kilo > 0
+    ? "M 106 150 Q 98 250 122 294 Q 138 324 166 338 Q 200 354 234 338 Q 262 324 278 294 Q 302 250 294 150 Q 286 86 200 86 Q 114 86 106 150 Z"
+    : male
     ? "M 114 150 Q 112 250 140 286 Q 170 312 200 312 Q 230 312 260 286 Q 288 250 286 150 Q 280 90 200 90 Q 120 90 114 150 Z"
     : "M 116 150 Q 112 246 146 284 Q 174 310 200 310 Q 226 310 254 284 Q 288 246 284 150 Q 278 92 200 92 Q 122 92 116 150 Z";
   const squeezeL = 1 - Math.max(0, -yaw) * 0.3 - Math.max(0, -strong) * 0.5;
@@ -776,8 +811,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
     <g>
       {look.hair.style !== "hijab" && !kapali ? (
         <>
-          <ellipse cx={110 - dx * 0.4} cy={210} rx={14} ry={22} fill={skin} stroke={OUT} strokeWidth={SW} />
-          <ellipse cx={290 - dx * 0.4} cy={210} rx={14} ry={22} fill={skin} stroke={OUT} strokeWidth={SW} />
+          <ellipse cx={110 - 6 * kilo - dx * 0.4} cy={210} rx={14} ry={22} fill={skin} stroke={OUT} strokeWidth={SW} />
+          <ellipse cx={290 + 6 * kilo - dx * 0.4} cy={210} rx={14} ry={22} fill={skin} stroke={OUT} strokeWidth={SW} />
           {look.earrings ? (
             <>
               <circle cx={110 - dx * 0.4} cy={238} r={6} fill={look.earrings} stroke={OUT} strokeWidth={2} />
@@ -788,6 +823,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       ) : null}
       <path d={facePath} fill={skin} stroke={OUT} strokeWidth={SW} />
       <path d={facePath} fill="#c9d6e0" opacity={pale * 0.45} />
+      <YuzEk look={look} dx={dx} kilo={kilo} />
       {pose.mumParlak ? (
         <g opacity={Math.min(1, pose.mumParlak)}>
           {/* mum/maske parlaklığı: yüz fazla pürüzsüz ve ıslak görünür */}
@@ -995,9 +1031,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             ) : null}
           </g>
           {/* neck */}
-          <path d="M 180 290 L 180 336 Q 200 346 220 336 L 220 290 Z" fill={look.hair.style === "hijab" ? look.hair.color : look.karMaske ?? skin} stroke={OUT} strokeWidth={SW} />
+          <path d={kilo > 0 ? "M 166 290 L 162 340 Q 200 354 238 340 L 234 290 Z" : "M 180 290 L 180 336 Q 200 346 220 336 L 220 290 Z"} fill={look.hair.style === "hijab" ? look.hair.color : look.karMaske ?? skin} stroke={OUT} strokeWidth={SW} />
           <path d="M 182 318 Q 200 330 218 318" fill="none" stroke={look.skinShade} strokeWidth={6} opacity={look.hair.style === "hijab" || look.karMaske ? 0 : 1} />
           <OnBoyun look={look} />
+          <KulaklikKablo look={look} />
           {yk > 0 ? <path d={`M 193 ${330 - 22 * yk} q 7 -7 14 0`} fill="none" stroke={look.skinShade} strokeWidth={5} strokeLinecap="round" opacity={0.9} /> : null}
           {look.kolye ? (
             <g>
