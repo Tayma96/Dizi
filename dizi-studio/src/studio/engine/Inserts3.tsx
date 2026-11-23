@@ -609,7 +609,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "on_kamera": case "raf_duzen": case "depo_kolu": case "depo_el": case "el_kopar": return <Insert8 kind={kind} dur={dur} text={text} />;
     case "telefon_mesaj": case "yer_pov": case "tezgah_el": case "el_raf": return <Insert9 kind={kind} dur={dur} text={text} />;
     case "kapi_arka": case "kosu_takip": case "depo_acik": case "ambalaj_parmak": return <Insert10 kind={kind} dur={dur} text={text} />;
-    case "omuz_el": case "donusum_yuz": case "donusum_govde": case "bocek_dev": case "bocek_yakin": case "ece_yakin": case "ece_sirt": case "sabri_omuz": case "bocek_golge": return <Insert11 kind={kind} dur={dur} text={text} />;
+    case "omuz_el": case "donusum_yuz": case "donusum_govde": case "bocek_dev": case "bocek_yakin": case "ece_yakin": case "ece_sirt": case "sabri_omuz": case "bocek_golge": case "bocek_kukreme": return <Insert11 kind={kind} dur={dur} text={text} />;
     case "tablet_video": case "murekkep_parmak": case "kalem_cep": case "hap_uc": case "avuc_iki": case "foto_sofor": case "yuzuk_izi": return <Insert6 kind={kind} dur={dur} text={text} />;
     case "pov_kadin": return <PovKadin dur={dur} faz={(text ?? ["1"])[0]} />;
   }

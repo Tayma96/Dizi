@@ -8,8 +8,8 @@ import { Market724BG } from "../sets/market724";
 import { Anten, BocekKafa, DevBocek, K, PronotumArka, PronotumSiper, clamp01, kapsul, sstep, yay } from "./bocek";
 import { Bas25D, Govde25D } from "../rig/head25d";
 
-export type Insert11Kind = "omuz_el" | "donusum_yuz" | "donusum_govde" | "bocek_dev" | "bocek_yakin" | "ece_yakin" | "ece_sirt" | "sabri_omuz" | "bocek_golge";
-export const INSERT11_KINDS: Insert11Kind[] = ["omuz_el", "donusum_yuz", "donusum_govde", "bocek_dev", "bocek_yakin", "ece_yakin", "ece_sirt", "sabri_omuz", "bocek_golge"];
+export type Insert11Kind = "omuz_el" | "donusum_yuz" | "donusum_govde" | "bocek_dev" | "bocek_yakin" | "ece_yakin" | "ece_sirt" | "sabri_omuz" | "bocek_golge" | "bocek_kukreme";
+export const INSERT11_KINDS: Insert11Kind[] = ["omuz_el", "donusum_yuz", "donusum_govde", "bocek_dev", "bocek_yakin", "ece_yakin", "ece_sirt", "sabri_omuz", "bocek_golge", "bocek_kukreme"];
 
 /** Kontrol: dev böcek (açık / yarı açık / katlı) + kafa yakın */
 export const BocekSheet: React.FC = () => {
@@ -857,6 +857,8 @@ const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const hikT = ek.startsWith("hik") ? Number(ek.slice(3) || 0.1) : -1;
   const size = 2900;
   const z = 1 + 0.04 * (t / 3);
+  const ruz = ek === "ruzgar" ? sstep(0, 0.12, t) * (1 - 0.7 * sstep(0.7, 1.0, t)) : 0;
+  const rx = ruz ? (random(`rz${f}`) - 0.5) * 10 * ruz + 8 * ruz : 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#0c1018", overflow: "hidden" }}>
       <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
@@ -869,9 +871,31 @@ const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         </g>
         <ellipse cx={470} cy={980} rx={520} ry={760} fill="url(#eykapi)" opacity={0.7} />
       </svg>
-      <div style={{ position: "absolute", left: 540 - 200 * (size / 1000) * z, top: 740 - 200 * (size / 1000) * z, transform: `scale(${z})`, transformOrigin: "0 0" }}>
-        <Character look={ece} size={size} pose={{ emotion: t < t2 ? e1 : e2, lookX: lx, lookY: -0.05, pale, sacDagin: true, golgesiz: true, seed: 41, hik: hikT >= 0 && t > hikT ? (t - hikT) / 0.8 : undefined, sweat: ek === "ter", gozSok: ek === "goz" ? Math.min(1, t / 0.12) : undefined }} />
+      <div style={{ position: "absolute", left: 540 - 200 * (size / 1000) * z + rx, top: 740 - 200 * (size / 1000) * z, transform: `scale(${z}) skewX(${-3 * ruz}deg)`, transformOrigin: "0 0" }}>
+        <Character look={ece} size={size} pose={{ emotion: ruz > 0.3 ? "aci" : t < t2 ? e1 : e2, lookX: lx, lookY: -0.05, pale, sacDagin: true, golgesiz: true, seed: 41, eyesClosed: ruz > 0.3 ? 0.85 : undefined, tilt: -5 * ruz, hik: hikT >= 0 && t > hikT ? (t - hikT) / 0.8 : undefined, sweat: ek === "ter", gozSok: ek === "goz" ? Math.min(1, t / 0.12) : undefined }} />
       </div>
+      {ruz > 0 ? (
+        <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+          {/* kükremenin üfürüğü: kafadan sağa savrulan saç tutamları, rüzgâr çizgileri, yüze yapışan salya */}
+          {new Array(9).fill(0).map((_, i) => {
+            const y0 = 330 + i * 34, x0 = 600 + (i % 3) * 30;
+            const L = (180 + (i % 4) * 60) * ruz;
+            const w = Math.sin(f * 0.9 + i) * 26;
+            return <path key={i} d={`M ${x0} ${y0} q ${L * 0.5} ${-30 + w} ${L} ${10 + w * 0.6}`} stroke={i % 2 ? "#3a2418" : "#5a3a28"} strokeWidth={10 - (i % 3) * 2} fill="none" strokeLinecap="round" />;
+          })}
+          {new Array(10).fill(0).map((_, i) => {
+            const k = ((f * 0.07 + i * 0.37) % 1);
+            const y = 200 + i * 150;
+            return <path key={`w${i}`} d={`M ${-100 + 1300 * k} ${y} l 240 ${-10}`} stroke="#e8f0f4" strokeWidth={5} opacity={0.35 * ruz} strokeLinecap="round" />;
+          })}
+          {[[430, 640, 14], [655, 700, 10], [520, 520, 9], [700, 590, 7]].map(([x, y, r], i) => (
+            <g key={`s${i}`} opacity={sstep(0.1 + i * 0.07, 0.2 + i * 0.07, t)}>
+              <ellipse cx={x} cy={y} rx={r} ry={r * 1.3} fill={K.salya} stroke="#8a8050" strokeWidth={2} />
+              <path d={`M ${x} ${y + r} q -2 ${r * 1.5} 1 ${r * 2.2}`} stroke={K.salya} strokeWidth={r * 0.5} strokeLinecap="round" />
+            </g>
+          ))}
+        </svg>
+      ) : null}
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 52% 42%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.55) 100%)" }} />
     </AbsoluteFill>
   );
@@ -958,6 +982,74 @@ const BocekGolge: React.FC<{ text?: string[] }> = ({ text }) => {
   );
 };
 
+
+/* =====================================================================================
+ *  BOCEK_KUKREME: "hayranınım"a cevap. Hazırlık (0-0,22: baş geri, mandibulalar kapanır, antenler kalkar)
+ *  → kükreme (0,22-1,15: mandibulalar ardına kadar, antenler geri yatar, öne hamle + titreşim, salya
+ *  sıçrar, hava dalgası, floresan çakar) → oturma. text[0]: zaman kayması
+ * ===================================================================================== */
+const BocekKukreme: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f0 = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const kay = Number(text?.[0] || 0);
+  const t = f0 / fps + kay;
+  const f = f0 + Math.round(kay * fps);
+  const uid = "bk";
+  const haz = sstep(0, 0.22, t) * (1 - sstep(0.22, 0.34, t));
+  const kuk = sstep(0.2, 0.34, t) * (1 - 0.65 * sstep(1.05, 1.4, t));
+  const tit = kuk > 0.2 ? kuk : 0;
+  const jx = (random(`kx${f}`) - 0.5) * 16 * tit, jy = (random(`ky${f}`) - 0.5) * 12 * tit;
+  const sc = 1.85 * (1 - 0.06 * haz + 0.2 * kuk);
+  const hy = 820 - 40 * haz + 70 * kuk;
+  const fl = kuk > 0.3 ? (random(`kf${Math.floor(f / 2)}`) < 0.45 ? 0.35 : 1) : random(`kf${Math.floor(f / 2)}`) < 0.12 ? 0.5 : 1;
+  const bocek = (
+    <DevBocek t={t + 11} acil={1} kanat={0.5 + 0.5 * kuk} mand={0.2 - 0.2 * haz + 1.15 * kuk} egil={0.2 + 0.6 * kuk} egim={-6 * haz} anten={760} antenBuk={40 - 30 * haz + 190 * kuk} antenSal={0.6 + 2 * kuk} parlak={1} salya={1} isik={fl} kalinti={1} saldir={0.4 + 0.6 * kuk} uid={uid} />
+  );
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#07080a", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <linearGradient id={`${uid}tavan`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#c8ccce" /><stop offset="1" stopColor="#3a4044" /></linearGradient>
+          <radialGradient id={`${uid}vin`} cx="0.5" cy="0.42" r="0.72"><stop offset="0.4" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.85} /></radialGradient>
+          <filter id={`${uid}bl`}><feGaussianBlur stdDeviation="10" /></filter>
+          <filter id={`${uid}kenar`} x="-10%" y="-10%" width="120%" height="120%">
+            <feOffset in="SourceAlpha" dy={9} result="asag" />
+            <feComposite in="SourceAlpha" in2="asag" operator="out" result="ust" />
+            <feColorMatrix in="ust" type="matrix" values="0 0 0 0 0.85  0 0 0 0 0.94  0 0 0 0 1  0 0 0 0.75 0" />
+          </filter>
+        </defs>
+        <rect width={1080} height={1920} fill={`url(#${uid}tavan)`} opacity={0.5 * fl} />
+        <rect x={100} y={40} width={880} height={80} rx={10} fill="#ffffff" opacity={0.9 * fl} filter={`url(#${uid}bl)`} />
+        <g transform={`translate(${540 + jx} ${hy + jy})`}>
+          <g transform={`scale(${sc}) translate(0 770)`}>
+            {bocek}
+            <g filter={`url(#${uid}kenar)`}>{bocek}</g>
+          </g>
+        </g>
+        {/* hava dalgası: ağızdan halkalar */}
+        {kuk > 0.1 ? [0, 1, 2].map((i) => {
+          const k = ((t - 0.25 - i * 0.18) / 0.6);
+          if (k < 0 || k > 1) return null;
+          return <ellipse key={i} cx={540 + jx} cy={hy + 300 * (sc / 1.85) + jy} rx={120 + 700 * k} ry={70 + 420 * k} fill="none" stroke="#e8f0f4" strokeWidth={10 * (1 - k)} opacity={0.35 * (1 - k)} />;
+        }) : null}
+        {/* sıçrayan salya damlaları (kameraya doğru büyür) */}
+        {new Array(18).fill(0).map((_, i) => {
+          const t0 = 0.25 + random(`sd${i}`) * 0.5;
+          const k = (t - t0) / 0.5;
+          if (k < 0 || k > 1) return null;
+          const a = random(`sa${i}`) * Math.PI * 2;
+          const v = 300 + random(`sv${i}`) * 700;
+          const x = 540 + Math.cos(a) * v * k, y = hy + 300 + Math.sin(a) * v * k * 0.8 + 400 * k * k;
+          const r = (4 + 20 * k) * (0.6 + random(`sr${i}`));
+          return <ellipse key={i} cx={x} cy={y} rx={r} ry={r * 1.2} fill={K.salya} opacity={0.75 * (1 - k * 0.6)} stroke="#8a8050" strokeWidth={1.5} />;
+        })}
+        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.6} />
+        <rect width={1080} height={1920} fill={`url(#${uid}vin)`} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
 export const Insert11: React.FC<{ kind: Insert11Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "donusum_yuz": return <DonusumYuz dur={dur} text={text} />;
@@ -969,6 +1061,7 @@ export const Insert11: React.FC<{ kind: Insert11Kind; dur: number; text?: string
     case "ece_sirt": return <EceSirt text={text} />;
     case "sabri_omuz": return <SabriOmuz />;
     case "bocek_golge": return <BocekGolge text={text} />;
+    case "bocek_kukreme": return <BocekKukreme dur={dur} text={text} />;
     default: return null;
   }
 };

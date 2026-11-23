@@ -72,6 +72,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="B5OrnekOmuz" component={B5Ornek} durationInFrames={84} fps={30} width={1080} height={1920} defaultProps={{ kind: "omuz_el" as const, text: [] as string[] }} />
         <Composition id="B5OrnekDev" component={B5Ornek} durationInFrames={78} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_dev" as const, text: [] as string[] }} />
         <Composition id="B5OrnekYakin" component={B5Ornek} durationInFrames={66} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_yakin" as const, text: [] as string[] }} />
+        <Composition id="B5OrnekKukreme" component={B5Ornek} durationInFrames={45} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_kukreme" as const, text: [] as string[] }} />
         <Composition id="Agizlar" component={MouthSheet} durationInFrames={90} fps={30} width={1540} height={880} />
       </Folder>
       <Folder name="Kutuphane-3D">

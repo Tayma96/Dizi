@@ -342,6 +342,8 @@ export type BocekProps = {
   saldir?: number;
   /** pronotum kalkanının arkadan açılması 0..1 (dönüşümde) */
   kalkan?: number;
+  /** anten kıvrımı (büyük = geriye/yana yatık; kükremede) */
+  antenBuk?: number;
 };
 
 
@@ -380,7 +382,7 @@ export const PronotumSiper: React.FC<PrProps> = ({ uid, egil = 0, kk = 1, parlak
 };
 
 /** Ayakta dev hamamböceği. Yerel: ayaklar y=0, pronotum tepesi ~ -1010. */
-export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand = 0.2, egim = 0, egil = 0, anten = 700, antenSal = 1, parlak = 1, salya = 0.6, isik = 1, kalinti = 0, nefes = 1, uid, basYok, saldir = 0, kalkan = 1 }) => {
+export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand = 0.2, egim = 0, egil = 0, anten = 700, antenSal = 1, parlak = 1, salya = 0.6, isik = 1, kalinti = 0, nefes = 1, uid, basYok, saldir = 0, kalkan = 1, antenBuk = 40 }) => {
   const kk = clamp01(kalkan);
   const a = clamp01(acil);
   const br = 1 + 0.02 * Math.sin(t * 2.6) * nefes;
@@ -466,7 +468,7 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
       ) : null}
       {basYok ? null : (
         <g transform={`translate(0 ${headY + 110 * egil}) rotate(${egim} 0 0) scale(${1 + 0.14 * egil})`}>
-          <BocekKafa mand={mand} t={t} anten={anten} antenSal={antenSal} parlak={parlak} salya={salya} isik={isik} uid={`${uid}k`} siper={0.55 - 0.3 * egil} />
+          <BocekKafa mand={mand} t={t} anten={anten} antenBuk={antenBuk} antenSal={antenSal} parlak={parlak} salya={salya} isik={isik} uid={`${uid}k`} siper={0.55 - 0.3 * egil} />
         </g>
       )}
       <PronotumSiper uid={uid} egil={egil} kk={kk} parlak={parlak} isik={isik} />
