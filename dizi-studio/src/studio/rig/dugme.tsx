@@ -346,3 +346,30 @@ export const SlimeProp: React.FC<{ x: number; y: number }> = ({ x, y }) => {
     </g>
   );
 };
+
+/** Yatay tutulan telefon (iki elin arasında, göbeğe dayalı): arkası kameraya dönük, ekran ışığı yukarı (yüze) taşar.
+ *  Eller telefonun iki ucunu kavrar; başparmaklar önde. Koordinatlar gövde (Character) uzayında. */
+export const TelefonYatay: React.FC<{ l: [number, number]; r: [number, number]; el: string }> = ({ l, r, el }) => {
+  const cx = (l[0] + r[0]) / 2, cy = (l[1] + r[1]) / 2 - 10;
+  const a = (Math.atan2(r[1] - l[1], r[0] - l[0]) * 180) / Math.PI;
+  const w = Math.max(120, Math.hypot(r[0] - l[0], r[1] - l[1]) + 24);
+  return (
+    <g>
+      <defs><radialGradient id="tfYatayHale" cx="0.5" cy="0.7" r="0.6"><stop offset="0" stopColor="#cfe6ff" stopOpacity={0.5} /><stop offset="1" stopColor="#cfe6ff" stopOpacity={0} /></radialGradient></defs>
+      <ellipse cx={cx} cy={cy - 70} rx={110} ry={90} fill="url(#tfYatayHale)" />
+      <g transform={`rotate(${a} ${cx} ${cy})`}>
+        <rect x={cx - w / 2} y={cy - 34} width={w} height={68} rx={12} fill="#3a3f48" stroke={OUT} strokeWidth={3.5} />
+        <rect x={cx - w / 2 + 8} y={cy - 28} width={26} height={22} rx={6} fill="#22262c" stroke={OUT} strokeWidth={2} />
+        <circle cx={cx - w / 2 + 16} cy={cy - 17} r={3.6} fill="#0e1014" stroke="#6a7080" strokeWidth={1} />
+        <circle cx={cx - w / 2 + 27} cy={cy - 17} r={3.6} fill="#0e1014" stroke="#6a7080" strokeWidth={1} />
+        <path d={`M ${cx - w / 2 + 10} ${cy - 34} H ${cx + w / 2 - 10}`} stroke="#cfe6ff" strokeWidth={3} opacity={0.85} />
+      </g>
+      {[l, r].map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r={21} fill={el} stroke={OUT} strokeWidth={SW} />
+          <path d={`M ${x + (i ? -6 : 6)} ${y - 14} q ${i ? -12 : 12} -4 ${i ? -16 : 16} 6`} stroke={OUT} strokeWidth={3} fill="none" strokeLinecap="round" />
+        </g>
+      ))}
+    </g>
+  );
+};

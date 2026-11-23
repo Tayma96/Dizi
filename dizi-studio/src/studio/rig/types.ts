@@ -121,13 +121,15 @@ export type Gesture =
   /** Kırmızı Düğme: sol elle göbek kaşıma */
   | "gobekKasi"
   /** Kırmızı Düğme: iki el önde, slime yoğurma */
-  | "slime";
+  | "slime"
+  /** Kırmızı Düğme: telefonu iki eliyle YATAY tutar (film izler gibi), göbeğine dayar; prop "telefon_yatay" ile */
+  | "telefonYatay";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime" | "telefon_arka";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime" | "telefon_arka" | "telefon_yatay";
 
 export type Look = {
   name: string;

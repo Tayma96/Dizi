@@ -169,6 +169,15 @@ Kontrol: `Jestler` kompozisyonu.
   - Saydam ön plan katmanları: `ece_sirt` (text[0]: baş açısı), `sabri_omuz`, `bocek_golge`
 - **Dev hamamböceği:** `engine/bocek.tsx` (`DevBocek`, `BocekKafa`, `Bacak`, `Anten`). Kontrol kompozisyonu: `Bocek`. Örnekler: `B5OrnekYuz`, `B5OrnekGovde`, `B5OrnekOmuz`, `B5OrnekDev`, `B5OrnekYakin`.
 
+### Kırmızı Düğme eklemeleri (`kd_*`; hepsi isteğe bağlı, eski bölümleri değiştirmez)
+- **Kadro:** `kd_gobek`, `kd_kurye` (kasklı), `kd_kurye_kasksiz`, `kd_influencer`, `kd_maskeli`, `kd_dorduncu_a/_b/_c` (4. kişi seçenekleri); beyaz oda: `kd_gobek_oda`, `kd_kurye_oda`, `kd_influencer_oda` (buruşuk) ve `kd_gobek_tulum`, `kd_kurye_tulum`, `kd_influencer_tulum`, `kd_dorduncu_a_tulum`.
+- **Saç:** `daginik`, `perdeli` (uç rengi `hair.uc`). **Kıyafet:** `atlet`, `kurye`, `tulum`, `oversize`.
+- **Look alanları (`rig/dugme.tsx`):** `gobek` 0..1, `gobekAcik`, `terlik`, `serit` (eşofman şeridi), `kask {renk, serit, vizorAcik}`, `sirtCanta {renk, kenar}`, `karMaske`, `eldiven`, `makyaj {ruj, far, eyeliner, isilti}`, `halka`, `toka`, `saat`, `kulaklik`, `bagcik`, `kirisik`, `baski` ("vinn" | "blob" | "cep"), `sivali`.
+- **Jest:** `gobekKasi`, `slime`, `telefonYatay` (iki elle yatay telefon; prop `telefon_yatay` ile, telefon iki elin arasına çizilir). **Eşya:** `slime`, `telefon_arka` (dikey, arkası kameraya), `telefon_yatay`. **Poz:** `kaskYansima` (vizörde kayan yansıma, px).
+- **Mekânlar:** `kd_beyaz_oda` (`sets/beyazoda.tsx`, perspektif izdüşümlü oda motoru: `BeyazOda`, `Dugme`, `Bolme`, `Nesne`, `Mizrak`, `petekBul`), `kd_ev`, `kd_market_onu`, `kd_cadde_takip`, `kd_cadde_kavsak`, `kd_yayin` (`sets/dugme.tsx`; araçlar `KacirmaVan`, `KuryeMotor`; arayüz `YayinArayuz`). Not: bölüm JSON'u şimdilik `SetName3D` listesini kullanıyor; bu mekânlarla bölüm çekilecekse motor tipine eklenmeli.
+- **Kontrol kompozisyonları:** `KDKadro`, `KDMekanlar`, `KDLogo` (Kirmizi-Dugme klasörü). Taslak (henüz denetlenmedi): `KDDugmeOrnek`, `KDKanca`.
+- **Yazı tipi:** logo için Baloo 2 ExtraBold (`public/fonts/baloo-2-*`, OFL).
+
 ### Eşyalar (`prop`, sağ elde)
 telefon, poset, fincan, mektup, canta, cicek, bicak, anahtar, kitap
 

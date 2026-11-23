@@ -90,7 +90,7 @@ export const KDKadro: React.FC = () => {
       <div style={baslik}>1 · Ana karakterler</div>
       <div style={{ display: "flex", gap: 10, padding: "0 30px", alignItems: "flex-end" }}>
         <Kisi w={425} id="kd_gobek" ad="Göbekli Adam" alt="38 · atlet, eşofman, terlik" pose={{ gesture: "gobekKasi", emotion: "mutlu" }} />
-        <Kisi w={425} id="kd_gobek" ad="Göbekli · telefonla" alt="dikey tutuş, ekran kameradan uzak" pose={{ gesture: "tutuyor", prop: "telefon_arka", emotion: "gulen", lookY: 0.5, lookX: 0.25, armL: { upper: -6, fore: -58, ul: 0.92, fl: 0.9 } }} />
+        <Kisi w={425} id="kd_gobek" ad="Göbekli · film izler" alt="telefon yatay, iki elle, göbeğe dayalı" pose={{ gesture: "telefonYatay", prop: "telefon_yatay", emotion: "gulen", lookY: 0.7 }} />
         <Kisi w={425} id="kd_kurye" ad="Motokurye (kasklı)" alt="24 · uydurma marka VINN!" pose={{ emotion: "mutlu" }} />
         <Kisi w={425} id="kd_kurye_kasksiz" ad="Motokurye (kasksız)" alt="sırtta teslimat çantası" pose={{ emotion: "mutlu", lookX: 0.5 }} />
         <Kisi w={425} id="kd_influencer" ad="Influencer" alt="19 · perde kakül, pembe uçlar" pose={{ gesture: "slime", prop: "slime", emotion: "gulen" }} />
@@ -240,12 +240,12 @@ export const KdMekanKare: React.FC<{ m: KdMekan; frame: number }> = ({ m, frame 
       return (
         <AbsoluteFill style={{ background: "#000" }}>
           {svg(<KdEvBG frame={frame} />)}
-          {/* kanepede uzanmış: başı sol kolçakta, telefon yüzünün üstünde, sol eli göbekte */}
+          {/* kanepede yan yatmış: başı sol kolçakta; telefonu iki eliyle YATAY tutup göbeğine dayamış (ekran ona dönük, kameraya değil) */}
           <div style={{ position: "absolute", left: 590 - 180, top: 1150 - 450, transform: "rotate(-84deg)", transformOrigin: "50% 50%" }}>
-            <Character look={castById("kd_gobek")} size={900} pose={{ gesture: "gobekKasi", emotion: "gulen", armR: { upper: 104, fore: -96, ul: 0.8, fl: 0.9 }, prop: "telefon_arka", lookX: 0.8, lookY: -0.3, golgesiz: true, tilt: 12 }} />
+            <Character look={castById("kd_gobek")} size={900} pose={{ gesture: "telefonYatay", prop: "telefon_yatay", emotion: "gulen", lookY: 0.75, lookX: 0.1, golgesiz: true, tilt: 16, yaw: 0.25 }} />
           </div>
           {/* telefon ekranının yüze vuran soğuk ışığı (dolgu) */}
-          <AbsoluteFill style={{ background: "radial-gradient(circle at 34% 38%, #cfe6ff66, transparent 18%)", mixBlendMode: "screen" }} />
+          <AbsoluteFill style={{ background: "radial-gradient(circle at 23% 37%, #cfe6ff70, transparent 14%)", mixBlendMode: "screen" }} />
           {svg(<KdEvFG frame={frame} />)}
           <Grade tur="ev" />
         </AbsoluteFill>

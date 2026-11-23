@@ -77,8 +77,9 @@ export const KdEvBG: React.FC<{ frame: number }> = ({ frame }) => {
       <path d="M 470 396 V 360" stroke="#c9a24a" strokeWidth={3} />
       {/* kanepe (bordo, sırtında dantel örtü) */}
       <path d="M 170 1060 Q 170 990 240 990 L 920 990 Q 990 990 990 1060 L 990 1360 L 170 1360 Z" fill="#6a2a34" stroke={OUT} strokeWidth={7} strokeLinejoin="round" />
-      <path d="M 480 990 q 60 50 120 0 q -10 60 -60 70 q -50 -10 -60 -70 Z" fill="#f2ece0" opacity={0.92} stroke="#cfc6b4" strokeWidth={3} />
-      {new Array(7).fill(0).map((_, i) => <circle key={i} cx={492 + i * 16} cy={1046 - Math.sin((i / 6) * Math.PI) * 10} r={4} fill="none" stroke="#cfc6b4" strokeWidth={2} />)}
+      {/* sırt minderine asılı dantel örtü (tığ işi): dikdörtgen, alt kenarı fistolu */}
+      <path d={`M 470 984 L 650 984 L 650 1060 ${new Array(9).fill(0).map((_, i) => `Q ${640 - i * 20} ${1080} ${630 - i * 20} 1060`).join(" ")} L 470 1060 Z`} fill="#f2ece0" opacity={0.9} stroke="#cfc6b4" strokeWidth={3} />
+      {new Array(8).fill(0).map((_, i) => <circle key={i} cx={490 + i * 20} cy={1020} r={6} fill="none" stroke="#cfc6b4" strokeWidth={2} />)}
       <rect x={130} y={1120} width={130} height={300} rx={40} fill="#7a3440" stroke={OUT} strokeWidth={7} />
       <rect x={900} y={1120} width={130} height={300} rx={40} fill="#7a3440" stroke={OUT} strokeWidth={7} />
       <rect x={240} y={1200} width={680} height={150} rx={20} fill="#7a3440" stroke={OUT} strokeWidth={6} />

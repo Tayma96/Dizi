@@ -4,7 +4,7 @@ import { Brow, EMOTION_FACE, Eye, Mouth, OUT } from "./face";
 import { GESTURES, type FullArm } from "./gestures";
 import { HairBack, HairFront } from "./hair";
 import type { Look, MouthCue, Pose, Prop, Viseme } from "./types";
-import { BilekEk, Gobek, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
+import { BilekEk, Gobek, TelefonYatay, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
 
 const SW = 4;
 const AHIZE_DX = 34, AHIZE_ROT = 22; // ahize yüzün yanında: üst uç kulakta, alt uç ağız köşesinin dışında
@@ -1081,6 +1081,17 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <g transform={omzY ? `translate(0 ${-omzY})` : undefined}>
           <Arm side="l" a={armL} />
           <Arm side="r" a={armR} />
+          {pose.prop === "telefon_yatay" ? (() => {
+            // ileri kinematik: iki elin gövde uzayındaki yeri; telefon aralarına çizilir
+            const fk = (side: "l" | "r", ar: FullArm): [number, number] => {
+              const sx0 = side === "l" ? 200 - shoulderOff : 200 + shoulderOff;
+              const dir = side === "l" ? 1 : -1;
+              const ul = 140 * (ar.ul ?? 1), fl = 108 * (ar.fl ?? 1) + 12;
+              const u = (ar.upper * dir * Math.PI) / 180, t2 = ((ar.upper + ar.fore) * dir * Math.PI) / 180;
+              return [sx0 - ul * Math.sin(u) - fl * Math.sin(t2), 355 + ul * Math.cos(u) + fl * Math.cos(t2)];
+            };
+            return <TelefonYatay l={fk("l", armL)} r={fk("r", armR)} el={look.eldiven ?? skin} />;
+          })() : null}
           </g>
         </g>
       </g>

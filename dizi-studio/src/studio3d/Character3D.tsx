@@ -47,6 +47,7 @@ export const GESTURES3D: Record<Gesture | "sarilma" | "kapiAc", { L: HandT; R: H
   ellerKenetli: { L: { t: [0.03, 0.42, 0.24], pole: [1, -1, 0] }, R: { t: [0.03, 0.42, 0.24], pole: [1, -1, 0] } },
   /* Kırmızı Düğme (2D için eklendi; 3D karşılıkları kaba) */
   gobekKasi: { L: { t: [0.02, 0.2, 0.26], pole: [1, -0.4, 0] }, R: REST },
+  telefonYatay: { L: { t: [0.09, 0.22, 0.3], pole: [1, -0.4, 0] }, R: { t: [0.09, 0.22, 0.3], pole: [1, -0.4, 0] } },
   slime: { L: { t: [0.08, 0.3, 0.3], pole: [1, -0.6, 0] }, R: { t: [0.08, 0.3, 0.3], pole: [1, -0.6, 0] } },
   eliKalbinde: { L: REST, R: { t: [-0.04, 0.33, 0.17], pole: [1, -1, 0] } },
   omuzSilk: { L: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] }, R: { t: [0.34, 0.24, 0.22], pole: [0.5, -1, -0.5] } },
