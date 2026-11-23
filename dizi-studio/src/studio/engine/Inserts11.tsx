@@ -456,7 +456,7 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const acilB = yay(Math.max(0, t - 0.75) / 0.9, 0.42, 9);
   // büyüme: yavaş başlar, hızlanır, tavana yaklaşınca yavaşlar; küçük taşma ve geri oturma (kütle hissi)
   const buyu = sstep(1.0, 2.5, t) + 0.05 * Math.sin(Math.PI * sstep(2.3, 3.1, t));
-  const kalkan = sstep(1.1, 2.0, t);
+  const kalkan = 0.75 + 0.25 * sstep(1.1, 2.0, t); // yüz çekimi pronotum açık bitti: süreklilik
   const kanat = 0.05 + 0.95 * sstep(2.1, 2.5, t) - 0.4 * sstep(2.9, 3.6, t);
   const mand = 0.55 + 0.45 * sstep(2.3, 2.5, t) - 0.3 * sstep(3.3, 3.9, t) + 0.15 * Math.sin(t * 7) * sstep(3.6, 4, t);
   const egil = 0.6 * sstep(3.3, 4.5, t) + 0.08 * Math.sin(t * 2.4) * sstep(2.6, 3.2, t);

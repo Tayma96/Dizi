@@ -198,3 +198,4 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - **Kullanıcı kararı:** "hıığğ" tepkisinin HEMEN ardından, arada boşluk/başka söz olmadan "abi vallahi büyük hayranınım." gelir.
 - **Kullanıcı eklemesi (23 Kasım 2026; replikler AYNEN):** "abi vallahi büyük hayranınım." dedikten sonra böcek kükreme gibi bir ses çıkarır. Ece "lülü?" der, 1 saniye bekler, "bu da mı olmadı?" der (tedirgin ve mahçup).
 - **Kullanıcı kararı (23 Kasım 2026), kredi:** "Maaliyetleri onaylıyorum. Efektler, fon müzikleri, dialoglar konusunda maaliyet sorup durma mevcut krediden istediğin kadar harcayabilirsin." → 7/24 için ElevenLabs harcamasında her seferinde onay sorulmaz; yine de kredi asla aşılmaz (aracın yedek payı korunur), harcama kullanıcıya raporlanır.
+- **Kullanıcı geri bildirimi (23 Kasım 2026):** Ece'nin B5 replikleri çok sakin; hepsi korkmuş, panik ve biraz sert tonla yeniden üretilecek. (Kalıcı ders: Ece korku sahnelerinde asla sakin/düz okunmaz.)
