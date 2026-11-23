@@ -5,7 +5,20 @@
   "episodeNo": 5,
   "title": "Bölüm 5",
   "endCard": {
-    "text": "7/24 · Bölüm 6 yakında"
+    "tip": "yorum",
+    "satirlar": [
+      "Kural 3'ü hatırlayan var mı?",
+      "Sen olsan napardın?",
+      "Yorumlara yaz."
+    ],
+    "sure": 3.0,
+    "arka": {
+      "kind": "bocek_yakin",
+      "text": [
+        "1.7"
+      ]
+    },
+    "etiket": "7/24 · Bölüm 6 yakında"
   },
   "scenes": [
     {

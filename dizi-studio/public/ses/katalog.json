@@ -1215,7 +1215,7 @@
   "category": "muzik",
   "duration": 30.0,
   "loop": false,
-  "desc": "B5 dönüşüm altyapısı: muzik/b5_donusum (ElevenLabs Music) 0-13 sn + efekt/korku_drone (kendi sentezimiz) yükselen bölüm; 17.31 sn'de kükremeyle keskin kesilir, sonrası sessiz. -18 LUFS."
+  "desc": "B5 dönüşüm altyapısı: muzik/b5_donusum (ElevenLabs Music) 0-13 sn + efekt/korku_drone (kendi sentezimiz) yükselen bölüm; 17.18 sn'de kükremeyle keskin kesilir, sonrası sessiz. -18 LUFS."
  },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",
