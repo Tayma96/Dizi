@@ -5,7 +5,9 @@
   python3 tools/ses_724_05_p2.py efekt-uret [--onayla]          # parçaya özel ElevenLabs SFX'leri (el_b5p2_*)
   /opt/tts/venv/bin/python tools/ses_724_05_p2.py hrir          # SADIE II (KU100) 3. derece SH-HRIR'larını public/ses/b5p2_hrir/'e yazar (bir kez)
   /opt/tts/venv/bin/python tools/ses_724_05_p2.py kur           # bütün parçayı kurar: binaural kaynaklar + efektler + miks + kökler + önizleme
+  /opt/tts/venv/bin/python tools/ses_724_05_p2.py sec           # eleven_v4 varyantlarından W1-W6 + Ece nefesleri seçimi (Whisper + tını benzerliği)
   /opt/tts/venv/bin/python tools/ses_724_05_p2.py olc           # doğrulama ölçümleri (LUFS, L/R, ITD, mono uyumluluk, Whisper)
+  Whisper modeli: B5P2_WHISPER=<faster-whisper model klasörü> (varsayılan 'small', HF'den iner)
 
 Binaural yöntem: kaynak (mono) zamanla değişen yönde 3. derece Ambisonik'e (ACN/SN3D) kodlanır, SADIE II KU100
 kafa modelinin SH alanındaki HRIR'larıyla (Google Omnitone/Resonance, Apache-2.0) iki kulağa çözülür. Üstüne:
@@ -751,8 +753,29 @@ def _sahte_doku(x, ikinci_db=-20.0, golge_db=-32.0):
     return y[: len(x)] * (np.abs(x).max() + 1e-9) / 0.5
 
 
+def _kirp_sessizlik(y, esik_db=-45.0):
+    np = _np()
+    e = np.abs(y)
+    thr = e.max() * db2a(esik_db)
+    nz = np.nonzero(e > thr)[0]
+    return y[max(0, nz[0] - int(0.02 * SR)): nz[-1] + int(0.05 * SR)] if len(nz) else y
+
+
+def secim():
+    try:
+        return plan_load().get("secim", {})
+    except Exception:
+        return {}
+
+
 def fisilti_uret(w):
     np = _np()
+    sc = secim().get(w["id"])
+    if sc and os.path.exists(rel(sc["dosya"])):
+        # eleven_v4 gerçek fısıltı (kullanıcı kararı): LPC yok; yalnız sahte doku + seviye
+        y = _kirp_sessizlik(load(rel(sc["dosya"])))
+        out = fade(_sahte_doku(fade(y, 0.004, 0.03)), 0.004, 0.03)
+        return out / (np.sqrt(np.mean(out ** 2)) + 1e-12) * db2a(-20)
     ep, lid, a, b = w["kaynak"]
     y = seg(load(rel(f"voice/{ep}/{lid}.mp3")), a, b)
     y = fade(y, 0.004, 0.02)
@@ -900,6 +923,13 @@ def cmd_kur():
         "bastirilmis_hickirik": fade(filt(seg(load(rel("voice/724-05-ece4/j_02.mp3")), 0.60, 1.00), "low", 1100, 4), 0.01, 0.12),
         "titrek_nefes_kisa": titrek_nefes(0.7, 32),
     }
+    for anahtar, tur_ in (("n1", "titrek_nefes"), ("n2", "bastirilmis_hickirik")):
+        sc_ = secim().get(anahtar)
+        if sc_ and os.path.exists(rel(sc_["dosya"])):
+            yv = _kirp_sessizlik(load(rel(sc_["dosya"])))
+            ece_src[tur_] = fade(filt(yv, "low", 1500, 4) if tur_ == "bastirilmis_hickirik" else yv, 0.01, 0.08)
+            if tur_ == "titrek_nefes":
+                ece_src["titrek_nefes_kisa"] = fade(ece_src[tur_][: int(0.7 * SR)], 0.01, 0.15)
     ece_aciklama = {"nefes_tutma": "Ece nefesini tutar (bastırılmış içe çekiş)", "titrek_nefes": "Ece: ağzı kapalı, burundan titrek veriş",
                     "yutkunma": "Ece yutkunur", "bastirilmis_hickirik": "Ece: eliyle ağzını kapatmış, bastırılmış hıçkırık (çakmadan hemen sonra)",
                     "titrek_nefes_kisa": "Ece'nin kaçırdığı küçücük titrek nefes (şey onu duyar)"}
@@ -932,6 +962,14 @@ def cmd_kur():
     for k, w in enumerate(FISILTI):
         x = fisilti_uret(w)
         dur = len(x) / SR
+        w = dict(w)
+        son_key = w["yol"][-1][0]
+        if secim().get(w["id"]) and son_key > 0:
+            olc_ = (dur if w["id"] != "W6" else min(dur, KESME - w["t"])) / son_key
+            w["yol"] = [(round(q[0] * olc_, 3), *q[1:]) for q in w["yol"]]
+            if w["id"] == "W6" and w["t"] + dur < KESME:
+                w["t"] = round(KESME - dur + 0.03, 3)  # en yakın an kesmeye denk gelsin
+            w["kaynak_model"] = "eleven_v4 (" + secim()[w["id"]]["dosya"] + ")"
         # dudak aralanma tıkı: fısıltıdan 70 ms önce, aynı yerde
         tk = tik(500 + k) * 0.04
         x2 = np.concatenate([tk, np.zeros(max(0, int(0.07 * SR) - len(tk))), x])
@@ -942,7 +980,7 @@ def cmd_kur():
         M.ekle("fisilti", w["t"] - 0.07, B, w["kazanc"], f"{w['id']} {w['kim']}: \"{w['soz']}\" ({w['not']})",
                f"voice/{w['kaynak'][0]}/{w['kaynak'][1]} [{w['kaynak'][2]}-{w['kaynak'][3]}] -> LPC fısıltı", kadar=KESME,
                yon=" → ".join(f"az{p[1]:+d} el{p[2]:+d} {p[3]} m" for p in w["yol"]))
-        fis.append({"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["t"], "son": round(min(KESME, w["t"] + dur), 3), "sure": round(dur, 3),
+        fis.append({"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["t"], "kaynak": w.get("kaynak_model", "LPC fısıltı: voice/%s/%s" % w["kaynak"][:2]), "son": round(min(KESME, w["t"] + dur), 3), "sure": round(dur, 3),
                     "yol": w["yol"], "not": w["not"]})
     # ---------------- toplam, kesmeler, mastering
     print("miks…", flush=True)
@@ -1159,6 +1197,65 @@ def cmd_olc():
     plan_save(p)
 
 
+
+def _mfcc_ort(y):
+    np = _np()
+    import librosa
+    y16 = librosa.resample(np.asarray(y, dtype=np.float32), orig_sr=SR, target_sr=16000)
+    M = librosa.feature.mfcc(y=y16, sr=16000, n_mfcc=20)
+    e = librosa.feature.rms(y=y16)[0][: M.shape[1]]
+    act = e > e.max() * 0.1
+    return M[1:, act].mean(1)
+
+
+def cmd_sec():
+    '''eleven_v4 varyantlarından (public/voice/724-05-p2-ses) W1-W6 ve Ece nefesleri için seçim: Whisper anlaşılırlığı +
+    önceki bölümlerdeki aynı sesin kayıtlarına MFCC (tını zarfı) kosinüs benzerliği. Sonuç plan JSON 'secim'.'''
+    np = _np()
+    import re, librosa
+    from faster_whisper import WhisperModel
+    asr = WhisperModel(os.environ.get("B5P2_WHISPER", "small"), device="cpu", compute_type="int8")
+    p = plan_load()
+    man_p = os.path.join(VDIR, "manifest.json")
+    if not os.path.exists(man_p):
+        raise SystemExit("v4 varyantı yok: önce 'uret --onayla'.")
+    man = json.load(open(man_p, encoding="utf-8"))
+    ref = {"sabri": [("724-01", "c_15"), ("724-01", "c_08"), ("724-05", "f_01")], "anne724": [("724-03", "a_02"), ("724-b1", "a_07")]}
+    refv = {k: np.mean([_mfcc_ort(load(rel(f"voice/{e}/{l}.mp3"))) for e, l in v], 0) for k, v in ref.items()}
+    beklenen = {"sabri": "ece", "anne724": "kızım"}
+    sonuc = []
+    for u in p["uretim"]:
+        lid = f"{u['id']}_01"
+        if lid not in man:
+            continue
+        y = _kirp_sessizlik(load(rel(man[lid]["file"])))
+        segs, _ = asr.transcribe(librosa.resample((y / (np.abs(y).max() + 1e-9) * 0.5).astype(np.float32), orig_sr=SR, target_sr=16000), language="tr", beam_size=5)
+        duy = " ".join(x.text.strip() for x in segs)
+        norm = re.sub(r"[^a-zçğıöşü]", "", duy.replace("I", "ı").replace("İ", "i").lower())
+        r_ = {"id": u["id"], "who": u["who"], "hedef": u.get("hedef"), "dosya": man[lid]["file"], "sure": round(len(y) / SR, 2), "whisper": duy}
+        if u["who"] in refv:
+            v = _mfcc_ort(y)
+            r_["benzerlik"] = round(float(np.dot(v, refv[u["who"]]) / (np.linalg.norm(v) * np.linalg.norm(refv[u["who"]]))), 3)
+            r_["anlasilir"] = beklenen[u["who"]] in norm
+        sonuc.append(r_)
+        print(json.dumps(r_, ensure_ascii=False), flush=True)
+    sec = {}
+    kullanilan = set()
+    for W, kim in [("W1", "sabri"), ("W3", "sabri"), ("W6", "sabri"), ("W2", "anne724"), ("W4", "anne724"), ("W5", "anne724")]:
+        aday = [r_ for r_ in sonuc if r_["who"] == kim and r_.get("anlasilir") and r_["id"] not in kullanilan]
+        aday.sort(key=lambda r_: (r_["hedef"] != W, -r_.get("benzerlik", 0)))
+        if aday:
+            sec[W] = {k: aday[0][k] for k in ("id", "dosya", "whisper", "benzerlik", "sure")}
+            kullanilan.add(aday[0]["id"])
+    for r_ in sonuc:
+        if r_["who"] == "ece_sivil" and r_["id"] in ("n1", "n2"):
+            sec[r_["id"]] = {k: r_[k] for k in ("id", "dosya", "whisper", "sure")}  # sözsüz: Whisper boş/anlamsız olmalı; dinlenerek onaylanır
+    p["secim"] = sec
+    p["secim_olcum"] = sonuc
+    plan_save(p)
+    print("seçim:", json.dumps(sec, ensure_ascii=False), flush=True)
+
+
 if __name__ == "__main__":
     c = sys.argv[1] if len(sys.argv) > 1 else ""
     if c == "uret":
@@ -1169,5 +1266,7 @@ if __name__ == "__main__":
         cmd_kur()
     elif c == "olc":
         cmd_olc()
+    elif c == "sec":
+        cmd_sec()
     else:
         print(__doc__)
