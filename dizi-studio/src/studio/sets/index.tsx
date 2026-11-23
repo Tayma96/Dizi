@@ -125,7 +125,7 @@ const TileFloor: React.FC<{ y?: number; c?: string; line?: string }> = ({ y = 15
   </g>
 );
 
-type MarketEk = { depoAcik?: number; agiz?: boolean; sars?: number };
+type MarketEk = { depoAcik?: number; agiz?: boolean; sars?: number; /** B6 p2: kapı görünümünde dış (sabah) */ dis?: React.ReactNode };
 const SetBG: React.FC<{ name: SetName; time: TimeOfDay; rain?: boolean; flash?: number; doorOpen?: number; kus?: React.ReactNode; saat?: string; sallanan?: number; kaydir?: number; tv?: string; turb?: number; kemer?: boolean; iz?: number; market?: MarketEk }> = ({ name, time, rain, flash = 0, doorOpen = 0, kus, saat, sallanan, kaydir, tv, turb, kemer, iz = 0, market }) => {
   const frame = useCurrentFrame();
   if (name === "mutfak_dg") return <MutfakDgBG frame={frame} />;

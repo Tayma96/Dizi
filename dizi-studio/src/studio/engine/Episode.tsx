@@ -7,6 +7,7 @@ import { Bird, SET_INFO, SetLayer, type Mark } from "../sets";
 import { FilmFinish } from "../../dizi/Effects";
 import { lightning } from "../../dizi/Sets";
 import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleCard, YorumKarti } from "./Overlays";
+import { Safak } from "./Inserts13";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
 import { GESTURES, type FullArm } from "../rig/gestures";
@@ -256,7 +257,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       if (t > 0.28 && t < 0.8) sarsNow = Math.max(sarsNow, 1 - (t - 0.28) / 0.52);
     }
   }
-  const marketEk = { depoAcik: depoNow, agiz: !!scene.isaretler?.kasa_agzi, sars: sarsNow };
+  // 7/24 B6 p2 (opt-in): sahne "sabah": kapı görünümünün camlarında gece/yağmur yerine güneşli sokak (B6 p1 ile aynı dış)
+  const marketEk = { depoAcik: depoNow, agiz: !!scene.isaretler?.kasa_agzi, sars: sarsNow, dis: (scene as { sabah?: boolean }).sabah ? <Safak uid="ep6" sabah={1} gunesY={1} t={0} /> : undefined };
   // ön plan palto omzu (iri adam): sahnede var, "sil" vuruşunda sola kayıp çıkar
   let paltoNow = scene.paltoOmuz ? 1 : 0;
   for (let i = 0; i <= bi; i++) {

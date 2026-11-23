@@ -80,8 +80,8 @@ const Anahtar: React.FC<{ dur: number }> = () => {
         </g>
         {/* el anahtarın başını tutar */}
         <g transform={`translate(${titre} ${titre * 0.6})`}>
-          <g transform={`rotate(${aci * 0.85} ${cx} ${cy})`}>
-            <El x={cx + 30} y={cy - 90} a={-20} s={1.15} kol={[cx + 520, cy + 900]} />
+          <g transform={`rotate(${aci * 0.3} ${cx} ${cy})`}>
+            <El x={cx + 20} y={cy + 40} a={-8} s={1.15} kol={[cx + 300, cy + 1100]} />
           </g>
         </g>
       </svg>

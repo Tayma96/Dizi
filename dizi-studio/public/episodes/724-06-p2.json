@@ -1,0 +1,433 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-06-p2",
+ "episodeNo": 6,
+ "title": "Bölüm 6 · Parça 2",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "market_kapi",
+   "time": "gunduz",
+   "saat": "07:31",
+   "title": "Bir aylık maaş",
+   "look": "normal",
+   "transition": "kesme",
+   "sabah": true,
+   "isaretler": {
+    "ece_m": {
+     "x": 800,
+     "y": 1880,
+     "size": 1260
+    },
+    "sabri_m": {
+     "x": 290,
+     "y": 1860,
+     "size": 1300
+    },
+    "cikis": {
+     "x": 550,
+     "y": 1262,
+     "size": 640
+    }
+   },
+   "music": {
+    "name": "efekt/b6p2_alt",
+    "volume": 1.0,
+    "duck": false
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "ece_m",
+     "emotion": "agliyor",
+     "tears": 1,
+     "sacDagin": true,
+     "onluk": false,
+     "pale": 0.25,
+     "lookAt": "sabri"
+    },
+    "sabri": {
+     "mark": "sabri_m",
+     "emotion": "uzgun",
+     "lookAt": "ece_sivil"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 2.6,
+     "shot": {
+      "type": "iki",
+      "on": "sabri",
+      "with": "ece_sivil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "sabri": {
+       "gesture": "uzat",
+       "prop": "para"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "sok",
+       "bak": {
+        "x": -0.5,
+        "y": 0.35
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.2,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "saskin",
+       "gesture": "tutuyor",
+       "prop": "para"
+      },
+      "sabri": {
+       "gesture": "rest",
+       "prop": null
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem",
+     "emotion": "notr",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "orta",
+      "on": "sabri",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "ofkeli",
+       "tears": 1,
+       "lookAt": "sabri"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.4,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "emotion": "agliyor",
+       "gesture": "rest",
+       "prop": null,
+       "hickir": 0.8
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "mark": "cikis",
+       "yuruSure": 1.6,
+       "hickir": 0.8
+      },
+      "sabri": {
+       "lookAt": "ece_sivil"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "sokak",
+   "time": "gunduz",
+   "title": "Koşa koşa eve",
+   "transition": "kesme",
+   "cast": {
+    "ece_sivil": {
+     "mark": "orta",
+     "emotion": "agliyor",
+     "tears": 1,
+     "sacDagin": true,
+     "onluk": false,
+     "pale": 0.25,
+     "body": "kos",
+     "enter": "sol"
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.6,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "body": "kos",
+       "exit": "sag"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "c",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "Kapı",
+   "transition": "kesme",
+   "isaretler": {
+    "ece_esik": {
+     "x": 560,
+     "y": 1560,
+     "size": 950
+    }
+   },
+   "cast": {
+    "ece_sivil": {
+     "mark": "ece_esik",
+     "emotion": "agliyor",
+     "tears": 1,
+     "sacDagin": true,
+     "onluk": false,
+     "pale": 0.25,
+     "hickir": 0.8
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 1.1,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "door": "ac"
+    },
+    {
+     "type": "action",
+     "dur": 1.5,
+     "shot": {
+      "type": "genis",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_sivil": {
+       "mark": "ece_giris",
+       "yuruSure": 0.8
+      }
+     },
+     "door": "kapat"
+    },
+    {
+     "type": "insert",
+     "kind": "ev_anahtar",
+     "dur": 1.4
+    },
+    {
+     "type": "insert",
+     "kind": "ev_zincir",
+     "dur": 1.3
+    }
+   ]
+  },
+  {
+   "id": "d",
+   "set": "ev_antre_z",
+   "time": "gunduz",
+   "title": "Yoksa öğrendi mi?",
+   "transition": "kesme",
+   "cast": {
+    "ece_sivil": {
+     "mark": "ece_kapi",
+     "emotion": "agliyor",
+     "tears": 1,
+     "sacDagin": true,
+     "onluk": false,
+     "pale": 0.25,
+     "yerOtur": 1,
+     "hickir": 1,
+     "aglaAgiz": 0.8
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 3.4,
+     "shot": {
+      "type": "orta",
+      "on": "ece_sivil",
+      "move": "yaklas"
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.8,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "anne724": {
+       "mark": "anne",
+       "enter": "sag",
+       "emotion": "saskin",
+       "lookAt": "ece_sivil"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yoksa öğrendi mi?",
+     "emotion": "notr",
+     "gapAfter": 0.5,
+     "shot": {
+      "type": "yakin",
+      "on": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "korkmus",
+       "lookAt": "ece_sivil"
+      }
+     },
+     "voiceover": true,
+     "label": "Anne (içinden)"
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "noldu kızım neyin var?",
+     "emotion": "notr",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "iki",
+      "on": "anne724",
+      "with": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "anne724": {
+       "mark": "anne_yan",
+       "diz": true,
+       "emotion": "uzgun",
+       "gesture": "okşa",
+       "lookAt": "ece_sivil"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Biri bir şey mi yaptı",
+     "emotion": "notr",
+     "gapAfter": 0.3,
+     "shot": {
+      "type": "yakin",
+      "on": "anne724",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "rest"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.4,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_sivil",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_sivil": {
+       "bakSira": [
+        {
+         "at": 0,
+         "x": 0,
+         "y": 0.3,
+         "yaw": 0
+        },
+        {
+         "at": 0.3,
+         "x": -0.3,
+         "y": 0.3,
+         "yaw": -0.45
+        },
+        {
+         "at": 0.65,
+         "x": 0.3,
+         "y": 0.3,
+         "yaw": 0.45
+        },
+        {
+         "at": 1.0,
+         "x": -0.3,
+         "y": 0.3,
+         "yaw": -0.45
+        },
+        {
+         "at": 1.35,
+         "x": 0,
+         "y": 0.35,
+         "yaw": 0
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

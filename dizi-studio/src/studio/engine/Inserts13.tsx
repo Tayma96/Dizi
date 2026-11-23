@@ -221,7 +221,7 @@ const OmuzEl: React.FC<{ H: V2; w: number; aci: number; ten: string; parmak?: nu
  *  ŞAFAK (kapı görünümü, camın ardı): karşıda ara sokağın ucunda ufuk; güneş ucunu gösterir. Islak asfalt
  *  güneşi yansıtır. sabah 0 = şafak, 1 = 08:00 (gök maviye döner, güneş yükselir).
  * ===================================================================================== */
-const Safak: React.FC<{ uid: string; sabah: number; gunesY: number; t: number }> = ({ uid, sabah, gunesY, t }) => {
+export const Safak: React.FC<{ uid: string; sabah: number; gunesY: number; t: number }> = ({ uid, sabah, gunesY, t }) => {
   const gk = [mixC([0.27, 0.33, 0.55], [0.47, 0.66, 0.86], sabah), mixC([0.86, 0.55, 0.5], [0.66, 0.8, 0.9], sabah), mixC([1, 0.74, 0.46], [0.92, 0.93, 0.9], sabah), mixC([1, 0.9, 0.66], [1, 0.97, 0.88], sabah)];
   const sx = 452, sy = 800 - 70 * gunesY - 230 * sabah, sr = 50;
   const bina = mixC([0.42, 0.36, 0.46], [0.6, 0.6, 0.64], sabah);
