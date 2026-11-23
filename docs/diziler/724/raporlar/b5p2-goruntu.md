@@ -152,7 +152,7 @@ Sekiz karenin hepsinde PSNR **sonsuz** (bit bit aynı). `npx tsc --noEmit` temiz
 - **Ses planı A'da ışığı tanımlamıyor.** Görüntüde A aydınlık bırakıldı (gerekçe yukarıda). Ses yönetmeniyle teyit edilmeli.
 - **`docs/uretim-rehberi.md` §4 kataloğu güncellenmedi:** Bu görevde dosya listem dışındaydı. Yeni varlıklar: `p2_kasa`, `p2_kapi`, `p2_kepenk`, `p2_koridor` (raf koridoru seti), `p2_fisilti`, `p2_kulaklik`, mini hamamböceği, `agizKapa`, `dudakTitre`. Genel yönetmen eklemeli.
 
-## Kaldığım yer (24 Kasım 2026, limit nedeniyle ara kayıt)
+## Kaldığım yer (23 Kasım 2026, limit nedeniyle ara kayıt)
 1. D aralığı (22–33) yeniden yapıldı, ama tam render ve rapor güncellemesi henüz yok. Yapılanlar:
    - D1'de ilk böcekler artık birden belirmiyor. Paketlerin arkasından kırpma maskesiyle çıkıyorlar: önce anten, sonra baş, sonra gövde.
    - Devrilen paket önce sallanıyor, arkasındaki küme sonra dökülüyor.
