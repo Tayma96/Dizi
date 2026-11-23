@@ -20,3 +20,9 @@ Dal: `claude/practical-cori-e8idc2`. Diğer hesabın dalı (`claude/affectionate
 3. Görüntü: parça 1 düzeltmeleri + manik sesleri işle → render `bolumler/724-05-v2.mp4` (orijinali ezme).
 4. Parça 1 v2'yi kart başladığı karede kes, parça 2 ile birleştir (doğrusal kazanç; dinamik loudnorm sessizliği pompalar), −14 LUFS, stereo → ilk 10 sn saniye saniye analiz → kullanıcıya.
 5. Render: `--browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell` (remotion.media erişilemez).
+
+## Ek (görüntü yönetmeninin durma notu)
+- Parça 2 D aralığı (22–33) ve rozet kaldırma kodda yapıldı (488e578), **tam render alınmadı**, 0–22 / 33–56 bit bit aynılık ve Kırmızı Düğme karşılaştırması **yapılmadı** (ayrıntı: `raporlar/b5p2-goruntu.md` sonu "Kaldığım yer").
+- `724-05-p2.json` üreticileri: `dizi-studio/tools/b5p2_uretici/` (`gen.py` ilk üretici, `p2_d.py` D düzeltmesi + rozet yaması). **Uyarı:** yalnız `gen.py` yeniden çalıştırılırsa D düzeltmesi ve rozetin kaldırılması geri alınır; ardından `p2_d.py` da çalıştırılmalı (betiklerdeki geçici klasör yollarını kontrol edin).
+- Ses yönetmenine iletilecek boğuşma sesleri (ses planı zamanları değişmeden): 28,3–29,6 ayak sürtmesi/sendeleme · 29,8–30,9 paça silkeleme, kumaş · 31,3–32,6 kumaş silkeleme · 31,9 ve 32,1 böcek konması, irkilme · 32,7 iki el ağza, bastırılmış inilti.
+- Ses: floresan revizyonu bitti; manik seçim `public/voice/724-05-manik/secim.json` (i_05 = L1, i_06 = B1; gapAfter 0,40 / 0,3); parça 2 v4 fısıltı seçimi (`sec → kur → olc`) yarıda. Kredi: 300 harcandı, kalan ≈21.430.
