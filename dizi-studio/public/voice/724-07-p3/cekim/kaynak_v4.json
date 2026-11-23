@@ -1,0 +1,124 @@
+{
+ "not": "B7 P3 replik çekimleri (eleven_v4); text AYNEN",
+ "series": "724",
+ "episode": "724-07-p3/cekim",
+ "episodeNo": 7,
+ "title": "ses",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "A1a",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "otur şu masaya",
+     "okunus": "Otur şu masaya!",
+     "tags": "[calling loudly toward another room, annoyed mother]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A1b",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "otur şu masaya",
+     "okunus": "Otur şu masaya!",
+     "tags": "[shouting, impatient, stern]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A2a",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "o para....",
+     "okunus": "O para…",
+     "tags": "[stern, starting to interrogate, then cut off]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A2b",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "o para....",
+     "okunus": "O para…",
+     "tags": "[serious, suspicious, trailing off abruptly]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E1a",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "az işim var gelicemm",
+     "okunus": "Az işim var, gelicemm!",
+     "tags": "[mouth full of food, chewing, cheerful, hurried]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E1b",
+   "set": "ev_antre",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "az işim var gelicemm",
+     "okunus": "Az işim var, gelicemm!",
+     "tags": "[talking with mouth full, playful, rushing out]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

@@ -741,6 +741,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: pulling a cotton work apron off over the head quickly, fabric rustle, close, no voice"
  },
+ "efekt/el_opucuk": {
+  "file": "ses/efekt/el_opucuk.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a quick loud affectionate kiss on the cheek, cartoon smack"
+ },
  "efekt/el_otomatik_kapi": {
   "file": "ses/efekt/el_otomatik_kapi.mp3",
   "category": "efekt",

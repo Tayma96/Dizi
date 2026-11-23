@@ -19,6 +19,7 @@ import { castById } from "../cast";
 import { Character } from "../rig/Character";
 import type { ArmPose, Emotion, MouthCue } from "../rig/types";
 import { Banyo724BG, Banyo724FG } from "../sets/banyo724";
+import { Ev724SalonBG, Ev724SalonFG } from "../sets/ev724";
 import { sstep } from "./bocek";
 import { ik, Kol, type V2 } from "./Inserts13";
 
@@ -114,6 +115,20 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
         <path d="M -50 -90 L 50 -90 L 58 80 L 12 84 L 2 -10 L -8 84 L -56 80 Z" fill="#34466a" stroke={O} strokeWidth={5} strokeLinejoin="round" />
         <path d="M -50 -74 H 50" stroke="#d8a860" strokeWidth={3} strokeDasharray="8 5" />
         <path d="M 14 -60 L 46 -60 L 44 -24 L 30 -16 L 16 -24 Z" fill="#3c5078" stroke={O} strokeWidth={3} />
+      </g>
+    );
+  if (n === "tabak")
+    return (
+      <g transform={tr}>
+        <ellipse cx={0} cy={0} rx={70} ry={22} fill="#ffffff" stroke={O} strokeWidth={4} />
+        <ellipse cx={0} cy={-2} rx={46} ry={13} fill="#f2f0ea" />
+      </g>
+    );
+  if (n === "zeytin")
+    return (
+      <g transform={tr}>
+        <ellipse cx={0} cy={-16} rx={10} ry={8} fill="#2a2228" stroke="#000" strokeWidth={1.5} />
+        <circle cx={-3} cy={-19} r={2.5} fill="#ffffff" opacity={0.5} />
       </g>
     );
   if (n === "parmak")  // dik işaret parmağı (böcek anteni)
@@ -259,8 +274,9 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
   const sx = tA * (Math.sin(tg * 1.7) * 0.7 + Math.sin(tg * 3.1) * 0.3), sy = tA * (Math.sin(tg * 1.3 + 1) * 0.6 + Math.sin(tg * 2.7) * 0.4);
   const isik = p.isik ?? 1;
   const ayna = p.view === "ayna";
+  const salon = p.view === "salon";
   const anne = karakter("anne724", p.anne, tg, f, fps, t0f);
-  const ece = karakter("ece_ev", p.ece, tg, f, fps, t0f);
+  const ece = karakter(basamak<string>(p.eceId, tg, "ece_ev"), p.ece, tg, f, fps, t0f);
   const ucanlar = (p.ucan ?? []).map((u: Prm, i: number) => {
     if (tg < u.t0 || tg > u.t1 + 0.05) return null;
     const k = Math.min(1, (tg - u.t0) / (u.t1 - u.t0));
@@ -268,7 +284,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
     return <Esya key={i} n={u.n} x={xx} y={yy} s={u.s ?? 1.25} a={(u.don ?? 1) * 360 * k} />;
   });
   const yerde = (p.yerde ?? []).filter((u: Prm) => tg >= u.t).map((u: Prm, i: number) => <Esya key={i} n={u.n} x={u.x} y={u.y} s={u.s ?? 1.25} a={u.a ?? 0} />);
-  const onceEce = p.eceOnde ? [anne, ece] : [ece, anne];
+  const eceOnde = typeof p.eceOnde === "number" ? tg >= p.eceOnde : !!p.eceOnde;
+  const onceEce = eceOnde ? [anne, ece] : [ece, anne];
   return (
     <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
       <AbsoluteFill style={{ transformOrigin: "0 0", transform: camT(cx, cy, z, sx, sy), filter: `sepia(${0.12 * isik}) saturate(${1 + 0.08 * isik})` }}>
@@ -276,8 +293,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           <defs>
             <linearGradient id="b7_pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffd08a" /><stop offset="1" stopColor="#ff9a5a" /></linearGradient>
           </defs>
-          <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} />
-          {ayna ? null : <>
+          {salon ? <Ev724SalonBG frame={f} odaKapi={kf1(p.odaKapi, tg, 0)} /> : <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} />}
+          {ayna || salon ? null : <>
           {/* pencere (buzlu): gece (kasım, 18:00 karanlık) ya da gün batımı */}
           {p.gece ? (
             <g>
@@ -327,7 +344,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <path d="M 768 1702 Q 810 1650 860 1676 Q 910 1640 956 1702 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
             <path d="M 800 1702 Q 830 1664 880 1690" stroke="#7ab0d8" strokeWidth={26} strokeLinecap="round" fill="none" />
           </g> : null}
-          <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} />
+          {salon ? <Ev724SalonFG yukari={270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} />}
           {/* musluk suyu (ayna görünümü, p.su [[t0,t1]]): bataryadan lavaboya akan su + sıçrama */}
           {ayna && aralik(p.su, tg) ? (
             <g>

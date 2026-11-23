@@ -259,3 +259,7 @@ Ece aynada yüzünü yıkıyor. "Saçmalama Ece ölüyodun lan canından daha m�
 Bir duraksama.
 "Günlük bu kadar çalışsam 1 haftalık maaşım 1 yıllık maaşım yapıyo olummmm"
 "Gidip Sabri abiye olanları bir sorayım en iyisi" der kararlı bir şekilde.
+
+## Bölüm 7, Parça 3 (kullanıcının metni, 23 Kasım 2026; replikler AYNEN, yalnız yazım düzeltildi)
+Annesi sofrayı kuruyordur, Ece hızlıca odasına gidip giyinir, anne "otur şu masaya" der, Ece odadan çıkınca annesi "o para...." derken Ece masadan 1 zeytin alıp ağzına atıp annesini öpüp "az işim var gelicemm" deyip çıkar evden.
+- Not (Claude): salon (aynı daire; solda Ece'nin odası, sağda antreye çıkış). Ece pijamayla odasına koşar, sivil kıyafetle (hardal kazak, kot) çıkar. "gelicemm" ağzı zeytin dolu okunur. Anne cümlesini bitiremez (öpücükle kesilir).

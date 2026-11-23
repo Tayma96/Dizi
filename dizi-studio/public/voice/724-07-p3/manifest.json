@@ -1,0 +1,269 @@
+{
+ "a_02": {
+  "key": "fb5c9834c057",
+  "file": "voice/724-07-p3/cekim/A1a_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "otur şu masaya",
+  "duration": 1.358,
+  "asrScore": 1.0,
+  "heard": "Otur şu masaya!",
+  "words": [
+   {
+    "w": "otur",
+    "start": 0.11,
+    "end": 0.35
+   },
+   {
+    "w": "şu",
+    "start": 0.39,
+    "end": 0.51
+   },
+   {
+    "w": "masaya",
+    "start": 0.63,
+    "end": 1.31
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.11,
+    "v": "O"
+   },
+   {
+    "t": 0.19,
+    "v": "L"
+   },
+   {
+    "t": 0.243,
+    "v": "U"
+   },
+   {
+    "t": 0.297,
+    "v": "L"
+   },
+   {
+    "t": 0.43,
+    "v": "U"
+   },
+   {
+    "t": 0.51,
+    "v": "X"
+   },
+   {
+    "t": 0.63,
+    "v": "M"
+   },
+   {
+    "t": 0.67,
+    "v": "A"
+   },
+   {
+    "t": 0.71,
+    "v": "L"
+   },
+   {
+    "t": 0.75,
+    "v": "A"
+   },
+   {
+    "t": 0.857,
+    "v": "I"
+   },
+   {
+    "t": 0.963,
+    "v": "A"
+   },
+   {
+    "t": 1.07,
+    "v": "X"
+   },
+   {
+    "t": 1.31,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 27
+ },
+ "a_04": {
+  "key": "36985fcb508a",
+  "file": "voice/724-07-p3/cekim/A2a_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "o para....",
+  "duration": 0.993,
+  "asrScore": 1.0,
+  "heard": "O para!",
+  "words": [
+   {
+    "w": "o",
+    "start": 0.165,
+    "end": 0.205
+   },
+   {
+    "w": "para....",
+    "start": 0.245,
+    "end": 0.965
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.165,
+    "v": "O"
+   },
+   {
+    "t": 0.245,
+    "v": "M"
+   },
+   {
+    "t": 0.345,
+    "v": "A"
+   },
+   {
+    "t": 0.445,
+    "v": "L"
+   },
+   {
+    "t": 0.545,
+    "v": "A"
+   },
+   {
+    "t": 0.645,
+    "v": "X"
+   },
+   {
+    "t": 0.965,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 22
+ },
+ "a_05": {
+  "key": "da67f874fe2d",
+  "file": "voice/724-07-p3/cekim/E1a_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "az işim var gelicemm",
+  "duration": 1.907,
+  "asrScore": 0.857,
+  "heard": "Az işim var,geleceğim.",
+  "words": [
+   {
+    "w": "az",
+    "start": 0.097,
+    "end": 0.177
+   },
+   {
+    "w": "işim",
+    "start": 0.257,
+    "end": 0.497
+   },
+   {
+    "w": "var",
+    "start": 0.617,
+    "end": 0.857
+   },
+   {
+    "w": "gelicemm",
+    "start": 0.977,
+    "end": 1.857
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.097,
+    "v": "A"
+   },
+   {
+    "t": 0.137,
+    "v": "L"
+   },
+   {
+    "t": 0.177,
+    "v": "X"
+   },
+   {
+    "t": 0.257,
+    "v": "I"
+   },
+   {
+    "t": 0.297,
+    "v": "L"
+   },
+   {
+    "t": 0.337,
+    "v": "I"
+   },
+   {
+    "t": 0.417,
+    "v": "M"
+   },
+   {
+    "t": 0.497,
+    "v": "X"
+   },
+   {
+    "t": 0.617,
+    "v": "F"
+   },
+   {
+    "t": 0.657,
+    "v": "A"
+   },
+   {
+    "t": 0.697,
+    "v": "L"
+   },
+   {
+    "t": 0.737,
+    "v": "X"
+   },
+   {
+    "t": 0.977,
+    "v": "L"
+   },
+   {
+    "t": 1.004,
+    "v": "E"
+   },
+   {
+    "t": 1.03,
+    "v": "L"
+   },
+   {
+    "t": 1.057,
+    "v": "I"
+   },
+   {
+    "t": 1.137,
+    "v": "L"
+   },
+   {
+    "t": 1.217,
+    "v": "E"
+   },
+   {
+    "t": 1.297,
+    "v": "M"
+   },
+   {
+    "t": 1.457,
+    "v": "X"
+   },
+   {
+    "t": 1.857,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 28
+ }
+}
