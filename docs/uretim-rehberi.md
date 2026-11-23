@@ -148,6 +148,27 @@ Kontrol: `Duygular` kompozisyonu.
 rest, elBelde, kollarBagli, isaret, elSalla, eliYuzunde, eliKalbinde, omuzSilk, yumruk, dusunme, telefon, tutuyor, ellerAcik, ellerYuzde, durDur.
 Kontrol: `Jestler` kompozisyonu.
 
+### 7/24 B5 eklemeleri (hepsi isteğe bağlı; eski bölümleri değiştirmez)
+- **Kadro:** `sabri_sahte` (Sabri ile aynı görünüş, aynı ses eşlemesi).
+- **Duygular:** `sahteGulus` (ağız sırıtır, gözler gülmez), `zorGulumse` (korkudan zoraki sırıtış).
+- **Jestler:** `cagir` ("gel" diye el sallama, sol kol), `ellerKenetli` (eller göğüste kenetli).
+- **Karakter durumu (`cast`):**
+  - `kirpmaz` (göz kırpmaz)
+  - `mumParlak` 0..1 (yüzde mum/maske parlaklığı)
+  - `yagmur` 0..1 (ıslak baş, damlayan su, koyu omuzlar)
+  - `kahkaha` 0..1 (omuz/baş sarsıntısı)
+  - `hik: <sn>` (nefes çekme, tek sefer)
+  - `onde` (bankonun/ön planın önünde çizilir)
+  - `bakSira: [{at, x, y?, yaw?}]` (vuruş içinde hızlı baş çevirmeler)
+- **Replik:** `sure` (ses yokken tahmini süre; konuşanın ağzı taslak oynar).
+- **Sahne:** `bgBlur` (arka plan bulanıklığı, px).
+- **Eklemeler (`insert` / `ekle`, `engine/Inserts11.tsx`):**
+  - `omuz_el` (text: kayma, irkilme anı, dönüş anı)
+  - `donusum_yuz`, `donusum_govde`, `bocek_dev`, `bocek_yakin` (text[0]: zaman kayması)
+  - `ece_yakin` (text: duygu1, duygu2, geçiş sn, bakışX, solgunluk, ek: `hik<sn>` | `ter` | `goz`)
+  - Saydam ön plan katmanları: `ece_sirt` (text[0]: baş açısı), `sabri_omuz`, `bocek_golge`
+- **Dev hamamböceği:** `engine/bocek.tsx` (`DevBocek`, `BocekKafa`, `Bacak`, `Anten`). Kontrol kompozisyonu: `Bocek`. Örnekler: `B5OrnekYuz`, `B5OrnekGovde`, `B5OrnekOmuz`, `B5OrnekDev`, `B5OrnekYakin`.
+
 ### Eşyalar (`prop`, sağ elde)
 telefon, poset, fincan, mektup, canta, cicek, bicak, anahtar, kitap
 

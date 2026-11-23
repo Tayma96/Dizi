@@ -280,6 +280,14 @@ export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBu
       {/* alın sırtları ve klipeus */}
       <path d="M -46 4 Q 0 -12 46 4 L 38 80 Q 0 90 -38 80 Z" fill={`url(#${g}c)`} stroke={K.out} strokeWidth={3} strokeLinejoin="round" opacity={0.9} />
       <path d="M 0 -120 L 0 82 M -24 -60 Q -30 -10 -24 50 M 24 -60 Q 30 -10 24 50" stroke={K.k1} strokeWidth={3} fill="none" opacity={0.55} />
+      {/* kitin dokusu: çukurcuklar ve ince kıllar (yakın planda düz "maske" gibi durmasın) */}
+      {new Array(22).fill(0).map((_, i) => {
+        const x = (random(`cx${i}`) - 0.5) * 150, y = -130 + random(`cy${i}`) * 190;
+        if (Math.abs(x) > 92 - Math.max(0, y) * 0.5) return null;
+        const r = 2 + random(`cr${i}`) * 3;
+        return <g key={`c${i}`}><ellipse cx={x} cy={y} rx={r} ry={r * 0.75} fill={K.k1} opacity={0.55} /><circle cx={x - r * 0.3} cy={y - r * 0.35} r={r * 0.35} fill={K.parla} opacity={0.35 * parlak} /></g>;
+      })}
+      <path d={killar([-96, -40], [-46, 86], 3, 9, -1, 9, `${uid}yk1`) + killar([96, -40], [46, 86], 3, 9, 1, 9, `${uid}yk2`)} stroke={K.out} strokeWidth={1.6} fill="none" />
       <path d="M -28 82 Q 0 104 28 82 Q 22 98 0 102 Q -22 98 -28 82 Z" fill={K.kar1} stroke={K.out} strokeWidth={3.5} />
       <path d={killar([-40, 84], [40, 84], 4, 14, 1, 10, `${uid}lb`)} stroke={K.out} strokeWidth={1.5} fill="none" />
       {[-1, 1].map((s) => (

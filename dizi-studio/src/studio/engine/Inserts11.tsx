@@ -67,7 +67,7 @@ type Parca = {
 const PARCALAR: Parca[] = [
   { id: "ul", poly: [[56, 46], ...C_LINE, ...LH.slice(1)], yirtik: [C_LINE, LH], hinge: [92, 150], eksen: "x", yon: -1, t0: 2.5, sure: 0.75, kop: 3.05, damla: [[150, 214, 70, 13, 0.75]] },
   { id: "ur", poly: [[200, 50], [344, 46], [344, 228], ...rev(RH).slice(1, -1), ...rev(C_LINE)], yirtik: [C_LINE, RH], hinge: [308, 150], eksen: "x", yon: 1, t0: 2.62, sure: 0.75, kop: 3.2, damla: [[246, 216, 84, 14, 0.85], [278, 172, 46, 10, 1.15]] },
-  { id: "j", poly: [[172, 206], ...rev(LH.slice(0, 3)).slice(1), ...RH.slice(1, 3), ...RJ.slice(1), ...rev(LJ).slice(0, -1)], yirtik: [LH.slice(0, 3), RH.slice(0, 3), LJ, RJ], hinge: [200, 322], eksen: "y", yon: 1, t0: 2.2, sure: 0.6, kop: 2.85, damla: [[206, 244, 56, 10, 0.95]] },
+  { id: "j", poly: [[172, 206], ...rev(LH.slice(0, 3)).slice(1), ...RH.slice(1, 3), ...RJ.slice(1), ...rev(LJ).slice(0, -1)], yirtik: [LH.slice(0, 3), RH.slice(0, 3), LJ, RJ], hinge: [200, 322], eksen: "y", yon: 1, t0: 2.2, sure: 0.5, kop: 2.6, damla: [[206, 244, 56, 10, 0.95]] },
   { id: "ll", poly: [[56, 226], ...rev(LH).slice(1, 7), ...LJ.slice(1), [56, 324]], yirtik: [LH.slice(2), LJ], hinge: [104, 280], eksen: "x", yon: -1, t0: 2.85, sure: 0.7, kop: 3.4, damla: [[136, 266, 60, 12, 1.05]] },
   { id: "lr", poly: [[228, 204], ...RH.slice(3), [344, 324], ...rev(RJ).slice(0, -1)], yirtik: [RH.slice(2), RJ], hinge: [296, 280], eksen: "x", yon: 1, t0: 2.98, sure: 0.7, kop: 3.55, damla: [[264, 258, 52, 11, 1.25]] },
 ];
@@ -79,7 +79,7 @@ const parcaMat = (pc: Parca, t: number): { m: Mat; ters: boolean; a: number } =>
   const u = clamp01((t - pc.t0) / pc.sure);
   const e = u * u * (3 - 2 * u);
   // katlanma: 0 → 150° (alt yüz görünür), yaylı sarsıntıyla
-  const phi = (e * 150 + Math.sin(u * Math.PI * 3) * 6 * (1 - u)) * (Math.PI / 180);
+  const phi = (e * 108 + Math.sin(u * Math.PI * 3) * 6 * (1 - u)) * (Math.PI / 180);
   const fold = Math.cos(phi);
   const kt = Math.max(0, t - pc.kop);
   const rot = pc.yon * (e * 18 + kt * kt * 90) * (pc.eksen === "y" ? 0.3 : 1);
@@ -259,7 +259,7 @@ const DonusumYuz: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
             <feColorMatrix in="n" type="matrix" values="0.18 0 0 0 0.41  0 -0.5 0 0 0.5  0 0 0 0 0  0 0 0 0 1" result="m" />
             <feDisplacementMap in="SourceGraphic" in2="m" scale={95 * erime} xChannelSelector="R" yChannelSelector="G" />
           </filter>
-          <clipPath id={`${uid}base`}><rect x={-200} y={FY(323)} width={800} height={1200} /></clipPath>
+          <clipPath id={`${uid}base`}><rect x={-200} y={FY(300)} width={800} height={1200} /></clipPath>
           {parcaG.map(({ pc }) => <clipPath key={pc.id} id={`${uid}c${pc.id}`}><path d={`${pc.poly.map((p, i) => `${i ? "L" : "M"} ${p[0]} ${FY(p[1])}`).join(" ")} Z`} /></clipPath>)}
           <clipPath id={`${uid}kafa`}>
             <path d="M 114 150 Q 112 250 140 286 Q 170 312 200 312 Q 230 312 260 286 Q 288 250 286 150 Q 280 90 200 90 Q 120 90 114 150 Z" transform={`translate(0 ${FY(0)}) scale(1 0.97)`} />
