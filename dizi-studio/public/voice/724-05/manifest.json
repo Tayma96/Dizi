@@ -1611,47 +1611,42 @@
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
   "text": "lülü?",
-  "duration": 0.888,
-  "asrScore": 0.5,
-  "heard": "Lulu?",
+  "duration": 0.784,
+  "asrScore": null,
+  "heard": null,
   "words": [
    {
     "w": "lülü?",
-    "start": 0.2,
-    "end": 0.86
+    "start": 0.08,
+    "end": 0.58
    }
   ],
   "mouth": [
    {
+    "t": 0.08,
+    "v": "L"
+   },
+   {
     "t": 0.12,
-    "v": "X"
-   },
-   {
-    "t": 0.2,
-    "v": "L"
-   },
-   {
-    "t": 0.28,
     "v": "U"
    },
    {
-    "t": 0.413,
+    "t": 0.27,
     "v": "L"
    },
    {
-    "t": 0.547,
+    "t": 0.32,
     "v": "U"
    },
    {
-    "t": 0.68,
+    "t": 0.58,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
-  "model": "eleven_v4",
-  "hesap": "proxy",
-  "kredi": 18,
-  "kirpma": "[1.32-2.18]"
+  "model": "eleven_v3",
+  "kredi": 14,
+  "turetim": "724-05-lulu3/l_01 (eleven_v3, [timid, coaxing, small voice] Lülü?) 0-0.74 sn. v4 her yazımda 'Lulu' (isim) okudu; v3 iki hecede de ü (F2 ~2050-2170 Hz). Anahtar 724-05.json alanlarından hesaplandı (önbellek korunur). Yedek: kuru/i_05_v4_Lulu.mp3"
  },
  "i_06": {
   "key": "4fb253892e90",
