@@ -668,13 +668,13 @@ KESME = 54.00
 # F: fısıltılar. kaynak = (bölüm, replik, baş, son); konum anahtarları (t göreli, az, el, uzaklık)
 FISILTI = [
     {"id": "W1", "kim": "Sabri", "soz": "Ece…", "t": 43.60, "kaynak": ("724-01", "c_15", 0.04, 0.86),
-     "ayar": dict(residue_db=-14, rasp=0.25, seed=11), "kazanc": -11.5,
+     "ayar": dict(residue_db=-14, rasp=0.25, seed=11, residue_env=[(0.12, 0.22, 0.0)]), "kazanc": -11.5,
      "yol": [(0, -130, -5, 0.80), (0.9, -124, -5, 0.76)], "not": "sağ arka, 80 cm: alçak, sakin (B1'deki depo çağrısının sesi)"},
     {"id": "W2", "kim": "Anne", "soz": "Kızım…", "t": 45.00, "kaynak": ("724-03", "a_02", 0.03, 0.66),
      "ayar": dict(residue_db=-5, bw=0.99, seed=33, residue_env=[(0.15, 0.25, 3.0), (0.35, 0.47, 3.0)]), "kazanc": -11.0,
      "yol": [(0, 140, 25, 0.60), (0.7, 132, 22, 0.56)], "not": "sol üst arka, 60 cm: sevecen, tatlı (B3'te depodaki şeyin taklit ettiği ses)"},
     {"id": "W3", "kim": "Sabri", "soz": "Ece…", "t": 46.60, "kaynak": ("724-01", "c_08", 0.05, 0.62),
-     "ayar": dict(residue_db=-16, rasp=0.35, seed=13), "kazanc": -11.0,
+     "ayar": dict(residue_db=-16, rasp=0.35, seed=13, residue_env=[(0.11, 0.21, 0.0)]), "kazanc": -11.0,
      "yol": [(0, -160, -20, 0.42), (0.6, 168, -20, 0.38)], "not": "ensenin arkasından geçer (sağdan sola), 40 cm"},
     {"id": "W4", "kim": "Anne", "soz": "Kızım…", "t": 47.55, "kaynak": ("724-b1", "a_07", 0.595, 1.02),
      "ayar": dict(residue_db=-4, bw=0.99, rasp=0.05, seed=14), "kazanc": -11.5,
@@ -683,7 +683,7 @@ FISILTI = [
      "ayar": dict(residue_db=-4, bw=0.99, seed=15, sustain=(0.27, 0.34, 0.95)), "kazanc": -12.5,
      "yol": [(0, 150, 35, 0.27), (0.8, 128, 24, 0.18), (1.63, 104, 12, 0.11)], "not": "sol üst arkadan sol kulağa iner: 'Kızııım…' (uzatılmış)"},
     {"id": "W6", "kim": "Sabri", "soz": "Ece…", "t": 51.30, "kaynak": ("724-01", "c_15", 0.04, 0.86),
-     "ayar": dict(residue_db=-15, rasp=0.3, seed=16, sustain=(0.22, 0.29, 1.9)), "kazanc": -16.5,
+     "ayar": dict(residue_db=-15, rasp=0.3, seed=16, sustain=(0.22, 0.29, 1.9), residue_env=[(0.12, 0.22, 0.0)]), "kazanc": -16.5,
      "yol": [(0, -120, -10, 0.24), (1.2, 180, -25, 0.12), (2.62, 95, -5, 0.05)], "not": "SON: sağ arka kulak dibinden enseyi dolanıp sol kulağın dibine (5 cm), 'Eceee…' sürerken 54,00'te kesilir"},
 ]
 NEFESLER = [  # (t, süre, tür, kim, rasp, yol)
@@ -1133,22 +1133,25 @@ def cmd_olc():
         # yalnız çizilmiş fısıltı (üst üste binen öteki fısıltı olmadan); 70 ms dudak tıkı payı atlanır
         X = np.load(os.path.join(TMP, f"yalniz_{w['id']}.npy"))[int(0.02 * SR):int((0.07 + w["sure"] + 0.05) * SR)] * gk
         # tam miks: öteki fısıltıyla çakışan baş kısım atlanır (W6: W5 bitince)
-        a2 = max(a, onceki_son + 0.02)
+        a2 = a  # kendi başlangıcı; öteki fısıltıyla çakışma "cakisma_sn" olarak raporlanır
         Y = y[int(a2 * SR):int(b * SR)]
+        cakisma = round(max(0.0, onceki_son - w["bas"]), 2)
         onceki_son = max(onceki_son, w["son"])
         # ILD/ITD: başta ve sonda (hareket)
         n3 = len(X) // 3
         ild0, itd0 = _itd_ild(X[:n3, 0], X[:n3, 1])
         ild1, itd1 = _itd_ild(X[-n3:, 0], X[-n3:, 1])
         mk, mw, mf = _mono_kayip(X[:, 0], X[:, 1])
-        r = {"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["bas"], "miks_penceresi": [round(a2, 2), round(b, 2)],
+        r = {"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["bas"], "miks_penceresi": [round(a2, 2), round(b, 2)], "cakisma_sn": cakisma,
              "ILD_bas_dB": ild0, "ITD_bas_us": itd0, "ILD_son_dB": ild1, "ITD_son_us": itd1,
              "mono_kayip_dB": mk, "mono_en_kotu_bant_dB": mw, "mono_en_kotu_bant_Hz": mf,
              "kisa_sureli_LUFS_miks": round(meter.integrated_loudness(Y) if len(Y) > 0.4 * SR else float("nan"), 1),
              "whisper_L": yaz(X[:, 0]), "whisper_R": yaz(X[:, 1]), "whisper_mono": yaz(X.sum(1)), "whisper_tam_miks": yaz(Y.sum(1))}
         rows.append(r)
         print(json.dumps(r, ensure_ascii=False), flush=True)
-    F = y[int(39 * SR):int(KESME * SR)]
+    # F'nin tamamını tek seferde yazıya dökmek, sessize yakın bölümlerde bilinen Whisper uydurmalarına yol açıyor
+    # ("Abone olmayı unutmayın" vb.). Bunun yerine fısıltı aralıkları (43,5-54,0) art arda, tam miksten:
+    F = y[int(43.5 * SR):int(KESME * SR)]
     rapor["F_tam_miks_whisper"] = yaz(F.sum(1))
     rapor["fisiltilar"] = rows
     print("F tam miks:", rapor["F_tam_miks_whisper"], flush=True)
