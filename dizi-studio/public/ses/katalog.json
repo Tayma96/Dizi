@@ -783,6 +783,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Woman's heeled shoes walking hesitantly into a hospital room on linoleum, few steps then stop"
  },
+ "efekt/el_toza_donusme": {
+  "file": "ses/efekt/el_toza_donusme.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Dry insect bodies crumbling into fine dust and sand: soft crackling of brittle chitin turning to powder, gentle sand trickling and pouring onto a tiled floor, airy dry hiss, slowly spreading, magical but quiet"
+ },
  "efekt/el_tukurme": {
   "file": "ses/efekt/el_tukurme.mp3",
   "category": "efekt",
