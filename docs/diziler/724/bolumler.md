@@ -231,3 +231,25 @@ Annesi: "noldu kızım neyin var?" "Biri bir şey mi yaptı" der celallenir yük
 ### Bölüm 6: kullanıcı geri bildirimi (23 Kasım 2026)
 - P1: Sabri "bitti artık" dediğinde Ece SESİ DUYDUĞU ANDA tepki vermeli (sesten korkuyor); "aaaaa"dan sonra çok çabuk sakinleşiyordu; yumrukta Sabri'den tepki yoktu, Ece "vurup çekiyordu", oldu bittiye gelmişti. → Düzeltildi: 3,4'te irkilme, çığlık "artık" biterken başlar (iki soluk), kucaklanana dek panik; yumruk geri çekiş + vuruş + göğüste kalma, Sabri sarsılır ve inler ("aci"), sonra çözülme.
 - P2 (standart motorla, düşük özenle yapılan sürüm): kullanıcı "rezaletten öte, hiç özenilmemiş" dedi. Ders: maliyet için özel çekim kalitesinden ödün verilmez; P2 P1 kalitesinde yeniden yapılacak.
+
+## Bölüm 7, Parça 1 (kullanıcının metni, 23 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Anne kıyafetleri kirli sepetinde topluyordur o esnada Ece'ye seslenir "Eceee uyan kız artık" der. Saat akşam 18:00 olmuştur. Kirlileri makineye atmaya hazırlanırken Ece'nin pantolonunun cebine bakar ve bir deste para görür, parayı sayar "yuhh" der.
+"Eceeee" diye kızgın şekilde bağırır. Ece uykulu gözünü açamamış hâlâ korkak annesinin sesiyle daha da ürpermiş şekilde uykulu ve korku hâlinde odasından çıkar.
+Annesi kızgın şekilde: "nerden geldi bu paralar nasıl bi marketmiş lan o" der.
+Ece de panik korku ve heyecanla "anneee dev gibi böcek vardı markette ölüyodummm" der.
+"Böcek evde de var terliği vur geç" "para diyorum Ece para bu para ne alakaaaa?"
+Ece: "çok mu ya o kadar ver bi bakıyım" der meraklı şekilde.
+Tomarla parayı görünce gözleri açılır heyecandan saymaya başlar aç gözlü şekilde "yüz, iki yüz, yüz, iki yüz"
+"Oha lan ne çok para" der.
+Annesi kulağını çekip kaldırır yukarı doğru.
+Ece: "aauuv ah ah acıyo" der.
+Anne: "nerden geldi bu para?"
+Ece içinden düşünür: "şimdi olanları anlatırsam hem bana inanmaz hem de tekrar gitmeme izin vermez"
+Sonra sesli düşünür: "ama çok para lan"
+Annesi: "git elini yüzünü yıka bu paranın hesabını vereceksin bana!" der.
+Ece lavaboya gider aynanın karşısında düşünmeye başlar. İlk parçamız bu.
+
+### Notlar (Claude)
+- Ton: komik ve samimi (B6 sonrası kullanıcı kararı: ilk 3 bölümün samimiyeti geri gelecek). Ece pijamalı (ece_ev), uykulu ve dağınık; korkuyla komedi iç içe.
+- Mekân: Ece'nin evi; çamaşır makinesi banyoda (Türk evlerinde olağan), Ece'nin odası koridorda. Son: B1'deki ayna (FPS) sahnesine dönüş.
+- Ece'nin "içinden düşünür" repliği iç ses (italik altyazı, dudak kıpırdamaz); "ama çok para lan" sesli.
