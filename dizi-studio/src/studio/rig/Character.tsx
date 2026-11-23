@@ -347,6 +347,39 @@ export type CharacterProps = {
   flip?: boolean;
 };
 
+/** 7/24 B5 p2 (opt-in): iki el ağzın üstünde (sağ el altta, sol el üstte; parmaklar yukarı-içe), bilekte kazak manşeti.
+ *  Baş grubunun içinde çizilir: nefes ve baş salınımıyla birlikte hareket eder. k: 0..1 (eller aşağıdan gelir) */
+const AgizKapaEller: React.FC<{ look: Look; k: number; dx: number; titre: number; tek?: "sag" | "sol" }> = ({ look, k, dx, titre, tek }) => {
+  const kk = Math.max(0, Math.min(1, k));
+  const e = kk * kk * (3 - 2 * kk);
+  const yOff = (1 - e) * 60;
+  const sleeve = sleeveColor(look);
+  const hand = (side: 1 | -1, x: number, y: number, rot: number) => (
+    <g transform={`translate(${x} ${y + yOff}) rotate(${rot + titre * 1.6 * side}) scale(0.92)`}>
+      {/* bilek + manşet (önkol kadraj altından gelir) */}
+      <path d="M -22 26 L -26 96 L 26 96 L 22 26 Z" fill={look.skin} stroke={OUT} strokeWidth={3.5} />
+      <path d="M -30 58 Q 0 66 30 58 L 34 120 L -34 120 Z" fill={sleeve} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+      <path d="M -28 66 Q 0 74 28 66" stroke="#000" strokeOpacity={0.18} strokeWidth={4} fill="none" />
+      {/* avuç + dört parmak (uçlar yuvarlak) */}
+      <path d="M -31 32 L -32 -4 Q -33 -40 -24 -44 Q -16 -47 -12 -36 Q -9 -52 0 -52 Q 9 -52 11 -40 Q 16 -50 23 -46 Q 31 -41 32 -22 L 31 32 Q 0 42 -31 32 Z" fill={look.skin} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+      <path d="M -12 -34 L -12 -6 M 11 -38 L 10 -8 M -1 -48 L -1 -10" stroke={OUT} strokeWidth={2.4} strokeOpacity={0.55} fill="none" strokeLinecap="round" />
+      <path d="M -26 10 Q 0 18 26 8" stroke={look.skinShade} strokeWidth={5} fill="none" opacity={0.6} />
+      {/* başparmak (iç yanda) */}
+      <path d={`M ${30 * side} 14 Q ${46 * side} 0 ${40 * side} -18 Q ${34 * side} -26 ${28 * side} -14 Z`} fill={look.skin} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+    </g>
+  );
+  return (
+    <g opacity={kk < 0.5 ? 0 : 1}>
+      {tek === "sag" ? hand(-1, 212 + dx * 1.05, 290, -18) : tek === "sol" ? hand(1, 188 + dx * 1.05, 286, 18) : (
+        <>
+          {hand(1, 172 + dx * 1.05, 282, 30)}
+          {hand(-1, 228 + dx * 1.05, 292, -30)}
+        </>
+      )}
+    </g>
+  );
+};
+
 export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 1000, style, flip }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -516,10 +549,14 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           {!shortSleeve && !sivali ? <rect x={sx - 17} y={hy - 12} width={34} height={10} fill={out.topShade} stroke={OUT} strokeWidth={3} /> : null}
           <BilekEk look={look} side={side} sx={sx} hy={hy} />
           {side === "r" && look.bileklik ? <rect x={sx - 18} y={hy - 4} width={36} height={12} rx={4} fill="#f6f6f2" stroke={OUT} strokeWidth={3} /> : null}
-          <circle cx={sx} cy={hy + 12} r={21 * (1 + 0.22 * kilo)} fill={handFill} stroke={OUT} strokeWidth={SW} />
-          {look.tirnak ? [-11, -1, 9].map((dxn) => <ellipse key={dxn} cx={sx + dxn} cy={hy + 30} rx={3.6} ry={5} fill={look.tirnak} stroke={OUT} strokeWidth={1.5} />) : null}
-          {look.kil ? <path d={`M ${sx - 8} ${hy + 4} l 3 -5 M ${sx + 2} ${hy + 2} l 3 -5 M ${sx + 10} ${hy + 6} l 3 -5`} stroke={look.hair.color} strokeWidth={1.8} opacity={0.6} /> : null}
-          <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
+          {(pose.agizKapa ?? 0) > 0.5 && (!pose.agizKapaEl || (pose.agizKapaEl === "sag") === (side === "r")) ? null : (
+            <>
+            <circle cx={sx} cy={hy + 12} r={21 * (1 + 0.22 * kilo)} fill={handFill} stroke={OUT} strokeWidth={SW} />
+            {look.tirnak ? [-11, -1, 9].map((dxn) => <ellipse key={dxn} cx={sx + dxn} cy={hy + 30} rx={3.6} ry={5} fill={look.tirnak} stroke={OUT} strokeWidth={1.5} />) : null}
+            {look.kil ? <path d={`M ${sx - 8} ${hy + 4} l 3 -5 M ${sx + 2} ${hy + 2} l 3 -5 M ${sx + 10} ${hy + 6} l 3 -5`} stroke={look.hair.color} strokeWidth={1.8} opacity={0.6} /> : null}
+            <path d={`M ${sx + 12 * dir * -1} ${hy + 2} q ${-10 * dir} 6 ${-4 * dir} 16`} fill="none" stroke={OUT} strokeWidth={3} strokeLinecap="round" opacity={0.7} />
+            </>
+          )}
           {side === "l" && pose.murekkep ? (
             <g>
               <circle cx={sx - 6} cy={hy + 24} r={7} fill="#10204a" opacity={0.9} />
@@ -920,10 +957,23 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
         </g>
       ) : null}
-      <g transform={look.agizOlcek ? `translate(${200 + dx * 1.1} ${274 + 2 * yk}) scale(${look.agizOlcek}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})` : undefined}>
-        <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
-      </g>
-      <MakyajUst look={look} dx={dx} mouthX={200 + dx * 1.1} mouthY={274 + 2 * yk} konusuyor={!!vis && vis !== "X"} restMouth={face.mouth} />
+      {(() => {
+        const agiz = (
+          <>
+            <g transform={look.agizOlcek ? `translate(${200 + dx * 1.1} ${274 + 2 * yk}) scale(${look.agizOlcek}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})` : undefined}>
+              <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+            </g>
+            <MakyajUst look={look} dx={dx} mouthX={200 + dx * 1.1} mouthY={274 + 2 * yk} konusuyor={!!vis && vis !== "X"} restMouth={face.mouth} />
+          </>
+        );
+        return pose.dudakTitre ? (
+          <g transform={`translate(${200 + dx * 1.1} ${274 + 2 * yk + 1.6 * pose.dudakTitre * Math.sin(frame * 2.3)}) scale(${1 + 0.07 * pose.dudakTitre * Math.sin(frame * 3.1)} ${1 + 0.12 * pose.dudakTitre * Math.sin(frame * 2.7 + 1)}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})`}>
+            {agiz}
+          </g>
+        ) : (
+          agiz
+        );
+      })()}
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
           {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}
@@ -1159,6 +1209,13 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           })() : null}
           </g>
         </g>
+        {pose.agizKapa ? (
+          <g transform={bodyT}>
+            <g transform={headT}>
+              <AgizKapaEller look={look} k={pose.agizKapa} dx={dx} titre={(pose.elTitre ?? 0) * (Math.sin(frame * 1.9) * 0.6 + Math.sin(frame * 3.3) * 0.4)} tek={pose.agizKapaEl} />
+            </g>
+          </g>
+        ) : null}
       </g>
     </svg>
   );

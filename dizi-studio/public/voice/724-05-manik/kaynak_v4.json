@@ -1,0 +1,135 @@
+{
+ "not": "B5 parça 1 i_05 ('lülü?') ve i_06 ('bu da mı olmadı?') için MANİK yeniden çekim kaynağı. Metin (text) AYNEN; yalnız okunuş/etiket. Üretim kuru çalıştırmayla: python3 tools/elevenlabs.py seslendir public/voice/724-05-manik/kaynak_v4.json --model eleven_v4 --butce 300 [--onayla]. Kullanıcı kararı: yalnız eleven_v4. Risk: v4 B5'te 'lülü'yü 'Lulu' (ikinci hecede u) okumuştu; seçimde formant (F2) ölçümüyle denetlenir. 23 Kasım 2026: ElevenLabs 401 payment_issue nedeniyle üretilemedi.",
+ "series": "724",
+ "episode": "724-05-manik",
+ "scenes": [
+  {
+   "id": "L1",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "okunus": "Lülü?",
+     "tags": "[manic, sing-song]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "okunus": "Lü-lü?",
+     "tags": "[hysterical giggle, crying]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "L3",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "okunus": "Lülüü?",
+     "tags": "[voice cracking, sing-song]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "L4",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "okunus": "Lülü?",
+     "tags": "[manic, shaky, half-laugh]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "B1",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "bu da mı olmadı?",
+     "okunus": "Bu da mı olmadı?!",
+     "tags": "[hysterical, cracking]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "bu da mı olmadı?",
+     "okunus": "Bu da mı olmadı?!",
+     "tags": "[sobbing laugh, panicked]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "B3",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "bu da mı olmadı?",
+     "okunus": "Bu da mı olmadı?!",
+     "tags": "[manic, crying, cracking]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "B4",
+   "model": "eleven_v4",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "bu da mı olmadı?",
+     "okunus": "Bu da mı... olmadı?!",
+     "tags": "[panic, voice breaks]",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  }
+ ]
+}

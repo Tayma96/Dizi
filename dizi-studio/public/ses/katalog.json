@@ -202,6 +202,34 @@
   "loop": false,
   "desc": "B5: Yüzün erimesi: cızırtı, kabarcık, ıslak akış ve damlama (4,4 sn) (el_yuz_erime; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
  },
+ "efekt/b5p2_fisilti_binaural": {
+  "file": "ses/efekt/b5p2_fisilti_binaural.mp3",
+  "category": "efekt",
+  "duration": 15.34,
+  "loop": false,
+  "desc": "B5 2. parça F bölümü (39,00'dan başlar, 15,3 sn): Sabri'nin sesiyle 3x 'Ece…' + annenin sesiyle 3x 'Kızım…', ensede dolaşan binaural fısıltı (LPC fısıltı + SADIE KU100 HRTF)."
+ },
+ "efekt/b5p2_kok_efekt": {
+  "file": "ses/efekt/b5p2_kok_efekt.mp3",
+  "category": "efekt",
+  "duration": 56.04,
+  "loop": false,
+  "desc": "B5 2. parça kökü: fısıltılar hariç her şey (aynı zaman ekseni, 56 sn)."
+ },
+ "efekt/b5p2_kok_fisilti": {
+  "file": "ses/efekt/b5p2_kok_fisilti.mp3",
+  "category": "efekt",
+  "duration": 56.04,
+  "loop": false,
+  "desc": "B5 2. parça kökü: yalnız binaural fısıltılar, nefesler, ağız/kitin tıkları (aynı zaman ekseni, 56 sn)."
+ },
+ "efekt/b5p2_tam": {
+  "file": "ses/efekt/b5p2_tam.mp3",
+  "category": "efekt",
+  "duration": 56.04,
+  "loop": false,
+  "desc": "B5 2. parça: BÜTÜN ses (56 sn, binaural stereo, -14 LUFS / -1,4 dBTP, 48 kHz). Motorda music olarak tek parça verilir (tools/ses_724_05_p2.py)."
+ },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
   "category": "efekt",

@@ -342,4 +342,12 @@ export type Pose = {
   kaskYansima?: number;
   /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
   omuzDus?: number;
+  /** 7/24 B5 p2 (opt-in): iki eliyle ağzını kapatır 0..1 (eller aşağıdan gelir); kolları çağıran ayarlar */
+  agizKapa?: number;
+  /** 7/24 B5 p2 (opt-in): ağzı kapalı ellerin titremesi 0..1 */
+  elTitre?: number;
+  /** 7/24 B5 p2 (opt-in): dudak titremesi 0..1 */
+  dudakTitre?: number;
+  /** 7/24 B5 p2 (opt-in): ağzı tek elle kapatır ("sag" = kadraj sağındaki el); öteki kol serbest */
+  agizKapaEl?: "sag" | "sol";
 };

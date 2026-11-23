@@ -424,7 +424,7 @@ const gParcaMat = (pc: GParca, t: number, buyu: number): { m: Mat; ters: boolean
 };
 
 /** yerde buruşmuş deri ve gri hırka yığını (yerel: zemin y=0, sağa doğru uzanır) */
-const DeriYigin: React.FC<{ t: number }> = ({ t }) => (
+export const DeriYigin: React.FC<{ t: number }> = ({ t }) => (
   <g>
     <ellipse cx={30} cy={4} rx={150} ry={16} fill="#000" opacity={0.3} />
     {/* hırka: kol yeni çıkmış gibi kıvrık, düğmeli */}

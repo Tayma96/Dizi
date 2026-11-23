@@ -1,0 +1,486 @@
+{
+ "s1_01": {
+  "key": "bea8ea9e3806",
+  "file": "voice/724-05-p2-ses/s1_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Ece…",
+  "duration": 0.94,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Ece…",
+    "start": 0.243,
+    "end": 0.899
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.243,
+    "v": "E"
+   },
+   {
+    "t": 0.259,
+    "v": "L"
+   },
+   {
+    "t": 0.419,
+    "v": "E"
+   },
+   {
+    "t": 0.579,
+    "v": "X"
+   },
+   {
+    "t": 0.899,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "s2_01": {
+  "key": "7c5dd79e3c00",
+  "file": "voice/724-05-p2-ses/s2_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Ece…",
+  "duration": 2.403,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Ece…",
+    "start": 1.406,
+    "end": 2.366
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.126,
+    "v": "X"
+   },
+   {
+    "t": 1.406,
+    "v": "E"
+   },
+   {
+    "t": 1.646,
+    "v": "L"
+   },
+   {
+    "t": 1.806,
+    "v": "E"
+   },
+   {
+    "t": 1.966,
+    "v": "X"
+   },
+   {
+    "t": 2.366,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 15
+ },
+ "s3_01": {
+  "key": "73e9c5c0b3dc",
+  "file": "voice/724-05-p2-ses/s3_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Ece…",
+  "duration": 3.109,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Ece…",
+    "start": 1.781,
+    "end": 3.061
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.781,
+    "v": "E"
+   },
+   {
+    "t": 2.021,
+    "v": "L"
+   },
+   {
+    "t": 2.141,
+    "v": "E"
+   },
+   {
+    "t": 2.821,
+    "v": "X"
+   },
+   {
+    "t": 3.061,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 23
+ },
+ "s4_01": {
+  "key": "d99117e76051",
+  "file": "voice/724-05-p2-ses/s4_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Ece…",
+  "duration": 2.09,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Ece…",
+    "start": 1.178,
+    "end": 1.898
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.178,
+    "v": "E"
+   },
+   {
+    "t": 1.338,
+    "v": "L"
+   },
+   {
+    "t": 1.498,
+    "v": "E"
+   },
+   {
+    "t": 1.658,
+    "v": "X"
+   },
+   {
+    "t": 1.898,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 14
+ },
+ "a1_01": {
+  "key": "adcaa7b7a4bc",
+  "file": "voice/724-05-p2-ses/a1_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "Kızım…",
+  "duration": 1.045,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Kızım…",
+    "start": 0.277,
+    "end": 0.997
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.277,
+    "v": "L"
+   },
+   {
+    "t": 0.317,
+    "v": "I"
+   },
+   {
+    "t": 0.337,
+    "v": "L"
+   },
+   {
+    "t": 0.357,
+    "v": "I"
+   },
+   {
+    "t": 0.517,
+    "v": "M"
+   },
+   {
+    "t": 0.677,
+    "v": "X"
+   },
+   {
+    "t": 0.997,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 17
+ },
+ "a2_01": {
+  "key": "e5fbb3e1a1a4",
+  "file": "voice/724-05-p2-ses/a2_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "Kızım…",
+  "duration": 0.94,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Kızım…",
+    "start": 0.103,
+    "end": 0.903
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.103,
+    "v": "L"
+   },
+   {
+    "t": 0.223,
+    "v": "I"
+   },
+   {
+    "t": 0.283,
+    "v": "L"
+   },
+   {
+    "t": 0.343,
+    "v": "I"
+   },
+   {
+    "t": 0.463,
+    "v": "M"
+   },
+   {
+    "t": 0.583,
+    "v": "X"
+   },
+   {
+    "t": 0.903,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "a3_01": {
+  "key": "58add3c37a0c",
+  "file": "voice/724-05-p2-ses/a3_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "Kızım…",
+  "duration": 1.411,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Kızım…",
+    "start": 0.085,
+    "end": 1.365
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.085,
+    "v": "L"
+   },
+   {
+    "t": 0.165,
+    "v": "I"
+   },
+   {
+    "t": 0.285,
+    "v": "L"
+   },
+   {
+    "t": 0.405,
+    "v": "I"
+   },
+   {
+    "t": 0.765,
+    "v": "M"
+   },
+   {
+    "t": 0.965,
+    "v": "X"
+   },
+   {
+    "t": 1.365,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 19
+ },
+ "a4_01": {
+  "key": "e25be7f11ed8",
+  "file": "voice/724-05-p2-ses/a4_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "Kızım…",
+  "duration": 1.097,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Kızım…",
+    "start": 0.103,
+    "end": 1.063
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.103,
+    "v": "L"
+   },
+   {
+    "t": 0.223,
+    "v": "I"
+   },
+   {
+    "t": 0.283,
+    "v": "L"
+   },
+   {
+    "t": 0.343,
+    "v": "I"
+   },
+   {
+    "t": 0.503,
+    "v": "M"
+   },
+   {
+    "t": 0.663,
+    "v": "X"
+   },
+   {
+    "t": 1.063,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "n1_01": {
+  "key": "f6c51f5ce7c9",
+  "file": "voice/724-05-p2-ses/n1_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(sözsüz: titrek, bastırılmış nefes)",
+  "duration": 4.598,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hhh…",
+    "start": 2.4,
+    "end": 3.2
+   },
+   {
+    "w": "hhh…",
+    "start": 3.52,
+    "end": 4.56
+   }
+  ],
+  "mouth": [
+   {
+    "t": 2.32,
+    "v": "X"
+   },
+   {
+    "t": 2.4,
+    "v": "L"
+   },
+   {
+    "t": 2.88,
+    "v": "X"
+   },
+   {
+    "t": 3.52,
+    "v": "L"
+   },
+   {
+    "t": 4.08,
+    "v": "X"
+   },
+   {
+    "t": 4.56,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "n2_01": {
+  "key": "d307c56389cf",
+  "file": "voice/724-05-p2-ses/n2_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(sözsüz: bastırılmış hıçkırık)",
+  "duration": 2.325,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hmm…",
+    "start": 0.845,
+    "end": 1.445
+   },
+   {
+    "w": "hk…",
+    "start": 1.645,
+    "end": 2.285
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.845,
+    "v": "L"
+   },
+   {
+    "t": 0.978,
+    "v": "M"
+   },
+   {
+    "t": 1.245,
+    "v": "X"
+   },
+   {
+    "t": 1.645,
+    "v": "L"
+   },
+   {
+    "t": 2.045,
+    "v": "X"
+   },
+   {
+    "t": 2.285,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 17
+ }
+}
