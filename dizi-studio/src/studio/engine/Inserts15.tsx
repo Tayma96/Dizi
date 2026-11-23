@@ -64,7 +64,7 @@ const El: React.FC<{ x: number; y: number; a: number; s: number; kol: [number, n
   </g>
 );
 
-const CepDeste: React.FC = () => {
+const CepDeste: React.FC<{ sol?: boolean }> = ({ sol }) => {
   const f = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = f / fps;
@@ -89,7 +89,7 @@ const CepDeste: React.FC = () => {
         </g>
         {/* annenin eli desteyi tutar */}
         <g transform={`translate(${titre} 0)`}>
-          <El x={dx + 150} y={dy + 40} a={-25} s={1.2} kol={[1300, dy + 700]} r={KOL.anne} />
+          {sol ? <El x={dx - 150} y={dy + 40} a={25} s={1.2} kol={[-220, dy + 700]} r={KOL.anne} /> : <El x={dx + 150} y={dy + 40} a={-25} s={1.2} kol={[1300, dy + 700]} r={KOL.anne} />}
         </g>
       </svg>
     </AbsoluteFill>
@@ -164,7 +164,7 @@ const KulakCek: React.FC<{ dur: number }> = ({ dur }) => {
 
 export const Insert15: React.FC<{ kind: Insert15Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
-    case "cep_deste": return <CepDeste />;
+    case "cep_deste": return <CepDeste sol={text?.[0] === "sol"} />;
     case "para_say": return <ParaSay kim={text?.[0] === "anne" ? "anne" : "ece"} />;
     case "kulak_cek": return <KulakCek dur={dur} />;
   }

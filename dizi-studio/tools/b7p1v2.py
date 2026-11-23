@@ -35,9 +35,9 @@ ANNE = {
     "egil": [[0, 0], [0.55, 0], [0.8, -6], [1.05, -6], [1.3, 0], [a1, 0], [a1 + 0.9, 0]],
     "kolR": [[0, 28, -75]],
     "elL": [[0, *BAS], [0.45, 690, 1270], [0.8, *MAK], [1.05, 480, 1380], [1.35, *BAS], [1.55, 690, 1270],
-            [1.95, 585, 880], [2.45, 585, 880], [2.6, 560, 1000], [2.8, 640, 1250], [a1, 640, 1250],
+            [1.95, 600, 905], [2.45, 600, 905], [2.6, 580, 1000], [2.8, 640, 1250], [a1, 640, 1250],
             [a1 + 0.3, *BAS], [a1 + 0.6, 690, 1260], [a1 + 1.0, 600, 1160]],
-    "bukumL": [[0, -1], [1.6, 1], [2.6, -1]], "elLara": [[-99, a0], [a1, 99]],
+    "bukumL": 1, "elLara": [[-99, a0], [a1, 99]],
     "tutL": [[0, None], [0.45, "gomlek"], [0.85, None], [1.5, "corap"], [2.55, None], [a1 + 0.55, "kot"]],
     "duygu": [[0, "notr"], [1.95, "igrenmis"], [2.6, "notr"], [a0, "ofkeli"], [a0 + 2.3, "notr"]],
     "tilt": [[0, 0], [1.95, 0], [2.1, -8], [2.5, -8], [2.7, 0]],
@@ -53,9 +53,9 @@ UCAN = [
 # şok ve öfke (sok + A03): anne yarım plan, elinde deste
 s0, s1 = T["sok"], T["A03"]
 ANNE_SON = {
-    "yer": [[0, 610, 1880, 1290]], "egil": [[0, 0]], "sepet": [[0, 1]], "kolR": [[0, 28, -75]],
-    "elL": [[0, 600, 1160], [s1, 600, 1160], [s1 + 0.12, 640, 1120], [s1 + 0.3, 600, 1150], [s1 + 0.45, 640, 1120], [s1 + 0.6, 600, 1150]], "bukumL": -1,
-    "tutL": [[0, "deste"]],
+    "yer": [[0, 610, 1880, 1290]], "egil": [[0, 0]], "kolL": [[0, 38, -105]],
+    "elR": [[0, 760, 1120], [s1, 760, 1110], [s1 + 0.1, 790, 1020], [s1 + 0.25, 770, 1060], [s1 + 0.4, 795, 1010], [s1 + 0.55, 772, 1055]], "bukumR": -1,
+    "tutR": [[0, "deste"]],
     "duygu": [[0, "sok"], [s0 + 0.45, "ofkeli"]], "gozSok": [[0, 1], [s0 + 0.4, 1], [s0 + 0.5, 0]],
     "bak": [[0, 0.1, 0.45, 0.05], [s0 + 0.5, 0.85, -0.05, 0.5]],
     "konus": [{"t": s1 + 0.08, "cues": MAN["A03b_01"]["mouth"]}],
@@ -81,11 +81,11 @@ def vuruslar():
         line("anne724", "Eceee uyan kız artık", "A01a_01",
              {"kind": "b7_banyo", "text": json.loads(json.dumps(b7(A["A01"], 0, [[A["A01"], 590, 960, 1.65], [A["kot"], 595, 955, 1.75]], ANNE)["text"]))}, 0.15),
         b7(A["kot"], A["cep"] - A["kot"], [[A["kot"], 600, 1060, 1.18], [A["cep"], 610, 1050, 1.24]], ANNE),
-        {"type": "insert", "kind": "cep_deste", "dur": 1.5, "sfx": [{"name": "efekt/el_kumas_burus", "at": 0.3, "volume": 0.5}, {"name": "efekt/el_kaching", "at": 1.0, "volume": 0.45}]},
+        {"type": "insert", "kind": "cep_deste", "dur": 1.5, "text": ["sol"], "sfx": [{"name": "efekt/el_kumas_burus", "at": 0.3, "volume": 0.5}, {"name": "efekt/el_kaching", "at": 1.0, "volume": 0.45}]},
         line("anne724", "yuhh", "A02a_01", {"kind": "para_say", "text": ["anne"]}, 0.1),
-        dict(b7(A["sok"], A["A03"] - A["sok"], [[A["sok"], 580, 1000, 1.5], [A["A03"], 580, 990, 1.6]], ANNE_SON), sfx=[{"name": "efekt/el_sok_vurgu", "at": 0.0, "volume": 0.55}]),
+        dict(b7(A["sok"], A["A03"] - A["sok"], [[A["sok"], 600, 1000, 1.5], [A["A03"], 600, 990, 1.6]], ANNE_SON, makineSepet=True), sfx=[{"name": "efekt/el_sok_vurgu", "at": 0.0, "volume": 0.55}]),
         line("anne724", "Eceeee", "A03b_01",
-             {"kind": "b7_banyo", "text": json.loads(json.dumps(b7(A["A03"], 0, [[A["A03"], 580, 990, 1.6], [A["A03"] + 0.12, 575, 900, 2.6], [SON, 575, 895, 2.7]], ANNE_SON, titre=6)["text"]))}, 0.45) | {"sfx": [{"name": "efekt/el_plak_cizik", "at": 0.0, "volume": 0.5}, {"name": "efekt/whoosh", "at": 0.05, "volume": 0.35}]},
+             {"kind": "b7_banyo", "text": json.loads(json.dumps(b7(A["A03"], 0, [[A["A03"], 600, 990, 1.6], [A["A03"] + 0.12, 640, 930, 2.3], [SON, 640, 925, 2.4]], ANNE_SON, titre=6, makineSepet=True)["text"]))}, 0.45) | {"sfx": [{"name": "efekt/el_plak_cizik", "at": 0.0, "volume": 0.5}, {"name": "efekt/whoosh", "at": 0.05, "volume": 0.35}]},
     ]
 
 

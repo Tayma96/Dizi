@@ -157,7 +157,9 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
       const sgn = side === "L" ? -1 : 1;
       H = [omuz[0] + sgn * Math.sin(up) * (L1 + L2) * 0.9, omuz[1] + Math.cos(up) * (L1 + L2) * 0.9];
     }
-    if (tut) esyalar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] - 6 * S} s={S * (tut === "kot" ? 1.15 : 1)} a={side === "L" ? -15 : 15} />);
+    // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
+    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 80 * S : -6 * S;
+    if (tut) esyalar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 1.15 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");
@@ -212,6 +214,15 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           <rect x={330} y={470} width={230} height={300} fill="url(#b7_pen)" stroke="#f4f0e8" strokeWidth={14} />
           <path d="M 445 470 V 770 M 330 620 H 560" stroke="#f4f0e8" strokeWidth={8} />
           <rect x={330} y={470} width={230} height={300} fill="#fff" opacity={0.12} />
+          {/* sepet makinenin üstüne bırakılmış (p.makineSepet) */}
+          {p.makineSepet ? (
+            <g transform="translate(450 1095) rotate(-4) scale(1.2)">
+              <path d="M -95 -50 L 95 -50 L 80 55 L -80 55 Z" fill="#c8a070" stroke={O} strokeWidth={5} />
+              {[-20, 15].map((yy) => <path key={yy} d={`M ${-92 + (yy + 50) * 0.11} ${yy} H ${92 - (yy + 50) * 0.11}`} stroke="#8a6440" strokeWidth={5} />)}
+              <path d="M -92 -48 Q -50 -100 0 -76 Q 50 -110 94 -48 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
+              <path d="M -60 -52 Q -30 -86 20 -66" stroke="#7ab0d8" strokeWidth={24} strokeLinecap="round" fill="none" />
+            </g>
+          ) : null}
         </svg>
         {/* karakterler: önce arkadaki */}
         {onceEce.map((k, i) => (k ? <React.Fragment key={i}>{k.govde}{k.on}</React.Fragment> : null))}
