@@ -806,7 +806,8 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
       if (tz - T < 0.1) return;
       const ust = urunUst(sd, rr, zz);
       const kid = `${uid}kk${j}`;
-      if (dd < 0) kirpTanim.push(<clipPath key={kid} id={kid}><path d={`M -6000 -6000 H 8000 V 8000 H -6000 Z ${urunQ(sd, rr, zz)}`} clipRule="evenodd" /></clipPath>);
+      // düşmeden önce yalnız paketin ÜST kenarının üstü görünür (anten uçları taşar); gövde her durumda paketin ardında
+      if (dd < 0) kirpTanim.push(<clipPath key={kid} id={kid}><path d={yuzX(sd * KX * 0.99, 0.77 + zz * 0.2, 1.0 + zz * 0.2, ust, ust + 0.3)} /></clipPath>);
       for (let m = 0; m < 5; m++) {
         const zr = (random(`kz${j}${m}`) - 0.5) * 0.13;
         const yr = Yb + 0.05 + random(`ky${j}${m}`) * (ust - Yb - 0.06);
