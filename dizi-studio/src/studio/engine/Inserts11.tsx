@@ -864,11 +864,10 @@ const BocekYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         <rect width={1080} height={1920} fill={`url(#${uid}tavan)`} opacity={0.55 * fl} />
         <rect x={120} y={60} width={840} height={70} rx={10} fill="#ffffff" opacity={0.9 * fl} filter={`url(#${uid}bl)`} />
         <g transform={`translate(540 ${y}) rotate(${egim}) scale(${sc})`}>
-          {/* pronotum kenarı (arkada, başın üstünde) */}
-          <path d="M -230 -40 C -240 -180 -120 -260 0 -262 C 120 -260 240 -180 230 -40 Z" fill={K.k2} stroke={K.out} strokeWidth={5} />
-          <path d="M -214 -60 C -222 -170 -110 -240 0 -242" stroke={K.kenar} strokeWidth={10} fill="none" />
-          <path d="M -150 -200 Q -40 -250 90 -236" stroke={K.parla} strokeWidth={8} fill="none" opacity={0.5 * fl} strokeLinecap="round" />
+          {/* pronotum (ortak tasarım): arkada kalkan, önde siper */}
+          <g transform="translate(0 770)"><PronotumArka uid={`${uid}p`} isik={fl} /></g>
           <BocekKafa t={t + 3} mand={mand} anten={0} parlak={1} salya={1} isik={fl} uid={`${uid}k`} siper={0.35} yansima={1} />
+          <g transform="translate(0 770)"><PronotumSiper uid={`${uid}p`} isik={fl} /></g>
         </g>
         {/* antenler: yukarıdan, kameraya doğru uzanır (ön planda kalın, flu) */}
         <g transform={`translate(540 ${y}) rotate(${egim})`}>
@@ -1036,7 +1035,9 @@ const BocekKukreme: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   const jx = (random(`kx${f}`) - 0.5) * 16 * tit, jy = (random(`ky${f}`) - 0.5) * 12 * tit;
   const sc = 1.85 * (1 - 0.06 * haz + 0.2 * kuk);
   const hy = 820 - 40 * haz + 70 * kuk;
-  const fl = kuk > 0.3 ? (random(`kf${Math.floor(f / 2)}`) < 0.45 ? 0.35 : 1) : random(`kf${Math.floor(f / 2)}`) < 0.12 ? 0.5 : 1;
+  const fl = kuk > 0.3 ? (random(`kf${Math.floor(f / 2)}`) < 0.3 ? 0.6 : 1) : random(`kf${Math.floor(f / 2)}`) < 0.12 ? 0.6 : 1;
+  const egilK = 0.2 + 0.6 * kuk;
+  const agizY = hy + sc * (110 * egilK + 135 * (1 + 0.14 * egilK));
   const bocek = (
     <DevBocek t={t + 11} acil={1} kanat={0.5 + 0.5 * kuk} mand={0.2 - 0.2 * haz + 1.15 * kuk} egil={0.2 + 0.6 * kuk} egim={-6 * haz} anten={760} antenBuk={40 - 30 * haz + 190 * kuk} antenSal={0.6 + 2 * kuk} parlak={1} salya={1} isik={fl} kalinti={1} saldir={0.4 + 0.6 * kuk} uid={uid} />
   );
@@ -1065,7 +1066,7 @@ const BocekKukreme: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
         {kuk > 0.1 ? [0, 1, 2].map((i) => {
           const k = ((t - 0.25 - i * 0.18) / 0.6);
           if (k < 0 || k > 1) return null;
-          return <ellipse key={i} cx={540 + jx} cy={hy + 300 * (sc / 1.85) + jy} rx={120 + 700 * k} ry={70 + 420 * k} fill="none" stroke="#e8f0f4" strokeWidth={10 * (1 - k)} opacity={0.35 * (1 - k)} />;
+          return <ellipse key={i} cx={540 + jx} cy={agizY + jy} rx={120 + 700 * k} ry={70 + 420 * k} fill="none" stroke="#e8f0f4" strokeWidth={10 * (1 - k)} opacity={0.35 * (1 - k)} />;
         }) : null}
         {/* sıçrayan salya damlaları (kameraya doğru büyür) */}
         {new Array(18).fill(0).map((_, i) => {
@@ -1074,11 +1075,11 @@ const BocekKukreme: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
           if (k < 0 || k > 1) return null;
           const a = random(`sa${i}`) * Math.PI * 2;
           const v = 300 + random(`sv${i}`) * 700;
-          const x = 540 + Math.cos(a) * v * k, y = hy + 300 + Math.sin(a) * v * k * 0.8 + 400 * k * k;
+          const x = 540 + Math.cos(a) * v * k, y = agizY + Math.sin(a) * v * k * 0.8 + 400 * k * k;
           const r = (4 + 20 * k) * (0.6 + random(`sr${i}`));
           return <ellipse key={i} cx={x} cy={y} rx={r} ry={r * 1.2} fill={K.salya} opacity={0.75 * (1 - k * 0.6)} stroke="#8a8050" strokeWidth={1.5} />;
         })}
-        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.6} />
+        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.45} />
         <rect width={1080} height={1920} fill={`url(#${uid}vin)`} />
       </svg>
     </AbsoluteFill>

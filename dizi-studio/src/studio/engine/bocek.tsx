@@ -402,11 +402,11 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
   const R = legs(1), L = legs(-1);
   const kan = clamp01(kanat);
   const wing = (side: 1 | -1) => (
-    <g transform={`rotate(${side * (4 + 30 * kan + Math.sin(t * 9) * 1.5 * kan)} ${side * 96} -730)`}>
-      <path d={`M ${side * 80} -742 C ${side * 214} -716 ${side * 262} -470 ${side * 196} -260 Q ${side * 150} -150 ${side * 46} -150 C ${side * 120} -260 ${side * 112} -560 ${side * 80} -742 Z`} fill={`url(#db${uid}w)`} stroke={K.out} strokeWidth={4.5} strokeLinejoin="round" />
-      {[0.2, 0.42, 0.64].map((k, i) => <path key={i} d={`M ${side * (90 + 20 * k)} -720 Q ${side * (170 + 50 * k)} -480 ${side * (150 + 20 * k)} ${-200 - i * 14}`} stroke={K.k1} strokeWidth={2.5} fill="none" opacity={0.7} />)}
+    <g transform={`rotate(${side * (2 + 18 * kan + Math.sin(t * 9) * 1.5 * kan)} ${side * 96} -730)`}>
+      <path d={`M ${side * 80} -742 C ${side * 210} -716 ${side * 250} -480 ${side * 190} -330 Q ${side * 140} -250 ${side * 40} -262 C ${side * 116} -330 ${side * 112} -560 ${side * 80} -742 Z`} fill={`url(#db${uid}w)`} stroke={K.out} strokeWidth={4.5} strokeLinejoin="round" />
+      {[0.2, 0.42, 0.64].map((k, i) => <path key={i} d={`M ${side * (90 + 20 * k)} -720 Q ${side * (165 + 45 * k)} -480 ${side * (140 + 20 * k)} ${-300 - i * 12}`} stroke={K.k1} strokeWidth={2.5} fill="none" opacity={0.7} />)}
       {[0, 1, 2, 3, 4, 5].map((i) => <path key={`x${i}`} d={`M ${side * (130 + i * 8)} ${-600 + i * 66} l ${side * 30} ${-6}`} stroke={K.k1} strokeWidth={2} opacity={0.5} />)}
-      <path d={`M ${side * 120} -690 C ${side * 196} -560 ${side * 214} -430 ${side * 186} -290`} stroke={K.parla} strokeWidth={7} fill="none" opacity={0.45 * parlak * isik} strokeLinecap="round" />
+      <path d={`M ${side * 120} -690 C ${side * 196} -560 ${side * 210} -440 ${side * 180} -350`} stroke={K.parla} strokeWidth={7} fill="none" opacity={0.45 * parlak * isik} strokeLinecap="round" />
     </g>
   );
   const karin = new Array(8).fill(0).map((_, i) => {
