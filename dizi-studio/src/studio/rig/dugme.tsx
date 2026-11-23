@@ -1,5 +1,5 @@
 import React from "react";
-import { useCurrentFrame } from "remotion";
+import { random, useCurrentFrame } from "remotion";
 import { OUT } from "./face";
 import type { Look } from "./types";
 
@@ -94,6 +94,41 @@ export const TorsoDugme: React.FC<{ look: Look; skin: string }> = ({ look, skin 
           <rect x={235} y={384} width={9} height={6} fill="#c8ccd0" />
         </g>
       ) : null}
+      {t === "pijama" ? (
+        <g>
+          {/* pijama üstü: ay-bulut deseni, biyeli devrik yaka, düğme patı (düğmelerden biri dugmeRenk: ipucu), göğüs cebi */}
+          {new Array(16).fill(0).map((_, i) => {
+            const x = 140 + (i % 4) * 40 + (Math.floor(i / 4) % 2) * 20, y = 400 + Math.floor(i / 4) * 52;
+            return i % 2 ? <path key={i} d={`M ${x} ${y} a 7 7 0 1 0 8 -9 a 5 5 0 1 1 -8 9 Z`} fill={o.topShade} opacity={0.8} /> : <path key={i} d={`M ${x - 8} ${y} q 0 -8 8 -8 q 4 -6 10 0 q 7 0 6 8 Z`} fill="#ffffff" opacity={0.75} />;
+          })}
+          <path d="M 200 352 V 624" stroke={o.topShade} strokeWidth={3} />
+          {[400, 460, 520, 580].map((y, i) => <circle key={y} cx={206} cy={y} r={6} fill={i === 2 && look.dugmeRenk ? look.dugmeRenk : "#ffffff"} stroke={OUT} strokeWidth={2} />)}
+          <path d="M 222 410 H 258 V 446 Q 240 452 222 446 Z" fill="none" stroke={o.topShade} strokeWidth={3} />
+        </g>
+      ) : null}
+      {look.belCantasi ? (
+        <g>
+          {/* göğüste çapraz bel çantası */}
+          <path d="M 136 348 L 262 560" stroke="#1e1e22" strokeWidth={14} />
+          <rect x={186} y={420} width={92} height={56} rx={22} fill={look.belCantasi} stroke={OUT} strokeWidth={4} transform="rotate(-28 232 448)" />
+          <path d="M 196 440 L 268 402" stroke="#d8d8d8" strokeWidth={3} strokeDasharray="5 4" transform="rotate(0)" />
+        </g>
+      ) : null}
+      {look.leke ? (
+        <g>
+          {/* lekeler: çay, yağ, ketçap izi */}
+          <path d="M 156 452 q 14 -10 26 2 q 8 14 -6 20 q -18 4 -20 -22 Z" fill="#cdb07a" opacity={0.55} />
+          <path d="M 228 404 q 10 -6 16 4 q 2 10 -10 10 q -10 -2 -6 -14 Z" fill="#b8925a" opacity={0.45} />
+          <circle cx={214} cy={560} r={6} fill="#c8503a" opacity={0.5} />
+        </g>
+      ) : null}
+      {look.kil && t === "atlet" ? (
+        <g stroke={look.hair.color} strokeWidth={2.2} fill="none" strokeLinecap="round" opacity={0.7}>
+          {/* omuz kılları + yakadan taşan göğüs kılı */}
+          <path d="M 134 344 l -3 -7 M 142 340 l -1 -8 M 258 340 l 1 -8 M 266 344 l 3 -7" />
+          <path d="M 184 360 q 4 -6 8 0 M 196 350 q 4 -6 8 0 M 208 360 q 4 -6 8 0 M 190 372 q 4 -6 8 0 M 204 372 q 4 -6 8 0" />
+        </g>
+      ) : null}
       {look.kirisik ? (
         <g>
           {/* buruşukluk ve toz: kaçırılırken yerde sürüklenmiş */}
@@ -119,7 +154,7 @@ export const Gobek: React.FC<{ look: Look; skin: string; uid: string }> = ({ loo
     <g>
       <defs>
         <clipPath id={`gb-${uid}`}>
-          <path d={`M 40 300 H 360 V 610 Q 200 ${642} 40 610 Z`} />
+          <path d={`M 40 300 H 360 V ${610 - 14 * (look.kilo ?? 0)} Q 200 ${642 - 14 * (look.kilo ?? 0)} 40 ${610 - 14 * (look.kilo ?? 0)} Z`} />
         </clipPath>
       </defs>
       <path d={P} fill={acik ? skin : o.top} />
@@ -131,7 +166,7 @@ export const Gobek: React.FC<{ look: Look; skin: string; uid: string }> = ({ loo
             <path d={Po} fill="none" stroke={OUT} strokeWidth={SW} />
             {o.type === "atlet" ? RIB(116, 284, 450, 640, o.topShade, 12, 0.55) : null}
           </g>
-          <path d="M 64 609.5 Q 200 641 336 609.5" stroke={OUT} strokeWidth={3.5} fill="none" clipPath={`url(#gbs-${uid})`} />
+          <path d={`M 64 ${609.5 - 14 * (look.kilo ?? 0)} Q 200 ${641 - 14 * (look.kilo ?? 0)} 336 ${609.5 - 14 * (look.kilo ?? 0)}`} stroke={OUT} strokeWidth={3.5} fill="none" clipPath={`url(#gbs-${uid})`} />
           <defs>
             <clipPath id={`gbs-${uid}`}>
               <path d={P} />
@@ -144,6 +179,20 @@ export const Gobek: React.FC<{ look: Look; skin: string; uid: string }> = ({ loo
       {/* hacim: sağda gölge hilali, solda üstte parlaklık */}
       <path d={`M ${268 + w * 0.5} 490 C ${292 + w} 540 ${286 + w} 600 ${250} ${636} C ${274 + w * 0.5} 596 ${280 + w * 0.5} 540 ${268 + w * 0.5} 490 Z`} fill={o.topShade} opacity={0.55} />
       <ellipse cx={164 - w * 0.4} cy={540} rx={20} ry={34} fill="#ffffff" opacity={0.25} transform={`rotate(18 ${164 - w * 0.4} 540)`} />
+      {look.kilo ? (
+        <g stroke={OUT} strokeWidth={2} fill="none" opacity={0.28} strokeLinecap="round">
+          {/* atlet gerilmiş: göbek üstünde gerilme çizgileri */}
+          <path d="M 132 486 Q 160 476 184 488 M 216 488 Q 244 476 268 486 M 150 530 Q 200 518 250 530" />
+        </g>
+      ) : null}
+      {look.leke ? <path d="M 230 566 q 16 -8 24 6 q 4 14 -12 16 q -16 0 -12 -22 Z" fill="#cdb07a" opacity={0.55} /> : null}
+      {look.kirinti ? (
+        <g>
+          {[[168, 470], [182, 506], [236, 520], [214, 582], [150, 560], [256, 590], [196, 548]].map(([x, y], i) => (
+            <path key={i} d={`M ${x} ${y} l 6 -3 l 3 6 l -6 3 Z`} fill={i % 2 ? "#f2c45a" : "#e89a3a"} stroke="#9a6a2a" strokeWidth={1} transform={`rotate(${i * 37} ${x} ${y})`} />
+          ))}
+        </g>
+      ) : null}
     </g>
   );
 };
@@ -181,8 +230,8 @@ export const Kask: React.FC<{ look: Look; dx: number; uid: string; yansima?: num
   const k = look.kask;
   if (!k) return null;
   const sx = dx * 0.35;
-  const win = `M ${118 + dx} 150 C ${120 + dx} 124 ${160 + dx} 116 ${200 + dx} 116 C ${240 + dx} 116 ${280 + dx} 124 ${282 + dx} 150 L ${284 + dx} 262 C ${284 + dx} 292 ${250 + dx} 306 ${200 + dx} 306 C ${150 + dx} 306 ${116 + dx} 292 ${116 + dx} 262 Z`;
-  const shell = `M ${200 + sx} 20 C ${308 + sx} 20 ${338 + sx} 104 ${336 + sx} 196 C ${334 + sx} 270 ${318 + sx} 320 ${284 + sx} 350 Q ${200 + sx} 372 ${116 + sx} 350 C ${82 + sx} 320 ${66 + sx} 270 ${64 + sx} 196 C ${62 + sx} 104 ${92 + sx} 20 ${200 + sx} 20 Z`;
+  const win = `M ${122 + dx} 150 C ${124 + dx} 126 ${162 + dx} 120 ${200 + dx} 120 C ${238 + dx} 120 ${276 + dx} 126 ${278 + dx} 150 L ${280 + dx} 258 C ${280 + dx} 288 ${248 + dx} 302 ${200 + dx} 302 C ${152 + dx} 302 ${120 + dx} 288 ${120 + dx} 258 Z`;
+  const shell = `M ${200 + sx} 46 C ${292 + sx} 46 ${320 + sx} 112 ${318 + sx} 192 C ${317 + sx} 262 ${306 + sx} 308 ${280 + sx} 336 Q ${200 + sx} 354 ${120 + sx} 336 C ${94 + sx} 308 ${83 + sx} 262 ${82 + sx} 192 C ${80 + sx} 112 ${108 + sx} 46 ${200 + sx} 46 Z`;
   return (
     <g>
       <defs>
@@ -197,14 +246,14 @@ export const Kask: React.FC<{ look: Look; dx: number; uid: string; yansima?: num
       {/* kabuk (pencere boş) */}
       <path d={`${shell} ${win}`} fill={k.renk} fillRule="evenodd" stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
       <g clipPath={`url(#ks-${uid})`}>
-        <path d={`M ${276 + sx} 40 C ${350 + sx} 120 ${340 + sx} 300 ${270 + sx} 368 L ${380 + sx} 368 L ${380 + sx} 20 Z`} fill="#000" opacity={0.22} />
-        {k.serit ? <path d={`M ${186 + sx} 14 L ${214 + sx} 14 L ${210 + dx} 118 L ${190 + dx} 118 Z`} fill={k.serit} stroke={OUT} strokeWidth={2.5} /> : null}
-        <ellipse cx={140 + sx} cy={80} rx={40} ry={22} fill="#ffffff" opacity={0.3} transform={`rotate(-30 ${140 + sx} 80)`} />
+        <path d={`M ${268 + sx} 60 C ${330 + sx} 130 ${322 + sx} 290 ${266 + sx} 350 L ${360 + sx} 350 L ${360 + sx} 40 Z`} fill="#000" opacity={0.22} />
+        {k.serit ? <path d={`M ${189 + sx} 40 L ${211 + sx} 40 L ${208 + dx} 122 L ${192 + dx} 122 Z`} fill={k.serit} stroke={OUT} strokeWidth={2.5} /> : null}
+        <ellipse cx={146 + sx} cy={92} rx={30} ry={15} fill="#ffffff" opacity={0.3} transform={`rotate(-30 ${146 + sx} 92)`} />
         {/* çene havalandırması */}
-        {[0, 1, 2].map((i) => <path key={i} d={`M ${184 + dx * 0.8} ${326 + i * 8} h 32`} stroke="#0c0e10" strokeWidth={3.5} strokeLinecap="round" opacity={0.7} />)}
+        {[0, 1, 2].map((i) => <path key={i} d={`M ${186 + dx * 0.8} ${314 + i * 7} h 28`} stroke="#0c0e10" strokeWidth={3.5} strokeLinecap="round" opacity={0.7} />)}
       </g>
       {/* iç sünger kenarı */}
-      <path d={win} fill="none" stroke="#2a2e33" strokeWidth={12} clipPath={`url(#kw-${uid})`} />
+      <path d={win} fill="none" stroke="#2a2e33" strokeWidth={9} clipPath={`url(#kw-${uid})`} />
       <path d={win} fill="none" stroke={OUT} strokeWidth={3} />
       {!k.vizorAcik ? (
         <g>
@@ -213,15 +262,15 @@ export const Kask: React.FC<{ look: Look; dx: number; uid: string; yansima?: num
             <path d={`M ${120 + dx + yansima} 300 L ${170 + dx + yansima} 116 L ${196 + dx + yansima} 116 L ${146 + dx + yansima} 300 Z`} fill="#ffffff" opacity={0.26} />
             <path d={`M ${204 + dx + yansima} 300 L ${248 + dx + yansima} 116 L ${258 + dx + yansima} 116 L ${214 + dx + yansima} 300 Z`} fill="#ffffff" opacity={0.18} />
           </g>
-          <path d={`M ${110 + dx} 150 C ${112 + dx} 112 ${288 + dx} 112 ${290 + dx} 150`} fill="none" stroke={OUT} strokeWidth={3} />
-          <circle cx={108 + sx} cy={196} r={9} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
-          <circle cx={292 + sx} cy={196} r={9} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M ${114 + dx} 150 C ${116 + dx} 116 ${284 + dx} 116 ${286 + dx} 150`} fill="none" stroke={OUT} strokeWidth={3} />
+          <circle cx={104 + sx} cy={196} r={7} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
+          <circle cx={296 + sx} cy={196} r={7} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
         </g>
       ) : (
         <g>
-          <path d={`M ${114 + dx} 150 C ${118 + dx} 92 ${282 + dx} 92 ${286 + dx} 150 L ${282 + dx} 160 C ${252 + dx} 130 ${148 + dx} 130 ${118 + dx} 160 Z`} fill="#2a4a62" opacity={0.92} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
-          <circle cx={108 + sx} cy={160} r={9} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
-          <circle cx={292 + sx} cy={160} r={9} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M ${116 + dx} 150 C ${120 + dx} 100 ${280 + dx} 100 ${284 + dx} 150 L ${280 + dx} 158 C ${252 + dx} 132 ${148 + dx} 132 ${120 + dx} 158 Z`} fill="#2a4a62" opacity={0.92} stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+          <circle cx={104 + sx} cy={158} r={7} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
+          <circle cx={296 + sx} cy={158} r={7} fill="#3a3f44" stroke={OUT} strokeWidth={2.5} />
         </g>
       )}
     </g>
@@ -306,6 +355,12 @@ export const KulakEk: React.FC<{ look: Look; dx: number }> = ({ look, dx }) => (
         <circle cx={290 - dx * 0.4} cy={250} r={12} />
       </g>
     ) : null}
+    {look.kulaklikKablo ? (
+      <g>
+        <circle cx={114 - dx * 0.4} cy={214} r={7} fill="#f4f4f2" stroke={OUT} strokeWidth={2} />
+        <circle cx={286 - dx * 0.4} cy={214} r={7} fill="#f4f4f2" stroke={OUT} strokeWidth={2} />
+      </g>
+    ) : null}
     {look.kulaklik ? (
       <g>
         <ellipse cx={116 - dx * 0.4} cy={212} rx={6} ry={7} fill={look.kulaklik} stroke={OUT} strokeWidth={2} />
@@ -373,3 +428,102 @@ export const TelefonYatay: React.FC<{ l: [number, number]; r: [number, number]; 
     </g>
   );
 };
+
+/** Kilo, 1 haftalık sakal, göz altı: yüzün üstüne (gözlerden önce) çizilir. */
+export const YuzEk: React.FC<{ look: Look; dx: number; kilo: number }> = ({ look, dx, kilo }) => {
+  const n = look.sakalNokta ?? 0;
+  return (
+    <g>
+      {kilo > 0 ? (
+        <g>
+          {/* gıdı (çift çene) kıvrımı, tombul yanak çizgileri */}
+          <path d={`M ${160 + dx} 318 Q ${200 + dx} 336 ${240 + dx} 318`} stroke={OUT} strokeWidth={3} fill="none" opacity={0.55} strokeLinecap="round" />
+          <path d={`M ${146 + dx} 258 Q ${150 + dx} 282 ${170 + dx} 292 M ${254 + dx} 258 Q ${250 + dx} 282 ${230 + dx} 292`} stroke={OUT} strokeWidth={2.6} fill="none" opacity={0.35} strokeLinecap="round" />
+          <path d={`M ${174 + dx} 120 Q ${200 + dx} 114 ${226 + dx} 120`} stroke={OUT} strokeWidth={2.2} fill="none" opacity={0.25} />
+        </g>
+      ) : null}
+      {n > 0 ? (
+        <g fill={look.hair.color} opacity={0.55}>
+          {/* noktalı kirli sakal: çene, yanak altı, üst dudak (düz dolgu değil) */}
+          <path d={`M ${130 + dx} 250 Q ${136 + dx} ${kilo ? 330 : 300} ${200 + dx} ${kilo ? 348 : 314} Q ${264 + dx} ${kilo ? 330 : 300} ${270 + dx} 250 Q ${250 + dx} 286 ${200 + dx} 292 Q ${150 + dx} 286 ${130 + dx} 250 Z`} opacity={0.12} />
+          {new Array(Math.round(230 * n)).fill(0).map((_, i) => {
+            // rastgele (ama sabit) dağılım: çene hattı boyunca bant, yukarı doğru seyrelir
+            const u = random(`sk-u${i}`), v = random(`sk-v${i}`);
+            const a = Math.PI * (0.06 + 0.88 * u);
+            const jaw = kilo ? 62 : 52;
+            const x = 200 + Math.cos(a) * (jaw + 20 * (u > 0.5 ? 1 : 1)) * (0.62 + 0.38 * v) * (Math.cos(a) > 0 ? 1.05 : 1.05);
+            const y = 268 + Math.sin(a) * (kilo ? 70 : 44) * (0.45 + 0.55 * v);
+            if (Math.abs(x - 200) < 26 && y < 296 && y > 266) return null;
+            return <circle key={i} cx={x + dx} cy={y} r={1.1 + random(`sk-r${i}`) * 0.9} opacity={0.55 + 0.45 * v} />;
+          })}
+          {new Array(Math.round(30 * n)).fill(0).map((_, i) => <circle key={`u${i}`} cx={176 + random(`sku${i}`) * 48 + dx} cy={258 + random(`skv${i}`) * 9} r={1.2} />)}
+        </g>
+      ) : null}
+      {look.gozAlti ? (
+        <g>
+          {/* şiş, morumsu göz altları (uykusuz, gün görmemiş) */}
+          {[160, 240].map((x) => (
+            <g key={x}>
+              <path d={`M ${x - 22 + dx} 214 Q ${x + dx} 236 ${x + 22 + dx} 214 Q ${x + dx} 226 ${x - 22 + dx} 214 Z`} fill="#9a7a9a" opacity={0.35} />
+              <path d={`M ${x - 18 + dx} 226 Q ${x + dx} 238 ${x + 18 + dx} 224`} stroke={OUT} strokeWidth={2} fill="none" opacity={0.35} />
+            </g>
+          ))}
+        </g>
+      ) : null}
+    </g>
+  );
+};
+
+/** Saçın üstüne: kask izi, alına itilmiş uyku maskesi, ter bandı. */
+export const SacEk: React.FC<{ look: Look; dx: number }> = ({ look, dx }) => (
+  <g>
+    {look.kaskIzi ? (
+      <g>
+        <path d={`M ${116 + dx} 158 Q ${200 + dx} 118 ${284 + dx} 158`} stroke="#00000055" strokeWidth={7} fill="none" />
+        <path d={`M ${120 + dx} 150 Q ${200 + dx} 112 ${280 + dx} 150`} stroke="#ffffff" strokeWidth={2} fill="none" opacity={0.25} />
+        <ellipse cx={176 + dx} cy={150} rx={14} ry={5} fill="#ffffff" opacity={0.35} />
+      </g>
+    ) : null}
+    {look.uykuMaskesi ? (
+      <g>
+        <path d={`M ${108 + dx} 132 Q ${200 + dx} 106 ${292 + dx} 132`} stroke={look.uykuMaskesi} strokeWidth={8} fill="none" />
+        <path d={`M ${132 + dx} 118 Q ${200 + dx} 92 ${268 + dx} 118 Q ${272 + dx} 150 ${236 + dx} 152 Q ${212 + dx} 150 ${200 + dx} 140 Q ${188 + dx} 150 ${164 + dx} 152 Q ${128 + dx} 150 ${132 + dx} 118 Z`} fill={look.uykuMaskesi} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+        {[164, 236].map((x) => (
+          <g key={x} stroke={OUT} strokeWidth={2.5} fill="none" strokeLinecap="round">
+            <path d={`M ${x - 16 + dx} 128 Q ${x + dx} 140 ${x + 16 + dx} 128`} />
+            <path d={`M ${x - 10 + dx} 134 l -3 5 M ${x + dx} 137 l 0 6 M ${x + 10 + dx} 134 l 3 5`} />
+          </g>
+        ))}
+        <text x={274 + dx} y={104} fontFamily="DiziSans, Arial" fontWeight={900} fontSize={20} fill="#e2202e">z</text>
+        <text x={286 + dx} y={88} fontFamily="DiziSans, Arial" fontWeight={900} fontSize={14} fill="#e2202e">z</text>
+      </g>
+    ) : null}
+    {look.terBandi ? (
+      <g>
+        <path d={`M ${110 + dx} 150 Q ${200 + dx} 118 ${290 + dx} 150 L ${290 + dx} 172 Q ${200 + dx} 140 ${110 + dx} 172 Z`} fill={look.terBandi} stroke={OUT} strokeWidth={3.5} strokeLinejoin="round" />
+        <path d={`M ${112 + dx} 160 Q ${200 + dx} 129 ${288 + dx} 160`} stroke="#ffffff" strokeWidth={3} fill="none" opacity={0.7} />
+      </g>
+    ) : null}
+  </g>
+);
+
+/** Kablolu kulaklık: sol kulaktan göğse sarkan beyaz kablo (gövde uzayında). */
+export const KulaklikKablo: React.FC<{ look: Look }> = ({ look }) =>
+  look.kulaklikKablo ? (
+    <g>
+      <path d="M 116 226 Q 112 280 150 320 Q 176 350 168 420 Q 164 470 196 500" stroke="#f4f4f2" strokeWidth={4} fill="none" strokeLinecap="round" />
+      <path d="M 116 226 Q 112 280 150 320 Q 176 350 168 420 Q 164 470 196 500" stroke={OUT} strokeWidth={1} fill="none" opacity={0.5} />
+      <path d="M 288 226 Q 300 300 240 330 Q 196 352 182 400" stroke="#f4f4f2" strokeWidth={4} fill="none" strokeLinecap="round" />
+      <rect x={176} y={396} width={12} height={22} rx={4} fill="#f4f4f2" stroke={OUT} strokeWidth={1.5} />
+    </g>
+  ) : null;
+
+/** Pijama altı deseni (bacak üstünde). */
+export const PijamaBacak: React.FC<{ side: number; renk: string }> = ({ side, renk }) => (
+  <g>
+    {new Array(7).fill(0).map((_, i) => {
+      const x = (side < 0 ? 160 : 216) + (i % 2) * 18, y = 640 + i * 44;
+      return i % 2 ? <path key={i} d={`M ${x} ${y} a 7 7 0 1 0 8 -9 a 5 5 0 1 1 -8 9 Z`} fill={renk} opacity={0.8} /> : <path key={i} d={`M ${x - 8} ${y} q 0 -8 8 -8 q 4 -6 10 0 q 7 0 6 8 Z`} fill="#ffffff" opacity={0.75} />;
+    })}
+  </g>
+);

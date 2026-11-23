@@ -7,7 +7,7 @@ import { VinnLogo } from "../rig/dugme";
 import { SANS } from "../../dizi/fonts";
 import { KdEvBG, KdEvFG, KdMarketOnuBG, KdMarketOnuFG, KdCaddeBG, KuryeMotor, KacirmaVan, KdYayinBG, KdYayinFG, YayinArayuz } from "../sets/dugme";
 import { BeyazOda, petekBul, proj, type Kam, type OdaKarakter } from "../sets/beyazoda";
-import { FpsEl, KD_BASLIK, type KolTuru } from "../engine/KirmiziDugme";
+import { FpsEl, KD_BASLIK, KdLogo, type KolTuru } from "../engine/KirmiziDugme";
 
 /* =====================================================================================
  * Kırmızı Düğme · kontrol sayfaları
@@ -19,6 +19,16 @@ const INK = "#24181c";
 const lbl: React.CSSProperties = { fontFamily: SANS, fontWeight: 900, fontSize: 40, color: INK, textAlign: "center", lineHeight: 1.1 };
 const sub: React.CSSProperties = { fontFamily: SANS, fontWeight: 800, fontSize: 25, color: "#5a4a50", textAlign: "center", lineHeight: 1.2, marginTop: 6 };
 const baslik: React.CSSProperties = { fontFamily: KD_BASLIK, fontWeight: 800, fontSize: 64, color: "#c8101e", padding: "26px 40px 6px" };
+
+/** imza pozlar (silüet testi): her karakter uzaktan tavrıyla da okunsun */
+const SILUET_POZ: Record<string, Pose> = {
+  kd_gobek_oda: { gesture: "gobekKasi" },
+  kd_kurye_oda: { gesture: "elBelde" },
+  kd_influencer_oda: { gesture: "ellerKenetli", tilt: 8 },
+  kd_dorduncu_teyze: { gesture: "tutuyor", prop: "canta" },
+  kd_dorduncu_uykucu: { gesture: "eliYuzunde", tilt: -10 },
+  kd_dorduncu_sporcu: { prop: "tesbih", armR: { upper: 26, fore: -58, ul: 0.92 }, armL: { upper: 40, fore: -100 } },
+};
 
 const Kisi: React.FC<{ id: string; pose?: Pose; ad: string; alt?: string; w?: number; size?: number; children?: React.ReactNode }> = ({ id, pose, ad, alt, w = 470, size = 900, children }) => (
   <div style={{ width: w, display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -67,12 +77,16 @@ export const KaskYakin: React.FC<{ w: number; h: number; frame: number }> = ({ w
 };
 
 const FpsKart: React.FC<{ kol: KolTuru; sol?: boolean }> = ({ kol, sol }) => {
-  const k: Kam = { x: 2.35, y: 1.6, z: 3.2, yaw: 72, pitch: -16, f: 900, cy: 900 };
-  const h = proj(k, petekBul("sag", 3.2, 1.3, 3.45).c);
+  const P = petekBul("sag", 4, 1.3, 3.45);
+  const cx = 3.15, cy = 1.6, cz = 3.2;
+  const yaw = (Math.atan2(P.c[0] - cx, P.c[2] - cz) * 180) / Math.PI;
+  const pitch = (Math.atan2(P.c[1] - cy, Math.hypot(P.c[0] - cx, P.c[2] - cz)) * 180) / Math.PI;
+  const k: Kam = { x: cx, y: cy, z: cz, yaw, pitch, f: 900, cy: 900 };
+  const h = proj(k, P.c);
   return (
-    <div style={{ width: 1080, height: 1920, transform: "scale(1)", transformOrigin: "0 0", position: "absolute", left: -40, top: -640 }}>
+    <div style={{ width: 1080, height: 1920, transform: "scale(0.92)", transformOrigin: "0 0", position: "absolute", left: -(h.x * 0.92 - 300), top: -(h.y * 0.92 - 230) }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
-        <BeyazOda k={k} durum={{ derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 1, kirmizi: 0.08, t: 0, kaide: false }} frame={0} ekstra={<FpsEl x={h.x} y={h.y + 6} s={1.25} aci={sol ? 30 : -30} kol={kol} sol={sol} bas={0.6} />} />
+        <BeyazOda k={k} durum={{ derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 1, kirmizi: 0.08, t: 0, kaide: false }} frame={0} ekstra={<FpsEl x={h.x} y={h.y + 6} s={1.05} aci={sol ? 14 : -14} kol={kol} sol={sol} bas={0.6} />} />
       </svg>
     </div>
   );
@@ -89,8 +103,8 @@ export const KDKadro: React.FC = () => {
       {/* SATIR 1 */}
       <div style={baslik}>1 · Ana karakterler</div>
       <div style={{ display: "flex", gap: 10, padding: "0 30px", alignItems: "flex-end" }}>
-        <Kisi w={425} id="kd_gobek" ad="Göbekli Adam" alt="38 · atlet, eşofman, terlik" pose={{ gesture: "gobekKasi", emotion: "mutlu" }} />
-        <Kisi w={425} id="kd_gobek" ad="Göbekli · film izler" alt="telefon yatay, iki elle, göbeğe dayalı" pose={{ gesture: "telefonYatay", prop: "telefon_yatay", emotion: "gulen", lookY: 0.7 }} />
+        <Kisi w={425} id="kd_gobek" ad="Göbekli Adam" alt="38 · 1 yıldır evden çıkmamış" pose={{ gesture: "gobekKasi", emotion: "agizAcik", eyesClosed: 0.35 }} />
+        <Kisi w={425} id="kd_gobek" ad="Göbekli · film izler" alt="telefon yatay, iki elle, göbeğe dayalı" pose={{ gesture: "telefonYatay", prop: "telefon_yatay", emotion: "agizAcik", lookY: 0.75, eyesClosed: 0.25 }} />
         <Kisi w={425} id="kd_kurye" ad="Motokurye (kasklı)" alt="24 · uydurma marka VINN!" pose={{ emotion: "mutlu" }} />
         <Kisi w={425} id="kd_kurye_kasksiz" ad="Motokurye (kasksız)" alt="sırtta teslimat çantası" pose={{ emotion: "mutlu", lookX: 0.5 }} />
         <Kisi w={425} id="kd_influencer" ad="Influencer" alt="19 · perde kakül, pembe uçlar" pose={{ gesture: "slime", prop: "slime", emotion: "gulen" }} />
@@ -119,47 +133,60 @@ export const KDKadro: React.FC = () => {
         </Kart>
       </div>
       {/* SATIR 2 */}
-      <div style={baslik}>2 · 4. kişi: üç seçenek (ilk bakışta kurban; aslında içeriden)</div>
-      <div style={{ display: "flex", gap: 70, padding: "0 40px" }}>
+      <div style={baslik}>2 · 4. kişi: üç yeni seçenek (sevimli-komik, akılda kalan; ama içeriden)</div>
+      <div style={{ display: "flex", gap: 40, padding: "0 30px" }}>
         {([
-          ["kd_dorduncu_a", "A · Düzgün memur tipi", "33 · gözlüklü, ütülü gömlek", ["Gömleği ütülü, hiç buruşmamış", "Kol saati hâlâ kolunda (herkesin eşyası alınmış)", "Ayakkabıları sıkı bağlı, bağcıklar düğme kırmızısı", "Cebinde kalemi düzgün duruyor"], { emotion: "notr" }],
-          ["kd_dorduncu_b", "B · Sakin genç kadın", "27 · trençkot, topuz", ["Topuzu bozulmamış, kıyafeti tozsuz", "Altın saat kolunda", "Beyaz ayakkabılar lekesiz, kırmızı bağcık", "Herkes korkarken sakin; gözleri odayı tarıyor"], { emotion: "dusunceli" }],
-          ["kd_dorduncu_c", "C · Masum üniversiteli", "20 · bukleli, yeşil kapüşonlu", ["Kulağında minicik siyah kulaklık (telsiz?)", "Kapüşon ipleri eşit, giysi temiz", "Kırmızı bağcıklar çift düğüm", "Güven veren gülümseme; ilk 'yardım' eden o"], { emotion: "mutlu" }],
-        ] as [string, string, string, string[], Pose][]).map(([id, ad, alt, m, p]) => (
-          <div key={id} style={{ display: "flex", gap: 10 }}>
-            <Kisi id={id} ad={ad} alt={alt} pose={p} w={780} />
-            <Ipucu maddeler={m} />
+          ["kd_dorduncu_teyze", "1 · Kolonya Teyze", "55 · perma, gözlük zinciri, mor hırka", { emotion: "mutlu", prop: "canta", gesture: "tutuyor", lookX: 0.3 },
+            ["Kocaman el çantası hiç alınmamış (herkesinki alınmış)", "Hırkasının düğmeleri minik kırmızı mantar düğme", "Perması, gözlük zinciri bozulmamış; kolonyası dolu"],
+            "Herkesin eline kolonya döker; çantasından durmadan bir şey çıkarır (lokum, yara bandı, mandal); aşırı kibar söz kalıpları",
+            "yuvarlak perma + koca çanta + gözlük zinciri"],
+          ["kd_dorduncu_uykucu", "2 · Uykucu", "22 · pijama, tavşan terlik, uyku maskesi", { emotion: "agizAcik", eyesClosed: 0.7, gesture: "eliYuzunde", tilt: -6 },
+            ["Tavşan terliklerinin tabanı tertemiz (hiç yere basmamış gibi)", "Kaçırıldığı hâlde hiç şaşırmıyor", "Pijamasının tek bir düğmesi kırmızı"],
+            "Her sahnede esner; en gergin anda kıvrılıp uyur; uyku maskesini indirip kaldırır",
+            "alında pembe maske + kocaman tavşan terlik"],
+          ["kd_dorduncu_sporcu", "3 · Sporcu Abi", "30 · mor-lime eşofman, ter bandı, tesbih", { emotion: "mutlu", prop: "tesbih", armR: { upper: 26, fore: -58, ul: 0.92 }, armL: { upper: 40, fore: -100 } },
+            ["Tesbih taneleri minik kırmızı mantar düğme", "Şınav çekiyor ama ter bandı kupkuru", "Bel çantası kapalı ve dolu; hiç açmıyor"],
+            "Gerilince şınav çeker, tesbihi şaklatır, herkese nefes egzersizi yaptırmaya kalkar",
+            "ter bandı + çapraz bel çantası + geniş eşofman"],
+        ] as [string, string, string, Pose, string[], string, string][]).map(([id, ad, alt, p, ip, jest, sil]) => (
+          <div key={id} style={{ display: "flex", gap: 6 }}>
+            <Kisi id={id} ad={ad} alt={alt} pose={p} w={600} />
+            <div style={{ display: "flex", flexDirection: "column", gap: 14, alignSelf: "center" }}>
+              <Ipucu maddeler={ip} />
+              <div style={{ width: 560, background: "#fffbe6", border: `5px solid #e8a400`, borderRadius: 28, padding: "20px 28px" }}>
+                <div style={{ fontFamily: KD_BASLIK, fontWeight: 800, fontSize: 40, color: "#b07800" }}>Komik jest (tik)</div>
+                <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 31, color: INK, lineHeight: 1.25 }}>{jest}</div>
+                <div style={{ fontFamily: SANS, fontWeight: 900, fontSize: 27, color: "#7a5a00", marginTop: 8 }}>Silüet: {sil}</div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
       {/* SATIR 3 */}
-      <div style={baslik}>3 · Beyaz odada görünüş: iki seçenek</div>
-      <div style={{ display: "flex", gap: 0, padding: "0 30px" }}>
-        <div style={{ display: "flex", flexDirection: "column", background: "#ffffff88", borderRadius: 30, padding: "10px 0" }}>
-          <div style={{ ...lbl, fontSize: 44 }}>Seçenek 1 · Kendi kıyafetleri (buruşuk, tozlu)</div>
-          <div style={{ display: "flex" }}>
-            <Kisi id="kd_gobek_oda" ad="Göbekli" pose={{ emotion: "korkmus", sacDagin: true }} w={500} size={820} />
-            <Kisi id="kd_kurye_oda" ad="Kurye" alt="kaskı, çantası yok" pose={{ emotion: "supheli", sacDagin: true }} w={500} size={820} />
-            <Kisi id="kd_influencer_oda" ad="Influencer" alt="makyaj dağılmış" pose={{ emotion: "agliyor", sacDagin: true, tears: 0.5 }} w={500} size={820} />
-            <Kisi id="kd_dorduncu_a" ad="4. kişi" alt="tertemiz (ipucu)" pose={{ emotion: "notr" }} w={500} size={820} />
-          </div>
-        </div>
-        <div style={{ width: 40 }} />
-        <div style={{ display: "flex", flexDirection: "column", background: "#ffffff88", borderRadius: 30, padding: "10px 0" }}>
-          <div style={{ ...lbl, fontSize: 44 }}>Seçenek 2 · Herkese aynı beyaz tulum (çoraplı)</div>
-          <div style={{ display: "flex" }}>
-            <Kisi id="kd_gobek_tulum" ad="Göbekli" pose={{ emotion: "korkmus" }} w={500} size={820} />
-            <Kisi id="kd_kurye_tulum" ad="Kurye" pose={{ emotion: "supheli" }} w={500} size={820} />
-            <Kisi id="kd_influencer_tulum" ad="Influencer" pose={{ emotion: "uzgun" }} w={500} size={820} />
-            <Kisi id="kd_dorduncu_a_tulum" ad="4. kişi" alt="saati yine kolunda (ipucu)" pose={{ emotion: "notr" }} w={500} size={820} />
+      <div style={baslik}>3 · Beyaz odada: herkes kendi kıyafetiyle · imza detaylar ve silüet testi</div>
+      <div style={{ display: "flex", gap: 20, padding: "0 30px", alignItems: "flex-end" }}>
+        <Kisi id="kd_gobek_oda" ad="Göbekli" alt="lekeli atlet, cips kırıntısı, tek terlik" pose={{ emotion: "korkmus", sacDagin: true }} w={470} size={820} />
+        <Kisi id="kd_kurye_oda" ad="Kurye" alt="kask izi, kablolu kulaklık, eldiven" pose={{ emotion: "supheli" }} w={470} size={820} />
+        <Kisi id="kd_influencer_oda" ad="Influencer" alt="kalp toka, takma tırnak, telefonsuz eller" pose={{ emotion: "agliyor", sacDagin: true, tears: 0.5, gesture: "ellerKenetli" }} w={470} size={820} />
+        <Kisi id="kd_dorduncu_teyze" ad="4. kişi (1)" alt="tertemiz, çantası yanında" pose={{ emotion: "mutlu", prop: "canta", gesture: "tutuyor" }} w={420} size={820} />
+        <Kisi id="kd_dorduncu_uykucu" ad="4. kişi (2)" alt="esniyor" pose={{ emotion: "agizAcik", eyesClosed: 0.7 }} w={420} size={820} />
+        <Kisi id="kd_dorduncu_sporcu" ad="4. kişi (3)" alt="tesbih şaklatıyor" pose={{ emotion: "mutlu", prop: "tesbih", armR: { upper: 26, fore: -58, ul: 0.92 } }} w={420} size={820} />
+        <div style={{ width: 1180, background: "#ffffffaa", borderRadius: 28, padding: "16px 10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ ...lbl, fontSize: 38 }}>Silüet testi: uzaktan bile kim kim?</div>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            {["kd_gobek_oda", "kd_kurye_oda", "kd_influencer_oda", "kd_dorduncu_teyze", "kd_dorduncu_uykucu", "kd_dorduncu_sporcu"].map((id, i) => (
+              <div key={id} style={{ width: 190, height: 560, display: "flex", justifyContent: "center", alignItems: "flex-end", filter: "brightness(0)", opacity: 0.85 }}>
+                <Character look={castById(id)} size={540} pose={{ seed: i, golgesiz: true, ...SILUET_POZ[id] }} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
       {/* SATIR 4 */}
       <div style={baslik}>4 · Kanca (FPS) için el seçenekleri: kimin eli düğmeye basıyor?</div>
-      <div style={{ display: "flex", gap: 60, padding: "0 50px" }}>
-        {([["notr", "Nötr: beyaz tulum kolu", "kimin olduğu belli değil"], ["atlet", "Göbekli: çıplak kol", "atletli, kıllı önkol"], ["kurye", "Kurye: mont + eldiven", "reflektör şerit"], ["gomlek", "4. kişi (A): sol el", "gömlek manşeti + saat (büyük ipucu)"]] as [KolTuru, string, string][]).map(([kol, ad, alt]) => (
-          <Kart key={kol} w={1020} h={1100} ad={ad} alt={alt} bg="#eef4f7"><FpsKart kol={kol} sol={kol === "gomlek"} /></Kart>
+      <div style={{ display: "flex", gap: 28, padding: "0 30px" }}>
+        {([["atlet", "Göbekli", "tombul, kıllı, solgun önkol"], ["kurye", "Kurye", "mont + eldiven"], ["tirnak", "Influencer", "lila kol, pembe tırnak, saç lastiği"], ["hirka", "Kolonya Teyze", "mor hırka, altın bilezik"], ["pijama", "Uykucu", "ay desenli pijama kolu"], ["esofman", "Sporcu Abi", "bileğinde kırmızı düğme tesbih"]] as [KolTuru, string, string][]).map(([kol, ad, alt]) => (
+          <Kart key={kol} w={690} h={1000} ad={ad} alt={alt} bg="#eef4f7"><FpsKart kol={kol} /></Kart>
         ))}
       </div>
     </AbsoluteFill>
@@ -198,12 +225,12 @@ const KisiYer: React.FC<{ id: string; x: number; y: number; size: number; pose?:
   </div>
 );
 
-export type KdMekan = "oda_bas" | "oda_final" | "ev" | "market" | "takip" | "kavsak" | "yayin" | "kask";
+export type KdMekan = "oda_bas" | "oda_final" | "ev" | "market" | "takip" | "kavsak" | "yayin" | "kask" | "logo";
 const ODA_KAR = (): OdaKarakter[] => [
-  { look: castById("kd_gobek_tulum"), x: -1.15, z: 3.15, pose: { yaw: 0.45, lookX: 0.6, emotion: "saskin" } },
-  { look: castById("kd_influencer_tulum"), x: 1.15, z: 3.25, pose: { yaw: -0.45, lookX: -0.6, emotion: "korkmus" } },
-  { look: castById("kd_kurye_tulum"), x: -1.05, z: 5.5, pose: { yaw: 0.35, emotion: "supheli" } },
-  { look: castById("kd_dorduncu_a_tulum"), x: 1.05, z: 5.6, pose: { yaw: -0.3, emotion: "notr" } },
+  { look: castById("kd_gobek_oda"), x: -1.15, z: 3.15, pose: { yaw: 0.45, lookX: 0.6, emotion: "saskin" } },
+  { look: castById("kd_influencer_oda"), x: 1.15, z: 3.25, pose: { yaw: -0.45, lookX: -0.6, emotion: "korkmus" } },
+  { look: castById("kd_kurye_oda"), x: -1.05, z: 5.5, pose: { yaw: 0.35, emotion: "supheli" } },
+  { look: castById("kd_dorduncu_uykucu"), x: 1.05, z: 5.6, pose: { yaw: -0.3, emotion: "yorgun" } },
 ];
 
 /** Tek mekân karesi (1080×1920), ışık tasarımıyla. */
@@ -216,7 +243,7 @@ export const KdMekanKare: React.FC<{ m: KdMekan; frame: number }> = ({ m, frame 
     }
     case "oda_final": {
       const k: Kam = { x: 0, y: 1.25, z: 0.6, yaw: 2, pitch: 2, f: 760, cy: 900 };
-      const P = [petekBul("arka", 0, 2.2, 8), petekBul("sol", -3.2, 1.6, 5.5), petekBul("sag", 3.2, 2.0, 4.4), petekBul("tavan", 0.6, 3.4, 4.8), petekBul("arka", -2, 1.0, 8)];
+      const P = [petekBul("arka", 0, 2.2, 10), petekBul("sol", -4, 1.6, 5.5), petekBul("sag", 4, 2.0, 4.4), petekBul("tavan", 0.6, 3.6, 4.8), petekBul("arka", -2, 1.0, 10)];
       const kar = ODA_KAR();
       kar[0].pose = { ...kar[0].pose, emotion: "sok", gesture: "basTut", yaw: -0.2, lookY: -0.6 };
       kar[1].pose = { ...kar[1].pose, emotion: "dehset", gesture: "ellerYuzde", lookY: -0.4 };
@@ -289,6 +316,8 @@ export const KdMekanKare: React.FC<{ m: KdMekan; frame: number }> = ({ m, frame 
       );
     case "kask":
       return <AbsoluteFill><KaskYakin w={1080} h={1920} frame={frame} /></AbsoluteFill>;
+    case "logo":
+      return <AbsoluteFill><KdLogo t={10} /></AbsoluteFill>;
   }
 };
 
@@ -300,7 +329,7 @@ const MEKANLAR: [KdMekan, string, string][] = [
   ["takip", "D · Cadde: sürüş takip", "yol ve lambalar akar · motor önden"],
   ["kavsak", "D · Kavşak", "minibüsün çarptığı yer · trafik ışığı"],
   ["yayin", "E · Influencer odası", "ring ışık + pembe/mor LED · arkada karanlık kapı"],
-  ["kask", "D · Kask içi yakın plan", "vizörde kayan şehir ışıkları"],
+  ["logo", "Dizi adı kartı", "B1'de 3. saniyeden sonra · Baloo 2 ExtraBold"],
 ];
 
 export const KDMekanlar: React.FC = () => {

@@ -181,6 +181,10 @@ export type Look = {
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
   /* ---- Kırmızı Düğme (hepsi isteğe bağlı) ---- */
+  /** boy çarpanı (silüet ayrımı için; 1 = normal) */
+  boy?: number;
+  /** omuz/gövde genişliği çarpanı (kabarık mont, geniş omuz) */
+  omuzEn?: number;
   /** bütün vücut kilosu 0..1: geniş yüz + gıdı, kalın boyun/ense, kalın kol ve bacak, geniş kalça */
   kilo?: number;
   /** 1 haftalık sakal: noktalı kirli sakal yoğunluğu 0..1 (maske gibi düz dolgu değil) */

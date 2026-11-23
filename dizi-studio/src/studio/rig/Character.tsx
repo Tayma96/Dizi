@@ -361,7 +361,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const blink = pose.kirpmaz ? 0 : blink0;
   const age = AGE[look.age];
   const kilo = Math.max(0, Math.min(1, look.kilo ?? 0));
-  const wx = BUILD[look.build] * (1 + 0.14 * kilo);
+  const wx = BUILD[look.build] * (1 + 0.14 * kilo) * (look.omuzEn ?? 1);
   const male = look.gender === "m";
   const skin = look.skin;
   const out = look.outfit;
@@ -994,8 +994,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   );
 
   const dizK = pose.body === "sit" || pose.body === "walk" ? 0 : Math.max(0, Math.min(1, pose.diz ?? 0));
-  const groundShift = 680 * (1 - age.sy) + 185 * dizK;
-  const bodyT = `translate(200 300) scale(${age.sx} ${age.sy}) translate(-200 -300)${running ? ` rotate(${2.4 * runU} 200 600)` : ""}${sLean > 0 ? ` translate(0 ${24 * sLean}) rotate(${-13 * sLean} 200 980)` : ""}`;
+  const syB = age.sy * (look.boy ?? 1);
+  const groundShift = 680 * (1 - syB) + 185 * dizK;
+  const bodyT = `translate(200 300) scale(${age.sx} ${syB}) translate(-200 -300)${running ? ` rotate(${2.4 * runU} 200 600)` : ""}${sLean > 0 ? ` translate(0 ${24 * sLean}) rotate(${-13 * sLean} 200 980)` : ""}`;
   const torsoScale = `translate(200 470) scale(${wx} ${1 + breathe}) translate(-200 -470)`;
   const runTilt = running ? 3.2 * Math.sin(runPh - 0.6) : 0;
   const yutY = 5 * yk;

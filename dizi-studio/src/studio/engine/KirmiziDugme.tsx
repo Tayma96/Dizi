@@ -24,22 +24,59 @@ const cl = (v: number) => Math.max(0, Math.min(1, v));
 const ease = (v: number) => { const x = cl(v); return x * x * (3 - 2 * x); };
 
 /* ------------------------------------------------------------------ FPS el */
-export type KolTuru = "notr" | "atlet" | "kurye" | "gomlek";
+export type KolTuru = "notr" | "atlet" | "kurye" | "gomlek" | "tirnak" | "pijama" | "esofman" | "hirka";
 /** Uç noktası (işaret parmağı ucu) (x,y)'de; kol `aci` yönünden (derece, 0 = aşağıdan) gelir. sol: sol el (aynalı). */
-export const FpsEl: React.FC<{ x: number; y: number; s?: number; aci?: number; kol?: KolTuru; sol?: boolean; bas?: number; ten?: string }> = ({ x, y, s = 1, aci = -28, kol = "notr", sol, bas = 0, ten = "#f0c4a0" }) => {
+export const FpsEl: React.FC<{ x: number; y: number; s?: number; aci?: number; kol?: KolTuru; sol?: boolean; bas?: number; ten?: string }> = ({ x, y, s = 1, aci = -28, kol = "notr", sol, bas = 0, ten: ten0 = "#f0c4a0" }) => {
+  let ten = ten0;
   const eldiven = kol === "kurye";
+  if (kol === "atlet") ten = "#ecd6c4";
   const el = eldiven ? "#25292e" : ten;
+  const tombul = kol === "atlet" ? 1.28 : 1;
+  const tirnakRenk = kol === "tirnak" ? "#ff6ab0" : "#f8dccb";
   const golge = eldiven ? "#16191c" : "#d8a47e";
   const sw = 6;
   const parmakBoy = 170 * (1 - 0.12 * bas);
   return (
-    <g transform={`translate(${x} ${y}) rotate(${aci}) scale(${s * (sol ? -1 : 1)} ${s})`}>
+    <g transform={`translate(${x} ${y}) rotate(${aci}) scale(${s * (sol ? -1 : 1)} ${s}) translate(-40 0) scale(${tombul} 1) translate(40 0)`}>
       {/* önkol */}
       <path d="M -24 330 L 156 330 L 236 1700 L -80 1700 Z" fill={ten} stroke={OUT} strokeWidth={sw} strokeLinejoin="round" />
       <path d="M 120 330 L 156 330 L 236 1700 L 170 1700 Z" fill={golge} opacity={0.5} />
       {kol === "atlet" ? (
-        <g stroke="#5a4030" strokeWidth={3} strokeLinecap="round" opacity={0.55}>
-          {[[20, 520], [70, 600], [40, 700], [100, 760], [10, 860], [80, 940]].map(([a, b], i) => <path key={i} d={`M ${a} ${b} q 8 -10 16 -4`} fill="none" />)}
+        <g stroke="#3a2a20" strokeWidth={3} strokeLinecap="round" opacity={0.6}>
+          {/* tombul, kıllı önkol */}
+          {new Array(22).fill(0).map((_, i) => { const a = -10 + (i * 47) % 150, b = 420 + ((i * 89) % 900); return <path key={i} d={`M ${a} ${b} q 6 -9 13 -5`} fill="none" />; })}
+        </g>
+      ) : null}
+      {kol === "tirnak" ? (
+        <g>
+          <path d="M -60 420 L 176 420 L 260 1700 L -120 1700 Z" fill="#cbb8f4" stroke={OUT} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M -60 420 L 176 420 L 180 486 L -64 486 Z" fill="#a690d8" stroke={OUT} strokeWidth={4} />
+          {new Array(10).fill(0).map((_, i) => <path key={i} d={`M ${-50 + i * 24} 424 v 58`} stroke="#cbb8f4" strokeWidth={3} />)}
+          <ellipse cx={58} cy={392} rx={100} ry={30} fill="#ff9cc8" stroke={OUT} strokeWidth={4} />
+        </g>
+      ) : null}
+      {kol === "pijama" ? (
+        <g>
+          <path d="M -50 430 L 176 430 L 260 1700 L -110 1700 Z" fill="#a8c8f0" stroke={OUT} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M -50 430 L 176 430" stroke="#ffffff" strokeWidth={10} />
+          {new Array(8).fill(0).map((_, i) => <path key={i} d={`M ${-10 + (i % 3) * 70} ${520 + i * 120} a 14 14 0 1 0 16 -18 a 10 10 0 1 1 -16 18 Z`} fill="#6f98d0" />)}
+        </g>
+      ) : null}
+      {kol === "esofman" ? (
+        <g>
+          <path d="M -50 420 L 176 420 L 260 1700 L -110 1700 Z" fill="#6a3ab8" stroke={OUT} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M 120 420 L 196 1700" stroke="#c8f03a" strokeWidth={22} />
+          <path d="M -50 420 L 176 420 L 178 470 L -52 470 Z" fill="#4e2a8a" stroke={OUT} strokeWidth={4} />
+          {/* bileğe sarılı tesbih: kırmızı mantar düğme taneler */}
+          {new Array(9).fill(0).map((_, i) => <circle key={i} cx={-36 + i * 22} cy={392 + Math.sin(i) * 4} r={11} fill="#e2202e" stroke={OUT} strokeWidth={2.5} />)}
+        </g>
+      ) : null}
+      {kol === "hirka" ? (
+        <g>
+          <path d="M -60 440 L 176 440 L 260 1700 L -120 1700 Z" fill="#7a3a6a" stroke={OUT} strokeWidth={sw} strokeLinejoin="round" />
+          <path d="M -60 440 L 176 440 L 180 506 L -64 506 Z" fill="#5e2a52" stroke={OUT} strokeWidth={4} />
+          {new Array(10).fill(0).map((_, i) => <path key={i} d={`M ${-50 + i * 24} 444 v 58`} stroke="#7a3a6a" strokeWidth={3} />)}
+          <path d="M -34 400 Q 60 420 160 398" stroke="#c9a24a" strokeWidth={8} fill="none" />
         </g>
       ) : null}
       {kol === "notr" ? (
@@ -80,7 +117,8 @@ export const FpsEl: React.FC<{ x: number; y: number; s?: number; aci?: number; k
       {/* işaret parmağı */}
       <g transform={`translate(0 ${170 - parmakBoy})`}>
         <rect x={-23} y={0} width={46} height={parmakBoy + 10} rx={23} fill={el} stroke={OUT} strokeWidth={sw} />
-        {!eldiven ? <rect x={-14} y={8} width={28} height={32} rx={12} fill="#f8dccb" stroke="#c89a80" strokeWidth={2.5} /> : null}
+        {!eldiven ? <rect x={-14} y={8} width={28} height={kol === "tirnak" ? 38 : 32} rx={12} fill={tirnakRenk} stroke="#c89a80" strokeWidth={2.5} /> : null}
+        {kol === "atlet" ? <path d="M -14 70 l 6 -6 M 0 74 l 6 -6 M -12 110 l 6 -6 M 4 112 l 6 -6" stroke="#3a2a20" strokeWidth={2.5} opacity={0.6} /> : null}
         <path d={`M -12 ${parmakBoy * 0.42} q 12 6 24 0 M -12 ${parmakBoy * 0.72} q 12 6 24 0`} stroke={OUT} strokeWidth={3} fill="none" opacity={0.45} />
       </g>
     </g>
@@ -190,10 +228,10 @@ export const KdLogo: React.FC<{ t?: number; arkaPlan?: boolean }> = ({ t = 10, a
 
 /* ------------------------------------------------------------------ düğme finali prototipi */
 const KARAKTER_TULUM = (): OdaKarakter[] => [
-  { look: castById("kd_gobek_tulum"), x: -1.3, z: 3.15, pose: { yaw: 0.45, lookX: 0.6 } },
-  { look: castById("kd_influencer_tulum"), x: 1.3, z: 3.25, pose: { yaw: -0.45, lookX: -0.6 } },
-  { look: castById("kd_kurye_tulum"), x: -1.05, z: 5.5, pose: { yaw: 0.35 } },
-  { look: castById("kd_dorduncu_a_tulum"), x: 1.05, z: 5.6, pose: { yaw: -0.3 } },
+  { look: castById("kd_gobek_oda"), x: -1.3, z: 3.15, pose: { yaw: 0.45, lookX: 0.6 } },
+  { look: castById("kd_influencer_oda"), x: 1.3, z: 3.25, pose: { yaw: -0.45, lookX: -0.6 } },
+  { look: castById("kd_kurye_oda"), x: -1.05, z: 5.5, pose: { yaw: 0.35 } },
+  { look: castById("kd_dorduncu_uykucu"), x: 1.05, z: 5.6, pose: { yaw: -0.3 } },
 ];
 
 const titresim = (frame: number, g: number) => ({ sx: (random(`sx${frame}`) - 0.5) * 2 * g, sy: (random(`sy${frame}`) - 0.5) * 2 * g });
@@ -203,8 +241,8 @@ export const KdDugmeOrnek: React.FC = () => {
   const t = frame / 30;
   const kar = KARAKTER_TULUM();
   const P = {
-    arka: petekBul("arka", 0, 2.2, 8), arka2: petekBul("arka", -2, 1.0, 8), sol: petekBul("sol", -3.2, 1.6, 5.5), sag: petekBul("sag", 3.2, 2.0, 4.4),
-    tavan: petekBul("tavan", 0.6, 3.4, 4.8), sag2: petekBul("sag", 3.2, 0.8, 6.5), sol2: petekBul("sol", -3.2, 2.4, 3.4),
+    arka: petekBul("arka", 0, 2.2, 10), arka2: petekBul("arka", -2, 1.0, 10), sol: petekBul("sol", -4, 1.6, 5.5), sag: petekBul("sag", 4, 2.0, 4.4),
+    tavan: petekBul("tavan", 0.6, 3.6, 4.8), sag2: petekBul("sag", 4, 0.8, 6.5), sol2: petekBul("sol", -4, 2.4, 3.4),
   };
   // 1) genel: dikişsiz oda, tek düğme (0 - 1,5 sn)
   if (frame < 45) {
@@ -273,9 +311,9 @@ export const KdDugmeOrnek: React.FC = () => {
 export const KdKanca: React.FC<{ kol?: KolTuru }> = ({ kol = "notr" }) => {
   const frame = useCurrentFrame();
   const t = frame / 30;
-  const KX = 2.35, KY = 1.6, KZ = 3.2;
-  const hedefP = petekBul("sag", 3.2, 1.3, 3.45);
-  const bolmeP = petekBul("sol", -3.2, 1.35, 3.2);
+  const KX = 3.15, KY = 1.6, KZ = 3.2;
+  const hedefP = petekBul("sag", 4, 1.3, 3.45);
+  const bolmeP = petekBul("sol", -4, 1.35, 3.2);
   if (frame >= 90) {
     return <AbsoluteFill style={{ backgroundColor: "#eef4f7" }}><KdLogo t={(frame - 90) / 30} /></AbsoluteFill>;
   }

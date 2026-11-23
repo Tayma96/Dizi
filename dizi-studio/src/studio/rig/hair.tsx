@@ -68,6 +68,12 @@ export const HairBack: React.FC<{ look: Look; dx: number; sway: number }> = ({ l
           })}
         </g>
       );
+    case "perma":
+      return (
+        <g>
+          {[[108, 204], [292, 204], [112, 236], [288, 236]].map(([x, y], i) => <circle key={i} cx={x + dx} cy={y} r={18} {...p} />)}
+        </g>
+      );
     case "perdeli": {
       // uzun katlı saç: uçlar yumuşak katlarla biter, aşağı doğru uç rengine (hair.uc) geçer
       const gid = `perde-${(color + (look.hair.uc ?? "")).replace(/[^a-zA-Z0-9]/g, "")}`;
@@ -191,11 +197,45 @@ export const HairFront: React.FC<{ look: Look; dx: number }> = ({ look, dx }) =>
           {strand(`M ${186 + dx} 98 C ${160 + dx} 124 ${140 + dx} 160 ${128 + dx} 220`, 4)}
           {strand(`M ${214 + dx} 98 C ${240 + dx} 124 ${260 + dx} 160 ${272 + dx} 220`, 4)}
           <path d={`M 118 300 L 116 350 M 282 300 L 284 350`} stroke={look.hair.uc ?? shade} strokeWidth={7} strokeLinecap="round" />
-          {star(262 + dx, 128, "#ffd84a")}
-          {star(280 + dx, 152, "#ff9cc8", 7)}
+          {look.kalpToka ? (
+            [[260, 126, 12], [280, 154, 9]].map(([x, y, r], i) => (
+              <path key={i} d={`M ${x + dx} ${y + r * 0.9} C ${x - r * 1.6 + dx} ${y - r * 0.2} ${x - r * 0.6 + dx} ${y - r * 1.4} ${x + dx} ${y - r * 0.5} C ${x + r * 0.6 + dx} ${y - r * 1.4} ${x + r * 1.6 + dx} ${y - r * 0.2} ${x + dx} ${y + r * 0.9} Z`} fill={look.kalpToka} stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />
+            ))
+          ) : (
+            <>
+              {star(262 + dx, 128, "#ffd84a")}
+              {star(280 + dx, 152, "#ff9cc8", 7)}
+            </>
+          )}
         </g>
       );
     }
+    case "yagli":
+      // seyrek, yağlı, dağınık: tepe açılmış (kafa derisi parlıyor), alına yapışık üç tutam, yanlarda kabarık karışık tutamlar
+      return (
+        <g>
+          <path d={`M ${108 + dx} 214 C 98 170 102 132 ${124 + dx} 112 Q ${110 + dx} 96 ${134 + dx} 96 L ${150 + dx} 128 C 132 146 120 176 ${116 + dx} 214 Z`} {...p} />
+          <path d={`M ${292 + dx} 214 C 302 170 298 132 ${276 + dx} 112 Q ${292 + dx} 94 ${266 + dx} 96 L ${250 + dx} 128 C 268 146 280 176 ${284 + dx} 214 Z`} {...p} />
+          <path d={`M ${104 + dx} 176 q -14 2 -14 -12 M ${296 + dx} 176 q 14 2 14 -12 M ${110 + dx} 140 q -12 -4 -8 -16`} stroke={color} strokeWidth={6} fill="none" strokeLinecap="round" />
+          {[[150, 96, 136, 150], [176, 88, 170, 158], [204, 86, 208, 150], [232, 90, 248, 146]].map(([x0, y0, x1, y1], i) => (
+            <path key={i} d={`M ${x0 + dx} ${y0} Q ${(x0 + x1) / 2 + (i - 1.5) * 6 + dx} ${(y0 + y1) / 2 - 6} ${x1 + dx} ${y1}`} stroke={color} strokeWidth={7 - i % 2 * 2} fill="none" strokeLinecap="round" />
+          ))}
+          <path d={`M ${186 + dx} 92 Q ${196 + dx} 70 ${214 + dx} 64`} stroke={color} strokeWidth={5} fill="none" strokeLinecap="round" />
+          {/* yağ parlaması */}
+          <path d={`M ${176 + dx} 100 Q ${174 + dx} 122 ${172 + dx} 140 M ${206 + dx} 96 Q ${207 + dx} 116 ${208 + dx} 134`} stroke={shade} strokeWidth={2.5} fill="none" opacity={0.9} />
+          <ellipse cx={192 + dx} cy={104} rx={18} ry={6} fill="#ffffff" opacity={0.35} />
+        </g>
+      );
+    case "perma":
+      // kısa, sıkı perma: başı saran küçük bukleler
+      return (
+        <g>
+          {[[122, 150], [116, 186], [130, 118], [154, 96], [182, 86], [212, 84], [242, 92], [268, 112], [282, 146], [286, 184], [168, 110], [198, 102], [228, 106]].map(([x, y], i) => (
+            <circle key={i} cx={x + dx} cy={y} r={i > 9 ? 16 : 20} {...p} />
+          ))}
+          {[[154, 96], [212, 84], [268, 112]].map(([x, y], i) => <path key={`s${i}`} d={`M ${x - 8 + dx} ${y} q 8 -8 16 0`} stroke={shade} strokeWidth={3} fill="none" />)}
+        </g>
+      );
     case "daginik":
       // yataktan kalkmış: yuvarlak, düzensiz tutamlar, tepede kalkık bir "anten" tutam, kulak üstünde taşan perçemler
       return (

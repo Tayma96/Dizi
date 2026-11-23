@@ -8,7 +8,7 @@ import type { Pose } from "../rig/types";
  * Kırmızı Düğme · BEYAZ ODA (dizinin ana mekânı). Gerçek perspektif izdüşümlü küçük bir 3B sahne, 2D çizim diliyle.
  *
  * Görsel dil ("Symbol" (2009) ile karışmasın diye bilinçli farklar):
- *   - Oran: dikdörtgen, alçak tavanlı (6,4 × 3,4 × 10 m) uzun bir oda; köşeler yumuşak ama dik.
+ *   - Oran: geniş, derin, görece alçak tavanlı (8 × 3,6 × 12 m) bir oda; köşeler dik.
  *   - Dikişsiz başlar; final anında duvarlarda ALTIGEN panel derzleri belirir (petek). Her petekte bir düğme.
  *   - Düğme: acil durdurma tipi KIRMIZI MANTAR başlık, beyaz altıgen taban plakası, altında 3 haneli
  *     siyah LCD sayaç (her düğmenin numarası var) ve çevresinde LED halka. Basılınca başlık içeri çöker,
@@ -20,7 +20,7 @@ import type { Pose } from "../rig/types";
  * Birim metre. X sağ, Y yukarı, Z ileri (kameradan uzağa). Zemin Y=0.
  * ===================================================================================== */
 
-export const ODA = { x0: -3.2, x1: 3.2, y1: 3.4, z0: -2, z1: 8 };
+export const ODA = { x0: -4, x1: 4, y1: 3.6, z0: -2, z1: 10 };
 export const KAIDE = { x: 0, z: 4.2, h: 1.0, r: 0.3 };
 
 export type Kam = { x: number; y: number; z: number; yaw: number; pitch: number; f: number; cx?: number; cy?: number; sx?: number; sy?: number };
@@ -80,7 +80,8 @@ export const YUZEYLER: Yuzey[] = [
   { ad: "on", o: [ODA.x0, 0, ODA.z0], t1: [1, 0, 0], t2: [0, 1, 0], n: [0, 0, 1], l1: ODA.x1 - ODA.x0, l2: ODA.y1, renk: "#e4ebf0" },
 ];
 
-export const HEX_R = 0.3;
+/** petek yarıçapı: oda 8×3,6×12 m; 0,42 ile ~610 düğme (eski odanın %70'i), aralarda boş petek görünür */
+export const HEX_R = 0.42;
 export type Petek = { id: number; y: number; u: number; v: number; c: V3; no: number; d: number };
 const PETEKLER: Petek[] = (() => {
   const out: Petek[] = [];
@@ -98,7 +99,7 @@ const PETEKLER: Petek[] = (() => {
         if (v + dv / 2 > s.l2 + 1e-6 || v - dv / 2 < -1e-6) continue;
         const c = add(add(s.o, s.t1, u), s.t2, v);
         // kaidenin altına ve karakterlerin durduğu yere zemin düğmesi koyma
-        if (s.ad === "zemin" && Math.hypot(c[0] - KAIDE.x, c[2] - KAIDE.z) < 0.7) continue;
+        if (s.ad === "zemin" && Math.hypot(c[0] - KAIDE.x, c[2] - KAIDE.z) < 0.8) continue;
         const d = Math.hypot(c[0] - KAIDE.x, c[1] - 1, c[2] - KAIDE.z);
         out.push({ id: id++, y: yi, u, v, c, no: 1 + Math.floor(random(`no${id}`) * 998), d });
       }

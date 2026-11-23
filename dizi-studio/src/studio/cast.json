@@ -1691,31 +1691,38 @@
   {
     "id": "kd_gobek",
     "name": "Göbekli Adam",
-    "role": "Kırmızı Düğme: kanepe sakini, 38 (geçici ad)",
+    "role": "Kırmızı Düğme: 1 yıldır evden çıkmayan göbekli adam, 38 (geçici ad)",
     "voice": "erkek",
     "gender": "m",
     "age": "adult",
     "build": "heavy",
-    "skin": "#f2c7a2",
-    "skinShade": "#dcaa84",
+    "skin": "#ecd6c4",
+    "skinShade": "#d4b6a0",
     "hair": {
-      "style": "daginik",
-      "color": "#2e231e",
-      "shade": "#54443a"
+      "style": "yagli",
+      "color": "#2a2420",
+      "shade": "#7a7068"
     },
-    "iris": "#5a3e2a",
+    "iris": "#5a4a3a",
     "outfit": {
       "type": "atlet",
-      "top": "#f7f5ee",
-      "topShade": "#d6d1c4",
-      "bottom": "#34466a",
+      "top": "#f0ead6",
+      "topShade": "#cfc6ac",
+      "bottom": "#3e4452",
       "shoes": "#2b2f36"
     },
-    "blush": true,
+    "blush": false,
     "gobek": 1,
     "gobekAcik": true,
     "terlik": "#3a8ad8",
-    "serit": "#eef0f2"
+    "serit": "#c4c8ce",
+    "kilo": 1,
+    "sakalNokta": 0.9,
+    "gozAlti": true,
+    "kil": true,
+    "leke": true,
+    "kirinti": true,
+    "boy": 0.97
   },
   {
     "id": "kd_kurye",
@@ -1750,7 +1757,8 @@
       "renk": "#1b1f24",
       "serit": "#f4f22e"
     },
-    "eldiven": "#25292e"
+    "eldiven": "#25292e",
+    "omuzEn": 1.12
   },
   {
     "id": "kd_kurye_kasksiz",
@@ -1780,7 +1788,9 @@
     "sirtCanta": {
       "renk": "#18a39a",
       "kenar": "#f4f22e"
-    }
+    },
+    "kulaklikKablo": true,
+    "omuzEn": 1.12
   },
   {
     "id": "kd_influencer",
@@ -1815,7 +1825,10 @@
     },
     "halka": "#f2c94c",
     "toka": "#ff9cc8",
-    "blush": true
+    "blush": true,
+    "kalpToka": "#ff4a8a",
+    "tirnak": "#ff6ab0",
+    "boy": 0.96
   },
   {
     "id": "kd_maskeli",
@@ -1845,122 +1858,47 @@
     "blush": false
   },
   {
-    "id": "kd_dorduncu_a",
-    "name": "4. Kişi (A)",
-    "role": "Kırmızı Düğme: 4. kişi seçenek A · düzgün memur tipi, 33",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f0c8a6",
-    "skinShade": "#d8ac88",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a2018",
-      "shade": "#4a3a2e"
-    },
-    "iris": "#4a3424",
-    "glasses": "#5a5a62",
-    "outfit": {
-      "type": "shirt",
-      "top": "#d3e3f4",
-      "topShade": "#a9c2dc",
-      "bottom": "#3a3f4a",
-      "shoes": "#4a2c1c"
-    },
-    "baski": "cep",
-    "saat": "#2a2a2e",
-    "bagcik": "#e0262e"
-  },
-  {
-    "id": "kd_dorduncu_b",
-    "name": "4. Kişi (B)",
-    "role": "Kırmızı Düğme: 4. kişi seçenek B · sakin genç kadın, 27",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f3cdb0",
-    "skinShade": "#e0b290",
-    "hair": {
-      "style": "bun",
-      "color": "#4a2a1a",
-      "shade": "#6a4430"
-    },
-    "iris": "#4e6b3e",
-    "earrings": "#f4f0e6",
-    "outfit": {
-      "type": "coat",
-      "top": "#d8c09a",
-      "topShade": "#bba27a",
-      "bottom": "#3a3a40",
-      "shoes": "#f4f2ee",
-      "accent": "#f4efe6"
-    },
-    "saat": "#c9a24a",
-    "bagcik": "#e0262e"
-  },
-  {
-    "id": "kd_dorduncu_c",
-    "name": "4. Kişi (C)",
-    "role": "Kırmızı Düğme: 4. kişi seçenek C · masum üniversiteli, 20",
-    "voice": "genc_erkek2",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f2cfb2",
-    "skinShade": "#ddb090",
-    "hair": {
-      "style": "curly",
-      "color": "#2a1a12",
-      "shade": "#4a3226"
-    },
-    "iris": "#5a3e28",
-    "outfit": {
-      "type": "hoodie",
-      "top": "#8aa07a",
-      "topShade": "#6c845c",
-      "bottom": "#d8cdb8",
-      "shoes": "#f4f4f0"
-    },
-    "kulaklik": "#1a1a1e",
-    "bagcik": "#e0262e",
-    "blush": true
-  },
-  {
     "id": "kd_gobek_oda",
     "name": "Göbekli Adam",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (buruşuk)",
+    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (tek terlik, buruşuk)",
     "voice": "erkek",
     "gender": "m",
     "age": "adult",
     "build": "heavy",
-    "skin": "#f2c7a2",
-    "skinShade": "#dcaa84",
+    "skin": "#ecd6c4",
+    "skinShade": "#d4b6a0",
     "hair": {
-      "style": "daginik",
-      "color": "#2e231e",
-      "shade": "#54443a"
+      "style": "yagli",
+      "color": "#2a2420",
+      "shade": "#7a7068"
     },
-    "iris": "#5a3e2a",
+    "iris": "#5a4a3a",
     "outfit": {
       "type": "atlet",
-      "top": "#f7f5ee",
-      "topShade": "#d6d1c4",
-      "bottom": "#34466a",
+      "top": "#f0ead6",
+      "topShade": "#cfc6ac",
+      "bottom": "#3e4452",
       "shoes": "#2b2f36"
     },
-    "blush": true,
+    "blush": false,
     "gobek": 1,
     "gobekAcik": true,
     "terlik": "#3a8ad8",
-    "serit": "#eef0f2",
-    "kirisik": true
+    "serit": "#c4c8ce",
+    "kilo": 1,
+    "sakalNokta": 0.9,
+    "gozAlti": true,
+    "kil": true,
+    "leke": true,
+    "kirinti": true,
+    "kirisik": true,
+    "tekTerlik": true,
+    "boy": 0.97
   },
   {
     "id": "kd_kurye_oda",
     "name": "Motokurye",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (çantasız, buruşuk)",
+    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (çantasız, kask izi, kablolu kulaklık)",
     "voice": "genc_erkek",
     "gender": "m",
     "age": "adult",
@@ -1982,12 +1920,16 @@
       "accent": "#1f262b"
     },
     "baski": "vinn",
-    "kirisik": true
+    "kirisik": true,
+    "kulaklikKablo": true,
+    "kaskIzi": true,
+    "eldiven": "#25292e",
+    "omuzEn": 1.12
   },
   {
     "id": "kd_influencer_oda",
     "name": "Influencer",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (buruşuk, makyaj akmış)",
+    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (telefonsuz, makyaj dağılmış)",
     "voice": "genc_kadin2",
     "gender": "f",
     "age": "adult",
@@ -2017,113 +1959,101 @@
     "halka": "#f2c94c",
     "toka": "#ff9cc8",
     "blush": true,
-    "kirisik": true
+    "kirisik": true,
+    "kalpToka": "#ff4a8a",
+    "tirnak": "#ff6ab0",
+    "boy": 0.96
   },
   {
-    "id": "kd_gobek_tulum",
-    "name": "Göbekli Adam",
-    "role": "Kırmızı Düğme: beyaz oda, beyaz tulum (çoraplı)",
-    "voice": "erkek",
+    "id": "kd_dorduncu_teyze",
+    "name": "Kolonya Teyze",
+    "role": "Kırmızı Düğme: 4. kişi seçenek 1 · aşırı kibar teyze, 55",
+    "voice": "yasli_kadin",
+    "gender": "f",
+    "age": "old",
+    "build": "normal",
+    "skin": "#f1cdb0",
+    "skinShade": "#dcb090",
+    "hair": {
+      "style": "perma",
+      "color": "#8a4a2e",
+      "shade": "#b8724a"
+    },
+    "iris": "#5a4030",
+    "glasses": "#8a2a4a",
+    "gozlukZinciri": "#c9a24a",
+    "earrings": "#f4f0e6",
+    "outfit": {
+      "type": "cardigan",
+      "top": "#7a3a6a",
+      "topShade": "#5e2a52",
+      "bottom": "#4a4652",
+      "shoes": "#2a2224",
+      "accent": "#f6dfe6"
+    },
+    "dugmeRenk": "#e2202e",
+    "blush": true,
+    "boy": 0.9,
+    "omuzEn": 1.06
+  },
+  {
+    "id": "kd_dorduncu_uykucu",
+    "name": "Uykucu",
+    "role": "Kırmızı Düğme: 4. kişi seçenek 2 · pijamalı uykucu genç, 22",
+    "voice": "genc_erkek2",
     "gender": "m",
     "age": "adult",
-    "build": "heavy",
-    "skin": "#f2c7a2",
-    "skinShade": "#dcaa84",
+    "build": "slim",
+    "skin": "#f4d4b8",
+    "skinShade": "#e0b898",
     "hair": {
       "style": "daginik",
-      "color": "#2e231e",
-      "shade": "#54443a"
+      "color": "#6a4430",
+      "shade": "#8a5e44"
     },
-    "iris": "#5a3e2a",
+    "iris": "#4a6a8a",
     "outfit": {
-      "type": "tulum",
-      "top": "#f3f4f2",
-      "topShade": "#d6dadb",
-      "bottom": "#f3f4f2",
-      "shoes": "#e2e5e8"
+      "type": "pijama",
+      "top": "#a8c8f0",
+      "topShade": "#6f98d0",
+      "bottom": "#a8c8f0",
+      "shoes": "#f4f4f0"
     },
+    "tavsanTerlik": "#fbf8f4",
+    "uykuMaskesi": "#f6a8c8",
+    "dugmeRenk": "#e2202e",
     "blush": true,
-    "gobek": 1
+    "boy": 1.06,
+    "omuzEn": 0.92
   },
   {
-    "id": "kd_kurye_tulum",
-    "name": "Motokurye",
-    "role": "Kırmızı Düğme: beyaz oda, beyaz tulum (çoraplı)",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e6b48c",
-    "skinShade": "#cc9870",
-    "hair": {
-      "style": "buzz",
-      "color": "#1e1612",
-      "shade": "#3a2a22"
-    },
-    "iris": "#3e2a1c",
-    "outfit": {
-      "type": "tulum",
-      "top": "#f3f4f2",
-      "topShade": "#d6dadb",
-      "bottom": "#f3f4f2",
-      "shoes": "#e2e5e8"
-    }
-  },
-  {
-    "id": "kd_influencer_tulum",
-    "name": "Influencer",
-    "role": "Kırmızı Düğme: beyaz oda, beyaz tulum (çoraplı)",
-    "voice": "genc_kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f7d2b8",
-    "skinShade": "#ebb596",
-    "hair": {
-      "style": "perdeli",
-      "color": "#3a2218",
-      "shade": "#5e3a2a",
-      "uc": "#f49ac1"
-    },
-    "iris": "#6a4a2c",
-    "outfit": {
-      "type": "tulum",
-      "top": "#f3f4f2",
-      "topShade": "#d6dadb",
-      "bottom": "#f3f4f2",
-      "shoes": "#e2e5e8"
-    },
-    "makyaj": {
-      "ruj": "#d8708a",
-      "far": "#c9a0d8",
-      "eyeliner": true
-    },
-    "blush": true
-  },
-  {
-    "id": "kd_dorduncu_a_tulum",
-    "name": "4. Kişi (A)",
-    "role": "Kırmızı Düğme: beyaz oda, beyaz tulum · 4. kişi (A): saati yine kolunda",
+    "id": "kd_dorduncu_sporcu",
+    "name": "Sporcu Abi",
+    "role": "Kırmızı Düğme: 4. kişi seçenek 3 · spor tutkunu abi, 30",
     "voice": "erkek",
     "gender": "m",
     "age": "adult",
     "build": "normal",
-    "skin": "#f0c8a6",
-    "skinShade": "#d8ac88",
+    "skin": "#d8a47e",
+    "skinShade": "#bf8a64",
     "hair": {
-      "style": "shortMale",
-      "color": "#2a2018",
-      "shade": "#4a3a2e"
+      "style": "buzz",
+      "color": "#1a1412",
+      "shade": "#2a201a"
     },
-    "iris": "#4a3424",
-    "glasses": "#5a5a62",
+    "iris": "#3a2a1c",
+    "facialHair": "goatee",
     "outfit": {
-      "type": "tulum",
-      "top": "#f3f4f2",
-      "topShade": "#d6dadb",
-      "bottom": "#f3f4f2",
-      "shoes": "#e2e5e8"
+      "type": "tracksuit",
+      "top": "#6a3ab8",
+      "topShade": "#4e2a8a",
+      "bottom": "#6a3ab8",
+      "shoes": "#f4f4f0"
     },
-    "saat": "#2a2a2e"
+    "serit": "#c8f03a",
+    "terBandi": "#c8f03a",
+    "belCantasi": "#1e1e22",
+    "boy": 1.04,
+    "omuzEn": 1.16
   }
 ]
