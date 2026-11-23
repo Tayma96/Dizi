@@ -5,6 +5,8 @@
   python3 tools/ses_724_05.py sahte    # sahte Sabri replikleri (b_01, d_01): fark edilmeyecek kadar hafif çift ses / perde kayması
   python3 tools/ses_724_05.py kirp ID BAS SON   # repliği [BAS, SON] saniye aralığına kırpar; words/mouth kaydırılır
   python3 tools/ses_724_05.py olc      # bütün repliklerin LUFS / tepe ölçümü
+  python3 tools/ses_724_05.py efekt    # efekt/el_* -> efekt/b5_* (baş kırpma, tepe -3 dBFS / ortam -20 LUFS) + kükremeyi 2,1 sn'ye kısaltır
+  python3 tools/ses_724_05.py muzik [KESME]  # muzik/b5_donusum_tam (h başından KESME sn'de kükremeyle kesilir; varsayılan 16.78)
 
 Manifest anahtarları, elevenlabs.py'nin 724-05.json alanlarından hesapladığı anahtarla aynı tutulur;
 böylece `seslendir` bu satırları önbellekte sayar ve yeniden üretmez (B4 yöntemi, raporlar/b4-ses.md §1.3).
