@@ -281,6 +281,8 @@ export type Pose = {
   hik?: number;
   /** 7/24 B5: kahkaha sarsıntısı (omuzlar, baş) 0..1 */
   kahkaha?: number;
+  /** Kırmızı Düğme: kask vizöründe kayan yansımanın yatay kayması (px) */
+  kaskYansima?: number;
   /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
   omuzDus?: number;
 };

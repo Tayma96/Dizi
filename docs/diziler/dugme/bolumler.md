@@ -30,3 +30,4 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - Not (Claude): Bu kanca 4-1-2-3-5 yapısındaki "4"ün (geleceğin) bir anı; mızrak göğse ulaşmadan dizi adına sert kesme önerilir (kan yok, platform kuralları ve 13-25 kitlesi için uygun; merak maksimum).
 - **Şarkı (kullanıcı, 23 Kasım 2026):** dizi 3 platformda paylaşılıyor; platform müzik kütüphanesi kullanılamaz → motokurye sahnesi için ÖZGÜN şarkı üretilir (girl-group pop havası, uydurma grup).
 - Göbekli adamın telefonda izlediği video: kullanıcı gerçek bir yayıncının yayınından 10 sn'lik kesit vermeyi önerdi. Yalnızca yayıncının yazılı izniyle kullanılabilir; izin yoksa özgün animasyonlu bir yayıncı parodisi.
+- **Kullanıcı kararı:** yayıncı kesiti (klip paylaşanlardan alınmış, 5-10 sn) telefona entegre edilecek; telif riski kullanıcıya açıkça bildirildi, kullanıcı kabul etti.

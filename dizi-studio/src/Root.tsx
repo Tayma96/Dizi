@@ -11,6 +11,8 @@ import { Episode, calculateEpisodeMetadata } from "./studio/engine/Episode";
 import { CastSheet, EmotionSheet, GestureSheet, MouthSheet, SetSheet } from "./studio/sheets/Sheets";
 import { B4Ornek, Donus25DSheet } from "./studio/engine/Inserts10";
 import { B5Ornek, BocekSheet } from "./studio/engine/Inserts11";
+import { KDKadro, KDMekanlar } from "./studio/sheets/KdSheets";
+import { KdDugmeOrnek, KdKanca, KdLogoKare } from "./studio/engine/KirmiziDugme";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -46,6 +48,13 @@ export const RemotionRoot: React.FC = () => {
           height={1920}
           defaultProps={{ episodeId: "gkk-b1", part: 0 }}
         />
+      </Folder>
+      <Folder name="Kirmizi-Dugme">
+        <Composition id="KDKadro" component={KDKadro} durationInFrames={60} fps={30} width={4440} height={4760} />
+        <Composition id="KDMekanlar" component={KDMekanlar} durationInFrames={60} fps={30} width={2712} height={2680} />
+        <Composition id="KDDugmeOrnek" component={KdDugmeOrnek} durationInFrames={180} fps={30} width={1080} height={1920} />
+        <Composition id="KDKanca" component={KdKanca} durationInFrames={126} fps={30} width={1080} height={1920} defaultProps={{ kol: "notr" as const }} />
+        <Composition id="KDLogo" component={KdLogoKare} durationInFrames={1} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="Gec-Kaldim-Kizim">
         <Composition
