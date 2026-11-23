@@ -1357,12 +1357,12 @@
   "loop": false,
   "desc": "ElevenLabs Music: Kırmızı Düğme · kurye şarkısı BAS!"
  },
- "muzik/kd-bas-kurye20": {
-  "file": "ses/muzik/kd-bas-kurye20.mp3",
+ "muzik/kd-bas-kurye22": {
+  "file": "ses/muzik/kd-bas-kurye22.mp3",
   "category": "muzik",
-  "duration": 20,
+  "duration": 22,
   "loop": false,
-  "desc": "BAS! ilk 20 sn (giriş + kıta): kurye kaçırılış sahnesi; çarpışmada sert kesilir"
+  "desc": "BAS! ilk 22 sn: kurye 'Nasıl mı?' demeden ~3 sn önce başlar, flashback'te kask içinden sürer, bitişte kaçırılmış olur (sert kesme)"
  },
  "muzik/market_gerilim": {
   "file": "ses/muzik/market_gerilim.mp3",
