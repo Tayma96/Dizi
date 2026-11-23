@@ -191,7 +191,8 @@ const ZeytinAl: React.FC = () => {
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         {/* masa örtüsü (beyaz, kırmızı kenar), sıcak lamba ışığı */}
         <rect width={1080} height={1920} fill="#f6f1e6" />
-        {new Array(30).fill(0).map((_, i) => <path key={i} d={`M 0 ${i * 70} H 1080`} stroke="#ece4d4" strokeWidth={3} />)}
+        <g transform="translate(540 1000) scale(1.75) translate(-540 -1080)">
+        {new Array(30).fill(0).map((_, i) => <path key={i} d={`M 0 ${i * 70} H 1080`} stroke="#efe8da" strokeWidth={2} opacity={0.6} />)}
         <rect x={0} y={1700} width={1080} height={220} fill="#f2ece0" />
         {new Array(16).fill(0).map((_, i) => <rect key={i} x={i * 70} y={1760} width={35} height={60} fill="#c8483a" opacity={0.8} />)}
         <radialGradient id="i15_lmb" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stopColor="#ffe0a0" stopOpacity={0.35} /><stop offset="1" stopColor="#3a2414" stopOpacity={0.18} /></radialGradient>
@@ -214,6 +215,7 @@ const ZeytinAl: React.FC = () => {
           <path d="M 40 0 Q -20 -10 -40 30 Q -30 50 0 40" fill={KOL.sivil[2]} stroke={O} strokeWidth={6} />
           <path d="M 60 -40 Q 10 -70 -30 -30 Q -30 -10 0 -10" fill={KOL.sivil[2]} stroke={O} strokeWidth={6} />
           {aldi ? <g><ellipse cx={-30} cy={10} rx={34} ry={27} fill="#2a2228" stroke="#000" strokeWidth={4} /><ellipse cx={-40} cy={0} rx={8} ry={6} fill="#fff" opacity={0.4} /></g> : null}
+        </g>
         </g>
         <rect width={1080} height={1920} fill="url(#i15_lmb)" />
       </svg>
