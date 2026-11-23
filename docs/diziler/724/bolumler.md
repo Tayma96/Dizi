@@ -196,3 +196,4 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - Senarist yardımcısı da 03:00'te B5 için komik replik ÖNERİLERİ yazar (docs/diziler/724/raporlar/b5-senarist-komik.md); yalnız öneri, kullanıcı yarın kontrol edip seçer, metne kendiliğinden eklenmez.
 - **Kullanıcı kararı (23 Kasım 2026, senarist önerilerinden):** "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ." (Ece) metne GİRER; yeri: Sabri'nin "depoya gel çay yaptım içte sakinleş biraz" repliğinden SONRA (Ece adım atmadan önce). B3'teki kopan ele gönderme.
 - **Kullanıcı kararı:** "hıığğ" tepkisinin HEMEN ardından, arada boşluk/başka söz olmadan "abi vallahi büyük hayranınım." gelir.
+- **Kullanıcı eklemesi (23 Kasım 2026; replikler AYNEN):** "abi vallahi büyük hayranınım." dedikten sonra böcek kükreme gibi bir ses çıkarır. Ece "lülü?" der, 1 saniye bekler, "bu da mı olmadı?" der (tedirgin ve mahçup).

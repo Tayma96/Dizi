@@ -207,11 +207,11 @@ export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBu
   };
   const g = `bk${uid}`;
   const goz = (side: 1 | -1) => {
-    const d = `M ${side * 60} -140 C ${side * 108} -130 ${side * 118} -60 ${side * 104} -12 C ${side * 96} 16 ${side * 70} 22 ${side * 62} 0 C ${side * 56} -24 ${side * 72} -54 ${side * 66} -84 C ${side * 62} -104 ${side * 40} -134 ${side * 60} -140 Z`;
+    const d = `M ${side * 66} -136 C ${side * 104} -128 ${side * 114} -64 ${side * 104} -18 C ${side * 98} 8 ${side * 82} 14 ${side * 78} -4 C ${side * 74} -26 ${side * 86} -54 ${side * 82} -84 C ${side * 78} -106 ${side * 56} -130 ${side * 66} -136 Z`;
     const cid = `${g}g${side}`;
     const pet: React.ReactNode[] = [];
-    for (let r = 0; r < 11; r++) for (let c = 0; c < 6; c++) {
-      const x = side * (50 + c * 10 + (r % 2) * 5), y = -138 + r * 15;
+    for (let r = 0; r < 11; r++) for (let c = 0; c < 4; c++) {
+      const x = side * (70 + c * 10 + (r % 2) * 5), y = -138 + r * 15;
       pet.push(<circle key={`${r}${c}`} cx={x} cy={y} r={5.2} fill="none" stroke="#2e1a26" strokeWidth={1.6} opacity={0.8} />);
     }
     return (
@@ -219,14 +219,14 @@ export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBu
         <clipPath id={cid}><path d={d} /></clipPath>
         <path d={d} fill={K.goz} />
         <g clipPath={`url(#${cid})`}>
-          <ellipse cx={side * 78} cy={-64} rx={44} ry={76} fill={`url(#${g}gg)`} />
+          <ellipse cx={side * 92} cy={-64} rx={26} ry={76} fill={`url(#${g}gg)`} />
           {pet}
-          <rect x={side * 74 - 8} y={-118} width={16} height={28} rx={4} fill={K.parla} opacity={0.9 * isik} transform={`rotate(${side * 16} ${side * 74} -104)`} />
-          <circle cx={side * 90} cy={-56} r={4.5} fill={K.parla} opacity={0.75 * isik} />
-          <circle cx={side * 72} cy={-26} r={2.8} fill={K.parla} opacity={0.55 * isik} />
-          <circle cx={side * 96} cy={-88} r={2.4} fill={K.parla} opacity={0.6 * isik} />
+          <rect x={side * 86 - 6} y={-116} width={12} height={24} rx={4} fill={K.parla} opacity={0.9 * isik} transform={`rotate(${side * 16} ${side * 86} -104)`} />
+          <circle cx={side * 98} cy={-56} r={4} fill={K.parla} opacity={0.75 * isik} />
+          <circle cx={side * 88} cy={-24} r={2.6} fill={K.parla} opacity={0.55 * isik} />
+          <circle cx={side * 100} cy={-88} r={2.2} fill={K.parla} opacity={0.6 * isik} />
           {yansima > 0 ? (
-            <g opacity={yansima * 0.8} transform={`translate(${side * 80} -44) scale(${side * 0.9} 0.9)`}>
+            <g opacity={yansima * 0.8} transform={`translate(${side * 92} -44) scale(${side * 0.7} 0.7)`}>
               <path d="M -9 18 Q -10 4 0 2 Q 10 4 9 18 Z" fill="#e0a040" />
               <circle cx={0} cy={-4} r={6} fill="#f0c8a8" />
               <path d="M -6 -8 Q 0 -13 6 -8 L 7 -3 Q 0 -9 -7 -3 Z M 5 -6 Q 12 -2 9 10" fill="#5a3a28" stroke="#5a3a28" strokeWidth={1.5} />
@@ -344,10 +344,44 @@ export type BocekProps = {
   kalkan?: number;
 };
 
+
+type PrProps = { uid: string; egil?: number; kk?: number; parlak?: number; isik?: number };
+const prT = (dy: number, kk: number) => `translate(0 ${dy}) translate(0 -760) scale(${lerp(0.3, 1, kk)}) translate(0 760)`;
+/** Pronotum kalkanı (arkada, başlık gibi). Yerel: DevBocek koordinatı (baş merkezi y=-770). */
+export const PronotumArka: React.FC<PrProps> = ({ uid, egil = 0, kk = 1, parlak = 1, isik = 1 }) => {
+  const kT = (dy: number) => prT(dy, kk);
+  return (
+    <g>
+      <defs><radialGradient id={`pr${uid}`} cx="0.42" cy="0.3" r="0.75"><stop offset="0" stopColor={K.k3} /><stop offset="0.55" stopColor={K.k2} /><stop offset="1" stopColor={K.k1} /></radialGradient></defs>
+      {/* pronotum kalkanı: arkada geniş başlık */}
+      <g transform={kT(60 * egil)} opacity={sstep(0, 0.35, kk)}>
+        <path d="M -226 -810 C -230 -930 -130 -1012 0 -1012 C 130 -1012 230 -930 226 -810 C 222 -740 170 -704 120 -700 L -120 -700 C -170 -704 -222 -740 -226 -810 Z" fill={K.kenar} stroke={K.out} strokeWidth={5.5} />
+        <path d="M -206 -812 C -208 -916 -122 -990 0 -990 C 122 -990 208 -916 206 -812 C 202 -752 160 -722 116 -718 L -116 -718 C -160 -722 -202 -752 -206 -812 Z" fill={`url(#pr${uid})`} />
+        <path d="M -160 -880 Q -110 -968 -18 -944 Q -30 -860 -96 -790 Q -160 -800 -160 -880 Z" fill={K.k1} opacity={0.9} />
+        <path d="M 160 -880 Q 110 -968 18 -944 Q 30 -860 96 -790 Q 160 -800 160 -880 Z" fill={K.k1} opacity={0.9} />
+        <path d="M -176 -900 Q -70 -1000 96 -980" stroke={K.parla} strokeWidth={11} fill="none" opacity={0.55 * parlak * isik} strokeLinecap="round" />
+      </g>
+    </g>
+  );
+};
+/** Pronotumun ön kenarı (siper): başın üstüne eğilir, gözler gölgede kalır. */
+export const PronotumSiper: React.FC<PrProps> = ({ uid, egil = 0, kk = 1, parlak = 1, isik = 1 }) => {
+  const kT = (dy: number) => prT(dy, kk);
+  return (
+    <g>
+      {/* siper: pronotumun ön kenarı başın üstüne eğilir (gözler gölgede) */}
+      <g transform={kT(60 * egil)} opacity={sstep(0.3, 0.8, kk)}>
+        <path d={`M -150 -${958 - 40 * egil} Q 0 -${1020 - 30 * egil} 150 -${958 - 40 * egil} Q 120 -${900 - 70 * egil} 0 -${892 - 80 * egil} Q -120 -${900 - 70 * egil} -150 -${958 - 40 * egil} Z`} fill={`url(#pr${uid})`} stroke={K.out} strokeWidth={5} strokeLinejoin="round" />
+        <path d={`M -140 -${950 - 40 * egil} Q 0 -${1006 - 30 * egil} 140 -${950 - 40 * egil}`} stroke={K.kenar} strokeWidth={7} fill="none" />
+        <path d={`M -100 -${970 - 40 * egil} Q -20 -${1000 - 30 * egil} 60 -${990 - 35 * egil}`} stroke={K.parla} strokeWidth={6} fill="none" opacity={0.5 * parlak * isik} strokeLinecap="round" />
+      </g>
+    </g>
+  );
+};
+
 /** Ayakta dev hamamböceği. Yerel: ayaklar y=0, pronotum tepesi ~ -1010. */
 export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand = 0.2, egim = 0, egil = 0, anten = 700, antenSal = 1, parlak = 1, salya = 0.6, isik = 1, kalinti = 0, nefes = 1, uid, basYok, saldir = 0, kalkan = 1 }) => {
   const kk = clamp01(kalkan);
-  const kT = (dy: number) => `translate(0 ${dy}) translate(0 -760) scale(${lerp(0.3, 1, kk)}) translate(0 760)`;
   const a = clamp01(acil);
   const br = 1 + 0.02 * Math.sin(t * 2.6) * nefes;
   const tw = (s: number) => Math.sin(t * 3.1 + s) * 2.2 + Math.sin(t * 7.3 + s * 1.7) * 1.2;
@@ -355,19 +389,22 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
   const legs = (side: 1 | -1) => {
     const S = (ang: number) => (side === 1 ? ang : 180 - ang);
     // ön çift: dirsek yukarıda, pençe aşağı-içe (pusuya yatmış yırtıcı); katlıyken gövdeye yapışık
-    const on = { base: [side * 80, -700] as V, a1: S(lerp(98, -38 + 18 * sd, a) + tw(side)), a2: S(lerp(-82, 48 + 30 * sd, a) + tw(side + 1) * 1.5), a3: S(lerp(-70, 128 + 14 * sd, a) + tw(side + 2) * 3) };
-    const orta = { base: [side * 104, -616] as V, a1: S(lerp(96, -8, a) + tw(side + 3)), a2: S(lerp(-86, 70, a) + tw(side + 4)), a3: S(lerp(-90, 104, a) + tw(side + 5) * 2) };
-    const arka = { base: [side * 84, -470] as V, a1: S(44 + tw(side + 6) * 0.3), a2: S(100), a3: S(16) };
+    // asimetri: sağ ön bacak daha ileri/yukarıda, sol orta bacak daha aşağıda; arka bacaklarda yavaş ağırlık aktarımı
+    const as = side === 1 ? 1 : -1;
+    const agirlik = Math.sin(t * 1.3) * 3 * as;
+    const on = { base: [side * 80, -700] as V, a1: S(lerp(98, -34 + 16 * sd - 8 * as, a) + tw(side)), a2: S(lerp(-82, 52 + 30 * sd + 6 * as, a) + tw(side + 1) * 1.5), a3: S(lerp(-70, 128 + 14 * sd, a) + tw(side + 2) * 3) };
+    const orta = { base: [side * 104, -616] as V, a1: S(lerp(96, 16 - 7 * as, a) + tw(side + 3)), a2: S(lerp(-86, 84 + 5 * as, a) + tw(side + 4)), a3: S(lerp(-90, 112, a) + tw(side + 5) * 2) };
+    const arka = { base: [side * 84, -470] as V, a1: S(50 + agirlik + tw(side + 6) * 0.3), a2: S(100 - agirlik * 0.6), a3: S(16) };
     return { on, orta, arka };
   };
   const R = legs(1), L = legs(-1);
   const kan = clamp01(kanat);
   const wing = (side: 1 | -1) => (
     <g transform={`rotate(${side * (4 + 30 * kan + Math.sin(t * 9) * 1.5 * kan)} ${side * 96} -730)`}>
-      <path d={`M ${side * 80} -742 C ${side * 214} -720 ${side * 304} -420 ${side * 272} -150 C ${side * 254} -100 ${side * 200} -110 ${side * 186} -180 C ${side * 150} -400 ${side * 110} -600 ${side * 80} -742 Z`} fill={`url(#db${uid}w)`} stroke={K.out} strokeWidth={4.5} strokeLinejoin="round" />
-      {[0.2, 0.42, 0.64].map((k, i) => <path key={i} d={`M ${side * (90 + 20 * k)} -720 Q ${side * (200 + 70 * k)} -480 ${side * (212 + 40 * k)} ${-180 - i * 10}`} stroke={K.k1} strokeWidth={2.5} fill="none" opacity={0.7} />)}
-      {[0, 1, 2, 3, 4, 5].map((i) => <path key={`x${i}`} d={`M ${side * (150 + i * 14)} ${-600 + i * 70} l ${side * 34} ${-6}`} stroke={K.k1} strokeWidth={2} opacity={0.5} />)}
-      <path d={`M ${side * 120} -690 C ${side * 210} -560 ${side * 244} -420 ${side * 238} -240`} stroke={K.parla} strokeWidth={7} fill="none" opacity={0.45 * parlak * isik} strokeLinecap="round" />
+      <path d={`M ${side * 80} -742 C ${side * 214} -716 ${side * 262} -470 ${side * 196} -260 Q ${side * 150} -150 ${side * 46} -150 C ${side * 120} -260 ${side * 112} -560 ${side * 80} -742 Z`} fill={`url(#db${uid}w)`} stroke={K.out} strokeWidth={4.5} strokeLinejoin="round" />
+      {[0.2, 0.42, 0.64].map((k, i) => <path key={i} d={`M ${side * (90 + 20 * k)} -720 Q ${side * (170 + 50 * k)} -480 ${side * (150 + 20 * k)} ${-200 - i * 14}`} stroke={K.k1} strokeWidth={2.5} fill="none" opacity={0.7} />)}
+      {[0, 1, 2, 3, 4, 5].map((i) => <path key={`x${i}`} d={`M ${side * (130 + i * 8)} ${-600 + i * 66} l ${side * 30} ${-6}`} stroke={K.k1} strokeWidth={2} opacity={0.5} />)}
+      <path d={`M ${side * 120} -690 C ${side * 196} -560 ${side * 214} -430 ${side * 186} -290`} stroke={K.parla} strokeWidth={7} fill="none" opacity={0.45 * parlak * isik} strokeLinecap="round" />
     </g>
   );
   const karin = new Array(8).fill(0).map((_, i) => {
@@ -393,14 +430,7 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
       </defs>
       {wing(-1)}
       {wing(1)}
-      {/* pronotum kalkanı: arkada geniş başlık */}
-      <g transform={kT(60 * egil)} opacity={sstep(0, 0.35, kk)}>
-        <path d="M -226 -810 C -230 -930 -130 -1012 0 -1012 C 130 -1012 230 -930 226 -810 C 222 -740 170 -704 120 -700 L -120 -700 C -170 -704 -222 -740 -226 -810 Z" fill={K.kenar} stroke={K.out} strokeWidth={5.5} />
-        <path d="M -206 -812 C -208 -916 -122 -990 0 -990 C 122 -990 208 -916 206 -812 C 202 -752 160 -722 116 -718 L -116 -718 C -160 -722 -202 -752 -206 -812 Z" fill={`url(#db${uid}p)`} />
-        <path d="M -160 -880 Q -110 -968 -18 -944 Q -30 -860 -96 -790 Q -160 -800 -160 -880 Z" fill={K.k1} opacity={0.9} />
-        <path d="M 160 -880 Q 110 -968 18 -944 Q 30 -860 96 -790 Q 160 -800 160 -880 Z" fill={K.k1} opacity={0.9} />
-        <path d="M -176 -900 Q -70 -1000 96 -980" stroke={K.parla} strokeWidth={11} fill="none" opacity={0.55 * parlak * isik} strokeLinecap="round" />
-      </g>
+      <PronotumArka uid={uid} egil={egil} kk={kk} parlak={parlak} isik={isik} />
       <Bacak {...L.arka} L1={250} L2={300} L3={86} w={1.15} yon={-1} parlak={parlak} uid={`${uid}la`} />
       <Bacak {...R.arka} L1={250} L2={300} L3={86} w={1.15} yon={1} parlak={parlak} uid={`${uid}ra`} />
       {[-1, 1].map((s) => <path key={s} d={kapsul([s * 26, -250], [s * 64, -140], 12, 4)} fill={K.k2} stroke={K.out} strokeWidth={3.5} />)}
@@ -416,21 +446,6 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
           <ellipse cx={s * 84} cy={-474} rx={40} ry={28} fill={K.k2} stroke={K.out} strokeWidth={4} />
         </g>
       ))}
-      {/* insan kalıntıları (bacakların altında kalanlar) */}
-      {kalK > 0 ? (
-        <g opacity={kalK}>
-          {(() => {
-            const k1 = pol(L.orta.base, L.orta.a1, 232 * 0.7);
-            return (
-              <g>
-                <path d={`M ${k1[0] - 30} ${k1[1] - 24} L ${k1[0] + 40} ${k1[1] - 30} L ${k1[0] + 36} ${k1[1] + 60} Q ${k1[0] + 10} ${k1[1] + 90} ${k1[0] - 6} ${k1[1] + 120} L ${k1[0] - 20} ${k1[1] + 50} Z`} fill="#5a5a56" stroke={K.out} strokeWidth={4} strokeLinejoin="round" />
-                <path d={`M ${k1[0] - 16} ${k1[1] - 20} L ${k1[0] - 8} ${k1[1] + 80}`} stroke="#424240" strokeWidth={4} />
-                <path d={`M ${k1[0] - 6} ${k1[1] + 120} q -6 20 2 40 M ${k1[0] + 20} ${k1[1] + 70} q 8 20 0 44`} stroke={K.lif} strokeWidth={3.5} fill="none" strokeLinecap="round" />
-              </g>
-            );
-          })()}
-        </g>
-      ) : null}
       {/* ön bacaklar */}
       <Bacak {...L.on} L1={220} L2={210} L3={80} w={1} yon={-1} parlak={parlak} uid={`${uid}lf`} />
       <Bacak {...R.on} L1={220} L2={210} L3={80} w={1} yon={1} parlak={parlak} uid={`${uid}rf`} />
@@ -454,12 +469,7 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
           <BocekKafa mand={mand} t={t} anten={anten} antenSal={antenSal} parlak={parlak} salya={salya} isik={isik} uid={`${uid}k`} siper={0.55 - 0.3 * egil} />
         </g>
       )}
-      {/* siper: pronotumun ön kenarı başın üstüne eğilir (gözler gölgede) */}
-      <g transform={kT(60 * egil)} opacity={sstep(0.3, 0.8, kk)}>
-        <path d={`M -150 -${958 - 40 * egil} Q 0 -${1020 - 30 * egil} 150 -${958 - 40 * egil} Q 120 -${900 - 70 * egil} 0 -${892 - 80 * egil} Q -120 -${900 - 70 * egil} -150 -${958 - 40 * egil} Z`} fill={`url(#db${uid}p)`} stroke={K.out} strokeWidth={5} strokeLinejoin="round" />
-        <path d={`M -140 -${950 - 40 * egil} Q 0 -${1006 - 30 * egil} 140 -${950 - 40 * egil}`} stroke={K.kenar} strokeWidth={7} fill="none" />
-        <path d={`M -100 -${970 - 40 * egil} Q -20 -${1000 - 30 * egil} 60 -${990 - 35 * egil}`} stroke={K.parla} strokeWidth={6} fill="none" opacity={0.5 * parlak * isik} strokeLinecap="round" />
-      </g>
+      <PronotumSiper uid={uid} egil={egil} kk={kk} parlak={parlak} isik={isik} />
     </g>
   );
 };
