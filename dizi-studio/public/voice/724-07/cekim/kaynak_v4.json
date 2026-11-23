@@ -1,0 +1,580 @@
+{
+ "not": "B7 P1 replik çekimleri (eleven_v4); text AYNEN kullanıcının",
+ "series": "724",
+ "episode": "724-07/cekim",
+ "episodeNo": 7,
+ "title": "B7P1 ses",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "A01a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceee uyan kız artık",
+     "okunus": "Eceee! Uyan kız artık!",
+     "tags": "[shouting from another room, annoyed mother, loud]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A01b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceee uyan kız artık",
+     "okunus": "Eceee! Uyan kız artık!",
+     "tags": "[yelling across the house, impatient]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A02a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yuhh",
+     "okunus": "Yuhh!",
+     "tags": "[shocked, gasps, disbelief]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A02b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yuhh",
+     "okunus": "Yuhh!",
+     "tags": "[stunned whisper then loud, disbelief]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A03a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceeee",
+     "okunus": "Eceeee!",
+     "tags": "[furious shout, angry mother]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A03b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceeee",
+     "okunus": "Eceeee!",
+     "tags": "[screaming angrily, very loud]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A04a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu paralar nasıl bi marketmiş lan o",
+     "okunus": "Nerden geldi bu paralar? Nasıl bi marketmiş lan o?!",
+     "tags": "[angry, suspicious, scolding, fast]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A04b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu paralar nasıl bi marketmiş lan o",
+     "okunus": "Nerden geldi bu paralar? Nasıl bi marketmiş lan o?!",
+     "tags": "[furious, interrogating, sarcastic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E01a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anneee dev gibi böcek vardı markette ölüyodummm",
+     "okunus": "Anneee! Dev gibi böcek vardı markette, ölüyodummm!",
+     "tags": "[panicked, scared, excited, whiny, fast]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E01b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anneee dev gibi böcek vardı markette ölüyodummm",
+     "okunus": "Anneee! Dev gibi böcek vardı markette, ölüyodummm!",
+     "tags": "[hysterical, frightened, rambling, comedic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A05a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "okunus": "Böcek evde de var, terliği vur geç!",
+     "tags": "[dismissive, sarcastic, unimpressed]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A05b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "okunus": "Böcek evde de var, terliği vur geç!",
+     "tags": "[deadpan, annoyed, matter-of-fact]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A06a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "para diyorum Ece para bu para ne alakaaaa?",
+     "okunus": "Para diyorum Ece, para! Bu para ne alakaaaa?!",
+     "tags": "[exasperated, shouting, comedic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A06b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "para diyorum Ece para bu para ne alakaaaa?",
+     "okunus": "Para diyorum Ece, para! Bu para ne alakaaaa?!",
+     "tags": "[frustrated, voice rising, scolding]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E02a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "çok mu ya o kadar ver bi bakıyım",
+     "okunus": "Çok mu ya o kadar? Ver bi bakıyım.",
+     "tags": "[curious, suddenly interested, sniffles]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E02b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "çok mu ya o kadar ver bi bakıyım",
+     "okunus": "Çok mu ya o kadar? Ver bi bakıyım.",
+     "tags": "[intrigued, sleepy, curious]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E03a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "yüz, iki yüz, yüz, iki yüz",
+     "okunus": "Yüz, iki yüz, yüz, iki yüz…",
+     "tags": "[greedy, excited whisper, counting fast]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E03b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "yüz, iki yüz, yüz, iki yüz",
+     "okunus": "Yüz, iki yüz, yüz, iki yüz…",
+     "tags": "[counting money greedily, giggling, excited]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E04a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Oha lan ne çok para",
+     "okunus": "Oha lan! Ne çok para!",
+     "tags": "[amazed, excited, delighted]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E04b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Oha lan ne çok para",
+     "okunus": "Oha lan! Ne çok para!",
+     "tags": "[shocked and thrilled, loud]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E05a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "aauuv ah ah acıyo",
+     "okunus": "Aauuv! Ah ah, acıyo!",
+     "tags": "[in pain, whining, comedic, ear being pulled]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E05b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "aauuv ah ah acıyo",
+     "okunus": "Aauuv! Ah ah, acıyo!",
+     "tags": "[yelping, whimpering, funny]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A07a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu para?",
+     "okunus": "Nerden geldi bu para?",
+     "tags": "[stern, angry, interrogating]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A07b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu para?",
+     "okunus": "Nerden geldi bu para?",
+     "tags": "[firm, threatening, low]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E06a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "şimdi olanları anlatırsam hem bana inanmaz hem de tekrar gitmeme izin vermez",
+     "okunus": "Şimdi olanları anlatırsam hem bana inanmaz, hem de tekrar gitmeme izin vermez…",
+     "tags": "[inner thought, quiet, scheming, fast]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E06b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "şimdi olanları anlatırsam hem bana inanmaz hem de tekrar gitmeme izin vermez",
+     "okunus": "Şimdi olanları anlatırsam hem bana inanmaz, hem de tekrar gitmeme izin vermez…",
+     "tags": "[thinking to herself, whispering, calculating]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E07a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "ama çok para lan",
+     "okunus": "Ama çok para lan…",
+     "tags": "[thinking out loud, dreamy, greedy]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E07b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "ama çok para lan",
+     "okunus": "Ama çok para lan…",
+     "tags": "[sighs, tempted, comedic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A08a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "git elini yüzünü yıka bu paranın hesabını vereceksin bana!",
+     "okunus": "Git elini yüzünü yıka! Bu paranın hesabını vereceksin bana!",
+     "tags": "[angry mother, commanding, scolding]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A08b",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "git elini yüzünü yıka bu paranın hesabını vereceksin bana!",
+     "okunus": "Git elini yüzünü yıka! Bu paranın hesabını vereceksin bana!",
+     "tags": "[firm, pointing, strict]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

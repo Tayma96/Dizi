@@ -159,6 +159,20 @@ const KapiBG: React.FC<BanyoProps> = ({ doorOpen }) => {
       <path d="M 70 420 L 140 445 L 90 1080 L 60 1090 Z" fill="#ffffff" opacity={0.25} />
       {/* kapı + koridor (sağda) */}
       <KapiKoridor x={620} y={430} w={340} h={1130} op={op} id="bkk" />
+      {/* çamaşır makinesi (önden yüklemeli) + üstünde deterjan; yanında kirli sepeti (B7) */}
+      <rect x={318} y={1160} width={262} height={400} rx={16} fill="#f4f4f0" stroke="#7a7e80" strokeWidth={6} />
+      <rect x={318} y={1160} width={262} height={70} rx={14} fill="#e6e8e6" stroke="#7a7e80" strokeWidth={5} />
+      <circle cx={530} cy={1195} r={18} fill="#c8ccce" stroke="#5a5e60" strokeWidth={4} />
+      <rect x={340} y={1182} width={110} height={26} rx={6} fill="#2a3a44" />
+      <circle cx={449} cy={1385} r={102} fill="#c8d4da" stroke="#7a7e80" strokeWidth={14} />
+      <circle cx={449} cy={1385} r={74} fill="#5a6a74" />
+      <path d="M 405 1350 Q 440 1320 480 1345" stroke="#ffffff" strokeWidth={8} opacity={0.5} fill="none" />
+      <rect x={350} y={1100} width={64} height={62} rx={8} fill="#3a8ad0" stroke="#1a4a78" strokeWidth={4} />
+      <rect x={364} y={1088} width={36} height={16} rx={4} fill="#f0d040" />
+      <path d="M 590 1600 L 760 1600 L 740 1770 L 610 1770 Z" fill="#c8a070" stroke="#6a4a2a" strokeWidth={5} />
+      {[1630, 1670, 1710, 1750].map((y) => <path key={y} d={`M ${596 + (y - 1600) * 0.12} ${y} H ${754 - (y - 1600) * 0.12}`} stroke="#8a6440" strokeWidth={4} />)}
+      <path d="M 600 1600 Q 640 1556 690 1580 Q 730 1550 756 1600 Z" fill="#e8a0b8" stroke={"#a86078"} strokeWidth={4} />
+      <path d="M 640 1600 Q 660 1570 700 1590" stroke="#34466a" strokeWidth={22} strokeLinecap="round" fill="none" />
       {/* zemin */}
       <path d="M 300 1560 L 1080 1560 L 1080 1920 L 0 1920 Z" fill="#b8c4c0" />
       {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${300 + i * 98} 1560 L ${i * 135} 1920`} stroke="#a4b0ac" strokeWidth={3} />)}

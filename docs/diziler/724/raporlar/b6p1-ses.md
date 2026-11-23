@@ -1,0 +1,16 @@
+# 7/24 B6 Parça 1: ses, kaldığım yer (23 Kasım 2026, ses yönetmeni; iş ana oturuma devredildi)
+- **Kredi:** toplam 1.375 harcandı (21.314 → 19.939; tavan 1.500 aşılmadı). Dağılım: replik çekimleri 713, müzik 562, SFX 2×50.
+- **Çekimler:** `dizi-studio/public/voice/724-06/cekim/`. Kaynak `kaynak_v4.json`, manifest aynı klasörde. Hepsi eleven_v4; Sabri = Nihat, Ece = Nazlı Yeni. `tani/` tanı amaçlı bir yeniden üretim, kullanılmaz.
+- **"bitti artık" → S17_01 (1,51 sn, `[tired, kind, speaking out loud]`, stab 1.0).** Gerçek sesli okunuyor, yorgun ve sıcak. Yedekler S9_01 (1,28) ve S13_01 (1,32), ikisi de yarı sesli.
+  - Uyarı: v4 bu kısa repliği çoğu etiketle fısıltıya çeviriyor. S1-S8, S10-S12, S14-S16 fısıltı; ses kimliğinin değişmediği aynı tohumla doğrulandı. B5 fısıltı efekti uygulanmadı.
+- **"aaaaa" → E2_01 (2,73 sn).** Gerçek tiz çığlık (~1.170 Hz), iki soluklu. Tek soluk istenirse 0-1,32 sn arası kesilir. Yedek E3_01 (2,19). E1 nefesli olduğu için elendi.
+- **"Şhh bitti kızım bitti tamam" → H3_01 (3,29 sn, fısıltıya yakın).** Whisper "Şşş, bitti kızım, bitti. Tamam." duydu. Yedekler H5_01 (3,32) ve H1_01 (3,37). H6 elendi ("gitti" okunuyor).
+- **Ağlama.** Whisper hiçbirinde kelime duymadı.
+  - Yerde: C5_01 (15,7 sn, uzun hıçkırık), yedekler C1_01 (7,9 sn, feryat) ve C2_01 (6,6 sn).
+  - Sarılma: C6_01 (7,4 sn, göğse gömülü hıçkırık), C3_01 (4,6 sn, boğuk) ve C4_01 (5,3 sn).
+- **Müzik:** `public/ses/muzik/b6_safak.mp3` (45,0 sn; ElevenLabs Music, piyano ve yaylılar, Si minör/Re majör). Gürlük 8-29 sn arası dalgalı; doruk 19-29 sn civarı, 33 sn'den sonra söner, 43 sn'de biter. İlk hıçkırıkta girip ding-dong'da kısılması, çığlıkta susması ve "Şhh"ta dönmesi için kurgu kesimi YAPILMADI.
+- **SFX:**
+  - Yeni: `efekt/el_kepenk_acilma` (5 sn; kalkış 1-3,8 sn, sonda tok duruş) ve `efekt/el_toza_donusme` (5 sn; doruk 2-2,5 sn).
+  - Mevcut ücretsizler: kapi_dingdong / el_otomatik_kapi, el_floresan (tık) ve el_buzdolabi (uğultu geri gelir), ortam/kus_sesleri ve ortam/sehir (sabah), ayak_sesleri (CC0).
+- **Eksik:** müzik kesimleri; "KLAK" kilit sesi; açılıştaki B5 fısıltı kuyruğu (b5p2_tam 53,6-54,0) ve boğuk nefes; göğse yumruk (boğuk vuruş ve kumaş); martı (CC0 kaydı yok); seçilenlerin 724-06 manifestine aktarılması; miks ve LUFS ölçümü.
+- **Kullanıcının dinlemesi gerekenler:** S17'nin sıcaklığı, E2'nin gerçekçiliği, C5 ile C6'nın yapaylığı. Ben dinleyemiyorum.

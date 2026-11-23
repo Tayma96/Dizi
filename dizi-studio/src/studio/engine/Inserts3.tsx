@@ -12,6 +12,9 @@ import { Insert9, INSERT9_KINDS, type Insert9Kind } from "./Inserts9";
 import { Insert10, INSERT10_KINDS, type Insert10Kind } from "./Inserts10";
 import { Insert11, INSERT11_KINDS, type Insert11Kind } from "./Inserts11";
 import { Insert12, INSERT12_KINDS, type Insert12Kind } from "./Inserts12";
+import { Insert13, INSERT13_KINDS, type Insert13Kind } from "./Inserts13";
+import { Insert14, INSERT14_KINDS, type Insert14Kind } from "./Inserts14";
+import { Insert15, INSERT15_KINDS, type Insert15Kind } from "./Inserts15";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -583,8 +586,8 @@ const UcakCarpma: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert3Kind = Insert12Kind | Insert11Kind | Insert10Kind | Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | Insert9Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
-export const INSERT3_KINDS: Insert3Kind[] = [...INSERT12_KINDS, ...INSERT11_KINDS, ...INSERT10_KINDS, ...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, ...INSERT9_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
+export type Insert3Kind = Insert15Kind | Insert14Kind | Insert13Kind | Insert12Kind | Insert11Kind | Insert10Kind | Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | Insert9Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
+export const INSERT3_KINDS: Insert3Kind[] = [...INSERT15_KINDS, ...INSERT14_KINDS, ...INSERT13_KINDS, ...INSERT12_KINDS, ...INSERT11_KINDS, ...INSERT10_KINDS, ...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, ...INSERT9_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
 
 export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -610,6 +613,9 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "on_kamera": case "raf_duzen": case "depo_kolu": case "depo_el": case "el_kopar": return <Insert8 kind={kind} dur={dur} text={text} />;
     case "telefon_mesaj": case "yer_pov": case "tezgah_el": case "el_raf": return <Insert9 kind={kind} dur={dur} text={text} />;
     case "kapi_arka": case "kosu_takip": case "depo_acik": case "ambalaj_parmak": return <Insert10 kind={kind} dur={dur} text={text} />;
+    case "b6_kapi": case "b6_zemin": case "b6_dis": return <Insert13 kind={kind} dur={dur} text={text} />;
+    case "ev_anahtar": case "ev_zincir": return <Insert14 kind={kind} dur={dur} text={text} />;
+    case "cep_deste": case "para_say": case "kulak_cek": return <Insert15 kind={kind} dur={dur} text={text} />;
     case "p2_kasa": case "p2_kapi": case "p2_kepenk": case "p2_koridor": case "p2_fisilti": case "p2_kulaklik": return <Insert12 kind={kind} dur={dur} text={text} />;
     case "omuz_el": case "donusum_yuz": case "donusum_govde": case "bocek_dev": case "bocek_yakin": case "ece_yakin": case "ece_sirt": case "sabri_omuz": case "bocek_golge": case "bocek_kukreme": return <Insert11 kind={kind} dur={dur} text={text} />;
     case "tablet_video": case "murekkep_parmak": case "kalem_cep": case "hap_uc": case "avuc_iki": case "foto_sofor": case "yuzuk_izi": return <Insert6 kind={kind} dur={dur} text={text} />;

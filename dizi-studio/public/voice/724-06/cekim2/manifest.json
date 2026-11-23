@@ -1,0 +1,84 @@
+{
+ "G1_01": {
+  "key": "f1c96e0cf0f2",
+  "file": "voice/724-06/cekim2/G1_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "(yumruk)",
+  "duration": 3.318,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "(yumruk)",
+    "start": 2.79,
+    "end": 3.35
+   }
+  ],
+  "mouth": [
+   {
+    "t": 2.79,
+    "v": "L"
+   },
+   {
+    "t": 2.83,
+    "v": "I"
+   },
+   {
+    "t": 2.87,
+    "v": "L"
+   },
+   {
+    "t": 3.03,
+    "v": "X"
+   },
+   {
+    "t": 3.35,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 21
+ },
+ "G2_01": {
+  "key": "e220cde9f911",
+  "file": "voice/724-06/cekim2/G2_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "(yumruk)",
+  "duration": 2.351,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "(yumruk)",
+    "start": 1.346,
+    "end": 2.066
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.346,
+    "v": "I"
+   },
+   {
+    "t": 1.426,
+    "v": "L"
+   },
+   {
+    "t": 1.826,
+    "v": "X"
+   },
+   {
+    "t": 2.066,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 18
+ }
+}

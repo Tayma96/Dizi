@@ -1,0 +1,625 @@
+{
+ "not": "B6 parça 1 replik çekimleri (eleven_v4; Sabri = Nihat, Ece = Nazlı Yeni). text AYNEN kullanıcının; yalnız okunuş/etiket. Ağlama sözsüz (altyazısız). Üretim: python3 tools/elevenlabs.py seslendir public/voice/724-06/cekim/kaynak_v4.json --butce N --onayla",
+ "series": "724",
+ "episode": "724-06/cekim",
+ "episodeNo": 6,
+ "title": "B6P1 ses çekimleri (geçici)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "S1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[tired, soft, soothing]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti… artık.",
+     "tags": "[exhausted, gentle, reassuring, quietly]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "S3",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık…",
+     "tags": "[sighs, softly, calming]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "aaaaa",
+     "okunus": "Aaaaa!",
+     "tags": "[screams in terror]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "aaaaa",
+     "okunus": "Aaaaaaah!",
+     "tags": "[terrified, piercing scream]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E3",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "aaaaa",
+     "okunus": "AAAAA!",
+     "tags": "[shrieks, panicked, startled]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "H1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şşşh… bitti kızım, bitti… tamam.",
+     "tags": "[whispering, tender, comforting]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "H2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şşş… Bitti kızım, bitti. Tamam…",
+     "tags": "[softly, soothing, almost whispering]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "H3",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şhh… bitti kızım bitti… tamam.",
+     "tags": "[gentle, warm, hushed, fatherly]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "C1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Hııh… hıhh… hıııııh… hıh, hıh… ıııhhh… hhh…",
+     "tags": "[breaks down sobbing, uncontrollable crying, gasping for air]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "C2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Aaahh… hıııh… hıh… hıh… ııhhh… hıh…",
+     "tags": "[wailing, crying hard, shaky breaths]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "C3",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Hıh… hıh… hııı… hıh… hıh…",
+     "tags": "[muffled sobbing into shoulder, hiccuping sobs]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "C4",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Hıh… hııh… hıh, hıh… hhh…",
+     "tags": "[crying, trembling sobs, catching breath]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S4",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[weary, warm, low voice, reassuring]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "S5",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti… artık.",
+     "tags": "[tired, gentle, calming, fatherly]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "H4",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şşşt… bitti kızım… bitti… tamam.",
+     "tags": "[tender, hushed, low voice, comforting]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "C5",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Hııh… hıh… hıııh… hıh, hıh… ııhh… hıh… hıııh… hıh…",
+     "tags": "[collapses crying, sobbing uncontrollably, long sobs, ragged breathing]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "C6",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(hıçkıra hıçkıra ağlar)",
+     "okunus": "Hıh… hıh… hııh… hıh… hıh, hıh… hhh… hıh…",
+     "tags": "[sobbing quietly against someone's chest, hiccuping, shaky breaths]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S6",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[warm, reassuring, tired]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S7",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti… artık.",
+     "tags": "[gentle, exhausted, kind]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "H5",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şşşt… bitti kızım, bitti… tamam.",
+     "tags": "[warm, comforting, soft-spoken]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S8",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[calm, warm]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S9",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S10",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[warm, tired]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S11",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık…",
+     "tags": "[speaking aloud, gently, out of breath]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S12",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[relieved, exhausted, low]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "H6",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Şhh bitti kızım bitti tamam",
+     "okunus": "Şşşt… bitti kızım, bitti… tamam.",
+     "tags": "[gentle, comforting, low]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3,
+     "hiz": 0.9
+    }
+   ]
+  },
+  {
+   "id": "S13",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[calm, clear voice, fatherly]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S14",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[tired but steady voice, reassuring]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S15",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[out of breath, warm, tired]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S16",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[normal speaking voice, warm, weary]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S17",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[tired, kind, speaking out loud]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

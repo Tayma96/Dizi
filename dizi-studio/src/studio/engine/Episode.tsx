@@ -7,6 +7,7 @@ import { Bird, SET_INFO, SetLayer, type Mark } from "../sets";
 import { FilmFinish } from "../../dizi/Effects";
 import { lightning } from "../../dizi/Sets";
 import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleCard, YorumKarti } from "./Overlays";
+import { Safak } from "./Inserts13";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
 import { GESTURES, type FullArm } from "../rig/gestures";
@@ -256,7 +257,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       if (t > 0.28 && t < 0.8) sarsNow = Math.max(sarsNow, 1 - (t - 0.28) / 0.52);
     }
   }
-  const marketEk = { depoAcik: depoNow, agiz: !!scene.isaretler?.kasa_agzi, sars: sarsNow };
+  // 7/24 B6 p2 (opt-in): sahne "sabah": kapı görünümünün camlarında gece/yağmur yerine güneşli sokak (B6 p1 ile aynı dış)
+  const marketEk = { depoAcik: depoNow, agiz: !!scene.isaretler?.kasa_agzi, sars: sarsNow, dis: (scene as { sabah?: boolean }).sabah ? <Safak uid="ep6" sabah={1} gunesY={1} t={0} /> : undefined };
   // ön plan palto omzu (iri adam): sahnede var, "sil" vuruşunda sola kayıp çıkar
   let paltoNow = scene.paltoOmuz ? 1 : 0;
   for (let i = 0; i <= bi; i++) {
@@ -309,6 +311,10 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       sacDagin: st.sacDagin,
       yereAt: st.yereAt !== undefined && pst?.yereAt !== st.yereAt ? t - st.yereAt : undefined,
       sendeleK: st.body === "sendele" && st.sendeleAt !== undefined && pst?.sendeleAt !== st.sendeleAt ? (t - st.sendeleAt) / 0.55 : undefined,
+      // 7/24 B6 p2 (opt-in): yere çökme (önceki vuruştan 0,6 sn'de geçer), hıçkırık, ağlama ağzı
+      yerOtur: st.yerOtur !== undefined ? (pst?.yerOtur ?? 0) + (st.yerOtur - (pst?.yerOtur ?? 0)) * interpolate(bfr, [0, Math.round(0.6 * fps)], [0, 1], { ...clamp, easing: (x) => x * x * (3 - 2 * x) }) : undefined,
+      hickir: st.hickir,
+      aglaAgiz: st.aglaAgiz,
     };
   };
   const renderChar = (id: string) => {
@@ -683,11 +689,11 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
   const allSpeaking = tl.scenes.flatMap((s) => s.speaking);
 
   // music segments: a scene without `music` continues the previous one; name "yok" stops it
-  const segs: { name: string; from: number; to: number; volume: number; startSec?: number }[] = [];
+  const segs: { name: string; from: number; to: number; volume: number; startSec?: number; duck?: boolean }[] = [];
   for (const s of tl.scenes) {
     const m = s.scene.music;
     const last = segs[segs.length - 1];
-    if (m && m.name !== "yok" && !(last && last.name === m.name && last.to === s.from)) segs.push({ name: m.name, from: s.from, to: s.from + s.dur, volume: m.volume ?? 0.35, startSec: m.from ?? 0 });
+    if (m && m.name !== "yok" && !(last && last.name === m.name && last.to === s.from)) segs.push({ name: m.name, from: s.from, to: s.from + s.dur, volume: m.volume ?? 0.35, startSec: m.from ?? 0, duck: (m as { duck?: boolean }).duck });
     else if (m && m.name === "yok") continue;
     else if (last && last.to === s.from) last.to = s.from + s.dur;
   }
@@ -723,7 +729,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
         ))}
         {segs.map((s, i) => (
           <Sequence key={i} name={`Müzik: ${s.name}`} from={s.from} durationInFrames={s.to - s.from} layout="none">
-            <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={allSpeaking} offset={s.from} startSec={s.startSec} />
+            <MusicTrack src={`ses/${s.name}.mp3`} base={s.volume} dur={s.to - s.from} speaking={s.duck === false ? [] : allSpeaking} offset={s.from} startSec={s.startSec} />
           </Sequence>
         ))}
         {script.endCard === false ? null : (

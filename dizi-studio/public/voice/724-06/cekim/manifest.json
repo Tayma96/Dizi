@@ -1,0 +1,3037 @@
+{
+ "S1_01": {
+  "key": "8bedfb27268e",
+  "file": "voice/724-06/cekim/S1_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.332,
+  "asrScore": 1.0,
+  "heard": "Bitti artık.",
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.004,
+    "end": 0.404
+   },
+   {
+    "w": "artık",
+    "start": 0.564,
+    "end": 1.284
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.004,
+    "v": "M"
+   },
+   {
+    "t": 0.204,
+    "v": "I"
+   },
+   {
+    "t": 0.254,
+    "v": "L"
+   },
+   {
+    "t": 0.354,
+    "v": "I"
+   },
+   {
+    "t": 0.404,
+    "v": "X"
+   },
+   {
+    "t": 0.564,
+    "v": "A"
+   },
+   {
+    "t": 0.617,
+    "v": "L"
+   },
+   {
+    "t": 0.724,
+    "v": "I"
+   },
+   {
+    "t": 0.884,
+    "v": "L"
+   },
+   {
+    "t": 1.044,
+    "v": "X"
+   },
+   {
+    "t": 1.284,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 14
+ },
+ "S2_01": {
+  "key": "3fdb238aeee7",
+  "file": "voice/724-06/cekim/S2_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 2.09,
+  "asrScore": 1.0,
+  "heard": "Bitti artık.",
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.051,
+    "end": 0.851
+   },
+   {
+    "w": "artık",
+    "start": 1.171,
+    "end": 1.891
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.051,
+    "v": "M"
+   },
+   {
+    "t": 0.291,
+    "v": "I"
+   },
+   {
+    "t": 0.351,
+    "v": "L"
+   },
+   {
+    "t": 0.471,
+    "v": "I"
+   },
+   {
+    "t": 0.531,
+    "v": "X"
+   },
+   {
+    "t": 1.171,
+    "v": "A"
+   },
+   {
+    "t": 1.251,
+    "v": "L"
+   },
+   {
+    "t": 1.411,
+    "v": "I"
+   },
+   {
+    "t": 1.531,
+    "v": "L"
+   },
+   {
+    "t": 1.651,
+    "v": "X"
+   },
+   {
+    "t": 1.891,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 22
+ },
+ "S3_01": {
+  "key": "5c6d0aa8f923",
+  "file": "voice/724-06/cekim/S3_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 2.273,
+  "asrScore": 1.0,
+  "heard": "Bitti artık.",
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.866,
+    "end": 1.186
+   },
+   {
+    "w": "artık",
+    "start": 1.346,
+    "end": 1.986
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.866,
+    "v": "M"
+   },
+   {
+    "t": 1.026,
+    "v": "I"
+   },
+   {
+    "t": 1.066,
+    "v": "L"
+   },
+   {
+    "t": 1.146,
+    "v": "I"
+   },
+   {
+    "t": 1.186,
+    "v": "X"
+   },
+   {
+    "t": 1.346,
+    "v": "A"
+   },
+   {
+    "t": 1.399,
+    "v": "L"
+   },
+   {
+    "t": 1.506,
+    "v": "I"
+   },
+   {
+    "t": 1.626,
+    "v": "L"
+   },
+   {
+    "t": 1.746,
+    "v": "X"
+   },
+   {
+    "t": 1.986,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 15
+ },
+ "E1_01": {
+  "key": "7a42a1f794ad",
+  "file": "voice/724-06/cekim/E1_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "aaaaa",
+  "duration": 1.411,
+  "asrScore": 0.75,
+  "heard": "Aaa!",
+  "words": [
+   {
+    "w": "aaaaa",
+    "start": 0.16,
+    "end": 1.12
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.16,
+    "v": "A"
+   },
+   {
+    "t": 0.88,
+    "v": "X"
+   },
+   {
+    "t": 1.12,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 10
+ },
+ "E2_01": {
+  "key": "b95c4b2b6f0a",
+  "file": "voice/724-06/cekim/E2_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "aaaaa",
+  "duration": 2.769,
+  "asrScore": 0.588,
+  "heard": "Aaaaaa! Aaaaaa!",
+  "words": [
+   {
+    "w": "aaaaa",
+    "start": 1.293,
+    "end": 2.733
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.093,
+    "v": "X"
+   },
+   {
+    "t": 1.293,
+    "v": "A"
+   },
+   {
+    "t": 2.293,
+    "v": "L"
+   },
+   {
+    "t": 2.413,
+    "v": "X"
+   },
+   {
+    "t": 2.733,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 15
+ },
+ "E3_01": {
+  "key": "9cf9d47ad4c5",
+  "file": "voice/724-06/cekim/E3_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "aaaaa",
+  "duration": 2.194,
+  "asrScore": 0.625,
+  "heard": "Aaaaaa! Aaaaa!",
+  "words": [
+   {
+    "w": "aaaaa",
+    "start": 1.28,
+    "end": 2.16
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.2,
+    "v": "X"
+   },
+   {
+    "t": 1.28,
+    "v": "A"
+   },
+   {
+    "t": 1.92,
+    "v": "X"
+   },
+   {
+    "t": 2.16,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 14
+ },
+ "H1_01": {
+  "key": "bd92ec29f788",
+  "file": "voice/724-06/cekim/H1_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 3.37,
+  "asrScore": 0.933,
+  "heard": "şu bitti kızım bitti tamam",
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.135,
+    "end": 0.855
+   },
+   {
+    "w": "bitti",
+    "start": 1.015,
+    "end": 1.335
+   },
+   {
+    "w": "kızım",
+    "start": 1.375,
+    "end": 1.855
+   },
+   {
+    "w": "bitti",
+    "start": 1.975,
+    "end": 2.575
+   },
+   {
+    "w": "tamam",
+    "start": 2.775,
+    "end": 3.415
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.135,
+    "v": "L"
+   },
+   {
+    "t": 0.695,
+    "v": "X"
+   },
+   {
+    "t": 1.015,
+    "v": "M"
+   },
+   {
+    "t": 1.175,
+    "v": "I"
+   },
+   {
+    "t": 1.215,
+    "v": "L"
+   },
+   {
+    "t": 1.295,
+    "v": "I"
+   },
+   {
+    "t": 1.375,
+    "v": "L"
+   },
+   {
+    "t": 1.415,
+    "v": "I"
+   },
+   {
+    "t": 1.455,
+    "v": "L"
+   },
+   {
+    "t": 1.495,
+    "v": "I"
+   },
+   {
+    "t": 1.615,
+    "v": "M"
+   },
+   {
+    "t": 1.735,
+    "v": "X"
+   },
+   {
+    "t": 1.975,
+    "v": "M"
+   },
+   {
+    "t": 2.175,
+    "v": "I"
+   },
+   {
+    "t": 2.225,
+    "v": "L"
+   },
+   {
+    "t": 2.325,
+    "v": "I"
+   },
+   {
+    "t": 2.375,
+    "v": "X"
+   },
+   {
+    "t": 2.775,
+    "v": "L"
+   },
+   {
+    "t": 2.855,
+    "v": "A"
+   },
+   {
+    "t": 2.935,
+    "v": "M"
+   },
+   {
+    "t": 3.015,
+    "v": "A"
+   },
+   {
+    "t": 3.135,
+    "v": "M"
+   },
+   {
+    "t": 3.255,
+    "v": "X"
+   },
+   {
+    "t": 3.415,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 26
+ },
+ "H2_01": {
+  "key": "e7e2f3341000",
+  "file": "voice/724-06/cekim/H2_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 4.075,
+  "asrScore": 0.004,
+  "heard": "Şşşştttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.921,
+    "end": 1.481
+   },
+   {
+    "w": "bitti",
+    "start": 1.641,
+    "end": 1.961
+   },
+   {
+    "w": "kızım",
+    "start": 2.001,
+    "end": 2.481
+   },
+   {
+    "w": "bitti",
+    "start": 2.601,
+    "end": 3.201
+   },
+   {
+    "w": "tamam",
+    "start": 3.401,
+    "end": 4.041
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.921,
+    "v": "L"
+   },
+   {
+    "t": 1.321,
+    "v": "X"
+   },
+   {
+    "t": 1.641,
+    "v": "M"
+   },
+   {
+    "t": 1.801,
+    "v": "I"
+   },
+   {
+    "t": 1.841,
+    "v": "L"
+   },
+   {
+    "t": 1.921,
+    "v": "I"
+   },
+   {
+    "t": 2.001,
+    "v": "L"
+   },
+   {
+    "t": 2.041,
+    "v": "I"
+   },
+   {
+    "t": 2.081,
+    "v": "L"
+   },
+   {
+    "t": 2.121,
+    "v": "I"
+   },
+   {
+    "t": 2.241,
+    "v": "M"
+   },
+   {
+    "t": 2.361,
+    "v": "X"
+   },
+   {
+    "t": 2.601,
+    "v": "M"
+   },
+   {
+    "t": 2.801,
+    "v": "I"
+   },
+   {
+    "t": 2.851,
+    "v": "L"
+   },
+   {
+    "t": 2.951,
+    "v": "I"
+   },
+   {
+    "t": 3.001,
+    "v": "X"
+   },
+   {
+    "t": 3.401,
+    "v": "L"
+   },
+   {
+    "t": 3.454,
+    "v": "A"
+   },
+   {
+    "t": 3.508,
+    "v": "M"
+   },
+   {
+    "t": 3.561,
+    "v": "A"
+   },
+   {
+    "t": 3.681,
+    "v": "M"
+   },
+   {
+    "t": 3.801,
+    "v": "X"
+   },
+   {
+    "t": 4.041,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 28
+ },
+ "H3_01": {
+  "key": "5ad1d8bd923d",
+  "file": "voice/724-06/cekim/H3_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 3.291,
+  "asrScore": 0.913,
+  "heard": "Şşş, bitti kızım, bitti. Tamam.",
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.97,
+    "end": 0.989
+   },
+   {
+    "w": "bitti",
+    "start": 0.995,
+    "end": 1.321
+   },
+   {
+    "w": "kızım",
+    "start": 1.361,
+    "end": 1.721
+   },
+   {
+    "w": "bitti",
+    "start": 1.801,
+    "end": 2.601
+   },
+   {
+    "w": "tamam",
+    "start": 2.681,
+    "end": 3.321
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.97,
+    "v": "L"
+   },
+   {
+    "t": 0.995,
+    "v": "M"
+   },
+   {
+    "t": 1.001,
+    "v": "I"
+   },
+   {
+    "t": 1.081,
+    "v": "L"
+   },
+   {
+    "t": 1.241,
+    "v": "I"
+   },
+   {
+    "t": 1.361,
+    "v": "L"
+   },
+   {
+    "t": 1.401,
+    "v": "I"
+   },
+   {
+    "t": 1.481,
+    "v": "L"
+   },
+   {
+    "t": 1.561,
+    "v": "I"
+   },
+   {
+    "t": 1.641,
+    "v": "M"
+   },
+   {
+    "t": 1.721,
+    "v": "X"
+   },
+   {
+    "t": 1.801,
+    "v": "M"
+   },
+   {
+    "t": 2.081,
+    "v": "I"
+   },
+   {
+    "t": 2.151,
+    "v": "L"
+   },
+   {
+    "t": 2.291,
+    "v": "I"
+   },
+   {
+    "t": 2.361,
+    "v": "X"
+   },
+   {
+    "t": 2.681,
+    "v": "L"
+   },
+   {
+    "t": 2.734,
+    "v": "A"
+   },
+   {
+    "t": 2.788,
+    "v": "M"
+   },
+   {
+    "t": 2.841,
+    "v": "A"
+   },
+   {
+    "t": 2.961,
+    "v": "M"
+   },
+   {
+    "t": 3.081,
+    "v": "X"
+   },
+   {
+    "t": 3.321,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 25
+ },
+ "C1_01": {
+  "key": "6bb89b4cd27e",
+  "file": "voice/724-06/cekim/C1_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 7.889,
+  "asrScore": 0.0,
+  "heard": "",
+  "words": [
+   {
+    "w": "Hııh…",
+    "start": 1.76,
+    "end": 2.52
+   },
+   {
+    "w": "hıhh…",
+    "start": 2.72,
+    "end": 3.168
+   },
+   {
+    "w": "hıııııh…",
+    "start": 3.28,
+    "end": 4.24
+   },
+   {
+    "w": "hıh,",
+    "start": 4.56,
+    "end": 5.2
+   },
+   {
+    "w": "hıh…",
+    "start": 5.36,
+    "end": 6.12
+   },
+   {
+    "w": "ıııhhh…",
+    "start": 6.4,
+    "end": 7.12
+   },
+   {
+    "w": "hhh…",
+    "start": 7.28,
+    "end": 7.84
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.76,
+    "v": "L"
+   },
+   {
+    "t": 1.8,
+    "v": "I"
+   },
+   {
+    "t": 2.08,
+    "v": "L"
+   },
+   {
+    "t": 2.32,
+    "v": "X"
+   },
+   {
+    "t": 2.72,
+    "v": "L"
+   },
+   {
+    "t": 2.832,
+    "v": "I"
+   },
+   {
+    "t": 2.944,
+    "v": "L"
+   },
+   {
+    "t": 3.056,
+    "v": "X"
+   },
+   {
+    "t": 3.28,
+    "v": "L"
+   },
+   {
+    "t": 3.36,
+    "v": "I"
+   },
+   {
+    "t": 3.84,
+    "v": "L"
+   },
+   {
+    "t": 3.92,
+    "v": "X"
+   },
+   {
+    "t": 4.56,
+    "v": "L"
+   },
+   {
+    "t": 4.64,
+    "v": "I"
+   },
+   {
+    "t": 4.72,
+    "v": "L"
+   },
+   {
+    "t": 5.04,
+    "v": "X"
+   },
+   {
+    "t": 5.36,
+    "v": "L"
+   },
+   {
+    "t": 5.44,
+    "v": "I"
+   },
+   {
+    "t": 5.52,
+    "v": "L"
+   },
+   {
+    "t": 5.84,
+    "v": "X"
+   },
+   {
+    "t": 6.4,
+    "v": "I"
+   },
+   {
+    "t": 6.56,
+    "v": "L"
+   },
+   {
+    "t": 6.96,
+    "v": "X"
+   },
+   {
+    "t": 7.28,
+    "v": "L"
+   },
+   {
+    "t": 7.6,
+    "v": "X"
+   },
+   {
+    "t": 7.84,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 42
+ },
+ "C2_01": {
+  "key": "d0ae8c877bba",
+  "file": "voice/724-06/cekim/C2_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 6.609,
+  "asrScore": 0.0,
+  "heard": "",
+  "words": [
+   {
+    "w": "Aaahh…",
+    "start": 1.82,
+    "end": 2.92
+   },
+   {
+    "w": "hıııh…",
+    "start": 3.12,
+    "end": 3.96
+   },
+   {
+    "w": "hıh…",
+    "start": 4.16,
+    "end": 4.587
+   },
+   {
+    "w": "hıh…",
+    "start": 4.613,
+    "end": 5.08
+   },
+   {
+    "w": "ııhhh…",
+    "start": 5.28,
+    "end": 5.88
+   },
+   {
+    "w": "hıh…",
+    "start": 5.92,
+    "end": 6.56
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.82,
+    "v": "A"
+   },
+   {
+    "t": 2.26,
+    "v": "L"
+   },
+   {
+    "t": 2.72,
+    "v": "X"
+   },
+   {
+    "t": 3.12,
+    "v": "L"
+   },
+   {
+    "t": 3.16,
+    "v": "I"
+   },
+   {
+    "t": 3.573,
+    "v": "L"
+   },
+   {
+    "t": 3.76,
+    "v": "X"
+   },
+   {
+    "t": 4.16,
+    "v": "L"
+   },
+   {
+    "t": 4.293,
+    "v": "I"
+   },
+   {
+    "t": 4.427,
+    "v": "L"
+   },
+   {
+    "t": 4.64,
+    "v": "I"
+   },
+   {
+    "t": 4.76,
+    "v": "L"
+   },
+   {
+    "t": 4.88,
+    "v": "X"
+   },
+   {
+    "t": 5.28,
+    "v": "I"
+   },
+   {
+    "t": 5.68,
+    "v": "L"
+   },
+   {
+    "t": 6.0,
+    "v": "I"
+   },
+   {
+    "t": 6.08,
+    "v": "L"
+   },
+   {
+    "t": 6.32,
+    "v": "X"
+   },
+   {
+    "t": 6.56,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "C3_01": {
+  "key": "989bfbd35423",
+  "file": "voice/724-06/cekim/C3_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 4.598,
+  "asrScore": 0.0,
+  "heard": "",
+  "words": [
+   {
+    "w": "Hıh…",
+    "start": 1.28,
+    "end": 1.72
+   },
+   {
+    "w": "hıh…",
+    "start": 1.76,
+    "end": 2.56
+   },
+   {
+    "w": "hııı…",
+    "start": 2.64,
+    "end": 3.32
+   },
+   {
+    "w": "hıh…",
+    "start": 3.36,
+    "end": 3.867
+   },
+   {
+    "w": "hıh…",
+    "start": 3.893,
+    "end": 4.56
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.28,
+    "v": "L"
+   },
+   {
+    "t": 1.32,
+    "v": "I"
+   },
+   {
+    "t": 1.36,
+    "v": "L"
+   },
+   {
+    "t": 1.8,
+    "v": "I"
+   },
+   {
+    "t": 1.84,
+    "v": "L"
+   },
+   {
+    "t": 2.48,
+    "v": "X"
+   },
+   {
+    "t": 2.64,
+    "v": "L"
+   },
+   {
+    "t": 2.72,
+    "v": "I"
+   },
+   {
+    "t": 3.36,
+    "v": "L"
+   },
+   {
+    "t": 3.44,
+    "v": "I"
+   },
+   {
+    "t": 3.64,
+    "v": "L"
+   },
+   {
+    "t": 3.92,
+    "v": "I"
+   },
+   {
+    "t": 4.0,
+    "v": "L"
+   },
+   {
+    "t": 4.24,
+    "v": "X"
+   },
+   {
+    "t": 4.56,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "C4_01": {
+  "key": "a1ffb1f5b4de",
+  "file": "voice/724-06/cekim/C4_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 5.303,
+  "asrScore": 0.0,
+  "heard": "",
+  "words": [
+   {
+    "w": "Hıh…",
+    "start": 1.669,
+    "end": 2.069
+   },
+   {
+    "w": "hııh…",
+    "start": 2.229,
+    "end": 2.869
+   },
+   {
+    "w": "hıh,",
+    "start": 3.109,
+    "end": 3.669
+   },
+   {
+    "w": "hıh…",
+    "start": 3.829,
+    "end": 4.429
+   },
+   {
+    "w": "hhh…",
+    "start": 4.549,
+    "end": 5.269
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.669,
+    "v": "L"
+   },
+   {
+    "t": 1.709,
+    "v": "I"
+   },
+   {
+    "t": 1.749,
+    "v": "L"
+   },
+   {
+    "t": 1.909,
+    "v": "X"
+   },
+   {
+    "t": 2.229,
+    "v": "L"
+   },
+   {
+    "t": 2.269,
+    "v": "I"
+   },
+   {
+    "t": 2.389,
+    "v": "L"
+   },
+   {
+    "t": 2.629,
+    "v": "X"
+   },
+   {
+    "t": 3.109,
+    "v": "L"
+   },
+   {
+    "t": 3.149,
+    "v": "I"
+   },
+   {
+    "t": 3.189,
+    "v": "L"
+   },
+   {
+    "t": 3.509,
+    "v": "X"
+   },
+   {
+    "t": 3.829,
+    "v": "L"
+   },
+   {
+    "t": 3.949,
+    "v": "I"
+   },
+   {
+    "t": 4.069,
+    "v": "L"
+   },
+   {
+    "t": 4.309,
+    "v": "X"
+   },
+   {
+    "t": 4.549,
+    "v": "L"
+   },
+   {
+    "t": 4.949,
+    "v": "X"
+   },
+   {
+    "t": 5.269,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 27
+ },
+ "S4_01": {
+  "key": "108a7eb76d93",
+  "file": "voice/724-06/cekim/S4_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.411,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.316,
+    "end": 0.423
+   },
+   {
+    "w": "artık",
+    "start": 0.503,
+    "end": 1.383
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.316,
+    "v": "M"
+   },
+   {
+    "t": 0.37,
+    "v": "I"
+   },
+   {
+    "t": 0.383,
+    "v": "L"
+   },
+   {
+    "t": 0.41,
+    "v": "I"
+   },
+   {
+    "t": 0.503,
+    "v": "A"
+   },
+   {
+    "t": 0.583,
+    "v": "L"
+   },
+   {
+    "t": 0.743,
+    "v": "I"
+   },
+   {
+    "t": 0.903,
+    "v": "L"
+   },
+   {
+    "t": 1.063,
+    "v": "X"
+   },
+   {
+    "t": 1.383,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "S5_01": {
+  "key": "f73bfcb584ef",
+  "file": "voice/724-06/cekim/S5_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 2.508,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.634,
+    "end": 1.394
+   },
+   {
+    "w": "artık",
+    "start": 1.674,
+    "end": 2.554
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.634,
+    "v": "M"
+   },
+   {
+    "t": 0.874,
+    "v": "I"
+   },
+   {
+    "t": 0.934,
+    "v": "L"
+   },
+   {
+    "t": 1.054,
+    "v": "I"
+   },
+   {
+    "t": 1.114,
+    "v": "X"
+   },
+   {
+    "t": 1.674,
+    "v": "A"
+   },
+   {
+    "t": 1.781,
+    "v": "L"
+   },
+   {
+    "t": 1.994,
+    "v": "I"
+   },
+   {
+    "t": 2.114,
+    "v": "L"
+   },
+   {
+    "t": 2.234,
+    "v": "X"
+   },
+   {
+    "t": 2.554,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 19
+ },
+ "H4_01": {
+  "key": "12cfe529495e",
+  "file": "voice/724-06/cekim/H4_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 4.31,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.988,
+    "end": 1.588
+   },
+   {
+    "w": "bitti",
+    "start": 1.788,
+    "end": 2.108
+   },
+   {
+    "w": "kızım",
+    "start": 2.148,
+    "end": 2.708
+   },
+   {
+    "w": "bitti",
+    "start": 2.908,
+    "end": 3.508
+   },
+   {
+    "w": "tamam",
+    "start": 3.708,
+    "end": 4.348
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.988,
+    "v": "L"
+   },
+   {
+    "t": 1.388,
+    "v": "X"
+   },
+   {
+    "t": 1.788,
+    "v": "M"
+   },
+   {
+    "t": 1.948,
+    "v": "I"
+   },
+   {
+    "t": 1.988,
+    "v": "L"
+   },
+   {
+    "t": 2.068,
+    "v": "I"
+   },
+   {
+    "t": 2.148,
+    "v": "L"
+   },
+   {
+    "t": 2.188,
+    "v": "I"
+   },
+   {
+    "t": 2.228,
+    "v": "L"
+   },
+   {
+    "t": 2.268,
+    "v": "I"
+   },
+   {
+    "t": 2.388,
+    "v": "M"
+   },
+   {
+    "t": 2.508,
+    "v": "X"
+   },
+   {
+    "t": 2.908,
+    "v": "M"
+   },
+   {
+    "t": 3.108,
+    "v": "I"
+   },
+   {
+    "t": 3.158,
+    "v": "L"
+   },
+   {
+    "t": 3.258,
+    "v": "I"
+   },
+   {
+    "t": 3.308,
+    "v": "X"
+   },
+   {
+    "t": 3.708,
+    "v": "L"
+   },
+   {
+    "t": 3.761,
+    "v": "A"
+   },
+   {
+    "t": 3.815,
+    "v": "M"
+   },
+   {
+    "t": 3.868,
+    "v": "A"
+   },
+   {
+    "t": 3.988,
+    "v": "M"
+   },
+   {
+    "t": 4.108,
+    "v": "X"
+   },
+   {
+    "t": 4.348,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "C5_01": {
+  "key": "f7b94e5477f0",
+  "file": "voice/724-06/cekim/C5_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 15.726,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hııh…",
+    "start": 6.48,
+    "end": 7.44
+   },
+   {
+    "w": "hıh…",
+    "start": 7.76,
+    "end": 8.32
+   },
+   {
+    "w": "hıııh…",
+    "start": 8.64,
+    "end": 9.48
+   },
+   {
+    "w": "hıh,",
+    "start": 9.76,
+    "end": 10.52
+   },
+   {
+    "w": "hıh…",
+    "start": 10.96,
+    "end": 11.72
+   },
+   {
+    "w": "ııhh…",
+    "start": 12.0,
+    "end": 12.76
+   },
+   {
+    "w": "hıh…",
+    "start": 13.04,
+    "end": 13.76
+   },
+   {
+    "w": "hıııh…",
+    "start": 13.92,
+    "end": 14.72
+   },
+   {
+    "w": "hıh…",
+    "start": 15.04,
+    "end": 15.76
+   }
+  ],
+  "mouth": [
+   {
+    "t": 6.4,
+    "v": "X"
+   },
+   {
+    "t": 6.48,
+    "v": "L"
+   },
+   {
+    "t": 6.56,
+    "v": "I"
+   },
+   {
+    "t": 6.72,
+    "v": "L"
+   },
+   {
+    "t": 7.12,
+    "v": "X"
+   },
+   {
+    "t": 7.76,
+    "v": "L"
+   },
+   {
+    "t": 7.84,
+    "v": "I"
+   },
+   {
+    "t": 7.92,
+    "v": "L"
+   },
+   {
+    "t": 8.0,
+    "v": "X"
+   },
+   {
+    "t": 8.64,
+    "v": "L"
+   },
+   {
+    "t": 8.72,
+    "v": "I"
+   },
+   {
+    "t": 8.96,
+    "v": "L"
+   },
+   {
+    "t": 9.2,
+    "v": "X"
+   },
+   {
+    "t": 9.76,
+    "v": "L"
+   },
+   {
+    "t": 9.84,
+    "v": "I"
+   },
+   {
+    "t": 9.92,
+    "v": "L"
+   },
+   {
+    "t": 10.08,
+    "v": "X"
+   },
+   {
+    "t": 10.96,
+    "v": "L"
+   },
+   {
+    "t": 11.04,
+    "v": "I"
+   },
+   {
+    "t": 11.12,
+    "v": "L"
+   },
+   {
+    "t": 11.44,
+    "v": "X"
+   },
+   {
+    "t": 12.0,
+    "v": "I"
+   },
+   {
+    "t": 12.28,
+    "v": "L"
+   },
+   {
+    "t": 12.48,
+    "v": "X"
+   },
+   {
+    "t": 13.04,
+    "v": "L"
+   },
+   {
+    "t": 13.08,
+    "v": "I"
+   },
+   {
+    "t": 13.12,
+    "v": "L"
+   },
+   {
+    "t": 13.6,
+    "v": "X"
+   },
+   {
+    "t": 13.92,
+    "v": "L"
+   },
+   {
+    "t": 14.0,
+    "v": "I"
+   },
+   {
+    "t": 14.32,
+    "v": "L"
+   },
+   {
+    "t": 14.48,
+    "v": "X"
+   },
+   {
+    "t": 15.04,
+    "v": "L"
+   },
+   {
+    "t": 15.12,
+    "v": "I"
+   },
+   {
+    "t": 15.2,
+    "v": "L"
+   },
+   {
+    "t": 15.44,
+    "v": "X"
+   },
+   {
+    "t": 15.76,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 49
+ },
+ "C6_01": {
+  "key": "a5356d735f03",
+  "file": "voice/724-06/cekim/C6_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(hıçkıra hıçkıra ağlar)",
+  "duration": 7.393,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hıh…",
+    "start": 2.232,
+    "end": 2.752
+   },
+   {
+    "w": "hıh…",
+    "start": 2.952,
+    "end": 3.472
+   },
+   {
+    "w": "hııh…",
+    "start": 3.672,
+    "end": 4.272
+   },
+   {
+    "w": "hıh…",
+    "start": 4.472,
+    "end": 4.992
+   },
+   {
+    "w": "hıh,",
+    "start": 5.192,
+    "end": 5.532
+   },
+   {
+    "w": "hıh…",
+    "start": 5.552,
+    "end": 5.992
+   },
+   {
+    "w": "hhh…",
+    "start": 6.232,
+    "end": 6.712
+   },
+   {
+    "w": "hıh…",
+    "start": 6.872,
+    "end": 7.432
+   }
+  ],
+  "mouth": [
+   {
+    "t": 2.232,
+    "v": "L"
+   },
+   {
+    "t": 2.312,
+    "v": "I"
+   },
+   {
+    "t": 2.392,
+    "v": "L"
+   },
+   {
+    "t": 2.552,
+    "v": "X"
+   },
+   {
+    "t": 2.952,
+    "v": "L"
+   },
+   {
+    "t": 3.032,
+    "v": "I"
+   },
+   {
+    "t": 3.152,
+    "v": "L"
+   },
+   {
+    "t": 3.272,
+    "v": "X"
+   },
+   {
+    "t": 3.672,
+    "v": "L"
+   },
+   {
+    "t": 3.752,
+    "v": "I"
+   },
+   {
+    "t": 3.952,
+    "v": "L"
+   },
+   {
+    "t": 4.072,
+    "v": "X"
+   },
+   {
+    "t": 4.472,
+    "v": "L"
+   },
+   {
+    "t": 4.552,
+    "v": "I"
+   },
+   {
+    "t": 4.632,
+    "v": "L"
+   },
+   {
+    "t": 4.792,
+    "v": "X"
+   },
+   {
+    "t": 5.192,
+    "v": "L"
+   },
+   {
+    "t": 5.232,
+    "v": "I"
+   },
+   {
+    "t": 5.272,
+    "v": "L"
+   },
+   {
+    "t": 5.572,
+    "v": "I"
+   },
+   {
+    "t": 5.592,
+    "v": "L"
+   },
+   {
+    "t": 5.752,
+    "v": "X"
+   },
+   {
+    "t": 6.232,
+    "v": "L"
+   },
+   {
+    "t": 6.552,
+    "v": "X"
+   },
+   {
+    "t": 6.872,
+    "v": "L"
+   },
+   {
+    "t": 6.925,
+    "v": "I"
+   },
+   {
+    "t": 6.979,
+    "v": "L"
+   },
+   {
+    "t": 7.032,
+    "v": "X"
+   },
+   {
+    "t": 7.432,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 43
+ },
+ "S6_01": {
+  "key": "59bd2dab839b",
+  "file": "voice/724-06/cekim/S6_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.437,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.379,
+    "end": 0.425
+   },
+   {
+    "w": "artık",
+    "start": 0.505,
+    "end": 1.385
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.379,
+    "v": "M"
+   },
+   {
+    "t": 0.402,
+    "v": "I"
+   },
+   {
+    "t": 0.408,
+    "v": "L"
+   },
+   {
+    "t": 0.419,
+    "v": "I"
+   },
+   {
+    "t": 0.425,
+    "v": "X"
+   },
+   {
+    "t": 0.505,
+    "v": "A"
+   },
+   {
+    "t": 0.585,
+    "v": "L"
+   },
+   {
+    "t": 0.745,
+    "v": "I"
+   },
+   {
+    "t": 0.825,
+    "v": "L"
+   },
+   {
+    "t": 0.905,
+    "v": "X"
+   },
+   {
+    "t": 1.385,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 15
+ },
+ "S7_01": {
+  "key": "9eb535b0d247",
+  "file": "voice/724-06/cekim/S7_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 2.638,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.68,
+    "end": 1.52
+   },
+   {
+    "w": "artık",
+    "start": 1.8,
+    "end": 2.68
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.68,
+    "v": "M"
+   },
+   {
+    "t": 0.96,
+    "v": "I"
+   },
+   {
+    "t": 1.03,
+    "v": "L"
+   },
+   {
+    "t": 1.17,
+    "v": "I"
+   },
+   {
+    "t": 1.24,
+    "v": "X"
+   },
+   {
+    "t": 1.8,
+    "v": "A"
+   },
+   {
+    "t": 1.88,
+    "v": "L"
+   },
+   {
+    "t": 2.04,
+    "v": "I"
+   },
+   {
+    "t": 2.2,
+    "v": "L"
+   },
+   {
+    "t": 2.36,
+    "v": "X"
+   },
+   {
+    "t": 2.68,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "H5_01": {
+  "key": "2379564c4f0c",
+  "file": "voice/724-06/cekim/H5_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 3.318,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.811,
+    "end": 0.898
+   },
+   {
+    "w": "bitti",
+    "start": 0.924,
+    "end": 1.271
+   },
+   {
+    "w": "kızım",
+    "start": 1.311,
+    "end": 1.911
+   },
+   {
+    "w": "bitti",
+    "start": 2.071,
+    "end": 2.631
+   },
+   {
+    "w": "tamam",
+    "start": 2.711,
+    "end": 3.351
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.811,
+    "v": "L"
+   },
+   {
+    "t": 0.924,
+    "v": "M"
+   },
+   {
+    "t": 0.951,
+    "v": "I"
+   },
+   {
+    "t": 1.031,
+    "v": "L"
+   },
+   {
+    "t": 1.191,
+    "v": "I"
+   },
+   {
+    "t": 1.311,
+    "v": "L"
+   },
+   {
+    "t": 1.351,
+    "v": "I"
+   },
+   {
+    "t": 1.431,
+    "v": "L"
+   },
+   {
+    "t": 1.511,
+    "v": "I"
+   },
+   {
+    "t": 1.591,
+    "v": "M"
+   },
+   {
+    "t": 1.671,
+    "v": "X"
+   },
+   {
+    "t": 2.071,
+    "v": "M"
+   },
+   {
+    "t": 2.231,
+    "v": "I"
+   },
+   {
+    "t": 2.271,
+    "v": "L"
+   },
+   {
+    "t": 2.351,
+    "v": "I"
+   },
+   {
+    "t": 2.391,
+    "v": "X"
+   },
+   {
+    "t": 2.711,
+    "v": "L"
+   },
+   {
+    "t": 2.764,
+    "v": "A"
+   },
+   {
+    "t": 2.818,
+    "v": "M"
+   },
+   {
+    "t": 2.871,
+    "v": "A"
+   },
+   {
+    "t": 2.991,
+    "v": "M"
+   },
+   {
+    "t": 3.111,
+    "v": "X"
+   },
+   {
+    "t": 3.351,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 26
+ },
+ "S8_01": {
+  "key": "e931ece7ef47",
+  "file": "voice/724-06/cekim/S8_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.332,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.089,
+    "end": 0.409
+   },
+   {
+    "w": "artık",
+    "start": 0.529,
+    "end": 1.289
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.089,
+    "v": "M"
+   },
+   {
+    "t": 0.249,
+    "v": "I"
+   },
+   {
+    "t": 0.289,
+    "v": "L"
+   },
+   {
+    "t": 0.369,
+    "v": "I"
+   },
+   {
+    "t": 0.409,
+    "v": "X"
+   },
+   {
+    "t": 0.529,
+    "v": "A"
+   },
+   {
+    "t": 0.569,
+    "v": "L"
+   },
+   {
+    "t": 0.649,
+    "v": "I"
+   },
+   {
+    "t": 0.809,
+    "v": "L"
+   },
+   {
+    "t": 0.969,
+    "v": "X"
+   },
+   {
+    "t": 1.289,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 10
+ },
+ "S9_01": {
+  "key": "d2d0d54ce10b",
+  "file": "voice/724-06/cekim/S9_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.306,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0,
+    "end": 0.4
+   },
+   {
+    "w": "artık",
+    "start": 0.52,
+    "end": 1.12
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0,
+    "v": "M"
+   },
+   {
+    "t": 0.08,
+    "v": "I"
+   },
+   {
+    "t": 0.16,
+    "v": "L"
+   },
+   {
+    "t": 0.32,
+    "v": "I"
+   },
+   {
+    "t": 0.4,
+    "v": "X"
+   },
+   {
+    "t": 0.52,
+    "v": "A"
+   },
+   {
+    "t": 0.56,
+    "v": "L"
+   },
+   {
+    "t": 0.64,
+    "v": "I"
+   },
+   {
+    "t": 0.76,
+    "v": "L"
+   },
+   {
+    "t": 0.88,
+    "v": "X"
+   },
+   {
+    "t": 1.12,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 5
+ },
+ "S10_01": {
+  "key": "cd2f5eb15152",
+  "file": "voice/724-06/cekim/S10_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.489,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.163,
+    "end": 0.483
+   },
+   {
+    "w": "artık",
+    "start": 0.643,
+    "end": 1.443
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.163,
+    "v": "M"
+   },
+   {
+    "t": 0.323,
+    "v": "I"
+   },
+   {
+    "t": 0.363,
+    "v": "L"
+   },
+   {
+    "t": 0.443,
+    "v": "I"
+   },
+   {
+    "t": 0.483,
+    "v": "X"
+   },
+   {
+    "t": 0.643,
+    "v": "A"
+   },
+   {
+    "t": 0.696,
+    "v": "L"
+   },
+   {
+    "t": 0.803,
+    "v": "I"
+   },
+   {
+    "t": 0.923,
+    "v": "L"
+   },
+   {
+    "t": 1.043,
+    "v": "X"
+   },
+   {
+    "t": 1.443,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 10
+ },
+ "S11_01": {
+  "key": "deb66a87c95f",
+  "file": "voice/724-06/cekim/S11_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.332,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.105,
+    "end": 0.425
+   },
+   {
+    "w": "artık",
+    "start": 0.505,
+    "end": 1.305
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.105,
+    "v": "M"
+   },
+   {
+    "t": 0.265,
+    "v": "I"
+   },
+   {
+    "t": 0.305,
+    "v": "L"
+   },
+   {
+    "t": 0.385,
+    "v": "I"
+   },
+   {
+    "t": 0.505,
+    "v": "A"
+   },
+   {
+    "t": 0.585,
+    "v": "L"
+   },
+   {
+    "t": 0.745,
+    "v": "I"
+   },
+   {
+    "t": 0.865,
+    "v": "L"
+   },
+   {
+    "t": 0.985,
+    "v": "X"
+   },
+   {
+    "t": 1.305,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 21
+ },
+ "S12_01": {
+  "key": "39f7b9a7603f",
+  "file": "voice/724-06/cekim/S12_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.411,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.074,
+    "end": 0.414
+   },
+   {
+    "w": "artık",
+    "start": 0.494,
+    "end": 1.374
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.074,
+    "v": "M"
+   },
+   {
+    "t": 0.094,
+    "v": "I"
+   },
+   {
+    "t": 0.174,
+    "v": "L"
+   },
+   {
+    "t": 0.334,
+    "v": "I"
+   },
+   {
+    "t": 0.494,
+    "v": "A"
+   },
+   {
+    "t": 0.574,
+    "v": "L"
+   },
+   {
+    "t": 0.734,
+    "v": "I"
+   },
+   {
+    "t": 0.894,
+    "v": "L"
+   },
+   {
+    "t": 1.054,
+    "v": "X"
+   },
+   {
+    "t": 1.374,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "H6_01": {
+  "key": "85f48fa0a10a",
+  "file": "voice/724-06/cekim/H6_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "Şhh bitti kızım bitti tamam",
+  "duration": 3.265,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Şhh",
+    "start": 0.109,
+    "end": 0.829
+   },
+   {
+    "w": "bitti",
+    "start": 0.989,
+    "end": 1.309
+   },
+   {
+    "w": "kızım",
+    "start": 1.349,
+    "end": 1.829
+   },
+   {
+    "w": "bitti",
+    "start": 1.949,
+    "end": 2.549
+   },
+   {
+    "w": "tamam",
+    "start": 2.749,
+    "end": 3.229
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.109,
+    "v": "L"
+   },
+   {
+    "t": 0.669,
+    "v": "X"
+   },
+   {
+    "t": 0.989,
+    "v": "M"
+   },
+   {
+    "t": 1.149,
+    "v": "I"
+   },
+   {
+    "t": 1.189,
+    "v": "L"
+   },
+   {
+    "t": 1.269,
+    "v": "I"
+   },
+   {
+    "t": 1.349,
+    "v": "L"
+   },
+   {
+    "t": 1.389,
+    "v": "I"
+   },
+   {
+    "t": 1.429,
+    "v": "L"
+   },
+   {
+    "t": 1.469,
+    "v": "I"
+   },
+   {
+    "t": 1.589,
+    "v": "M"
+   },
+   {
+    "t": 1.709,
+    "v": "X"
+   },
+   {
+    "t": 1.949,
+    "v": "M"
+   },
+   {
+    "t": 2.149,
+    "v": "I"
+   },
+   {
+    "t": 2.199,
+    "v": "L"
+   },
+   {
+    "t": 2.299,
+    "v": "I"
+   },
+   {
+    "t": 2.349,
+    "v": "X"
+   },
+   {
+    "t": 2.749,
+    "v": "L"
+   },
+   {
+    "t": 2.802,
+    "v": "A"
+   },
+   {
+    "t": 2.856,
+    "v": "M"
+   },
+   {
+    "t": 2.909,
+    "v": "A"
+   },
+   {
+    "t": 3.029,
+    "v": "M"
+   },
+   {
+    "t": 3.149,
+    "v": "X"
+   },
+   {
+    "t": 3.229,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 23
+ },
+ "S13_01": {
+  "key": "7b2c6bc14afc",
+  "file": "voice/724-06/cekim/S13_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.358,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.116,
+    "end": 0.436
+   },
+   {
+    "w": "artık",
+    "start": 0.516,
+    "end": 1.316
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.116,
+    "v": "M"
+   },
+   {
+    "t": 0.276,
+    "v": "I"
+   },
+   {
+    "t": 0.316,
+    "v": "L"
+   },
+   {
+    "t": 0.396,
+    "v": "I"
+   },
+   {
+    "t": 0.436,
+    "v": "X"
+   },
+   {
+    "t": 0.516,
+    "v": "A"
+   },
+   {
+    "t": 0.569,
+    "v": "L"
+   },
+   {
+    "t": 0.676,
+    "v": "I"
+   },
+   {
+    "t": 0.796,
+    "v": "L"
+   },
+   {
+    "t": 0.916,
+    "v": "X"
+   },
+   {
+    "t": 1.316,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 17
+ },
+ "S14_01": {
+  "key": "51a3f8fe049b",
+  "file": "voice/724-06/cekim/S14_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.332,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.309,
+    "end": 0.416
+   },
+   {
+    "w": "artık",
+    "start": 0.496,
+    "end": 1.296
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.309,
+    "v": "M"
+   },
+   {
+    "t": 0.363,
+    "v": "I"
+   },
+   {
+    "t": 0.376,
+    "v": "L"
+   },
+   {
+    "t": 0.403,
+    "v": "I"
+   },
+   {
+    "t": 0.496,
+    "v": "A"
+   },
+   {
+    "t": 0.576,
+    "v": "L"
+   },
+   {
+    "t": 0.736,
+    "v": "I"
+   },
+   {
+    "t": 0.856,
+    "v": "L"
+   },
+   {
+    "t": 0.976,
+    "v": "X"
+   },
+   {
+    "t": 1.296,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "S15_01": {
+  "key": "0b92a57f237a",
+  "file": "voice/724-06/cekim/S15_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 3.37,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 2.213,
+    "end": 2.613
+   },
+   {
+    "w": "artık",
+    "start": 2.733,
+    "end": 3.333
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.893,
+    "v": "X"
+   },
+   {
+    "t": 2.213,
+    "v": "M"
+   },
+   {
+    "t": 2.293,
+    "v": "I"
+   },
+   {
+    "t": 2.373,
+    "v": "L"
+   },
+   {
+    "t": 2.533,
+    "v": "I"
+   },
+   {
+    "t": 2.613,
+    "v": "X"
+   },
+   {
+    "t": 2.733,
+    "v": "A"
+   },
+   {
+    "t": 2.773,
+    "v": "L"
+   },
+   {
+    "t": 2.853,
+    "v": "I"
+   },
+   {
+    "t": 2.973,
+    "v": "L"
+   },
+   {
+    "t": 3.093,
+    "v": "X"
+   },
+   {
+    "t": 3.333,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "S16_01": {
+  "key": "4061c2fc045c",
+  "file": "voice/724-06/cekim/S16_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.776,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.646,
+    "end": 0.774
+   },
+   {
+    "w": "artık",
+    "start": 0.854,
+    "end": 1.734
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.646,
+    "v": "M"
+   },
+   {
+    "t": 0.71,
+    "v": "I"
+   },
+   {
+    "t": 0.726,
+    "v": "L"
+   },
+   {
+    "t": 0.758,
+    "v": "I"
+   },
+   {
+    "t": 0.854,
+    "v": "A"
+   },
+   {
+    "t": 0.934,
+    "v": "L"
+   },
+   {
+    "t": 1.094,
+    "v": "I"
+   },
+   {
+    "t": 1.214,
+    "v": "L"
+   },
+   {
+    "t": 1.334,
+    "v": "X"
+   },
+   {
+    "t": 1.734,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "S17_01": {
+  "key": "846327d52252",
+  "file": "voice/724-06/cekim/S17_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.541,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.229,
+    "end": 0.629
+   },
+   {
+    "w": "artık",
+    "start": 0.709,
+    "end": 1.509
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.229,
+    "v": "M"
+   },
+   {
+    "t": 0.309,
+    "v": "I"
+   },
+   {
+    "t": 0.389,
+    "v": "L"
+   },
+   {
+    "t": 0.549,
+    "v": "I"
+   },
+   {
+    "t": 0.709,
+    "v": "A"
+   },
+   {
+    "t": 0.789,
+    "v": "L"
+   },
+   {
+    "t": 0.949,
+    "v": "I"
+   },
+   {
+    "t": 1.069,
+    "v": "L"
+   },
+   {
+    "t": 1.189,
+    "v": "X"
+   },
+   {
+    "t": 1.509,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 18
+ }
+}

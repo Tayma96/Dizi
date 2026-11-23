@@ -587,6 +587,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Metal roller shutters of a small shop slamming down violently all at once at night, loud rattling crash and a heavy metallic bang at the end, short echo"
  },
+ "efekt/el_kepenk_acilma": {
+  "file": "ses/efekt/el_kepenk_acilma.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A small shop's metal roller shutter being slowly raised by hand from outside in the early morning: long rattling metal slats rolling up, steady creaking, ends with a soft clunk at the top, quiet street in the distance"
+ },
  "efekt/el_kikirdama": {
   "file": "ses/efekt/el_kikirdama.mp3",
   "category": "efekt",
@@ -775,6 +782,13 @@
   "duration": 2.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Woman's heeled shoes walking hesitantly into a hospital room on linoleum, few steps then stop"
+ },
+ "efekt/el_toza_donusme": {
+  "file": "ses/efekt/el_toza_donusme.mp3",
+  "category": "efekt",
+  "duration": 5.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Dry insect bodies crumbling into fine dust and sand: soft crackling of brittle chitin turning to powder, gentle sand trickling and pouring onto a tiled floor, airy dry hiss, slowly spreading, magical but quiet"
  },
  "efekt/el_tukurme": {
   "file": "ses/efekt/el_tukurme.mp3",
@@ -1244,6 +1258,13 @@
   "duration": 30.0,
   "loop": false,
   "desc": "B5 dönüşüm altyapısı: muzik/b5_donusum (ElevenLabs Music) 0-13 sn + efekt/korku_drone (kendi sentezimiz) yükselen bölüm; 17.18 sn'de kükremeyle keskin kesilir, sonrası sessiz. -18 LUFS."
+ },
+ "muzik/b6_safak": {
+  "file": "ses/muzik/b6_safak.mp3",
+  "category": "muzik",
+  "duration": 45.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Original instrumental film score cue for the quiet morning after a night of terror: sad yet peaceful, tender and healing. Solo soft felt piano with warm sustained string ensemble, slow tempo around 60 bpm, B minor resolving to D major. Opens very sparse and fragile with single piano notes over a soft string drone, gradually adds cello and violins, swells gently into an emotional warm climax around 26 to 36 seconds with full sustained strings and rich piano chords, then settles into a calm, hopeful, quiet resolution and soft fade. No vocals, no percussion, no drums, intimate and cinematic."
  },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",

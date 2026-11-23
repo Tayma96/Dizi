@@ -1,0 +1,477 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-07",
+ "episodeNo": 7,
+ "title": "Bölüm 7 · Parça 1",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "a",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "Deste",
+   "look": "sicak",
+   "transition": "kesme",
+   "music": {
+    "name": "muzik/banyo_komik",
+    "volume": 0.2
+   },
+   "ambience": {
+    "name": "ortam/banyo_sabah",
+    "volume": 0.25
+   },
+   "isaretler": {
+    "anne_m": {
+     "x": 420,
+     "y": 1900,
+     "size": 1300
+    },
+    "ece_esik": {
+     "x": 800,
+     "y": 1660,
+     "size": 1020
+    },
+    "ece_yan": {
+     "x": 700,
+     "y": 1840,
+     "size": 1240
+    }
+   },
+   "cast": {
+    "anne724": {
+     "mark": "anne_m",
+     "emotion": "notr",
+     "bak": {
+      "x": 0.7,
+      "y": -0.05,
+      "yaw": 0.4
+     }
+    },
+    "ece_ev": {
+     "mark": "ece_esik",
+     "hidden": true,
+     "emotion": "korkmus",
+     "eyesClosed": 0.55,
+     "sacDagin": true
+    }
+   },
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceee uyan kız artık",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "gesture": "elBelde"
+      }
+     },
+     "etiket": "18:00"
+    },
+    {
+     "type": "insert",
+     "kind": "cep_deste",
+     "dur": 1.5
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yuhh",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "ekle": {
+      "kind": "para_say",
+      "text": [
+       "anne"
+      ]
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Eceeee",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "yakin",
+      "on": "anne724",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "prop": "para",
+       "gesture": "tutuyor",
+       "bak": {
+        "x": 0.7,
+        "y": -0.05,
+        "yaw": 0.45
+       }
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 2.0,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_ev": {
+       "hidden": false,
+       "enter": "sag",
+       "mark": "ece_esik",
+       "emotion": "korkmus",
+       "eyesClosed": 0.55,
+       "sacDagin": true,
+       "gesture": "kafaKasi"
+      },
+      "anne724": {
+       "lookAt": "ece_ev"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu paralar nasıl bi marketmiş lan o",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "anne724",
+      "with": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "tutuyor",
+       "prop": "para",
+       "lookAt": "ece_ev"
+      },
+      "ece_ev": {
+       "eyesClosed": 0.3,
+       "lookAt": "anne724"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anneee dev gibi böcek vardı markette ölüyodummm",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "dehset",
+       "eyesClosed": 0,
+       "gesture": "ellerAcik",
+       "gozSok": 0.6,
+       "lookAt": "anne724"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "yakin",
+      "on": "anne724",
+      "move": "sabit"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "alayci",
+       "gesture": "omuzSilk",
+       "prop": "para"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "para diyorum Ece para bu para ne alakaaaa?",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "anne724",
+      "move": "sarsinti"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "tutuyor",
+       "prop": "para"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "çok mu ya o kadar ver bi bakıyım",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "ece_ev",
+      "with": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "mark": "ece_yan",
+       "yuruSure": 0.7,
+       "emotion": "supheli",
+       "gozSok": 0,
+       "gesture": "uzat",
+       "lookAt": "anne724"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "yüz, iki yüz, yüz, iki yüz",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "ekle": {
+      "kind": "para_say",
+      "text": [
+       "ece"
+      ]
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "Oha lan ne çok para",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "mutlu",
+       "gozSok": 1,
+       "prop": "para",
+       "gesture": "tutuyor"
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "aauuv ah ah acıyo",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "cast": {
+      "ece_ev": {
+       "emotion": "aci",
+       "gozSok": 0
+      }
+     },
+     "ekle": {
+      "kind": "kulak_cek"
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "nerden geldi bu para?",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "iki",
+      "on": "anne724",
+      "with": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "rest",
+       "prop": null,
+       "lookAt": "ece_ev"
+      },
+      "ece_ev": {
+       "emotion": "aci",
+       "prop": null,
+       "gesture": "rest",
+       "basEgim": 8
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "şimdi olanları anlatırsam hem bana inanmaz hem de tekrar gitmeme izin vermez",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "dusunceli",
+       "basEgim": 0,
+       "bakSira": [
+        {
+         "at": 0,
+         "x": -0.6,
+         "y": -0.2,
+         "yaw": -0.2
+        },
+        {
+         "at": 2.4,
+         "x": 0.5,
+         "y": -0.25,
+         "yaw": 0.15
+        },
+        {
+         "at": 4.2,
+         "x": -0.6,
+         "y": -0.2,
+         "yaw": -0.2
+        }
+       ]
+      }
+     },
+     "voiceover": true
+    },
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "ama çok para lan",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "yakin",
+      "on": "ece_ev",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_ev": {
+       "emotion": "mutlu",
+       "bak": {
+        "x": 0,
+        "y": -0.35
+       }
+      }
+     }
+    },
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "git elini yüzünü yıka bu paranın hesabını vereceksin bana!",
+     "emotion": "notr",
+     "gapAfter": 0.25,
+     "shot": {
+      "type": "orta",
+      "on": "anne724",
+      "move": "yaklas"
+     },
+     "cast": {
+      "anne724": {
+       "emotion": "ofkeli",
+       "gesture": "elBelde",
+       "lookAt": "ece_ev"
+      }
+     }
+    },
+    {
+     "type": "action",
+     "dur": 1.3,
+     "shot": {
+      "type": "genis",
+      "move": "sabit"
+     },
+     "cast": {
+      "ece_ev": {
+       "mark": "anne_m",
+       "yuruSure": 1.0,
+       "emotion": "uzgun"
+      },
+      "anne724": {
+       "exit": "sag"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "banyo_ayna",
+   "time": "gunduz",
+   "title": "Ayna",
+   "look": "sicak",
+   "transition": "kesme",
+   "cast": {
+    "ece_ev": {
+     "mark": "ece",
+     "emotion": "dusunceli",
+     "sacDagin": true,
+     "bak": {
+      "x": 0,
+      "y": 0
+     }
+    }
+   },
+   "beats": [
+    {
+     "type": "action",
+     "dur": 3.2,
+     "shot": {
+      "type": "orta",
+      "on": "ece_ev",
+      "move": "yaklas"
+     },
+     "cast": {
+      "ece_ev": {
+       "bakSira": [
+        {
+         "at": 0,
+         "x": 0,
+         "y": 0
+        },
+        {
+         "at": 1.2,
+         "x": -0.4,
+         "y": -0.2,
+         "yaw": -0.1
+        },
+        {
+         "at": 2.3,
+         "x": 0,
+         "y": 0
+        }
+       ]
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
