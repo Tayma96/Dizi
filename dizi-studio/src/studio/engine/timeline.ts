@@ -45,7 +45,7 @@ export const buildTimeline = (script: EpisodeScript, manifest: VoiceManifest): T
       let voice: TBeat["voice"];
       if (beat.type === "line") {
         const v = manifest[lineId(scene.id, i)];
-        const sec = v ? v.duration : Math.max(1.2, beat.text.split(" ").length * 0.42);
+        const sec = v ? v.duration : beat.sure !== undefined ? beat.sure : Math.max(1.2, beat.text.split(" ").length * 0.42);
         const gap = beat.gapAfter ?? 0.3;
         dur = Math.round((sec + gap) * fps);
         const vFrom = Math.round(0.08 * fps);

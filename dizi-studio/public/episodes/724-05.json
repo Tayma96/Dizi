@@ -1,0 +1,799 @@
+{
+  "series": "724",
+  "seriesTitle": "7/24",
+  "episode": "724-05",
+  "episodeNo": 5,
+  "title": "Bölüm 5",
+  "endCard": {
+    "text": "7/24 · Bölüm 6 yakında"
+  },
+  "scenes": [
+    {
+      "id": "a",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Sabri abi? (soğuk açılış)",
+      "look": "soguk",
+      "karanlik": 0.12,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "ece_on",
+          "emotion": "korkmus",
+          "pale": 0.35,
+          "sacDagin": true,
+          "onluk": false,
+          "bak": {
+            "x": 0.45,
+            "y": -0.05
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "sabri abi?",
+          "emotion": "notr",
+          "tags": "[scared, whisper, unsure]",
+          "sure": 1.0,
+          "gapAfter": 0.15,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1240,
+              "z": 2.05
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "06:03",
+      "title": "Şaka (sahte Sabri güler)",
+      "look": "tekinsiz",
+      "karanlik": 0.18,
+      "depoAcik": 1,
+      "transition": "kesme",
+      "isaretler": {
+        "depo_on": {
+          "x": 880,
+          "y": 1345,
+          "size": 900
+        },
+        "ece_kasa_on": {
+          "x": 470,
+          "y": 2380,
+          "size": 1620
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri_sahte": {
+          "mark": "depo_on",
+          "emotion": "sahteGulus",
+          "prop": "ambalaj",
+          "kirpmaz": true,
+          "mumParlak": 0.35,
+          "lookAt": "kamera",
+          "bak": {
+            "x": -0.35,
+            "y": 0
+          },
+          "kahkaha": 1,
+          "gesture": "ellerAcik"
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "sabri_sahte",
+          "text": "sakin kız sakin ilk iş günü şakası..   gece vardıyasına ilk defa başlayan herkese yaptığımız şaka",
+          "emotion": "notr",
+          "tags": "[laughing, warm, teasing]",
+          "sure": 5.6,
+          "tasma": true,
+          "gapAfter": -3.2,
+          "shot": {
+            "type": "orta",
+            "on": "sabri_sahte",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 850,
+              "cy": 830,
+              "z": 2.0
+            }
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "ece_yakin",
+          "dur": 1.7,
+          "text": [
+            "korkmus",
+            "supheli",
+            "0.8",
+            "0.45",
+            "0.3"
+          ]
+        },
+        {
+          "type": "action",
+          "dur": 1.6,
+          "shot": {
+            "type": "yakin",
+            "on": "sabri_sahte",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 880,
+              "cy": 720,
+              "z": 2.55
+            }
+          },
+          "cast": {
+            "sabri_sahte": {
+              "kahkaha": 0.6,
+              "gesture": "rest"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Taştaş",
+      "look": "soguk",
+      "karanlik": 0.12,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "ece_on",
+          "emotion": "saskin",
+          "pale": 0.25,
+          "sacDagin": true,
+          "onluk": false,
+          "bak": {
+            "x": 0.45,
+            "y": -0.05
+          },
+          "gesture": "ellerAcik"
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "abi sen benle taştaş mı geçiyorsun",
+          "emotion": "notr",
+          "tags": "[nervous laugh, half relieved, suspicious]",
+          "sure": 2.3,
+          "gapAfter": 0.25,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1255,
+              "z": 1.45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "06:03",
+      "title": "Çay yaptım",
+      "look": "tekinsiz",
+      "karanlik": 0.18,
+      "depoAcik": 1,
+      "transition": "kesme",
+      "isaretler": {
+        "depo_on": {
+          "x": 880,
+          "y": 1345,
+          "size": 900
+        },
+        "ece_kasa_on": {
+          "x": 470,
+          "y": 2380,
+          "size": 1620
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri_sahte": {
+          "mark": "depo_on",
+          "emotion": "sahteGulus",
+          "prop": "ambalaj",
+          "kirpmaz": true,
+          "mumParlak": 0.5,
+          "lookAt": "kamera",
+          "bak": {
+            "x": -0.35,
+            "y": 0
+          },
+          "gesture": "cagir",
+          "kahkaha": 0.35
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "sabri_sahte",
+          "text": "depoya gel çay yaptım içte sakinleş biraz",
+          "emotion": "notr",
+          "tags": "[chuckles, soft, inviting]",
+          "sure": 3.0,
+          "gapAfter": 0.55,
+          "shot": {
+            "type": "yakin",
+            "on": "sabri_sahte",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 870,
+              "cy": 770,
+              "z": 2.2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "e",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Omuzdaki el",
+      "look": "soguk",
+      "karanlik": 0.12,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "ece_on",
+          "emotion": "korkmus",
+          "pale": 0.35,
+          "sacDagin": true,
+          "onluk": false,
+          "bak": {
+            "x": 0.45,
+            "y": -0.05
+          },
+          "hidden": true
+        }
+      },
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "omuz_el",
+          "dur": 1.0,
+          "text": [
+            "0"
+          ]
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "hoaa",
+          "emotion": "notr",
+          "tags": "[startled gasp, short]",
+          "sure": 0.6,
+          "gapAfter": 0.15,
+          "offscreen": true,
+          "ekle": {
+            "kind": "omuz_el",
+            "text": [
+              "1.0"
+            ]
+          }
+        },
+        {
+          "type": "insert",
+          "kind": "omuz_el",
+          "dur": 1.3,
+          "text": [
+            "1.75"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Gerçek Sabri",
+      "look": "normal",
+      "karanlik": 0.12,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri": {
+          "mark": "sabri_kapi",
+          "emotion": "kararli",
+          "yagmur": 1,
+          "bak": {
+            "x": 0.45,
+            "y": 0.3
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "sabri",
+          "text": "Ona inanma kızım, o ben değilim",
+          "emotion": "notr",
+          "tags": "[urgent, low, out of breath]",
+          "sure": 2.4,
+          "gapAfter": 0.35,
+          "door": "acik",
+          "ekle": {
+            "kind": "ece_sirt",
+            "text": [
+              "208"
+            ]
+          },
+          "shot": {
+            "type": "yakin",
+            "on": "sabri",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 490,
+              "cy": 1090,
+              "z": 1.5
+            }
+          },
+          "cast": {
+            "sabri": {
+              "gesture": "isaret",
+              "bakSira": [
+                {
+                  "at": 0,
+                  "x": 0.45,
+                  "y": 0.3,
+                  "yaw": 0.25
+                },
+                {
+                  "at": 1.25,
+                  "x": 1,
+                  "y": 0,
+                  "yaw": 0.5
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "g",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "06:03",
+      "title": "Ne dönüyo",
+      "look": "normal",
+      "karanlik": 0.1,
+      "depoAcik": 1,
+      "transition": "kesme",
+      "isaretler": {
+        "depo_on": {
+          "x": 880,
+          "y": 1345,
+          "size": 900
+        },
+        "ece_kasa_on": {
+          "x": 470,
+          "y": 2380,
+          "size": 1620
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri_sahte": {
+          "mark": "depo_on",
+          "emotion": "sahteGulus",
+          "prop": "ambalaj",
+          "kirpmaz": true,
+          "mumParlak": 0.9,
+          "lookAt": "kamera",
+          "bak": {
+            "x": -0.35,
+            "y": 0
+          },
+          "kahkaha": 0
+        },
+        "ece_sivil": {
+          "mark": "ece_kasa_on",
+          "onde": true,
+          "emotion": "ofkeli",
+          "pale": 0.3,
+          "sacDagin": true,
+          "onluk": false,
+          "gesture": "basTut"
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "ne dönüyo lan burda!",
+          "emotion": "notr",
+          "tags": "[fed up, scared, shouting]",
+          "sure": 1.5,
+          "gapAfter": 0.35,
+          "ekle": {
+            "kind": "sabri_omuz"
+          },
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 600,
+              "cy": 1040,
+              "z": 1.12
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "bakSira": [
+                {
+                  "at": 0,
+                  "x": -0.9,
+                  "y": -0.1,
+                  "yaw": -0.7
+                },
+                {
+                  "at": 0.45,
+                  "x": 1,
+                  "y": 0,
+                  "yaw": 1
+                },
+                {
+                  "at": 0.95,
+                  "x": -0.9,
+                  "y": -0.1,
+                  "yaw": -0.7
+                },
+                {
+                  "at": 1.4,
+                  "x": 1,
+                  "y": 0,
+                  "yaw": 1
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "h",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "06:03",
+      "title": "Dönüşüm",
+      "look": "tekinsiz",
+      "karanlik": 0.18,
+      "depoAcik": 1,
+      "transition": "kesme",
+      "isaretler": {
+        "depo_on": {
+          "x": 880,
+          "y": 1345,
+          "size": 900
+        },
+        "ece_kasa_on": {
+          "x": 470,
+          "y": 2380,
+          "size": 1620
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri_sahte": {
+          "mark": "depo_on",
+          "emotion": "sahteGulus",
+          "prop": "ambalaj",
+          "kirpmaz": true,
+          "mumParlak": 0.35,
+          "lookAt": "kamera",
+          "bak": {
+            "x": -0.35,
+            "y": 0
+          },
+          "hidden": true
+        }
+      },
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "donusum_yuz",
+          "dur": 4.4
+        },
+        {
+          "type": "insert",
+          "kind": "ece_yakin",
+          "dur": 0.9,
+          "text": [
+            "dehset",
+            "dehset",
+            "99",
+            "0.5",
+            "0.9",
+            "goz"
+          ]
+        },
+        {
+          "type": "insert",
+          "kind": "donusum_govde",
+          "dur": 4.6
+        },
+        {
+          "type": "insert",
+          "kind": "bocek_dev",
+          "dur": 2.6
+        }
+      ]
+    },
+    {
+      "id": "i",
+      "set": "market_kapi",
+      "time": "gunduz",
+      "saat": "06:03",
+      "rain": true,
+      "title": "Hayranınım",
+      "look": "tekinsiz",
+      "karanlik": 0.2,
+      "bgBlur": 6,
+      "transition": "kesme",
+      "isaretler": {
+        "ece_on": {
+          "x": 610,
+          "y": 2330,
+          "size": 1560
+        },
+        "sabri_kapi": {
+          "x": 440,
+          "y": 1790,
+          "size": 1180
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "ece_sivil": {
+          "mark": "ece_on",
+          "emotion": "dehset",
+          "pale": 0.7,
+          "sacDagin": true,
+          "onluk": false,
+          "bak": {
+            "x": 0.35,
+            "y": -0.35
+          }
+        }
+      },
+      "beats": [
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "hıığğ",
+          "emotion": "notr",
+          "tags": "[sharp inhale, terrified]",
+          "sure": 0.9,
+          "gapAfter": 0.1,
+          "turb": 0.25,
+          "shot": {
+            "type": "yakin",
+            "on": "ece_sivil",
+            "move": "sabit",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1240,
+              "z": 2.05
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "hik": 0.05
+            }
+          },
+          "ekle": {
+            "kind": "bocek_golge",
+            "text": [
+              "0.6"
+            ]
+          }
+        },
+        {
+          "type": "line",
+          "who": "ece_sivil",
+          "text": "abi vallahi büyük hayranınım.",
+          "emotion": "notr",
+          "tags": "[terrified, forced cheerful, trembling]",
+          "sure": 2.2,
+          "gapAfter": 0.4,
+          "turb": 0.2,
+          "shot": {
+            "type": "orta",
+            "on": "ece_sivil",
+            "move": "yaklas",
+            "kadraj": {
+              "cx": 610,
+              "cy": 1255,
+              "z": 1.45
+            }
+          },
+          "cast": {
+            "ece_sivil": {
+              "emotion": "zorGulumse",
+              "gesture": "ellerKenetli",
+              "sweat": true,
+              "tears": 0.25
+            }
+          },
+          "ekle": {
+            "kind": "bocek_golge",
+            "text": [
+              "1"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "j",
+      "set": "market_kasa",
+      "time": "gunduz",
+      "saat": "06:03",
+      "title": "Son kare",
+      "look": "tekinsiz",
+      "karanlik": 0.18,
+      "depoAcik": 1,
+      "transition": "kesme",
+      "isaretler": {
+        "depo_on": {
+          "x": 880,
+          "y": 1345,
+          "size": 900
+        },
+        "ece_kasa_on": {
+          "x": 470,
+          "y": 2380,
+          "size": 1620
+        }
+      },
+      "ambience": {
+        "name": "efekt/el_market_ortam",
+        "volume": 0.3
+      },
+      "cast": {
+        "sabri_sahte": {
+          "mark": "depo_on",
+          "emotion": "sahteGulus",
+          "prop": "ambalaj",
+          "kirpmaz": true,
+          "mumParlak": 0.35,
+          "lookAt": "kamera",
+          "bak": {
+            "x": -0.35,
+            "y": 0
+          },
+          "hidden": true
+        }
+      },
+      "beats": [
+        {
+          "type": "insert",
+          "kind": "bocek_yakin",
+          "dur": 2.2
+        },
+        {
+          "type": "action",
+          "dur": 0.5,
+          "siyah": true
+        }
+      ]
+    }
+  ]
+}

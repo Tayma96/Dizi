@@ -335,6 +335,19 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
       yaw = pv.yaw + (yaw - pv.yaw) * gk;
       lookX = pv.lookX + (lookX - pv.lookX) * gk;
     }
+    // 7/24 B5: vuruş içi bakış anahtar kareleri (yumuşak, hızlı baş çevirme)
+    if (st.bakSira && st.bakSira.length) {
+      const tt = bf / fps;
+      const K = st.bakSira;
+      let i = 0;
+      while (i < K.length - 1 && tt >= K[i + 1].at) i++;
+      const A = K[i], B = K[Math.min(K.length - 1, i + 1)];
+      const u = B === A || tt < A.at ? (tt < A.at ? 0 : 1) : Math.min(1, (tt - A.at) / 0.18);
+      const e = u * u * (3 - 2 * u);
+      const yA = A.yaw ?? A.x * 0.5, yB = B.yaw ?? B.x * 0.5;
+      if (tt < A.at && i === 0) { lookX = lookX + (A.x - lookX) * 0; } else { lookX = A.x + (B.x - A.x) * (B === A ? 0 : e); yaw = yA + (yB - yA) * (B === A ? 0 : e); }
+    }
+    const taslakAgiz = tb.beat.type === "line" && tb.beat.who === id && !tb.beat.voiceover && !tb.voice && tb.beat.sure !== undefined;
     const ang = lieAng[id];
     return (
       <React.Fragment key={id}>
@@ -354,7 +367,7 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             hideLegs: ang !== undefined,
             golgesiz: ang !== undefined,
             tilt: ang !== undefined ? -0.72 * ang : st.tik === "sallan" ? Math.sin(frame / 6) * 11 : st.basEgim !== undefined ? (pst?.basEgim === st.basEgim ? st.basEgim : interpolate(bf, [0, Math.round(0.8 * fps)], [pst?.basEgim ?? 0, st.basEgim], { ...clamp, easing: (t) => t * t * (3 - 2 * t) })) : undefined,
-            talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : undefined,
+            talk: st.tik === "konus" ? new Array(60).fill(0).map((_, k): [number, number] => [k * 70, k * 70 + 42]) : taslakAgiz ? [[tb.from + Math.round(0.08 * fps), tb.from + Math.round((0.08 + ((tb.beat as { sure?: number }).sure ?? 1)) * fps)]] : undefined,
             yaw,
             lookX,
             lookY: st.bak ? st.bak.y : st.tik === "tavan" ? -1 : undefined,
@@ -378,6 +391,11 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
             wet: st.wet,
             ...yeniB4(st, pst, bf, tb.dur),
             eyesClosed: st.eyesClosed,
+            kirpmaz: st.kirpmaz,
+            mumParlak: st.mumParlak,
+            yagmur: st.yagmur,
+            kahkaha: st.kahkaha,
+            hik: st.hik !== undefined && pst?.hik !== st.hik ? (bf / fps - st.hik) / 0.8 : undefined,
             speech: speaking ? { cues: tb.voice!.mouth, from: tb.from + tb.voice!.from } : undefined,
             seed: look.name.length * 11 + id.length,
           }}
@@ -441,13 +459,22 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
           </>
         ) : (
           <>
+            {scene.bgBlur ? (
+              <div style={{ position: "absolute", inset: 0, filter: `blur(${scene.bgBlur}px)` }}>
+                <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow} market={marketEk}>
+                  {outsideIds.map(renderChar)}
+                </SetLayer>
+              </div>
+            ) : (
             <SetLayer name={scene.set as keyof typeof SET_INFO} layer="bg" time={scene.time} rain={scene.rain} flash={flash} doorOpen={doorOpen} kus={kusNode} saat={saatNow} sallanan={tb.beat.sarsil} kaydir={scene.kaydirma ? (frame / fps) * scene.kaydirma : undefined} tv={tvNow} turb={tb.beat.turb} kemer={kemerNow} iz={izNow} market={marketEk}>
               {outsideIds.map(renderChar)}
             </SetLayer>
+            )}
             {scene.direk !== undefined ? <Direk x={scene.direk} /> : null}
             {(scene.set as string) === "market_kapi" && kepenkNow > 0 ? <Kepenk k={kepenkNow} /> : null}
-            {insideIds.map(renderChar)}
+            {insideIds.filter((id) => !tb.cast[id]?.onde).map(renderChar)}
             <SetLayer name={scene.set as keyof typeof SET_INFO} layer="fg" time={scene.time} doorOpen={doorOpen} turb={tb.beat.turb} fincanElde={Object.values(tb.cast).some((c) => c.prop === "fincan")} market={marketEk} />
+            {insideIds.filter((id) => tb.cast[id]?.onde).map(renderChar)}
           </>
         )}
       </AbsoluteFill>
@@ -507,7 +534,8 @@ const SceneView: React.FC<{ ts: TScene; colors: Record<string, string> }> = ({ t
         </Sequence>
       ))}
       {ts.beats.filter((b) => b.beat.type === "line" && b.beat.tasma).map((b) => {
-        const d = b.voice ? Math.max(b.dur, b.voice.from + b.voice.dur + Math.round(0.25 * fps)) : b.dur;
+        const sureT = (b.beat as { sure?: number }).sure;
+        const d = b.voice ? Math.max(b.dur, b.voice.from + b.voice.dur + Math.round(0.25 * fps)) : sureT !== undefined ? Math.max(b.dur, Math.round((sureT + 0.33) * fps)) : b.dur;
         const lb = b.beat as Extract<Beat, { type: "line" }>;
         return (
           <Sequence key={`tasma${b.index}`} from={b.from} durationInFrames={d} layout="none">

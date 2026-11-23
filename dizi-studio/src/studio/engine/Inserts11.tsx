@@ -5,10 +5,11 @@ import { castById } from "../cast";
 import { Character } from "../rig/Character";
 import type { Emotion } from "../rig/types";
 import { Market724BG } from "../sets/market724";
-import { BocekKafa, DevBocek, K, clamp01, sstep, yay } from "./bocek";
+import { Anten, BocekKafa, DevBocek, K, clamp01, kapsul, sstep, yay } from "./bocek";
+import { Bas25D, Govde25D } from "../rig/head25d";
 
-export type Insert11Kind = "omuz_el" | "donusum_yuz" | "donusum_govde" | "bocek_dev" | "bocek_yakin" | "ece_yakin" | "ece_sirt" | "sabri_omuz";
-export const INSERT11_KINDS: Insert11Kind[] = ["omuz_el", "donusum_yuz", "donusum_govde", "bocek_dev", "bocek_yakin", "ece_yakin", "ece_sirt", "sabri_omuz"];
+export type Insert11Kind = "omuz_el" | "donusum_yuz" | "donusum_govde" | "bocek_dev" | "bocek_yakin" | "ece_yakin" | "ece_sirt" | "sabri_omuz" | "bocek_golge";
+export const INSERT11_KINDS: Insert11Kind[] = ["omuz_el", "donusum_yuz", "donusum_govde", "bocek_dev", "bocek_yakin", "ece_yakin", "ece_sirt", "sabri_omuz", "bocek_golge"];
 
 /** Kontrol: dev böcek (açık / yarı açık / katlı) + kafa yakın */
 export const BocekSheet: React.FC = () => {
@@ -581,10 +582,380 @@ const DonusumGovde: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
   );
 };
 
+
+/* =====================================================================================
+ *  OMUZ_EL: kamera Ece'ye dönük (arkasında açık kapı, şafak). Ece bir adım atar; kadraj solundan
+ *  ıslak gri hırkalı bir kol girer, el sağ omzunu kavrar (sahibi görünmez). Ece sıçrayarak irkilir
+ *  ("hoaa"), önce gözleri sonra başı kadraj soluna (sağ omzunun üstünden) döner.
+ *  text[0]: zaman kayması (sn) · text[1]: irkilme anı (vars. 1.0) · text[2]: dönüş başlangıcı (vars. 1.7)
+ * ===================================================================================== */
+const SABRI_TEN = "#d8a47c", SABRI_TEN2 = "#c08a64", HIRKA = "#5e6064", HIRKA2 = "#46484c";
+/** Sabri'nin eli omuzda (Ece rig birimi). k: kavrama 0..1. Parmaklar omzun önüne sarkar, baş parmak arkada. */
+const OmuzEl: React.FC<{ x: number; y: number; k: number; t: number }> = ({ x, y, k, t }) => {
+  const bas = 4 * k; // kavrarken parmaklar kumaşa gömülür
+  const parmak = (i: number) => {
+    const px = x - 22 + i * 15, py = y + 6;
+    const L1 = [30, 34, 32, 26][i], L2 = [22, 26, 24, 19][i];
+    const a1 = 96 - i * 6 - 12 * k, a2 = 118 - i * 4 - 26 * k;
+    const j: Pt = [px + Math.cos((a1 * Math.PI) / 180) * L1, py + Math.sin((a1 * Math.PI) / 180) * L1 + bas];
+    const u: Pt = [j[0] + Math.cos((a2 * Math.PI) / 180) * L2, j[1] + Math.sin((a2 * Math.PI) / 180) * L2];
+    const w = [7.5, 8, 7.8, 6.6][i];
+    return (
+      <g key={i}>
+        <path d={kapsul([px, py], j, w, w * 0.92)} fill={i % 2 ? SABRI_TEN : "#d09c74"} stroke={OUTR} strokeWidth={2.6} />
+        <path d={kapsul(j, u, w * 0.92, w * 0.8)} fill={i % 2 ? SABRI_TEN : "#d09c74"} stroke={OUTR} strokeWidth={2.6} />
+        <path d={`M ${j[0] - w * 0.6} ${j[1] - 1} q ${w * 0.6} 3 ${w * 1.2} 0`} stroke={SABRI_TEN2} strokeWidth={1.6} fill="none" />
+        <ellipse cx={u[0] + 1} cy={u[1] + 1} rx={w * 0.55} ry={w * 0.45} fill="#ead2bc" stroke={SABRI_TEN2} strokeWidth={1} />
+      </g>
+    );
+  };
+  return (
+    <g>
+      {/* parmakların bastırdığı kazak kıvrımları */}
+      <path d={`M ${x - 30} ${y + 34 + bas} q 8 6 16 0 M ${x - 6} ${y + 40 + bas} q 8 6 16 0 M ${x + 16} ${y + 36 + bas} q 6 5 12 0`} stroke="#8a6418" strokeWidth={2.2} fill="none" opacity={0.6 * k} />
+      {/* el sırtı (omzun üstünde, arkadan uzanır) */}
+      <path d={`M ${x - 40} ${y - 6} Q ${x - 30} ${y - 26} ${x + 2} ${y - 24} Q ${x + 34} ${y - 22} ${x + 40} ${y - 4} Q ${x + 36} ${y + 12} ${x + 20} ${y + 12} L ${x - 30} ${y + 14} Q ${x - 44} ${y + 8} ${x - 40} ${y - 6} Z`} fill={SABRI_TEN} stroke={OUTR} strokeWidth={3} strokeLinejoin="round" />
+      <path d={`M ${x - 20} ${y - 12} q 14 -6 30 -2 M ${x - 10} ${y - 2} q 12 -4 24 0`} stroke={SABRI_TEN2} strokeWidth={1.8} fill="none" opacity={0.8} />
+      <path d={`M ${x - 14} ${y - 18} q 10 -2 18 2`} stroke="#6a8aa8" strokeWidth={1.6} fill="none" opacity={0.5} />
+      {[0, 1, 2, 3].map(parmak)}
+      {/* yağmur damlaları elin sırtında */}
+      <path d={`M ${x + 8} ${y - 20} q -2 5 0 7 q 2 -2 0 -7 z M ${x - 22} ${y - 10} q -2 5 0 7 q 2 -2 0 -7 z`} fill="#e0f0ff" stroke="#6fa8cf" strokeWidth={1} />
+      <circle cx={x + 30 + Math.sin(t * 3) * 0.5} cy={y + 2} r={1.6} fill="#fff" opacity={0.6} />
+    </g>
+  );
+};
+
+const OmuzElSahne: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f0 = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const kay = Number(text?.[0] || 0);
+  const t = f0 / fps + kay;
+  const f = f0 + Math.round(kay * fps);
+  const ece = castById("ece_sivil");
+  const tI = Number(text?.[1] ?? 1.0);
+  const tD = Number(text?.[2] ?? 1.7);
+  // adım: kameraya doğru (ölçek büyür), iniş-kalkış
+  const adim = sstep(0.4, 0.85, t);
+  const bob = -10 * Math.sin(Math.PI * clamp01((t - 0.4) / 0.45));
+  // el: kadraj dışından hızlı girer, omza konar, kavrar
+  const elU = sstep(tI - 0.24, tI - 0.06, t);
+  const kavra = sstep(tI - 0.06, tI + 0.06, t);
+  // irkilme: sıçrama (yaylı), omuzlar kalkar, baş geri
+  const ir = t >= tI ? Math.exp(-(t - tI) * 6.5) * Math.sin(Math.min(Math.PI, (t - tI) * 16)) : 0;
+  const omuz = 26 * sstep(tI, tI + 0.08, t) * (1 - 0.55 * sstep(tI + 0.5, tI + 1.0, t));
+  // dönüş: önce gözler (0.25 sn önde), sonra baş, sonra omuzlar
+  const dU = clamp01((t - tD) / 0.75);
+  const dE = dU * dU * (3 - 2 * dU);
+  const aci = -118 * dE + 6 * Math.sin(Math.PI * clamp01((t - tD - 0.62) / 0.3)) * sstep(tD + 0.6, tD + 0.75, t);
+  const gozU = sstep(tD - 0.3, tD - 0.05, t);
+  const lookX = 0.5 * (1 - sstep(tI - 0.05, tI + 0.15, t)) - 1 * gozU * (1 - dE * 0.6);
+  const govdeAci = -34 * sstep(tD + 0.15, tD + 0.9, t);
+  const emo: Emotion = t < tI ? "korkmus" : t < tI + 0.65 ? "dehset" : "korkmus";
+  const vis = t >= tI + 0.02 && t < tI + 0.26 ? "O" : t >= tI + 0.26 && t < tI + 0.55 ? "A" : null;
+  const S = 2.55 * (1 + 0.07 * adim);
+  const X0 = 610, Y0 = 880 + bob - 70 * ir;
+  // saç: irkilmede kuyruk zıplar, dönüşte savrulur
+  const sal = -26 * Math.sin(Math.PI * dU) + 10 * Math.exp(-Math.max(0, t - tI) * 4) * Math.sin(Math.max(0, t - tI) * 14);
+  const ileri = 14 * ir;
+  const sars = t >= tI && t < tI + 0.14 ? 14 : 0;
+  const shx = (random(`oe${f}`) - 0.5) * sars + Math.sin(t * 1.3) * 3, shy = (random(`oy${f}`) - 0.5) * sars + Math.sin(t * 1.7) * 2;
+  // el konumu (Ece rig biriminde): sağ omuz (kadraj solu) üstü; omuzla birlikte kalkar, dönüşte omuz uzaklaşır
+  const omzX = 200 - 64 * Math.cos((govdeAci * Math.PI) / 180), omzY = 330 - omuz;
+  const elX = omzX + (1 - elU) * -260, elY = omzY - 2 + (1 - elU) * -60;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0c1018", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <filter id="oebl"><feGaussianBlur stdDeviation="9" /></filter>
+          <filter id="oebl2"><feGaussianBlur stdDeviation="26" /></filter>
+          <radialGradient id="oekapi" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#7a9ad8" stopOpacity={0.55} /><stop offset="1" stopColor="#7a9ad8" stopOpacity={0} /></radialGradient>
+          <radialGradient id="oevin" cx="0.55" cy="0.4" r="0.8"><stop offset="0.5" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.6} /></radialGradient>
+        </defs>
+        <g transform={`translate(${shx} ${shy})`}>
+          {/* arkada kapı (flu): açık, şafak, yağmur */}
+          <g filter="url(#oebl)" transform="translate(540 900) scale(1.55) translate(-560 -880)">
+            <Market724BG view="kapi" frame={f} doorOpen={0.72} saat="06:03" iz={1} turb={0} />
+          </g>
+          <ellipse cx={470} cy={980} rx={520} ry={760} fill="url(#oekapi)" opacity={0.75} />
+          {/* kadraj solunda, Ece'nin arkasında: elin sahibinin flu gövdesi (kimliği seçilmez) */}
+          <g filter="url(#oebl2)" opacity={elU}>
+            <path d={`M -200 ${520 - 40 * elU} Q 60 ${470 - 40 * elU} 120 ${700} L 150 1920 L -200 1920 Z`} fill="#2a2c30" />
+          </g>
+          <g transform={`translate(${X0} ${Y0}) scale(${S}) translate(-200 -300)`}>
+            <Bas25D look={ece} aci={aci} katman="arka" kuyrukIleri={ileri} kuyrukSal={sal} uid="oek" />
+            {/* kol: omzun arkasından kadraj soluna (ıslak hırka); Ece'nin gövdesinin arkasında */}
+            {elU > 0 ? (
+              <g>
+                <path d={`M ${elX - 4} ${elY - 22} L ${elX - 330} ${elY - 150} L ${elX - 340} ${elY - 64} L ${elX - 10} ${elY + 18} Z`} fill={HIRKA} stroke={OUTR} strokeWidth={3.5} strokeLinejoin="round" />
+                <path d={`M ${elX - 60} ${elY - 40} L ${elX - 300} ${elY - 140}`} stroke={HIRKA2} strokeWidth={6} opacity={0.7} />
+                {[0, 1, 2, 3, 4].map((i) => <circle key={i} cx={elX - 80 - i * 50} cy={elY - 40 - i * 20 + (i % 2) * 14} r={3} fill="#c8dcf0" opacity={0.6} />)}
+                <path d={`M ${elX - 36} ${elY - 26} L ${elX - 44} ${elY + 10}`} stroke={HIRKA2} strokeWidth={10} strokeLinecap="round" />
+              </g>
+            ) : null}
+            <Govde25D look={ece} aci={govdeAci} omuz={omuz} uid="oeg" />
+            <g transform={`translate(0 ${-omuz * 0.7 - 6 * ir})`}>
+              <Bas25D look={ece} aci={aci} emotion={emo} lookX={Math.max(-1, Math.min(1, lookX))} lookY={-0.05 - 0.1 * ir} pale={0.35} dagin={1} kuyrukIleri={ileri} kuyrukSal={sal} isik={0.85} kenar={0.9} viseme={vis as never} uid="oeb" />
+            </g>
+            {elU > 0 ? <OmuzEl x={elX + 8} y={elY} k={kavra} t={t} /> : null}
+            {/* irkilmede fırlayan ter damlası (komik vurgu) */}
+            {t > tI && t < tI + 0.45 ? (() => {
+              const k = (t - tI) / 0.45;
+              const x = 290 + 60 * k, y = 120 - 90 * k + 160 * k * k;
+              return <path d={`M ${x} ${y} q -7 15 0 21 q 7 -6 0 -21 z`} fill="#bfe3ff" stroke="#6fa8cf" strokeWidth={2.5} opacity={1 - k * k} transform={`rotate(${30 * k} ${x} ${y})`} />;
+            })() : null}
+          </g>
+        </g>
+        <rect width={1080} height={1920} fill="url(#oevin)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+
+/* =====================================================================================
+ *  BOCEK_DEV: alt açıdan geniş (kapı tarafından depoya). Önde Ece'nin sırtı (ölçek), arkada tavana
+ *  dikilen dev böcek: kanatlar kabarır, tıslar (mandibulalar ardına kadar), baş Ece'ye doğru eğilir.
+ *  text[0]: zaman kayması
+ * ===================================================================================== */
+const BocekDev: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f0 = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const kay = Number(text?.[0] || 0);
+  const t = f0 / fps + kay;
+  const f = f0 + Math.round(kay * fps);
+  const ece = castById("ece_sivil");
+  const uid = "bd";
+  const fx = 640, fyy = 1640, bgZ = 1.15;
+  const bs = (1224 / 1010) * bgZ * (1 + 0.015 * yay(t / 0.5, 0.5, 12) - 0.015);
+  const tis = sstep(0.7, 0.85, t) * (1 - 0.5 * sstep(1.6, 2.2, t));
+  const kanat = 0.55 + 0.45 * sstep(0.55, 0.85, t) - 0.25 * sstep(1.6, 2.4, t);
+  const egil = 0.15 + 0.35 * sstep(1.2, 2.4, t);
+  const fl = random(`bd${Math.floor(f / 2)}`) < 0.18 + 0.3 * tis ? 0.45 : 1;
+  const z = 1 + 0.06 * sstep(0, 2.6, t);
+  const sars = tis > 0.5 && t < 1.1 ? 10 * (1 - sstep(0.85, 1.1, t)) : 0;
+  const shx = (random(`bx${f}`) - 0.5) * sars, shy = (random(`by${f}`) - 0.5) * sars;
+  // Ece (arkadan): korkuyla yarım adım geri, başı yukarı, omuzlar kalkık
+  const geri = sstep(0.75, 1.2, t);
+  const S = 2.1 * (1 - 0.04 * geri);
+  const EX = 290 - 20 * geri, EY = 1450 + 30 * geri;
+  const tit = Math.sin(t * 40) * 1.2;
+  const bocek = <DevBocek t={t + 7} acil={1} kanat={kanat} mand={0.35 + 0.65 * tis} egil={egil} anten={820} antenSal={1.3} parlak={1} salya={1} isik={fl} kalinti={1} saldir={sstep(1.0, 2.0, t)} uid={uid} />;
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0a0b0d", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <linearGradient id={`${uid}golG`} x1="0" y1="0" x2="0" y2="1"><stop offset="0.25" stopColor="#fff" stopOpacity={0} /><stop offset="1" stopColor="#fff" stopOpacity={0.66} /></linearGradient>
+          <mask id={`${uid}golM`} maskUnits="userSpaceOnUse" x={-2000} y={-2000} width={6000} height={6000}><rect x={-2000} y={200} width={6000} height={1600} fill={`url(#${uid}golG)`} /></mask>
+          <filter id={`${uid}siyah`}><feColorMatrix type="matrix" values="0 0 0 0 0.02  0 0 0 0 0.01  0 0 0 0 0.02  0 0 0 1 0" /></filter>
+          <filter id={`${uid}bl`}><feGaussianBlur stdDeviation="3" /></filter>
+          <radialGradient id={`${uid}vin`} cx="0.55" cy="0.4" r="0.8"><stop offset="0.45" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.82} /></radialGradient>
+        </defs>
+        <g transform={`translate(${540 + shx} ${960 + shy}) scale(${z}) translate(-540 -960)`}>
+          <DepoArka f={f} hx={880} hy={1345} z={bgZ} sx={fx} sy={fyy} blur={2.5} turb={0} uid={uid} />
+          <ellipse cx={fx} cy={fyy + 6} rx={440} ry={40} fill="#000" opacity={0.4} filter={`url(#${uid}bl)`} />
+          <g transform={`translate(${fx - 360} ${fyy + 2}) scale(1.4)`}><DeriYigin t={t} /></g>
+          <g transform={`translate(${fx + 330} ${fyy + 2}) scale(-1.3 1.3)`}><DeriYigin t={t} /></g>
+          <g transform={`translate(${fx} ${fyy}) scale(${bs})`}>{bocek}</g>
+          <g mask={`url(#${uid}golM)`}><g transform={`translate(${fx} ${fyy}) scale(${bs})`} filter={`url(#${uid}siyah)`}>{bocek}</g></g>
+          {/* çikolata ambalajı yerde (sahte Sabri'nin elinden düştü) */}
+          <g transform={`translate(${fx + 170} ${fyy - 6}) rotate(78) scale(1.2)`}>
+            <path d="M -12 -40 L 12 -38 L 11 10 L -11 9 Z" fill="#5a2a8a" stroke={OUTR} strokeWidth={2.5} />
+            <rect x={-11} y={-20} width={22} height={11} fill="#f2c21a" />
+          </g>
+        </g>
+        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.7} />
+        <rect width={1080} height={1920} fill="#2a6040" opacity={0.07} />
+        {/* ön plan: Ece arkadan (ölçek için net) */}
+        <g transform={`translate(${EX + tit} ${EY}) scale(${S}) translate(-200 -300)`}>
+          <Bas25D look={ece} aci={176} katman="arka" kuyrukSal={4 * Math.sin(t * 3)} kuyrukIleri={-6} uid="bdek" />
+          <Govde25D look={ece} aci={178} omuz={10 + 8 * geri} uid="bdeg" />
+          <g transform={`rotate(-7 200 300) translate(0 ${-8 - 6 * geri})`}>
+            <Bas25D look={ece} aci={176} emotion="dehset" pale={0.5} dagin={1} kuyrukSal={4 * Math.sin(t * 3)} kuyrukIleri={-6} isik={0.5} kenar={0.6} uid="bdeb" />
+          </g>
+        </g>
+        <rect width={1080} height={1920} fill={`url(#${uid}vin)`} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/* =====================================================================================
+ *  BOCEK_YAKIN: Ece'nin gözünden. Böceğin kafası iner, merakla başını yana eğer, antenler kameraya
+ *  (Ece'ye) uzanır, mandibulalar yavaşça açılır. Son karede kesme (çözülmemiş soru). text[0]: kayma
+ * ===================================================================================== */
+const BocekYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f0 = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const kay = Number(text?.[0] || 0);
+  const t = f0 / fps + kay;
+  const f = f0 + Math.round(kay * fps);
+  const uid = "by";
+  const in_ = yay(t / 0.9, 0.55, 8);
+  const egim = 19 * sstep(0.7, 1.15, t) + 2 * Math.sin(t * 2.2) * sstep(1.2, 1.6, t);
+  const sc = 3.5 + 0.7 * in_ + 0.3 * sstep(1.4, 2.2, t);
+  const y = 540 + 290 * in_;
+  const mand = 0.15 + 0.6 * sstep(1.1, 2.0, t);
+  const fl = random(`by${Math.floor(f / 2)}`) < 0.16 ? 0.5 : 1;
+  const uzan = sstep(0.4, 1.6, t);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#07080a", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <radialGradient id={`${uid}vin`} cx="0.5" cy="0.45" r="0.7"><stop offset="0.4" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.85} /></radialGradient>
+          <linearGradient id={`${uid}tavan`} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#c8ccce" /><stop offset="1" stopColor="#5a6064" /></linearGradient>
+          <filter id={`${uid}bl`}><feGaussianBlur stdDeviation="10" /></filter>
+          <filter id={`${uid}bl2`}><feGaussianBlur stdDeviation="4" /></filter>
+        </defs>
+        {/* tavan ve titreyen floresan (alt açı) */}
+        <rect width={1080} height={1920} fill={`url(#${uid}tavan)`} opacity={0.55 * fl} />
+        <rect x={120} y={60} width={840} height={70} rx={10} fill="#ffffff" opacity={0.9 * fl} filter={`url(#${uid}bl)`} />
+        <g transform={`translate(540 ${y}) rotate(${egim}) scale(${sc})`}>
+          {/* pronotum kenarı (arkada, başın üstünde) */}
+          <path d="M -230 -40 C -240 -180 -120 -260 0 -262 C 120 -260 240 -180 230 -40 Z" fill={K.k2} stroke={K.out} strokeWidth={5} />
+          <path d="M -214 -60 C -222 -170 -110 -240 0 -242" stroke={K.kenar} strokeWidth={10} fill="none" />
+          <path d="M -150 -200 Q -40 -250 90 -236" stroke={K.parla} strokeWidth={8} fill="none" opacity={0.5 * fl} strokeLinecap="round" />
+          <BocekKafa t={t + 3} mand={mand} anten={0} parlak={1} salya={1} isik={fl} uid={`${uid}k`} siper={0.35} yansima={1} />
+        </g>
+        {/* antenler: yukarıdan, kameraya doğru uzanır (ön planda kalın, flu) */}
+        <g transform={`translate(540 ${y}) rotate(${egim})`}>
+          <Anten kok={[-46 * sc, -118 * sc]} a0={-118} L={1500} buk={-250 + 70 * uzan} t={t} faz={0.4} w={4.6} sal={1.6} seg={40} />
+          <Anten kok={[46 * sc, -118 * sc]} a0={-62} L={1500} buk={250 - 70 * uzan} t={t} faz={2.4} w={4.6} sal={1.6} seg={40} />
+        </g>
+        <rect width={1080} height={1920} fill="#000" opacity={(1 - fl) * 0.6} />
+        <rect width={1080} height={1920} fill={`url(#${uid}vin)`} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+/* =====================================================================================
+ *  ECE_YAKIN: Ece'nin tepkisi (kamera ona dönük, arkada açık kapı). rig (önden).
+ *  text: [duygu1, duygu2, geçiş sn, bakışX, solgunluk, ek: "hik<sn>" nefes çekme | "ter"]
+ * ===================================================================================== */
+const EceYakin: React.FC<{ dur: number; text?: string[] }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const ece = castById("ece_sivil");
+  const e1 = (text?.[0] || "korkmus") as Emotion, e2 = (text?.[1] || e1) as Emotion;
+  const t2 = Number(text?.[2] ?? 99);
+  const lx = Number(text?.[3] ?? 0.45), pale = Number(text?.[4] ?? 0.3);
+  const ek = text?.[5] || "";
+  const hikT = ek.startsWith("hik") ? Number(ek.slice(3) || 0.1) : -1;
+  const size = 2900;
+  const z = 1 + 0.04 * (t / 3);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0c1018", overflow: "hidden" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <filter id="eybl"><feGaussianBlur stdDeviation="9" /></filter>
+          <radialGradient id="eykapi" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stopColor="#7a9ad8" stopOpacity={0.55} /><stop offset="1" stopColor="#7a9ad8" stopOpacity={0} /></radialGradient>
+        </defs>
+        <g filter="url(#eybl)" transform={`translate(540 900) scale(${1.55 * z}) translate(-560 -880)`}>
+          <Market724BG view="kapi" frame={f} doorOpen={0.72} saat="06:03" iz={1} turb={0} />
+        </g>
+        <ellipse cx={470} cy={980} rx={520} ry={760} fill="url(#eykapi)" opacity={0.7} />
+      </svg>
+      <div style={{ position: "absolute", left: 540 - 200 * (size / 1000) * z, top: 740 - 200 * (size / 1000) * z, transform: `scale(${z})`, transformOrigin: "0 0" }}>
+        <Character look={ece} size={size} pose={{ emotion: t < t2 ? e1 : e2, lookX: lx, lookY: -0.05, pale, sacDagin: true, golgesiz: true, seed: 41, hik: hikT >= 0 && t > hikT ? (t - hikT) / 0.8 : undefined, sweat: ek === "ter", gozSok: ek === "goz" ? Math.min(1, t / 0.12) : undefined }} />
+      </div>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse at 52% 42%, rgba(0,0,0,0) 52%, rgba(0,0,0,0.55) 100%)" }} />
+    </AbsoluteFill>
+  );
+};
+
+/* =====================================================================================
+ *  ÖN PLAN KATMANLARI (saydam; motorda `ekle` ile sahnenin üstüne biner)
+ *  ece_sirt:   Ece arkadan, kadrajın sağ altında, başı sola (gerçek Sabri'ye) dönük. text[0]: baş açısı
+ *  sabri_omuz: gerçek Sabri'nin flu ensesi ve ıslak omzu, kadrajın sol kenarında (OTS)
+ * ===================================================================================== */
+const EceSirt: React.FC<{ text?: string[] }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const ece = castById("ece_sivil");
+  const aci = Number(text?.[0] ?? 206);
+  const nef = Math.sin(t * 5.5) * 2.5;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs><filter id="esbl"><feGaussianBlur stdDeviation="2.5" /></filter></defs>
+        <g filter="url(#esbl)" transform={`translate(900 ${1420 + nef}) scale(2.9) translate(-200 -300)`}>
+          <Bas25D look={ece} aci={aci} katman="arka" kuyrukSal={3 * Math.sin(t * 2)} uid="esk" />
+          <Govde25D look={ece} aci={190} omuz={8 + nef * 0.4} uid="esg" />
+          <Bas25D look={ece} aci={aci} emotion="korkmus" pale={0.35} dagin={1} kuyrukSal={3 * Math.sin(t * 2)} isik={0.6} kenar={1} uid="esb" />
+        </g>
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+const SabriOmuz: React.FC = () => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const nef = Math.sin(t * 4.2) * 5;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs><filter id="sobl"><feGaussianBlur stdDeviation="16" /></filter></defs>
+        <g filter="url(#sobl)" transform={`translate(0 ${nef})`}>
+          {/* ıslak hırka omzu */}
+          <path d="M -160 1920 L -160 980 Q -40 880 150 900 Q 300 930 330 1100 L 360 1920 Z" fill="#3e4044" />
+          <path d="M 40 920 Q 200 930 290 1060" stroke="#6a6e74" strokeWidth={30} fill="none" opacity={0.6} />
+          {/* kel ense, kulak üstü kır saç, yağmur parlaması */}
+          <ellipse cx={90} cy={720} rx={190} ry={215} fill="#b88a68" />
+          <path d="M -90 760 Q -60 900 60 930 Q 190 930 260 820 Q 250 900 150 960 Q 20 990 -90 900 Z" fill="#8a847c" />
+          <ellipse cx={60} cy={590} rx={70} ry={26} fill="#fff" opacity={0.45} />
+          <ellipse cx={268} cy={760} rx={30} ry={52} fill="#a8785a" />
+        </g>
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+
+/** bocek_golge (ön plan, saydam): kadrajın üstünden sarkan dev böceğin gölgesi ve yokladığı anten uçları;
+ *  floresan titreşimi. text[0]: antenlerin yaklaşma çarpanı (vars. 1) */
+const BocekGolge: React.FC<{ text?: string[] }> = ({ text }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const k = Number(text?.[0] ?? 1);
+  const fl = random(`bg${Math.floor(f / 2)}`) < 0.15 ? 1 : 0;
+  const in_ = sstep(0, 0.8, t) * k;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%">
+        <defs>
+          <linearGradient id="bggol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#05030a" stopOpacity={0.85} /><stop offset="0.45" stopColor="#05030a" stopOpacity={0.25} /><stop offset="1" stopColor="#05030a" stopOpacity={0} /></linearGradient>
+          <filter id="bggbl"><feGaussianBlur stdDeviation="1.6" /></filter>
+        </defs>
+        {/* böceğin başı ve pronotumunun gölgesi (üstten) */}
+        <rect width={1080} height={1920} fill="url(#bggol)" opacity={0.7 + 0.2 * Math.sin(t * 2.6)} />
+        <ellipse cx={560 + 30 * Math.sin(t * 1.3)} cy={-60} rx={620} ry={330} fill="#05030a" opacity={0.55} />
+        {/* anten uçları kadrajın üstünden iner, Ece'nin yüzünün önünde yoklar */}
+        <g filter="url(#bggbl)">
+          <Anten kok={[250, -120]} a0={74 - 8 * in_} L={640 + 300 * in_} buk={80 + 40 * Math.sin(t * 1.7)} t={t} faz={0.3} w={3.6} sal={1.8} seg={30} />
+          <Anten kok={[860, -120]} a0={108 + 6 * in_} L={600 + 280 * in_} buk={-90 - 30 * Math.sin(t * 1.4)} t={t} faz={1.9} w={3.6} sal={1.8} seg={30} />
+        </g>
+        <rect width={1080} height={1920} fill="#000" opacity={fl * 0.45} />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
 export const Insert11: React.FC<{ kind: Insert11Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "donusum_yuz": return <DonusumYuz dur={dur} text={text} />;
+    case "omuz_el": return <OmuzElSahne dur={dur} text={text} />;
     case "donusum_govde": return <DonusumGovde dur={dur} text={text} />;
+    case "bocek_dev": return <BocekDev dur={dur} text={text} />;
+    case "bocek_yakin": return <BocekYakin dur={dur} text={text} />;
+    case "ece_yakin": return <EceYakin dur={dur} text={text} />;
+    case "ece_sirt": return <EceSirt text={text} />;
+    case "sabri_omuz": return <SabriOmuz />;
+    case "bocek_golge": return <BocekGolge text={text} />;
     default: return null;
   }
 };

@@ -69,6 +69,9 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="Bocek" component={BocekSheet} durationInFrames={60} fps={30} width={3200} height={1500} />
         <Composition id="B5OrnekYuz" component={B5Ornek} durationInFrames={141} fps={30} width={1080} height={1920} defaultProps={{ kind: "donusum_yuz" as const, text: [] as string[] }} />
         <Composition id="B5OrnekGovde" component={B5Ornek} durationInFrames={144} fps={30} width={1080} height={1920} defaultProps={{ kind: "donusum_govde" as const, text: [] as string[] }} />
+        <Composition id="B5OrnekOmuz" component={B5Ornek} durationInFrames={84} fps={30} width={1080} height={1920} defaultProps={{ kind: "omuz_el" as const, text: [] as string[] }} />
+        <Composition id="B5OrnekDev" component={B5Ornek} durationInFrames={78} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_dev" as const, text: [] as string[] }} />
+        <Composition id="B5OrnekYakin" component={B5Ornek} durationInFrames={66} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_yakin" as const, text: [] as string[] }} />
         <Composition id="Agizlar" component={MouthSheet} durationInFrames={90} fps={30} width={1540} height={880} />
       </Folder>
       <Folder name="Kutuphane-3D">

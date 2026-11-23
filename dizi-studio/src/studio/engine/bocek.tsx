@@ -173,10 +173,12 @@ export type KafaProps = {
   antenYok?: boolean;
   /** pronotum siperinin gölgesi (gözler) 0..1 */
   siper?: number;
+  /** gözlerde küçük insan yansıması (Ece: sarı kazak, at kuyruğu) */
+  yansima?: number;
 };
 
 /** Hamamböceği kafası (önden). Yerel: kafa merkezi (0,0); genişlik ±104, tepe -150, mandibula uçları ~ +165. */
-export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBuk = 40, antenSal = 1, parlak = 1, salya = 0, isik = 1, uid, antenYok, siper = 0 }) => {
+export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBuk = 40, antenSal = 1, parlak = 1, salya = 0, isik = 1, uid, antenYok, siper = 0, yansima = 0 }) => {
   const m = clamp01(mand);
   const sg = (s: number) => Math.sin(t * 13 + s) * 4 + Math.sin(t * 29 + s * 2) * 2.5 + (random(`palp${s}${Math.floor(t * 6)}`) - 0.5) * 7;
   const palp = (side: 1 | -1, kisa: boolean) => {
@@ -223,6 +225,13 @@ export const BocekKafa: React.FC<KafaProps> = ({ mand = 0, t, anten = 0, antenBu
           <circle cx={side * 90} cy={-56} r={4.5} fill={K.parla} opacity={0.75 * isik} />
           <circle cx={side * 72} cy={-26} r={2.8} fill={K.parla} opacity={0.55 * isik} />
           <circle cx={side * 96} cy={-88} r={2.4} fill={K.parla} opacity={0.6 * isik} />
+          {yansima > 0 ? (
+            <g opacity={yansima * 0.8} transform={`translate(${side * 80} -44) scale(${side * 0.9} 0.9)`}>
+              <path d="M -9 18 Q -10 4 0 2 Q 10 4 9 18 Z" fill="#e0a040" />
+              <circle cx={0} cy={-4} r={6} fill="#f0c8a8" />
+              <path d="M -6 -8 Q 0 -13 6 -8 L 7 -3 Q 0 -9 -7 -3 Z M 5 -6 Q 12 -2 9 10" fill="#5a3a28" stroke="#5a3a28" strokeWidth={1.5} />
+            </g>
+          ) : null}
         </g>
         <path d={d} fill="none" stroke={K.out} strokeWidth={4.5} strokeLinejoin="round" />
       </g>

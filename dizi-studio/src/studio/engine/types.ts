@@ -97,6 +97,20 @@ export type CharState = {
   exit?: "sol" | "sag";
   hidden?: boolean;
   eyesClosed?: number;
+  /** 7/24 B5 (opt-in): bankonun/ön planın ÖNÜNDE çizilir (kameraya çok yakın karakter) */
+  onde?: boolean;
+  /** 7/24 B5: göz kırpmaz (sahte Sabri) */
+  kirpmaz?: boolean;
+  /** 7/24 B5: yüzde mum/maske parlaklığı 0..1 */
+  mumParlak?: number;
+  /** 7/24 B5: yağmurda ıslanmış 0..1 */
+  yagmur?: number;
+  /** 7/24 B5: kahkaha sarsıntısı 0..1 */
+  kahkaha?: number;
+  /** 7/24 B5: nefes çekme (hıığğ) başlangıcı (vuruş içinde sn), tek sefer */
+  hik?: number;
+  /** 7/24 B5: vuruş içinde bakış anahtar kareleri (kafa çevirmeler): at sn, x -1..1, yaw */
+  bakSira?: { at: number; x: number; y?: number; yaw?: number }[];
 };
 
 export type Beat =
@@ -125,6 +139,8 @@ export type Beat =
       okunus?: string;
       /** repliğe özel ElevenLabs stabilitesi (v3/v4: 0 / 0.5 / 1) */
       stab?: number;
+      /** 7/24 B5 (opt-in): ses yokken tahmini süre (sn); verilirse konuşanın ağzı taslak olarak oynar */
+      sure?: number;
     } & BeatCommon)
   | ({ type: "action"; dur: number } & BeatCommon)
   | ({ type: "yazi"; text: string; dur: number; sub?: string } & BeatCommon)
@@ -193,6 +209,8 @@ export type Scene = {
   music?: { name: string; volume?: number; from?: number };
   /** 7/24 B4: depo kapısı açıklığı 0..1 (kasa görünümü) */
   depoAcik?: number;
+  /** 7/24 B5 (opt-in): arka plan bulanıklığı (px, alan derinliği) */
+  bgBlur?: number;
   /** ön planda iri adamın flu palto omzu */
   paltoOmuz?: boolean;
   /** "flashback": sepya/rüya görünümü */
