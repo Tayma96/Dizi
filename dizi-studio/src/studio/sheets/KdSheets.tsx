@@ -70,7 +70,7 @@ const FpsKart: React.FC<{ kol: KolTuru; sol?: boolean }> = ({ kol, sol }) => {
   const k: Kam = { x: 2.35, y: 1.6, z: 3.2, yaw: 72, pitch: -16, f: 900, cy: 900 };
   const h = proj(k, petekBul("sag", 3.2, 1.3, 3.45).c);
   return (
-    <div style={{ width: 1080, height: 1920, transform: "scale(0.9)", transformOrigin: "0 0", position: "absolute", left: -36, top: -560 }}>
+    <div style={{ width: 1080, height: 1920, transform: "scale(1)", transformOrigin: "0 0", position: "absolute", left: -40, top: -640 }}>
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <BeyazOda k={k} durum={{ derz: 1, dalga: 30, anaBas: 1, anaLed: 1, sayac: 1, kirmizi: 0.08, t: 0, kaide: false }} frame={0} ekstra={<FpsEl x={h.x} y={h.y + 6} s={1.25} aci={sol ? 30 : -30} kol={kol} sol={sol} bas={0.6} />} />
       </svg>
@@ -89,11 +89,12 @@ export const KDKadro: React.FC = () => {
       {/* SATIR 1 */}
       <div style={baslik}>1 · Ana karakterler</div>
       <div style={{ display: "flex", gap: 10, padding: "0 30px", alignItems: "flex-end" }}>
-        <Kisi id="kd_gobek" ad="Göbekli Adam" alt="38 · atlet, eşofman, terlik" pose={{ gesture: "gobekKasi", emotion: "mutlu" }} />
-        <Kisi id="kd_kurye" ad="Motokurye (kasklı)" alt="24 · uydurma marka VINN!" pose={{ emotion: "mutlu" }} />
-        <Kisi id="kd_kurye_kasksiz" ad="Motokurye (kasksız)" alt="sırtta teslimat çantası" pose={{ emotion: "mutlu", lookX: 0.5 }} />
-        <Kisi id="kd_influencer" ad="Influencer" alt="19 · perde kakül, pembe uçlar" pose={{ gesture: "slime", prop: "slime", emotion: "gulen" }} />
-        <Kisi id="kd_maskeli" ad="Kar maskeli" alt="kaçıran · siyah, eldivenli" pose={{ emotion: "soguk", gesture: "yumruk" }} />
+        <Kisi w={425} id="kd_gobek" ad="Göbekli Adam" alt="38 · atlet, eşofman, terlik" pose={{ gesture: "gobekKasi", emotion: "mutlu" }} />
+        <Kisi w={425} id="kd_gobek" ad="Göbekli · telefonla" alt="dikey tutuş, ekran kameradan uzak" pose={{ gesture: "tutuyor", prop: "telefon_arka", emotion: "gulen", lookY: 0.5, lookX: 0.25, armL: { upper: -6, fore: -58, ul: 0.92, fl: 0.9 } }} />
+        <Kisi w={425} id="kd_kurye" ad="Motokurye (kasklı)" alt="24 · uydurma marka VINN!" pose={{ emotion: "mutlu" }} />
+        <Kisi w={425} id="kd_kurye_kasksiz" ad="Motokurye (kasksız)" alt="sırtta teslimat çantası" pose={{ emotion: "mutlu", lookX: 0.5 }} />
+        <Kisi w={425} id="kd_influencer" ad="Influencer" alt="19 · perde kakül, pembe uçlar" pose={{ gesture: "slime", prop: "slime", emotion: "gulen" }} />
+        <Kisi w={425} id="kd_maskeli" ad="Kar maskeli" alt="kaçıran · siyah, eldivenli" pose={{ emotion: "soguk", gesture: "yumruk" }} />
         <Kart w={560} h={900} ad="Kask içi yakın plan" alt="müzikle kafa sallar, yüz vizörün ardında" bg="#0a0a1e"><KaskYakin w={560} h={900} frame={frame + 12} /></Kart>
         <Kart w={430} h={900} ad="Teslimat çantası (arkadan)" alt="logo uydurma, gerçek firma değil" bg="#e9e2da">
           <svg viewBox="0 0 430 900" width={430} height={900}>
@@ -241,7 +242,7 @@ export const KdMekanKare: React.FC<{ m: KdMekan; frame: number }> = ({ m, frame 
           {svg(<KdEvBG frame={frame} />)}
           {/* kanepede uzanmış: başı sol kolçakta, telefon yüzünün üstünde, sol eli göbekte */}
           <div style={{ position: "absolute", left: 590 - 180, top: 1150 - 450, transform: "rotate(-84deg)", transformOrigin: "50% 50%" }}>
-            <Character look={castById("kd_gobek")} size={900} pose={{ gesture: "gobekKasi", emotion: "gulen", armR: { upper: 104, fore: -96, ul: 0.8, fl: 0.9 }, prop: "telefon", lookX: 0.8, lookY: -0.3, golgesiz: true, tilt: 12 }} />
+            <Character look={castById("kd_gobek")} size={900} pose={{ gesture: "gobekKasi", emotion: "gulen", armR: { upper: 104, fore: -96, ul: 0.8, fl: 0.9 }, prop: "telefon_arka", lookX: 0.8, lookY: -0.3, golgesiz: true, tilt: 12 }} />
           </div>
           {/* telefon ekranının yüze vuran soğuk ışığı (dolgu) */}
           <AbsoluteFill style={{ background: "radial-gradient(circle at 34% 38%, #cfe6ff66, transparent 18%)", mixBlendMode: "screen" }} />

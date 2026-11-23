@@ -33,3 +33,4 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - **Kullanıcı kararı:** yayıncı kesiti (klip paylaşanlardan alınmış, 5-10 sn) telefona entegre edilecek; telif riski kullanıcıya açıkça bildirildi, kullanıcı kabul etti.
 - **Telefon klibi (kullanıcı, 23 Kasım 2026):** `dizi-studio/public/klip/kd-yayin.mp4` (dikey 1080×1920, 60 fps, 14,3 sn, sesli). Klip telefonda çalmaya devam eder; 14 saniye boyunca ekranı GÖRMEYİZ, yalnızca telefonda çaldığını (sesinden) biliriz. Ayrıntılı kullanım senaryo yazılınca belirlenecek.
 - Sıra (kullanıcı): şimdi yalnızca karakter ve mekân tasarımı; senaryo birazdan detaylı yazılacak, üretime geçilmeyecek.
+- Telefon yatay tutulur (film izler gibi). Klip dosyası 1080×1920 ama içerik 90° döndürülmüş yatay görüntü; telefona yatay oturtulurken 90° çevrilecek.

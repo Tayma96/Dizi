@@ -144,6 +144,8 @@ export const Dugme: React.FC<{ k: Kam; c: V3; t1: V3; t2: V3; n: V3; d: DugmeDur
   const h = 0.075 * (1 - 0.75 * d.bas) * Math.min(1, d.cikis * 1.4);
   const mat = (o: number) => `translate(${(p.x + nv[0] * o).toFixed(2)} ${(p.y + nv[1] * o).toFixed(2)}) matrix(${m[0] * s} ${m[1] * s} ${m[2] * s} ${m[3] * s} 0 0)`;
   const pxm = Math.hypot(m[0], m[1]) * s; // metre başına piksel
+  // yüzeyin yerel ekseni ekranda aynalanıyorsa (ör. sağ duvar) sayaç yazısını düzelt
+  const ayna = m[0] * m[3] - m[1] * m[2] > 0;
   const yakin = pxm > 900;
   const sw = Math.max(1, Math.min(4, pxm / 260));
   const katman = yakin ? 7 : 3;
@@ -157,7 +159,7 @@ export const Dugme: React.FC<{ k: Kam; c: V3; t1: V3; t2: V3; n: V3; d: DugmeDur
           {d.led > 0.05 ? <circle r={0.14} fill="#ff2030" opacity={0.28 * d.led} /> : null}
           {/* sayaç: tabanın altında siyah LCD, kırmızı rakamlar */}
           <rect x={-0.045} y={-0.148} width={0.09} height={0.036} rx={0.006} fill="#16181c" />
-          {yakin ? <text x={0} y={0.141} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={0.032} fill="#ff3a3a" transform="scale(1 -1)">{sayac}</text> : null}
+          {yakin ? <text x={0} y={0.141} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={0.032} fill="#ff3a3a" transform={`scale(${ayna ? -1 : 1} -1)`}>{sayac}</text> : null}
         </g>
       ) : null}
       {/* mantar başlık: gölgeli yan yüz (katmanlar normal yönünde), sonra parlak tepe */}

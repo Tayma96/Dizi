@@ -288,6 +288,19 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       );
     case "slime":
       return <SlimeProp x={x} y={y} />;
+    case "telefon_arka":
+      // Kırmızı Düğme: dikey tutulan telefon, ARKASI kameraya dönük (ekran görünmez); kenarlardan ekran ışığı taşar
+      return (
+        <g>
+          <defs><radialGradient id="tfArkaHale"><stop offset="0" stopColor="#cfe6ff" stopOpacity={0.45} /><stop offset="1" stopColor="#cfe6ff" stopOpacity={0} /></radialGradient></defs>
+          <ellipse cx={x} cy={y - 50} rx={70} ry={80} fill="url(#tfArkaHale)" />
+          <rect x={x - 22} y={y - 92} width={44} height={86} rx={9} fill="#3a3f48" stroke={OUT} strokeWidth={3.5} />
+          <rect x={x - 17} y={y - 86} width={18} height={24} rx={6} fill="#22262c" stroke={OUT} strokeWidth={2} />
+          <circle cx={x - 8} cy={y - 80} r={3.4} fill="#0e1014" stroke="#6a7080" strokeWidth={1} />
+          <circle cx={x - 8} cy={y - 68} r={3.4} fill="#0e1014" stroke="#6a7080" strokeWidth={1} />
+          <path d={`M ${x + 22} ${y - 86} V ${y - 12}`} stroke="#cfe6ff" strokeWidth={2.5} opacity={0.8} />
+        </g>
+      );
     case "kalem":
       return (
         <g transform={`rotate(-35 ${x} ${y})`}>
