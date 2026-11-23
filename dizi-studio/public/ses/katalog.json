@@ -853,6 +853,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: a face melting like a burning wax mask: hissing sizzle, wet bubbling and popping blisters, thick slime dripping and splattering, gooey organic flow, horror foley, no voice"
  },
+ "efekt/el_yuz_yikama": {
+  "file": "ses/efekt/el_yuz_yikama.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: bathroom sink faucet running water, a girl splashing water on her face with her hands twice, then faucet squeaks off"
+ },
  "efekt/el_zaman_atla": {
   "file": "ses/efekt/el_zaman_atla.mp3",
   "category": "efekt",

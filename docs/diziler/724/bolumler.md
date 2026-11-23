@@ -253,3 +253,9 @@ Ece lavaboya gider aynanın karşısında düşünmeye başlar. İlk parçamız 
 - Ton: komik ve samimi (B6 sonrası kullanıcı kararı: ilk 3 bölümün samimiyeti geri gelecek). Ece pijamalı (ece_ev), uykulu ve dağınık; korkuyla komedi iç içe.
 - Mekân: Ece'nin evi; çamaşır makinesi banyoda (Türk evlerinde olağan), Ece'nin odası koridorda. Son: B1'deki ayna (FPS) sahnesine dönüş.
 - Ece'nin "içinden düşünür" repliği iç ses (italik altyazı, dudak kıpırdamaz); "ama çok para lan" sesli.
+
+## Bölüm 7, Parça 2 (kullanıcının metni, 23 Kasım 2026; replikler AYNEN, yalnız yazım düzeltildi)
+Ece aynada yüzünü yıkıyor. "Saçmalama Ece ölüyodun lan canından daha mı değerli"
+Bir duraksama.
+"Günlük bu kadar çalışsam 1 haftalık maaşım 1 yıllık maaşım yapıyo olummmm"
+"Gidip Sabri abiye olanları bir sorayım en iyisi" der kararlı bir şekilde.
