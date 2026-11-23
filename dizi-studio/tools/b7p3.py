@@ -22,7 +22,7 @@ ANNE = {
     "yer": [[0, AX, FY, SZ]],
     "dogalKol": True, "onKol": True,
     "elR": [[0, 680, 1170], [0.6, 680, 1170], [1.5, 765, 1290], [1.75, 760, 1300], [2.1, 680, 1170],
-            [SON - 2.0, 680, 1170], [SON - 1.7, 620, 700], [SON, 620, 700]],          # en sonda öpülen yanağına dokunur
+            [SON - 2.0, 680, 1170], [SON - 1.7, 632, 660], [SON, 632, 660]],          # en sonda öpülen yanağına dokunur
     "tutR": [[0, "tabak"], [1.75, None]],
     "elL": [[0, 440, 1170], [A1, 440, 1170], [A1 + 0.15, 430, 1265], [A1 + 0.35, 432, 1200], [A1 + 0.55, 430, 1265], [A1 + 0.75, 432, 1200],
             [A1 + 0.95, 430, 1265], [A1 + 1.4, 440, 1170]],                           # "otur şu masaya": masaya vurur
@@ -81,7 +81,7 @@ def vuruslar():
          "ekle": b7(A2, [[A2, 670, 800, 1.55], [E1, 675, 790, 1.62]]),
          "sfx": [{"name": "efekt/el_opucuk", "at": 7.62 - A2, "volume": 0.8}]},
         {"type": "line", "who": "ece_sivil", "text": "az işim var gelicemm", "emotion": "notr", "gapAfter": e1e - E1 - sure("E1a_01"), "_take": "E1a_01",
-         "ekle": b7(E1, [[E1, 670, 880, 1.3], [e1e, 760, 940, 1.12]]),
+         "ekle": b7(E1, [[E1, 650, 880, 1.3], [e1e, 598, 940, 1.12]]),
          "sfx": [{"name": "efekt/ayak_sesleri", "at": 0.3, "volume": 0.3}]},
         {"type": "insert", "dur": round(SON - e1e, 3), **b7(e1e, [[e1e, 560, 660, 2.1], [SON, 560, 650, 2.25]]),
          "sfx": [{"name": "efekt/kapi_carpma", "at": 0.1, "volume": 0.6}]},
