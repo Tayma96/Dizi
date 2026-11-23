@@ -44,3 +44,22 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - **Stil kararı yönü (kullanıcı, 23 Kasım 2026):** "Yüzlerce kişi Remotion'dan video yapıyor, karakterler hep birbirine benziyor. Biraz farklılık yapıp bizim karakterleri sahiplenip 'aaa bu Berkay'ın dizisindeki karakterler' dedirtmemiz lazım." → Kırmızı Düğme için tanınır, imza bir çizim stili aranacak (stil denemesi kullanıcıya gösterilip seçilecek).
 - **4. kişi (kullanıcı):** Kolonya Teyze seçildi; daha TONTON, daha TATLI bir teyze hâline getirilecek.
 - **Influencer yayını (kullanıcı):** masanın üstünde bir tepsi olacak; slime'ı tepsinin içinde yoğuruyor gibi görünecek.
+
+## Tasarım geri bildirimi 2 (kullanıcı, 23 Kasım 2026)
+- **Kanca:** FPS sahnesinde düğmeye basan **kurye** (gözünden görüyoruz; kadrajdaki el eldivenli, mont kolu kuryenin).
+- **Şive isteği (kullanıcı):** kilolu adam Trakya şivesi; kurye tam bir keko, Adanalı şivesi; yayıncı kız tiki kız; tonton teyze Anadolu kadını.
+  - Not (Claude): ElevenLabs Türkçe bölgesel şiveyi yalnız etiketle güvenilir vermeyebilir. Yollar: (1) `okunus` alanında yazımla şive (ör. "gardaş", "len", ünlü değişimleri), (2) Voice Library'de Türkçe aksanlı ses arama (önizleme ücretsiz), (3) Voice Design ile aksan tarifi. Karakter başına kısa deneme seslendirmesi yapılıp kullanıcıya dinletilecek; harcamadan önce maliyet belirtilecek.
+
+## Durum (23 Kasım 2026, kayıt) — kullanıcı 7/24 B6'ya geçti, Kırmızı Düğme beklemede
+- Bitenler: kadro ve mekân ilk tasarımları (`ornekler/kd-kadro.png`, `kd-mekanlar.png`), logo (`kd-logo.png`), stil denemesi (`kd-stil.png`), telefon klibi entegrasyonu, düğme örneği ve kanca prototip kompozisyonları (`KDKadro`, `KDMekanlar`, `KDLogo`, `KDStil`, `KDDugmeOrnek`, `KDKanca`).
+- Yarım kalan (görüntü yönetmeni):
+  - Kolonya Teyze'nin tonton, tatlı yeniden tasarımı (isteğe bağlı `etek` alanı); ana kadroya alınması; Uykucu ve Sporcu Abi taslaklarının çıkarılması.
+  - Slime tepsisi: influencer iki eliyle tepside yoğuruyor.
+  - Göbekli adam: kol kılları nokta yerine kısa kıvrık çizgi; saç boynuz gibi değil, seyrek, yatık ve yağlı.
+  - Kanca eli: kurye eli (eldiven ve mont kolu).
+  - `kd-kadro.png` ve `kd-mekanlar.png` yenilenecek.
+- Kullanıcı kararı bekleyen:
+  - İmza stil seçimi: 1 renkli kontur / 2 büyük kafa ve ifade gözleri (Claude önerisi) / 3 sticker. Altıgen rozet imza önerisi de var.
+  - Şive denemeleri.
+  - Ayrıntılı senaryo.
+- Yayın öncesi: uydurma markalar ("VINN!", "ÇINAR MARKET") gerçek firma taramasından geçecek.
