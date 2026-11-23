@@ -235,3 +235,42 @@ B5P2_WHISPER=<model> /opt/tts/venv/bin/python tools/ses_724_05_p2.py olc
 4. **Kepenk vuruşları ve böcek seli:** yeterince fiziksel ve korkutucu mu? (Mevcut kütüphane + sentez; ElevenLabs açılınca tek tek değiştirilebilir.)
 5. **A'daki 5 sn sessizlik:** izleyiciyi kaybettirecek kadar uzun mu? (Kullanıcı kararı; yapımcıya da sorulabilir.)
 6. **Telefon hoparlöründe:** fısıltılar duyuluyor mu? (Mono kaybı ölçümde düşük, ama alt frekans ve sarsıntı hissi telefonda zayıf kalır.)
+
+## 9. Floresan revizyonu (kullanıcı geri bildirimi: "kesintisiz floresan sesi çok rahatsız edici")
+- **Işık pencerelerinin zamanları değişmedi**; değişen yalnız sesin seviyesi ve dokusu. A (0-5), F ve G aynen kaldı.
+- **Yanış vızıltısı (B):** tiz ark cızırtısı 2-7 kHz'ten 1,8-4,5 kHz'e daraltıldı ve yarıya indirildi. el_floresan 6,5 kHz'te alçak geçirgenden geçirildi. B bus'ı 1 dB kısıldı.
+- **Sürekli yanık ışık (13,40-33,00):**
+  - 14,00 kepenk inişinde vızıltı kopar, 14,12-14,75 arasında çırpınarak (yalnız aşağı yönlü kopmalar) çok kısık bir zemine iner: tüp A −22 dB, tüp B −25 dB.
+  - Zemin yavaş dalgalanır (±3 dB, 0,35 Hz altı). Ara sıra 1,8-4,5 sn arayla kısa cızırtı ve tık gelir; iki tüpte farklı zamanlarda.
+  - 21,9-23,0 arasında D zeminine iner (−30 / −33 dB) ve selin altında neredeyse duyulmaz.
+  - Kaybolan gürlük kepenk bus'ında telafi edildi (hedef −14 LUFS).
+- **Ölçüm** (`ornekler/b5p2-ses-onizleme.mp3`):
+  - −14,1 LUFS, −1,4 dBTP, LRA 15,3.
+  - Sessizlikler: A −240, G −159, E (33,01) −90 dBFS.
+  - Mono toplam −16,35 LUFS. F'de L/R ilintisi 0,28.
+  - Fısıltıların Whisper sonuçları değişmedi.
+
+## 10. Kaldığım yer / sıradaki adım (23 Kasım 2026; kullanıcı limiti nedeniyle durdu)
+1. **ElevenLabs açıldı** (kullanıcının asıl hesabı). Üretilenler:
+   - Parça 2 v4 varyantları, 182 kredi: `public/voice/724-05-p2-ses/` s1-s4 (Sabri), a1-a4 (anne), n1-n2 (Ece nefes).
+   - Manik varyantlar, 118 kredi: `public/voice/724-05-manik/` L1-L4, B1-B4.
+   - **Toplam 300 kredi.** `durum` hâlâ 21.731 gösteriyor (sayaç gecikmeli); gerçek kalan ≈ 21.430.
+2. **Manik seçim yapıldı:** `public/voice/724-05-manik/secim.json`.
+   - i_05 = L1 ("lülü?", yedek L3). İki hecede gerçek 'ü' (F2 1.830-2.130 Hz). Perde aralığı 21 yt, titreme yüksek.
+   - i_06 = B1 ("bu da mı olmadı?", yedek B3). Whisper doğru.
+   - Önerilen i_05 gapAfter 0,40 (1 sn sessizlik korunur), i_06 0,3.
+   - Kelime zamanları enerji zarfına göre düzeltildi. L2 ve L4 elendi (kekeleme / tekrar).
+   - Rapor eklenecek: `b5p1-manik-ses.md` hâlâ "üretilemedi" diyor; bu bölüm onun yerine geçer.
+3. **Parça 2 v4 seçimi YAPILMADI.** `sec` başlatıldı ama durduruldu; `secim` boş. Bu yüzden `b5p2_tam.mp3` hâlâ LPC fısıltılarıyla (floresan revizyonu dahil).
+4. **Sıradaki komutlar** (yeni kredi gerekmez):
+
+   ```bash
+   cd dizi-studio
+   B5P2_WHISPER=<model> /opt/tts/venv/bin/python tools/ses_724_05_p2.py sec
+   /opt/tts/venv/bin/python tools/ses_724_05_p2.py kur
+   B5P2_WHISPER=<model> /opt/tts/venv/bin/python tools/ses_724_05_p2.py olc
+   ```
+
+   - Ardından W1-W6 zamanlarını `plan.fisiltilar`'dan görüntü yönetmenine bildir.
+   - `sec`'te s2/s3/s4 (2,1-3,1 sn) tekrar ya da uzun nefes içerebilir; Whisper çıktısına bakılmalı.
+5. Whisper modeli bu oturumda npm paketlerinden kuruldu (scratchpad, kalıcı değil). Yeni oturumda HF erişimi yoksa aynı yol izlenir: `@skillninja/shortmovie-telop-model-p0..p3`, SHA-256 doğrulamalı.

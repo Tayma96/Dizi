@@ -1,6 +1,6 @@
 # 7/24 · Bölüm 5, 1. parça: manik "lülü?" / "bu da mı olmadı?" (23 Kasım 2026)
 
-Hazırlayan: ses yönetmeni. **Durum: ÜRETİLEMEDİ.** ElevenLabs hesabı her istekte şunu döndürüyor:
+Hazırlayan: ses yönetmeni. **GÜNCEL DURUM: ÜRETİLDİ ve SEÇİLDİ (v4, 118 kredi; ayrıntı b5p2-ses.md §10 ve public/voice/724-05-manik/secim.json). Aşağıdaki ilk metin hesap kapalıyken yazıldı.** İlk durum: ÜRETİLEMEDİ. ElevenLabs hesabı her istekte şunu döndürüyor:
 
 > `401 payment_required / payment_issue: "Your subscription has a failed or incomplete payment. Complete the latest invoice to continue usage."`
 
