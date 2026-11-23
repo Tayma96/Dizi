@@ -1350,6 +1350,13 @@
   "loop": false,
   "desc": "ElevenLabs Music: Emotional cinematic underscore for a castaway CEO on a remote Indian Ocean island, soft hand drums, distant wooden flute, warm strings, mystery and melancholy, slowly building, no vocals"
  },
+ "muzik/kd-bas-a": {
+  "file": "ses/muzik/kd-bas-a.mp3",
+  "category": "muzik",
+  "duration": 68.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Kırmızı Düğme · kurye şarkısı BAS!"
+ },
  "muzik/market_gerilim": {
   "file": "ses/muzik/market_gerilim.mp3",
   "category": "muzik",
