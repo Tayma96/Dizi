@@ -1,0 +1,68 @@
+# Kırmızı Düğme · B1 · Parça 2: Dörtlü uyanış (çekim stratejisi)
+
+> 23 Kasım 2026, görüntü yönetmeni. Görsel ve işitsel tasarım; replik yok. Konuşma gerekirse kullanıcı yazar (`[Replik: kullanıcı]`). Hedef süre 55-65 sn.
+
+**Sahnenin amacı (tek cümle):** Birbirini tanımayan dört kişi kapısız, dikişsiz, bembeyaz bir odada uyanır, birbirini ve odadaki tek kırmızı düğmeyi fark eder.
+
+## 1. Kamera stratejisi: dört katman
+
+1. **Gözetleyen göz (tepeden, simetrik):** Parça, birinin onları yukarıdan izlediği hissiyle açılır ve kapanır. Kuşbakışı, kusursuz simetrik ve kıpırtısız bir kadraj; laboratuvardaki deney fareleri gibi. Bu, dizinin "içeriden biri" fikrini ve odanın bir deney olduğunu görsel olarak eker, tek kelime gerekmeden.
+2. **Her karaktere kendi kamera dili:** İzleyici kimin kim olduğunu kameradan da okur.
+   | Karakter | Kamera dili | Neden |
+   |---|---|---|
+   | Göbekli adam | **Kilitli, sabit, simetrik**, hafif alttan | Komedi zamanlaması sabit kamerada çalışır; alt açı göbeği ve tembelliği büyütür |
+   | Kurye | **Elde, kısa çekimler, hızlı tepki**, göz hizası | Refleksli, sokak enerjisi |
+   | Influencer | **Yakın, hafif titrek, sığ odak** (arka plan bulanık), hafif üstten | Panik ve kırılganlık; üst açı onu küçültür |
+   | Teyze | **Kusursuz sabit, ortalanmış, fazla "temiz" kadraj**, göz hizası, uzun tutulur | Huzursuz edici sakinlik: kimse panik yaparken kadraj ona dokunmaz; izleyici bilinçsizce "bu kadın neden bu kadar rahat?" diye düşünür |
+3. **Coğrafya ve 180° ekseni:**
+   - **Eksen:** kaideden geçen kuzey-güney çizgisi.
+   - **Uyanış yerleri:** Göbekli adam ile teyze **batı** yarıda, kurye ile influencer **doğu** yarıda uyanır.
+   - **Kamera:** hep **güneyde** kalır. Bakış çizgileri tutarlı olur; batıdakiler sağa, doğudakiler sola bakar.
+   - **Ekseni geçmek:** yalnız bir kez, motive edilmiş **kaideyi dolanan yarım tur** ile (karakterler kaideye yürürken).
+4. **Düğmeyi saklayıp açmak:** Düğme baştan kadrajda, ama **ilk 40 saniye flu ya da kenarda** kalır. İzleyici onu karakterlerle aynı anda "fark eder": odak kayması ve yavaş itme ile sayaçtaki **001**.
+
+## 2. Ölçek ritmi
+Genel → orta → orta → yakın → genel → orta → yakın (düğme) → genel. Aynı ölçek art arda gelmez. Yakın plan yalnız üç yerde kullanılır: influencer'ın paniği, teyzenin kolonyası ve düğme.
+
+## 3. Çekim listesi
+
+| # | Süre | Ölçek / açı / mercek | Kamera hareketi | Görüntü ve hareket | Ses |
+|---|---|---|---|---|---|
+| **2.1** | 4 sn | **Genel, tam tepeden** (kuşbakışı, f≈560), simetrik | Kıpırtısız, ardından çok yavaş alçalma | Bembeyaz kare oda; ortada kaide ve tek düğme; yerde dört yönde yatan dört kişi, saat kadranı gibi | Kancanın ardından **2 sn tam sessizlik**, sonra çok kısık oda tonu |
+| **2.2** | 4 sn | **Orta, yer hizası, alt açı**; göbekli adam kadrajın ortasında, simetrik (f≈800) | **Kilitli** | Göbekli adam sırtüstü horluyor; horlamanın sonunda kendi horultusuyla uyanır, uyku sersemi göbeğini kaşır, doğrulmaya çalışır (iki deneme) | Horlama, boğazı temizleme (komik kırılma) |
+| **2.3** | 3 sn | **Orta, göz hizası**, doğu tarafı | **Elde**, hızlı bir ani hareket | Kurye irkilerek tek hamlede doğrulur, savunma pozisyonu alır, kablolu kulaklığını yoklar; saçında kask izi | Mont hışırtısı, kısa nefes |
+| **2.4** | 4 sn | **Yakın, hafif üst açı, sığ odak** (f≈1100) | Hafif titrek | Influencer gözlerini açar, makyajı dağılmış; ilk refleksi cebini yoklamak, telefon yok; nefesi hızlanır | Hızlanan nefes, kumaş |
+| **2.5** | 3 sn | **Influencer'ın bakış açısı**: bulanık → net | Odak kayması | Bulanık beyaz; üç yabancı yavaş yavaş netleşir | Kulakta hafif uğultu |
+| **2.6** | 4 sn | **Orta, göz hizası, tam ortalı**, kusursuz simetri (f≈860) | **Kusursuz sabit**, uzun tutulur | Teyze oturuyor, zaten uyanık; perması bozulmamış, çantası kucağında. Sakin sakin elini kolonyalıyor | Kolonya şişesinin "fıs"ı ve onun dışında sessizlik |
+| **2.7** | 2 sn | **Yakın** (ipucu): teyzenin elleri | Sabit | Kolonya avuçta; hırka düğmeleri **kırmızı mantar düğme**, bir an parlar | — |
+| **2.8** | 5 sn | **Genel, 3/4 açı, güneybatıdan** (f≈620) | Yavaş yana kayma | Coğrafya: dördü ve kaide aynı karede. Göbekli adam ile teyze solda, kurye ile influencer sağda; birbirlerini süzerler | Kısık oda tonu, kumaş |
+| **2.9** | 6 sn | **Orta iki-çekimler** (bakış çizgileri eksene göre) | Sabit ya da çok hafif itme | Tepki çaprazları: kurye ↔ göbekli adam, influencer ↔ teyze. Kim kime nasıl bakıyor (şüphe, korku, merak) | `[Replik: kullanıcı]` (gerekirse) |
+| **2.10** | 6 sn | **Genel, kaideyi dolanan yarım tur** (eksen burada geçilir) | Yavaş dolly | Kurye ayağa kalkıp odayı dolaşır, duvarlara dokunur; kapı yok, pencere yok, dikiş yok | Adımlar (yankısız), avuç duvarda |
+| **2.11** | 3 sn | **Orta, duvara paralel**, kurye profilden | Sabit | Duvarı yumruğuyla tıklatır | Tok, hiç yankısız ses (oda "ölü") |
+| **2.12** | 4 sn | **Genel, yüksek açı** (köşeden, güvenlik kamerası gibi) | Kıpırtısız | Herkes ayakta, dağınık; oda fazla büyük ve fazla boş | Sessizlik |
+| **2.13** | 5 sn | **Arkada kaide, önde karakterler**: düğme baştan flu | **Odak kayması**: önden kaideye, ardından yavaş itme | Göbekli adam düğmeyi ilk fark eden olur, parmağıyla gösterir; herkes döner | Alçak bir uğultu belirir |
+| **2.14** | 3 sn | **Yakın, alt açı**: düğme ve **001** sayacı (f≈1150) | Çok yavaş itme | Kırmızı mantar, LED nabız gibi atıyor | Uğultu, LED'in çok kısık "tık"ı |
+| **2.15** | 5 sn | **Orta, kaidenin arkasından**: dördü düğmeye bakıyor, kaide ön planda | Sabit | Kaideye doğru birer adım; biri elini uzatır, diğeri kolundan tutar | `[Replik: kullanıcı]` (gerekirse) |
+| **2.16** | 3 sn | **Genel, tam tepeden** (2.1'in eşi, kapanış) | Kıpırtısız | Dördü düğmenin çevresinde; deney fareleri gibi. **Kesme** (parça sonu kancası) | Sessizlik; tek bir kalp atışı |
+
+**Toplam:** ≈ 64 sn.
+
+## 4. Işık
+- **Beyaz oda:** Kaynağı görünmeyen, her yerden gelen soğuk beyaz (5600K+). Gölge yok, yalnız köşelerde hafif koyuluk. Karakterlerde kenar ışığı yok; dış dünyanın sıcaklığından sonra herkes "çıplak" ve savunmasız görünür.
+- **Tek istisna, düğme:** Kırmızı LED'in hafif yansıması kaidenin beyazına ve yakın plan yüzlere düşer. Kırmızıyı yalnız düğme taşır.
+- **Teyze çekimleri:** Işık bilerek biraz fazla düz ve kusursuz; yüzünde hiç kusur yok. Huzursuz edici.
+
+## 5. Ses
+- **Oda tonu:** Kısık (kullanıcı kuralı). Oda "ölü"; yankı yok, her ses kuru ve yakın.
+- **Kullanılan sesler:** Horlama, nefesler, kumaş, adımlar, duvarın tok sesi, kolonya "fıs"ı, düğmenin uğultusu ve LED "tık"ı.
+- **Kaynak:** Önce mevcut kayıtlar ve CC0 (ücretsiz), eksikler ElevenLabs'ten. Bu parçanın efekt bütçesi yaklaşık 150 kredi.
+- **Müzik:** Yok. Sessizlik bu parçanın müziği.
+
+## 6. Geçişler
+- **Giriş:** Kanca başlık kartından **siyah → 2 sn sessizlik → 2.1** (tepeden beyaz, göz alır).
+- **Çıkış:** 2.16'nın tepeden kıpırtısız karesi ve tek bir kalp atışı → parça sonu.
+
+## 7. Üretim notu
+- Bu parça için dört karakterin **yeni çizim dilinde ve pozlanabilir** (yatma, doğrulma, oturma, ayağa kalkma, yürüme, işaret etme) hâli gerekir.
+- Mevcut yeni çizim yalnız göbekli adam için ve tek bir duruşta var. Onu eklemli bir **kuklaya** dönüştürmek gerekiyor: gövde, baş, üst kol/önkol, üst bacak/alt bacak, eller; eklem açıları ve yumuşak geçişler.
+- **İlk tam kaliteli örnek:** Çekim 2.2, göbekli adamın uyanışı.
