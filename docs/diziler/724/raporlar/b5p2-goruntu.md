@@ -151,3 +151,24 @@ Sekiz karenin hepsinde PSNR **sonsuz** (bit bit aynı). `npx tsc --noEmit` temiz
 - **D3:** Düşen paketler havada düz dikdörtgen olarak geçiyor (hareket bulanıklığı yok). 2–3 karelik anlar.
 - **Ses planı A'da ışığı tanımlamıyor.** Görüntüde A aydınlık bırakıldı (gerekçe yukarıda). Ses yönetmeniyle teyit edilmeli.
 - **`docs/uretim-rehberi.md` §4 kataloğu güncellenmedi:** Bu görevde dosya listem dışındaydı. Yeni varlıklar: `p2_kasa`, `p2_kapi`, `p2_kepenk`, `p2_koridor` (raf koridoru seti), `p2_fisilti`, `p2_kulaklik`, mini hamamböceği, `agizKapa`, `dudakTitre`. Genel yönetmen eklemeli.
+
+## Kaldığım yer (24 Kasım 2026, limit nedeniyle ara kayıt)
+1. D aralığı (22–33) yeniden yapıldı, ama tam render ve rapor güncellemesi henüz yok. Yapılanlar:
+   - D1'de ilk böcekler artık birden belirmiyor. Paketlerin arkasından kırpma maskesiyle çıkıyorlar: önce anten, sonra baş, sonra gövde.
+   - Devrilen paket önce sallanıyor, arkasındaki küme sonra dökülüyor.
+   - Ece sessizce boğuşuyor: D3'te bacağını silkeleyip geri çekiliyor ve eliyle paçasını silkeliyor. D4'te tek eli ağzında, öteki eliyle silkeliyor, sonunda iki eli ağzında donuyor.
+   - "Kulaklıkla izle" rozeti kaldırıldı.
+2. Yedek alındı: `bolumler/724-05-p2-v1.mp4`.
+3. Eski kod (worktree, HEAD 2af7c11) ile 0–22 ve 33–56 aralığından 0,25 sn'lik 181 kare scratch'te hazır (`kimlik_eski/`). Aynı kareler yeni kodla render ediliyordu (`kimlik_yeni/`), karşılaştırma yapılmadı. Rozet karelerinde fark yalnız rozet alanında olmalı.
+4. Sıradaki adımlar:
+   - PSNR karşılaştırması.
+   - KD karşılaştırması: `KDKanca` ve `KDDugmeOrnek` kareleri, eski hâli `kd_eski/`.
+   - Tam render → `bolumler/724-05-p2.mp4` (−14 LUFS, stereo).
+   - Önce/sonra karelerini `ornekler/b5p2-sel-v2-*.png` olarak kaydetmek.
+   - Ses yönetmenine boğuşma sesleri:
+     - 28,3–29,6 ayak sürtmesi
+     - 29,8–30,9 paça silkeleme, kumaş hışırtısı
+     - 31,3–32,6 kumaş silkeleme
+     - 31,9 ve 32,1 böcek konma
+     - 32,7 iki el ağza, bastırılmış inilti
+5. Parça 1 düzeltmeleri başlamadı (ışık, g sahnesindeki baş dönüşünde yüz parçaları, manik ses). Yapılan tek hazırlık: `agizKapaEl` alanı eklendi (istenirse devreye giriyor).
