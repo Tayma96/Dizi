@@ -1,0 +1,364 @@
+{
+ "not": "B5 parça 1 manik yeniden çekim (eleven_v4, Nazlı Yeni). i_05/i_06 girdileri 724-05 manifestine KOPYALANIR; dosya voice/724-05/ altına aynı adla (i_05.mp3, i_06.mp3) kopyalanırsa 'file' alanı ona göre değiştirilir. 'key', 724-05.json'da vuruşun tags/okunus/stab alanları burada yazılanla AYNI olursa elevenlabs.py'nin hesapladığı anahtarla eşleşir (yeniden üretim olmaz).",
+ "i_05": {
+  "secilen": "L1_01",
+  "yedek": "L3_01",
+  "json_alanlari": {
+   "tags": "[manic, sing-song]",
+   "okunus": "Lülü?",
+   "stab": 0.0,
+   "emotion": "notr",
+   "model": "eleven_v4"
+  },
+  "gapAfter": 0.4,
+  "gapAfter_yedeklerle": {
+   "L1+B3": 0.35,
+   "L3+B1": 0.35,
+   "L3+B3": 0.3
+  },
+  "manifest": {
+   "key": "f582c108fe83",
+   "file": "voice/724-05-manik/L1_01.mp3",
+   "voice": "elevenlabs:Nazlı Yeni",
+   "emotion": "notr",
+   "text": "lülü?",
+   "duration": 1.306,
+   "asrScore": null,
+   "heard": null,
+   "words": [
+    {
+     "w": "lülü?",
+     "start": 0.09,
+     "end": 0.95
+    }
+   ],
+   "mouth": [
+    {
+     "t": 0.09,
+     "v": "L"
+    },
+    {
+     "t": 0.105,
+     "v": "U"
+    },
+    {
+     "t": 0.31,
+     "v": "L"
+    },
+    {
+     "t": 0.515,
+     "v": "U"
+    },
+    {
+     "t": 0.72,
+     "v": "X"
+    },
+    {
+     "t": 0.95,
+     "v": "X"
+    }
+   ],
+   "kaynak": "elevenlabs",
+   "model": "eleven_v4",
+   "hesap": "proxy",
+   "kredi": 10,
+   "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.09-0.95 sn) doğrusal eşlendi",
+   "konusma": [
+    0.09,
+    0.95
+   ]
+  },
+  "yedek_manifest": {
+   "key": "cf0674942cb6",
+   "file": "voice/724-05-manik/L3_01.mp3",
+   "voice": "elevenlabs:Nazlı Yeni",
+   "emotion": "notr",
+   "text": "lülü?",
+   "duration": 1.332,
+   "asrScore": null,
+   "heard": null,
+   "words": [
+    {
+     "w": "lülü?",
+     "start": 0.09,
+     "end": 0.92
+    }
+   ],
+   "mouth": [
+    {
+     "t": 0.09,
+     "v": "L"
+    },
+    {
+     "t": 0.149,
+     "v": "U"
+    },
+    {
+     "t": 0.268,
+     "v": "L"
+    },
+    {
+     "t": 0.386,
+     "v": "U"
+    },
+    {
+     "t": 0.683,
+     "v": "X"
+    },
+    {
+     "t": 0.92,
+     "v": "X"
+    }
+   ],
+   "kaynak": "elevenlabs",
+   "model": "eleven_v4",
+   "hesap": "proxy",
+   "kredi": 14,
+   "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.09-0.92 sn) doğrusal eşlendi",
+   "konusma": [
+    0.09,
+    0.92
+   ]
+  }
+ },
+ "i_06": {
+  "secilen": "B1_01",
+  "yedek": "B3_01",
+  "json_alanlari": {
+   "tags": "[hysterical, cracking]",
+   "okunus": "Bu da mı olmadı?!",
+   "stab": 0.0,
+   "emotion": "notr",
+   "model": "eleven_v4"
+  },
+  "gapAfter": 0.3,
+  "manifest": {
+   "key": "c7047eb2fbcd",
+   "file": "voice/724-05-manik/B1_01.mp3",
+   "voice": "elevenlabs:Nazlı Yeni",
+   "emotion": "notr",
+   "text": "bu da mı olmadı?",
+   "duration": 1.646,
+   "asrScore": null,
+   "heard": null,
+   "words": [
+    {
+     "w": "bu",
+     "start": 0.16,
+     "end": 0.284
+    },
+    {
+     "w": "da",
+     "start": 0.346,
+     "end": 0.408
+    },
+    {
+     "w": "mı",
+     "start": 0.471,
+     "end": 0.533
+    },
+    {
+     "w": "olmadı?",
+     "start": 0.595,
+     "end": 1.34
+    }
+   ],
+   "mouth": [
+    {
+     "t": 0.16,
+     "v": "M"
+    },
+    {
+     "t": 0.222,
+     "v": "U"
+    },
+    {
+     "t": 0.284,
+     "v": "X"
+    },
+    {
+     "t": 0.346,
+     "v": "L"
+    },
+    {
+     "t": 0.377,
+     "v": "A"
+    },
+    {
+     "t": 0.408,
+     "v": "X"
+    },
+    {
+     "t": 0.471,
+     "v": "M"
+    },
+    {
+     "t": 0.502,
+     "v": "I"
+    },
+    {
+     "t": 0.595,
+     "v": "O"
+    },
+    {
+     "t": 0.657,
+     "v": "L"
+    },
+    {
+     "t": 0.719,
+     "v": "M"
+    },
+    {
+     "t": 0.781,
+     "v": "A"
+    },
+    {
+     "t": 0.843,
+     "v": "L"
+    },
+    {
+     "t": 0.905,
+     "v": "I"
+    },
+    {
+     "t": 1.029,
+     "v": "X"
+    },
+    {
+     "t": 1.34,
+     "v": "X"
+    }
+   ],
+   "kaynak": "elevenlabs",
+   "model": "eleven_v4",
+   "hesap": "proxy",
+   "kredi": 16,
+   "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.16-1.34 sn) doğrusal eşlendi",
+   "konusma": [
+    0.16,
+    1.34
+   ]
+  },
+  "yedek_manifest": {
+   "key": "faf013c2b3d8",
+   "file": "voice/724-05-manik/B3_01.mp3",
+   "voice": "elevenlabs:Nazlı Yeni",
+   "emotion": "notr",
+   "text": "bu da mı olmadı?",
+   "duration": 1.802,
+   "asrScore": null,
+   "heard": null,
+   "words": [
+    {
+     "w": "bu",
+     "start": 0.21,
+     "end": 0.339
+    },
+    {
+     "w": "da",
+     "start": 0.403,
+     "end": 0.468
+    },
+    {
+     "w": "mı",
+     "start": 0.532,
+     "end": 0.661
+    },
+    {
+     "w": "olmadı?",
+     "start": 0.758,
+     "end": 1.5
+    }
+   ],
+   "mouth": [
+    {
+     "t": 0.21,
+     "v": "M"
+    },
+    {
+     "t": 0.274,
+     "v": "U"
+    },
+    {
+     "t": 0.339,
+     "v": "X"
+    },
+    {
+     "t": 0.403,
+     "v": "L"
+    },
+    {
+     "t": 0.436,
+     "v": "A"
+    },
+    {
+     "t": 0.468,
+     "v": "X"
+    },
+    {
+     "t": 0.532,
+     "v": "M"
+    },
+    {
+     "t": 0.597,
+     "v": "I"
+    },
+    {
+     "t": 0.661,
+     "v": "X"
+    },
+    {
+     "t": 0.758,
+     "v": "O"
+    },
+    {
+     "t": 0.807,
+     "v": "L"
+    },
+    {
+     "t": 0.855,
+     "v": "M"
+    },
+    {
+     "t": 0.919,
+     "v": "A"
+    },
+    {
+     "t": 0.984,
+     "v": "L"
+    },
+    {
+     "t": 1.048,
+     "v": "I"
+    },
+    {
+     "t": 1.242,
+     "v": "X"
+    },
+    {
+     "t": 1.5,
+     "v": "X"
+    }
+   ],
+   "kaynak": "elevenlabs",
+   "model": "eleven_v4",
+   "hesap": "proxy",
+   "kredi": 17,
+   "zaman_duzeltme": "ElevenLabs hizalaması enerji zarfına (0.21-1.5 sn) doğrusal eşlendi",
+   "konusma": [
+    0.21,
+    1.5
+   ]
+  }
+ },
+ "yedek_json_alanlari": {
+  "L3_01": {
+   "tags": "[voice cracking, sing-song]",
+   "okunus": "Lülüü?"
+  },
+  "B3_01": {
+   "tags": "[manic, crying, cracking]",
+   "okunus": "Bu da mı olmadı?!"
+  }
+ }
+}

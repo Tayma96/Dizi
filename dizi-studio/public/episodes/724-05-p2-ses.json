@@ -1433,6 +1433,161 @@
      ]
     }
    }
+  },
+  "dogrulama": {
+   "master": {
+    "I_LUFS": -14.1,
+    "LRA_LU": 15.3,
+    "gercek_tepe_dBTP": -1.4,
+    "sessizlik": {
+     "A_0-5_tepe_dBFS": -240.0,
+     "G_54,02-56_tepe_dBFS": -158.6,
+     "E_33,01-33,24_tepe_dBFS": -89.7
+    },
+    "mono_toplam_LUFS": -16.35,
+    "LR_ilinti_F": 0.279
+   },
+   "F_tam_miks_whisper": "Hocam Kızım Hocam Kızım Kızım Hocam",
+   "fisiltilar": [
+    {
+     "id": "W1",
+     "kim": "Sabri",
+     "soz": "Ece…",
+     "bas": 43.6,
+     "miks_penceresi": [
+      43.55,
+      44.39
+     ],
+     "cakisma_sn": 0.0,
+     "ILD_bas_dB": -5.5,
+     "ITD_bas_us": -729,
+     "ILD_son_dB": -8.0,
+     "ITD_son_us": -583,
+     "mono_kayip_dB": -3.0,
+     "mono_en_kotu_bant_dB": -5.7,
+     "mono_en_kotu_bant_Hz": 503,
+     "kisa_sureli_LUFS_miks": -23.5,
+     "whisper_L": "Ece!",
+     "whisper_R": "Ede!",
+     "whisper_mono": "Ece!",
+     "whisper_tam_miks": "Ece!"
+    },
+    {
+     "id": "W2",
+     "kim": "Anne",
+     "soz": "Kızım…",
+     "bas": 45.0,
+     "miks_penceresi": [
+      44.95,
+      45.59
+     ],
+     "cakisma_sn": 0.0,
+     "ILD_bas_dB": 6.5,
+     "ITD_bas_us": 417,
+     "ILD_son_dB": 5.4,
+     "ITD_son_us": 500,
+     "mono_kayip_dB": -1.7,
+     "mono_en_kotu_bant_dB": -5.2,
+     "mono_en_kotu_bant_Hz": 1600,
+     "kisa_sureli_LUFS_miks": -21.6,
+     "whisper_L": "Kızım",
+     "whisper_R": "Kızım",
+     "whisper_mono": "Kızım",
+     "whisper_tam_miks": "Kıssım"
+    },
+    {
+     "id": "W3",
+     "kim": "Sabri",
+     "soz": "Ece…",
+     "bas": 46.6,
+     "miks_penceresi": [
+      46.55,
+      47.13
+     ],
+     "cakisma_sn": 0.0,
+     "ILD_bas_dB": -2.8,
+     "ITD_bas_us": -146,
+     "ILD_son_dB": -0.1,
+     "ITD_son_us": 0,
+     "mono_kayip_dB": -0.6,
+     "mono_en_kotu_bant_dB": -3.2,
+     "mono_en_kotu_bant_Hz": 3200,
+     "kisa_sureli_LUFS_miks": -20.8,
+     "whisper_L": "Hocam!",
+     "whisper_R": "Ece!",
+     "whisper_mono": "Ece!",
+     "whisper_tam_miks": "Ece!"
+    },
+    {
+     "id": "W4",
+     "kim": "Anne",
+     "soz": "Kızım…",
+     "bas": 47.55,
+     "miks_penceresi": [
+      47.5,
+      47.91
+     ],
+     "cakisma_sn": 0.0,
+     "ILD_bas_dB": -11.0,
+     "ITD_bas_us": -604,
+     "ILD_son_dB": -6.7,
+     "ITD_son_us": -833,
+     "mono_kayip_dB": -2.9,
+     "mono_en_kotu_bant_dB": -5.7,
+     "mono_en_kotu_bant_Hz": 503,
+     "kisa_sureli_LUFS_miks": -17.4,
+     "whisper_L": "Kısa",
+     "whisper_R": "Kızım",
+     "whisper_mono": "Kızım",
+     "whisper_tam_miks": "Kıza"
+    },
+    {
+     "id": "W5",
+     "kim": "Anne",
+     "soz": "Kızım…",
+     "bas": 50.0,
+     "miks_penceresi": [
+      49.95,
+      51.56
+     ],
+     "cakisma_sn": 0.0,
+     "ILD_bas_dB": 6.2,
+     "ITD_bas_us": 417,
+     "ILD_son_dB": 13.2,
+     "ITD_son_us": 958,
+     "mono_kayip_dB": -2.7,
+     "mono_en_kotu_bant_dB": -4.1,
+     "mono_en_kotu_bant_Hz": 4031,
+     "kisa_sureli_LUFS_miks": -13.9,
+     "whisper_L": "Kızım...",
+     "whisper_R": "Kızım!",
+     "whisper_mono": "Kızım...",
+     "whisper_tam_miks": "Kızım!"
+    },
+    {
+     "id": "W6",
+     "kim": "Sabri",
+     "soz": "Ece…",
+     "bas": 51.3,
+     "miks_penceresi": [
+      51.25,
+      53.97
+     ],
+     "cakisma_sn": 0.21,
+     "ILD_bas_dB": -7.9,
+     "ITD_bas_us": -604,
+     "ILD_son_dB": 15.1,
+     "ITD_son_us": 854,
+     "mono_kayip_dB": -2.4,
+     "mono_en_kotu_bant_dB": -4.2,
+     "mono_en_kotu_bant_Hz": 3200,
+     "kisa_sureli_LUFS_miks": -16.1,
+     "whisper_L": "Ece...",
+     "whisper_R": "Ede!",
+     "whisper_mono": "Ede...",
+     "whisper_tam_miks": "ABONE OL"
+    }
+   ]
   }
  },
  "secim": {}
