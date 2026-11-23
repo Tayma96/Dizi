@@ -327,9 +327,9 @@
     "id": "W6",
     "kim": "Sabri",
     "soz": "Ece…",
-    "bas": 51.0,
-    "son": 53.929,
-    "sure": 2.929,
+    "bas": 51.3,
+    "son": 53.916,
+    "sure": 2.616,
     "yol": [
      [
       0,
@@ -338,13 +338,13 @@
       0.24
      ],
      [
-      1.4,
+      1.2,
       180,
       -25,
       0.12
      ],
      [
-      3.0,
+      2.62,
       95,
       -5,
       0.05
@@ -1197,7 +1197,7 @@
    },
    {
     "t": 44.93,
-    "son": 46.765,
+    "son": 46.807,
     "grup": "fisilti",
     "olay": "W2 Anne: \"Kızım…\" (sol üst arka, 60 cm: sevecen, tatlı (B3'te depodaki şeyin taklit ettiği ses))",
     "kaynak": "voice/724-03/a_02 [0.03-0.66] -> LPC fısıltı",
@@ -1295,8 +1295,8 @@
     "yon": "az+152 el+35 0.26 m"
    },
    {
-    "t": 50.55,
-    "son": 52.264,
+    "t": 50.85,
+    "son": 52.564,
     "grup": "fisilti",
     "olay": "Sabri nefes alır",
     "kaynak": "sentez (Sabri'nin ünlü rezonansları)",
@@ -1304,7 +1304,7 @@
     "yon": "az-122→-120 el-10 0.25→0.24 m"
    },
    {
-    "t": 50.93,
+    "t": 51.23,
     "son": 54.0,
     "grup": "fisilti",
     "olay": "W6 Sabri: \"Ece…\" (SON: sağ arka kulak dibinden enseyi dolanıp sol kulağın dibine (5 cm), 'Eceee…' sürerken 54,00'te kesilir)",
@@ -1331,10 +1331,11 @@
    "kulaklik_ornegi": "ornekler/b5p2-binaural-ornek.mp3 (44,00-54,50)"
   },
   "motor": "Önerilen: parçanın ilk sahnesine \"music\": {\"name\": \"efekt/b5p2_tam\", \"volume\": 1.0}; başka music/ambience/sfx/line yok. Ayrıntı: docs/diziler/724/raporlar/b5p2-ses.md §6",
+  "fisilti_toplam_kazanc_db": 2.53,
   "master": {
    "hedef_lufs": -14.0,
    "tepe_dbtp": -1.5,
-   "son_kazanc_db": 3.0,
+   "son_kazanc_db": 3.31,
    "bus": {
     "kepenk": {
      "kazanc_db": 16.31,
@@ -1373,8 +1374,8 @@
      ]
     },
     "fisilti": {
-     "kazanc_db": -0.91,
-     "sinirlayici_en_cok_db": -5.5,
+     "kazanc_db": -0.78,
+     "sinirlayici_en_cok_db": -5.7,
      "hedef": [
       49.3,
       54.0,
@@ -1402,23 +1403,27 @@
   "dogrulama": {
    "master": {
     "I_LUFS": -14.0,
-    "LRA_LU": 16.4,
-    "gercek_tepe_dBTP": -1.1,
+    "LRA_LU": 15.9,
+    "gercek_tepe_dBTP": -1.4,
     "sessizlik": {
      "A_0-5_tepe_dBFS": -240.0,
-     "G_54,02-56_tepe_dBFS": -162.2,
-     "E_33,01-33,24_tepe_dBFS": -88.6
+     "G_54,02-56_tepe_dBFS": -162.9,
+     "E_33,01-33,24_tepe_dBFS": -85.7
     },
-    "mono_toplam_LUFS": -15.95,
-    "LR_ilinti_F": 0.264
+    "mono_toplam_LUFS": -15.96,
+    "LR_ilinti_F": 0.278
    },
-   "F_tam_miks_whisper": "Abone olmayı unutmayın.",
+   "F_tam_miks_whisper": "Kıza Kıza Kıza Kıza Kıza",
    "fisiltilar": [
     {
      "id": "W1",
      "kim": "Sabri",
      "soz": "Ece…",
      "bas": 43.6,
+     "miks_penceresi": [
+      43.55,
+      44.39
+     ],
      "ILD_bas_dB": -6.0,
      "ITD_bas_us": -708,
      "ILD_son_dB": -8.1,
@@ -1426,35 +1431,43 @@
      "mono_kayip_dB": -3.0,
      "mono_en_kotu_bant_dB": -5.8,
      "mono_en_kotu_bant_Hz": 503,
-     "kisa_sureli_LUFS_miks": -24.5,
-     "whisper_L": "Görüşürüz.",
+     "kisa_sureli_LUFS_miks": -24.1,
+     "whisper_L": "Bir sonraki videoda görüşürüz.",
      "whisper_R": "Ece!",
      "whisper_mono": "İçerim.",
-     "whisper_tam_miks": "Ece!"
+     "whisper_tam_miks": "İçerim!"
     },
     {
      "id": "W2",
      "kim": "Anne",
      "soz": "Kızım…",
      "bas": 45.0,
-     "ILD_bas_dB": 6.1,
+     "miks_penceresi": [
+      44.95,
+      45.59
+     ],
+     "ILD_bas_dB": 6.5,
      "ITD_bas_us": 417,
-     "ILD_son_dB": 5.6,
+     "ILD_son_dB": 5.4,
      "ITD_son_us": 500,
-     "mono_kayip_dB": -2.1,
-     "mono_en_kotu_bant_dB": -5.3,
+     "mono_kayip_dB": -1.7,
+     "mono_en_kotu_bant_dB": -5.2,
      "mono_en_kotu_bant_Hz": 1600,
-     "kisa_sureli_LUFS_miks": -22.6,
-     "whisper_L": "Kıstım",
-     "whisper_R": "Kristian",
-     "whisper_mono": "Kıstı.",
-     "whisper_tam_miks": "Kıstı."
+     "kisa_sureli_LUFS_miks": -22.3,
+     "whisper_L": "Kızım.",
+     "whisper_R": "Kızım",
+     "whisper_mono": "Kızım",
+     "whisper_tam_miks": "Kıssım"
     },
     {
      "id": "W3",
      "kim": "Sabri",
      "soz": "Ece…",
      "bas": 46.6,
+     "miks_penceresi": [
+      46.55,
+      47.13
+     ],
      "ILD_bas_dB": -2.9,
      "ITD_bas_us": -167,
      "ILD_son_dB": -0.1,
@@ -1462,17 +1475,21 @@
      "mono_kayip_dB": -0.6,
      "mono_en_kotu_bant_dB": -3.1,
      "mono_en_kotu_bant_Hz": 3200,
-     "kisa_sureli_LUFS_miks": -21.9,
+     "kisa_sureli_LUFS_miks": -21.4,
      "whisper_L": "Yeter!",
      "whisper_R": "Ece!",
-     "whisper_mono": "Ece",
-     "whisper_tam_miks": "Ece!"
+     "whisper_mono": "İçeride!",
+     "whisper_tam_miks": "İçeride!"
     },
     {
      "id": "W4",
      "kim": "Anne",
      "soz": "Kızım…",
      "bas": 47.55,
+     "miks_penceresi": [
+      47.5,
+      47.91
+     ],
      "ILD_bas_dB": -11.0,
      "ITD_bas_us": -604,
      "ILD_son_dB": -6.7,
@@ -1480,7 +1497,7 @@
      "mono_kayip_dB": -2.9,
      "mono_en_kotu_bant_dB": -5.7,
      "mono_en_kotu_bant_Hz": 503,
-     "kisa_sureli_LUFS_miks": -18.4,
+     "kisa_sureli_LUFS_miks": -18.0,
      "whisper_L": "Kısa",
      "whisper_R": "Kızım",
      "whisper_mono": "Kızım",
@@ -1491,35 +1508,43 @@
      "kim": "Anne",
      "soz": "Kızım…",
      "bas": 50.0,
-     "ILD_bas_dB": 6.1,
+     "miks_penceresi": [
+      49.95,
+      51.56
+     ],
+     "ILD_bas_dB": 6.2,
      "ITD_bas_us": 417,
-     "ILD_son_dB": 6.6,
+     "ILD_son_dB": 13.2,
      "ITD_son_us": 958,
      "mono_kayip_dB": -2.7,
-     "mono_en_kotu_bant_dB": -4.2,
-     "mono_en_kotu_bant_Hz": 634,
-     "kisa_sureli_LUFS_miks": -14.4,
+     "mono_en_kotu_bant_dB": -4.1,
+     "mono_en_kotu_bant_Hz": 4031,
+     "kisa_sureli_LUFS_miks": -14.3,
      "whisper_L": "Kızım",
-     "whisper_R": "Kızım, bekle.",
-     "whisper_mono": "Kızım",
-     "whisper_tam_miks": "Kızım"
+     "whisper_R": "Kızım",
+     "whisper_mono": "Kızaaa",
+     "whisper_tam_miks": "Kızaaa"
     },
     {
      "id": "W6",
      "kim": "Sabri",
      "soz": "Ece…",
-     "bas": 51.0,
-     "ILD_bas_dB": 4.5,
-     "ITD_bas_us": 1000,
-     "ILD_son_dB": 14.4,
-     "ITD_son_us": 833,
-     "mono_kayip_dB": -2.5,
-     "mono_en_kotu_bant_dB": -3.8,
+     "bas": 51.3,
+     "miks_penceresi": [
+      51.53,
+      53.97
+     ],
+     "ILD_bas_dB": -7.9,
+     "ITD_bas_us": -562,
+     "ILD_son_dB": 15.1,
+     "ITD_son_us": 854,
+     "mono_kayip_dB": -2.3,
+     "mono_en_kotu_bant_dB": -3.7,
      "mono_en_kotu_bant_Hz": 3200,
-     "kisa_sureli_LUFS_miks": -15.9,
-     "whisper_L": "",
+     "kisa_sureli_LUFS_miks": -16.4,
+     "whisper_L": "Ece",
      "whisper_R": "Ece!",
-     "whisper_mono": "Altyazı M.K.",
+     "whisper_mono": "Ede...",
      "whisper_tam_miks": "Altyazı M.K."
     }
    ]

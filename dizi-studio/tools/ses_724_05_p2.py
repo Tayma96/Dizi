@@ -341,8 +341,10 @@ def lpc_synth(F, n, hop, length, seed=0, bw=0.985, gains=None, frames_a=None):
     return out
 
 
-def whisperize(y, seed=0, residue_db=-60.0, bw=0.985, rasp=0.0, rasp_hz=38.0, tilt_db=4.0, sustain=None):
+def whisperize(y, seed=0, residue_db=-60.0, bw=0.985, rasp=0.0, rasp_hz=38.0, tilt_db=4.0, sustain=None, residue_env=None):
     """y: mono 48 kHz konuşma. residue_db: sesli kaynağın altta bırakılan payı (sahne fısıltısı; ses kimliğini güçlendirir).
+    residue_env: [(t_bas, t_son, dB), ...] kaynak zamanında; o aralıkta sesli pay residue_db yerine bu değer olur
+    (ötümlü ünsüzler 'z', 'm' fısıltıda 's' ve sessizliğe kaymasın diye).
     rasp: 0-1, düzensiz ~30-45 Hz genlik titremesi (hırıltılı, gırtlaksı doku).
     sustain: (t_a, t_b, sure) -> [t_a,t_b] aralığındaki ünlünün LPC zarfını 'sure' sn boyunca tutarak uzatır (Eceeee…)."""
     np = _np()
@@ -362,7 +364,9 @@ def whisperize(y, seed=0, residue_db=-60.0, bw=0.985, rasp=0.0, rasp_hz=38.0, ti
         F = F[:kb] + new + F[kb:]
         length = len(y) + m * hop
         y_res = np.concatenate([y[:int(tb * SR)], np.zeros(m * hop), y[int(tb * SR):]])[:length]
+        ins = (int(tb * SR), m * hop)
     else:
+        ins = None
         length = len(y)
         y_res = y
     out = lpc_synth(F, n, hop, length, seed=seed, bw=bw)
@@ -376,8 +380,16 @@ def whisperize(y, seed=0, residue_db=-60.0, bw=0.985, rasp=0.0, rasp_hz=38.0, ti
         pulse = (0.5 + 0.5 * np.cos(ph)) ** 3
         out = out * (1 - rasp + rasp * 1.6 * pulse)
     if residue_db > -59:
-        # sesli kaynak, fısıltının seviyesine göre residue_db altta
-        out = out + y_res * db2a(rms_db(out) - rms_db(y_res) + residue_db)
+        # sesli kaynak, fısıltının seviyesine göre residue_db altta (isteğe bağlı ünsüz zarfı)
+        env = np.full(len(y), residue_db)
+        for (a_, b_, d_) in (residue_env or []):
+            i0, i1 = int(a_ * SR), int(b_ * SR)
+            env[i0:i1] = d_
+        k = int(0.015 * SR)
+        env = np.convolve(np.pad(env, (k, k), mode="edge"), np.ones(k) / k, mode="same")[k:-k]
+        if ins:
+            env = np.concatenate([env[:ins[0]], np.full(ins[1], env[ins[0] - 1]), env[ins[0]:]])[:length]
+        out = out + y_res * db2a(rms_db(out) - rms_db(y_res)) * db2a(env[:length])
     return out
 
 
@@ -659,7 +671,7 @@ FISILTI = [
      "ayar": dict(residue_db=-14, rasp=0.25, seed=11), "kazanc": -11.5,
      "yol": [(0, -130, -5, 0.80), (0.9, -124, -5, 0.76)], "not": "sağ arka, 80 cm: alçak, sakin (B1'deki depo çağrısının sesi)"},
     {"id": "W2", "kim": "Anne", "soz": "Kızım…", "t": 45.00, "kaynak": ("724-03", "a_02", 0.03, 0.66),
-     "ayar": dict(residue_db=-4, bw=0.99, seed=12), "kazanc": -11.0,
+     "ayar": dict(residue_db=-5, bw=0.99, seed=33, residue_env=[(0.15, 0.25, 3.0), (0.35, 0.47, 3.0)]), "kazanc": -11.0,
      "yol": [(0, 140, 25, 0.60), (0.7, 132, 22, 0.56)], "not": "sol üst arka, 60 cm: sevecen, tatlı (B3'te depodaki şeyin taklit ettiği ses)"},
     {"id": "W3", "kim": "Sabri", "soz": "Ece…", "t": 46.60, "kaynak": ("724-01", "c_08", 0.05, 0.62),
      "ayar": dict(residue_db=-16, rasp=0.35, seed=13), "kazanc": -11.0,
@@ -670,9 +682,9 @@ FISILTI = [
     {"id": "W5", "kim": "Anne", "soz": "Kızım…", "t": 50.00, "kaynak": ("724-03", "a_02", 0.03, 0.66),
      "ayar": dict(residue_db=-4, bw=0.99, seed=15, sustain=(0.27, 0.34, 0.95)), "kazanc": -12.5,
      "yol": [(0, 150, 35, 0.27), (0.8, 128, 24, 0.18), (1.63, 104, 12, 0.11)], "not": "sol üst arkadan sol kulağa iner: 'Kızııım…' (uzatılmış)"},
-    {"id": "W6", "kim": "Sabri", "soz": "Ece…", "t": 51.00, "kaynak": ("724-01", "c_15", 0.04, 0.86),
-     "ayar": dict(residue_db=-15, rasp=0.3, seed=16, sustain=(0.22, 0.29, 2.2)), "kazanc": -16.5,
-     "yol": [(0, -120, -10, 0.24), (1.4, 180, -25, 0.12), (3.0, 95, -5, 0.05)], "not": "SON: sağ arka kulak dibinden enseyi dolanıp sol kulağın dibine (5 cm), 'Eceee…' sürerken 54,00'te kesilir"},
+    {"id": "W6", "kim": "Sabri", "soz": "Ece…", "t": 51.30, "kaynak": ("724-01", "c_15", 0.04, 0.86),
+     "ayar": dict(residue_db=-15, rasp=0.3, seed=16, sustain=(0.22, 0.29, 1.9)), "kazanc": -16.5,
+     "yol": [(0, -120, -10, 0.24), (1.2, 180, -25, 0.12), (2.62, 95, -5, 0.05)], "not": "SON: sağ arka kulak dibinden enseyi dolanıp sol kulağın dibine (5 cm), 'Eceee…' sürerken 54,00'te kesilir"},
 ]
 NEFESLER = [  # (t, süre, tür, kim, rasp, yol)
     (40.90, 1.10, "al", "Sabri", 0.15, [(0, -142, -10, 1.20), (1.1, -138, -10, 1.05)]),
@@ -681,7 +693,7 @@ NEFESLER = [  # (t, süre, tür, kim, rasp, yol)
     (46.00, 0.50, "al", "Sabri", 0.10, [(0, 176, -20, 0.46), (0.5, -172, -20, 0.43)]),
     (49.40, 0.50, "al", "Anne", 0.0, [(0, 152, 36, 0.29), (0.5, 150, 35, 0.27)]),
     (49.45, 0.75, "ver", "Sabri", 0.40, [(0, -142, -15, 0.32), (0.75, -132, -12, 0.27)]),
-    (50.55, 0.40, "al", "Sabri", 0.10, [(0, -122, -10, 0.25), (0.4, -120, -10, 0.24)]),
+    (50.85, 0.40, "al", "Sabri", 0.10, [(0, -122, -10, 0.25), (0.4, -120, -10, 0.24)]),
 ]
 TIKLAR = [  # (t, tür, yol, kazanç dB)
     (40.20, "mandibula", [(0, -150, -10, 1.6)], -14),
@@ -926,6 +938,7 @@ def cmd_kur():
         yol = [(p[0] + 0.07, p[1], p[2], p[3]) for p in w["yol"]]
         yol = [(0.0, *yol[0][1:])] + yol
         B = render(x2, yol, ref=1.0, tail_gain=0.5, seed=170 + k, gmax=10.0)
+        np.save(os.path.join(TMP, f"yalniz_{w['id']}.npy"), B * db2a(w["kazanc"]))
         M.ekle("fisilti", w["t"] - 0.07, B, w["kazanc"], f"{w['id']} {w['kim']}: \"{w['soz']}\" ({w['not']})",
                f"voice/{w['kaynak'][0]}/{w['kaynak'][1]} [{w['kaynak'][2]}-{w['kaynak'][3]}] -> LPC fısıltı", kadar=KESME,
                yon=" → ".join(f"az{p[1]:+d} el{p[2]:+d} {p[3]} m" for p in w["yol"]))
@@ -980,10 +993,10 @@ def cmd_kur():
     mix = sum(G.values())
     gain = 0.0
     for it in range(4):
-        y_l, _ = limiter(mix * db2a(gain), -1.6)
+        y_l, _ = limiter(mix * db2a(gain), -2.0)
         gain += (-14.0 - meter.integrated_loudness(y_l))
-    gain = min(gain, 3.0)
-    y, lim_g = limiter(mix * db2a(gain), -1.6)
+    gain = min(gain, 3.5)
+    y, lim_g = limiter(mix * db2a(gain), -2.0)
     L = meter.integrated_loudness(y)
     print(f"master: kazanç {gain:+.2f} dB, {L:.2f} LUFS, son sınırlayıcı en çok {20 * np.log10(lim_g.min()):.1f} dB (en derin an {np.argmin(lim_g) / SR:.2f} sn), >1 dB baskı {100 * np.mean(lim_g < db2a(-1)):.2f}% süre", flush=True)
     # kökler (aynı kazanç + aynı sınırlayıcı kazancı): tam = efekt + fısıltı
@@ -1019,6 +1032,7 @@ def cmd_kur():
             "onizleme": "ornekler/b5p2-ses-onizleme.mp3", "kulaklik_ornegi": "ornekler/b5p2-binaural-ornek.mp3 (44,00-54,50)",
         },
         "motor": "Önerilen: parçanın ilk sahnesine \"music\": {\"name\": \"efekt/b5p2_tam\", \"volume\": 1.0}; başka music/ambience/sfx/line yok. Ayrıntı: docs/diziler/724/raporlar/b5p2-ses.md §6",
+        "fisilti_toplam_kazanc_db": round(bus_kazanc["fisilti"][0] + gain, 2),
         "master": {"hedef_lufs": -14.0, "tepe_dbtp": -1.5, "son_kazanc_db": round(gain, 2), "bus": {k: {"kazanc_db": v[0], "sinirlayici_en_cok_db": v[1], "hedef": BUS.get(k, ("tepe", TEPE_BUS.get(k)))} for k, v in bus_kazanc.items()}},
     }
     plan_save(p)
@@ -1108,20 +1122,26 @@ def cmd_olc():
     def yaz(x):
         x = np.asarray(x, dtype=np.float32)
         x = x / (np.abs(x).max() + 1e-9) * 0.5
-        segs, _ = asr.transcribe(librosa.resample(x, orig_sr=SR, target_sr=16000), language="tr", beam_size=5)
+        segs, _ = asr.transcribe(librosa.resample(x, orig_sr=SR, target_sr=16000), language="tr", beam_size=5, vad_filter=len(x) > 5 * SR)
         return " ".join(s_.text.strip() for s_ in segs)
 
     rows = []
+    gk = db2a(p["plan"]["fisilti_toplam_kazanc_db"])
+    onceki_son = 0.0
     for w in p["plan"]["fisiltilar"]:
         a, b = w["bas"] - 0.05, min(w["son"] + 0.05, KESME)
-        X = fis[int(a * SR):int(b * SR)]
-        Y = y[int(a * SR):int(b * SR)]
+        # yalnız çizilmiş fısıltı (üst üste binen öteki fısıltı olmadan); 70 ms dudak tıkı payı atlanır
+        X = np.load(os.path.join(TMP, f"yalniz_{w['id']}.npy"))[int(0.02 * SR):int((0.07 + w["sure"] + 0.05) * SR)] * gk
+        # tam miks: öteki fısıltıyla çakışan baş kısım atlanır (W6: W5 bitince)
+        a2 = max(a, onceki_son + 0.02)
+        Y = y[int(a2 * SR):int(b * SR)]
+        onceki_son = max(onceki_son, w["son"])
         # ILD/ITD: başta ve sonda (hareket)
         n3 = len(X) // 3
         ild0, itd0 = _itd_ild(X[:n3, 0], X[:n3, 1])
         ild1, itd1 = _itd_ild(X[-n3:, 0], X[-n3:, 1])
         mk, mw, mf = _mono_kayip(X[:, 0], X[:, 1])
-        r = {"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["bas"],
+        r = {"id": w["id"], "kim": w["kim"], "soz": w["soz"], "bas": w["bas"], "miks_penceresi": [round(a2, 2), round(b, 2)],
              "ILD_bas_dB": ild0, "ITD_bas_us": itd0, "ILD_son_dB": ild1, "ITD_son_us": itd1,
              "mono_kayip_dB": mk, "mono_en_kotu_bant_dB": mw, "mono_en_kotu_bant_Hz": mf,
              "kisa_sureli_LUFS_miks": round(meter.integrated_loudness(Y) if len(Y) > 0.4 * SR else float("nan"), 1),
