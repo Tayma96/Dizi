@@ -30,50 +30,96 @@ def line(who, text, take, shot, cast=None, **kw):
     return b
 
 
+# ---------------------------------------------------------------- Sahne a: market, sabah (b6_kapi; P1'in son durumundan)
+MARKET = {
+    "ac": [[0, 1]], "gunes": [[0, 1]], "tanA": [[0, 0.75]], "gun": [[0, 1]], "gunesY": [[0, 1]], "floresan": [[0, 1]],
+    "sel": False, "eceBocek": False, "red": 0, "tozIzi": 0.6, "saat": [[0, "07:31"]], "kapi": [[0, 1]],
+    # Ece yerde; para görünce şok, alır, göğsüne bastırır; söver gibi bakış; cebine koyar, kalkar, kameranın solundan çıkar
+    "eceYer": [[0, 0.25, 3.3], [13.6, 0.25, 3.3], [15.6, -1.25, 5.6]], "eceYuru": [[13.6, 15.6]],
+    "eceOtur": [[0, 1], [12.7, 1], [13.6, 0]],
+    "eceDuygu": [[0, "agliyor"], [2.1, "sok"], [5.4, "agliyor"], [9.95, "ofkeli"], [11.9, "agliyor"]],
+    "eceHickir": [[0, 0.7], [2.0, 0.7], [2.1, 0], [5.4, 0], [5.8, 0.6], [9.9, 0.6], [10.0, 0], [11.9, 0], [12.2, 0.8]],
+    "eceAgla": [[0, 0.45]], "gozyasi": [[0, 1]],
+    "eceBak": [[0, -0.3, 0.2, -0.2], [2.0, -0.3, 0.2, -0.2], [2.2, -0.45, 0.45, -0.3], [5.3, -0.45, 0.45, -0.3], [5.5, -0.5, 0.0, -0.35],
+               [11.9, -0.5, 0.0, -0.35], [12.2, 0, 0.35, 0], [13.6, -0.3, 0.1, -0.3]],
+    "eceKol": [[0, 10, -60, 0.9, 10, -60, 0.9], [3.9, 10, -60, 0.9, 10, -60, 0.9], [4.35, 70, -50, 1.0, 10, -60, 0.9],
+               [4.8, 25, -125, 0.9, 10, -60, 0.9], [11.9, 25, -125, 0.9, 10, -60, 0.9], [12.6, 6, -10, 1, 6, 0, 1], [13.6, 6, 0, 1, 6, 0, 1]],
+    "eceDeste": [[0, False], [4.45, True], [12.5, False]],
+    "eceTilt": [[0, 0], [9.9, 0], [10.2, 4], [11.8, 4], [12.2, 0]],
+    "sabri": {"yol": [[0, -0.12, 3.1]], "diz": [[0, 1]], "saril": [[0, 0]], "okşa": False,
+              "uzat": [[0, 0], [1.0, 0], [2.0, 1], [4.5, 1], [5.2, 0]], "deste": [[0, False], [0.95, True], [4.45, False]],
+              "duygu": [[0, "uzgun"]], "konus": [[5.3, 9.75]], "bak": [[0, 0.45, 0.4, 0.3], [13.6, 0.45, 0.4, 0.3], [15.0, -0.4, 0.2, -0.3]],
+              "egil": [[0, 6], [13.0, 6], [14.0, 0]]},
+}
+A_CEK = [  # (süre, kamera, açıklama)
+    (2.0, [[0, 560, 1330, 1.45], [2.0, 570, 1330, 1.55]], "Sabri cebinden desteyi çıkarır"),
+    (1.6, [[2.0, 610, 1350, 2.5], [3.6, 615, 1350, 2.65]], "deste Ece'ye uzanır (yakın)"),
+    (1.7, [[3.6, 650, 1290, 1.9], [5.3, 655, 1285, 1.95]], "Ece şok, alır, göğsüne bastırır"),
+    (2.4, [[5.3, 470, 1230, 1.9], [7.7, 475, 1220, 2.0]], "Sabri: bu gece…"),
+    (1.0, [[7.7, 677, 1250, 2.3], [8.7, 677, 1250, 2.35]], "Ece tepki (maaş)"),
+    (1.25, [[8.7, 475, 1220, 2.0], [9.95, 478, 1215, 2.05]], "Sabri bitirir"),
+    (1.95, [[9.95, 677, 1250, 2.1], [11.9, 677, 1245, 2.6]], "söver gibi bakış (yavaş yaklaşma)"),
+    (1.7, [[11.9, 620, 1320, 1.6], [13.6, 610, 1250, 1.5]], "cebine koyar, kalkar"),
+    (2.0, [[13.6, 560, 1150, 1.15], [15.6, 540, 1120, 1.1]], "kameranın solundan çıkar; Sabri arkasından bakar"),
+]
+DIS = {"ac": [[0, 1]], "gun": [[0, 1]], "gunesY": [[0, 1]], "saat": [[0, "07:31"]],
+       "ece": {"yol": [[0, 2.3, 7.2], [0.45, 2.05, 6.3], [3.0, -0.35, 1.1]], "kos": [[0, 3.0]]},
+       "cam": [[0, 560, 1000, 1.05], [3.0, 520, 1060, 1.15]]}
+
+
+def kapi_cekimleri():
+    """b6_kapi çekimleri; Sabri'nin repliği (4,47 sn) tek line vuruşunda, içinde 3 çekim (kamera anahtarlarında sert kesme)"""
+    t, out, i = 0.0, [], 0
+    while i < len(A_CEK):
+        d, cam, _ = A_CEK[i]
+        p = dict(MARKET); p["t0"] = t
+        if i == 3:
+            c = []
+            for dd, cc, _ in A_CEK[3:6]:
+                c.append([cc[0][0] + (0.004 if c else 0)] + cc[0][1:])
+                c.append(cc[1])
+            p["cam"] = c
+            dur = sum(x[0] for x in A_CEK[3:6])
+            out.append({"type": "line", "who": SABRI, "text": "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem",
+                        "_take": "S1_01", "gapAfter": round(dur - 4.467, 3), "ekle": {"kind": "b6_kapi", "text": [json.dumps(p, ensure_ascii=False)]}})
+            t += dur; i += 3; continue
+        p["cam"] = cam
+        out.append({"type": "insert", "kind": "b6_kapi", "dur": d, "text": [json.dumps(p, ensure_ascii=False)]})
+        t += d; i += 1
+    return out
+
+
 sahneler = [
-    {"id": "a", "set": "market_kapi", "time": "gunduz", "saat": "07:31", "title": "Bir aylık maaş", "look": "normal", "transition": "kesme", "sabah": True,
-     "isaretler": {"ece_m": {"x": 800, "y": 1880, "size": 1260}, "sabri_m": {"x": 290, "y": 1860, "size": 1300}, "cikis": {"x": 550, "y": 1262, "size": 640}},
-     "music": {"name": "efekt/b6p2_alt", "volume": 1.0, "duck": False},
-     "cast": {ECE: {"mark": "ece_m", **AGLA, "lookAt": SABRI}, SABRI: {"mark": "sabri_m", "emotion": "uzgun", "lookAt": ECE}},
-     "beats": [
-         act(2.6, {"type": "iki", "on": SABRI, "with": ECE, "move": "yaklas"}, {SABRI: {"gesture": "uzat", "prop": "para"}}),
-         act(1.8, {"type": "yakin", "on": ECE, "move": "sabit"}, {ECE: {"emotion": "sok", "bak": {"x": -0.5, "y": 0.35}}}),
-         act(1.2, {"type": "orta", "on": ECE, "move": "sabit"}, {ECE: {"emotion": "saskin", "gesture": "tutuyor", "prop": "para"}, SABRI: {"gesture": "rest", "prop": None}}),
-         line(SABRI, "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem", "S1_01", {"type": "orta", "on": SABRI, "move": "yaklas"}),
-         act(1.8, {"type": "yakin", "on": ECE, "move": "yaklas"}, {ECE: {"emotion": "ofkeli", "tears": 1, "lookAt": SABRI}}),
-         act(1.4, {"type": "orta", "on": ECE, "move": "sabit"}, {ECE: {"emotion": "agliyor", "gesture": "rest", "prop": None, "hickir": 0.8}}),
-         act(2.0, {"type": "genis", "move": "sabit"}, {ECE: {"mark": "cikis", "yuruSure": 1.6, "hickir": 0.8}, SABRI: {"lookAt": ECE}}),
-     ]},
-    {"id": "b", "set": "sokak", "time": "gunduz", "title": "Koşa koşa eve", "transition": "kesme",
-     "cast": {ECE: {"mark": "orta", **AGLA, "body": "kos", "enter": "sol"}},
-     "beats": [
-         act(1.6, {"type": "genis", "move": "sabit"}),
-         act(1.3, {"type": "genis", "move": "sabit"}, {ECE: {"body": "kos", "exit": "sag"}}),
-     ]},
+    {"id": "a", "set": "market_kapi", "time": "gunduz", "saat": "07:31", "title": "Bir aylık maaş", "transition": "kesme", "cast": {},
+     "music": {"name": "efekt/b6p2_alt", "volume": 1.0, "duck": False}, "beats": []},
+    {"id": "b", "set": "market_kapi", "time": "gunduz", "title": "Kaçış", "transition": "kesme", "cast": {},
+     "beats": [{"type": "insert", "kind": "b6_dis", "dur": 3.0, "text": [json.dumps(dict(DIS, t0=0), ensure_ascii=False)]}]},
     {"id": "c", "set": "ev_antre", "time": "gunduz", "title": "Kapı", "transition": "kesme",
      "isaretler": {"ece_esik": {"x": 560, "y": 1560, "size": 950}},
-     "cast": {ECE: {"mark": "ece_esik", **AGLA, "hickir": 0.8}},
+     "cast": {ECE: {"mark": "ece_esik", **AGLA, "hickir": 0.9, "aglaAgiz": 0.5}},
      "beats": [
-         act(1.1, {"type": "genis", "move": "sabit"}, door="ac"),
-         act(1.5, {"type": "genis", "move": "yaklas"}, {ECE: {"mark": "ece_giris", "yuruSure": 0.8}}, door="kapat"),
+         act(1.2, {"type": "genis", "move": "yaklas", "kadraj": {"cx": 560, "cy": 1060, "z": 1.05}}, door="ac"),
+         act(1.4, {"type": "orta", "on": ECE, "move": "yaklas"}, {ECE: {"mark": "ece_kapi", "yuruSure": 0.7, "bak": {"x": 0.6, "y": 0}}}, door="kapat"),
          {"type": "insert", "kind": "ev_anahtar", "dur": 1.4},
          {"type": "insert", "kind": "ev_zincir", "dur": 1.3},
      ]},
     {"id": "d", "set": "ev_antre_z", "time": "gunduz", "title": "Yoksa öğrendi mi?", "transition": "kesme",
-     "cast": {ECE: {"mark": "ece_kapi", **AGLA, "yerOtur": 1, "hickir": 1, "aglaAgiz": 0.8}},
+     "cast": {ECE: {"mark": "ece_kapi", **AGLA, "hickir": 1, "aglaAgiz": 0.8, "yerOtur": 0}},
      "beats": [
-         act(3.4, {"type": "orta", "on": ECE, "move": "yaklas"}),
-         act(1.8, {"type": "genis", "move": "sabit"}, {ANNE: {"mark": "anne", "enter": "sag", "emotion": "saskin", "lookAt": ECE}}),
-         line(ANNE, "yoksa öğrendi mi?", "I2_01", {"type": "yakin", "on": ANNE, "move": "yaklas"}, {ANNE: {"emotion": "korkmus", "lookAt": ECE}},
-              voiceover=True, label="Anne (içinden)", gapAfter=0.5),
-         line(ANNE, "noldu kızım neyin var?", "A2_01", {"type": "iki", "on": ANNE, "with": ECE, "move": "sabit"},
-              {ANNE: {"mark": "anne_yan", "diz": True, "emotion": "uzgun", "gesture": "okşa", "lookAt": ECE}}),
-         line(ANNE, "Biri bir şey mi yaptı", "B1_01", {"type": "yakin", "on": ANNE, "move": "sarsinti"}, {ANNE: {"emotion": "ofkeli", "gesture": "rest"}}),
-         act(2.4, {"type": "yakin", "on": ECE, "move": "sabit"},
-             {ECE: {"bakSira": [{"at": 0, "x": 0, "y": 0.3, "yaw": 0}, {"at": 0.3, "x": -0.3, "y": 0.3, "yaw": -0.45}, {"at": 0.65, "x": 0.3, "y": 0.3, "yaw": 0.45},
-                                {"at": 1.0, "x": -0.3, "y": 0.3, "yaw": -0.45}, {"at": 1.35, "x": 0, "y": 0.35, "yaw": 0}]}}),
+         act(3.2, {"type": "orta", "on": ECE, "move": "yaklas", "kadraj": {"cx": 560, "cy": 1300, "z": 1.35}}, {ECE: {"yerOtur": 1, "bak": {"x": 0, "y": 0.4}}}),
+         act(1.9, {"type": "genis", "move": "sabit", "kadraj": {"cx": 640, "cy": 1180, "z": 1.1}}, {ANNE: {"mark": "anne", "enter": "sag", "emotion": "saskin", "lookAt": ECE}}),
+         line(ANNE, "yoksa öğrendi mi?", "I2_01", {"type": "yakin", "on": ANNE, "move": "yaklas"}, {ANNE: {"emotion": "korkmus", "lookAt": ECE, "pale": 0.35}},
+              voiceover=True, label="Anne (içinden)", gapAfter=0.7),
+         act(1.2, {"type": "iki", "on": ANNE, "with": ECE, "move": "sabit"}, {ANNE: {"mark": "anne_yan", "yuruSure": 0.7, "emotion": "uzgun", "lookAt": ECE}}),
+         line(ANNE, "noldu kızım neyin var?", "A2_01", {"type": "iki", "on": ANNE, "with": ECE, "move": "yaklas"},
+              {ANNE: {"diz": True, "emotion": "uzgun", "gesture": "okşa", "lookAt": ECE}}),
+         line(ANNE, "Biri bir şey mi yaptı", "B1_01", {"type": "yakin", "on": ANNE, "move": "sarsinti", "kadraj": {"cx": 750, "cy": 1110, "z": 1.9}}, {ANNE: {"diz": True, "emotion": "ofkeli", "gesture": "yumruk", "lookAt": ECE}}),
+         act(2.6, {"type": "yakin", "on": ECE, "move": "yaklas", "kadraj": {"cx": 545, "cy": 1250, "z": 2.2}},
+             {ECE: {"bakSira": [{"at": 0, "x": 0, "y": 0.3, "yaw": 0}, {"at": 0.35, "x": -0.3, "y": 0.3, "yaw": -0.45}, {"at": 0.75, "x": 0.3, "y": 0.3, "yaw": 0.45},
+                                {"at": 1.15, "x": -0.3, "y": 0.3, "yaw": -0.45}, {"at": 1.55, "x": 0, "y": 0.35, "yaw": 0}]}}),
      ]},
 ]
+sahneler[0]["beats"] = kapi_cekimleri()
 
 
 def zamanla(man):
@@ -112,11 +158,12 @@ def main():
         (f"{S}/efekt/el_buzdolabi.mp3", 12, -24, (0, b0 - 12), 0.5, 0.4),
         (f"{S}/ortam/kus_sesleri.mp3", 0, -27, (0, b0), 0.3, 0.4),
         (f"{CK}/../../724-06/cekim/C4_01.mp3", 0, -9, None, 0.2, 0.8),             # hıçkırık (zarfı alırken)
-        (f"{S}/efekt/el_kumas_burus.mp3", T("a", 2, 0.1), -10, None, 0, 0.2),    # para elden ele
+        (f"{S}/efekt/el_kumas_burus.mp3", 0.95, -10, None, 0, 0.2),          # deste cepten çıkar
+        (f"{S}/efekt/el_kumas_burus.mp3", 4.4, -9, None, 0, 0.2),           # para elden ele
         (f"{CK}/../../724-06/cekim/C3_01.mp3", T("a", 4, 0.2), -6, None, 0.1, 0.6),  # söver gibi bakış: boğuk ağlama
         (f"{S}/efekt/ayak_sesleri.mp3", a_son, -14, (0, 2.0), 0.05, 0.3),
-        (f"{S}/efekt/el_otomatik_kapi.mp3", a_son + 0.9, -12, (0, 1.6), 0, 0.4),
-        (f"{S}/efekt/el_dingdong.mp3", a_son + 1.0, -9, None, 0, 0),
+        (f"{S}/efekt/el_otomatik_kapi.mp3", a_son + 1.6, -12, (0, 1.6), 0, 0.4),
+        (f"{S}/efekt/el_dingdong.mp3", a_son + 1.7, -9, None, 0, 0),
         # sokak: koşu + nefes nefese ağlama
         (f"{S}/ortam/sehir.mp3", b0, -18, (0, c0 - b0 + 0.3), 0.1, 0.3),
         (f"{S}/efekt/kosma.mp3", b0, -10, (0, c0 - b0), 0.05, 0.3),
@@ -131,7 +178,7 @@ def main():
         # yerde ağlama (anne konuşurken de sürer, kısık)
         (f"{CK}/../../724-06/cekim/C1_01.mp3", d0, 0, None, 0.05, 0.6),
         (f"{CK}/../../724-06/cekim/C2_01.mp3", T("d", 2), -9, None, 0.3, 0.6),
-        (f"{CK}/../../724-06/cekim/C4_01.mp3", T("d", 5), -3, None, 0.05, 0.5),
+        (f"{CK}/../../724-06/cekim/C4_01.mp3", T("d", 6), -3, None, 0.05, 0.5),
         # müzik: eve girince hüzünlü; "yoksa öğrendi mi?"de keser, sonra alçak gerilim
         (f"{S}/muzik/b6_safak.mp3", c0, -16, (24, 24 + T("d", 2) - c0), 1.0, 0.25),
         (f"{S}/efekt/korku_vurus.mp3", T("d", 2, 0.05), -14, None, 0, 1.0),

@@ -100,6 +100,12 @@ export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir }) => (
     <path d="M 190 1120 V 1410" stroke={O} strokeWidth={3} />
     <circle cx={175} cy={1260} r={6} fill="#c8a860" /><circle cx={205} cy={1260} r={6} fill="#c8a860" />
     <rect x={120} y={1070} width={60} height={50} rx={6} fill="#5a8ab0" stroke={O} strokeWidth={3} />
+    {/* duvarda aile fotoğrafı (Ece küçükken annesiyle) ve anahtarlık */}
+    <rect x={180} y={330} width={150} height={190} fill="#f4ecd8" stroke="#6a4a30" strokeWidth={10} />
+    <rect x={198} y={348} width={114} height={130} fill="#9ab8c8" />
+    <circle cx={238} cy={400} r={20} fill="#eec4a2" /><path d="M 216 470 Q 238 420 260 470 Z" fill="#8a4a5a" />
+    <circle cx={280} cy={420} r={13} fill="#f0c8a8" /><path d="M 266 470 Q 280 438 294 470 Z" fill="#e8a0b8" />
+    <rect x={300} y={1040} width={50} height={20} rx={4} fill="#c8a860" stroke={O} strokeWidth={2} />
     {/* sağ: salona geçit (sıcak ışık) */}
     <rect x={800} y={440} width={280} height={1160} fill="#f6dca8" />
     <rect x={800} y={1380} width={280} height={220} fill="#c89a62" />
@@ -118,7 +124,26 @@ export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir }) => (
   </g>
 );
 
-export const Ev724FG: React.FC<EvProps> = () => null;
+/** Salon penceresinden gelen sabah güneşi: çapraz huzmeler + uçuşan toz (karakterleri de aydınlatır) */
+export const Ev724FG: React.FC<EvProps> = ({ frame }) => {
+  const t = frame / 30;
+  return (
+    <g style={{ mixBlendMode: "screen" }}>
+      <defs>
+        <linearGradient id="evf_h" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffd890" stopOpacity={0.42} /><stop offset="1" stopColor="#ffb860" stopOpacity={0} /></linearGradient>
+        <filter id="evf_b"><feGaussianBlur stdDeviation="14" /></filter>
+      </defs>
+      {[[0, 150], [210, 110], [380, 70]].map(([d, w], i) => (
+        <path key={i} d={`M ${1080} ${560 + d} L ${1080} ${560 + d + w} L ${260 - d * 0.4} ${1920} L ${60 - d * 0.4 - w} ${1920} Z`} fill="url(#evf_h)" filter="url(#evf_b)" opacity={0.85 + 0.15 * Math.sin(t * 0.7 + i)} />
+      ))}
+      {new Array(26).fill(0).map((_, i) => {
+        const x = 1080 - ((i * 137 + t * 14 * (1 + (i % 3))) % 900);
+        const y = 700 + ((i * 211) % 1100) + Math.sin(t * 0.9 + i) * 18;
+        return <circle key={i} cx={x} cy={y} r={2 + (i % 3)} fill="#fff0c8" opacity={0.35 + 0.3 * Math.abs(Math.sin(t * 1.3 + i))} />;
+      })}
+    </g>
+  );
+};
 
 export const EV724_MARKS = {
   ece_kapi: { x: 560, y: 1760, size: 1180 },

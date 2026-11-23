@@ -281,6 +281,17 @@ export const Safak: React.FC<{ uid: string; sabah: number; gunesY: number; t: nu
   );
 };
 
+/** B6 p2: bir aylık maaş: bantlı kalın deste (Sabri'nin elinde) */
+const Deste: React.FC<{ x: number; y: number; s: number }> = ({ x, y, s }) => (
+  <g transform={`translate(${x} ${y}) rotate(-12) scale(${s})`}>
+    {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={-62} y={-30 - i * 7} width={124} height={58} rx={4} fill={i % 2 ? "#86c096" : "#7ab88a"} stroke={OUT} strokeWidth={3} />)}
+    <rect x={-62} y={-65} width={124} height={58} rx={4} fill="#8ac89a" stroke={OUT} strokeWidth={3} />
+    <circle cx={0} cy={-36} r={14} fill="none" stroke="#3a7a4a" strokeWidth={3} />
+    <text x={-50} y={-16} fontFamily="Arial" fontSize={16} fontWeight={800} fill="#2a5a3a">200</text>
+    <rect x={-14} y={-68} width={28} height={98} fill="#e8d8b0" stroke={OUT} strokeWidth={2.5} />
+  </g>
+);
+
 /* =====================================================================================
  *  B6_KAPI
  *  prm (hepsi sahne zamanında; t0 = vuruşun sahnedeki başlangıcı):
@@ -465,7 +476,9 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
     const dOp = kf1(p.kapi, tg, 0);
     const sl = 250 * 0.96 * dOp;
     const klip = sDd < 0.05 ? `polygon(${(550 - sl - left).toFixed(1)}px -2000px, ${(550 + sl - left).toFixed(1)}px -2000px, ${(550 + sl - left).toFixed(1)}px ${(1262 - top).toFixed(1)}px, ${(550 - sl - left).toFixed(1)}px ${(1262 - top).toFixed(1)}px)` : undefined;
-    const kolOverlay = sar > 0.001;
+    const uz = kf1(sp.uzat, tg, 0); // B6 p2: ön kol Ece'ye para uzatır (0..1)
+    const desteS = basamak<boolean>(sp.deste, tg, false);
+    const kolOverlay = sar > 0.001 || uz > 0.001;
     sabriEl = (
       <div style={{ position: "absolute", left, top, clipPath: klip, transformOrigin: `${200 * S}px ${980 * S}px`, transform: egil ? `rotate(${egil}deg)` : undefined }}>
         <Character look={sabri} size={size} pose={{ emotion: duyguS, body: yuru ? "walk" : undefined, diz: dz, lookX: blx, lookY: bly, yaw: byaw, talk: konusS ? [[f - 2, f + 2]] : undefined, kolGizle: kolOverlay ? "ikisi" : undefined, seed: 23, golgesiz: gun < 0.5 }} />
@@ -483,7 +496,10 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
       const basT = eceP(172 + (okşa / eS) * 0.25, 96 + (okşa / eS) * 0.5, false);
       const u1 = sstep(0, 0.75, sar), u2 = sstep(0.25, 1, sar);
       const T1: V2 = [restR[0] + (uzakOmuz[0] - restR[0]) * u1, restR[1] + (uzakOmuz[1] - restR[1]) * u1];
-      const T2: V2 = [restL[0] + (basT[0] - restL[0]) * u2, restL[1] + (basT[1] - restL[1]) * u2];
+      const gogus = eceP(200, 430, false);
+      const T2: V2 = uz > 0.001
+        ? [restL[0] + (gogus[0] - restL[0]) * 0.78 * sstep(0, 1, uz), restL[1] + (gogus[1] - restL[1]) * 0.78 * sstep(0, 1, uz)]
+        : [restL[0] + (basT[0] - restL[0]) * u2, restL[1] + (basT[1] - restL[1]) * u2];
       const a1 = ik(Sr, T1, L1, L2, 1), a2 = ik(Sl, T2, L1, L2, (sp.bukum ?? 1) as 1 | -1);
       const renk = sabri.outfit.top;
       kolArka = <Kol S={Sr} E={a1.E} H={a1.H} w={wArm} renk={renk} manset={sabri.outfit.topShade} elYok />;
@@ -491,6 +507,7 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
         <g>
           {u1 > 0.6 ? <OmuzEl H={a1.H} w={wArm * 0.95} aci={-20} ten={sabri.skin} parmak={1.5 * Math.sin(tg * 3.2) * S * 10} /> : <circle cx={a1.H[0]} cy={a1.H[1]} r={wArm * 0.95} fill={sabri.skin} stroke={OUT} strokeWidth={wArm * 0.18} />}
           <Kol S={Sl} E={a2.E} H={a2.H} w={wArm} renk={renk} manset={sabri.outfit.topShade} el={sabri.skin} />
+          {desteS ? <Deste x={a2.H[0]} y={a2.H[1] - wArm * 0.6} s={S * 1.0} /> : null}
         </g>
       );
     }
@@ -569,6 +586,7 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
           emotion: emo, lookX: lx, lookY: ly, yaw, pale: kf1(p.pale, tg, 0.5), sacDagin: true, tears: kf1(p.gozyasi, tg, 0.5), armL, armR,
           agizKapa: kf1(p.agizKapa, tg, 0) || undefined, elTitre: 1, yerOtur: s.oy, hickir: eHick || undefined, aglaAgiz: p.eceAgla ? kf1(p.eceAgla, tg, 0) : undefined,
           tilt: kf1(p.eceTilt, tg, 0), eyesClosed: eceGoz > 0.01 ? eceGoz : undefined, talk: konusE ? [[f - 2, f + 2]] : undefined, golgesiz: true, seed: eceSeed,
+          prop: basamak<boolean>(p.eceDeste, tg, false) ? "para" : undefined, body: araliktaMi(p.eceYuru, tg) ? "walk" : undefined,
         }} />
       </div>
       {/* Ece'nin üstündeki böcekler (rig'le aynı ışıkta); eğilme dönüşü dışarıda hesaplandığı için geri alınır */}
@@ -1084,6 +1102,21 @@ const B6Dis: React.FC<{ text?: string[] }> = ({ text }) => {
             <rect x={0} y={Hh - 20} width={W} height={20} fill="#5a4a40" />
           </svg>
         </div>
+        {/* B6 p2 (opt-in): Ece marketin kapısından fırlar, ağlayarak kameraya doğru koşar (ece {yol [[t,X,Z]], kos [[t0,t1]]}) */}
+        {p.ece ? (() => {
+          const ep = p.ece as Prm;
+          const [eX, eZ] = kf(ep.yol, tg, [2.3, 7]);
+          if (eZ < 0.6) return null;
+          const [fx, fy] = P(eX, 0, eZ);
+          const size = ECE_C * FD / eZ;
+          const kosuyor = araliktaMi(ep.kos, tg);
+          const cikis = eZ > 6.2 ? sstep(7.0, 6.4, eZ) : 1; // kapının içinden çıkarken görünür olur
+          return (
+            <div style={{ position: "absolute", left: fx - 0.2 * size, top: fy - 0.98 * size, opacity: cikis, filter: `brightness(${0.78 + 0.12 * gun}) saturate(0.95)` }}>
+              <Character look={castById("ece_sivil")} size={size} pose={{ emotion: "agliyor", tears: 1, sacDagin: true, body: kosuyor ? "kos" : undefined, lookX: -0.2, lookY: 0.1, yaw: -0.25, hickir: 0.6, aglaAgiz: 0.6, seed: 31 }} />
+            </div>
+          );
+        })() : null}
         <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible", mixBlendMode: "screen", pointerEvents: "none" }}>
           <defs><filter id={`${uid}gb`}><feGaussianBlur stdDeviation="30" /></filter></defs>
           <ellipse cx={sunX} cy={vy - 10} rx={420} ry={90} fill="#ffb870" opacity={0.45 * sicak} filter={`url(#${uid}gb)`} />

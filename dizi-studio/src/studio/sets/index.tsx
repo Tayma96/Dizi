@@ -4,7 +4,7 @@ import { ZenithBG, ZenithFG, KoyMeydaniBG, KoyMeydaniFG, EMIR2_MARKS } from "./e
 import { MutfakDgBG, MutfakDgFG, MUTFAK_DG_MARKS } from "./mutfak_dg";
 import { ArabaBG, ArabaFG, ARABA_MARKS } from "./araba";
 import { Banyo724BG, Banyo724FG, BANYO724_MARKS, type BanyoView } from "./banyo724";
-import { Ev724BG, EV724_MARKS } from "./ev724";
+import { Ev724BG, Ev724FG, EV724_MARKS } from "./ev724";
 import { Market724BG, Market724FG, MARKET724_MARKS, type MarketView } from "./market724";
 import { KdEvBG, KdEvFG, KD_EV_MARKS, KdMarketOnuBG, KdMarketOnuFG, KD_MARKET_MARKS, KdCaddeBG, KD_CADDE_MARKS, KdYayinBG, KdYayinFG, KD_YAYIN_MARKS } from "./dugme";
 import { BeyazOda } from "./beyazoda";
@@ -1147,7 +1147,7 @@ const SetFG: React.FC<{ name: SetName; turb?: number; fincanElde?: boolean; door
   if (name === "kd_yayin") return <KdYayinFG frame={fr} />;
   if (name === "araba_on") return <ArabaFG frame={fr} far={doorOpen} />;
   if (name === "banyo_ayna" || name === "banyo_kapi") return <Banyo724FG view={name.slice(6) as BanyoView} frame={fr} doorOpen={0} />;
-  if (name === "ev_antre" || name === "ev_antre_z") return null;
+  if (name === "ev_antre" || name === "ev_antre_z") return <Ev724FG frame={fr} doorOpen={0} zincir={false} />;
   if (name === "market_genel" || name === "market_kapi" || name === "market_kasa") return <Market724FG view={name.slice(7) as MarketView} frame={fr} doorOpen={0} saat="" iz={0} turb={turb} {...market} />;
   switch (name) {
     case "market":
