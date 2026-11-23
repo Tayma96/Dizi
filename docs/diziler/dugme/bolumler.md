@@ -34,3 +34,8 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - **Telefon klibi (kullanıcı, 23 Kasım 2026):** `dizi-studio/public/klip/kd-yayin.mp4` (dikey 1080×1920, 60 fps, 14,3 sn, sesli). Klip telefonda çalmaya devam eder; 14 saniye boyunca ekranı GÖRMEYİZ, yalnızca telefonda çaldığını (sesinden) biliriz. Ayrıntılı kullanım senaryo yazılınca belirlenecek.
 - Sıra (kullanıcı): şimdi yalnızca karakter ve mekân tasarımı; senaryo birazdan detaylı yazılacak, üretime geçilmeyecek.
 - Telefon yatay tutulur (film izler gibi). Klip dosyası 1080×1920 ama içerik 90° döndürülmüş yatay görüntü; telefona yatay oturtulurken 90° çevrilecek.
+
+## Tasarım geri bildirimi 1 (kullanıcı, 23 Kasım 2026)
+- Göbekli adam: yalnız göbek büyütülmüş, yetersiz ve fazla sempatik. İstenen: 1 yıldır evden çıkmamış, biraz çirkin, KİLOLU olduğu her yerinden belli (yüz, gıdı, kollar, bacaklar, ense; yalnız göbek değil).
+- Kurye: kask aşırı büyük duruyor; gerçekçi oranda küçült.
+- Beyaz oda final: çok fazla düğme; oda biraz büyütülsün, düğme sayısı %30 azaltılsın.
