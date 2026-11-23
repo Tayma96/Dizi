@@ -194,3 +194,5 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - O oturumda video TESLİM EDİLMEZ; oturumun tamamı yalnız mükemmelleştirmeye harcanır. Render'ı kullanıcı öğlen isteyecek.
 - Notlar: "taştaş" = taşak (argo, izleyici anlar). Omuzdaki el sahnesinde kamera Ece'ye dönük, el görünür ama sahibi görünmez. Dönüşüm: yüz yanmış maske gibi akar, arkasında böcek yüzü; deri simbiyot gibi parça parça soyulur (yüz ve vücut), devasa ayakta duran korkutucu hamamböceği.
 - Senarist yardımcısı da 03:00'te B5 için komik replik ÖNERİLERİ yazar (docs/diziler/724/raporlar/b5-senarist-komik.md); yalnız öneri, kullanıcı yarın kontrol edip seçer, metne kendiliğinden eklenmez.
+- **Kullanıcı kararı (23 Kasım 2026, senarist önerilerinden):** "Şaka mı?.. Abi bir adamın eli yürüdü… ELİ." (Ece) metne GİRER; yeri: Sabri'nin "depoya gel çay yaptım içte sakinleş biraz" repliğinden SONRA (Ece adım atmadan önce). B3'teki kopan ele gönderme.
+- **Kullanıcı kararı:** "hıığğ" tepkisinin HEMEN ardından, arada boşluk/başka söz olmadan "abi vallahi büyük hayranınım." gelir.
