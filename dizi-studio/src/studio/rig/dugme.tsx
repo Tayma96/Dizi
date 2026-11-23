@@ -86,7 +86,7 @@ export const TorsoDugme: React.FC<{ look: Look; skin: string }> = ({ look, skin 
           <path d="M 54 -40 l 3 8 l 8 3 l -8 3 l -3 8 l -3 -8 l -8 -3 l 8 -3 Z M -58 -18 l 2 6 l 6 2 l -6 2 l -2 6 l -2 -6 l -6 -2 l 6 -2 Z" fill="#fff5a8" stroke={OUT} strokeWidth={1.5} />
         </g>
       ) : null}
-      {look.baski === "vinn" ? <VinnLogo x={240} y={430} s={0.62} /> : null}
+      {look.baski === "vinn" ? <VinnLogo x={182} y={440} s={0.5} /> : null}
       {look.baski === "cep" ? (
         <g>
           <path d="M 222 400 H 258 V 440 Q 240 446 222 440 Z" fill="none" stroke={OUT} strokeWidth={2.5} opacity={0.55} />
@@ -228,29 +228,31 @@ export const Kask: React.FC<{ look: Look; dx: number; uid: string; yansima?: num
   );
 };
 
-/** Kar maskesi: başı ve boynu saran siyah örgü; geniş göz yarığı (kaşların iç ucu görünür) + ağız deliği. */
+/** Kar maskesi: başı ve boynu saran koyu örgü; yalnız göz yarığı açık (ağız deliği yok: alt yüz sakal gibi okunmasın).
+ *  Örgü dokusu yatay ilmek sıralarıyla verilir (dikey çizgiler kıl gibi görünür). */
 export const KarMaske: React.FC<{ look: Look; dx: number; uid: string }> = ({ look, dx, uid }) => {
   const c = look.karMaske;
   if (!c) return null;
   const sx = dx * 0.4;
   const outer = `M ${200 + sx} 66 C ${296 + sx} 66 ${304 + sx} 140 ${302 + sx} 200 C ${300 + sx} 262 ${288 + sx} 302 ${260 + sx} 320 L 266 352 Q 200 366 134 352 L ${140 + sx} 320 C ${112 + sx} 302 ${100 + sx} 262 ${98 + sx} 200 C ${96 + sx} 140 ${104 + sx} 66 ${200 + sx} 66 Z`;
-  const eye = `M ${124 + dx} 172 C ${124 + dx} 154 ${160 + dx} 152 ${200 + dx} 154 C ${240 + dx} 152 ${276 + dx} 154 ${276 + dx} 172 L ${276 + dx} 214 C ${276 + dx} 232 ${240 + dx} 236 ${200 + dx} 234 C ${160 + dx} 236 ${124 + dx} 232 ${124 + dx} 214 Z`;
-  const mouth = `M ${174 + dx * 1.1} 280 A 26 16 0 1 0 ${226 + dx * 1.1} 280 A 26 16 0 1 0 ${174 + dx * 1.1} 280 Z`;
+  const eye = `M ${126 + dx} 174 C ${126 + dx} 156 ${160 + dx} 154 ${200 + dx} 156 C ${240 + dx} 154 ${274 + dx} 156 ${274 + dx} 174 L ${274 + dx} 212 C ${274 + dx} 228 ${240 + dx} 232 ${200 + dx} 230 C ${160 + dx} 232 ${126 + dx} 228 ${126 + dx} 212 Z`;
   return (
     <g>
       <defs>
-        <clipPath id={`km-${uid}`}><path d={`${outer} ${eye} ${mouth}`} clipRule="evenodd" /></clipPath>
+        <clipPath id={`km-${uid}`}><path d={`${outer} ${eye}`} clipRule="evenodd" /></clipPath>
       </defs>
-      <path d={`${outer} ${eye} ${mouth}`} fill={c} fillRule="evenodd" stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
+      <path d={`${outer} ${eye}`} fill={c} fillRule="evenodd" stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
       <g clipPath={`url(#km-${uid})`}>
-        {new Array(22).fill(0).map((_, i) => <path key={i} d={`M ${92 + i * 10 + sx} 60 V 370`} stroke="#ffffff" strokeWidth={2} opacity={0.06} />)}
-        <path d={eye} fill="none" stroke="#3a3a40" strokeWidth={10} />
-        <path d={mouth} fill="none" stroke="#3a3a40" strokeWidth={9} />
+        {new Array(14).fill(0).map((_, i) => <path key={i} d={`M 90 ${74 + i * 20} Q ${200 + sx} ${82 + i * 20} 310 ${74 + i * 20}`} stroke="#ffffff" strokeWidth={2} opacity={0.08} fill="none" />)}
+        <path d={eye} fill="none" stroke="#4a4a52" strokeWidth={10} />
+        {/* burun ve ağız kabartısı (kumaşın altındaki yüz) */}
+        <path d={`M ${190 + dx * 1.2} 246 Q ${200 + dx * 1.3} 254 ${212 + dx * 1.2} 246`} stroke="#ffffff" strokeWidth={3} opacity={0.18} fill="none" strokeLinecap="round" />
+        <path d={`M ${178 + dx * 1.1} 282 Q ${200 + dx * 1.1} 290 ${222 + dx * 1.1} 282`} stroke="#000000" strokeWidth={4} opacity={0.35} fill="none" strokeLinecap="round" />
         <path d={`M ${262 + sx} 90 C ${320 + sx} 160 ${300 + sx} 300 ${250 + sx} 340 L 330 340 L 330 60 Z`} fill="#000" opacity={0.3} />
-        <ellipse cx={150 + sx} cy={106} rx={34} ry={16} fill="#ffffff" opacity={0.1} transform={`rotate(-24 ${150 + sx} 106)`} />
+        <ellipse cx={150 + sx} cy={104} rx={42} ry={18} fill="#ffffff" opacity={0.16} transform={`rotate(-24 ${150 + sx} 104)`} />
+        <ellipse cx={164 + sx} cy={268} rx={26} ry={12} fill="#ffffff" opacity={0.07} />
       </g>
       <path d={eye} fill="none" stroke={OUT} strokeWidth={3} />
-      <path d={mouth} fill="none" stroke={OUT} strokeWidth={3} />
     </g>
   );
 };

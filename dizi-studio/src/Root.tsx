@@ -50,8 +50,8 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
       <Folder name="Kirmizi-Dugme">
-        <Composition id="KDKadro" component={KDKadro} durationInFrames={60} fps={30} width={4440} height={4760} />
-        <Composition id="KDMekanlar" component={KDMekanlar} durationInFrames={60} fps={30} width={2712} height={2680} />
+        <Composition id="KDKadro" component={KDKadro} durationInFrames={60} fps={30} width={4440} height={5080} />
+        <Composition id="KDMekanlar" component={KDMekanlar} durationInFrames={60} fps={30} width={2712} height={2780} />
         <Composition id="KDDugmeOrnek" component={KdDugmeOrnek} durationInFrames={180} fps={30} width={1080} height={1920} />
         <Composition id="KDKanca" component={KdKanca} durationInFrames={126} fps={30} width={1080} height={1920} defaultProps={{ kol: "notr" as const }} />
         <Composition id="KDLogo" component={KdLogoKare} durationInFrames={1} fps={30} width={1080} height={1920} />

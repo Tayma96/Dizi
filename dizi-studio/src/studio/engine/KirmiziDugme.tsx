@@ -88,6 +88,8 @@ export const FpsEl: React.FC<{ x: number; y: number; s?: number; aci?: number; k
 };
 
 /* ------------------------------------------------------------------ logo */
+/** Baloo 2 ExtraBold ilerleme genişlikleri (em) */
+const GEN: Record<string, number> = { K: 0.615, I: 0.305, R: 0.609, M: 0.797, Z: 0.56, D: 0.666, U: 0.664, "Ğ": 0.664, E: 0.548 };
 export const KdLogo: React.FC<{ t?: number; arkaPlan?: boolean }> = ({ t = 10, arkaPlan = true }) => {
   // t: saniye (kart açıldıktan beri). 10 = son hal.
   const dus = ease(t / 0.28);
@@ -116,9 +118,9 @@ export const KdLogo: React.FC<{ t?: number; arkaPlan?: boolean }> = ({ t = 10, a
           <rect width={1080} height={1920} fill="url(#kl_hex)" opacity={0.55} />
         </g>
       ) : null}
-      <circle cx={540} cy={760} r={520} fill="url(#kl_glow)" opacity={0.5 + 0.5 * flas} />
+      <circle cx={540} cy={860} r={540} fill="url(#kl_glow)" opacity={0.5 + 0.5 * flas} />
       {/* büyük mantar düğme (3/4 bakış): beyaz altıgen taban, LED halka, sayaç */}
-      <g transform={`translate(540 ${560 + (1 - dus) * -700}) scale(${1 + 0.08 * ezil} ${1 - 0.12 * ezil})`}>
+      <g transform={`translate(540 ${650 + (1 - dus) * -800}) scale(${1 + 0.08 * ezil} ${1 - 0.12 * ezil})`}>
         <path d="M -230 40 L -115 -60 L 115 -60 L 230 40 L 115 140 L -115 140 Z" fill="#f7fafb" stroke={OUT} strokeWidth={8} strokeLinejoin="round" />
         <path d="M -230 40 L -230 76 L -115 176 L 115 176 L 230 76 L 230 40 L 115 140 L -115 140 Z" fill="#d6e0e6" stroke={OUT} strokeWidth={8} strokeLinejoin="round" />
         <ellipse cx={0} cy={40} rx={168} ry={76} fill="none" stroke={flas > 0 ? "#ff2a3a" : "#ff8a9a"} strokeWidth={10 + 10 * flas} />
@@ -129,44 +131,59 @@ export const KdLogo: React.FC<{ t?: number; arkaPlan?: boolean }> = ({ t = 10, a
         <rect x={-62} y={150} width={124} height={44} rx={10} fill="#16181c" stroke={OUT} strokeWidth={5} />
         <text x={0} y={184} textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight={700} fontSize={36} fill="#ff3a3a">{t > 0.3 ? "001" : "000"}</text>
       </g>
-      {/* KIRMIZI */}
+      {/* KIRMIZI: harf genişlikleri Baloo 2 ExtraBold ölçülerinden (orantılı aralık) */}
       <g>
-        {KIRMIZI.split("").map((c, i) => {
-          const k = harf(i);
-          return (
-            <text key={i} x={540 + (i - 3) * 104} y={1000} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={128} fill="#e8202e" stroke={OUT} strokeWidth={6} paintOrder="stroke" transform={`translate(${540 + (i - 3) * 104} 960) scale(${k}) translate(${-(540 + (i - 3) * 104)} -960)`}>{c}</text>
-          );
-        })}
+        {(() => {
+          const fs = 132, ara = 16;
+          const g = KIRMIZI.split("").map((c) => GEN[c] * fs);
+          const top = g.reduce((a, b) => a + b, 0) + ara * (g.length - 1);
+          let x = 540 - top / 2;
+          return KIRMIZI.split("").map((c, i) => {
+            const cx = x + g[i] / 2;
+            x += g[i] + ara;
+            const k = harf(i);
+            return (
+              <text key={i} x={cx} y={1010} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={fs} fill="#e8202e" stroke={OUT} strokeWidth={7} paintOrder="stroke" strokeLinejoin="round" transform={`translate(${cx} 980) scale(${k}) translate(${-cx} -980)`}>{c}</text>
+            );
+          });
+        })()}
       </g>
       {/* DÜĞME: kalın, beyaz-pembe dolgu, koyu kırmızı kontur + kabartma; Ü'nün noktaları iki mini kırmızı düğme */}
-      {DUGME.map((c, i) => {
-        const k = harf(i + 7);
-        const x = 540 + (i - 2) * 190;
-        const tr = `translate(${x} 1150) scale(${k}) translate(${-x} -1150)`;
-        return (
-          <g key={i} transform={tr}>
-            {[14, 10, 6].map((o) => <text key={o} x={x + o * 0.4} y={1230 + o} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={262} fill="#9a0a16">{c}</text>)}
-            <text x={x} y={1230} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={262} fill="url(#kl_yazi)" stroke="#9a0a16" strokeWidth={14} paintOrder="stroke" strokeLinejoin="round">{c}</text>
-            {c === "U" ? (
-              [-44, 44].map((dx) => (
-                <g key={dx} transform={`translate(${x + dx} 1010)`}>
-                  <ellipse cx={0} cy={10} rx={34} ry={14} fill="#f7fafb" stroke="#9a0a16" strokeWidth={6} />
-                  <path d="M -24 8 L -24 -6 A 24 11 0 0 1 24 -6 L 24 8 A 24 11 0 0 1 -24 8 Z" fill="#b0101c" stroke="#9a0a16" strokeWidth={5} />
-                  <ellipse cx={0} cy={-6} rx={26} ry={12} fill="url(#kl_kap)" stroke="#9a0a16" strokeWidth={5} />
-                  <ellipse cx={-8} cy={-10} rx={8} ry={3} fill="#fff" opacity={0.8} />
-                </g>
-              ))
-            ) : null}
-          </g>
-        );
-      })}
+      {(() => {
+        const fs = 268, ara = 4;
+        const g = DUGME.map((c) => GEN[c] * fs);
+        const top = g.reduce((a, b) => a + b, 0) + ara * (g.length - 1);
+        let x0 = 540 - top / 2;
+        return DUGME.map((c, i) => {
+          const x = x0 + g[i] / 2;
+          x0 += g[i] + ara;
+          const k = harf(i + 7);
+          const tr = `translate(${x} 1220) scale(${k}) translate(${-x} -1220)`;
+          return (
+            <g key={i} transform={tr}>
+              {[14, 10, 6].map((o) => <text key={o} x={x + o * 0.4} y={1290 + o} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={fs} fill="#9a0a16">{c}</text>)}
+              <text x={x} y={1290} textAnchor="middle" fontFamily={KD_BASLIK} fontWeight={800} fontSize={fs} fill="url(#kl_yazi)" stroke="#9a0a16" strokeWidth={14} paintOrder="stroke" strokeLinejoin="round">{c}</text>
+              {c === "U" ? (
+                [-40, 40].map((dx) => (
+                  <g key={dx} transform={`translate(${x + dx} 1086)`}>
+                    <ellipse cx={0} cy={10} rx={32} ry={13} fill="#f7fafb" stroke="#9a0a16" strokeWidth={6} />
+                    <path d="M -23 8 L -23 -6 A 23 10 0 0 1 23 -6 L 23 8 A 23 10 0 0 1 -23 8 Z" fill="#b0101c" stroke="#9a0a16" strokeWidth={5} />
+                    <ellipse cx={0} cy={-6} rx={25} ry={11} fill="url(#kl_kap)" stroke="#9a0a16" strokeWidth={5} />
+                    <ellipse cx={-8} cy={-10} rx={8} ry={3} fill="#fff" opacity={0.8} />
+                  </g>
+                ))
+              ) : null}
+            </g>
+          );
+        });
+      })()}
       {/* ışıltılar */}
-      {sim(190, 620, 34, "#ff9ac0", cl((t - 0.6) / 0.3))}
-      {sim(890, 520, 26, "#ffffff", cl((t - 0.7) / 0.3))}
-      {sim(860, 900, 18, "#ff9ac0", cl((t - 0.8) / 0.3))}
-      {sim(230, 1330, 22, "#ffd2e0", cl((t - 0.85) / 0.3))}
-      {sim(880, 1340, 30, "#ffffff", cl((t - 0.9) / 0.3))}
-      <rect x={340} y={1310} width={400} height={10} rx={5} fill="#e8202e" opacity={cl((t - 0.9) / 0.3)} />
+      {sim(170, 700, 34, "#ff9ac0", cl((t - 0.6) / 0.3))}
+      {sim(900, 590, 26, "#ffffff", cl((t - 0.7) / 0.3))}
+      {sim(905, 960, 18, "#ff9ac0", cl((t - 0.8) / 0.3))}
+      {sim(170, 1400, 22, "#ffd2e0", cl((t - 0.85) / 0.3))}
+      {sim(900, 1410, 30, "#ffffff", cl((t - 0.9) / 0.3))}
+      <rect x={390} y={1372} width={300} height={12} rx={6} fill="#e8202e" opacity={cl((t - 0.9) / 0.3)} />
     </svg>
   );
 };

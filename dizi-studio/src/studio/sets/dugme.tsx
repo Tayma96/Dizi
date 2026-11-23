@@ -153,6 +153,12 @@ export const KdMarketOnuBG: React.FC<{ frame: number }> = ({ frame }) => {
       </defs>
       <rect width={W} height={H} fill="url(#kmo_gok)" />
       {new Array(30).fill(0).map((_, i) => <circle key={i} cx={random(`st${i}`) * W} cy={random(`sy${i}`) * 300 + 40} r={1.6} fill="#ffffff" opacity={0.5} />)}
+      {/* sol: karşı yandaki eski bina + elektrik direği */}
+      <rect x={-20} y={300} width={300} height={900} fill="#2e2a3a" stroke={OUT} strokeWidth={6} />
+      {[0, 1, 2].map((r) => <rect key={r} x={60} y={360 + r * 240} width={130} height={160} fill={r === 1 ? "#6a8ad8" : "#141424"} opacity={r === 1 ? 0.6 : 1} stroke={OUT} strokeWidth={4} />)}
+      <path d="M -20 240 Q 300 300 600 230 Q 900 300 1100 250" stroke="#0a0a0a" strokeWidth={3} fill="none" />
+      {/* cephe grubu: kamera dükkâna yakın (ölçek 1,45; kapı ≈ 300 px, insan boyuyla uyumlu) */}
+      <g transform="translate(540 1380) scale(1.45) translate(-690 -1380)">
       {/* apartman (marketin üstü), 3 kat; birkaç pencere yanık */}
       <rect x={300} y={160} width={800} height={1020} fill="#4a3a44" stroke={OUT} strokeWidth={6} />
       {new Array(3).fill(0).map((_, r) => new Array(3).fill(0).map((__, c) => {
@@ -169,10 +175,6 @@ export const KdMarketOnuBG: React.FC<{ frame: number }> = ({ frame }) => {
       <rect x={830} y={720} width={90} height={60} fill="#c8c8cc" stroke={OUT} strokeWidth={4} />
       <circle cx={875} cy={750} r={20} fill="none" stroke="#7a7a80" strokeWidth={4} />
       <path d="M 300 600 Q 200 640 0 610" stroke="#111" strokeWidth={3} fill="none" />
-      {/* sol: karşı yandaki eski bina + elektrik direği */}
-      <rect x={-20} y={300} width={300} height={900} fill="#2e2a3a" stroke={OUT} strokeWidth={6} />
-      {[0, 1, 2].map((r) => <rect key={r} x={60} y={360 + r * 240} width={130} height={160} fill={r === 1 ? "#6a8ad8" : "#141424"} opacity={r === 1 ? 0.6 : 1} stroke={OUT} strokeWidth={4} />)}
-      <path d="M -20 240 Q 300 300 600 230 Q 900 300 1100 250" stroke="#0a0a0a" strokeWidth={3} fill="none" />
       {/* market cephesi */}
       <rect x={300} y={960} width={780} height={420} fill="#e8e2d6" stroke={OUT} strokeWidth={6} />
       {/* tabela (uydurma): ÇINAR MARKET */}
@@ -203,6 +205,7 @@ export const KdMarketOnuBG: React.FC<{ frame: number }> = ({ frame }) => {
         <path d="M -32 -24 l 2 -12 l 8 8 Z M -18 -28 l 6 -10 l 4 12 Z" fill="#e89a3a" stroke={OUT} strokeWidth={2} />
         <path d="M 24 0 q 20 -10 14 -30" stroke="#e89a3a" strokeWidth={7} fill="none" strokeLinecap="round" />
         <path d="M -27 -14 q 3 -3 6 0 M -19 -14 q 3 -3 6 0" stroke={OUT} strokeWidth={2} fill="none" />
+      </g>
       </g>
       {/* kaldırım (parke taş) + bordür */}
       <rect y={1380} width={W} height={110} fill="#5a5258" />
@@ -574,7 +577,7 @@ export const KdYayinFG: React.FC<{ frame: number; yayin?: boolean }> = ({ frame,
 );
 
 /** Canlı yayın arayüzü (uydurma, platform logosu yok): CANLI etiketi, izleyici sayısı, kalpler, aslan hediyesi. */
-export const YayinArayuz: React.FC<{ frame: number; izleyici?: number; aslan?: number }> = ({ frame, izleyici = 12480, aslan = -1 }) => {
+export const YayinArayuz: React.FC<{ frame: number; izleyici?: number; aslan?: number; ax?: number; ay?: number; as?: number }> = ({ frame, izleyici = 12480, aslan = -1, ax = 540, ay = 760, as = 1 }) => {
   const t = frame / 30;
   return (
     <g>
@@ -592,7 +595,7 @@ export const YayinArayuz: React.FC<{ frame: number; izleyici?: number; aslan?: n
         );
       })}
       {aslan >= 0 && aslan <= 1 ? (
-        <g transform={`translate(540 ${760 - 40 * Math.sin(aslan * Math.PI)}) scale(${0.6 + 0.6 * Math.sin(Math.min(1, aslan * 3) * Math.PI / 2)})`} opacity={aslan > 0.85 ? (1 - aslan) / 0.15 : 1}>
+        <g transform={`translate(${ax} ${ay - 40 * Math.sin(aslan * Math.PI)}) scale(${as * (0.6 + 0.6 * Math.sin(Math.min(1, aslan * 3) * Math.PI / 2))})`} opacity={aslan > 0.85 ? (1 - aslan) / 0.15 : 1}>
           {/* sevimli aslan hediyesi (uydurma çizim) */}
           {new Array(14).fill(0).map((_, i) => { const a = (i / 14) * Math.PI * 2; return <circle key={i} cx={Math.cos(a) * 120} cy={Math.sin(a) * 120} r={52} fill={i % 2 ? "#e8902a" : "#f2a83a"} stroke={OUT} strokeWidth={5} />; })}
           <circle cx={0} cy={0} r={120} fill="#ffd26a" stroke={OUT} strokeWidth={6} />

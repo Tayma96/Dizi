@@ -31,3 +31,5 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
 - **Şarkı (kullanıcı, 23 Kasım 2026):** dizi 3 platformda paylaşılıyor; platform müzik kütüphanesi kullanılamaz → motokurye sahnesi için ÖZGÜN şarkı üretilir (girl-group pop havası, uydurma grup).
 - Göbekli adamın telefonda izlediği video: kullanıcı gerçek bir yayıncının yayınından 10 sn'lik kesit vermeyi önerdi. Yalnızca yayıncının yazılı izniyle kullanılabilir; izin yoksa özgün animasyonlu bir yayıncı parodisi.
 - **Kullanıcı kararı:** yayıncı kesiti (klip paylaşanlardan alınmış, 5-10 sn) telefona entegre edilecek; telif riski kullanıcıya açıkça bildirildi, kullanıcı kabul etti.
+- **Telefon klibi (kullanıcı, 23 Kasım 2026):** `dizi-studio/public/klip/kd-yayin.mp4` (dikey 1080×1920, 60 fps, 14,3 sn, sesli). Klip telefonda çalmaya devam eder; 14 saniye boyunca ekranı GÖRMEYİZ, yalnızca telefonda çaldığını (sesinden) biliriz. Ayrıntılı kullanım senaryo yazılınca belirlenecek.
+- Sıra (kullanıcı): şimdi yalnızca karakter ve mekân tasarımı; senaryo birazdan detaylı yazılacak, üretime geçilmeyecek.
