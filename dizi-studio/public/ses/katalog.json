@@ -524,6 +524,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Slow wet barefoot footsteps on glossy tile floor in an empty quiet store, each step a soft wet slap, unhurried, getting closer, eerie"
  },
+ "efekt/el_kaching": {
+  "file": "ses/efekt/el_kaching.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cash register ka-ching bell, cartoon comedic money sound"
+ },
  "efekt/el_kagit": {
   "file": "ses/efekt/el_kagit.mp3",
   "category": "efekt",
@@ -607,6 +614,13 @@
   "duration": 2.0,
   "loop": false,
   "desc": "ElevenLabs SFX: hard insect exoskeleton cracking and creaking, thick chitin shell plates splitting and snapping into place, crunchy and close, horror foley"
+ },
+ "efekt/el_koklama": {
+  "file": "ses/efekt/el_koklama.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a woman sniffing a smelly sock loudly, two quick sniffs"
  },
  "efekt/el_koridor_adim_yaklasan": {
   "file": "ses/efekt/el_koridor_adim_yaklasan.mp3",
@@ -734,12 +748,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Automatic sliding glass door of a small convenience store opening slowly at night, soft electric motor whir and rubber seal, followed by heavy rain from outside getting louder through the open door, realistic, close perspective"
  },
+ "efekt/el_plak_cizik": {
+  "file": "ses/efekt/el_plak_cizik.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: vinyl record scratch, music stops abruptly, comedic"
+ },
  "efekt/el_sofra": {
   "file": "ses/efekt/el_sofra.mp3",
   "category": "efekt",
   "duration": 10.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Family dinner table ambience in a small home kitchen, spoons and forks clinking on ceramic plates, soft pot simmering on the stove, no voices"
+ },
+ "efekt/el_sok_vurgu": {
+  "file": "ses/efekt/el_sok_vurgu.mp3",
+  "category": "efekt",
+  "duration": 1.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cartoon comedic shock sting, short orchestral hit with cymbal"
  },
  "efekt/el_surukleme": {
   "file": "ses/efekt/el_surukleme.mp3",
