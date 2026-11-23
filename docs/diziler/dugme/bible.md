@@ -60,4 +60,4 @@ Aynı iki karakter üç stilde. Hepsi yalnız Kırmızı Düğme için isteğe b
 - Ortak tulum yok (kullanıcı kararı): herkes kendi kıyafetiyle. Beyaz oda düğmesi ve oda dili "Symbol"den farklı tutulur (yukarıdaki liste).
 - Kırmızı mantar düğme motifi karakter üstünde yalnız 4. kişinin ipuçlarında kullanılır.
 - Kaçırma araçları: plaka okunmaz.
-- Şiddet: kan ve yara gösterilmez (13-25 kitlesi). Kullanıcı kararı (23 Kasım 2026): kancada mızrağın saplanışı hissedilir ve DUYULUR (flaş, sarsıntı, ses, düşüş, kararma), ama mızrağın NEREYE saplandığı GÖRÜLMEZ (kullanıcı: göğse saplanmaz; yeri sır kalır). Saplanmadan sonra mızrak ve sap kadrajda yok.
+- Şiddet: kan ve yara gösterilmez (13-25 kitlesi). Kullanıcı kararı (23 Kasım 2026): kancada mızrağın saplanışı GÖRÜLÜR ve DUYULUR, yalnız göz kamerasından: sarsıntı, göğüsten çıkan sap, sapa uzanan el, düşüş ve kararma; bıçak ve yara kadraj dışında (kullanıcı v7'yi denedikten sonra v6'yı seçti).
