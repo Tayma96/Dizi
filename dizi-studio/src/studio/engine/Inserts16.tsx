@@ -185,7 +185,12 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
     if (ozel) {
       const [hx, hy] = kf(side === "L" ? q.elL : q.elR, tg, [omuz[0], omuz[1] + 250 * S]);
       let r: { E: V2; H: V2 };
-      if (q.dogalKol) {
+      if (q.onKol && hy < omuz[1] + L1 * 0.6) {
+        // önden kısaltılmış kol: üst kol gövdenin önünde aşağı-içe kısa iner (dirsek göğüs altında), önkol dikey yükselir
+        const E: V2 = [omuz[0] + (hx - omuz[0]) * 0.45 + (side === "L" ? -8 : 8) * S, omuz[1] + L1 * 0.95];
+        r = { E, H: [hx, hy] };
+        kollar.push(<Kol key={side} S={omuz} E={E} H={[hx, hy]} w={w} renk={renk} manset={manset} el={look.skin} />);
+      } else if (q.dogalKol) {
         r = ikDogal(omuz, [hx, hy], L1, L2, piv[0]);
         kollar.push(<KolYumusak key={side} S={omuz} E={r.E} H={r.H} w={w} renk={renk} manset={manset} el={look.skin} />);
       } else {
