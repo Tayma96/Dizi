@@ -227,3 +227,7 @@ Annesi: "noldu kızım neyin var?" "Biri bir şey mi yaptı" der celallenir yük
 - Annenin "yoksa öğrendi mi?" repliği iç ses (dudak kıpırdamaz); büyük ters köşe: anne bir şey biliyor (B5 fısıltısındaki "Kızım…" ile bağ). Dizi hafızasına açık döngü olarak işlenecek.
 - Kamera evin kapısını içeriden çekiyor (Ece dışarıdan girer).
 - Üretim: diyalog sahneleri mevcut market/ev mekânları ve standart motorla; özel kod yalnız gerektiği yerde (token tasarrufu, kullanıcı kararı).
+
+### Bölüm 6: kullanıcı geri bildirimi (23 Kasım 2026)
+- P1: Sabri "bitti artık" dediğinde Ece SESİ DUYDUĞU ANDA tepki vermeli (sesten korkuyor); "aaaaa"dan sonra çok çabuk sakinleşiyordu; yumrukta Sabri'den tepki yoktu, Ece "vurup çekiyordu", oldu bittiye gelmişti. → Düzeltildi: 3,4'te irkilme, çığlık "artık" biterken başlar (iki soluk), kucaklanana dek panik; yumruk geri çekiş + vuruş + göğüste kalma, Sabri sarsılır ve inler ("aci"), sonra çözülme.
+- P2 (standart motorla, düşük özenle yapılan sürüm): kullanıcı "rezaletten öte, hiç özenilmemiş" dedi. Ders: maliyet için özel çekim kalitesinden ödün verilmez; P2 P1 kalitesinde yeniden yapılacak.

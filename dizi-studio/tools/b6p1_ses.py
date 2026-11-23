@@ -36,18 +36,20 @@ P = [
     (f"{S}/efekt/el_otomatik_kapi.mp3", B + 0.0, -12, (0, 2.0), 0, 0.5, 1),
     (f"{S}/efekt/ayak_sesleri.mp3", B + 0.3, -13, (0, 3.0), 0.1, 0.4, 1),
     (f"{V}/S17_01.mp3", B + 3.3, 0, None, 0, 0, 1),                      # "bitti artık"
-    (f"{V}/E2_01.mp3", B + 5.0, -1, (0, 1.32), 0, 0.08, 1),             # "aaaaa"
+    (f"{V}/E2_01.mp3", B + 3.95, -1, None, 0, 0.1, 1),                  # "aaaaa" (iki soluk)
     (f"{S}/efekt/ayak_sesleri.mp3", B + 6.5, -15, (0, 0.8), 0.05, 0.3, 1),
-    (f"{V}/C3_01.mp3", B + 6.6, -8, None, 0.1, 0.5, 1),                  # boğuk ağlama (kaskatı)
+    (f"{V}/C1_01.mp3", B + 6.7, -7, (0, 3.0), 0.05, 0.6, 1),            # çığlık sonrası panik nefesi/feryat
+    (f"{V}/C3_01.mp3", B + 8.4, -9, None, 0.1, 0.5, 1),                  # boğuk ağlama (kaskatı)
     (f"{S}/efekt/el_kumas_burus.mp3", B + 7.6, -8, None, 0, 0.2, 1),     # sarılma
     (f"{V}/H3_01.mp3", B + 7.7, 0, None, 0, 0, 1),                       # "Şhh bitti kızım bitti tamam"
-    (f"{S}/efekt/darbe.mp3", B + 9.3, -16, (0, 0.5), 0, 0.2, 1),         # göğse yumruk (boğuk)
-    (f"{S}/efekt/el_kumas_burus.mp3", B + 9.3, -10, None, 0, 0.2, 1),
-    (f"{V}/C6_01.mp3", B + 10.3, -2, None, 0.1, 0.0, 1),                 # sarılırken hıçkırık
+    (f"{S}/efekt/darbe.mp3", B + 9.55, -9, (0, 0.5), 0, 0.2, 1),         # göğse yumruk (boğuk)
+    (f"{K}/public/voice/724-06/cekim2/G1_01.mp3", B + 9.58, -3, (0, 0.45), 0, 0.08, 1),  # Sabri inler
+    (f"{S}/efekt/el_kumas_burus.mp3", B + 9.55, -8, None, 0, 0.2, 1),
+    (f"{V}/C6_01.mp3", B + 10.6, -2, None, 0.1, 0.0, 1),                 # sarılırken hıçkırık
     (f"{S}/muzik/b6_safak.mp3", B + 7.7, -11, (19.0, 45.0), 1.2, 0.0, 1),  # müzik "Şhh" ile geri gelir
 ]
 # müzik ilk kısmı: ding-dong'da (B) kısılır, çığlıkta (B+4.9) susar
-MUZIK1_KIS = f"volume='if(lt(t,{B - 19.6:.2f}),1,if(lt(t,{B + 4.9 - 19.6:.2f}),0.22,0))':eval=frame"
+MUZIK1_KIS = f"volume='if(lt(t,{B - 19.6:.2f}),1,if(lt(t,{B + 3.3 - 19.6:.2f}),0.22,0))':eval=frame"
 
 
 def main():

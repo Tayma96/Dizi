@@ -1,0 +1,48 @@
+{
+ "not": "B6P1 Sabri yumruk tepkisi",
+ "series": "724",
+ "episode": "724-06/cekim2",
+ "episodeNo": 6,
+ "title": "ses",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "G1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "(yumruk)",
+     "okunus": "Hıh!",
+     "tags": "[grunts in pain, short exhale, hit in the chest]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "G2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "(yumruk)",
+     "okunus": "Ihh…",
+     "tags": "[winces, breath knocked out, quiet grunt]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

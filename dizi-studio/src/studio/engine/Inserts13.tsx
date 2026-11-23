@@ -448,8 +448,8 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
     const dz = kf1(sp.diz, tg, 0);
     const sar = kf1(sp.saril, tg, 0);
     let darbe = 0;
-    for (const h of sp.darbe ?? []) { const d = tg - h; if (d >= 0 && d < 0.7) darbe = Math.max(darbe, Math.exp(-d * 7) * Math.sin(Math.min(Math.PI, d * 14))); }
-    const egil = kf1(sp.egil, tg, 0) - 5 * darbe;
+    for (const h of sp.darbe ?? []) { const d = tg - h; if (d >= 0 && d < 1.1) darbe = Math.max(darbe, Math.exp(-d * 4) * Math.sin(Math.min(Math.PI, d * 8))); }
+    const egil = kf1(sp.egil, tg, 0) - 16 * darbe;
     const size = SABRI_C * sD(sDd);
     const S = size / 1000;
     const fx = xX(sX, sDd), fy = yD(sDd);
