@@ -1127,7 +1127,7 @@
           "okunus": "Lülü?",
           "stab": 0.0,
           "sure": 0.7,
-          "gapAfter": 1.0,
+          "gapAfter": 0.7,
           "shot": {
             "type": "yakin",
             "on": "ece_sivil",
