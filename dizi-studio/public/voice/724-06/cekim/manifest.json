@@ -2821,5 +2821,217 @@
   "model": "eleven_v4",
   "hesap": "proxy",
   "kredi": 20
+ },
+ "S15_01": {
+  "key": "0b92a57f237a",
+  "file": "voice/724-06/cekim/S15_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 3.37,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 2.213,
+    "end": 2.613
+   },
+   {
+    "w": "artık",
+    "start": 2.733,
+    "end": 3.333
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.893,
+    "v": "X"
+   },
+   {
+    "t": 2.213,
+    "v": "M"
+   },
+   {
+    "t": 2.293,
+    "v": "I"
+   },
+   {
+    "t": 2.373,
+    "v": "L"
+   },
+   {
+    "t": 2.533,
+    "v": "I"
+   },
+   {
+    "t": 2.613,
+    "v": "X"
+   },
+   {
+    "t": 2.733,
+    "v": "A"
+   },
+   {
+    "t": 2.773,
+    "v": "L"
+   },
+   {
+    "t": 2.853,
+    "v": "I"
+   },
+   {
+    "t": 2.973,
+    "v": "L"
+   },
+   {
+    "t": 3.093,
+    "v": "X"
+   },
+   {
+    "t": 3.333,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "S16_01": {
+  "key": "4061c2fc045c",
+  "file": "voice/724-06/cekim/S16_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.776,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.646,
+    "end": 0.774
+   },
+   {
+    "w": "artık",
+    "start": 0.854,
+    "end": 1.734
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.646,
+    "v": "M"
+   },
+   {
+    "t": 0.71,
+    "v": "I"
+   },
+   {
+    "t": 0.726,
+    "v": "L"
+   },
+   {
+    "t": 0.758,
+    "v": "I"
+   },
+   {
+    "t": 0.854,
+    "v": "A"
+   },
+   {
+    "t": 0.934,
+    "v": "L"
+   },
+   {
+    "t": 1.094,
+    "v": "I"
+   },
+   {
+    "t": 1.214,
+    "v": "L"
+   },
+   {
+    "t": 1.334,
+    "v": "X"
+   },
+   {
+    "t": 1.734,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 20
+ },
+ "S17_01": {
+  "key": "846327d52252",
+  "file": "voice/724-06/cekim/S17_01.mp3",
+  "voice": "elevenlabs:Nihat",
+  "emotion": "notr",
+  "text": "bitti artık",
+  "duration": 1.541,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "bitti",
+    "start": 0.229,
+    "end": 0.629
+   },
+   {
+    "w": "artık",
+    "start": 0.709,
+    "end": 1.509
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.229,
+    "v": "M"
+   },
+   {
+    "t": 0.309,
+    "v": "I"
+   },
+   {
+    "t": 0.389,
+    "v": "L"
+   },
+   {
+    "t": 0.549,
+    "v": "I"
+   },
+   {
+    "t": 0.709,
+    "v": "A"
+   },
+   {
+    "t": 0.789,
+    "v": "L"
+   },
+   {
+    "t": 0.949,
+    "v": "I"
+   },
+   {
+    "t": 1.069,
+    "v": "L"
+   },
+   {
+    "t": 1.189,
+    "v": "X"
+   },
+   {
+    "t": 1.509,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 18
  }
 }

@@ -563,6 +563,63 @@
      "gapAfter": 0.3
     }
    ]
+  },
+  {
+   "id": "S15",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[out of breath, warm, tired]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S16",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[normal speaking voice, warm, weary]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S17",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bitti artık",
+     "okunus": "Bitti artık.",
+     "tags": "[tired, kind, speaking out loud]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3
+    }
+   ]
   }
  ]
 }

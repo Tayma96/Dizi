@@ -573,9 +573,14 @@ const B6Kapi: React.FC<{ text?: string[] }> = ({ text }) => {
               </g>
             }
           />
-          {haliEl}
+          <defs>
+            <filter id={`${uid}yirt`} x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.09" numOctaves={2} seed={7} result="n" />
+              <feDisplacementMap in="SourceGraphic" in2="n" scale={26} xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+          <g filter={`url(#${uid}yirt)`}>{haliEl}{haliOn}</g>
           {bocekArka}
-          {haliOn}
           {bocekOn}
           <ZerreKatman z={zerreler.filter((q) => !q.parlak)} parlak={false} renk="#8a7a66" carp={0.8} />
           <Market724FG view="kapi" frame={f} doorOpen={0} saat="" iz={0} turb={0} />
