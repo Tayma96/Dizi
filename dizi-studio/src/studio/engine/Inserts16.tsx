@@ -67,7 +67,8 @@ const rot = (p: V2, c: V2, deg: number): V2 => {
  * İki IK çözümünden: el omuzdan belirgin yukarıdaysa dirsek gövdeden DIŞA, değilse AŞAĞI bakan seçilir (dirsek asla ters kırılmaz). */
 const ikDogal = (S0: V2, T: V2, L1: number, L2: number, merkezX: number): { E: V2; H: V2 } => {
   const a = ik(S0, T, L1, L2, 1), b = ik(S0, T, L1, L2, -1);
-  if (T[1] < S0[1] - L1 * 1.3) {
+  // el omuz hizasının üstündeyse (yüz, kulak, baş) dirsek DIŞA; değilse AŞAĞI
+  if (T[1] < S0[1] + L1 * 0.15) {
     const dis = (E: V2) => Math.abs(E[0] - merkezX);
     return dis(a.E) >= dis(b.E) ? a : b;
   }
@@ -225,7 +226,19 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
       </g>
     );
   }
-  return { govde, on: <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>{sepet}{kollar}{esyalar}</svg> };
+  // ıslak yüz: alından ve çeneden süzülen damlalar (yüz merkezi rig (200,210))
+  const isl = kf1(q.islak, tg, 0);
+  const damla: React.ReactNode[] = [];
+  if (isl > 0.02) {
+    const [fx, fy] = rot([left + 200 * S, top - parmak + 215 * S], [piv[0], piv[1] - parmak], egil);
+    [[-46, -40, 0.0], [38, -30, 0.35], [-20, 30, 0.6], [24, 50, 0.15], [0, 95, 0.8], [-58, 20, 0.5]].forEach(([dx, dy0, ph], i) => {
+      const u = (tg * 0.55 + ph) % 1;
+      const yy = fy + (dy0 + 70 * u) * S, xx = fx + dx * S;
+      damla.push(<path key={i} d={`M ${xx} ${yy - 9 * S} q ${-6 * S} ${10 * S} 0 ${15 * S} q ${6 * S} ${-5 * S} 0 ${-15 * S} z`} fill="#d8f0ff" stroke="#6fa8cf" strokeWidth={1.4 * S} opacity={isl * (u < 0.85 ? 0.9 : (1 - u) * 6)} />);
+    });
+    damla.push(<ellipse key="parla" cx={fx} cy={fy - 10 * S} rx={70 * S} ry={60 * S} fill="#ffffff" opacity={0.08 * isl} />);
+  }
+  return { govde, on: <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>{sepet}{kollar}{esyalar}{damla}</svg> };
 };
 
 /* ------------------------------------------------------------------ sahne */
@@ -240,6 +253,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
   const tA = p.titre ?? 3;
   const sx = tA * (Math.sin(tg * 1.7) * 0.7 + Math.sin(tg * 3.1) * 0.3), sy = tA * (Math.sin(tg * 1.3 + 1) * 0.6 + Math.sin(tg * 2.7) * 0.4);
   const isik = p.isik ?? 1;
+  const ayna = p.view === "ayna";
   const anne = karakter("anne724", p.anne, tg, f, fps, t0f);
   const ece = karakter("ece_ev", p.ece, tg, f, fps, t0f);
   const ucanlar = (p.ucan ?? []).map((u: Prm, i: number) => {
@@ -257,7 +271,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           <defs>
             <linearGradient id="b7_pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffd08a" /><stop offset="1" stopColor="#ff9a5a" /></linearGradient>
           </defs>
-          <Banyo724BG view="kapi" frame={f} doorOpen={kf1(p.kapi, tg, 1)} />
+          <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} />
+          {ayna ? null : <>
           {/* pencere (buzlu): gece (kasım, 18:00 karanlık) ya da gün batımı */}
           {p.gece ? (
             <g>
@@ -293,6 +308,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
               <path d="M -50 -90 L 50 -90 L 58 80 L 12 84 L 2 -10 L -8 84 L -56 80 Z" fill="#34466a" stroke={O} strokeWidth={5} />
             </g>
           ) : null}
+          </>}
         </svg>
         {/* karakterler: önce arkadaki */}
         {onceEce.map((k, i) => (k ? <React.Fragment key={i}>{k.govde}{k.on}</React.Fragment> : null))}
@@ -306,7 +322,18 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <path d="M 768 1702 Q 810 1650 860 1676 Q 910 1640 956 1702 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
             <path d="M 800 1702 Q 830 1664 880 1690" stroke="#7ab0d8" strokeWidth={26} strokeLinecap="round" fill="none" />
           </g> : null}
-          <Banyo724FG view="kapi" frame={f} doorOpen={0} />
+          <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} />
+          {/* musluk suyu (ayna görünümü, p.su [[t0,t1]]): bataryadan lavaboya akan su + sıçrama */}
+          {ayna && aralik(p.su, tg) ? (
+            <g>
+              <path d={`M 532 1622 Q ${536 + Math.sin(tg * 30) * 2} 1690 534 1752 L 546 1752 Q ${544 + Math.sin(tg * 27) * 2} 1690 548 1622 Z`} fill="#cfeaff" opacity={0.85} />
+              <path d="M 538 1630 V 1745" stroke="#ffffff" strokeWidth={3} opacity={0.7} />
+              {[0, 1, 2, 3, 4].map((i) => {
+                const u = (tg * 3 + i * 0.2) % 1;
+                return <circle key={i} cx={540 + (i - 2) * 16 * u} cy={1755 - 26 * Math.sin(Math.PI * u)} r={4} fill="#dff2ff" opacity={1 - u} />;
+              })}
+            </g>
+          ) : null}
         </svg>
         {/* gün batımı huzmesi: pencereden sağ-aşağı (karakterleri de aydınlatır) */}
         <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible", mixBlendMode: "screen", pointerEvents: "none" }}>
@@ -314,7 +341,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <linearGradient id="b7_h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffb060" stopOpacity={0.55 * isik} /><stop offset="1" stopColor="#ff8a40" stopOpacity={0} /></linearGradient>
             <filter id="b7_bl"><feGaussianBlur stdDeviation="18" /></filter>
           </defs>
-          {p.gece ? <ellipse cx={620} cy={260} rx={620} ry={760} fill="#ffcf90" opacity={0.22} filter="url(#b7_bl)" /> : <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />}
+          {ayna ? <ellipse cx={540} cy={180} rx={560} ry={620} fill="#fff0d0" opacity={0.18} filter="url(#b7_bl)" /> : p.gece ? <ellipse cx={620} cy={260} rx={620} ry={760} fill="#ffcf90" opacity={0.22} filter="url(#b7_bl)" /> : <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />}
           {new Array(18).fill(0).map((_, i) => {
             const u = ((i * 0.137 + tg * 0.03) % 1);
             const xx = 420 + u * 600 + Math.sin(tg + i) * 20, yy = 560 + u * 1100 + ((i * 97) % 160);
