@@ -327,5 +327,160 @@
   "model": "eleven_v4",
   "hesap": "proxy",
   "kredi": 19
+ },
+ "a4_01": {
+  "key": "e25be7f11ed8",
+  "file": "voice/724-05-p2-ses/a4_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "Kızım…",
+  "duration": 1.097,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Kızım…",
+    "start": 0.103,
+    "end": 1.063
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.103,
+    "v": "L"
+   },
+   {
+    "t": 0.223,
+    "v": "I"
+   },
+   {
+    "t": 0.283,
+    "v": "L"
+   },
+   {
+    "t": 0.343,
+    "v": "I"
+   },
+   {
+    "t": 0.503,
+    "v": "M"
+   },
+   {
+    "t": 0.663,
+    "v": "X"
+   },
+   {
+    "t": 1.063,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "n1_01": {
+  "key": "f6c51f5ce7c9",
+  "file": "voice/724-05-p2-ses/n1_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(sözsüz: titrek, bastırılmış nefes)",
+  "duration": 4.598,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hhh…",
+    "start": 2.4,
+    "end": 3.2
+   },
+   {
+    "w": "hhh…",
+    "start": 3.52,
+    "end": 4.56
+   }
+  ],
+  "mouth": [
+   {
+    "t": 2.32,
+    "v": "X"
+   },
+   {
+    "t": 2.4,
+    "v": "L"
+   },
+   {
+    "t": 2.88,
+    "v": "X"
+   },
+   {
+    "t": 3.52,
+    "v": "L"
+   },
+   {
+    "t": 4.08,
+    "v": "X"
+   },
+   {
+    "t": 4.56,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 29
+ },
+ "n2_01": {
+  "key": "d307c56389cf",
+  "file": "voice/724-05-p2-ses/n2_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "(sözsüz: bastırılmış hıçkırık)",
+  "duration": 2.325,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hmm…",
+    "start": 0.845,
+    "end": 1.445
+   },
+   {
+    "w": "hk…",
+    "start": 1.645,
+    "end": 2.285
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.845,
+    "v": "L"
+   },
+   {
+    "t": 0.978,
+    "v": "M"
+   },
+   {
+    "t": 1.245,
+    "v": "X"
+   },
+   {
+    "t": 1.645,
+    "v": "L"
+   },
+   {
+    "t": 2.045,
+    "v": "X"
+   },
+   {
+    "t": 2.285,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 17
  }
 }
