@@ -1331,7 +1331,7 @@
    "kulaklik_ornegi": "ornekler/b5p2-binaural-ornek.mp3 (44,00-54,50)"
   },
   "motor": "Önerilen: parçanın ilk sahnesine \"music\": {\"name\": \"efekt/b5p2_tam\", \"volume\": 1.0}; başka music/ambience/sfx/line yok. Ayrıntı: docs/diziler/724/raporlar/b5p2-ses.md §6",
-  "fisilti_toplam_kazanc_db": 2.53,
+  "fisilti_toplam_kazanc_db": 2.62,
   "master": {
    "hedef_lufs": -14.0,
    "tepe_dbtp": -1.5,
@@ -1374,8 +1374,8 @@
      ]
     },
     "fisilti": {
-     "kazanc_db": -0.78,
-     "sinirlayici_en_cok_db": -5.7,
+     "kazanc_db": -0.69,
+     "sinirlayici_en_cok_db": -5.8,
      "hedef": [
       49.3,
       54.0,
@@ -1399,155 +1399,6 @@
      ]
     }
    }
-  },
-  "dogrulama": {
-   "master": {
-    "I_LUFS": -14.0,
-    "LRA_LU": 15.9,
-    "gercek_tepe_dBTP": -1.4,
-    "sessizlik": {
-     "A_0-5_tepe_dBFS": -240.0,
-     "G_54,02-56_tepe_dBFS": -162.9,
-     "E_33,01-33,24_tepe_dBFS": -85.7
-    },
-    "mono_toplam_LUFS": -15.96,
-    "LR_ilinti_F": 0.278
-   },
-   "F_tam_miks_whisper": "Kıza Kıza Kıza Kıza Kıza",
-   "fisiltilar": [
-    {
-     "id": "W1",
-     "kim": "Sabri",
-     "soz": "Ece…",
-     "bas": 43.6,
-     "miks_penceresi": [
-      43.55,
-      44.39
-     ],
-     "ILD_bas_dB": -6.0,
-     "ITD_bas_us": -708,
-     "ILD_son_dB": -8.1,
-     "ITD_son_us": -583,
-     "mono_kayip_dB": -3.0,
-     "mono_en_kotu_bant_dB": -5.8,
-     "mono_en_kotu_bant_Hz": 503,
-     "kisa_sureli_LUFS_miks": -24.1,
-     "whisper_L": "Bir sonraki videoda görüşürüz.",
-     "whisper_R": "Ece!",
-     "whisper_mono": "İçerim.",
-     "whisper_tam_miks": "İçerim!"
-    },
-    {
-     "id": "W2",
-     "kim": "Anne",
-     "soz": "Kızım…",
-     "bas": 45.0,
-     "miks_penceresi": [
-      44.95,
-      45.59
-     ],
-     "ILD_bas_dB": 6.5,
-     "ITD_bas_us": 417,
-     "ILD_son_dB": 5.4,
-     "ITD_son_us": 500,
-     "mono_kayip_dB": -1.7,
-     "mono_en_kotu_bant_dB": -5.2,
-     "mono_en_kotu_bant_Hz": 1600,
-     "kisa_sureli_LUFS_miks": -22.3,
-     "whisper_L": "Kızım.",
-     "whisper_R": "Kızım",
-     "whisper_mono": "Kızım",
-     "whisper_tam_miks": "Kıssım"
-    },
-    {
-     "id": "W3",
-     "kim": "Sabri",
-     "soz": "Ece…",
-     "bas": 46.6,
-     "miks_penceresi": [
-      46.55,
-      47.13
-     ],
-     "ILD_bas_dB": -2.9,
-     "ITD_bas_us": -167,
-     "ILD_son_dB": -0.1,
-     "ITD_son_us": 0,
-     "mono_kayip_dB": -0.6,
-     "mono_en_kotu_bant_dB": -3.1,
-     "mono_en_kotu_bant_Hz": 3200,
-     "kisa_sureli_LUFS_miks": -21.4,
-     "whisper_L": "Yeter!",
-     "whisper_R": "Ece!",
-     "whisper_mono": "İçeride!",
-     "whisper_tam_miks": "İçeride!"
-    },
-    {
-     "id": "W4",
-     "kim": "Anne",
-     "soz": "Kızım…",
-     "bas": 47.55,
-     "miks_penceresi": [
-      47.5,
-      47.91
-     ],
-     "ILD_bas_dB": -11.0,
-     "ITD_bas_us": -604,
-     "ILD_son_dB": -6.7,
-     "ITD_son_us": -833,
-     "mono_kayip_dB": -2.9,
-     "mono_en_kotu_bant_dB": -5.7,
-     "mono_en_kotu_bant_Hz": 503,
-     "kisa_sureli_LUFS_miks": -18.0,
-     "whisper_L": "Kısa",
-     "whisper_R": "Kızım",
-     "whisper_mono": "Kızım",
-     "whisper_tam_miks": "Kıza"
-    },
-    {
-     "id": "W5",
-     "kim": "Anne",
-     "soz": "Kızım…",
-     "bas": 50.0,
-     "miks_penceresi": [
-      49.95,
-      51.56
-     ],
-     "ILD_bas_dB": 6.2,
-     "ITD_bas_us": 417,
-     "ILD_son_dB": 13.2,
-     "ITD_son_us": 958,
-     "mono_kayip_dB": -2.7,
-     "mono_en_kotu_bant_dB": -4.1,
-     "mono_en_kotu_bant_Hz": 4031,
-     "kisa_sureli_LUFS_miks": -14.3,
-     "whisper_L": "Kızım",
-     "whisper_R": "Kızım",
-     "whisper_mono": "Kızaaa",
-     "whisper_tam_miks": "Kızaaa"
-    },
-    {
-     "id": "W6",
-     "kim": "Sabri",
-     "soz": "Ece…",
-     "bas": 51.3,
-     "miks_penceresi": [
-      51.53,
-      53.97
-     ],
-     "ILD_bas_dB": -7.9,
-     "ITD_bas_us": -562,
-     "ILD_son_dB": 15.1,
-     "ITD_son_us": 854,
-     "mono_kayip_dB": -2.3,
-     "mono_en_kotu_bant_dB": -3.7,
-     "mono_en_kotu_bant_Hz": 3200,
-     "kisa_sureli_LUFS_miks": -16.4,
-     "whisper_L": "Ece",
-     "whisper_R": "Ece!",
-     "whisper_mono": "Ede...",
-     "whisper_tam_miks": "Altyazı M.K."
-    }
-   ]
   }
  }
 }
