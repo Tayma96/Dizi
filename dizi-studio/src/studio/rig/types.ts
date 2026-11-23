@@ -261,7 +261,7 @@ export type Look = {
   /** buruşuk, tozlu giysi (kaçırılmış, yerde yatmış) */
   kirisik?: boolean;
   /** göğüs baskısı / logo: "vinn" (kurye), "blob" (sweatshirt), "cep" (gömlek cebi + kalem) */
-  baski?: "vinn" | "blob" | "cep";
+  baski?: "vinn" | "blob" | "cep" | "kedi";
   /** sıvalı kollar (gömlek) */
   sivali?: boolean;
 };

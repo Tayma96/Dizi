@@ -75,6 +75,27 @@ export const TorsoDugme: React.FC<{ look: Look; skin: string }> = ({ look, skin 
           <path d="M 132 470 q 16 40 4 90 M 268 470 q -16 40 -4 90" stroke={o.topShade} strokeWidth={5} fill="none" strokeLinecap="round" />
         </g>
       ) : null}
+      {look.baski === "kedi" ? (
+        <g transform="translate(200 478)">
+          {/* 7/24 özgün pijama baskısı: turuncu tekir kedi yüzü (fiyonksuz) + pati izleri */}
+          {[[-48, -62, 10], [52, -48, -14], [-56, 70, -8], [58, 78, 12]].map(([x, y, a], i) => (
+            <g key={i} transform={`translate(${x} ${y}) rotate(${a}) scale(0.9)`} opacity={0.85}>
+              <ellipse cx={0} cy={4} rx={7} ry={6} fill="#ffffff" />
+              {[-7, -2.5, 2.5, 7].map((px, j) => <circle key={j} cx={px} cy={-5 - (j === 1 || j === 2 ? 2 : 0)} r={2.6} fill="#ffffff" />)}
+            </g>
+          ))}
+          <path d="M -30 -8 L -26 -36 L -10 -20 Z M 30 -8 L 26 -36 L 10 -20 Z" fill="#f2a25a" stroke={OUT} strokeWidth={2.5} strokeLinejoin="round" />
+          <path d="M -24 -14 L -23 -28 L -15 -20 Z M 24 -14 L 23 -28 L 15 -20 Z" fill="#f7c6c0" />
+          <ellipse cx={0} cy={4} rx={34} ry={28} fill="#f2a25a" stroke={OUT} strokeWidth={2.5} />
+          <path d="M -8 -22 l 3 9 M 0 -24 v 10 M 8 -22 l -3 9" stroke="#c8733a" strokeWidth={3} strokeLinecap="round" />
+          <ellipse cx={0} cy={14} rx={16} ry={11} fill="#fff4e8" />
+          <path d="M -17 0 q 5 -5 10 0 M 7 0 q 5 -5 10 0" stroke={OUT} strokeWidth={2.5} fill="none" strokeLinecap="round" />
+          <path d="M -3 8 L 3 8 L 0 12 Z" fill="#e87a90" />
+          <path d="M 0 12 q -4 5 -8 2 M 0 12 q 4 5 8 2" stroke={OUT} strokeWidth={1.8} fill="none" strokeLinecap="round" />
+          <path d="M -20 10 h -14 M -20 14 l -13 4 M 20 10 h 14 M 20 14 l 13 4" stroke={OUT} strokeWidth={1.4} strokeLinecap="round" />
+          <circle cx={-19} cy={8} r={3.5} fill="#f08a8a" opacity={0.6} /><circle cx={19} cy={8} r={3.5} fill="#f08a8a" opacity={0.6} />
+        </g>
+      ) : null}
       {look.baski === "blob" ? (
         <g transform="translate(200 470)">
           {/* uydurma baskı: gülümseyen pembe-lila slime damlası + parıltılar */}
