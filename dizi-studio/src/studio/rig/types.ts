@@ -18,7 +18,9 @@ export type HairStyle =
   /** Kırmızı Düğme: uzun katlı saç + perde kakül, uçları renkli (hair.uc) */
   | "perdeli"
   /** Kırmızı Düğme: seyrek, yağlı, dağınık saç (tepe açılmış, alına yapışık tutamlar, yağ parlaması) */
-  | "yagli";
+  | "yagli"
+  /** Kırmızı Düğme: kısa sıkı perma (teyze) */
+  | "perma";
 
 export type Outfit =
   | "tshirt"
@@ -45,7 +47,9 @@ export type Outfit =
   /** Kırmızı Düğme: tek parça beyaz tulum (fermuar, kırmızı fermuar çekeceği) */
   | "tulum"
   /** Kırmızı Düğme: oversize pastel sweatshirt (düşük omuz, fitilli yaka/etek, baskı) */
-  | "oversize";
+  | "oversize"
+  /** Kırmızı Düğme: düğmeli pijama takımı (biyeli yaka, ay-bulut desenli) */
+  | "pijama";
 
 export type Emotion =
   | "notr"
@@ -131,7 +135,7 @@ export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime" | "telefon_arka" | "telefon_yatay";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime" | "telefon_arka" | "telefon_yatay" | "tesbih" | "kolonya";
 
 export type Look = {
   name: string;
@@ -197,6 +201,18 @@ export type Look = {
   kulaklikKablo?: boolean;
   /** takma tırnak rengi */
   tirnak?: string;
+  /** alına itilmiş uyku maskesi rengi */
+  uykuMaskesi?: string;
+  /** tavşan terlik rengi */
+  tavsanTerlik?: string;
+  /** gözlük zinciri rengi (boncuklu) */
+  gozlukZinciri?: string;
+  /** hırka/pijama düğmelerinin rengi (pijamada yalnız biri bu renkte) */
+  dugmeRenk?: string;
+  /** ter bandı rengi */
+  terBandi?: string;
+  /** göğüste çapraz bel çantası rengi */
+  belCantasi?: string;
   /** kalp toka rengi (perdeli saçta yıldızların yerine) */
   kalpToka?: string;
   /** göbek 0..1 (öne/yana taşan yuvarlak karın) */

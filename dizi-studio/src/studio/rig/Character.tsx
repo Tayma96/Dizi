@@ -4,7 +4,7 @@ import { Brow, EMOTION_FACE, Eye, Mouth, OUT } from "./face";
 import { GESTURES, type FullArm } from "./gestures";
 import { HairBack, HairFront } from "./hair";
 import type { Look, MouthCue, Pose, Prop, Viseme } from "./types";
-import { BilekEk, Gobek, TelefonYatay, YuzEk, KulaklikKablo, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
+import { BilekEk, Gobek, TelefonYatay, YuzEk, KulaklikKablo, SacEk, PijamaBacak, Kask, KarMaske, KulakEk, MakyajAlt, MakyajUst, OnBoyun, SirtCanta, SlimeProp, TorsoDugme } from "./dugme";
 
 const SW = 4;
 const AHIZE_DX = 34, AHIZE_ROT = 22; // ahize yüzün yanında: üst uç kulakta, alt uç ağız köşesinin dışında
@@ -288,6 +288,29 @@ const HandProp: React.FC<{ prop: Prop; x: number; y: number; look: Look }> = ({ 
       );
     case "slime":
       return <SlimeProp x={x} y={y} />;
+    case "tesbih":
+      // tesbih: elden sarkan halka; taneler minik kırmızı mantar düğme biçiminde (ipucu), püskül
+      return (
+        <g>
+          <path d={`M ${x - 8} ${y + 6} Q ${x - 30} ${y + 90} ${x} ${y + 120} Q ${x + 30} ${y + 90} ${x + 8} ${y + 6}`} stroke="#3a2a20" strokeWidth={1.5} fill="none" />
+          {new Array(13).fill(0).map((_, i) => {
+            const u = i / 12;
+            const px = i < 7 ? x - 8 - 22 * Math.sin(u * Math.PI * 1.08) : x + 8 + 22 * Math.sin((1 - u) * Math.PI * 1.08);
+            const py = y + 10 + 108 * Math.sin(Math.min(1, (i < 7 ? u : 1 - u) * 1.85) * Math.PI / 2);
+            return <g key={i}><ellipse cx={px} cy={py + 2} rx={6.5} ry={3.5} fill="#f2f2ee" stroke={OUT} strokeWidth={1.2} /><ellipse cx={px} cy={py - 1} rx={5} ry={4} fill="#e2202e" stroke={OUT} strokeWidth={1.2} /></g>;
+          })}
+          <path d={`M ${x} ${y + 120} l 0 14 M ${x - 4} ${y + 134} l -2 22 M ${x} ${y + 134} l 0 24 M ${x + 4} ${y + 134} l 2 22`} stroke="#c9a24a" strokeWidth={3} strokeLinecap="round" />
+        </g>
+      );
+    case "kolonya":
+      // kolonya şişesi (etiketsiz, limon sarısı), kırmızı kapak
+      return (
+        <g>
+          <path d={`M ${x - 16} ${y - 4} L ${x - 16} ${y - 62} Q ${x - 16} ${y - 74} ${x - 6} ${y - 78} L ${x - 6} ${y - 90} L ${x + 6} ${y - 90} L ${x + 6} ${y - 78} Q ${x + 16} ${y - 74} ${x + 16} ${y - 62} L ${x + 16} ${y - 4} Z`} fill="#fff6b0" fillOpacity={0.85} stroke={OUT} strokeWidth={3} />
+          <rect x={x - 8} y={y - 104} width={16} height={16} rx={4} fill="#e2202e" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M ${x - 10} ${y - 50} H ${x + 10}`} stroke="#e8d070" strokeWidth={6} />
+        </g>
+      );
     case "telefon_arka":
       // Kırmızı Düğme: dikey tutulan telefon, ARKASI kameraya dönük (ekran görünmez); kenarlardan ekran ışığı taşar
       return (
@@ -615,6 +638,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <g key={side} transform={`rotate(${rot} ${hx} 600)`}>
           <path d={side < 0 ? "M 146 600 L 144 950 L 196 950 L 200 600 Z" : "M 200 600 L 204 950 L 256 950 L 254 600 Z"} fill={legFill} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
           {look.serit ? <path d={side < 0 ? "M 151 606 L 150 944" : "M 249 606 L 250 944"} stroke={look.serit} strokeWidth={7} /> : null}
+          {out.type === "pijama" ? <PijamaBacak side={side} renk={out.topShade} /> : null}
           {out.type === "tulum" ? (
             <g>
               <path d={side < 0 ? "M 144 926 L 196 926 L 196 948 L 144 948 Z" : "M 204 926 L 256 926 L 256 948 L 204 948 Z"} fill={out.topShade} stroke={OUT} strokeWidth={3} />
@@ -741,7 +765,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <g>
             <path d="M 176 332 Q 200 350 224 332 L 214 624 Q 200 628 186 624 Z" fill={out.accent ?? "#f2ece0"} stroke={OUT} strokeWidth={3} />
             {[420, 490, 560].map((y) => (
-              <circle key={y} cx={176} cy={y} r={5} fill={out.topShade} stroke={OUT} strokeWidth={2} />
+              <circle key={y} cx={176} cy={y} r={look.dugmeRenk ? 7 : 5} fill={look.dugmeRenk ?? out.topShade} stroke={OUT} strokeWidth={2} />
             ))}
           </g>
         ) : null}
@@ -920,6 +944,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       {pose.sweat ? <path d={`M ${280} 140 q -7 16 0 22 q 7 -6 0 -22 z`} fill="#bfe3ff" stroke="#6fa8cf" strokeWidth={2} /> : null}
       {kapali ? null : <HairFront look={look} dx={yaw * 10 + strong * 30} />}
       {kapali ? null : <KulakEk look={look} dx={dx} />}
+      {kapali ? null : <SacEk look={look} dx={dx} />}
       {pose.sacDagin ? (
         <g stroke={look.hair.color} strokeWidth={3.5} fill="none" strokeLinecap="round">
           <path d={`M ${150 + dx} 90 q -16 -14 -10 -30`} />
