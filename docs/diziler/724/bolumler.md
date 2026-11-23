@@ -216,3 +216,14 @@ Ece korkmuş panik halinde ama komik bir tepkiyle:" hıığğ" diye nefes verip 
 - **Sabri (kullanıcı, aynen):** "O 5. Bölümdeki gerçek Sabri sandığımız da gerçek Sabri değilmiş. Bu seferki gerçekten gerçek Sabri." → Markete dışarıdan gelen Sabri gerçek; B5'teki omuzdaki "gerçek Sabri" de anomaliydi. (Dizi hafızasına işlenecek.)
 - **Saat (kullanıcı):** açılışta kırmızı dijital saatte **07:24** (dizinin adına gönderme); sonra saat **07:30**'a atlar, sanki sabah vardiyası 07:30'da başlıyor. Metindeki 08:00 yerine 07:30 kullanılır; Sabri vardiyaya gelir.
 - **Ece'nin yumruğu:** sarılmada Ece önce kaskatı, Sabri'nin göğsüne bir kez yumrukla vurur, sonra çözülür (replik yok). Simit düşürme YOK.
+
+## Bölüm 6, Parça 2 (kullanıcının metni, 23 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Para iyi hoş ama evet doğru söylüyosun para için ölmeyi kimse göze almaz. Sabri 1 aylık maaşını 1 gün için verir. Ece ne yapacağını bilmemektedir alır parayı. Sabri "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem" der. Ece söver gibi bakar parayı cebine koyar ağlaya ağlaya çıkar. Koşa koşa eve gider. Evin kapısını çekmektedir kamera, Ece içeri girer kapıyı kilitler üstteki zincirini takar kapının önünde oturup ağlar.
+
+Annesi yanına gelir içinden geçirir: "yoksa öğrendi mi?"
+Annesi: "noldu kızım neyin var?" "Biri bir şey mi yaptı" der celallenir yükselir. Ece sadece olumsuz şekilde kafasını sallar.
+
+### Notlar (Claude)
+- Annenin "yoksa öğrendi mi?" repliği iç ses (dudak kıpırdamaz); büyük ters köşe: anne bir şey biliyor (B5 fısıltısındaki "Kızım…" ile bağ). Dizi hafızasına açık döngü olarak işlenecek.
+- Kamera evin kapısını içeriden çekiyor (Ece dışarıdan girer).
+- Üretim: diyalog sahneleri mevcut market/ev mekânları ve standart motorla; özel kod yalnız gerektiği yerde (token tasarrufu, kullanıcı kararı).
