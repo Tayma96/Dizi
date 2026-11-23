@@ -558,8 +558,15 @@ def cmd_efekt(args):
 
 def cmd_muzik(args):
     """ElevenLabs Music: sözsüz fon müziği üretir → public/ses/muzik/<isim>.mp3 (gerçek maliyet abonelik farkından okunur)."""
-    est = int(args.sure * 25)
-    say(f"Müzik '{args.isim}': \"{args.tarif}\" ({args.sure} sn). Kaba tahmin ≈ {est} kredi.")
+    plan = None
+    if args.plan:  # sözlü şarkı: ElevenLabs kompozisyon planı (bölümler, süreler, söz satırları)
+        plan = json.load(open(args.plan, encoding="utf-8"))
+        args.sure = sum(sec["duration_ms"] for sec in plan["sections"]) / 1000
+    est = int(args.sure * 15) + 1  # ≈900 kredi/dk (uygulama fiyatı); gerçek maliyet abonelik farkından okunur
+    say(f"Müzik '{args.isim}': \"{args.tarif}\" ({args.sure:.0f} sn{', sözlü plan' if plan else ''}). Kaba tahmin ≈ {est} kredi.")
+    if plan:
+        for sec in plan["sections"]:
+            say(f"  [{sec['section_name']}] {sec['duration_ms'] / 1000:.0f} sn  " + " / ".join(sec.get("lines", [])))
     if not args.onayla:
         say("KURU ÇALIŞTIRMA — kredi harcanmadı. --onayla ile üretin.")
         return
@@ -567,9 +574,9 @@ def cmd_muzik(args):
     if not acct:
         raise SystemExit("DUR: yeterli kredi yok.")
     before = sub["kalan"]
-    audio, _ = http(acct, "POST", "/v1/music?output_format=mp3_44100_128", body={"prompt": args.tarif, "music_length_ms": int(args.sure * 1000), "model_id": "music_v1", "force_instrumental": True}, raw=True, fake=args.sahte)
+    audio, _ = http(acct, "POST", "/v1/music?output_format=mp3_44100_128", body=({"composition_plan": plan, "model_id": "music_v1"} if plan else {"prompt": args.tarif, "music_length_ms": int(args.sure * 1000), "model_id": "music_v1", "force_instrumental": True}), raw=True, fake=args.sahte)
     out = os.path.join(ROOT, "public", "ses", "muzik", f"{args.isim}.mp3")
-    raw = "/tmp/el-music.mp3"
+    raw = f"/tmp/el-music-{args.isim}.mp3"
     open(raw, "wb").write(audio)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", raw, "-af", "loudnorm=I=-18:TP=-2", "-ar", "44100", "-c:a", "libmp3lame", "-q:a", "2", out], check=True)
     cost = max(0, before - subscription(acct, args.sahte)["kalan"])
@@ -665,6 +672,7 @@ def main():
     mz.add_argument("tarif")
     mz.add_argument("isim")
     mz.add_argument("--sure", type=float, default=60.0)
+    mz.add_argument("--plan", help="sözlü şarkı için kompozisyon planı JSON (sections: section_name, duration_ms, lines, stiller)")
     mz.add_argument("--onayla", action="store_true")
     r = sp.add_parser("replikler")
     r.add_argument("bolum")

@@ -84,3 +84,10 @@ Hedef: başyapıt, viral, 1 milyon+ izlenme. Kitle: herkese hitap eder, 13-25 k�
 - Klik sesi: 4 aday (`ornekler/ses/kd-klik-{A-tok,B-kristal,C-kapsul,D-kadife}.mp3`; üretici `dizi-studio/tools/kd_klik.py`; tek basış wav'ları `public/ses/kd/`). Telefon hoparlörü için gövde 300-2000 Hz'de. Seçim kullanıcıda.
 - Stil 1 v2 filtresi (`sheets/KdStil2.tsx`, `KdKonturV2`; kontrol `ornekler/kd-stil1-v2.png`): kalın dış hat / ince iç çizgi, yerel renkli çizgi, yalnız dış hatta kaynama, mekâna göre gölge + kenar ışığı, beyaz odada gölgesiz.
 - Görüntü yönetmeni teşhisi: filtre tek başına "imza" görünüm vermiyor; asıl sınır çizimin kendisi (boru kollar, top yumruklar, dikdörtgen gövde, heykel gibi önden duruş). Öneri: Kırmızı Düğme'ye özel çizim katmanı, önce tek karakterle tam kaliteli örnek.
+
+## Kararlar (kullanıcı, 23 Kasım 2026, gece)
+- Klik sesi: **A · Tok** (`public/ses/kd/klik-A-tok.wav`).
+- Düğmeden ne çıkacağını (ölümcül, erzak, komik, araç vb.) senaryo yazılırken biz belirleriz; sabit bir kural konmaz.
+- Göbekli Adam için yeni çizim katmanı örneği istendi; daha iyi olursa o kullanılır.
+- Müzik: ElevenLabs Music, kaliteden taviz yok. Kurye şarkısı **"BAS!"** (uydurma kız grubu; sözler Claude, kullanıcı isteğiyle): plan `dizi-studio/tools/planlar/kd-bas.json`. Nakarattaki "Durma, bas!" ile kancadaki "Duuur!" bilinçli yankı; "Kırmızı yansa da" kavşaktaki kazayı ve kırmızı düğmeleri önceden ima eder.
+- Şiveler: göbekli Trakyalı, kurye Adanalı keko, kız tiki, teyze tonton Anadolu kadını. Kütüphanede bölgesel şiveli ses yok (800 Türkçe ses tarandı); deneme: yazımla şive ve yazım + aksan etiketi (`public/episodes/kd-sive-test.json`, yalnız test). Geçici sesler: göbekli Hakan, kurye Veyzel, kız Zeynep Ece, teyze Sindirella.

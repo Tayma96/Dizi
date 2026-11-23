@@ -1,0 +1,12 @@
+{
+  "positive_global_styles": ["Turkish girl group dance-pop", "confident female vocal group, tight harmonies, shouted group chants", "124 bpm, minor key", "punchy kick, crisp claps, deep synth bass, bright synth plucks", "modern radio-ready pop production, wide stereo", "catchy chant hook made for short videos", "Turkish lyrics, clear diction"],
+  "negative_global_styles": ["male vocals", "slow ballad", "acoustic guitar", "lo-fi", "muddy mix"],
+  "sections": [
+    {"section_name": "Intro", "positive_local_styles": ["filtered synth riser", "group chant", "beat drop at the end"], "negative_local_styles": [], "duration_ms": 6000, "lines": ["Bas! Bas!"]},
+    {"section_name": "Verse", "positive_local_styles": ["half-time groove", "cool, breathy lead vocal", "night drive mood"], "negative_local_styles": ["full drums"], "duration_ms": 14000, "lines": ["Gece mavi, şehir uyanık", "Kulaklıkta kalbim yanık", "Kimse bilmez nereye gittiğimi", "Rüzgâr saçımda, yazıyorum kendi filmimi"]},
+    {"section_name": "Pre-Chorus", "positive_local_styles": ["building snare roll", "rising harmonies", "tension"], "negative_local_styles": [], "duration_ms": 8000, "lines": ["Bir, iki, üç, nefesini tut", "Dünü sil, yarını unut"]},
+    {"section_name": "Chorus", "positive_local_styles": ["full energy drop", "stacked group vocals", "chant on every BAS"], "negative_local_styles": [], "duration_ms": 16000, "lines": ["Bas, bas, bas! Hadi bas!", "Kırmızı yansa da durmak yok bu gece", "Bas, bas, bas! Korkma, bas!", "Bir kere yaşanır, say bir, iki, üç... bas!"]},
+    {"section_name": "Post-Chorus", "positive_local_styles": ["vocal chop hook", "dance break", "claps"], "negative_local_styles": [], "duration_ms": 8000, "lines": ["Ey-ey-ey, bas! Ey-ey-ey, bas!", "Durma, durma, durma... bas!"]},
+    {"section_name": "Final Chorus", "positive_local_styles": ["biggest energy", "ad-libs", "ends on a hard stop after the last BAS"], "negative_local_styles": ["fade out"], "duration_ms": 16000, "lines": ["Bas, bas, bas! Hadi bas!", "Kırmızı yansa da durmak yok bu gece", "Bas, bas, bas! Korkma, bas!", "Bir kere yaşanır, say bir, iki, üç... bas!"]}
+  ]
+}

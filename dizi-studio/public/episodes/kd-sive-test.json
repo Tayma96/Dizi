@@ -1,0 +1,18 @@
+{
+  "episode": "kd-sive-test",
+  "title": "Kırmızı Düğme · şive denemesi (yalnız test, dizide kullanılmaz)",
+  "scenes": [
+    {"id": "yazim", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_gobek", "text": "Bre ula, bu sabah hava pek soğuk be! Çayı demledim, gel otur hele, ne yapıyon öyle ayakta dikilip?"},
+      {"type": "line", "who": "kd_kurye_kasksiz", "text": "La gardaş napıyon la? Bu sıcakta motorla gezilir mi hiç, yanıyom valla! Gel bi şalgam iç de serinle bari."},
+      {"type": "line", "who": "kd_influencer", "text": "Aşkım yaaa, şu an literally çok mutluyum! Yani bu kafe aşırı cute, kahvesi de efsane, kesinlikle tavsiye ederim."},
+      {"type": "line", "who": "kd_dorduncu_teyze", "text": "Ay guzum, ne zayıflamışın sen öyle! Gel otur şöyle, ben sana sıcacık bi tarhana çorbası koyim, hemen gelir."}
+    ]},
+    {"id": "etiket", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_gobek", "tags": "[lazy drawl, thick Thracian (Trakya) Turkish village accent]", "text": "Bre ula, bu sabah hava pek soğuk be! Çayı demledim, gel otur hele, ne yapıyon öyle ayakta dikilip?"},
+      {"type": "line", "who": "kd_kurye_kasksiz", "tags": "[cocky street tough, thick Adana Turkish accent]", "text": "La gardaş napıyon la? Bu sıcakta motorla gezilir mi hiç, yanıyom valla! Gel bi şalgam iç de serinle bari."},
+      {"type": "line", "who": "kd_influencer", "tags": "[posh spoiled Istanbul teen, upspeak, drawn-out vowels]", "text": "Aşkım yaaa, şu an literally çok mutluyum! Yani bu kafe aşırı cute, kahvesi de efsane, kesinlikle tavsiye ederim."},
+      {"type": "line", "who": "kd_dorduncu_teyze", "tags": "[sweet chubby grandma, warm Central Anatolian village accent]", "text": "Ay guzum, ne zayıflamışın sen öyle! Gel otur şöyle, ben sana sıcacık bi tarhana çorbası koyim, hemen gelir."}
+    ]}
+  ]
+}
