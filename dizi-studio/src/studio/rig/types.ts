@@ -181,6 +181,17 @@ export type Look = {
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
   /* ---- Kırmızı Düğme (hepsi isteğe bağlı) ---- */
+  /* ---- Kırmızı Düğme stil denemesi (opt-in) ---- */
+  /** baş ölçeği çarpanı (büyük kafa stili ~1,35) */
+  basOlcek?: number;
+  /** imza göz tasarımı: "kd" = yuvarlak-kare iris, tek büyük parlama + küçük yıldız, kalın kapak */
+  gozStili?: "kd";
+  /** imza yanak işareti: "yastik" (yastık izi), "kalp" (üç minik kalp çil) */
+  yanakIsaret?: "yastik" | "kalp";
+  /** ağız ölçeği (esnek, abartılı ifadeler) */
+  agizOlcek?: number;
+  /** imza rozet: göğüste minik altıgen (petek) rozet; içinde karakterin simgesi */
+  rozet?: { simge: "cips" | "kalp" | "simsek" | "damla" | "ay" | "dambil"; renk: string };
   /** boy çarpanı (silüet ayrımı için; 1 = normal) */
   boy?: number;
   /** omuz/gövde genişliği çarpanı (kabarık mont, geniş omuz) */

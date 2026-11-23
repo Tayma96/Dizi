@@ -170,12 +170,13 @@ Kontrol: `Jestler` kompozisyonu.
 - **Dev hamamböceği:** `engine/bocek.tsx` (`DevBocek`, `BocekKafa`, `Bacak`, `Anten`). Kontrol kompozisyonu: `Bocek`. Örnekler: `B5OrnekYuz`, `B5OrnekGovde`, `B5OrnekOmuz`, `B5OrnekDev`, `B5OrnekYakin`.
 
 ### Kırmızı Düğme eklemeleri (`kd_*`; hepsi isteğe bağlı, eski bölümleri değiştirmez)
-- **Kadro:** `kd_gobek`, `kd_kurye` (kasklı), `kd_kurye_kasksiz`, `kd_influencer`, `kd_maskeli`, `kd_dorduncu_a/_b/_c` (4. kişi seçenekleri); beyaz oda: `kd_gobek_oda`, `kd_kurye_oda`, `kd_influencer_oda` (buruşuk) ve `kd_gobek_tulum`, `kd_kurye_tulum`, `kd_influencer_tulum`, `kd_dorduncu_a_tulum`.
-- **Saç:** `daginik`, `perdeli` (uç rengi `hair.uc`). **Kıyafet:** `atlet`, `kurye`, `tulum`, `oversize`.
-- **Look alanları (`rig/dugme.tsx`):** `gobek` 0..1, `gobekAcik`, `terlik`, `serit` (eşofman şeridi), `kask {renk, serit, vizorAcik}`, `sirtCanta {renk, kenar}`, `karMaske`, `eldiven`, `makyaj {ruj, far, eyeliner, isilti}`, `halka`, `toka`, `saat`, `kulaklik`, `bagcik`, `kirisik`, `baski` ("vinn" | "blob" | "cep"), `sivali`.
-- **Jest:** `gobekKasi`, `slime`, `telefonYatay` (iki elle yatay telefon; prop `telefon_yatay` ile, telefon iki elin arasına çizilir). **Eşya:** `slime`, `telefon_arka` (dikey, arkası kameraya), `telefon_yatay`. **Poz:** `kaskYansima` (vizörde kayan yansıma, px).
+- **Kadro:** `kd_gobek`, `kd_kurye` (kasklı), `kd_kurye_kasksiz`, `kd_influencer`, `kd_maskeli`; 4. kişi seçenekleri `kd_dorduncu_teyze`, `kd_dorduncu_uykucu`, `kd_dorduncu_sporcu`; beyaz oda (kendi kıyafetleri, imza detaylar): `kd_gobek_oda`, `kd_kurye_oda`, `kd_influencer_oda`.
+- **Saç:** `daginik`, `perdeli` (uç rengi `hair.uc`), `yagli`, `perma`. **Kıyafet:** `atlet`, `kurye`, `tulum`, `oversize`, `pijama`.
+- **Vücut ve yüz (opt-in):** `kilo` 0..1 (geniş yüz + gıdı, kalın boyun/kol/bacak), `boy`, `omuzEn` (silüet ayrımı), `sakalNokta`, `gozAlti`, `kil`, `leke`, `kirinti`, `tekTerlik`, `tavsanTerlik`, `uykuMaskesi`, `terBandi`, `belCantasi`, `gozlukZinciri`, `dugmeRenk`, `kaskIzi`, `kulaklikKablo`, `tirnak`, `kalpToka`. Stil denemesi: `basOlcek`, `gozStili: "kd"`, `yanakIsaret`, `agizOlcek`, `rozet`.
+- **Diğer Look alanları (`rig/dugme.tsx`):** `gobek` 0..1, `gobekAcik`, `terlik`, `serit` (eşofman şeridi), `kask {renk, serit, vizorAcik}`, `sirtCanta {renk, kenar}`, `karMaske`, `eldiven`, `makyaj {ruj, far, eyeliner, isilti}`, `halka`, `toka`, `saat`, `kulaklik`, `bagcik`, `kirisik`, `baski` ("vinn" | "blob" | "cep"), `sivali`.
+- **Jest:** `gobekKasi`, `slime`, `telefonYatay` (iki elle yatay telefon; prop `telefon_yatay` ile, telefon iki elin arasına çizilir). **Eşya:** `slime`, `telefon_arka` (dikey, arkası kameraya), `telefon_yatay`, `tesbih`, `kolonya`. **Poz:** `kaskYansima` (vizörde kayan yansıma, px).
 - **Mekânlar:** `kd_beyaz_oda` (`sets/beyazoda.tsx`, perspektif izdüşümlü oda motoru: `BeyazOda`, `Dugme`, `Bolme`, `Nesne`, `Mizrak`, `petekBul`), `kd_ev`, `kd_market_onu`, `kd_cadde_takip`, `kd_cadde_kavsak`, `kd_yayin` (`sets/dugme.tsx`; araçlar `KacirmaVan`, `KuryeMotor`; arayüz `YayinArayuz`). Not: bölüm JSON'u şimdilik `SetName3D` listesini kullanıyor; bu mekânlarla bölüm çekilecekse motor tipine eklenmeli.
-- **Kontrol kompozisyonları:** `KDKadro`, `KDMekanlar`, `KDLogo` (Kirmizi-Dugme klasörü). Taslak (henüz denetlenmedi): `KDDugmeOrnek`, `KDKanca`.
+- **Kontrol kompozisyonları:** `KDKadro`, `KDMekanlar`, `KDLogo`, `KDStil` (stil denemesi; filtreler `sheets/KdStil.tsx` → `KdStilFiltreleri`) (Kirmizi-Dugme klasörü). Taslak (henüz denetlenmedi): `KDDugmeOrnek`, `KDKanca`.
 - **Yazı tipi:** logo için Baloo 2 ExtraBold (`public/fonts/baloo-2-*`, OFL).
 
 ### Eşyalar (`prop`, sağ elde)

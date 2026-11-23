@@ -12,6 +12,7 @@ import { CastSheet, EmotionSheet, GestureSheet, MouthSheet, SetSheet } from "./s
 import { B4Ornek, Donus25DSheet } from "./studio/engine/Inserts10";
 import { B5Ornek, BocekSheet } from "./studio/engine/Inserts11";
 import { KDKadro, KDMekanlar } from "./studio/sheets/KdSheets";
+import { KDStil } from "./studio/sheets/KdStil";
 import { KdDugmeOrnek, KdKanca, KdLogoKare } from "./studio/engine/KirmiziDugme";
 
 export const RemotionRoot: React.FC = () => {
@@ -54,6 +55,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="KDMekanlar" component={KDMekanlar} durationInFrames={60} fps={30} width={2712} height={2780} />
         <Composition id="KDDugmeOrnek" component={KdDugmeOrnek} durationInFrames={180} fps={30} width={1080} height={1920} />
         <Composition id="KDKanca" component={KdKanca} durationInFrames={126} fps={30} width={1080} height={1920} defaultProps={{ kol: "notr" as const }} />
+        <Composition id="KDStil" component={KDStil} durationInFrames={30} fps={30} width={4400} height={2640} />
         <Composition id="KDLogo" component={KdLogoKare} durationInFrames={1} fps={30} width={1080} height={1920} />
       </Folder>
       <Folder name="Gec-Kaldim-Kizim">

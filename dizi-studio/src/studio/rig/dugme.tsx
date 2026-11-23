@@ -129,6 +129,7 @@ export const TorsoDugme: React.FC<{ look: Look; skin: string }> = ({ look, skin 
           <path d="M 184 360 q 4 -6 8 0 M 196 350 q 4 -6 8 0 M 208 360 q 4 -6 8 0 M 190 372 q 4 -6 8 0 M 204 372 q 4 -6 8 0" />
         </g>
       ) : null}
+      {look.rozet ? <Rozet x={244} y={396} r={22} simge={look.rozet.simge} renk={look.rozet.renk} /> : null}
       {look.kirisik ? (
         <g>
           {/* buruşukluk ve toz: kaçırılırken yerde sürüklenmiş */}
@@ -459,6 +460,20 @@ export const YuzEk: React.FC<{ look: Look; dx: number; kilo: number }> = ({ look
           {new Array(Math.round(30 * n)).fill(0).map((_, i) => <circle key={`u${i}`} cx={176 + random(`sku${i}`) * 48 + dx} cy={258 + random(`skv${i}`) * 9} r={1.2} />)}
         </g>
       ) : null}
+      {look.yanakIsaret === "yastik" ? (
+        <g stroke="#e8a0a0" strokeWidth={2.6} strokeLinecap="round" fill="none" opacity={0.75}>
+          {/* imza: yanağında hiç geçmeyen yastık izi */}
+          <path d={`M ${244 + dx} 238 q 14 -4 24 4 M ${240 + dx} 250 q 16 -2 26 8`} />
+        </g>
+      ) : null}
+      {look.yanakIsaret === "kalp" ? (
+        <g fill="#ff6a9a">
+          {/* imza: sol yanakta üç minik kalp çil */}
+          {[[140, 236, 5], [154, 246, 4], [134, 250, 3.5]].map(([x, y, r], i) => (
+            <path key={i} d={`M ${x + dx} ${y + r} C ${x - r * 1.6 + dx} ${y - r * 0.2} ${x - r * 0.6 + dx} ${y - r * 1.4} ${x + dx} ${y - r * 0.5} C ${x + r * 0.6 + dx} ${y - r * 1.4} ${x + r * 1.6 + dx} ${y - r * 0.2} ${x + dx} ${y + r} Z`} />
+          ))}
+        </g>
+      ) : null}
       {look.gozAlti ? (
         <g>
           {/* şiş, morumsu göz altları (uykusuz, gün görmemiş) */}
@@ -527,3 +542,22 @@ export const PijamaBacak: React.FC<{ side: number; renk: string }> = ({ side, re
     })}
   </g>
 );
+
+/** İmza rozet: minik altıgen (beyaz odanın peteği) + karakter simgesi. Dizinin her karakterinde aynı biçim, farklı simge. */
+export const Rozet: React.FC<{ x: number; y: number; r: number; simge: "cips" | "kalp" | "simsek" | "damla" | "ay" | "dambil"; renk: string }> = ({ x, y, r, simge, renk }) => {
+  const hex = new Array(6).fill(0).map((_, i) => `${i ? "L" : "M"} ${x + Math.cos((i / 6) * Math.PI * 2 + Math.PI / 6) * r} ${y + Math.sin((i / 6) * Math.PI * 2 + Math.PI / 6) * r}`).join(" ") + " Z";
+  const k = r / 22;
+  return (
+    <g>
+      <path d={hex} fill="#ffffff" stroke={OUT} strokeWidth={3} strokeLinejoin="round" />
+      <g transform={`translate(${x} ${y}) scale(${k})`} fill={renk} stroke={OUT} strokeWidth={2}>
+        {simge === "cips" ? <path d="M -11 6 Q -12 -10 2 -12 Q 13 -10 11 4 Q 0 12 -11 6 Z" /> : null}
+        {simge === "kalp" ? <path d="M 0 10 C -16 0 -10 -14 0 -6 C 10 -14 16 0 0 10 Z" /> : null}
+        {simge === "simsek" ? <path d="M 3 -13 L -8 2 L -1 2 L -4 13 L 8 -3 L 1 -3 Z" /> : null}
+        {simge === "damla" ? <path d="M 0 -13 Q 10 0 8 6 Q 6 12 0 12 Q -6 12 -8 6 Q -10 0 0 -13 Z" /> : null}
+        {simge === "ay" ? <path d="M 4 -12 A 12 12 0 1 0 10 8 A 9 9 0 1 1 4 -12 Z" /> : null}
+        {simge === "dambil" ? <path d="M -12 -6 h 5 v 12 h -5 Z M 7 -6 h 5 v 12 h -5 Z M -7 -2 h 14 v 4 h -14 Z" /> : null}
+      </g>
+    </g>
+  );
+};

@@ -920,7 +920,9 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           <path d={`M ${128 + dx} 236 Q ${138 + dx} 262 ${150 + dx} 270 M ${272 + dx} 236 Q ${262 + dx} 262 ${250 + dx} 270`} stroke="#4a3a3a" strokeWidth={4} fill="none" opacity={0.45} />
         </g>
       ) : null}
-      <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+      <g transform={look.agizOlcek ? `translate(${200 + dx * 1.1} ${274 + 2 * yk}) scale(${look.agizOlcek}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})` : undefined}>
+        <Mouth viseme={vis} rest={hikK > 0.1 && !vis ? "o" : yk > 0.15 ? "tight" : face.mouth} cx={200 + dx * 1.1} cy={274 + 2 * yk} amp={amp} scream={emo === "dehset"} />
+      </g>
       <MakyajUst look={look} dx={dx} mouthX={200 + dx * 1.1} mouthY={274 + 2 * yk} konusuyor={!!vis && vis !== "X"} restMouth={face.mouth} />
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
@@ -1003,7 +1005,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const sTilt = -8 * sLean;
   const kah = pose.kahkaha ? Math.min(1, pose.kahkaha) * Math.abs(Math.sin(frame * 0.95)) : 0;
   const omzY = 14 * hikK + 7 * kah - 12 * Math.min(1, pose.omuzDus ?? 0);
-  const headT = `translate(0 ${-omzY * 1.35 - breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis - 4 * hikK - 3 * kah} 200 300) translate(200 300) scale(${age.head}) translate(-200 -300)`;
+  const headT = `translate(0 ${-omzY * 1.35 - breathe * 300 + sobbing + (running ? 5 * Math.abs(Math.cos(runPh - 0.5)) : 0) + yutY}) rotate(${(pose.tilt ?? 0) + sway * 0.6 + runTilt + sTilt + 4 * cekis - 4 * hikK - 3 * kah} 200 300) translate(200 300) scale(${age.head * (look.basOlcek ?? 1)}) translate(-200 -300)`;
 
   return (
     <svg

@@ -75,6 +75,7 @@ export const Eye: React.FC<{
       : `M ${cx - w} ${cy + 1} Q ${cx} ${cy + 4} ${cx + w} ${cy + 1}`;
     return <path d={d} fill="none" stroke={OUT} strokeWidth={5} strokeLinecap="round" />;
   }
+  if (look.gozStili === "kd") return <KdGoz cx={cx} cy={cy} look={look} lookX={lookX} lookY={lookY} open={open} pupil={pupil} flip={flip} squeeze={squeeze} uid={uid} />;
   const top = cy - h * 1.35 * Math.min(1.35, open);
   // gözler kısıldıkça alt kapak da yükselir (yanağın gözü itmesi); duyguyu ağız yerine göz taşır
   const bot = cy + h * 1.1 * Math.min(1.2, 0.35 + open * 0.65);
@@ -271,4 +272,36 @@ export const Mouth: React.FC<{ viseme: Viseme | null; rest: FaceParams["mouth"];
     default:
       return <path d={`M ${cx - 14} ${cy} Q ${cx} ${cy + 4} ${cx + 14} ${cy}`} {...stroke} />;
   }
+};
+
+/** Kırmızı Düğme imza gözü (opt-in, look.gozStili === "kd"): iri badem göz, yuvarlak-kare iris (dikey degrade),
+ *  tek büyük kare-yuvarlak parlama + küçük dört köşeli yıldız, kalın üst kapak ve tek kirpik kıvrımı. */
+const KdGoz: React.FC<{ cx: number; cy: number; look: Look; lookX: number; lookY: number; open: number; pupil: number; flip?: boolean; squeeze: number; uid: string }> = ({ cx, cy, look, lookX, lookY, open, pupil, flip, squeeze, uid }) => {
+  const s = flip ? -1 : 1;
+  const w = 27 * squeeze;
+  const hTop = 26 * Math.min(1.25, open), hBot = 20 * Math.min(1.1, 0.5 + open * 0.5);
+  // simetrik yuvarlak-kare göz akı: üst kenar düzleşik kemer, alt kenar yumuşak
+  const shape = `M ${cx - w} ${cy + 2} C ${cx - w} ${cy - hTop} ${cx + w} ${cy - hTop} ${cx + w} ${cy + 2} C ${cx + w} ${cy + hBot} ${cx - w} ${cy + hBot} ${cx - w} ${cy + 2} Z`;
+  const ix = cx + lookX * 10 * squeeze, iy = cy + 3 + lookY * 7;
+  const gid = `kdg-${uid}`;
+  return (
+    <g>
+      <defs>
+        <clipPath id={`kdc-${uid}`}><path d={shape} /></clipPath>
+        <linearGradient id={gid} x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#120c0a" stopOpacity={0.5} /><stop offset="0.4" stopColor={look.iris} stopOpacity={0} /><stop offset="1" stopColor="#ffffff" stopOpacity={0.18} /></linearGradient>
+      </defs>
+      <path d={shape} fill="#fffdf8" />
+      <g clipPath={`url(#kdc-${uid})`}>
+        <rect x={ix - 15} y={iy - 18} width={30} height={36} rx={13} fill={look.iris} />
+        <rect x={ix - 15} y={iy - 18} width={30} height={36} rx={13} fill={`url(#${gid})`} />
+        <rect x={ix - 7 * pupil} y={iy - 9 * pupil} width={14 * pupil} height={18 * pupil} rx={6.5 * pupil} fill="#120c0a" />
+        <rect x={ix - 12} y={iy - 15} width={11} height={12} rx={4.5} fill="#ffffff" />
+        <path d={`M ${ix + 7} ${iy + 3} l 1.6 4 l 4 1.6 l -4 1.6 l -1.6 4 l -1.6 -4 l -4 -1.6 l 4 -1.6 Z`} fill="#ffffff" />
+      </g>
+      {/* kalın üst kapak + dış köşede tek kirpik kıvrımı */}
+      <path d={`M ${cx - w - 2} ${cy + 3} C ${cx - w - 2} ${cy - hTop - 2} ${cx + w + 2} ${cy - hTop - 2} ${cx + w + 2} ${cy + 3}`} fill="none" stroke={OUT} strokeWidth={6.5} strokeLinecap="round" />
+      <path d={`M ${cx - (w + 1) * s} ${cy - 2} q ${-9 * s} -2 ${-12 * s} -11`} fill="none" stroke={OUT} strokeWidth={4.5} strokeLinecap="round" />
+      <path d={`M ${cx - w * 0.6} ${cy + hBot * 0.78} Q ${cx} ${cy + hBot * 0.98} ${cx + w * 0.6} ${cy + hBot * 0.78}`} fill="none" stroke={OUT} strokeWidth={2} opacity={0.3} strokeLinecap="round" />
+    </g>
+  );
 };

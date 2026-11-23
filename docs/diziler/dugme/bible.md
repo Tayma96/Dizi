@@ -30,7 +30,7 @@
 | Influencer odası | ring ışık (soğuk beyaz; gözde halka yansıması için) | pembe LED | mor LED şerit + peri ışıkları; arkadaki kapı zifiri karanlık | şeker pembe güvenli alan; kapı = tehdit |
 
 ### Mekânlar (`dizi-studio/src/studio/sets/`)
-- `kd_beyaz_oda` (`beyazoda.tsx`): gerçek perspektif izdüşümlü küçük bir 3B sahne, 2D çizim diliyle. 6,4 × 3,4 × 10 m, alçak tavanlı uzun oda; ortada beyaz silindir kaide, üstünde tek kırmızı mantar düğme, kaidenin önünde sayaç ekranı.
+- `kd_beyaz_oda` (`beyazoda.tsx`): gerçek perspektif izdüşümlü küçük bir 3B sahne, 2D çizim diliyle. 8 × 3,6 × 12 m geniş ve derin oda (geri bildirim 1 ile büyütüldü); ortada beyaz silindir kaide, üstünde tek kırmızı mantar düğme, kaidenin önünde sayaç ekranı. Petek yarıçapı 0,42 m: finalde ~610 düğme (önceki ~890'ın %70'i), düğmelerin arasında boş petek yüzeyi görünür.
 - `kd_ev` (`dugme.tsx`): bordo kanepe ve dantel örtü, nazarlık, düğün fotoğrafı, sehpada cips paketleri, etiketsiz kola, çay bardağı, çekirdek kabukları, kumanda; solda TV.
 - `kd_market_onu`: uydurma "ÇINAR MARKET" (Can Market değil): yeşil-beyaz tente, vitrin, ekmek dolabı, meyve kasaları, kasada uyuyan turuncu sokak kedisi, parke kaldırım, sodyum lamba; önde minibüsün yanaşacağı yol.
 - `kd_cadde_takip` / `kd_cadde_kavsak`: ufka daralan yol, akan şerit çizgileri ve lambalar (sürüş takip); kavşak, yaya geçidi, trafik ışığı.
@@ -45,11 +45,19 @@
 - **Nesneler:** Türk gündelik hayatından komik seçki (terlik, simit, lastik ördek, çaydanlık, top, kaktüs, balık, nazar boncuğu, yastık, şemsiye, pasta...).
 - Oda motoru, düğme, bölme, nesne ve mızrak bileşenleri hazır; animasyon prototipleri (`KDDugmeOrnek`, `KDKanca` kompozisyonları) kullanıcı kararıyla **senaryodan sonraya** bırakıldı: kod taslak hâlinde duruyor, render edilip denetlenmedi.
 
+### İmza stil denemesi (`ornekler/kd-stil.png`, kompozisyon `KDStil`; karar kullanıcıda)
+Aynı iki karakter üç stilde. Hepsi yalnız Kırmızı Düğme için isteğe bağlı açılır; diğer dizilerin rig görünümü değişmez.
+1. **Renkli kontur:** siyah çizgi yerine karakterin kendi renginin koyusu, titrek el çizgisi (3 karede bir "kaynar"), renk dolgularında riso baskı kayması, sıcak gölge bandı, kâğıt dokusu. Uygulama: karakteri saran tek SVG filtresi (`KdStilFiltreleri`), düşük maliyet.
+2. **Büyük kafa · ifade gözleri:** baş ~1,5×, gövde biraz kısa (oran ~1:3,5), imza göz (yuvarlak-kare iris, tek büyük parlama + küçük yıldız, dış köşede tek kirpik), her karakterde yanak işareti (göbekli: yastık izi, influencer: üç kalp çil), esnek ağız. Uygulama: Look alanları `basOlcek`, `gozStili: "kd"`, `yanakIsaret`, `agizOlcek`, `boy`; orta maliyet (kadraj ve jestler yeniden ayarlanmalı).
+3. **Sticker · kesik kâğıt:** kalın beyaz sticker kenarı, yumuşak gölge, hafif eğik duruş, kâğıt dokusu; mekân solgun, karakterler patlar. Uygulama: tek filtre + mekânda doygunluk düşürme; düşük maliyet.
+- **İmza işaret:** göğüste minik altıgen rozet (`rozet`), içinde kişisel simge (cips, şimşek, kalp, kolonya damlası, ay, dambıl).
+
 ## Ses dili
 - (ses yönetmeni; motokurye şarkısı özgün üretilecek, bkz. `bolumler.md`)
 
 ## Yasaklar / hassasiyetler
 - Gerçek marka, logo, platform arayüzü yok: kurye markası "VINN!", market "ÇINAR MARKET", yayın arayüzü ve "aslan" hediyesi uydurmadır. Kola şişesi etiketsiz.
-- Tulumlarda göğüs numarası yok (Squid Game çağrışımı). Beyaz oda düğmesi ve oda dili "Symbol"den farklı tutulur (yukarıdaki liste).
+- Ortak tulum yok (kullanıcı kararı): herkes kendi kıyafetiyle. Beyaz oda düğmesi ve oda dili "Symbol"den farklı tutulur (yukarıdaki liste).
+- Kırmızı mantar düğme motifi karakter üstünde yalnız 4. kişinin ipuçlarında kullanılır.
 - Kaçırma araçları: plaka okunmaz.
 - Şiddet: mızrak göğse ulaşmadan kesilir, kan yok (13-25 kitlesi).
