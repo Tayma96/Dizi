@@ -41,3 +41,5 @@ BigSoundBank #0165 (türev),ses/efekt/adim_kosu_3.mp3,CC0 1.0,gerekmez
 BigSoundBank #0165 (türev),ses/efekt/adim_kosu_4.mp3,CC0 1.0,gerekmez
 Kendi ElevenLabs SFX'imiz el_depo_kapi (türev),ses/efekt/depo_kapi_kisa.mp3,ElevenLabs (kullanıcı hesabı),gerekmez
 Kendi seslendirmemiz 724-01/c_15 (türev),ses/efekt/depo_ece.mp3,ElevenLabs (kullanıcı hesabı),gerekmez
+ElevenLabs SFX + Music (kullanıcının kendi hesabı; B5),ses/efekt/el_bocek_kukreme|el_yuz_erime|el_deri_yirtilma|el_kitin_catirti|el_bocek_bacak|el_anten_hisirti|el_kanat_vizilti|el_govde_buyume|el_deri_dusme|el_omuz_kavrama|el_irkilme|el_floresan_kivilcim|el_bocek_tislama|el_mandibula|el_buzdolabi|el_b5_vurus.mp3; türevleri ses/efekt/b5_*.mp3; ses/muzik/b5_donusum.mp3,ElevenLabs koşulları (ücretli planda ticari kullanım),2026-11-23
+Türev (kendi işlememiz),ses/muzik/b5_donusum_tam.mp3 = muzik/b5_donusum (ElevenLabs) + efekt/korku_drone (kendi sentezimiz),ElevenLabs koşulları + kendi sentezimiz,gerekmez

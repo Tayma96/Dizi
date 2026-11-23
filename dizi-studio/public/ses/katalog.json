@@ -90,6 +90,118 @@
   "loop": false,
   "desc": "B4: Spor ayakkabı fayans gıcırtısı (el_ayakkabi_gicirti); tepe normalize, kırpılmış. ElevenLabs SFX (kullanıcı hesabı)."
  },
+ "efekt/b5_anten_hisirti": {
+  "file": "ses/efekt/b5_anten_hisirti.mp3",
+  "category": "efekt",
+  "duration": 1.52,
+  "loop": false,
+  "desc": "B5: Antenlerin havada hışırtısı (el_anten_hisirti; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_bocek_bacak": {
+  "file": "ses/efekt/b5_bocek_bacak.mp3",
+  "category": "efekt",
+  "duration": 2.48,
+  "loop": false,
+  "desc": "B5: Böcek bacaklarının açılması ve fayansta tıkırtı (el_bocek_bacak; baştan 0.02 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_bocek_kukreme": {
+  "file": "ses/efekt/b5_bocek_kukreme.mp3",
+  "category": "efekt",
+  "duration": 2.14,
+  "loop": false,
+  "desc": "B5: Dev hamamböceği KÜKREMESİ: hırıltı + böceksi tıkırtı (el_bocek_kukreme; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı). 2.1 sn'de 0.4 sn sönümle kısaltıldı."
+ },
+ "efekt/b5_bocek_tislama": {
+  "file": "ses/efekt/b5_bocek_tislama.mp3",
+  "category": "efekt",
+  "duration": 2.04,
+  "loop": false,
+  "desc": "B5: Dev hamamböceği tıslaması (el_bocek_tislama; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_buzdolabi": {
+  "file": "ses/efekt/b5_buzdolabi.mp3",
+  "category": "efekt",
+  "duration": 6.03,
+  "loop": true,
+  "desc": "B5: Mahçup sessizlik: buzdolabı uğultusu (6 sn, -20 LUFS) (el_buzdolabi; -20 LUFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_deri_dusme": {
+  "file": "ses/efekt/b5_deri_dusme.mp3",
+  "category": "efekt",
+  "duration": 0.39,
+  "loop": false,
+  "desc": "B5: Deri ve hırka yığınının yere ıslak düşüşü (el_deri_dusme; baştan 0.86 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_deri_yirtilma": {
+  "file": "ses/efekt/b5_deri_yirtilma.mp3",
+  "category": "efekt",
+  "duration": 3.03,
+  "loop": false,
+  "desc": "B5: Derinin ıslak yırtılıp soyulması, simbiyot lifleri gerilip kopar (el_deri_yirtilma; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_floresan_kivilcim": {
+  "file": "ses/efekt/b5_floresan_kivilcim.mp3",
+  "category": "efekt",
+  "duration": 2.04,
+  "loop": false,
+  "desc": "B5: Anten floresana çarpar: kıvılcım, cam tıngırtısı, titreme (el_floresan_kivilcim; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_govde_buyume": {
+  "file": "ses/efekt/b5_govde_buyume.mp3",
+  "category": "efekt",
+  "duration": 3.76,
+  "loop": false,
+  "desc": "B5: Gövdenin devleşmesi: gerilme gıcırtısı, kabuk çatırtısı, alçak homurtu (el_govde_buyume; baştan 0.24 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_irkilme": {
+  "file": "ses/efekt/b5_irkilme.mp3",
+  "category": "efekt",
+  "duration": 0.76,
+  "loop": false,
+  "desc": "B5: İrkilme: gövde sıçraması, kıyafet hışırtısı, ayakkabı sürtünmesi (el_irkilme; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_kanat_vizilti": {
+  "file": "ses/efekt/b5_kanat_vizilti.mp3",
+  "category": "efekt",
+  "duration": 1.49,
+  "loop": false,
+  "desc": "B5: Kanatların kabarması: kuru tırtıl, kısa vızıltı (el_kanat_vizilti; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_kitin_catirti": {
+  "file": "ses/efekt/b5_kitin_catirti.mp3",
+  "category": "efekt",
+  "duration": 1.8,
+  "loop": false,
+  "desc": "B5: Kitin kabuk çatırtısı (el_kitin_catirti; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_mandibula": {
+  "file": "ses/efekt/b5_mandibula.mp3",
+  "category": "efekt",
+  "duration": 2.04,
+  "loop": false,
+  "desc": "B5: Mandibula tık tık (meraklı), altında alçak tıslama (el_mandibula; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_omuz_kavrama": {
+  "file": "ses/efekt/b5_omuz_kavrama.mp3",
+  "category": "efekt",
+  "duration": 0.94,
+  "loop": false,
+  "desc": "B5: Omuza el konması, kazakta kumaş kavrama (el_omuz_kavrama; baştan 0.09 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_vurus": {
+  "file": "ses/efekt/b5_vurus.mp3",
+  "category": "efekt",
+  "duration": 1.8,
+  "loop": false,
+  "desc": "B5: Final korku-komedi vuruşu (el_b5_vurus; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
+ "efekt/b5_yuz_erime": {
+  "file": "ses/efekt/b5_yuz_erime.mp3",
+  "category": "efekt",
+  "duration": 4.52,
+  "loop": false,
+  "desc": "B5: Yüzün erimesi: cızırtı, kabarcık, ıslak akış ve damlama (4,4 sn) (el_yuz_erime; baştan 0.00 sn kırpıldı, tepe -3 dBFS). ElevenLabs SFX (kullanıcı hesabı)."
+ },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
   "category": "efekt",
@@ -174,6 +286,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: fingers slowly crinkling an empty torn plastic candy bar wrapper, sparse crisp crackles, quiet room, close"
  },
+ "efekt/el_anten_hisirti": {
+  "file": "ses/efekt/el_anten_hisirti.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: long insect antennae swishing through the air, dry whip-like flicks and soft rustle, subtle, close"
+ },
  "efekt/el_araba_ici": {
   "file": "ses/efekt/el_araba_ici.mp3",
   "category": "efekt",
@@ -188,12 +307,47 @@
   "loop": false,
   "desc": "ElevenLabs SFX: single quick sneaker squeak on a glossy tiled floor, sudden start of a sprint"
  },
+ "efekt/el_b5_vurus": {
+  "file": "ses/efekt/el_b5_vurus.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: short horror-comedy stinger: one sudden deep orchestral horror hit with a scary organ chord, immediately followed by a single goofy deflating tuba wah-wah, cartoonish, ends abruptly"
+ },
  "efekt/el_banyo_kapi": {
   "file": "ses/efekt/el_banyo_kapi.mp3",
   "category": "efekt",
   "duration": 2.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Bathroom door flung open hard and hitting the wall, followed by two hurried slipper footsteps on tile floor"
+ },
+ "efekt/el_bocek_bacak": {
+  "file": "ses/efekt/el_bocek_bacak.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: giant insect legs suddenly unfolding with sharp clicks, many hard chitin legs tapping and skittering on a tiled floor, creepy, close"
+ },
+ "efekt/el_bocek_kukreme": {
+  "file": "ses/efekt/el_bocek_kukreme.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: monstrous giant cockroach roar, close: a deep guttural throaty growl layered with loud rapid insect clicking and chittering, wet mandibles rattling, hissing breath, terrifying creature roar that rises and then decays"
+ },
+ "efekt/el_bocek_tislama": {
+  "file": "ses/efekt/el_bocek_tislama.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: giant cockroach hissing loudly at someone, airy aggressive hiss with wet mandible clicks, close"
+ },
+ "efekt/el_buzdolabi": {
+  "file": "ses/efekt/el_buzdolabi.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: quiet refrigerator hum in an empty convenience store at dawn, low steady compressor drone, faint fluorescent buzz, awkward silence, very still, seamless"
  },
  "efekt/el_cagri_sinyali": {
   "file": "ses/efekt/el_cagri_sinyali.mp3",
@@ -237,6 +391,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Long chaotic crash from behind a closed storage room door, as if someone inside is violently pulling down metal shelves: shelves toppling, boxes and cans falling and rolling, heavy thuds, lasting several seconds, muffled through the door"
  },
+ "efekt/el_deri_dusme": {
+  "file": "ses/efekt/el_deri_dusme.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: heavy wet human skin and a soaked wool cardigan falling in a pile onto a tiled floor, soggy slap and thud"
+ },
+ "efekt/el_deri_yirtilma": {
+  "file": "ses/efekt/el_deri_yirtilma.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: slow wet skin tearing and peeling off in large pieces, sticky stringy organic fibers stretching tight then snapping one by one, gory horror foley, close, no voice"
+ },
  "efekt/el_dingdong": {
   "file": "ses/efekt/el_dingdong.mp3",
   "category": "efekt",
@@ -258,12 +426,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Single fluorescent light tube flickering and buzzing with electrical crackle"
  },
+ "efekt/el_floresan_kivilcim": {
+  "file": "ses/efekt/el_floresan_kivilcim.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: fluorescent ceiling tube struck hard by something: sharp electric spark crackle, glass rattle, buzzing stuttering flicker"
+ },
  "efekt/el_fren_kaza": {
   "file": "ses/efekt/el_fren_kaza.mp3",
   "category": "efekt",
   "duration": 3.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Violent car crash: loud tire screech skid then massive metal impact, shattering windshield glass, debris, then sudden silence"
+ },
+ "efekt/el_govde_buyume": {
+  "file": "ses/efekt/el_govde_buyume.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: monster body growing huge: deep stretching creaks, cracking shell, wet squelches and bones popping, low groaning rumble rising, horror transformation foley, no voice"
  },
  "efekt/el_haber_jenerik": {
   "file": "ses/efekt/el_haber_jenerik.mp3",
@@ -299,6 +481,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Man groaning in pain, short, weak, trying to sit up, close"
+ },
+ "efekt/el_irkilme": {
+  "file": "ses/efekt/el_irkilme.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: young woman startled jump in place, quick body jolt, clothes rustle and a sneaker scuff on tile floor, no voice"
  },
  "efekt/el_islak_adim": {
   "file": "ses/efekt/el_islak_adim.mp3",
@@ -342,6 +531,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Low quality security camera recording playback, faint digital hiss and hum, tiny speaker, empty room tone"
  },
+ "efekt/el_kanat_vizilti": {
+  "file": "ses/efekt/el_kanat_vizilti.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: huge cockroach wings flaring open, loud dry papery rattle and short angry buzzing flutter"
+ },
  "efekt/el_kapi_yumruk": {
   "file": "ses/efekt/el_kapi_yumruk.mp3",
   "category": "efekt",
@@ -369,6 +565,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Two teenage siblings giggling quietly, trying to hold back laughter, short"
+ },
+ "efekt/el_kitin_catirti": {
+  "file": "ses/efekt/el_kitin_catirti.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: hard insect exoskeleton cracking and creaking, thick chitin shell plates splitting and snapping into place, crunchy and close, horror foley"
  },
  "efekt/el_koridor_adim_yaklasan": {
   "file": "ses/efekt/el_koridor_adim_yaklasan.mp3",
@@ -426,6 +629,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: a crumpled cloth ball thrown, short quick air swish, no impact"
  },
+ "efekt/el_mandibula": {
+  "file": "ses/efekt/el_mandibula.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: giant insect mandibles slowly clicking, tick tick, wet and curious, faint low hiss underneath, very close"
+ },
  "efekt/el_market_adim": {
   "file": "ses/efekt/el_market_adim.mp3",
   "category": "efekt",
@@ -460,6 +670,13 @@
   "duration": 6.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Busy corporate office background heard faintly through a phone speaker, distant chatter, keyboard typing, phone ringing far away"
+ },
+ "efekt/el_omuz_kavrama": {
+  "file": "ses/efekt/el_omuz_kavrama.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a hand suddenly grabbing a young woman's shoulder from behind, firm grip squeezing a thick knit sweater, short fabric crunch, close, quiet store, no voice"
  },
  "efekt/el_onluk_cekistir": {
   "file": "ses/efekt/el_onluk_cekistir.mp3",
@@ -558,6 +775,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: close-up human gulp, a single deep audible nervous swallow, throat click then wet gulp, dry mouth, very close microphone, no breathing, no music"
+ },
+ "efekt/el_yuz_erime": {
+  "file": "ses/efekt/el_yuz_erime.mp3",
+  "category": "efekt",
+  "duration": 4.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a face melting like a burning wax mask: hissing sizzle, wet bubbling and popping blisters, thick slime dripping and splattering, gooey organic flow, horror foley, no voice"
  },
  "efekt/el_zaman_atla": {
   "file": "ses/efekt/el_zaman_atla.mp3",
@@ -978,6 +1202,20 @@
   "duration": 46.0,
   "loop": true,
   "desc": "Aksiyon/kovalamaca: 120 bpm davul + ostinato. Kaçış, yüzleşme, zaman baskısı."
+ },
+ "muzik/b5_donusum": {
+  "file": "ses/muzik/b5_donusum.mp3",
+  "category": "muzik",
+  "duration": 14.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Intense horror transformation underscore, 14 seconds: starts with a low trembling sub-bass drone and dissonant high string clusters, quickly builds with pounding deep taiko-like hits and screeching aleatoric strings, metallic scrapes, rising brass growl, peaks in a terrifying wall of sound at around 10 seconds, then holds a sustained menacing chord. No melody, no vocals, cinematic monster reveal."
+ },
+ "muzik/b5_donusum_tam": {
+  "file": "ses/muzik/b5_donusum_tam.mp3",
+  "category": "muzik",
+  "duration": 30.0,
+  "loop": false,
+  "desc": "B5 dönüşüm altyapısı: muzik/b5_donusum (ElevenLabs Music) 0-13 sn + efekt/korku_drone (kendi sentezimiz) yükselen bölüm; 16.78 sn'de kükremeyle keskin kesilir, sonrası sessiz. -18 LUFS."
  },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",

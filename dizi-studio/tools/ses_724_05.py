@@ -134,6 +134,110 @@ def cmd_kirp(lid, a, b):
     print(f"{lid}: {m[lid]['duration']} sn", w)
 
 
+# B5 efekt türevleri: ElevenLabs SFX ham dosyası (efekt/el_*) -> efekt/b5_* (başı olayın başlangıcına kırpılır,
+# kuyruk sönümlenir, tek vuruşlar tepe -3 dBFS'e, ortam katmanları -20 LUFS'e normalize). Kaynak dosyalar silinmez.
+B5_EFEKT = {
+    # ad: (kaynak, tür, açıklama)
+    "b5_omuz_kavrama": ("el_omuz_kavrama", "vurus", "Omuza el konması, kazakta kumaş kavrama"),
+    "b5_irkilme": ("el_irkilme", "vurus", "İrkilme: gövde sıçraması, kıyafet hışırtısı, ayakkabı sürtünmesi"),
+    "b5_yuz_erime": ("el_yuz_erime", "vurus", "Yüzün erimesi: cızırtı, kabarcık, ıslak akış ve damlama (4,4 sn)"),
+    "b5_deri_yirtilma": ("el_deri_yirtilma", "vurus", "Derinin ıslak yırtılıp soyulması, simbiyot lifleri gerilip kopar"),
+    "b5_kitin_catirti": ("el_kitin_catirti", "vurus", "Kitin kabuk çatırtısı"),
+    "b5_bocek_bacak": ("el_bocek_bacak", "vurus", "Böcek bacaklarının açılması ve fayansta tıkırtı"),
+    "b5_anten_hisirti": ("el_anten_hisirti", "vurus", "Antenlerin havada hışırtısı"),
+    "b5_kanat_vizilti": ("el_kanat_vizilti", "vurus", "Kanatların kabarması: kuru tırtıl, kısa vızıltı"),
+    "b5_govde_buyume": ("el_govde_buyume", "vurus", "Gövdenin devleşmesi: gerilme gıcırtısı, kabuk çatırtısı, alçak homurtu"),
+    "b5_deri_dusme": ("el_deri_dusme", "vurus", "Deri ve hırka yığınının yere ıslak düşüşü"),
+    "b5_floresan_kivilcim": ("el_floresan_kivilcim", "vurus", "Anten floresana çarpar: kıvılcım, cam tıngırtısı, titreme"),
+    "b5_bocek_tislama": ("el_bocek_tislama", "vurus", "Dev hamamböceği tıslaması"),
+    "b5_mandibula": ("el_mandibula", "vurus", "Mandibula tık tık (meraklı), altında alçak tıslama"),
+    "b5_bocek_kukreme": ("el_bocek_kukreme", "vurus", "Dev hamamböceği KÜKREMESİ: hırıltı + böceksi tıkırtı"),
+    "b5_vurus": ("el_b5_vurus", "vurus", "Final korku-komedi vuruşu"),
+    "b5_buzdolabi": ("el_buzdolabi", "ortam", "Mahçup sessizlik: buzdolabı uğultusu (6 sn, -20 LUFS)"),
+}
+
+
+def _env(src):
+    import numpy as np
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", src, "-ac", "1", "-ar", "8000", "-f", "f32le", "-"], capture_output=True).stdout
+    a = np.frombuffer(raw, np.float32)
+    w = 80  # 10 ms
+    return np.array([20 * np.log10(np.sqrt((a[i:i + w] ** 2).mean()) + 1e-9) for i in range(0, len(a) - w, w)])
+
+
+def cmd_efekt():
+    cat_path = os.path.join(ROOT, "public", "ses", "katalog.json")
+    cat = json.load(open(cat_path, encoding="utf-8"))
+    E_DIR = os.path.join(ROOT, "public", "ses", "efekt")
+    for ad, (kay, tur, aciklama) in B5_EFEKT.items():
+        src = os.path.join(E_DIR, kay + ".mp3")
+        dst = os.path.join(E_DIR, ad + ".mp3")
+        if tur == "ortam":
+            E.loudnorm_2pass(src, dst, target=-20.0)
+            bas = 0.0
+        else:
+            db = _env(src)
+            pk = db.max()
+            act = [i for i, x in enumerate(db) if x > pk - 30]
+            bas = max(0.0, act[0] * 0.01 - 0.01)
+            son_i = max(i for i, x in enumerate(db) if x > pk - 45)
+            son = min(len(db) * 0.01, son_i * 0.01 + 0.12)
+            tmp = dst + ".tmp.mp3"
+            cut(src, tmp, bas, son, fin=0.004, fout=0.08)
+            # tepe -3 dBFS
+            st = subprocess.run(["ffmpeg", "-hide_banner", "-i", tmp, "-af", "volumedetect", "-f", "null", "-"], capture_output=True, text=True).stderr
+            mx = float(re.search(r"max_volume: (-?[\d.]+) dB", st).group(1))
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af", f"volume={-3.0 - mx:.2f}dB", "-ar", "44100", "-ac", "1", "-c:a", "libmp3lame", "-q:a", "2", dst], check=True)
+            os.remove(tmp)
+        d = round(dur(dst), 2)
+        cat[f"efekt/{ad}"] = {"file": f"ses/efekt/{ad}.mp3", "category": "efekt", "duration": d, "loop": tur == "ortam",
+                              "desc": f"B5: {aciklama} ({kay}; {'-20 LUFS' if tur == 'ortam' else f'baştan {bas:.2f} sn kırpıldı, tepe -3 dBFS'}). ElevenLabs SFX (kullanıcı hesabı)."}
+        print(f"efekt/{ad:22s} {d:5.2f} sn  (kaynak {kay}, baş kırpma {bas:.2f})")
+    json.dump(dict(sorted(cat.items())), open(cat_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+
+# Müzik: h sahnesinin başından (dönüşüm) kükremenin başına kadar. Sahne h 12,5 sn (eklemeler sabit),
+# i_01 + i_02 = 44 + 79 kare; kükreme vuruşu h başından 16,60 sn sonra, kükreme sesi +0,18 -> 16,78 sn'de müzik keskin kesilir
+# (kükreme tek başına kalır, ardından "lülü?" sessizliği). Dosya 30 sn'ye sessizlikle doldurulur (motor müziği döngüye alır).
+MUZIK_KESME = 16.78
+
+
+def cmd_muzik(kesme=MUZIK_KESME):
+    M = os.path.join(ROOT, "public", "ses", "muzik")
+    fc = (f"[0:a]atrim=0:13.0,asetpts=N/SR/TB,afade=t=out:st=12.3:d=0.7[a];"
+          f"[1:a]atrim=4.0:9.2,asetpts=N/SR/TB,afade=t=in:d=0.8,volume=0.45,adelay=12000|12000[b];"
+          f"[a][b]amix=inputs=2:normalize=0:duration=longest,atrim=0:{kesme:.3f},afade=t=out:st={kesme - 0.03:.3f}:d=0.03,apad=whole_dur=30[o]")
+    tmp = os.path.join(M, "b5_donusum_tam.tmp.wav")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", os.path.join(M, "b5_donusum.mp3"), "-i", os.path.join(ROOT, "public", "ses", "efekt", "korku_drone.mp3"),
+                    "-filter_complex", fc, "-map", "[o]", "-ac", "2", "-ar", "44100", tmp], check=True)
+    # ölçüm yalnız müzikli bölümde: -18 LUFS
+    st = subprocess.run(["ffmpeg", "-hide_banner", "-t", f"{kesme:.2f}", "-i", tmp, "-af", "ebur128", "-f", "null", "-"], capture_output=True, text=True).stderr
+    cur = float(re.findall(r"I:\s+(-?[\d.]+) LUFS", st)[-1])
+    out = os.path.join(M, "b5_donusum_tam.mp3")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-af", f"volume={-18.0 - cur:.2f}dB,alimiter=limit=0.84:level=false", "-c:a", "libmp3lame", "-q:a", "2", out], check=True)
+    os.remove(tmp)
+    cat_path = os.path.join(ROOT, "public", "ses", "katalog.json")
+    cat = json.load(open(cat_path, encoding="utf-8"))
+    cat["muzik/b5_donusum_tam"] = {"file": "ses/muzik/b5_donusum_tam.mp3", "category": "muzik", "duration": 30.0, "loop": False,
+                                   "desc": f"B5 dönüşüm altyapısı: muzik/b5_donusum (ElevenLabs Music) 0-13 sn + efekt/korku_drone (kendi sentezimiz) yükselen bölüm; {kesme} sn'de kükremeyle keskin kesilir, sonrası sessiz. -18 LUFS."}
+    json.dump(dict(sorted(cat.items())), open(cat_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"muzik/b5_donusum_tam: kesme {kesme} sn, kazanç {-18.0 - cur:.2f} dB")
+
+
+def cmd_kukreme(son=2.1, sonum=0.4):
+    """Kükremeyi 'lülü?'den önce bitir: 2,1 sn'de sönümle kes (kaynak el_bocek_kukreme'den yeniden türetir)."""
+    src = os.path.join(ROOT, "public", "ses", "efekt", "b5_bocek_kukreme.mp3")
+    tmp = src + ".tmp.mp3"
+    cut(src, tmp, 0.0, son, fin=0.003, fout=sonum)
+    os.replace(tmp, src)
+    cat_path = os.path.join(ROOT, "public", "ses", "katalog.json")
+    cat = json.load(open(cat_path, encoding="utf-8"))
+    cat["efekt/b5_bocek_kukreme"]["duration"] = round(dur(src), 2)
+    cat["efekt/b5_bocek_kukreme"]["desc"] += f" {son} sn'de {sonum} sn sönümle kısaltıldı."
+    json.dump(dict(sorted(cat.items())), open(cat_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print("kükreme", round(dur(src), 2), "sn")
+
+
 def cmd_olc():
     for lid, v in sorted(man_load().items()):
         out = subprocess.run(["ffmpeg", "-hide_banner", "-i", os.path.join(ROOT, "public", v["file"]), "-af", "ebur128=peak=true", "-f", "null", "-"], capture_output=True, text=True).stderr
@@ -152,5 +256,10 @@ if __name__ == "__main__":
         cmd_kirp(*sys.argv[2:5])
     elif c == "olc":
         cmd_olc()
+    elif c == "efekt":
+        cmd_efekt()
+        cmd_kukreme()
+    elif c == "muzik":
+        cmd_muzik(float(sys.argv[2]) if len(sys.argv) > 2 else MUZIK_KESME)
     else:
         print(__doc__)

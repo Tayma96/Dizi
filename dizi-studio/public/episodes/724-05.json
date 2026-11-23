@@ -35,6 +35,10 @@
         "name": "efekt/el_market_ortam",
         "volume": 0.3
       },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.12
+      },
       "cast": {
         "ece_sivil": {
           "mark": "ece_on",
@@ -126,7 +130,7 @@
           "stab": 0.0,
           "sure": 5.6,
           "tasma": true,
-          "gapAfter": -3.2,
+          "gapAfter": -3.82,
           "shot": {
             "type": "orta",
             "on": "sabri_sahte",
@@ -136,23 +140,50 @@
               "cy": 830,
               "z": 2.0
             }
-          }
+          },
+          "shots": [
+            {
+              "at": 2.95,
+              "shot": {
+                "type": "yakin",
+                "on": "sabri_sahte",
+                "move": "yaklas",
+                "kadraj": {
+                  "cx": 880,
+                  "cy": 720,
+                  "z": 2.55
+                }
+              }
+            }
+          ],
+          "sfx": [
+            {
+              "name": "efekt/el_ambalaj",
+              "at": 1.3,
+              "volume": 0.35
+            },
+            {
+              "name": "efekt/el_floresan",
+              "at": 3.2,
+              "volume": 0.22
+            }
+          ]
         },
         {
           "type": "insert",
           "kind": "ece_yakin",
-          "dur": 1.7,
+          "dur": 1.9,
           "text": [
             "korkmus",
             "supheli",
-            "0.8",
+            "1.1",
             "0.45",
             "0.3"
           ]
         },
         {
           "type": "action",
-          "dur": 1.6,
+          "dur": 2.3,
           "shot": {
             "type": "yakin",
             "on": "sabri_sahte",
@@ -168,7 +199,14 @@
               "kahkaha": 0.6,
               "gesture": "rest"
             }
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_floresan",
+              "at": 0.3,
+              "volume": 0.18
+            }
+          ]
         }
       ]
     },
@@ -198,6 +236,10 @@
       "ambience": {
         "name": "efekt/el_market_ortam",
         "volume": 0.3
+      },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.12
       },
       "cast": {
         "ece_sivil": {
@@ -295,11 +337,23 @@
             "on": "sabri_sahte",
             "move": "yaklas",
             "kadraj": {
-              "cx": 870,
-              "cy": 770,
-              "z": 2.2
+              "cx": 875,
+              "cy": 745,
+              "z": 2.5
             }
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/el_floresan",
+              "at": 0.2,
+              "volume": 0.2
+            },
+            {
+              "name": "efekt/el_ambalaj",
+              "at": 3.6,
+              "volume": 0.3
+            }
+          ]
         }
       ]
     },
@@ -329,6 +383,10 @@
       "ambience": {
         "name": "efekt/el_market_ortam",
         "volume": 0.3
+      },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.12
       },
       "cast": {
         "ece_sivil": {
@@ -367,7 +425,7 @@
           },
           "shots": [
             {
-              "at": 2.35,
+              "at": 3.78,
               "shot": {
                 "type": "yakin",
                 "on": "ece_sivil",
@@ -390,13 +448,13 @@
                   "yaw": 0.2
                 },
                 {
-                  "at": 1.0,
+                  "at": 2.15,
                   "x": -0.2,
                   "y": 0.25,
                   "yaw": -0.1
                 },
                 {
-                  "at": 2.35,
+                  "at": 3.75,
                   "x": 0.5,
                   "y": -0.05,
                   "yaw": 0.25
@@ -434,6 +492,10 @@
         "name": "efekt/el_market_ortam",
         "volume": 0.3
       },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.12
+      },
       "cast": {
         "ece_sivil": {
           "mark": "ece_on",
@@ -455,6 +517,18 @@
           "dur": 1.0,
           "text": [
             "0"
+          ],
+          "sfx": [
+            {
+              "name": "efekt/el_ayakkabi_gicirti",
+              "at": 0.5,
+              "volume": 0.2
+            },
+            {
+              "name": "efekt/b5_omuz_kavrama",
+              "at": 0.9,
+              "volume": 0.9
+            }
           ]
         },
         {
@@ -473,14 +547,26 @@
             "text": [
               "1.0"
             ]
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/b5_irkilme",
+              "at": 0.0,
+              "volume": 0.85
+            },
+            {
+              "name": "efekt/kumas_firlat",
+              "at": 0.65,
+              "volume": 0.3
+            }
+          ]
         },
         {
           "type": "insert",
           "kind": "omuz_el",
           "dur": 1.3,
           "text": [
-            "1.75"
+            "1.83"
           ]
         }
       ]
@@ -511,6 +597,10 @@
       "ambience": {
         "name": "efekt/el_market_ortam",
         "volume": 0.3
+      },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.2
       },
       "cast": {
         "sabri": {
@@ -561,7 +651,7 @@
                   "yaw": 0.25
                 },
                 {
-                  "at": 1.25,
+                  "at": 1.45,
                   "x": 1,
                   "y": 0,
                   "yaw": 0.5
@@ -619,7 +709,7 @@
           "pale": 0.3,
           "sacDagin": true,
           "onluk": false,
-          "gesture": "basTut"
+          "gesture": "ellerAcik"
         }
       },
       "beats": [
@@ -656,19 +746,19 @@
                   "yaw": -0.7
                 },
                 {
-                  "at": 0.45,
+                  "at": 0.4,
                   "x": 1,
                   "y": 0,
                   "yaw": 1
                 },
                 {
-                  "at": 0.95,
+                  "at": 0.82,
                   "x": -0.9,
                   "y": -0.1,
                   "yaw": -0.7
                 },
                 {
-                  "at": 1.4,
+                  "at": 1.1,
                   "x": 1,
                   "y": 0,
                   "yaw": 1
@@ -705,6 +795,10 @@
         "name": "efekt/el_market_ortam",
         "volume": 0.3
       },
+      "music": {
+        "name": "muzik/b5_donusum_tam",
+        "volume": 0.4
+      },
       "cast": {
         "sabri_sahte": {
           "mark": "depo_on",
@@ -724,7 +818,39 @@
         {
           "type": "insert",
           "kind": "donusum_yuz",
-          "dur": 4.4
+          "dur": 4.4,
+          "sfx": [
+            {
+              "name": "efekt/b5_yuz_erime",
+              "at": 0.4,
+              "volume": 0.85
+            },
+            {
+              "name": "efekt/el_floresan",
+              "at": 1.8,
+              "volume": 0.35
+            },
+            {
+              "name": "efekt/b5_kitin_catirti",
+              "at": 2.0,
+              "volume": 0.75
+            },
+            {
+              "name": "efekt/b5_deri_yirtilma",
+              "at": 2.05,
+              "volume": 0.9
+            },
+            {
+              "name": "efekt/b5_anten_hisirti",
+              "at": 3.0,
+              "volume": 0.45
+            },
+            {
+              "name": "efekt/b5_bocek_tislama",
+              "at": 3.5,
+              "volume": 0.6
+            }
+          ]
         },
         {
           "type": "insert",
@@ -742,12 +868,81 @@
         {
           "type": "insert",
           "kind": "donusum_govde",
-          "dur": 4.6
+          "dur": 4.6,
+          "sfx": [
+            {
+              "name": "efekt/b5_kitin_catirti",
+              "at": 0.0,
+              "volume": 0.5
+            },
+            {
+              "name": "efekt/b5_deri_yirtilma",
+              "at": 0.45,
+              "volume": 0.9
+            },
+            {
+              "name": "efekt/b5_bocek_bacak",
+              "at": 0.6,
+              "volume": 0.7
+            },
+            {
+              "name": "efekt/b5_govde_buyume",
+              "at": 0.9,
+              "volume": 0.85
+            },
+            {
+              "name": "efekt/b5_deri_dusme",
+              "at": 1.55,
+              "volume": 0.8
+            },
+            {
+              "name": "efekt/b5_deri_dusme",
+              "at": 1.75,
+              "volume": 0.55
+            },
+            {
+              "name": "efekt/b5_floresan_kivilcim",
+              "at": 1.77,
+              "volume": 0.8
+            },
+            {
+              "name": "efekt/b5_kanat_vizilti",
+              "at": 2.05,
+              "volume": 0.55
+            },
+            {
+              "name": "efekt/b5_mandibula",
+              "at": 3.3,
+              "volume": 0.45
+            }
+          ]
         },
         {
           "type": "insert",
           "kind": "bocek_dev",
-          "dur": 2.6
+          "dur": 2.6,
+          "sfx": [
+            {
+              "name": "efekt/b5_bocek_tislama",
+              "at": 0.25,
+              "volume": 0.95
+            },
+            {
+              "name": "efekt/b5_kanat_vizilti",
+              "at": 0.45,
+              "volume": 0.5
+            },
+            {
+              "name": "efekt/el_ayakkabi_gicirti",
+              "at": 0.8,
+              "volume": 0.3
+            },
+            {
+              "name": "efekt/b5_anten_hisirti",
+              "at": 1.2,
+              "volume": 0.35
+            }
+          ]
         }
       ]
     },
@@ -777,6 +972,10 @@
       "ambience": {
         "name": "efekt/el_market_ortam",
         "volume": 0.3
+      },
+      "ambience2": {
+        "name": "ortam/yagmur",
+        "volume": 0.1
       },
       "cast": {
         "ece_sivil": {
@@ -823,7 +1022,14 @@
             "text": [
               "0.6"
             ]
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/b5_anten_hisirti",
+              "at": 0.5,
+              "volume": 0.3
+            }
+          ]
         },
         {
           "type": "line",
@@ -864,7 +1070,24 @@
         {
           "type": "insert",
           "kind": "bocek_kukreme",
-          "dur": 1.4
+          "dur": 1.4,
+          "sfx": [
+            {
+              "name": "efekt/b5_bocek_kukreme",
+              "at": 0.18,
+              "volume": 1.0
+            },
+            {
+              "name": "efekt/b5_kanat_vizilti",
+              "at": 0.3,
+              "volume": 0.45
+            },
+            {
+              "name": "efekt/el_floresan",
+              "at": 0.3,
+              "volume": 0.4
+            }
+          ]
         },
         {
           "type": "insert",
@@ -915,8 +1138,8 @@
                 },
                 {
                   "at": 0.95,
-                  "x": -0.6,
-                  "y": 0.15,
+                  "x": -0.75,
+                  "y": 0.08,
                   "yaw": -0.1
                 },
                 {
@@ -927,8 +1150,8 @@
                 },
                 {
                   "at": 1.55,
-                  "x": -0.5,
-                  "y": 0.25,
+                  "x": -0.75,
+                  "y": 0.08,
                   "yaw": -0.15
                 }
               ]
@@ -939,7 +1162,14 @@
             "text": [
               "1"
             ]
-          }
+          },
+          "sfx": [
+            {
+              "name": "efekt/b5_buzdolabi",
+              "at": 0.0,
+              "volume": 0.4
+            }
+          ]
         },
         {
           "type": "line",
@@ -957,21 +1187,20 @@
             "move": "yaklas",
             "kadraj": {
               "cx": 610,
-              "cy": 1255,
-              "z": 1.45
+              "cy": 1230,
+              "z": 1.75
             }
           },
           "cast": {
             "ece_sivil": {
               "emotion": "mahcup",
-              "gesture": "kafaKasi",
               "omuzDus": 1,
               "tears": 0.15,
               "bakSira": [
                 {
                   "at": 0,
-                  "x": -0.55,
-                  "y": 0.3,
+                  "x": -0.75,
+                  "y": 0.08,
                   "yaw": -0.2
                 },
                 {
@@ -982,11 +1211,22 @@
                 },
                 {
                   "at": 1.15,
-                  "x": -0.55,
-                  "y": 0.3,
+                  "x": -0.75,
+                  "y": 0.08,
                   "yaw": -0.2
                 }
-              ]
+              ],
+              "gesture": "rest",
+              "kol": {
+                "L": {
+                  "upper": -2,
+                  "fore": -70
+                },
+                "R": {
+                  "upper": -2,
+                  "fore": -70
+                }
+              }
             }
           },
           "ekle": {
@@ -1024,6 +1264,9 @@
         "name": "efekt/el_market_ortam",
         "volume": 0.3
       },
+      "music": {
+        "name": "yok"
+      },
       "cast": {
         "sabri_sahte": {
           "mark": "depo_on",
@@ -1043,12 +1286,36 @@
         {
           "type": "insert",
           "kind": "bocek_yakin",
-          "dur": 2.2
+          "dur": 2.2,
+          "sfx": [
+            {
+              "name": "efekt/b5_anten_hisirti",
+              "at": 0.4,
+              "volume": 0.4
+            },
+            {
+              "name": "efekt/b5_kitin_catirti",
+              "at": 0.65,
+              "volume": 0.3
+            },
+            {
+              "name": "efekt/b5_mandibula",
+              "at": 1.0,
+              "volume": 0.65
+            }
+          ]
         },
         {
           "type": "action",
           "dur": 0.5,
-          "siyah": true
+          "siyah": true,
+          "sfx": [
+            {
+              "name": "efekt/b5_vurus",
+              "at": 0.0,
+              "volume": 0.75
+            }
+          ]
         }
       ]
     }
