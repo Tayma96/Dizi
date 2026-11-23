@@ -12,7 +12,11 @@ export type HairStyle =
   | "buzz"
   | "balding"
   | "bald"
-  | "hijab";
+  | "hijab"
+  /** Kırmızı Düğme: dağınık, yataktan kalkmış saç (tepede kalkık tutam) */
+  | "daginik"
+  /** Kırmızı Düğme: uzun katlı saç + perde kakül, uçları renkli (hair.uc) */
+  | "perdeli";
 
 export type Outfit =
   | "tshirt"
@@ -31,7 +35,15 @@ export type Outfit =
   /** kabin görevlisi üniforması: ceket, bluz, fular, kanat rozeti, kalem etek */
   | "hostes"
   /** doğal lif dokuma tunik (ada halkı), ip kemer, saçaklı etek ucu */
-  | "yerli";
+  | "yerli"
+  /** Kırmızı Düğme: beyaz atlet (kolsuz, fitilli) */
+  | "atlet"
+  /** Kırmızı Düğme: kurye montu (dik yaka, reflektör şeritler, göğüste uydurma logo) */
+  | "kurye"
+  /** Kırmızı Düğme: tek parça beyaz tulum (fermuar, kırmızı fermuar çekeceği) */
+  | "tulum"
+  /** Kırmızı Düğme: oversize pastel sweatshirt (düşük omuz, fitilli yaka/etek, baskı) */
+  | "oversize";
 
 export type Emotion =
   | "notr"
@@ -105,13 +117,17 @@ export type Gesture =
   /** 7/24 B5: "gel" diye el sallayarak çağırma (sol kol, önkol kıvrılır) */
   | "cagir"
   /** 7/24 B5: iki el göğüs önünde kenetli (hayran pozu) */
-  | "ellerKenetli";
+  | "ellerKenetli"
+  /** Kırmızı Düğme: sol elle göbek kaşıma */
+  | "gobekKasi"
+  /** Kırmızı Düğme: iki el önde, slime yoğurma */
+  | "slime";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime";
 
 export type Look = {
   name: string;
@@ -120,7 +136,7 @@ export type Look = {
   build: "slim" | "normal" | "heavy";
   skin: string;
   skinShade: string;
-  hair: { style: HairStyle; color: string; shade: string };
+  hair: { style: HairStyle; color: string; shade: string; /** perdeli: saç uçlarının rengi */ uc?: string };
   iris: string;
   facialHair?: "mustache" | "beard" | "stubble" | "goatee";
   outfit: {
@@ -156,6 +172,41 @@ export type Look = {
   oya?: string;
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
+  /* ---- Kırmızı Düğme (hepsi isteğe bağlı) ---- */
+  /** göbek 0..1 (öne/yana taşan yuvarlak karın) */
+  gobek?: number;
+  /** atlet göbekte yukarı sıyrılmış: altta ince ten şeridi + göbek deliği */
+  gobekAcik?: boolean;
+  /** terlik (parmaklar görünür) */
+  terlik?: string;
+  /** pantolon yan şeridi (eşofman) */
+  serit?: string;
+  /** kask: kabuk rengi, şerit rengi, vizör açık mı */
+  kask?: { renk: string; serit?: string; vizorAcik?: boolean };
+  /** sırtta teslimat çantası (önden omuz üstünde ve yanlarda görünür) */
+  sirtCanta?: { renk: string; kenar: string };
+  /** kar maskesi (siyah örgü, göz yarığı + ağız deliği) */
+  karMaske?: string;
+  /** eldiven rengi (eller bu renkte) */
+  eldiven?: string;
+  /** makyaj */
+  makyaj?: { ruj?: string; far?: string; eyeliner?: boolean; isilti?: boolean };
+  /** halka küpe rengi */
+  halka?: string;
+  /** bilekte saç lastiği (scrunchie) rengi */
+  toka?: string;
+  /** sol bilekte kol saati (kayış rengi) */
+  saat?: string;
+  /** kulakta küçük kulaklık (renk) */
+  kulaklik?: string;
+  /** ayakkabı bağcığı rengi (bağlı ayakkabı) */
+  bagcik?: string;
+  /** buruşuk, tozlu giysi (kaçırılmış, yerde yatmış) */
+  kirisik?: boolean;
+  /** göğüs baskısı / logo: "vinn" (kurye), "blob" (sweatshirt), "cep" (gömlek cebi + kalem) */
+  baski?: "vinn" | "blob" | "cep";
+  /** sıvalı kollar (gömlek) */
+  sivali?: boolean;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };
