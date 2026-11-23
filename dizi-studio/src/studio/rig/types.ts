@@ -12,7 +12,15 @@ export type HairStyle =
   | "buzz"
   | "balding"
   | "bald"
-  | "hijab";
+  | "hijab"
+  /** Kırmızı Düğme: dağınık, yataktan kalkmış saç (tepede kalkık tutam) */
+  | "daginik"
+  /** Kırmızı Düğme: uzun katlı saç + perde kakül, uçları renkli (hair.uc) */
+  | "perdeli"
+  /** Kırmızı Düğme: seyrek, yağlı, dağınık saç (tepe açılmış, alına yapışık tutamlar, yağ parlaması) */
+  | "yagli"
+  /** Kırmızı Düğme: kısa sıkı perma (teyze) */
+  | "perma";
 
 export type Outfit =
   | "tshirt"
@@ -31,7 +39,17 @@ export type Outfit =
   /** kabin görevlisi üniforması: ceket, bluz, fular, kanat rozeti, kalem etek */
   | "hostes"
   /** doğal lif dokuma tunik (ada halkı), ip kemer, saçaklı etek ucu */
-  | "yerli";
+  | "yerli"
+  /** Kırmızı Düğme: beyaz atlet (kolsuz, fitilli) */
+  | "atlet"
+  /** Kırmızı Düğme: kurye montu (dik yaka, reflektör şeritler, göğüste uydurma logo) */
+  | "kurye"
+  /** Kırmızı Düğme: tek parça beyaz tulum (fermuar, kırmızı fermuar çekeceği) */
+  | "tulum"
+  /** Kırmızı Düğme: oversize pastel sweatshirt (düşük omuz, fitilli yaka/etek, baskı) */
+  | "oversize"
+  /** Kırmızı Düğme: düğmeli pijama takımı (biyeli yaka, ay-bulut desenli) */
+  | "pijama";
 
 export type Emotion =
   | "notr"
@@ -105,13 +123,19 @@ export type Gesture =
   /** 7/24 B5: "gel" diye el sallayarak çağırma (sol kol, önkol kıvrılır) */
   | "cagir"
   /** 7/24 B5: iki el göğüs önünde kenetli (hayran pozu) */
-  | "ellerKenetli";
+  | "ellerKenetli"
+  /** Kırmızı Düğme: sol elle göbek kaşıma */
+  | "gobekKasi"
+  /** Kırmızı Düğme: iki el önde, slime yoğurma */
+  | "slime"
+  /** Kırmızı Düğme: telefonu iki eliyle YATAY tutar (film izler gibi), göbeğine dayar; prop "telefon_yatay" ile */
+  | "telefonYatay";
 
 export type Viseme = "X" | "A" | "E" | "I" | "O" | "U" | "M" | "F" | "L";
 
 export type MouthCue = { t: number; v: Viseme };
 
-export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan";
+export type Prop = "none" | "telefon" | "poset" | "fincan" | "mektup" | "canta" | "cicek" | "bicak" | "anahtar" | "kitap" | "kalem" | "tepsi" | "ilac" | "pano" | "bardak" | "sopa" | "telsiz" | "fener" | "ahize" | "kagit" | "sozlesme" | "kagit_top" | "cikolata" | "onluk_top" | "ambalaj" | "para" | "kasik" | "tablet" | "hindistan" | "slime" | "telefon_arka" | "telefon_yatay" | "tesbih" | "kolonya";
 
 export type Look = {
   name: string;
@@ -120,7 +144,7 @@ export type Look = {
   build: "slim" | "normal" | "heavy";
   skin: string;
   skinShade: string;
-  hair: { style: HairStyle; color: string; shade: string };
+  hair: { style: HairStyle; color: string; shade: string; /** perdeli: saç uçlarının rengi */ uc?: string };
   iris: string;
   facialHair?: "mustache" | "beard" | "stubble" | "goatee";
   outfit: {
@@ -156,6 +180,90 @@ export type Look = {
   oya?: string;
   /** sağ yanakta iri sivilce */
   sivilce?: boolean;
+  /* ---- Kırmızı Düğme (hepsi isteğe bağlı) ---- */
+  /* ---- Kırmızı Düğme stil denemesi (opt-in) ---- */
+  /** baş ölçeği çarpanı (büyük kafa stili ~1,35) */
+  basOlcek?: number;
+  /** imza göz tasarımı: "kd" = yuvarlak-kare iris, tek büyük parlama + küçük yıldız, kalın kapak */
+  gozStili?: "kd";
+  /** imza yanak işareti: "yastik" (yastık izi), "kalp" (üç minik kalp çil) */
+  yanakIsaret?: "yastik" | "kalp";
+  /** ağız ölçeği (esnek, abartılı ifadeler) */
+  agizOlcek?: number;
+  /** imza rozet: göğüste minik altıgen (petek) rozet; içinde karakterin simgesi */
+  rozet?: { simge: "cips" | "kalp" | "simsek" | "damla" | "ay" | "dambil"; renk: string };
+  /** boy çarpanı (silüet ayrımı için; 1 = normal) */
+  boy?: number;
+  /** omuz/gövde genişliği çarpanı (kabarık mont, geniş omuz) */
+  omuzEn?: number;
+  /** bütün vücut kilosu 0..1: geniş yüz + gıdı, kalın boyun/ense, kalın kol ve bacak, geniş kalça */
+  kilo?: number;
+  /** 1 haftalık sakal: noktalı kirli sakal yoğunluğu 0..1 (maske gibi düz dolgu değil) */
+  sakalNokta?: number;
+  /** şiş, morumsu göz altları */
+  gozAlti?: boolean;
+  /** kollarda/omuzlarda kıl */
+  kil?: boolean;
+  /** giyside lekeler */
+  leke?: boolean;
+  /** üstünde cips kırıntıları */
+  kirinti?: boolean;
+  /** tek terlik: sağ ayakta yalnız çorap */
+  tekTerlik?: boolean;
+  /** kask izi: saçta basık halka, alında ter parlaması */
+  kaskIzi?: boolean;
+  /** kablolu kulaklık (kulaktan göğse sarkan beyaz kablo) */
+  kulaklikKablo?: boolean;
+  /** takma tırnak rengi */
+  tirnak?: string;
+  /** alına itilmiş uyku maskesi rengi */
+  uykuMaskesi?: string;
+  /** tavşan terlik rengi */
+  tavsanTerlik?: string;
+  /** gözlük zinciri rengi (boncuklu) */
+  gozlukZinciri?: string;
+  /** hırka/pijama düğmelerinin rengi (pijamada yalnız biri bu renkte) */
+  dugmeRenk?: string;
+  /** ter bandı rengi */
+  terBandi?: string;
+  /** göğüste çapraz bel çantası rengi */
+  belCantasi?: string;
+  /** kalp toka rengi (perdeli saçta yıldızların yerine) */
+  kalpToka?: string;
+  /** göbek 0..1 (öne/yana taşan yuvarlak karın) */
+  gobek?: number;
+  /** atlet göbekte yukarı sıyrılmış: altta ince ten şeridi + göbek deliği */
+  gobekAcik?: boolean;
+  /** terlik (parmaklar görünür) */
+  terlik?: string;
+  /** pantolon yan şeridi (eşofman) */
+  serit?: string;
+  /** kask: kabuk rengi, şerit rengi, vizör açık mı */
+  kask?: { renk: string; serit?: string; vizorAcik?: boolean };
+  /** sırtta teslimat çantası (önden omuz üstünde ve yanlarda görünür) */
+  sirtCanta?: { renk: string; kenar: string };
+  /** kar maskesi (siyah örgü, göz yarığı + ağız deliği) */
+  karMaske?: string;
+  /** eldiven rengi (eller bu renkte) */
+  eldiven?: string;
+  /** makyaj */
+  makyaj?: { ruj?: string; far?: string; eyeliner?: boolean; isilti?: boolean };
+  /** halka küpe rengi */
+  halka?: string;
+  /** bilekte saç lastiği (scrunchie) rengi */
+  toka?: string;
+  /** sol bilekte kol saati (kayış rengi) */
+  saat?: string;
+  /** kulakta küçük kulaklık (renk) */
+  kulaklik?: string;
+  /** ayakkabı bağcığı rengi (bağlı ayakkabı) */
+  bagcik?: string;
+  /** buruşuk, tozlu giysi (kaçırılmış, yerde yatmış) */
+  kirisik?: boolean;
+  /** göğüs baskısı / logo: "vinn" (kurye), "blob" (sweatshirt), "cep" (gömlek cebi + kalem) */
+  baski?: "vinn" | "blob" | "cep";
+  /** sıvalı kollar (gömlek) */
+  sivali?: boolean;
 };
 
 export type ArmPose = { upper: number; fore: number; ul?: number; fl?: number };
@@ -230,6 +338,8 @@ export type Pose = {
   hik?: number;
   /** 7/24 B5: kahkaha sarsıntısı (omuzlar, baş) 0..1 */
   kahkaha?: number;
+  /** Kırmızı Düğme: kask vizöründe kayan yansımanın yatay kayması (px) */
+  kaskYansima?: number;
   /** 7/24 B5: omuzlar düşük (mahçup) 0..1 */
   omuzDus?: number;
   /** 7/24 B5 p2 (opt-in): iki eliyle ağzını kapatır 0..1 (eller aşağıdan gelir); kolları çağıran ayarlar */

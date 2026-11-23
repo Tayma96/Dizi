@@ -343,3 +343,74 @@ const InsertHaplar: React.FC<{ dur: number }> = ({ dur }) => {
 
 export const InsertShot: React.FC<{ kind: "bileklik" | "kapi_kolu" | "haplar" | Insert2Kind; text?: string[]; dur: number }> = ({ kind, text, dur }) =>
   kind === "bileklik" ? <InsertBileklik text={text ?? []} dur={dur} /> : kind === "haplar" ? <InsertHaplar dur={dur} /> : kind === "kapi_kolu" ? <InsertKapiKolu dur={dur} /> : <Insert2 kind={kind} dur={dur} text={text} />;
+
+/* ---------------- 7/24 B5: yorum çağrısı bitiş kartı (opt-in: endCard.tip = "yorum") ----------------
+ * Son karenin üstüne parlak, davetkâr kart: arka planda son ekleme canlı kalır (parlatılmış, hafif flu);
+ * satırlar sohbet balonları olarak sırayla zıplayarak belirir, sonuncusu sarı vurgulu çağrıdır;
+ * altında "yazıyor…" noktaları, Reels/TikTok yorum ikonuna (sağ alt) doğru zıplayan ok ve yorum simgesi.
+ * Güvenli alan: alt %20 (y > 1536) ve sağ şerit (x > 930) boş bırakılır. */
+export const YorumKarti: React.FC<{ satirlar: string[]; arka?: { kind: string; text?: string[] }; etiket?: string; dur: number }> = ({ satirlar, arka, etiket, dur }) => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const giris = interpolate(f, [0, 8], [0, 1], clamp);
+  const pop = (t0: number) => {
+    const u = Math.max(0, t - t0);
+    if (t < t0) return 0;
+    // yaylı zıplama: 0 → 1.08 → 1
+    return 1 - Math.exp(-u * 11) * Math.cos(u * 22);
+  };
+  const n = satirlar.length;
+  const baslar = satirlar.map((_, i) => 0.15 + i * 0.42);
+  const sonT = baslar[n - 1] ?? 0.15;
+  const yaziyor = t > sonT + 0.35;
+  const ok = pop(sonT + 0.3);
+  const zipla = Math.abs(Math.sin(t * 6)) * 16;
+  return (
+    <AbsoluteFill style={{ overflow: "hidden" }}>
+      {arka ? (
+        <AbsoluteFill style={{ filter: `blur(${6 * giris}px) brightness(${1 + 0.6 * giris}) saturate(${1 + 0.35 * giris})` }}>
+          <InsertShot kind={arka.kind as never} text={arka.text} dur={dur / fps} />
+        </AbsoluteFill>
+      ) : (
+        <AbsoluteFill style={{ background: "linear-gradient(160deg, #ffb347 0%, #ff6b9a 55%, #8a6bff 100%)" }} />
+      )}
+      {/* parlak, sıcak örtü (koyu "bitti" tonu değil) */}
+      <AbsoluteFill style={{ opacity: giris, background: "radial-gradient(ellipse 85% 60% at 45% 45%, rgba(255,240,190,0.7) 0%, rgba(255,170,130,0.4) 55%, rgba(255,140,190,0.3) 100%)" }} />
+      {etiket ? (
+        <div style={{ position: "absolute", left: 80, top: 190, fontFamily: SANS, fontWeight: 900, fontSize: 30, color: "#1a1a1a", background: "rgba(255,255,255,0.92)", padding: "10px 24px", borderRadius: 40, opacity: giris, boxShadow: "0 6px 18px rgba(0,0,0,0.25)" }}>{etiket}</div>
+      ) : null}
+      <div style={{ position: "absolute", left: 80, top: 520, width: 840, display: "flex", flexDirection: "column", gap: 34 }}>
+        {satirlar.map((s, i) => {
+          const k = pop(baslar[i]);
+          const vurgu = i === n - 1;
+          return (
+            <div key={i} style={{ display: "flex", alignItems: "flex-end", gap: 18, transform: `scale(${Math.max(0, k)})`, transformOrigin: "0% 100%", opacity: Math.min(1, k * 2) }}>
+              <div style={{ width: 74, height: 74, borderRadius: 40, flexShrink: 0, background: vurgu ? "#ff4d6d" : "#3a86ff", border: "5px solid #fff", boxShadow: "0 6px 16px rgba(0,0,0,0.3)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SANS, fontWeight: 900, fontSize: 38, color: "#fff" }}>{vurgu ? "!" : "?"}</div>
+              <div style={{ position: "relative", fontFamily: SANS, fontWeight: 900, fontSize: vurgu ? 66 : 50, lineHeight: 1.12, whiteSpace: "nowrap", color: "#151515", background: vurgu ? "#ffd84a" : "#ffffff", padding: vurgu ? "26px 40px" : "22px 34px", borderRadius: 38, borderBottomLeftRadius: 8, boxShadow: "0 12px 30px rgba(0,0,0,0.35)", border: vurgu ? "5px solid #151515" : "none" }}>
+                {s}
+              </div>
+            </div>
+          );
+        })}
+        {/* yazıyor… */}
+        <div style={{ marginLeft: 92, width: 150, height: 70, borderRadius: 36, background: "rgba(255,255,255,0.95)", display: "flex", alignItems: "center", justifyContent: "center", gap: 14, boxShadow: "0 8px 20px rgba(0,0,0,0.3)", opacity: yaziyor ? 1 : 0, transform: `scale(${yaziyor ? 1 : 0.6})` }}>
+          {[0, 1, 2].map((i) => <div key={i} style={{ width: 18, height: 18, borderRadius: 10, background: "#555", opacity: 0.35 + 0.65 * Math.max(0, Math.sin(t * 9 - i * 0.9)), transform: `translateY(${-6 * Math.max(0, Math.sin(t * 9 - i * 0.9))}px)` }} />)}
+        </div>
+      </div>
+      {/* sağ alttaki yorum ikonuna doğru zıplayan ok + yorum simgesi (sağ şeridin hemen solunda) */}
+      <svg viewBox="0 0 1080 1920" width="100%" height="100%" style={{ position: "absolute", inset: 0, opacity: Math.min(1, ok * 2) }}>
+        <g transform={`translate(${zipla * 0.6} ${zipla})`}>
+          <path d="M 640 1180 Q 820 1220 860 1390" fill="none" stroke="#151515" strokeWidth={22} strokeLinecap="round" />
+          <path d="M 640 1180 Q 820 1220 860 1390" fill="none" stroke="#ffd84a" strokeWidth={12} strokeLinecap="round" />
+          <path d="M 818 1372 L 866 1432 L 902 1362" fill="none" stroke="#151515" strokeWidth={22} strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M 818 1372 L 866 1432 L 902 1362" fill="none" stroke="#ffd84a" strokeWidth={12} strokeLinecap="round" strokeLinejoin="round" />
+        </g>
+        <g transform={`translate(790 1440) scale(${0.9 + 0.08 * Math.sin(t * 7)})`}>
+          <path d="M -54 -40 Q -54 -62 -32 -62 L 32 -62 Q 54 -62 54 -40 L 54 4 Q 54 26 32 26 L -4 26 L -30 50 L -26 26 L -32 26 Q -54 26 -54 4 Z" fill="#ffffff" stroke="#151515" strokeWidth={7} strokeLinejoin="round" />
+          {[-22, 0, 22].map((x, i) => <circle key={x} cx={x} cy={-18} r={7} fill="#ff4d6d" opacity={0.4 + 0.6 * Math.max(0, Math.sin(t * 9 - i * 0.9))} />)}
+        </g>
+      </svg>
+    </AbsoluteFill>
+  );
+};

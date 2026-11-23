@@ -249,7 +249,20 @@ export type EpisodeScript = {
   fps?: number;
   scenes: Scene[];
   /** false: bitiş kartı yok (örnek/fragman) */
-  endCard?: { text?: string; sub?: string } | false;
+  endCard?: {
+    text?: string;
+    sub?: string;
+    /** 7/24 B5 (opt-in): "yorum" = son karenin üstüne parlak yorum çağrısı kartı (sohbet balonları, ok, yorum ikonu) */
+    tip?: "yorum";
+    /** yorum kartı satırları (sırayla belirir; sonuncusu vurgulu çağrı) */
+    satirlar?: string[];
+    /** kart süresi (sn; vars. 4) */
+    sure?: number;
+    /** kartın arkasında canlı kalan ekleme (ör. son kare böcek) */
+    arka?: { kind: string; text?: string[] };
+    /** küçük köşe etiketi (ör. "7/24 · Bölüm 6 yakında") */
+    etiket?: string;
+  } | false;
 };
 
 export type VoiceLine = {

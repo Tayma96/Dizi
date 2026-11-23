@@ -48,4 +48,9 @@ export const GESTURES: Record<Gesture, { L: FullArm; R: FullArm }> = {
   uzat: { L: { upper: 6, fore: 0 }, R: { upper: 52, fore: -34, ul: 0.72, fl: 0.9 } },
   cagir: { L: { upper: 30, fore: -112, ul: 0.86, fl: 0.9 }, R: { upper: 6, fore: 0 } },
   ellerKenetli: { L: { upper: -6, fore: -134, ul: 0.74, fl: 0.92 }, R: { upper: -6, fore: -134, ul: 0.74, fl: 0.92 } },
+  /** Kırmızı Düğme: sol el göbeğin üstünde (kaşır; Character'da salınım) */
+  gobekKasi: { L: { upper: -6, fore: -58, ul: 0.92, fl: 0.9 }, R: { upper: 6, fore: 0 } },
+  /** Kırmızı Düğme: iki el göğüs-bel arasında önde, slime yoğurur */
+  telefonYatay: { L: { upper: 14, fore: -50, ul: 0.8, fl: 0.9 }, R: { upper: 14, fore: -50, ul: 0.8, fl: 0.9 } },
+  slime: { L: { upper: 8, fore: -72, ul: 0.8, fl: 0.92 }, R: { upper: 8, fore: -72, ul: 0.8, fl: 0.92 } },
 };

@@ -2,8 +2,8 @@
  "i_01": {
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
-  "asrScore": null,
-  "heard": null,
+  "asrScore": 0.545,
+  "heard": "Hıh! Hıh!",
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "kredi": 0,
@@ -41,8 +41,8 @@
  "i_02": {
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
-  "asrScore": null,
-  "heard": null,
+  "asrScore": 1.0,
+  "heard": "Abi vallahi büyük hayranınım!",
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "kredi": 0,

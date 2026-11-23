@@ -6,7 +6,7 @@
   python3 tools/ses_724_05.py kirp ID BAS SON   # repliği [BAS, SON] saniye aralığına kırpar; words/mouth kaydırılır
   python3 tools/ses_724_05.py olc      # bütün repliklerin LUFS / tepe ölçümü
   python3 tools/ses_724_05.py efekt    # efekt/el_* -> efekt/b5_* (baş kırpma, tepe -3 dBFS / ortam -20 LUFS) + kükremeyi 2,1 sn'ye kısaltır
-  python3 tools/ses_724_05.py muzik [KESME]  # muzik/b5_donusum_tam (h başından KESME sn'de kükremeyle kesilir; varsayılan 17.31)
+  python3 tools/ses_724_05.py muzik [KESME]  # muzik/b5_donusum_tam (h başından KESME sn'de kükremeyle kesilir; varsayılan 17.18)
 
 Manifest anahtarları, elevenlabs.py'nin 724-05.json alanlarından hesapladığı anahtarla aynı tutulur;
 böylece `seslendir` bu satırları önbellekte sayar ve yeniden üretmez (B4 yöntemi, raporlar/b4-ses.md §1.3).
@@ -199,9 +199,9 @@ def cmd_efekt():
 
 
 # Müzik: h sahnesinin başından (dönüşüm) kükremenin başına kadar. Sahne h 12,5 sn (eklemeler sabit),
-# i_01 + i_02 = 55 + 84 kare (panik çekimleri); kükreme vuruşu h başından 17,13 sn sonra, kükreme sesi +0,18 -> 17,31 sn'de müzik keskin kesilir
+# i_01 + i_02 = 38 + 97 kare (panik çekimleri); kükreme vuruşu h başından 17,00 sn sonra, kükreme sesi +0,18 -> 17,18 sn'de müzik keskin kesilir
 # (kükreme tek başına kalır, ardından "lülü?" sessizliği). Dosya 30 sn'ye sessizlikle doldurulur (motor müziği döngüye alır).
-MUZIK_KESME = 17.31
+MUZIK_KESME = 17.18
 
 
 def cmd_muzik(kesme=MUZIK_KESME):

@@ -6,7 +6,7 @@ import { AGE, Character } from "../rig/Character";
 import { Bird, SET_INFO, SetLayer, type Mark } from "../sets";
 import { FilmFinish } from "../../dizi/Effects";
 import { lightning } from "../../dizi/Sets";
-import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleCard } from "./Overlays";
+import { CornerLabel, EndCard, InsertShot, KaraokeSubtitle, PhoneMessage, TitleCard, YorumKarti } from "./Overlays";
 import { buildTimeline, type TScene, type Timeline } from "./timeline";
 import type { Gesture } from "../rig/types";
 import { GESTURES, type FullArm } from "../rig/gestures";
@@ -691,7 +691,8 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
     else if (m && m.name === "yok") continue;
     else if (last && last.to === s.from) last.to = s.from + s.dur;
   }
-  const endFrom = tl.total - 4 * fps;
+  const endDur = script.endCard ? Math.round((script.endCard.sure ?? 4) * fps) : 4 * fps;
+  const endFrom = tl.total - endDur;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -726,8 +727,12 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
           </Sequence>
         ))}
         {script.endCard === false ? null : (
-          <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={4 * fps}>
-            <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard ? script.endCard.text : undefined} sub={script.endCard ? script.endCard.sub : undefined} />
+          <Sequence name="Bitiş kartı" from={endFrom} durationInFrames={endDur}>
+            {script.endCard && script.endCard.tip === "yorum" ? (
+              <YorumKarti satirlar={script.endCard.satirlar ?? []} arka={script.endCard.arka} etiket={script.endCard.etiket} dur={endDur} />
+            ) : (
+              <EndCard series={script.seriesTitle} episodeNo={script.episodeNo} text={script.endCard ? script.endCard.text : undefined} sub={script.endCard ? script.endCard.sub : undefined} />
+            )}
             <Audio src={staticFile("ses/muzik/jenerik_tema.mp3")} volume={0.6} />
           </Sequence>
         )}
