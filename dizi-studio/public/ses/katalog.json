@@ -391,6 +391,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Low CCTV video playback hum with faint tape hiss"
  },
+ "efekt/el_cigneme": {
+  "file": "ses/efekt/el_cigneme.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: chewing food with mouth open, comedic, short"
+ },
  "efekt/el_demir_kapi": {
   "file": "ses/efekt/el_demir_kapi.mp3",
   "category": "efekt",
@@ -439,6 +446,13 @@
   "duration": 2.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Electronic two-tone entry chime of a small shop door, ding dong, slightly old cheap speaker, in a quiet empty store"
+ },
+ "efekt/el_dolap_karistir": {
+  "file": "ses/efekt/el_dolap_karistir.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: rummaging frantically through a wardrobe, drawers slamming, clothes being thrown, comedic hurry"
  },
  "efekt/el_ekmek": {
   "file": "ses/efekt/el_ekmek.mp3",
@@ -873,6 +887,13 @@
   "duration": 3.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Time-lapse fast clock ticking accelerating, digital clock beeps, whoosh of time passing, ends with one clear click"
+ },
+ "efekt/el_zeytin_yakala": {
+  "file": "ses/efekt/el_zeytin_yakala.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cartoon olive tossed in the air and caught in the mouth, quick pop then gulp"
  },
  "efekt/esya_dusme": {
   "file": "ses/efekt/esya_dusme.mp3",

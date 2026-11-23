@@ -19,7 +19,7 @@ import { castById } from "../cast";
 import { Character } from "../rig/Character";
 import type { ArmPose, Emotion, MouthCue } from "../rig/types";
 import { Banyo724BG, Banyo724FG } from "../sets/banyo724";
-import { Ev724SalonBG, Ev724SalonFG } from "../sets/ev724";
+import { Ev724BG, Ev724FG, Ev724SalonBG, Ev724SalonFG } from "../sets/ev724";
 import { sstep } from "./bocek";
 import { ik, Kol, type V2 } from "./Inserts13";
 
@@ -115,6 +115,19 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
         <path d="M -50 -90 L 50 -90 L 58 80 L 12 84 L 2 -10 L -8 84 L -56 80 Z" fill="#34466a" stroke={O} strokeWidth={5} strokeLinejoin="round" />
         <path d="M -50 -74 H 50" stroke="#d8a860" strokeWidth={3} strokeDasharray="8 5" />
         <path d="M 14 -60 L 46 -60 L 44 -24 L 30 -16 L 16 -24 Z" fill="#3c5078" stroke={O} strokeWidth={3} />
+      </g>
+    );
+  if (n === "pijama")
+    return (
+      <g transform={tr}>
+        <path d="M -60 -50 L -20 -60 Q 0 -48 20 -60 L 60 -50 L 80 -20 L 52 -8 L 48 50 L -48 50 L -52 -8 L -80 -20 Z" fill="#e8a0b8" stroke={O} strokeWidth={4} strokeLinejoin="round" />
+        <circle cx={0} cy={8} r={16} fill="#f2a25a" stroke={O} strokeWidth={2} />
+      </g>
+    );
+  if (n === "pantolon")
+    return (
+      <g transform={tr}>
+        <path d="M -40 -60 L 40 -60 L 48 60 L 10 62 L 0 -5 L -10 62 L -48 60 Z" fill="#b8a0d0" stroke={O} strokeWidth={4} strokeLinejoin="round" />
       </g>
     );
   if (n === "tabak")
@@ -246,7 +259,15 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
       </g>
     );
   }
+  const damlaOnce: React.ReactNode[] = [];
   // ıslak yüz: alından ve çeneden süzülen damlalar (yüz merkezi rig (200,210))
+  const yk = kf1(q.yanak, tg, 0);
+  if (yk > 0.02) {
+    const [fx, fy] = rot([left + 200 * S, top - parmak + 215 * S], [piv[0], piv[1] - parmak], egil);
+    const ten = look.skin;
+    damlaOnce.push(<g key="yanak"><ellipse cx={fx - 58 * S} cy={fy + 38 * S} rx={(16 + 6 * yk) * S} ry={(14 + 5 * yk) * S} fill={ten} stroke={O} strokeWidth={2.4 * S} opacity={yk} />
+      <ellipse cx={fx - 62 * S} cy={fy + 34 * S} rx={6 * S} ry={4 * S} fill="#ffffff" opacity={0.35 * yk} /></g>);
+  }
   const isl = kf1(q.islak, tg, 0);
   const damla: React.ReactNode[] = [];
   if (isl > 0.02) {
@@ -258,7 +279,7 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
     });
     damla.push(<ellipse key="parla" cx={fx} cy={fy - 10 * S} rx={70 * S} ry={60 * S} fill="#ffffff" opacity={0.08 * isl} />);
   }
-  return { govde, on: <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>{sepet}{kollar}{esyalar}{damla}</svg> };
+  return { govde, on: <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>{sepet}{damlaOnce}{kollar}{esyalar}{damla}</svg> };
 };
 
 /* ------------------------------------------------------------------ sahne */
@@ -275,6 +296,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
   const isik = p.isik ?? 1;
   const ayna = p.view === "ayna";
   const salon = p.view === "salon";
+  const antre = p.view === "antre";
   const anne = karakter("anne724", p.anne, tg, f, fps, t0f);
   const ece = karakter(basamak<string>(p.eceId, tg, "ece_ev"), p.ece, tg, f, fps, t0f);
   const ucanlar = (p.ucan ?? []).map((u: Prm, i: number) => {
@@ -283,7 +305,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
     const xx = u.a[0] + (u.b[0] - u.a[0]) * k, yy = u.a[1] + (u.b[1] - u.a[1]) * k - (u.h ?? 200) * 4 * k * (1 - k);
     return <Esya key={i} n={u.n} x={xx} y={yy} s={u.s ?? 1.25} a={(u.don ?? 1) * 360 * k} />;
   });
-  const yerde = (p.yerde ?? []).filter((u: Prm) => tg >= u.t).map((u: Prm, i: number) => <Esya key={i} n={u.n} x={u.x} y={u.y} s={u.s ?? 1.25} a={u.a ?? 0} />);
+  const yerde = (p.yerde ?? []).filter((u: Prm) => tg >= u.t && (u.son === undefined || tg < u.son)).map((u: Prm, i: number) => <Esya key={i} n={u.n} x={u.x} y={u.y} s={u.s ?? 1.25} a={u.a ?? 0} />);
   const eceOnde = typeof p.eceOnde === "number" ? tg >= p.eceOnde : !!p.eceOnde;
   const onceEce = eceOnde ? [anne, ece] : [ece, anne];
   return (
@@ -293,8 +315,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           <defs>
             <linearGradient id="b7_pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffd08a" /><stop offset="1" stopColor="#ff9a5a" /></linearGradient>
           </defs>
-          {salon ? <Ev724SalonBG frame={f} odaKapi={kf1(p.odaKapi, tg, 0)} /> : <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} />}
-          {ayna || salon ? null : <>
+          {antre ? <Ev724BG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={false} kanatOnde /> : salon ? <Ev724SalonBG frame={f} odaKapi={kf1(p.odaKapi, tg, 0)} /> : <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} />}
+          {ayna || salon || antre ? null : <>
           {/* pencere (buzlu): gece (kasım, 18:00 karanlık) ya da gün batımı */}
           {p.gece ? (
             <g>
@@ -335,8 +357,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
         {/* karakterler: önce arkadaki */}
         {onceEce.map((k, i) => (k ? <React.Fragment key={i}>{k.govde}{k.on}</React.Fragment> : null))}
         <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{ position: "absolute", inset: 0, overflow: "visible" }}>
-          {ucanlar}
-          {yerde}
+          {salon ? null : ucanlar}
+          {salon ? null : yerde}
           {/* kirli sepeti yerde (önde, sağda; p.yerSepet) */}
           {p.yerSepet ? <g>
             <path d="M 760 1700 L 960 1700 L 935 1900 L 785 1900 Z" fill="#c8a070" stroke="#6a4a2a" strokeWidth={6} />
@@ -344,7 +366,8 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <path d="M 768 1702 Q 810 1650 860 1676 Q 910 1640 956 1702 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
             <path d="M 800 1702 Q 830 1664 880 1690" stroke="#7ab0d8" strokeWidth={26} strokeLinecap="round" fill="none" />
           </g> : null}
-          {salon ? <Ev724SalonFG yukari={270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} />}
+          {antre ? <Ev724FG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={false} kanatOnde gece={!!p.gece} /> : salon ? <Ev724SalonFG yukari={270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} />}
+          {salon ? <>{yerde}{ucanlar}</> : null}
           {/* musluk suyu (ayna görünümü, p.su [[t0,t1]]): bataryadan lavaboya akan su + sıçrama */}
           {ayna && aralik(p.su, tg) ? (
             <g>
@@ -363,7 +386,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <linearGradient id="b7_h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffb060" stopOpacity={0.55 * isik} /><stop offset="1" stopColor="#ff8a40" stopOpacity={0} /></linearGradient>
             <filter id="b7_bl"><feGaussianBlur stdDeviation="18" /></filter>
           </defs>
-          {ayna ? <ellipse cx={540} cy={180} rx={560} ry={620} fill="#fff0d0" opacity={0.18} filter="url(#b7_bl)" /> : p.gece ? <ellipse cx={620} cy={260} rx={620} ry={760} fill="#ffcf90" opacity={0.22} filter="url(#b7_bl)" /> : <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />}
+          {antre || salon ? null : ayna ? <ellipse cx={540} cy={180} rx={560} ry={620} fill="#fff0d0" opacity={0.18} filter="url(#b7_bl)" /> : p.gece ? <ellipse cx={620} cy={260} rx={620} ry={760} fill="#ffcf90" opacity={0.22} filter="url(#b7_bl)" /> : <path d="M 330 470 L 560 470 L 1180 1700 L 760 1960 Z" fill="url(#b7_h)" filter="url(#b7_bl)" />}
           {new Array(18).fill(0).map((_, i) => {
             const u = ((i * 0.137 + tg * 0.03) % 1);
             const xx = 420 + u * 600 + Math.sin(tg + i) * 20, yy = 560 + u * 1100 + ((i * 97) % 160);

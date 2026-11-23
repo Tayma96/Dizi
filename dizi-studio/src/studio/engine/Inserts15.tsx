@@ -10,13 +10,13 @@ import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remo
 import { castById } from "../cast";
 import { Character } from "../rig/Character";
 
-export type Insert15Kind = "cep_deste" | "para_say" | "kulak_cek";
-export const INSERT15_KINDS: Insert15Kind[] = ["cep_deste", "para_say", "kulak_cek"];
+export type Insert15Kind = "cep_deste" | "para_say" | "kulak_cek" | "zeytin_al";
+export const INSERT15_KINDS: Insert15Kind[] = ["cep_deste", "para_say", "kulak_cek", "zeytin_al"];
 
 const O = "#2a1c12";
 const cl = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const ease = (x: number) => x * x * (3 - 2 * x);
-const KOL = { anne: ["#8a4a5a", "#6a3444", "#eec4a2"], ece: ["#e8a0b8", "#c87e98", "#f0c8a8"] } as const;
+const KOL = { anne: ["#8a4a5a", "#6a3444", "#eec4a2"], ece: ["#e8a0b8", "#c87e98", "#f0c8a8"], sivil: ["#c8902a", "#a8741a", "#f0c8a8"] } as const;
 
 /** banyo zemini/duvarı (akşam ışığı) */
 const Arka: React.FC<{ renk?: string }> = ({ renk = "#d8e2dc" }) => (
@@ -175,10 +175,57 @@ const KulakCek: React.FC<{ dur: number; sol?: boolean }> = ({ dur, sol }) => {
   );
 };
 
+/** Zeytin: masa üstü yakın; Ece'nin eli (hardal kazak) sağdan girer, kâseden bir zeytini iki parmağıyla kapar, kaldırır */
+const ZeytinAl: React.FC = () => {
+  const f = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const t = f / fps;
+  const gir = ease(interpolate(t, [0.0, 0.35], [0, 1], cl));
+  const kalk = ease(interpolate(t, [0.5, 0.85], [0, 1], cl));
+  const bx = 520, by = 1100;
+  const hx = 1250 - (1250 - (bx + 40)) * gir + 120 * kalk, hy = by - 40 - 260 * kalk;
+  const aldi = t > 0.45;
+  const zeytinler: [number, number][] = [[470, 1080], [530, 1060], [590, 1085], [500, 1120], [565, 1118], [540, 1090]];
+  return (
+    <AbsoluteFill>
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
+        {/* masa örtüsü (beyaz, kırmızı kenar), sıcak lamba ışığı */}
+        <rect width={1080} height={1920} fill="#f6f1e6" />
+        {new Array(30).fill(0).map((_, i) => <path key={i} d={`M 0 ${i * 70} H 1080`} stroke="#ece4d4" strokeWidth={3} />)}
+        <rect x={0} y={1700} width={1080} height={220} fill="#f2ece0" />
+        {new Array(16).fill(0).map((_, i) => <rect key={i} x={i * 70} y={1760} width={35} height={60} fill="#c8483a" opacity={0.8} />)}
+        <radialGradient id="i15_lmb" cx="0.5" cy="0.4" r="0.6"><stop offset="0" stopColor="#ffe0a0" stopOpacity={0.35} /><stop offset="1" stopColor="#3a2414" stopOpacity={0.18} /></radialGradient>
+        {/* ekmek sepeti köşesi ve çay bardağı */}
+        <path d="M -40 600 L 260 600 L 230 760 L -10 760 Z" fill="#b8844c" stroke={O} strokeWidth={6} />
+        <path d="M -20 604 Q 60 520 140 560 Q 220 520 252 604 Z" fill="#e8b878" stroke="#8a5a2a" strokeWidth={5} />
+        <path d="M 800 1300 Q 820 1400 805 1480 L 905 1480 Q 890 1400 910 1300 Z" fill="#b8401a" opacity={0.85} stroke="#7a2a10" strokeWidth={5} />
+        <ellipse cx={855} cy={1500} rx={90} ry={22} fill="#e8e4da" stroke="#9a9488" strokeWidth={4} />
+        {/* zeytin kâsesi */}
+        <ellipse cx={bx + 10} cy={by + 40} rx={230} ry={80} fill="#d8ccb4" stroke="#7a6a52" strokeWidth={8} />
+        <ellipse cx={bx + 10} cy={by + 20} rx={200} ry={64} fill="#e8e0d0" stroke="#7a6a52" strokeWidth={6} />
+        {zeytinler.slice(0, aldi ? 5 : 6).map(([x, y], i) => (
+          <g key={i}><ellipse cx={x} cy={y} rx={36} ry={28} fill="#2a2228" stroke="#000" strokeWidth={4} /><ellipse cx={x - 10} cy={y - 10} rx={9} ry={6} fill="#fff" opacity={0.4} /></g>
+        ))}
+        {/* el: başparmak ve işaret parmağı arasında zeytin */}
+        <path d={`M 1400 ${hy + 420} L ${hx + 90} ${hy + 80}`} stroke={O} strokeWidth={200} strokeLinecap="round" />
+        <path d={`M 1400 ${hy + 420} L ${hx + 90} ${hy + 80}`} stroke={KOL.sivil[0]} strokeWidth={188} strokeLinecap="round" />
+        <g transform={`translate(${hx} ${hy})`}>
+          <path d="M 30 40 Q 0 -30 60 -60 Q 140 -70 170 10 Q 170 80 110 100 Q 50 100 30 40 Z" fill={KOL.sivil[2]} stroke={O} strokeWidth={6} />
+          <path d="M 40 0 Q -20 -10 -40 30 Q -30 50 0 40" fill={KOL.sivil[2]} stroke={O} strokeWidth={6} />
+          <path d="M 60 -40 Q 10 -70 -30 -30 Q -30 -10 0 -10" fill={KOL.sivil[2]} stroke={O} strokeWidth={6} />
+          {aldi ? <g><ellipse cx={-30} cy={10} rx={34} ry={27} fill="#2a2228" stroke="#000" strokeWidth={4} /><ellipse cx={-40} cy={0} rx={8} ry={6} fill="#fff" opacity={0.4} /></g> : null}
+        </g>
+        <rect width={1080} height={1920} fill="url(#i15_lmb)" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
 export const Insert15: React.FC<{ kind: Insert15Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
     case "cep_deste": return <CepDeste sol={text?.[0] === "sol"} />;
     case "para_say": return <ParaSay kim={text?.[0] === "anne" ? "anne" : "ece"} />;
     case "kulak_cek": return <KulakCek dur={dur} sol={text?.[0] === "sol"} />;
+    case "zeytin_al": return <ZeytinAl />;
   }
 };

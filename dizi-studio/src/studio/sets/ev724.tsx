@@ -8,7 +8,7 @@ import React from "react";
  * Işık: salondan sağdan sıcak sabah ışığı (anahtar), tavanda kapalı aplik; kapı tarafı biraz gölgede.
  * ===================================================================================== */
 
-export type EvProps = { frame: number; doorOpen: number; zincir: boolean; /** kanat karakterlerin ÖNÜNDE (FG) çizilir: Ece sahanlıkta, kapının arkasında */ kanatOnde?: boolean };
+export type EvProps = { frame: number; doorOpen: number; zincir: boolean; /** akşam: güneş huzmesi yok, sıcak lamba */ gece?: boolean; /** kanat karakterlerin ÖNÜNDE (FG) çizilir: Ece sahanlıkta, kapının arkasında */ kanatOnde?: boolean };
 
 const W = 1080;
 const H = 1920;
@@ -125,12 +125,13 @@ export const Ev724BG: React.FC<EvProps> = ({ doorOpen, zincir, kanatOnde }) => (
 );
 
 /** Salon penceresinden gelen sabah güneşi: çapraz huzmeler + uçuşan toz (karakterleri de aydınlatır) */
-export const Ev724FG: React.FC<EvProps> = ({ frame, doorOpen, zincir, kanatOnde }) => {
+export const Ev724FG: React.FC<EvProps> = ({ frame, doorOpen, zincir, kanatOnde, gece }) => {
   const t = frame / 30;
   return (
     <g>
     {kanatOnde ? <Kanat op={doorOpen} zincir={zincir} /> : null}
-    <g style={{ mixBlendMode: "screen" }}>
+    {gece ? <g><rect width={W} height={H} fill="#2a1a30" opacity={0.18} /><ellipse cx={560} cy={360} rx={520} ry={620} fill="#ffd090" opacity={0.16} /></g> : null}
+    <g style={{ mixBlendMode: "screen" }} opacity={gece ? 0 : 1}>
       <defs>
         <linearGradient id="evf_h" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#ffd890" stopOpacity={0.42} /><stop offset="1" stopColor="#ffb860" stopOpacity={0} /></linearGradient>
         <filter id="evf_b"><feGaussianBlur stdDeviation="14" /></filter>

@@ -616,7 +616,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "kapi_arka": case "kosu_takip": case "depo_acik": case "ambalaj_parmak": return <Insert10 kind={kind} dur={dur} text={text} />;
     case "b6_kapi": case "b6_zemin": case "b6_dis": return <Insert13 kind={kind} dur={dur} text={text} />;
     case "ev_anahtar": case "ev_zincir": return <Insert14 kind={kind} dur={dur} text={text} />;
-    case "cep_deste": case "para_say": case "kulak_cek": return <Insert15 kind={kind} dur={dur} text={text} />;
+    case "cep_deste": case "para_say": case "kulak_cek": case "zeytin_al": return <Insert15 kind={kind} dur={dur} text={text} />;
     case "b7_banyo": return <Insert16 kind={kind} dur={dur} text={text} />;
     case "p2_kasa": case "p2_kapi": case "p2_kepenk": case "p2_koridor": case "p2_fisilti": case "p2_kulaklik": return <Insert12 kind={kind} dur={dur} text={text} />;
     case "omuz_el": case "donusum_yuz": case "donusum_govde": case "bocek_dev": case "bocek_yakin": case "ece_yakin": case "ece_sirt": case "sabri_omuz": case "bocek_golge": case "bocek_kukreme": return <Insert11 kind={kind} dur={dur} text={text} />;
