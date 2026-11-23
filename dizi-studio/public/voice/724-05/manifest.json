@@ -1,18 +1,21 @@
 {
  "i_01": {
-  "key": "e054d54542c5",
-  "file": "voice/724-05/i_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
+  "asrScore": null,
+  "heard": null,
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "kredi": 0,
+  "key": "891bfeeae784",
+  "file": "voice/724-05/i_01.mp3",
   "text": "hıığğ",
-  "duration": 1.829,
-  "asrScore": 0.545,
-  "heard": "Hıh! Hıh!",
+  "duration": 1.254,
   "words": [
    {
     "w": "hıığğ",
-    "start": 0.02,
-    "end": 1.79
+    "start": 0.08,
+    "end": 0.94
    }
   ],
   "mouth": [
@@ -21,71 +24,61 @@
     "v": "A"
    },
    {
-    "t": 0.62,
+    "t": 0.38,
     "v": "X"
    },
    {
-    "t": 0.88,
-    "v": "U"
-   },
-   {
-    "t": 1.12,
-    "v": "X"
-   },
-   {
-    "t": 1.36,
+    "t": 0.66,
     "v": "A"
    },
    {
-    "t": 1.58,
+    "t": 0.94,
     "v": "X"
    }
   ],
-  "kaynak": "elevenlabs",
-  "model": "eleven_v4",
-  "hesap": "proxy",
-  "kredi": 40,
-  "turetim": "724-05-ece4/i_01 [0.0-1.8] (panik yeniden çekim, 23 Kasım)",
-  "zaman_duzeltme": "kelime zamanları Whisper + enerji zarfıyla elle düzeltildi; ağız işaretleri bu zamanlardan harf harf üretildi"
+  "turetim": "724-05-ece4/j_02 [0-1.22] (tek nefes panik çekimi; iki nefes)"
  },
  "i_02": {
-  "key": "090310830a94",
-  "file": "voice/724-05/i_02.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
+  "asrScore": null,
+  "heard": null,
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "kredi": 0,
+  "key": "02fef7717c50",
+  "file": "voice/724-05/i_02.mp3",
   "text": "abi vallahi büyük hayranınım.",
-  "duration": 2.638,
-  "asrScore": 0.941,
-  "heard": "Abi, vallahi büyük hayran hanım.",
+  "duration": 3.082,
   "words": [
    {
     "w": "abi",
-    "start": 0.2,
-    "end": 0.6
+    "start": 0.08,
+    "end": 0.66
    },
    {
     "w": "vallahi",
-    "start": 0.88,
-    "end": 1.26
+    "start": 0.66,
+    "end": 1.16
    },
    {
     "w": "büyük",
-    "start": 1.26,
+    "start": 1.16,
     "end": 1.56
    },
    {
     "w": "hayranınım.",
     "start": 1.56,
-    "end": 2.5
+    "end": 2.7
    }
   ],
   "mouth": [
    {
-    "t": 0.2,
+    "t": 0.08,
     "v": "A"
    },
    {
-    "t": 0.333,
+    "t": 0.273,
     "v": "M"
    },
    {
@@ -93,55 +86,55 @@
     "v": "I"
    },
    {
-    "t": 0.6,
+    "t": 0.66,
     "v": "X"
    },
    {
-    "t": 0.88,
+    "t": 0.66,
     "v": "F"
    },
    {
-    "t": 0.934,
+    "t": 0.731,
     "v": "A"
    },
    {
-    "t": 0.989,
+    "t": 0.803,
     "v": "L"
    },
    {
-    "t": 1.097,
+    "t": 0.946,
     "v": "A"
    },
    {
-    "t": 1.151,
+    "t": 1.017,
     "v": "L"
    },
    {
-    "t": 1.206,
+    "t": 1.089,
     "v": "I"
    },
    {
-    "t": 1.26,
+    "t": 1.16,
     "v": "X"
    },
    {
-    "t": 1.26,
+    "t": 1.16,
     "v": "M"
+   },
+   {
+    "t": 1.24,
+    "v": "U"
    },
    {
     "t": 1.32,
-    "v": "U"
-   },
-   {
-    "t": 1.38,
     "v": "I"
    },
    {
-    "t": 1.44,
+    "t": 1.4,
     "v": "U"
    },
    {
-    "t": 1.5,
+    "t": 1.48,
     "v": "L"
    },
    {
@@ -153,52 +146,47 @@
     "v": "L"
    },
    {
-    "t": 1.654,
+    "t": 1.674,
     "v": "A"
    },
    {
-    "t": 1.748,
+    "t": 1.788,
     "v": "I"
    },
    {
-    "t": 1.842,
+    "t": 1.902,
     "v": "L"
    },
    {
-    "t": 1.936,
+    "t": 2.016,
     "v": "A"
    },
    {
-    "t": 2.03,
+    "t": 2.13,
     "v": "L"
    },
    {
-    "t": 2.124,
+    "t": 2.244,
     "v": "I"
    },
    {
-    "t": 2.218,
+    "t": 2.358,
     "v": "L"
    },
    {
-    "t": 2.312,
+    "t": 2.472,
     "v": "I"
    },
    {
-    "t": 2.406,
+    "t": 2.586,
     "v": "M"
    },
    {
-    "t": 2.5,
+    "t": 2.7,
     "v": "X"
    }
   ],
-  "kaynak": "elevenlabs",
-  "model": "eleven_v4",
-  "hesap": "proxy",
-  "kredi": 40,
-  "turetim": "724-05-ece4/i_01 [1.8-4.441] (panik yeniden çekim, 23 Kasım)",
-  "zaman_duzeltme": "kelime zamanları Whisper + enerji zarfıyla elle düzeltildi; ağız işaretleri bu zamanlardan harf harf üretildi"
+  "turetim": "724-05-ece4/j_02 [1.60-son] (tek nefes panik çekimi; aradaki 0,38 sn sessizlik kısaltıldı)"
  },
  "a_01": {
   "key": "68b4de7f9fe2",
