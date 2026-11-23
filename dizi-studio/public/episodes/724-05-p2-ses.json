@@ -1,5 +1,5 @@
 {
- "not": "B5 2. parça ses planı. Bu dosya bölüm JSON'u DEĞİLDİR. 'uretim' yalnız ElevenLabs üretim kaynağıdır; içindeki satırlar senaryo repliği değildir (fısıltının sözü kullanıcının kararıdır: yalnız 'Ece…'). Plan ve zamanlar tools/ses_724_05_p2.py tarafından 'plan' anahtarına yazılır.",
+ "not": "B5 2. parça ses planı. Bu dosya bölüm JSON'u DEĞİLDİR. 'plan' tools/ses_724_05_p2.py kur/olc tarafından yazılır (kesin zamanlar, olaylar, doğrulama). 'uretim' yalnız ElevenLabs üretim kaynağıdır, senaryo repliği değildir. Fısıltının sözü kullanıcı kararıdır: Sabri'nin sesiyle 3x 'Ece…', annenin sesiyle 3x 'Kızım…'. 23 Kasım 2026: ElevenLabs hesabı ödeme sorunu (401 payment_issue) yüzünden üretim yapamadı; fısıltılar mevcut kayıtlardan (724-01 c_15/c_08, 724-03 a_02, 724-b1 a_07) LPC ile türetildi. Hesap açılınca 'python3 tools/ses_724_05_p2.py uret' taze varyantları üretir (kuru çalıştırma varsayılan).",
  "episode": "724-05-p2-ses",
  "uretim": [
   {
@@ -72,6 +72,33 @@
    "text": "(sözsüz: bastırılmış hıçkırık, yutkunma)",
    "okunus": "Hhk… mm…",
    "tags": "[suppressed sob, mouth closed] [swallows hard]",
+   "stab": 0.0
+  },
+  {
+   "id": "a1",
+   "who": "anne724",
+   "model": "eleven_v4",
+   "text": "Kızım…",
+   "okunus": "Kızım…",
+   "tags": "[whispering, sweet, loving, very close to the ear]",
+   "stab": 0.0
+  },
+  {
+   "id": "a2",
+   "who": "anne724",
+   "model": "eleven_v4",
+   "text": "Kızım…",
+   "okunus": "Kızııım…",
+   "tags": "[whispers, tender, coaxing, drawn out]",
+   "stab": 0.0
+  },
+  {
+   "id": "a3",
+   "who": "anne724",
+   "model": "eleven_v4",
+   "text": "Kızım…",
+   "okunus": "Kızım?",
+   "tags": "[soft breathy whisper, warm, smiling, creepy]",
    "stab": 0.0
   }
  ],
