@@ -460,9 +460,9 @@ def floresan_hum(dur, seed):
         a = (1.0 / k ** 1.15) * (1.3 if k % 2 else 1.0)
         x += a * np.sin(2 * np.pi * 100 * k * t + r.uniform(0, 6.28))
     pulse = (0.5 + 0.5 * np.cos(2 * np.pi * 100 * t)) ** 10
-    buzz = filt(r.standard_normal(n), "band", [2000, 7000], 2) * pulse
+    buzz = filt(r.standard_normal(n), "band", [1800, 4500], 2) * pulse  # revizyon: 7 kHz'e kadar uzanan tiz cızırtı kulağı tırmalıyordu
     jit = 1 + 0.08 * filt(r.standard_normal(n), "low", 6, 1) * 20
-    x = (x / np.abs(x).max() * 0.6 + buzz / (np.abs(buzz).max() + 1e-9) * 0.45) * jit
+    x = (x / np.abs(x).max() * 0.6 + buzz / (np.abs(buzz).max() + 1e-9) * 0.22) * jit
     return x
 
 
@@ -791,6 +791,52 @@ def unlu_lpc(ep, lid, a, b):
     return [f[0] for f in F if f[0] is not None and f[1] > 0]
 
 
+def yanik_zarf(n, seed, zemin_c_db, zemin_d_db):
+    """sürekli yanık ışığın (13,40-33,00) vızıltı seviyesi (dB zarf, doğrusal çarpan döner).
+    14,00-14,12 sönme (ışık zarfında) -> 14,12-14,75 çırpınarak düşüş -> C zemini (yavaş ±3 dB dalgalanma) -> 21,9-23,0 D zeminine iniş."""
+    np = _np()
+    r = rng_(seed)
+    t = np.arange(n) / SR
+    z = np.zeros(n)
+    m1 = (t >= 14.12) & (t < 14.75)
+    u = (t[m1] - 14.12) / 0.63
+    flutter = 6.0 * filt(r.standard_normal(m1.sum()), "band", [7, 18], 1) * 20
+    z[m1] = zemin_c_db * u ** 0.7 + flutter * (1 - u)
+    z[(t >= 14.75) & (t < 21.9)] = zemin_c_db
+    m3 = (t >= 21.9) & (t < 23.0)
+    z[m3] = zemin_c_db + (zemin_d_db - zemin_c_db) * (t[m3] - 21.9) / 1.1
+    z[(t >= 23.0) & (t < DUR + 0.01)] = zemin_d_db
+    yavas = filt(r.standard_normal(n), "low", 0.35, 1)
+    yavas = yavas / (np.std(yavas[int(14 * SR):int(DUR * SR)]) + 1e-12)
+    z = np.where((t >= 14.75) & (t < DUR), z + 3.0 * np.clip(yavas, -2, 2), z)
+    return db2a(z)
+
+
+def cizirti_zamanlari(seed, ilk=14.9):
+    """C/D'de ara sıra kısa cızırtı/tık (tüp kontağı); D'de sele gömülür"""
+    np = _np()
+    r = rng_(seed)
+    out, t = [], ilk
+    while t < DUR - 0.3:
+        out.append((round(t, 3), -14.0 if t < 22.0 else -20.0))
+        t += r.uniform(1.8, 4.5)
+    return out
+
+
+def cizirti(seed):
+    """tüp kontağında kısa cızırtı: 100 Hz darbeli dar bant gürültü + tık, 40-160 ms"""
+    np = _np()
+    r = rng_(seed)
+    d = r.uniform(0.04, 0.16)
+    m = int(d * SR)
+    tt = np.arange(m) / SR
+    x = filt(r.standard_normal(m), "band", [1500, 4200], 2) * (0.5 + 0.5 * np.cos(2 * np.pi * 100 * tt)) ** 6
+    x = x * env_ar(m, 0.002, d * 0.6) * (1 + 0.8 * (r.random(m) > 0.97))
+    k = starter_tik(seed, 0.6)[: m]
+    x[:len(k)] += k * 0.5
+    return x / (np.abs(x).max() + 1e-9)
+
+
 def isik_zarfi():
     """kare yerine örnek başına 0/1 ışık zarfı (4 ms açılış, 3 ms kapanış) + açılışta kekeleme"""
     np = _np()
@@ -822,12 +868,20 @@ def cmd_kur():
     hum_a = floresan_hum(T_TOPLAM, 1)
     hum_b = floresan_hum(T_TOPLAM, 2)
     elf = load(rel("ses/efekt/el_floresan.mp3"))
-    elf = np.tile(elf, int(np.ceil(n / len(elf))))[:n]
-    src_a = (hum_a[:n] * 0.8 + elf * 0.45) * e_isik
+    elf = filt(np.tile(elf, int(np.ceil(n / len(elf))))[:n], "low", 6500, 2)
+    src_a = (hum_a[:n] * 0.8 + elf * 0.3) * e_isik
     src_b = hum_b[:n] * e_isik
-    # C/D'de ışık yanık ama diğer seslerin altında: vızıltıyı 5 dB kıs
-    cd = np.ones(n); cd[int(14.0 * SR):int(DUR * SR)] = db2a(-5)
-    src_a *= cd; src_b *= cd
+    # FLORESAN REVİZYONU (kullanıcı: "kesintisiz floresan sesi çok rahatsız edici"): ışık 13,40-33,00 yanık kalır ama
+    # vızıltı 14,00 kepenk inişinde çırpınıp çok kısık, canlı bir zemine iner (yavaş dalgalanma, ara sıra cızırtı/tık,
+    # iki tüp farklı); D'de (sel) daha da iner. Işık pencerelerinin zamanları değişmedi.
+    src_a *= yanik_zarf(n, 401, -22.0, -30.0)
+    src_b *= yanik_zarf(n, 402, -25.0, -33.0)
+    for (tt, gdb) in cizirti_zamanlari(403):
+        x = cizirti(int(tt * 1000))
+        i = int(tt * SR); src_a[i:i + len(x)] += x[: n - i] * db2a(gdb)
+    for (tt, gdb) in cizirti_zamanlari(404, ilk=15.1):
+        x = cizirti(int(tt * 1000) + 7)
+        i = int(tt * SR); src_b[i:i + len(x)] += x[: n - i] * db2a(gdb - 3)
     for (a, b) in pencereler:
         for (x, tt, g) in [(starter_tik(int(a * 100)), a - 0.045, 0.9), (tup_ping(int(a * 10)), a + 0.005, 0.25), (starter_tik(int(b * 100) + 1, 0.5), b, 0.4)]:
             i = int(tt * SR); src_a[i:i + len(x)] += x[: n - i] * g
@@ -1009,7 +1063,7 @@ def cmd_kur():
             return -99.0
 
     # grup bus'ları: hedef gürlük (bölümünde) + tepe tavanı -3 dBFS (4x örneklenmiş). Böylece son sınırlayıcı yalnız birkaç dB çalışır.
-    BUS = {"kepenk": (14.0, 22.0, -15.0), "bocek": (22.0, 33.0, -14.5), "isik": (5.0, 14.0, -19.5),
+    BUS = {"kepenk": (14.0, 22.0, -15.0), "bocek": (22.0, 33.0, -14.5), "isik": (5.0, 14.0, -20.5),
            "ece": (33.0, 39.0, -30.0), "fisilti": (49.3, 54.0, -19.0)}
     TEPE_BUS = {"sub": -10.0, "drone": -21.0}  # alt frekans: LUFS (K-ağırlık) neredeyse saymaz; tepeye göre seviyelenir
     bus_kazanc = {}
