@@ -1,0 +1,93 @@
+{
+ "R1_01": {
+  "key": "16f329925348",
+  "file": "voice/724-07/cekim3/R1_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "(iğrenme)",
+  "duration": 2.351,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "(iğrenme)",
+    "start": 1.28,
+    "end": 2.32
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.2,
+    "v": "X"
+   },
+   {
+    "t": 1.28,
+    "v": "I"
+   },
+   {
+    "t": 2.0,
+    "v": "X"
+   },
+   {
+    "t": 2.32,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 22
+ },
+ "R2_01": {
+  "key": "d91edfa7e498",
+  "file": "voice/724-07/cekim3/R2_01.mp3",
+  "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
+  "emotion": "notr",
+  "text": "(iğrenme)",
+  "duration": 2.952,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Öğğ…",
+    "start": 1.08,
+    "end": 1.8
+   },
+   {
+    "w": "iyy!",
+    "start": 1.96,
+    "end": 2.92
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.08,
+    "v": "O"
+   },
+   {
+    "t": 1.32,
+    "v": "L"
+   },
+   {
+    "t": 1.64,
+    "v": "X"
+   },
+   {
+    "t": 1.96,
+    "v": "I"
+   },
+   {
+    "t": 2.6,
+    "v": "X"
+   },
+   {
+    "t": 2.92,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 17
+ }
+}

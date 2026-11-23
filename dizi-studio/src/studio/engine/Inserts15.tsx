@@ -109,13 +109,15 @@ const ParaSay: React.FC<{ kim: "ece" | "anne" }> = ({ kim }) => {
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <Defs />
         <Arka renk={kim === "ece" ? "#e2dcd2" : "#d8e2dc"} />
-        {/* çevrilmiş banknotlar ikinci elde birikir (sol) */}
+        {/* sol el (arkada): avuç yukarı; çevrilen banknotlar avucun İÇİNDE birikir, başparmak üstlerinden tutar */}
+        <El x={250} y={1250} a={30} s={1.1} kol={[-300, 1800]} r={KOL[kim]} />
         {new Array(Math.min(ucan, 14)).fill(0).map((_, i) => (
-          <g key={i} transform={`translate(${300 + (i % 3) * 6} ${1080 - i * 7}) rotate(${-12 + (i % 4) * 3})`}>
+          <g key={i} transform={`translate(${345 + (i % 3) * 5} ${1085 - i * 6}) rotate(${-18 + (i % 4) * 4})`}>
             <rect x={-150} y={-70} width={300} height={140} rx={8} fill={i % 2 ? "#86c096" : "#7ab88a"} stroke={O} strokeWidth={4} />
+            {i === Math.min(ucan, 14) - 1 ? <text x={-130} y={50} fontFamily="Arial" fontSize={36} fontWeight={900} fill="#2a5a3a">200</text> : null}
           </g>
         ))}
-        <El x={250} y={1250} a={30} s={1.1} kol={[-300, 1800]} r={KOL[kim]} />
+        {ucan > 0 ? <path d="M 236 1150 Q 210 1080 252 1040 Q 278 1028 290 1060 Q 292 1100 276 1150 Z" fill={KOL[kim][2]} stroke={O} strokeWidth={6} /> : null}
         <Deste x={640} y={1000} a={8} s={1.3} cevir={cevir} bant={false} />
         <El x={760} y={1180} a={-20} s={1.2} kol={[1400, 1750]} r={KOL[kim]} bas={cevir} />
       </svg>

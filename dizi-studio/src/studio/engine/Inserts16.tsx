@@ -81,7 +81,7 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
     );
   if (n === "kot")
     return (
-      <g transform={tr}>
+      <g transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${(s * 0.78).toFixed(3)} ${s.toFixed(3)})`}>
         <path d="M -50 -90 L 50 -90 L 58 80 L 12 84 L 2 -10 L -8 84 L -56 80 Z" fill="#34466a" stroke={O} strokeWidth={5} strokeLinejoin="round" />
         <path d="M -50 -74 H 50" stroke="#d8a860" strokeWidth={3} strokeDasharray="8 5" />
         <path d="M 14 -60 L 46 -60 L 44 -24 L 30 -16 L 16 -24 Z" fill="#3c5078" stroke={O} strokeWidth={3} />
@@ -158,8 +158,8 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
       H = [omuz[0] + sgn * Math.sin(up) * (L1 + L2) * 0.9, omuz[1] + Math.cos(up) * (L1 + L2) * 0.9];
     }
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
-    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 80 * S : -6 * S;
-    if (tut) esyalar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 1.15 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
+    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : -6 * S;
+    if (tut) esyalar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" ? 0 : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");

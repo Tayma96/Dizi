@@ -1,0 +1,48 @@
+{
+ "not": "B7P1 annenin çorap tepkisi (sözsüz)",
+ "series": "724",
+ "episode": "724-07/cekim3",
+ "episodeNo": 7,
+ "title": "ses",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "R1",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "(iğrenme)",
+     "okunus": "Iyyy!",
+     "tags": "[disgusted, gagging, recoiling from a bad smell]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "R2",
+   "set": "banyo_kapi",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "(iğrenme)",
+     "okunus": "Öğğ… iyy!",
+     "tags": "[gags, disgusted groan, comedic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}
