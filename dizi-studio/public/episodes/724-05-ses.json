@@ -1,0 +1,107 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-05-ses",
+ "episodeNo": 5,
+ "title": "Bölüm 5 · ses kayıtları (geçici; asıl bölüm 724-05.json)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "i",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "hıığğ abi vallahi büyük hayranınım.",
+     "emotion": "notr",
+     "okunus": "[one sharp gasp] Hığ! [panicked, forced nervous smile, fast] Abi, vallahi büyük hayranınım.",
+     "stab": 0.0,
+     "gapAfter": 0.4
+    }
+   ]
+  },
+  {
+   "id": "b",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri_sahte",
+     "text": "sakin kız sakin ilk iş günü şakası..   gece vardıyasına ilk defa başlayan herkese yaptığımız şaka",
+     "emotion": "notr",
+     "tags": "[amused, teasing, warm]",
+     "okunus": "[laughs] Sakin kız sakin, ilk iş günü şakası... gece vardıyasına ilk defa başlayan herkese yaptığımız şaka.",
+     "hiz": 1.1,
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "k",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[timid, hopeful, coaxing, small voice]",
+     "okunus": "Lü-lü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[timid, hopeful, coaxing, small voice]",
+     "okunus": "lülüü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[timid, hopeful, coaxing, small voice]",
+     "okunus": "Lü... lü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[timid, hopeful, coaxing, small voice]",
+     "okunus": "lüü-lüü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    },
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "lülü?",
+     "emotion": "notr",
+     "tags": "[timid, hopeful, coaxing, small voice]",
+     "okunus": "lülü?",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

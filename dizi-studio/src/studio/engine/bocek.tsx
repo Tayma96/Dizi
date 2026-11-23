@@ -433,6 +433,11 @@ export const DevBocek: React.FC<BocekProps> = ({ t, acil = 1, kanat = 0.4, mand 
       {wing(-1)}
       {wing(1)}
       <PronotumArka uid={uid} egil={egil} kk={kk} parlak={parlak} isik={isik} />
+      {/* zemin temas gölgeleri (arka ayaklar) */}
+      {[L.arka, R.arka].map((lg, i) => {
+        const k = pol(lg.base, lg.a1, 250), an = pol(k, lg.a2, 300), tp = pol(an, lg.a3, 86);
+        return <ellipse key={`zg${i}`} cx={(an[0] + tp[0]) / 2} cy={2} rx={70} ry={11} fill="#000" opacity={0.42} />;
+      })}
       <Bacak {...L.arka} L1={250} L2={300} L3={86} w={1.15} yon={-1} parlak={parlak} uid={`${uid}la`} />
       <Bacak {...R.arka} L1={250} L2={300} L3={86} w={1.15} yon={1} parlak={parlak} uid={`${uid}ra`} />
       {[-1, 1].map((s) => <path key={s} d={kapsul([s * 26, -250], [s * 64, -140], 12, 4)} fill={K.k2} stroke={K.out} strokeWidth={3.5} />)}

@@ -82,10 +82,12 @@ export type Bas25DProps = {
   uid: string;
   /** "arka": yalnız başın arkasında kalan at kuyruğu (gövdeden ÖNCE çizilir); "on": boyun + baş (vars.) */
   katman?: "arka" | "on";
+  /** 7/24 B5 (opt-in): şok gözü 0..1 (göz akı büyür, bebek küçülür) */
+  sok?: number;
 };
 
 /** Her açıdan baş: boyun dahil (gövdeden önce değil, gövdeden SONRA çizilir). */
-export const Bas25D: React.FC<Bas25DProps> = ({ look, aci, emotion = "notr", lookX = 0, lookY = 0, kapali = 0, pale = 0, viseme = null, dagin = 0, kuyrukSal = 0, kuyrukIleri = 0, isik = 1, kenar = 0, uid, katman = "on" }) => {
+export const Bas25D: React.FC<Bas25DProps> = ({ look, aci, emotion = "notr", lookX = 0, lookY = 0, kapali = 0, pale = 0, viseme = null, dagin = 0, kuyrukSal = 0, kuyrukIleri = 0, isik = 1, kenar = 0, uid, katman = "on", sok = 0 }) => {
   const phi = aci;
   const f = phi * D2R;
   const face = EMOTION_FACE[emotion];
@@ -293,7 +295,7 @@ export const Bas25D: React.FC<Bas25DProps> = ({ look, aci, emotion = "notr", loo
           const E = e as typeof eyeL;
           return E.a > 0 ? (
             <g key={i} opacity={E.a}>
-              <Eye cx={E.X} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpen} smile={face.eyeSmile} pupil={face.pupil} squeeze={Math.max(0.12, E.sx)} flip={fl as boolean} uid={`${uid}e${i}`} />
+              <Eye cx={E.X} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpen} smile={face.eyeSmile} pupil={face.pupil} squeeze={Math.max(0.12, E.sx)} flip={fl as boolean} uid={`${uid}e${i}`} sok={sok} />
             </g>
           ) : null;
         })}
@@ -352,12 +354,14 @@ export type Govde25DProps = {
   aci: number;
   /** omuz kalkması (birim) */
   omuz?: number;
+  /** 7/24 B5 (opt-in): kolları çizme (kollar dışarıda ayrıca çizilir) */
+  kolYok?: boolean;
   uid: string;
 };
 
 /** Her açıdan gövde (elips kesitli): sırt/göğüs, kazak dikişleri, kollar. aci: Bas25D ile aynı kural
  *  (0 önden, 180 arkadan, 270 = yüz kadraj soluna). Yakın kollar gövdenin önünde, uzaktaki arkasında çizilir. */
-export const Govde25D: React.FC<Govde25DProps> = ({ look, aci, omuz = 0 }) => {
+export const Govde25D: React.FC<Govde25DProps> = ({ look, aci, omuz = 0, kolYok = false }) => {
   const wx = look.build === "slim" ? 0.9 : look.build === "heavy" ? 1.24 : 1;
   const out = look.outfit;
   const f = aci * D2R;
@@ -405,7 +409,7 @@ export const Govde25D: React.FC<Govde25DProps> = ({ look, aci, omuz = 0 }) => {
   const neckBack = sp(180, 336), neckFront = sp(0, 336);
   return (
     <g>
-      {arms.map((a, i) => (a.Z < 0 ? <ArmG key={i} a={a} /> : null))}
+      {kolYok ? null : arms.map((a, i) => (a.Z < 0 ? <ArmG key={i} a={a} /> : null))}
       <path d={body} fill={out.top} stroke={OUT} strokeWidth={4} strokeLinejoin="round" />
       {/* gölge tarafı */}
       <path d={body} fill="#000" opacity={0.08 * Math.abs(sf)} />
@@ -414,7 +418,7 @@ export const Govde25D: React.FC<Govde25DProps> = ({ look, aci, omuz = 0 }) => {
       <path d={`M ${200 - ext(612) + 4} 612 Q 200 624 ${200 + ext(612) - 4} 612`} stroke={out.topShade} strokeWidth={6} fill="none" />
       {neckBack.nz > 0.1 ? <path d={`M ${neckBack.X - 22} ${334 - omuz} Q ${neckBack.X} ${344 - omuz} ${neckBack.X + 22} ${334 - omuz}`} stroke={OUT} strokeWidth={3.5} fill="none" opacity={Math.min(1, neckBack.nz * 2)} /> : null}
       {neckFront.nz > 0.1 ? <path d={`M ${neckFront.X - 28} ${330 - omuz} Q ${neckFront.X} ${362 - omuz} ${neckFront.X + 28} ${330 - omuz}`} stroke={OUT} strokeWidth={4} fill="none" opacity={Math.min(1, neckFront.nz * 2)} /> : null}
-      {arms.map((a, i) => (a.Z >= 0 ? <ArmG key={i} a={a} /> : null))}
+      {kolYok ? null : arms.map((a, i) => (a.Z >= 0 ? <ArmG key={i} a={a} /> : null))}
     </g>
   );
 };
