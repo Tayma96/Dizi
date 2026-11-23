@@ -92,6 +92,10 @@ export type CharState = {
   flip?: boolean;
   /** 3D: gövdenin dönüşü (derece). Verilmezse işaretin yönü / bakılan kişi kullanılır */
   turn?: number;
+  /** 7/24 B6 p2 (opt-in): yere popo üstü çökme 0..1, hıçkırık 0..1, ağlama ağzı 0..1 */
+  yerOtur?: number;
+  hickir?: number;
+  aglaAgiz?: number;
   /** sahneye giriş/çıkış */
   enter?: "sol" | "sag";
   exit?: "sol" | "sag";
@@ -208,7 +212,7 @@ export type Scene = {
   ambience?: { name: string; volume?: number };
   /** ikinci ortam katmanı (ör. kalabalık uğultusu) */
   ambience2?: { name: string; volume?: number };
-  music?: { name: string; volume?: number; from?: number };
+  music?: { name: string; volume?: number; from?: number; /** false: replik sırasında kısılmaz (tam miks parçaları için) */ duck?: boolean };
   /** 7/24 B4: depo kapısı açıklığı 0..1 (kasa görünümü) */
   depoAcik?: number;
   /** 7/24 B5 (opt-in): arka plan bulanıklığı (px, alan derinliği) */

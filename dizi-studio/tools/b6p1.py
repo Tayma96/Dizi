@@ -110,7 +110,7 @@ def json_yaz():
         "title": "Bölüm 6 · Parça 1", "endCard": False,
         "scenes": [
             {"id": "a", "set": "market_kapi", "time": "gece", "saat": "07:24", "title": "Gün ağarıyor",
-             "transition": "kesme", "cast": {}, "beats": sa, "music": {"name": "efekt/b6p1_tam", "volume": 1.0}},
+             "transition": "kesme", "cast": {}, "beats": sa, "music": {"name": "efekt/b6p1_tam", "volume": 1.0, "duck": False}},
             {"id": "b", "set": "market_kapi", "time": "gunduz", "saat": "07:30", "title": "Gerçek Sabri",
              "transition": "kesme", "cast": {}, "beats": sb},
         ],

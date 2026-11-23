@@ -1,0 +1,181 @@
+{
+ "not": "B6 parça 2 replik çekimleri (eleven_v4). text AYNEN kullanıcının.",
+ "series": "724",
+ "episode": "724-06-p2/cekim",
+ "episodeNo": 6,
+ "title": "B6P2 ses çekimleri",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "S1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem",
+     "okunus": "Bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem.",
+     "tags": "[tired, gentle, speaking out loud, slightly hesitant]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "S2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bu gece yine çalışmak ister misin kızım? Yüksek maaş vericem",
+     "okunus": "Bu gece… yine çalışmak ister misin kızım? Yüksek maaş vericem.",
+     "tags": "[warm, careful, speaking out loud, as if offering a deal]",
+     "emotion": "notr",
+     "stab": 1.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "I1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yoksa öğrendi mi?",
+     "okunus": "Yoksa… öğrendi mi?",
+     "tags": "[whispering to herself, worried, inner thought]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "I2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "yoksa öğrendi mi?",
+     "okunus": "Yoksa öğrendi mi?",
+     "tags": "[quietly, anxious, thinking aloud]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "noldu kızım neyin var?",
+     "okunus": "Noldu kızım, neyin var?",
+     "tags": "[worried, concerned, motherly]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "noldu kızım neyin var?",
+     "okunus": "Noldu kızım? Neyin var?",
+     "tags": "[alarmed, anxious, rushing]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "B1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Biri bir şey mi yaptı",
+     "okunus": "Biri bir şey mi yaptı?!",
+     "tags": "[angry, voice rising, protective, furious]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "B2",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Biri bir şey mi yaptı",
+     "okunus": "Biri bir şey mi yaptı?!",
+     "tags": "[getting angry, shouting, protective mother]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "K1",
+   "set": "market_kasa",
+   "time": "gunduz",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece724",
+     "text": "(koşarken ağlama)",
+     "okunus": "Hıh… hıh… hhh…",
+     "tags": "[crying while running, out of breath, panting, sobbing]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

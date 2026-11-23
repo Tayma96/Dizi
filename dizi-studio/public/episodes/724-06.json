@@ -90,7 +90,8 @@
    ],
    "music": {
     "name": "efekt/b6p1_tam",
-    "volume": 1.0
+    "volume": 1.0,
+    "duck": false
    }
   },
   {
