@@ -15,14 +15,14 @@ import { egri, serit, Hacim, type P, type Isik } from "./cizim";
  *  Ç1   0-17  POV yakın-orta: düz beyaz duvarda TEK düğme (çok düğme = final sürprizi; derz yok); kuryenin iki kolu, sağ el uzanır.
  *             8: "Duuuuur!" (soldan, ses + altyazı)
  *  Ç2  18-30  YAKIN (tek yakın, doruk): parmak basar; başlık çöker, LED, sayaç döner (klik A @21)
- *  Ç3  31-118 POV: bir an sessizlik → 36 kilit "klak" → 38-58 kanatlar yavaşça kayar, kırmızı ikaz ışığı;
- *             kamera bölmeye kalkar → 60-80 karanlıkta mızrağın ucu belirir, yavaşça dışarı süzülür (parlama)
- *             → 80 fırlar: 80-92 ağır çekim, 92-118 hızlanır; kamera ucu izler, kol geri çekilir
- *  118-124    sert kesme, siyah, sessiz
- *  124-170    başlık: siyah üstüne "KIRMIZI DÜĞME" (132'de aynı klik ile belirir)
+ *  Ç3  31-70  POV: bir an sessizlik → 36 kilit "klak" → 38-50 kanatlar kayar, kırmızı ikaz ışığı, kamera bölmeye kalkar
+ *             → 51-59 karanlıkta mızrağın ucu bir an parlar → 60 FIRLAR: ağır çekim yok, ~0,35 sn'de yüze (hızlanarak)
+ *  71-74      sert kesme, siyah, sessiz
+ *  75-120     başlık: siyah üstüne "KIRMIZI DÜĞME" (82'de aynı klik ile belirir)
+ *  (Kullanıcı: v3'te mızrak çok yavaştı, heyecan kaçtı → gerilim kanatlarda birikir, fırlayış şimşek gibi.)
  * ===================================================================================== */
 
-export const KS = { dur: 8, yakin: 18, klik: 21, pov2: 31, kilit: 36, kanat: 38, kanatSon: 58, uc: 60, mizrak: 80, agirSon: 92, kes: 118, baslik: 124, yazi: 132, son: 170 };
+export const KS = { dur: 8, yakin: 18, klik: 21, pov2: 31, kilit: 36, kanat: 38, kanatSon: 50, uc: 51, mizrak: 60, agirSon: 60, kes: 71, baslik: 75, yazi: 82, son: 120 };
 
 const cl = (v: number) => Math.max(0, Math.min(1, v));
 const ease = (v: number) => { const x = cl(v); return x * x * (3 - 2 * x); };
@@ -148,22 +148,22 @@ export const KdKancaSahne: React.FC = () => {
   const KX = KAM0.x + 0.12 * yaklas, KY = KAM0.y, KZ = KAM0.z;
   const b1 = bak([4, hedefP.c[1] * 0.64 + bolmeP.c[1] * 0.36, hedefP.c[2]], KX, KY, KZ);
   const b2 = bak([4, bolmeP.c[1] - 0.05, bolmeP.c[2]], KX, KY, KZ);
-  const kalk = ease((frame - (Z.kilit + 2)) / 22); // kamera yavaşça bölmeye kalkar
+  const kalk = ease((frame - (Z.kilit + 2)) / 12); // kamera bölmeye kalkar
   // mızrak: 60-80 karanlıktan yavaşça süzülür; 80 fırlar (80-92 ağır, sonra hızlı)
-  const gogus: [number, number, number] = [KX + 0.12, KY - 0.27, KZ];
+  const gogus: [number, number, number] = [KX + 0.12, KY - 0.17, KZ];
   const ic: [number, number, number] = [bolmeP.c[0] + 0.3, bolmeP.c[1], bolmeP.c[2]];
   const yonM: [number, number, number] = [gogus[0] - ic[0], gogus[1] - ic[1], gogus[2] - ic[2]];
-  const cik = frame >= Z.uc ? ease((frame - Z.uc) / (Z.mizrak - Z.uc)) * 0.14 : 0; // süzülme (yolun %14'ü)
-  const firla = frame >= Z.mizrak ? (frame < Z.agirSon ? ((frame - Z.mizrak) / (Z.agirSon - Z.mizrak)) * 0.1 : 0.1 + (((frame - Z.agirSon) / (Z.kes - Z.agirSon)) ** 1.25) * 0.66) : 0;
+  const cik = frame >= Z.uc ? ease((frame - Z.uc) / (Z.mizrak - Z.uc)) * 0.08 : 0; // ucu bir an görünür
+  const firla = frame >= Z.mizrak ? (((frame - Z.mizrak + 1) / (Z.kes - Z.mizrak)) ** 1.5) * 0.74 : 0; // ağır çekim yok: ~0,35 sn'de yüze, hızlanarak
   const e = cik + firla;
   const uc: [number, number, number] = [ic[0] + yonM[0] * e, ic[1] + yonM[1] * e, ic[2] + yonM[2] * e];
   const mizrakK = cl((frame - Z.mizrak) / (Z.kes - Z.mizrak));
-  const izle = ease((frame - Z.agirSon) / 12) * 0.75;
+  const izle = ease((frame - Z.mizrak) / 4) * 0.92;
   const ucP = (Math.atan2(uc[1] - KY, Math.max(0.05, Math.hypot(uc[0] - KX, uc[2] - KZ))) * 180) / Math.PI;
   const yaw = b1.yaw + (b2.yaw - b1.yaw) * kalk;
   const pitch0 = b1.pitch + (b2.pitch - b1.pitch) * kalk;
   const pitch = pitch0 + (ucP - pitch0) * izle;
-  const darbe = frame >= Z.agirSon ? 2 + 10 * mizrakK : frame >= Z.mizrak ? 1.5 : 0;
+  const darbe = frame >= Z.mizrak ? 4 + 12 * mizrakK : 0;
   const el = elde(frame, pov1 ? 1 : frame < Z.uc ? 0.5 : 0.8);
   const tt = titre(frame, darbe + (frame >= Z.kilit && frame < Z.kilit + 3 ? 3 : 0));
   // kamera biraz geri çekilir (korku): kanatlar açılırken
@@ -175,11 +175,11 @@ export const KdKancaSahne: React.FC = () => {
   // kollar: basıştan sonra el düğmede kalır; kilit sesiyle hafif geri çekilir; fırlayınca kaçar
   const uzan = pov1 ? ease((frame - 2) / (Z.yakin - 4)) : 1;
   const irkil = ease((frame - Z.kilit) / 5) * 0.35;
-  const cekil = ease((frame - (Z.mizrak + 1)) / 9);
+  const cekil = ease((frame - Z.mizrak) / 5);
   const sagBilek: P = [hp.x + 150 + (1 - uzan) * 260 + irkil * 120 + cekil * 420, hp.y + 260 + (1 - uzan) * 520 + irkil * 260 + cekil * 900];
   const solBilek: P = [150 + Math.sin(frame / 7) * 8 - cekil * 40, 1830 + Math.sin(frame / 9) * 10 + cekil * 200];
-  const blur = frame > Z.kes - 5 ? (frame - (Z.kes - 5)) * 2.4 : 0;
-  const parilti = frame >= Z.uc && frame < Z.mizrak + 4 ? Math.max(0, Math.sin(((frame - Z.uc) / 14) * Math.PI)) : 0;
+  const blur = frame > Z.kes - 3 ? (frame - (Z.kes - 3)) * 3 : 0;
+  const parilti = frame >= Z.uc && frame < Z.mizrak + 2 ? Math.max(0, Math.sin(((frame - Z.uc) / (Z.mizrak - Z.uc + 2)) * Math.PI)) : 0;
   const pu = proj(k, uc);
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -195,13 +195,13 @@ export const KdKancaSahne: React.FC = () => {
         {/* mızrak ucunda soğuk parlama (karanlıktan beliriş) */}
         {parilti > 0 && pu.z > 0.2 ? <circle cx={pu.x} cy={pu.y} r={60 + 40 * parilti} fill="url(#ks_par)" opacity={parilti * 0.8} /> : null}
         {/* hız çizgileri: yalnız hızlanınca */}
-        {frame >= Z.agirSon + 2 ? new Array(30).fill(0).map((_, i) => {
+        {frame >= Z.mizrak + 1 ? new Array(30).fill(0).map((_, i) => {
           const a = random(`kz${i}`) * Math.PI * 2;
           const r0 = 440 + random(`kr${i}${Math.floor(frame / 2)}`) * 260;
           return <path key={i} d={`M ${pu.x + Math.cos(a) * r0} ${pu.y + Math.sin(a) * r0} L ${pu.x + Math.cos(a) * (r0 + 600)} ${pu.y + Math.sin(a) * (r0 + 600)}`} stroke="#ffffff" strokeWidth={7} opacity={0.4 * mizrakK} />;
         }) : null}
         <KuryeKol id="sol" bilek={solBilek} aci={0.32} s={1.15} isaret={false} sol />
-        {frame < Z.mizrak + 12 ? <KuryeKol id="sag" bilek={sagBilek} aci={-0.5 + uzan * 0.06} s={1.15} bas={frame >= Z.klik ? 1 : 0} /> : null}
+        {frame < Z.mizrak + 6 ? <KuryeKol id="sag" bilek={sagBilek} aci={-0.5 + uzan * 0.06} s={1.15} bas={frame >= Z.klik ? 1 : 0} /> : null}
         {/* oda açılmasın: güçlü kenar kararması (dar, boğucu bakış) */}
         <rect width={1080} height={1920} fill="url(#ks_vin)" />
       </svg>
