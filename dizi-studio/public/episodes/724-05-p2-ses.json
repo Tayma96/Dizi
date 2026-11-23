@@ -1365,19 +1365,19 @@
    "kulaklik_ornegi": "ornekler/b5p2-binaural-ornek.mp3 (44,00-54,50)"
   },
   "motor": "Önerilen: parçanın ilk sahnesine \"music\": {\"name\": \"efekt/b5p2_tam\", \"volume\": 1.0}; başka music/ambience/sfx/line yok. Ayrıntı: docs/diziler/724/raporlar/b5p2-ses.md §6",
-  "fisilti_toplam_kazanc_db": 3.31,
+  "fisilti_toplam_kazanc_db": 3.18,
   "master": {
    "hedef_lufs": -14.0,
    "tepe_dbtp": -1.5,
-   "son_kazanc_db": 4.0,
+   "son_kazanc_db": 3.87,
    "bus": {
     "kepenk": {
-     "kazanc_db": 16.31,
-     "sinirlayici_en_cok_db": -5.9,
+     "kazanc_db": 18.81,
+     "sinirlayici_en_cok_db": -8.4,
      "hedef": [
       14.0,
       22.0,
-      -15.0
+      -14.0
      ]
     },
     "bocek": {

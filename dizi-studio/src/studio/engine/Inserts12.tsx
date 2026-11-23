@@ -727,11 +727,13 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
   // 1) tek tük çıkış (görünür bir kaynaktan): her böcek bir paketin ARKASINDAN çıkar. Paket dörtgeni kırpma maskesiyle
   //    böceği örter; böcek baş önde yukarı süründükçe önce anten uçları, sonra baş, sonra gövde paketin üst kenarından
   //    sıyrılır, kısa bir duraksamadan sonra raf boşluğunda yoluna devam eder. Ölçek ya da saydamlıkla "belirme" yok.
-  const L_C = 0.11;
+  const L_C = 0.09;
   const yuzA = (X: number, Z: number, Y: number, dZ: number, dY: number) => {
     const [x1, y1] = P(X, Y, Z), [x2, y2] = P(X, Y + dY * 0.01, Z + dZ * 0.01);
     return Math.atan2(y2 - y1, x2 - x1);
   };
+  /** raf yüzü kameraya eğik: yüzdeki böcek Z yönünde (ekranda yatay) kısalır */
+  const yuzKis = (x: number, y: number, Z: number) => `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${Math.min(1, KX / Z).toFixed(3)} 1) translate(${(-x).toFixed(1)} ${(-y).toFixed(1)})`;
   const urunUst = (side: number, r: number, zi: number) => RAF_Y[r] + 0.02 + [0.3, 0.16, 0.24, 0.12, 0.28, 0.2][(zi * 7 + r * 3 + (side > 0 ? 2 : 0)) % 6];
   const urunQ = (side: number, r: number, zi: number) => yuzX(side * KX * 0.995, 0.8 + zi * 0.2, 0.97 + zi * 0.2, RAF_Y[r] + 0.02, urunUst(side, r, zi));
   const CIK2: [number, number, number, number, number][] = [
@@ -740,9 +742,16 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
   ];
   const kirpTanim: React.ReactNode[] = [];
   if (t >= c0 - 0.001) {
-    CIK2.forEach(([side, r, zi, ts, eg], i) => {
+    CIK2.forEach(([side, r, zi0, ts, eg], i) => {
       const d = t - c0 - ts;
       if (d < 0) return;
+      // kaynak: yeterince uzun (böceği bütünüyle saklayan) ve düşmeyecek en yakın paket
+      const phOf = (z: number) => [0.3, 0.16, 0.24, 0.12, 0.28, 0.2][(z * 7 + r * 3 + (side > 0 ? 2 : 0)) % 6];
+      let zi = zi0;
+      for (const dz of [0, 1, -1, 2, -2, 3, -3]) {
+        const z = zi0 + dz;
+        if (z >= 0 && phOf(z) >= 0.24 && zorla[`${side}|${r}|${z}`] === undefined) { zi = z; break; }
+      }
       const Zc = 0.885 + zi * 0.2;
       if (Zc < ZN) return;
       const X = side * KX * 0.99;
@@ -777,7 +786,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
       const ph = d < 1.15 ? d * 5 + i : d * 14 + i;
       bocekler.push(
         <g key={`c${i}`} clipPath={`url(#${kid})`}>
-          <Mb uid={uid} x={x} y={y} a={a} s={s} ph={ph} sq={0.8} />
+          <g transform={yuzKis(x, y, Zg)}><Mb uid={uid} x={x} y={y} a={a} s={s} ph={ph} sq={1} /></g>
         </g>
       );
     });
@@ -804,7 +813,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
         let Y = yr, Zg = Zc + zr, dY = 1, dZ = 0;
         if (dd < 0) {
           // paketin arkasında gizli; paket sallanmaya başlayınca anten uçları üst kenardan taşar
-          const yuksel = sstep(-0.7, -0.35, dd);
+          const yuksel = sstep(-0.45, -0.2, dd);
           Y = ust - (1.75 - 0.6 * yuksel) * L_C - m * 0.012 + 0.01 * yuksel * Math.sin(t * 9 + m);
         } else {
           const g = Math.max(0, dd - 0.15 - m * 0.06);
@@ -818,7 +827,7 @@ const P2Koridor: React.FC<{ text?: string[] }> = ({ text }) => {
         const X = sd * KX * 0.99;
         const [x, y] = P(X, Y, Zg);
         const a = yuzA(X, Zg, Y, dZ, dY) + Math.sin(t * 6 + m) * 0.15;
-        const el = <Mb key={`kb${j}${m}`} uid={uid} x={x} y={y} a={a} s={(0.085 * KF_) / Zg} ph={t * (dd < 0 ? 4 : 15) + m} sq={0.8} />;
+        const el = <g key={`kb${j}${m}`} transform={yuzKis(x, y, Zg)}><Mb uid={uid} x={x} y={y} a={a} s={(0.085 * KF_) / Zg} ph={t * (dd < 0 ? 4 : 15) + m} sq={1} /></g>;
         kume.push(dd < 0 ? <g key={`kg${j}${m}`} clipPath={`url(#${kid})`}>{el}</g> : el);
       }
     });
