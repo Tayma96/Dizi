@@ -63,3 +63,19 @@ Dizinin mantığı şu, 4 kişi bembeyaz bir odanın içinde uyanır, odanın or
   - Şive denemeleri.
   - Ayrıntılı senaryo.
 - Yayın öncesi: uydurma markalar ("VINN!", "ÇINAR MARKET") gerçek firma taramasından geçecek.
+
+## Geliştirme kararları (kullanıcı, 23 Kasım 2026)
+Hedef: başyapıt, viral, 1 milyon+ izlenme. Kitle: herkese hitap eder, 13-25 kızlara da sevdirir.
+- **Anlatım yapısı (kullanıcı):** kaçırılmalarla doğrudan açılmaz. Dördü beyaz odada oturup konuşurken "Sen nasıl geldin buraya?" sorusu gelir → flashback; o karakter kendi sesiyle, anlatıcı gibi o anı anlatır (dış ses + sahnedeki replikler). Flashback biter, öbürü "Ben de aslında aynıyım" der ve kendi flashback'ini anlatır. (Böylece beyaz oda hiç uzun süre kaybolmaz.)
+- **Kaçırılma ayrıntıları:** B1 metnindeki gibi (yukarıda aynen kayıtlı).
+- **Teyzenin kaçırılışı GÖSTERİLMEZ** (kabul edildi): ince ipucu.
+- **Her kaçırılma ayrı bir türde çekilir** (kabul): göbekli = komedi (sabit kamera, duraklamalar), kurye = müzik klibi (ritme kesme; çarpışmada müzik kesilir), influencer = korku tonu.
+- **Numara oylaması** (kabul edilebilir fikir): her düğmenin 3 haneli numarası var; bölüm sonunda "sıradaki düğme hangisi?", yorumlarda en çok istenen numaraya sonraki bölümde basılır.
+- **Sayaç:** uyanışta odada tek düğme vardır (001). Ona basılınca odadaki tüm düğmeler belirir. (Diğer düğmelerdeki üç haneli sayılar = düğme numarası; oylamada kullanılır.)
+- **Bölmelerden çıkanlar:** görünüşte rastgele, ama ne çıkacağını akışa göre biz seçeriz: ölümcül, erzak, komik, araç-gereç vb.
+- **Stil (kullanıcı):** büyük kafa OLMAZ. 1. stil (renkli kontur) seçildi; geliştirilip çok daha güzel yapılacak.
+- **Beyaz oda zıtlığı** (kabul): dış dünya sıcak, dokulu, gece renkleri; beyaz oda kusursuz, gölgesiz, rahatsız edici temiz.
+- **Tek görsel imza: kırmızı** (kabul): kırmızıyı yalnız düğme, ikaz ışığı ve teyzenin hırka düğmeleri kullanır.
+- **Düğme sesi (kullanıcı):** dizide çok duyulacak; rahatlatıcı, insanı rahatlatan tatmin edici bir "klik/tık" sesi olmalı.
+- **Kurye şarkısı (kullanıcı):** çok önemli; özgün şarkıyı (söz dahil) Claude üretecek, kullanıcıya dinletilecek.
+- Şive denemeleri ve "duuuur" çığlığı: ElevenLabs'te bütçe kurallarıyla, önce kuru çalıştırma.
