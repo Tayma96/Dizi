@@ -79,3 +79,8 @@ Hedef: başyapıt, viral, 1 milyon+ izlenme. Kitle: herkese hitap eder, 13-25 k�
 - **Düğme sesi (kullanıcı):** dizide çok duyulacak; rahatlatıcı, insanı rahatlatan tatmin edici bir "klik/tık" sesi olmalı.
 - **Kurye şarkısı (kullanıcı):** çok önemli; özgün şarkıyı (söz dahil) Claude üretecek, kullanıcıya dinletilecek.
 - Şive denemeleri ve "duuuur" çığlığı: ElevenLabs'te bütçe kurallarıyla, önce kuru çalıştırma.
+
+## Durum (23 Kasım 2026, akşam)
+- Klik sesi: 4 aday (`ornekler/ses/kd-klik-{A-tok,B-kristal,C-kapsul,D-kadife}.mp3`; üretici `dizi-studio/tools/kd_klik.py`; tek basış wav'ları `public/ses/kd/`). Telefon hoparlörü için gövde 300-2000 Hz'de. Seçim kullanıcıda.
+- Stil 1 v2 filtresi (`sheets/KdStil2.tsx`, `KdKonturV2`; kontrol `ornekler/kd-stil1-v2.png`): kalın dış hat / ince iç çizgi, yerel renkli çizgi, yalnız dış hatta kaynama, mekâna göre gölge + kenar ışığı, beyaz odada gölgesiz.
+- Görüntü yönetmeni teşhisi: filtre tek başına "imza" görünüm vermiyor; asıl sınır çizimin kendisi (boru kollar, top yumruklar, dikdörtgen gövde, heykel gibi önden duruş). Öneri: Kırmızı Düğme'ye özel çizim katmanı, önce tek karakterle tam kaliteli örnek.
