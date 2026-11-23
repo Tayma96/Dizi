@@ -150,7 +150,7 @@ Hazırlayan: ses yönetmeni. Kullanıcının replik metinlerine ve noktalamasın
 1. **Süreler artık sesten geliyor** (`sure` yok sayılır). Panik çekimleriyle bölüm **57,73 sn + 4 sn kart**.
    - Mutlak başlangıçlar: a 0,00 · b 1,47 · c 10,47 · d 13,13 · d2 18,30 · e 22,80 · f 26,13 · g 28,97 · h 30,80 · i 43,30 · j 54,33.
    - b_01 8,62 sn. GY `gapAfter`'ı zaten −3,82'ye çekmiş; doğru.
-   - **YAPILACAK:** omuz_el 3. vuruş kayması şu an 1,83. Yeni hoaa (0,89 + 0,15 = 31 kare) için **2,03** olmalı.
+   - omuz_el 3. vuruş kayması yeni hoaa için 2,03 olmalıydı; GY güncelledi (ef23d6b).
    - "lülü?" bitişinden "bu"ya şu an ≈1,3 sn var (gapAfter 1,0 + i_06'nın başındaki 0,19 sn titrek nefes). Tam 1 sn istenirse i_05 `gapAfter` 0,7.
 2. **Müzik kesme noktası zaman çizelgesine bağlı.** Kesme, h başından 17,18 sn sonra.
    - Bu süre h eklemelerinin toplamı (4,4 + 0,9 + 4,6 + 2,6 = 12,5), i_01 (38 kare) ve i_02 (97 kare) sürelerinden oluşuyor.
@@ -159,7 +159,7 @@ Hazırlayan: ses yönetmeni. Kullanıcının replik metinlerine ve noktalamasın
    - Sonraki ece_yakin (rüzgâr, 0,9 sn) boyunca devam eder ve "lülü?" başlamadan ≈0,05 sn önce biter.
    - bocek_kukreme ya da ece_yakin kısalırsa kükreme lülü'ye taşar.
 4. **Görsel işaret noktaları (dosya içi saniye, vuruş başına +0,08 ekleyin):**
-   - "ELİ" (yeni çekim) 3,28-3,87; bağırarak. Yakın plana kesme şu an 2,35'te, "bir adamın eli"de. "ELİ"deki vurguyla tam örtüşsün istenirse `shots.at` ≈ 3,30.
+   - "ELİ" (yeni çekim) 3,28-3,87; bağırarak. Yakın plana kesme şu an 2,35'te, "bir adamın eli"de. "ELİ"deki vurguyla tam örtüşsün istenirse `shots.at` ≈ 3,30. GY 3,31 yaptı (ef23d6b).
    - Sahte Sabri: b_01'in ilk 0,9 sn'si ve d_01'in ilk 1,1 sn'si sessiz gülme/kıkırdama (ağız açık, omuz sarsıntısı). b_01'de 4,48-4,72 arası ".." duraklaması.
    - i_01 (yeni): iki panik nefes, 0,10-0,38 ve 0,66-0,94 (`hik`). i_02'de "abi" 0,08'de.
    - c_01 (yeni): baştaki gülüş yok, "abi" 0,07'de, hızlı ve çıkışan.
