@@ -1007,6 +1007,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: heavy metal hatch unlocking with a sharp mechanical clack, then hydraulic hiss as two sliding doors slide open into the wall"
  },
+ "efekt/kd_cinlama_kalp": {
+  "file": "ses/efekt/kd_cinlama_kalp.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: high-pitched ear ringing tinnitus with a slow muffled heartbeat underneath, gradually fading away"
+ },
  "efekt/kd_ikaz_alarm": {
   "file": "ses/efekt/kd_ikaz_alarm.mp3",
   "category": "efekt",
@@ -1020,6 +1027,20 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: spear launched by a powerful spring mechanism, metallic twang then a fast whoosh flying straight toward the camera"
+ },
+ "efekt/kd_mizrak_saplanma": {
+  "file": "ses/efekt/kd_mizrak_saplanma.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: heavy dull thud of a spear hitting a man's padded nylon jacket at the chest, wooden shaft vibrating briefly, no gore, cinematic close"
+ },
+ "efekt/kd_nefes_kesilme": {
+  "file": "ses/efekt/kd_nefes_kesilme.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: young man's sharp gasp as the breath is knocked out of him, then two weak struggling breaths, close to microphone"
  },
  "efekt/kd_nefes_mont": {
   "file": "ses/efekt/kd_nefes_mont.mp3",
