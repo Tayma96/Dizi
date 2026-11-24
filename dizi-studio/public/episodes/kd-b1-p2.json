@@ -1,0 +1,12 @@
+{
+  "episode": "kd-b1-p2",
+  "title": "Kırmızı Düğme · B1 Parça 2 açılış (A1-A9) sesleri",
+  "scenes": [
+    {"id": "acilis", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_kurye_oda", "emotion": "fisilti", "tags": "[mumbling in sleep, angry, Adana street accent]", "text": "Vurun şu ayıyı lan artık."},
+      {"type": "line", "who": "kd_influencer_oda", "emotion": "korkmus", "tags": "[screams]", "text": "Aaaa! Nerdeyim beeen!"},
+      {"type": "line", "who": "kd_kurye_oda", "emotion": "korkmus", "tags": "[hoarse, dry mouth]", "text": "Noluyo lan."},
+      {"type": "line", "who": "kd_gobek_oda", "emotion": "panik", "tags": "[panicked heavy breathing, struggling]", "text": "Hıh... hıh... hııh..."}
+    ]}
+  ]
+}
