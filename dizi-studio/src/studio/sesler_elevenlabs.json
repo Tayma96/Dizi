@@ -189,9 +189,18 @@
   }
  },
  "kd_gobek": {
-  "voice_id": "UZfpTmsEg4kOu9LAEgHd",
-  "sahip": "883efa6c21bddfd103a5ff106cfc0597afb1cbae7e244e07f2cb8c087e82a8a7",
-  "ad": "Hakan",
+  "voice_id": "8ng6vvUHRpznlJL92xmU",
+  "sahip": "8ed059ae31ca6c9e170abe45da49e0da97d80cbe66186cb7b086f9ecede1b407",
+  "ad": "Selim",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "kd_gobek_oda": {
+  "voice_id": "8ng6vvUHRpznlJL92xmU",
+  "sahip": "8ed059ae31ca6c9e170abe45da49e0da97d80cbe66186cb7b086f9ecede1b407",
+  "ad": "Selim",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0

@@ -1,0 +1,10 @@
+{
+  "episode": "kd-gobek-sive",
+  "title": "Kırmızı Düğme · göbekli adam şive denemesi (B1 P2 replikleri)",
+  "scenes": [
+    {"id": "sive", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_gobek_oda", "tags": "[out of breath, Thracian accent]", "text": "Ben mi? Ben kalkamıyom ki bre..."},
+      {"type": "line", "who": "kd_gobek_oda", "tags": "[confused, Thracian accent]", "text": "Şu ne bre?"}
+    ]}
+  ]
+}
