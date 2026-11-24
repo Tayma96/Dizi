@@ -38,8 +38,18 @@ Tarih: 24 Kasım 2026. Metin: `bolumler.md` "Bölüm 8, Parça 2" (AYNEN; yeni r
 
 ## NAH işaretinin kare kare denetimi
 - **Kullanıcı düzeltmesi:** ŞAK sesi sol avucun sağ bileğe çarpmasıyla çıkıyor. Bu uygulandı. Sol el yumruk ileri giderken AÇIK avuçla geri çekiliyor, hızlanarak bileğin içine çarpıyor (hız izi var), temas karesinde ışınlar ve parlama çıkıyor, ardından 0,15 sn'de parmaklar kapanıp bileği kavrıyor.
-- **ŞAK anı:** `b8p2-goruntu-zaman.json` → `olaylar.sak` (şu anki çekimlerle 24,417 sn). `tools/b8p2.py`'deki `SFX["NAH"]` efektini bu kareye koyuyor. Ses yönetmeni kendi efektini (`b8_nah_sak` / `el_nah_sak`) bu ana oturtmalı.
+- **ŞAK anı:** `b8p2-goruntu-zaman.json` → `olaylar.sak` (şu anki çekimlerle 24,417 sn). `efekt/b8_nah_sak` (0,85) üreticide `t_sak` değişkenine bağlı, görüntüdeki temas karesiyle birlikte kayıyor. Ses raporunda 24,287 yazıyordu; o değer eski temas anından (n0 + 0,82) hesaplanmış. Avucun geri çekilip çarpması 0,13 sn sürdüğü için temas 24,417'ye kaydı ve ses bu kareye oturtuldu.
 - Kontrol kareleri saniyede 4 kare alındı: el açık → parmaklar kapanıyor → yumruk ileri → avuç bileğe → kavrama → pompa. Başparmak ucu her yumruk karesinde işaret ile orta parmak arasında net görünüyor.
+
+## Ses bağlantısı (b8p2-ses.md §3, aynen)
+- Floresan tık: `floresan_cit` 0,4.
+- Müzik: `muzik/b8_komik_dusus_kesik`, 8,33'ten başlar, sfx olarak 0,25, `sure` 14,4.
+- Kalem: `b8_kalem_dus` 0,6 (`kalem_cit` kullanılmadı). Lamba tıkı: `el_kalem_tik` 0,4.
+- Plak çiziği: `b8_plak_kisa`, 22,33-22,71.
+- Kameraya dönüş: `el_whoosh_kay` 0,3. Kumaş: `el_kumas_burus` 0,3.
+- ŞAK: `b8_nah_sak` 0,85, `t_sak`'ta.
+- Kapanış: `muzik/b8_komik_buton`, 37,95'te, 0,3.
+- E1 çekimindeki 0,20-0,90 sn gülüş dudak senkronunda yoktu. O aralıkta Ece gözleri kapalı sırıtıyor (`gulen`) ve kıkırdama ağzı yapıyor (yeni opt-in karakter alanı `kikir`: bu aralıkta manifest ağzı yerine kıpır kıpır ağız).
 
 ## Yeni varlıklar / motor (hepsi opt-in; eski bölümleri değiştirmez)
 - `engine/nahEl.tsx`: `NahEller` (iki el, adım `a`, kollar/yenler, darbe ışınları, hız izi) ve `nahGeo` (bilek noktaları; kasa görünümünde Ece'nin rig kolları bunlara bağlanıyor).

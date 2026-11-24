@@ -153,7 +153,8 @@ ECE_TZ = {
                    [t_got, EX + 120, 1100], [t_got + 0.3, *EL_R],
                    [t_ruh2 - 0.15, *EL_R], [t_ruh2 + 0.12, EX + 62, 980], [t_ruh2 + 0.3, EX + 50, 966], [t_ruh2 + 0.48, EX + 66, 984], [t_ruh2 + 0.66, EX + 50, 968],
                    [t_alem2 + 0.4, EX + 64, 982], [e3b + 0.25, *EL_R], [SON_T, *EL_R]]),
-    "duygu": [[0, "korkmus"], [g0 + 0.3, "dusunceli"], [t_he - 0.15, "alayci"], [t_kos, "alayci"], [e1b, "alayci"],
+    "kikir": [[e1a + 0.2, e1a + 0.9]],     # E1 çekimindeki burundan gülüş (dudak senkronunda yok): kıkırdama ağzı
+    "duygu": [[0, "korkmus"], [g0 + 0.3, "dusunceli"], [e1a + 0.15, "gulen"], [e1a + 0.92, "alayci"], [t_he - 0.15, "alayci"], [t_kos, "alayci"], [e1b, "alayci"],
               [e2a, "saskin"], [t_obur, "mutlu"], [e2b + 0.1, "mutlu"],
               [e3a, "yorgun"], [t_sab, "ofkeli"], [t_ruh2, "yorgun"], [e3b + 0.1, "yorgun"]],
     # bakış: kâğıda (aşağı) → Sabri'ye (kadraj sağı); "ruhlar alemi"nde göz devirme (yukarı)
@@ -307,12 +308,18 @@ def E(ad, isim, t, vol=0.5, **kw):
     return {"name": f"efekt/{isim}", "at": round(t - T[ad], 3), "volume": vol, **kw}
 
 
+# ses yönetmeni raporu §3 (b8p2-ses.md); ŞAK görüntüdeki TEMAS karesine (t_sak) bağlı
+M0 = 8.33   # müzik girişi (E1 'buluşuyor' bitişi); kesim M0 + 14,38 (heh'ten hemen önce)
 SFX = {
-    "GIRIS": [E("GIRIS", "floresan_cit", t_pop, 0.5)],
-    "E1": [],
-    "S1": [E("S1", "kalem_cit", t_kalem, 0.5), E("S1", "el_kalem_tik", t_lamba, 0.45)],
-    "E4": [E("E4", "el_whoosh_kay", t_heh, 0.4)],
-    "NAH": [E("NAH", "el_kumas_burus", n0 + 0.35, 0.35), E("NAH", "tokat", t_sak, 0.7)],
+    "GIRIS": [E("GIRIS", "floresan_cit", t_pop, 0.4)],
+    "S1": [{"name": "muzik/b8_komik_dusus_kesik", "at": round(M0 - T["S1"], 3), "volume": 0.25, "sure": 14.4},
+           E("S1", "b8_kalem_dus", t_kalem, 0.6),
+           E("S1", "el_kalem_tik", t_lamba, 0.4)],
+    "S3": [E("S3", "b8_plak_kisa", M0 + 14.38 - 0.38, 0.55)],
+    "E4": [E("E4", "el_whoosh_kay", t_heh, 0.3)],
+    "NAH": [E("NAH", "el_kumas_burus", n0 + 0.35, 0.3),
+            E("NAH", "b8_nah_sak", t_sak, 0.85)],
+    "E6": [{"name": "muzik/b8_komik_buton", "at": round(37.95 - T["E6"], 3), "volume": 0.3}],
 }
 
 

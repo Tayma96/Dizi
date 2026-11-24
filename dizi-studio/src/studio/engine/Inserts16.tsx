@@ -229,7 +229,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
       <Character look={look} size={size} pose={{
         emotion: emo, lookX: lx, lookY: ly, yaw, tilt: kf1(q.tilt, tg, 0), armL: q.jest ? undefined : armL, armR: q.jest ? undefined : armR, kolGizle,
         eyesClosed: q.goz ? kf1(q.goz, tg, 0) || undefined : undefined, gozSok: q.gozSok ? kf1(q.gozSok, tg, 0) || undefined : undefined,
-        speech, talk: !speech && aralik(q.agzi, tg) ? [[f - 2, f + 2]] : undefined,
+        speech: aralik(q.kikir, tg) ? undefined : speech, talk: aralik(q.kikir, tg) || (!speech && aralik(q.agzi, tg)) ? [[f - 2, f + 2]] : undefined,
         body: aralik(q.yuru, tg) ? "walk" : undefined, tears: q.tears, sacDagin: q.sacDagin, seed: id.length * 7,
         gesture: q.jest ? (basamak<string | null>(q.jest, tg, null) ?? undefined) as never : undefined,
         sweat: aralik(q.ter, tg) || undefined, pale: q.solgun ? kf1(q.solgun, tg, 0) || undefined : undefined,
