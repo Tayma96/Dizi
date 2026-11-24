@@ -155,6 +155,14 @@ export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: nu
         <path d="M 0 0 L 0 -66" stroke="#f0c8a8" strokeWidth={15} strokeLinecap="round" />
       </g>
     );
+  if (n === "basparmakArka")  // B8 P2: omzun üstünden arkayı gösteren başparmak (yumruk + kadraj sağına-yukarı başparmak)
+    return (
+      <g transform={`${tr} scale(1.7)`}>
+        <path d="M 2 -10 Q 18 -34 34 -58" stroke={O} strokeWidth={24} strokeLinecap="round" fill="none" />
+        <path d="M 2 -10 Q 18 -34 34 -58" stroke="#f0c8a8" strokeWidth={17} strokeLinecap="round" fill="none" />
+        <ellipse cx={33} cy={-55} rx={4.5} ry={5.5} fill="#f8e0d0" />
+      </g>
+    );
   if (n === "iki")  // iki parmak (sayma: 2)
     return (
       <g transform={tr}>
@@ -275,9 +283,9 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
       H = [omuz[0] + sgn * Math.sin(up) * (L1 + L2) * 0.9, omuz[1] + Math.cos(up) * (L1 + L2) * 0.9];
     }
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
-    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" ? -10 * S : -6 * S;
+    const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
-    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" || tut === "isaret" || tut === "iki" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");

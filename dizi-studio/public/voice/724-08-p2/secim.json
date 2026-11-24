@@ -1,0 +1,60 @@
+{
+ "_not": "B8 P2 replik seçimleri (ses yönetmeni). Anahtar = manifest anahtarı. Metin aynen; okunuş yalnız ritim/telaffuz için (virgül, üç nokta, büyük harf vurgusu, 'jıb' Türkçe j). Çekim kaynağı public/episodes/724-08-p2-ses.json.",
+ "E1_ece_paralel_evrenler": {
+  "sec": "E1a_01",
+  "yedek": [
+   "E1b_01"
+  ]
+ },
+ "S1_sabri_he_valla": {
+  "sec": "S1a_01",
+  "yedek": [
+   "S1f_01",
+   "S1c_01"
+  ]
+ },
+ "E2_ece_obur_taraf": {
+  "sec": "E2a_01",
+  "yedek": [
+   "E2b_01"
+  ]
+ },
+ "S2_sabri_derken": {
+  "sec": "S2a_01",
+  "yedek": [
+   "S2b_01"
+  ]
+ },
+ "E3_ece_ruhlar_alemi": {
+  "sec": "E3a_01",
+  "yedek": [
+   "E3b_01"
+  ]
+ },
+ "S3_sabri_ne_alaka": {
+  "sec": "S3a_01",
+  "yedek": [
+   "S3b_01"
+  ]
+ },
+ "E4_ece_heh": {
+  "sec": "E4h_01",
+  "yedek": [
+   "E4a_01",
+   "E4g_01"
+  ]
+ },
+ "E5_ece_dordunu_duvar": {
+  "sec": "E5a_01",
+  "yedek": [
+   "E5d_01",
+   "E5b_01"
+  ]
+ },
+ "E6_ece_bocek_sican": {
+  "sec": "E6a_01",
+  "yedek": [
+   "E6b_01"
+  ]
+ }
+}

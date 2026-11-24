@@ -220,11 +220,12 @@ ECE_KS = {
     "kulak": [[0, 0.3]],
     "konus": [konus("E4"), konus("E5"), konus("E6")],
     # E5 "market": sol eli (kadraj sağı) arkadaki marketi gösterir; E6: ense kaşır (sol el ensede)
-    "elR": sirala([[e5a, KX + 150, 1820], [t_tek - 0.1, KX + 150, 1820], [t_mkt - 0.05, KX + 250, 1130], [e5b + 0.3, KX + 262, 1120], [p0, KX + 160, 1800],
-                   [e6a - 0.2, KX + 160, 1800], [t_tam + 0.05, KX + 165, 1080], [t_tam + 0.2, KX + 172, 1062], [t_tam + 0.35, KX + 162, 1080],
-                   [t_tam + 0.5, KX + 172, 1062], [t_boc, KX + 164, 1078], [t_boc + 0.2, KX + 172, 1062], [t_sic, KX + 166, 1078], [t_ola - 0.1, KX + 170, 1070],
-                   [t_ola + 0.5, KX + 168, 1064], [SON_T, KX + 168, 1066]]),
+    "elR": sirala([[e5a, KX + 150, 1820], [t_tek - 0.1, KX + 150, 1820], [t_mkt - 0.05, KX + 235, 1100], [t_mkt + 0.25, KX + 242, 1088], [e5b + 0.3, KX + 242, 1088], [p0, KX + 160, 1800],
+                   [e6a - 0.2, KX + 160, 1800], [t_tam + 0.05, KX + 140, 1135], [t_tam + 0.2, KX + 148, 1118], [t_tam + 0.35, KX + 138, 1136],
+                   [t_tam + 0.5, KX + 148, 1118], [t_boc, KX + 140, 1134], [t_boc + 0.2, KX + 148, 1118], [t_sic, KX + 141, 1134], [t_ola - 0.1, KX + 145, 1126],
+                   [t_ola + 0.5, KX + 146, 1120], [SON_T, KX + 146, 1122]]),
     "elRara": [[e5a + 0.05, 99]],
+    "tutR": [[0, None], [t_mkt - 0.12, "basparmakArka"], [e5b + 0.35, None]],
 }
 
 # ------------------------------------------------------------------ NAH: adımlar ve el yerleri
