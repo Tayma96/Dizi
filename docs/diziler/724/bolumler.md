@@ -352,3 +352,4 @@ Bir anda Ece'nin alarmı çalar, Ece irkilir, telefonuna bakar: saat 00:00 olmu�
 Mert: "kurallar, hemen kuralları ezberle" der.
 Mert kurallara bakar.
 - Not: P1'de "rüzgâr/cırcır YOK" kararı P1 içindi; P2'de kullanıcı bu sesi Ece'nin Sabri'ye kilitlendiği ana açıkça istiyor.
+- **P2 ses seçimi (kullanıcı, artifact yorumları):** E1b, E2a, S3b, E3b, E4a; tek çekimler S1a, S2a, S4a, E5a. Dosya: `public/voice/724-08y-p2/secim.json`.
