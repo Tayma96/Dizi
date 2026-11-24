@@ -2178,5 +2178,12 @@
   "duration": 3.109,
   "loop": false,
   "desc": "B8y P1: romantik (28. sn'den 3.07 sn), yumuşak giriş/çıkış."
+ },
+ "muzik/b8y_ask": {
+  "file": "ses/muzik/b8y_ask.mp3",
+  "category": "muzik",
+  "duration": 15.0,
+  "loop": false,
+  "desc": "B8y P1: âşık anı fonu (GEÇİCİ: romantik kesiti; ElevenLabs sürümüyle değişecek)"
  }
 }

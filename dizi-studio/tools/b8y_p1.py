@@ -333,11 +333,9 @@ SFX = {
     "GIRIS": [E("GIRIS", "b8y_bam", t_bam, 0.8)],
     "S1": [E("S1", "b8y_kol_gicirti", t_kol0 + 0.1, 0.3)],
     "S2": [E("S2", "b8y_kol_mandal", t_kol1 - 0.05, 0.4), E("S2", "b8y_kapi_hiz", t_kapi - 0.02, 0.75)],
-    "DON": [E("DON", "b8y_parilti", d0 + 0.3, 0.6), E("DON", "muzik/b8y_rom_1", d0 + 0.45, 0.32)],
-    "BOL": [E("BOL", "b8_plak_kisa", b0 - 0.05, 0.5), E("BOL", "el_sok_vurgu", b0 + 0.05, 0.4)],
-    "DURT": [E("DURT", "el_kart_pop", t_durt1, 0.35), E("DURT", "el_kart_pop", t_durt2, 0.3)],
-    "E4": [E("E4", "b8y_parilti", e4a - 0.1, 0.4), E("E4", "muzik/b8y_rom_2", e4a, 0.26)],
-    "E5": [E("E5", "b8y_parilti", e5a + 0.05, 0.35), E("E5", "muzik/b8y_rom_3", e5a + 0.1, 0.3)],
+    # âşık olduğu süre boyunca TEK parça hafif romantik fon (kullanıcı: 10-15 sn, kesik değil, cızırtı yok)
+    "DON": [E("DON", "b8y_parilti", d0 + 0.3, 0.55), E("DON", "muzik/b8y_ask", d0 + 0.3, 0.22)],
+    "DURT": [E("DURT", "el_kart_pop", t_durt1, 0.3), E("DURT", "el_kart_pop", t_durt2, 0.26)],
 }
 
 
