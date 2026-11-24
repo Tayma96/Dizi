@@ -118,3 +118,4 @@ Kuryenin sesiyle influencer kız uyanır.
 Göbekli adam kalkmaya çalışır göbekten doğrulamaz tekrar yatar panik halindedir
 
 - Not (Claude): Bu metin Claude'un v2 taslağının açılışının yerini alır. Kullanıcı kararıyla horlama odada YANKILANIR (önceki "yankısız oda" fikri bu parça için geçersiz). Açılış: genel açıdan canlı kamera kaydı → iç kamera.
+- **Kullanıcı kararı:** A7'de teyze herkesle aynı anda irkilir (gecikme yok).

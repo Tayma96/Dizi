@@ -23,7 +23,7 @@
 
 **Ses:** Bu parçada oda **yankılı** (kullanıcı kararı); horlama ve çığlık duvarlardan geri döner. Canlı kayıt sesi ince, cızırtılı ve tek kanal; iç kamerada tam ve dolgun.
 
-**Teyze:** A7'de "herkes afallar" (kullanıcı). Öneri: teyzenin irkilmesi yarım saniye gecikmeli olsun; sanki uyanık bekliyormuş gibi. Karar kullanıcıda.
+**Teyze:** A7'de herkesle **aynı anda** irkilir (kullanıcı kararı, 24 Kasım 2026; gecikme önerisi iptal).
 
 ## 1. Kamera stratejisi: dört katman
 
