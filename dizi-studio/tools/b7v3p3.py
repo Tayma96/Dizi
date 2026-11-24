@@ -132,7 +132,7 @@ SALON = {"view": "salon", "gece": True, "isik": 0, "titre": 2.5, "yukari": 270, 
 # ------------------------------------------------------------------ ANTRE (kapı 380-720 x, 470-1600 y; kanat önde)
 AE = [[ant, 1000, 1760, 1180], [ant + 0.7, 590, 1715, 1130], [ant + 1.05, 590, 1715, 1130], [ant + 1.55, 560, 1580, 980], [ant + 1.9, 640, 1560, 960],
       [ant + 2.15, 800, 1560, 960]]
-ANTRE = {"view": "antre", "gece": True, "isik": 0, "titre": 2.5, "eceId": [[0, "ece_sivil"]],
+ANTRE = {"view": "antre", "gece": True, "kanatOnde": ant + 1.6, "isik": 0, "titre": 2.5, "eceId": [[0, "ece_sivil"]],
          "ece": {"yer": AE, "yuru": [[ant, ant + 0.7], [ant + 1.05, ant + 2.2]], "dogalKol": True, "onKol": True,
                  "elR": [[ant + 0.6, 650, 1250], [ant + 0.75, 668, 1060], [ant + 1.0, 668, 1060], [ant + 1.15, 600, 1250]], "elRara": [[ant + 0.6, ant + 1.2]],
                  "duygu": [[0, "mutlu"], [ant + 1.3, "korkmus"], [ant + 1.45, "mutlu"]], "yanak": [[0, 0.7], [ant + 0.8, 0]],

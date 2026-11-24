@@ -23,7 +23,8 @@ SIRA = [
     ("S2", "ece_ev", "Günlük bu kadar çalışsam 1 haftalık maaşım 1 yıllık maaşım yapıyo olummmm", "S2b_01", 0.25),
     ("MASKE", None, None, None, 1.25),
     ("S3", "ece_ev", "Gidip Sabri abiye olanları bir sorayım en iyisi", "S3b_01", 0.25),
-    ("CIK", None, None, None, 2.2),
+    ("CIK", None, None, None, 1.5),
+    ("CIK2", None, None, None, 0.75),
 ]
 T, t = {}, 0.0
 for ad, kim, metin, tk, gap in SIRA:
@@ -109,18 +110,20 @@ cam.kes(s3, 540, 880, 1.45).it(ck, 540, 870, 1.55)               # karar
 cam.kes(ck, 540, 1060, 1.12).it(SON, 540, 1060, 1.15)            # çıkış: boş ayna, musluk
 
 SFX = {
-    "GIR": [{"name": "efekt/ayak_sesleri", "at": 0.0, "volume": 0.25}, {"name": "efekt/el_yuz_yikama", "at": 0.75, "volume": 0.25}],
+    "GIR": [{"name": "efekt/el_terlik_surume", "at": 0.0, "volume": 0.3, "sure": 0.9}],
     "SIV": [{"name": "efekt/ic_cekme", "at": 0.8, "volume": 0.6}],
-    "YIKA": [{"name": "efekt/el_yuz_yikama", "at": 0.2, "volume": 0.7}, {"name": "efekt/el_tukurme", "at": 1.55, "volume": 0.6}],
-    "DUR": [{"name": "efekt/tik", "at": 0.25, "volume": 0.2}, {"name": "efekt/tik", "at": 0.8, "volume": 0.18}],
-    "S2": [{"name": "efekt/el_kaching", "at": OL - s2, "volume": 0.3}],
-    "CIK": [{"name": "efekt/ayak_sesleri", "at": 0.1, "volume": 0.25}, {"name": "efekt/fincan_tikirti", "at": 1.5, "volume": 0.35},
-            {"name": "efekt/tezgah_carpma", "at": 1.9, "volume": 0.3}],
+    "YIKA": [{"name": "efekt/el_yuz_yikama", "at": 0.0, "volume": 0.5, "kirp": 0.3, "sure": 2.0}, {"name": "efekt/el_su_tukurme", "at": 1.42, "volume": 0.5}],
+    "S1": [{"name": "efekt/el_damla", "at": round(WI("S1", 7) - s1 + 0.45, 2), "volume": 0.3}],
+    "DUR": [{"name": "efekt/el_damla", "at": 0.1, "volume": 0.4}, {"name": "efekt/el_damla", "at": 0.9, "volume": 0.4}],
+    "S2": [{"name": "efekt/el_kaching", "at": round(OL - s2 - 0.1, 2), "volume": 0.45}],
+    "MASKE": [{"name": "efekt/b7_tabak_uzak", "at": 0.4, "volume": 0.6}],
+    "CIK": [{"name": "efekt/el_terlik_surume", "at": 0.05, "volume": 0.25, "sure": 1.0}, {"name": "efekt/b7_musluk_kapat", "at": 1.3, "volume": 0.6}],
+    "CIK2": [{"name": "efekt/b7_tabak_uzak", "at": 0.35, "volume": 0.8}],
 }
 
 
 def vuruslar():
-    V = []
+    gr = {"a": [], "b": [], "c": []}
     for ad, kim, metin, tk, gap in SIRA:
         ek = b7(T[ad], cam.k, ORT)
         if kim:
@@ -129,13 +132,19 @@ def vuruslar():
             b = {"type": "insert", "dur": round(gap, 3), **ek}
         if ad in SFX:
             b["sfx"] = SFX[ad]
-        V.append(b)
-    return V
+        gr["a" if T[ad] < s2 else "c" if ad == "CIK2" else "b"].append(b)
+    return gr
 
 
 if __name__ == "__main__":
-    beats = vuruslar()
-    sc = {"id": "a", "set": "banyo_ayna", "time": "gece", "title": "Ayna", "transition": "kesme", "cast": {},
-          "music": {"name": "muzik/banyo_komik", "volume": 0.12}, "ambience": {"name": "ortam/oda_tonu", "volume": 0.3}, "beats": beats}
-    yaz("724-07-p2", "Bölüm 7 · Parça 2", [sc], M)
+    g = vuruslar()
+    amb = {"name": "ortam/b7_banyo_aksam", "volume": 0.5}
+    su = {"name": "ortam/b7_musluk_dongu", "volume": 0.45}
+    ortak = {"set": "banyo_ayna", "time": "gece", "transition": "kesme", "cast": {}, "ambience": amb}
+    sahneler = [
+        {"id": "a", "title": "Ayna", **ortak, "ambience2": su, "beats": g["a"]},
+        {"id": "b", "title": "Hesap", **ortak, "ambience2": su, "music": {"name": "muzik/b7_sofra_komik", "volume": 0.15, "from": 0}, "beats": g["b"]},
+        {"id": "c", "title": "Çıkış", **ortak, "beats": g["c"]},
+    ]
+    yaz("724-07-p2", "Bölüm 7 · Parça 2", sahneler, M)
     print(f"P2 toplam {SON:.2f} sn", {k: round(v, 2) for k, v in T.items()}, "olum", round(OL, 2))

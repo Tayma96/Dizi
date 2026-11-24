@@ -167,6 +167,16 @@ Kontrol: `Jestler` kompozisyonu.
   - `donusum_yuz`, `donusum_govde`, `bocek_dev`, `bocek_yakin` (text[0]: zaman kayması)
   - `ece_yakin` (text: duygu1, duygu2, geçiş sn, bakışX, solgunluk, ek: `hik<sn>` | `ter` | `goz`)
   - Saydam ön plan katmanları: `ece_sirt` (text[0]: baş açısı), `sabri_omuz`, `bocek_golge`
+- **7/24 B7 elle kurgulanmış sahne `b7_banyo` (`engine/Inserts16.tsx`; görünüm `view`: kapı | `ayna` | `salon` | `antre`):**
+  - Işık: `gece: true` → tavan lambası anahtar ışık (sıcak), soğuk gölgeler (multiply), kapı/pencere sızıntıları, sıcak tepe-soğuk taban renk; `golgeK`, `renkK` ayarı.
+  - Kollar: karakterde `onKol: true` → el gövdeye yakınsa dirsek HER ZAMAN aşağıda, gövdenin yanında (kısaltılmış üst kol; V/U kol yok); uzak hedefte `dogalKol` IK.
+  - Karakter alanları (ek): `jest` [[t, Gesture]], `ter` [[t0,t1]], `solgun`, `kulak` [[t, 0..1]] (kızaran kulak), `cepDeste` [[t, 0|1]] (hırka cebinde deste), `kafada` [[t, eşya]] (başa düşen eşya).
+  - Eşyalar (`tutL/tutR`, `ucan`): `deste`, `para`, `corap`, `gomlek`, `kot`, `pijama`, `pantolon`, `tabak`, `zeytin`, `parmak` (anten), `isaret` (dik işaret parmağı), `iki` (iki parmak).
+  - Sahne alanları (ek): `eceKirp` [[t0,t1,x1,y1,x2,y2]] (Ece kapı boşluğuna kırpılır: kapının arkasında), `golge` (koridorda yaklaşan gölge), `pervazEl` (pervazı kavrayan parmaklar), `bocek` {yol, t0, ez, s} (küçük hamamböceği; ezildikten sonra anten seğirir), `ek` [{k, tx, a, b, f}] (vuruşun İÇİNDE tam ekran yakın ek: herhangi bir 11/14/15/17 eki ya da iç içe `b7_banyo`; `f` = CSS filtresi, ör. sepya hayal), `flas`, `aynala` (ayna yansıması yatay ters), `musEl` + `musElAra` (aynada gerçek el musluğu kapatır), `sahanlik` (antre otomatik ışığı), `kapiAlti` (kapalı kapının altından ışık), `kanatOnde` (sayı: o andan sonra kanat önde), `tabak1`/`tabak2`/`zeytinAl` (sofra).
+  - Setler: `sets/banyo724.tsx` (kapı görünümü x −400..1580 uzatıldı, gece pencere), `sets/ev724.tsx` (salon, antre).
+- **B7 yakın ekleri (`engine/Inserts17.tsx`):** `b7_ez` (alçak zemin: böcek koşar, Ece'nin ayağı havaya, terlik iner; text[0] JSON {ez}), `b7_bant` (destenin bandı çevrilir, kırmızı "7/24 MARKET" damgası).
+- **Efekt kırpma:** vuruş `sfx` öğesinde `kirp` (baştan atlanan sn) ve `sure` (en uzun sn).
+- **Kontrol aracı:** `node tools/kareler.mjs <bölüm> <parça> <çıktı.png> <sn...> [--yeniden] [--olcek=0.25] [--sutun=8]` (tek paketle çok kare + şerit; kod değişince `--yeniden`). Üreticiler: `tools/b7v3p1.py`, `b7v3p2.py`, `b7v3p3.py` (ortak: `b7v3_ortak.py`).
 - **Dev hamamböceği:** `engine/bocek.tsx` (`DevBocek`, `BocekKafa`, `Bacak`, `Anten`). Kontrol kompozisyonu: `Bocek`. Örnekler: `B5OrnekYuz`, `B5OrnekGovde`, `B5OrnekOmuz`, `B5OrnekDev`, `B5OrnekYakin`.
 
 ### Kırmızı Düğme eklemeleri (`kd_*`; hepsi isteğe bağlı, eski bölümleri değiştirmez)

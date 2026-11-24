@@ -96,7 +96,7 @@ AY, AS = 1880, 1290
 EX0, EX1, EY, ES = 1000, 1050, 1880, 1300   # Ece: güvenli mesafe, Y1'de bir adım geri
 S = ES / 1000
 YUZ_Y = EY - 765 * S             # Ece yüz merkezi y (≈886)
-KULAK = lambda ex, pu=0: (ex - 90 * S, EY - 742 * S - pu)
+KULAK = lambda ex, pu=0: (ex - 90 * S - 8, EY - 742 * S + 13 - pu)   # baş eğimi -6° ile
 AOMR = lambda ax: (ax + 72 * AS / 1000, AY - 628 * AS / 1000)   # annenin sağ omzu
 CEP = lambda ax: (ax + 58 * AS / 1000, AY - 340 * AS / 1000)      # annenin hırka sağ cebi (rig 258,640)
 PU = 42   # parmak ucu (kulak çekilince)
@@ -199,7 +199,7 @@ ECE = {
              [W("A04", 0.12), 6], [W("A04", 0.4), 2], [W("A04", 0.95), 7], [W("A04", 1.25), 2], [W("A04", 1.75), 8], [W("A04", 2.1), 2],
              [e1, 0], [e1 + 1.0, -4], [e1 + 2.6, 4], [a5, 0], [y1, 0], [y1 + 0.4, 6], [a6, 0], [e2, -6], [e2 + 1.6, 0],
              [e5, 0], [a7, -10], [e6, -12], [e7, -12], [W("E07", 2.1), -16], [a8, -16], [a8 + 0.3, 0], [ck, 0], [ck + 0.3, 6]],
-    "egil": [[0, 0], [y1 + 0.3, 0], [y1 + 0.6, 3], [a6, 0], [e2, 0], [e2 + 0.5, -6], [W("E02", 1.75), -7], [W("E02", 2.0), 0]],
+    "egil": [[0, 0], [y1 + 0.3, 0], [y1 + 0.6, 3], [a6, 0], [e2, 0], [e2 + 0.5, -3], [W("E02", 1.75), -3], [W("E02", 2.0), 0]],
     "bak": [[0, -0.2, 0.3, -0.1], [g2 + 0.2, -0.75, 0.05, -0.45], [g3 + 0.5, -0.6, 0.35, -0.35], [g3 + 0.85, -0.6, 0.35, -0.35],      # desteye
             [g3 + 1.05, -0.9, -0.4, -0.5], [g3 + 1.3, -0.9, -0.4, -0.5], [g3 + 1.45, -0.7, 0.0, -0.4],                                       # sepetteki kota → anneye
             [W("A04", 2.7), -0.7, 0.0, -0.4], [e1, -0.7, 0.0, -0.4],
@@ -217,6 +217,11 @@ ECE = {
     "konus": [konus("E01", "E01a_01"), konus("E02", "E02b_01"), konus("E04", "E04b_01"), konus("E05", "E05a_01"), konus("E07", E07_TK)]
              + ([konus("Y1", Y1)] if Y1 else []) + ([konus("Y2", Y2)] if Y2 else []),
 }
+
+# kulak tutulurken (E05 sonu - A08 başı) Ece'nin başı dönmez ve eğimi sabit (-6°): kulak elin altında kalır
+_k0, _k1 = e5 + 0.05, a8 + 0.1
+ECE["bak"] = sirala([[t, lx, ly, (0 if _k0 <= t <= _k1 else yw)] for t, lx, ly, yw in ECE["bak"]] + [[_k0, -0.6, 0.0, 0], [_k1, -0.6, 0.0, 0]])
+ECE["tilt"] = sirala([[t, (-6 if _k0 <= t <= _k1 else v)] for t, v in ECE["tilt"]] + [[_k0, -6], [_k1, -6]])
 
 # böcek: makinenin altından çıkar, Ece'ye doğru koşar, annenin ayağının altında ezilir
 EZ = W("A05", 1.88)

@@ -313,9 +313,9 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
   const kulakK: React.ReactNode[] = [];
   if (kz > 0.02) {
     const tl = kf1(q.tilt, tg, 0);
-    const [kx, ky] = rot(rot([left + (110 + yaw * 18) * S, top - parmak + 238 * S], [left + 200 * S, top - parmak + 300 * S], tl), [piv[0], piv[1] - parmak], egil);
-    kulakK.push(<ellipse key="kz" cx={kx} cy={ky} rx={17 * S} ry={27 * S} fill="#e8302a" opacity={0.7 * kz} style={{ mixBlendMode: "multiply" }} />);
-    kulakK.push(<ellipse key="kz2" cx={kx - 2 * S} cy={ky - 4 * S} rx={8 * S} ry={12 * S} fill="#ff6a50" opacity={0.55 * kz} />);
+    const [kx, ky] = rot(rot([left + (104 + yaw * 18) * S, top - parmak + 210 * S], [left + 200 * S, top - parmak + 300 * S], tl), [piv[0], piv[1] - parmak], egil);
+    kulakK.push(<ellipse key="kz" cx={kx} cy={ky} rx={13 * S} ry={22 * S} fill="#e8302a" opacity={0.65 * kz} style={{ mixBlendMode: "multiply" }} />);
+    kulakK.push(<ellipse key="kz2" cx={kx - 2 * S} cy={ky - 4 * S} rx={6 * S} ry={9 * S} fill="#ff6a50" opacity={0.45 * kz} />);
   }
   // hırka cebinde deste (sağ cep, rig (262,640)): üst yarısı cepten görünür
   const cepte: React.ReactNode[] = [];
@@ -424,10 +424,13 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <linearGradient id="b7_pen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ffd08a" /><stop offset="1" stopColor="#ff9a5a" /></linearGradient>
             <filter id="b7_gbl"><feGaussianBlur stdDeviation="14" /></filter>
           </defs>
-          {antre ? <Ev724BG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={p.kanatOnde ?? true} /> : salon ? <Ev724SalonBG frame={f} odaKapi={kf1(p.odaKapi, tg, 0)} /> : <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} gece={gece} />}
+          {antre ? <Ev724BG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={typeof p.kanatOnde === "number" ? tg >= p.kanatOnde : (p.kanatOnde ?? true)} /> : salon ? <Ev724SalonBG frame={f} odaKapi={kf1(p.odaKapi, tg, 0)} /> : <Banyo724BG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={kf1(p.kapi, tg, ayna ? 0 : 1)} gece={gece} />}
           {/* antre: gece pencere + sahanlık (otomatik ışık kapalıyken karanlık) */}
           {antre && gece ? <g><rect x={884} y={624} width={142} height={212} fill="#1c2440" />{[[900, 660], [960, 700], [990, 790], [915, 780]].map(([wx, wy], i) => <rect key={i} x={wx} y={wy} width={12} height={10} fill="#ffcf70" opacity={0.6} />)}<path d="M 955 620 V 840 M 880 730 H 1030" stroke="#c8b890" strokeWidth={6} /></g> : null}
-          {antre && sah < 0.999 ? <rect x={380} y={470} width={340} height={1130} fill="#05060c" opacity={0.78 * (1 - sah)} /> : null}
+          {antre && sah < 0.999 && kf1(p.kapi, tg, 0) > 0.02 ? (() => {
+            const k = Math.min(1, kf1(p.kapi, tg, 0)), rx = Math.max(380, 720 - 340 * 0.85 * k - 120 * k);
+            return <rect x={rx} y={470} width={720 - rx} height={1130} fill="#05060c" opacity={0.78 * (1 - sah)} />;
+          })() : null}
           {/* koridorda gölge (Ece kapının arkasında yaklaşıyor) */}
           {gol && gol[1] > 0.01 && !ayna && !salon && !antre ? (
             <g clipPath="url(#b7_kapiKirp)" opacity={gol[1]}>
@@ -498,7 +501,7 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <path d="M 768 1702 Q 810 1650 860 1676 Q 910 1640 956 1702 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
             <path d="M 800 1702 Q 830 1664 880 1690" stroke="#7ab0d8" strokeWidth={26} strokeLinecap="round" fill="none" />
           </g> : null}
-          {antre ? <Ev724FG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={p.kanatOnde ?? true} gece={gece} /> : salon ? <Ev724SalonFG yukari={p.yukari ?? 270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} tabak1={tg >= (p.tabak1 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} gece={gece} />}
+          {antre ? <Ev724FG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={typeof p.kanatOnde === "number" ? tg >= p.kanatOnde : (p.kanatOnde ?? true)} gece={gece} /> : salon ? <Ev724SalonFG yukari={p.yukari ?? 270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} tabak1={tg >= (p.tabak1 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} gece={gece} />}
           {salon ? <>{yerde}{ucanlar}</> : null}
           {/* antre: kapalı kapının altından sızan sahanlık ışığı (kapiAlti 0..1) */}
           {/* musluk suyu (ayna görünümü, p.su [[t0,t1]]): bataryadan lavaboya akan su + sıçrama */}
