@@ -32,7 +32,9 @@
 - Render: `npx remotion render src/index.ts GKK-B1 out/<id>.mp4 --concurrency=3 --props='{"episodeId":"<id>","part":0}' --browser-executable=/opt/pw-browsers/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell`; ses −14 LUFS (`volume=(-14.6-I)dB,alimiter=limit=0.89`).
 - Kontrol: `B7Kare` kompozisyonu (still), saniyede 4-10 kare şeritler; render sonrası saniye saniye.
 
-## İş bölümü (bu gece)
+## İş bölümü (bu gece) — kullanıcı: "Alt ajanları sok devreye, sen yapma"
+İşin tamamını alt ajanlar yapar; ana oturum yalnız koordine eder.
 1. **Senarist yardımcısı:** üç parça için komik doğaçlama ve tepki planı (kim ne yapar, dinleyen ne tepki verir, sözsüz şakalar, gerekirse kısa yeni replikler). Rapor: `docs/diziler/724/raporlar/b7-senarist.md`.
-2. **Görüntü yönetmeni:** senaristin planıyla üç parçayı 6. Bölüm 1. Parça kalitesinde yeniden kur (ışık, kamera dili, oyunculuk, kollar, süreklilik); her sahneyi kontrol karelerle didik didik incele. Rapor: `docs/diziler/724/raporlar/b7-goruntu.md`.
-3. **Ana oturum (genel yönetmen):** yeni replik seslendirmesi, miks, render, birleştirme, son kontrol, sabah notu `docs/diziler/724/raporlar/b7-sabah.md` (doğaçlamaların listesi dahil).
+2. **Ses yönetmeni:** yeni replik seslendirmesi (eleven_v4, aynı sesler, toplam ≤ 3.000 kredi), Whisper, efekt/müzik/miks. Rapor: `docs/diziler/724/raporlar/b7-ses.md`.
+3. **Görüntü yönetmeni:** senaristin planıyla üç parçayı 6. Bölüm 1. Parça kalitesinde yeniden kurar (ışık, kamera dili, oyunculuk, kollar, süreklilik), kontrol kareleriyle didik didik inceler, render alır. Rapor: `docs/diziler/724/raporlar/b7-goruntu.md`.
+4. **Genel yönetmen:** son denetim, düzelttirme, birleştirme (+ yorum kartı, −14 LUFS) → `bolumler/724-07.mp4`; sabah notu `docs/diziler/724/raporlar/b7-sabah.md` (doğaçlamaların listesi dahil).
