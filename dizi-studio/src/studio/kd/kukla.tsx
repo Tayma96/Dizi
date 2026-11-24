@@ -61,11 +61,16 @@ export const aciDer = (a: P, b: P) => (Math.atan2(b[1] - a[1], b[0] - a[0]) * 18
 
 /* ---------------- 3B yerleştirme ---------------- */
 export type Yer =
-  | { tip: "dik"; o: V3; t1: V3 }
-  | { tip: "zemin"; o: V3; t1: V3; t2: V3; min?: number };
+  | { tip: "dik"; o: V3; t1: V3; cap?: [number, number] }
+  | { tip: "zemin"; o: V3; t1: V3; t2: V3; min?: number; cap?: [number, number] };
 
 /** Yerel çizim birimini ekrana taşıyan SVG matrisi; s = birim başına piksel (çizgi ölçeği için), z = derinlik. */
-export const yerlestir = (k: Kam, y: Yer): { tr: string; s: number; z: number; p: { x: number; y: number } } | null => {
+export const yerlestir = (k: Kam, y0: Yer): { tr: string; s: number; z: number; p: { x: number; y: number } } | null => {
+  // çapa: afin yaklaşım bu yerel noktada kurulur (yakın planda yüz gibi önemli bölge doğru izdüşsün)
+  const cap = y0.cap ?? [0, 0];
+  const t2d: V3 = y0.tip === "zemin" ? y0.t2 : [0, -1, 0];
+  const o: V3 = [y0.o[0] + (y0.t1[0] * cap[0] + t2d[0] * cap[1]) / U, y0.o[1] + (y0.t1[1] * cap[0] + t2d[1] * cap[1]) / U, y0.o[2] + (y0.t1[2] * cap[0] + t2d[2] * cap[1]) / U];
+  const y = { ...y0, o } as Yer;
   const p = proj(k, y.o);
   if (p.z < 0.12) return null;
   const e = 0.05;
@@ -89,7 +94,7 @@ export const yerlestir = (k: Kam, y: Yer): { tr: string; s: number; z: number; p
   }
   const s = Math.sqrt(Math.abs(c1[0] * c2[1] - c1[1] * c2[0]));
   const f = (n: number) => n.toFixed(5);
-  return { tr: `matrix(${f(c1[0])} ${f(c1[1])} ${f(c2[0])} ${f(c2[1])} ${p.x.toFixed(2)} ${p.y.toFixed(2)})`, s, z: p.z, p };
+  return { tr: `matrix(${f(c1[0])} ${f(c1[1])} ${f(c2[0])} ${f(c2[1])} ${p.x.toFixed(2)} ${p.y.toFixed(2)}) translate(${-cap[0]} ${-cap[1]})`, s, z: p.z, p };
 };
 
 /** Çizgi çarpanı: yakın planda çizgi incelir, genel planda kalınlaşır (ekranda 2-9 px aralığı). */

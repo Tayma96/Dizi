@@ -39,58 +39,67 @@ export type InfPoz = {
 
 export const INF_UYKU: InfPoz = { goz: 0, sik: 0, kas: 0, kasIc: 0, agiz: { ac: 0, yuv: 0 }, gul: 0, basDon: 0, basKalk: 0, bak: [0, 0], eller: 0 };
 
-const SAC_ARKA: P[] = [[0, -846], [132, -828], [228, -766], [282, -664], [292, -552], [272, -440], [236, -350], [176, -318], [120, -372], [0, -430], [-120, -372], [-176, -318], [-236, -350], [-272, -440], [-292, -552], [-282, -664], [-228, -766], [-132, -828]];
-const YUZ: P[] = [[0, -750], [62, -740], [100, -702], [113, -642], [109, -582], [96, -532], [68, -494], [32, -476], [0, -472], [-32, -476], [-68, -494], [-96, -532], [-109, -582], [-113, -642], [-100, -702], [-62, -740]];
+/* yere yayılmış saç kütlesi: dalgalı dış kenar (açı, yarıçap) */
+const SAC_YAY: P[] = new Array(30).fill(0).map((_, i) => {
+  const a = ((-205 + i * (230 / 29)) * Math.PI) / 180;
+  const r = 250 + Math.sin(i * 1.9) * 22 + Math.sin(i * 0.7) * 16 + (i % 2) * 10;
+  return [Math.cos(a) * r * 1.02, -590 + Math.sin(a) * r * 1.05] as P;
+}).concat([[150, -400], [0, -430], [-150, -400]] as P[]);
+/* tel çizgileri: [açı, boy, dalga] */
+const TEL: [number, number, number][] = new Array(26).fill(0).map((_, i) => [-200 + i * 8.6, 110 + ((i * 37) % 50), i * 0.9]);
+const YUZ: P[] = [[0, -752], [62, -742], [100, -704], [111, -646], [106, -592], [92, -544], [64, -500], [30, -474], [0, -466], [-30, -474], [-64, -500], [-92, -544], [-106, -592], [-111, -646], [-100, -704], [-62, -742]];
 const KAKUL: P[] = [[4, -752], [-40, -740], [-88, -706], [-118, -648], [-124, -584], [-112, -540], [-102, -590], [-88, -642], [-60, -690], [-20, -718]];
-const SWEAT: P[] = [[-62, -452], [-30, -432], [0, -428], [30, -432], [62, -452], [152, -440], [208, -400], [220, -300], [214, -160], [208, -40], [184, 24], [0, 34], [-184, 24], [-208, -40], [-214, -160], [-220, -300], [-208, -400], [-152, -440]];
+const SWEAT: P[] = [[-62, -452], [-30, -432], [0, -428], [30, -432], [62, -452], [140, -440], [184, -404], [194, -300], [190, -160], [186, -40], [166, 24], [0, 34], [-166, 24], [-186, -40], [-190, -160], [-194, -300], [-184, -404], [-140, -440]];
 const KALCA: P[] = [[-184, 10], [184, 10], [190, 120], [0, 150], [-190, 120]];
 
 const Goz: React.FC<{ s: 1 | -1; p: InfPoz; lw: number }> = ({ s, p, lw }) => {
-  const x = 48 * s, y = -612;
-  const g = p.goz, w = 30;
+  const x = 46 * s, y = -606;
+  const g = p.goz, w = 33;
   const id = `infg${s}`;
   const T = (pts: P[]): P[] => pts.map(([a, b]) => [x + a * s, y + b]);
+  const TW = (pts: PW[]): PW[] => pts.map(([a, b, c]) => [x + a * s, y + b, c]);
   return (
     <g>
       {/* lila far */}
-      <ellipse cx={x + 2 * s} cy={y - 14 - g * 4} rx={34} ry={14 + g * 3} fill={FAR} opacity={0.55} />
-      {/* dağılmış rimel: göz altından inen soluk mor lekeler (makyaj) */}
-      <path d={serit([[x - 8 * s, y + 14, 0], [x - 4 * s, y + 34, 6], [x - 10 * s, y + 52, 0]])} fill="#6a5a7a" opacity={0.28} />
-      <path d={serit([[x + 14 * s, y + 12, 0], [x + 20 * s, y + 28, 4], [x + 16 * s, y + 40, 0]])} fill="#6a5a7a" opacity={0.22} />
-      <ellipse cx={x} cy={y + 14} rx={26} ry={7} fill="#7a6a8a" opacity={0.18} />
+      <path d={egri(T([[-w - 4, -4], [-w * 0.3, -20 - g * 6], [w * 0.6, -19 - g * 6], [w + 10, -8], [w * 0.4, -10 - g * 4], [-w * 0.4, -10 - g * 4]]), true)} fill={FAR} opacity={0.5} />
+      {/* dağılmış rimel: göz altında soluk mor bulaşma (makyaj, gözyaşı değil) */}
+      <path d={serit(TW([[-w * 0.7, 14, 0], [-w * 0.1, 19, 7], [w * 0.7, 14, 0]]))} fill="#6a5a7a" opacity={0.2} />
+      <path d={serit(TW([[w * 0.5, 16, 0], [w * 0.62, 30, 4], [w * 0.55, 40, 0]]))} fill="#6a5a7a" opacity={0.16} />
       {g > 0.08 ? (
         <g>
           <defs><clipPath id={id}><path d={egri(T([[-w, 2], [-w * 0.4, -16 * g], [w * 0.5, -15 * g], [w + 6, -4], [w * 0.4, 10 * g], [-w * 0.4, 9 * g]]), true)} /></clipPath></defs>
           <path d={egri(T([[-w, 2], [-w * 0.4, -16 * g], [w * 0.5, -15 * g], [w + 6, -4], [w * 0.4, 10 * g], [-w * 0.4, 9 * g]]), true)} fill="#fbf7f4" />
           <g clipPath={`url(#${id})`}>
-            <circle cx={x + p.bak[0] * 8} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 11 : 14} fill="#6a4a2c" />
-            <circle cx={x + p.bak[0] * 8} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 4.5 : 7} fill="#1a100a" />
-            <circle cx={x + p.bak[0] * 8 - 5} cy={y - 8 + p.bak[1] * 5} r={4} fill="#fff" />
-            <circle cx={x + p.bak[0] * 8 + 5} cy={y + 3 + p.bak[1] * 5} r={1.8} fill="#fff" />
+            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 12 : 16} fill="#6a4a2c" />
+            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 12 : 16} fill="none" stroke="#3a2412" strokeWidth={2.4} />
+            <circle cx={x + p.bak[0] * 9} cy={y + 2 + p.bak[1] * 5} r={g > 1.1 ? 7 : 10} fill="#9a7450" opacity={0.6} />
+            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 4.5 : 7.5} fill="#1a100a" />
+            <circle cx={x + p.bak[0] * 9 - 5} cy={y - 8 + p.bak[1] * 5} r={4.5} fill="#fff" />
+            <circle cx={x + p.bak[0] * 9 + 6} cy={y + 4 + p.bak[1] * 5} r={2} fill="#fff" />
           </g>
           {/* eyeliner + kanat */}
-          <path d={serit(T([[-w - 2, 3, 2 * lw], [-w * 0.4, -16 * g - 1, 6 * lw], [w * 0.5, -15 * g - 1, 6.5 * lw], [w + 8, -6, 5 * lw], [w + 20, -16, 0]]))} fill="#1a1018" />
-          {[0, 1, 2].map((k) => <path key={k} d={serit(T([[w * 0.2 + k * 9, -15 * g, 2.4 * lw], [w * 0.3 + k * 11, -15 * g - 9, 0]]))} fill="#1a1018" />)}
-          <path d={serit(T([[-w * 0.6, 9 * g + 1, 0], [0, 10 * g + 2, 2 * lw], [w * 0.6, 8 * g, 0]]))} fill={TEN_C} opacity={0.5} />
+          <path d={serit(TW([[-w - 2, 3, 2 * lw], [-w * 0.4, -16 * g - 1, 6 * lw], [w * 0.5, -15 * g - 1, 6.5 * lw], [w + 8, -6, 5 * lw], [w + 20, -16, 0]]))} fill="#1a1018" />
+          {[0, 1, 2].map((k) => <path key={k} d={serit(TW([[w * 0.2 + k * 9, -15 * g, 2.4 * lw], [w * 0.3 + k * 11, -15 * g - 9, 0]]))} fill="#1a1018" />)}
+          <path d={serit(TW([[-w * 0.6, 9 * g + 1, 0], [0, 10 * g + 2, 2 * lw], [w * 0.6, 8 * g, 0]]))} fill={TEN_C} opacity={0.5} />
         </g>
       ) : (
         <g>
           {/* kapalı göz: aşağı kavis, kirpikler; sıkınca kırışır ve kısalır */}
-          <path d={serit(T([[-w, -2 - p.sik * 3, 0], [-w * 0.3, 6 - p.sik * 4, 5.5 * lw + p.sik * 2], [w * 0.4, 5 - p.sik * 4, 5.5 * lw + p.sik * 2], [w + 6, -4 - p.sik * 4, 0]]))} fill="#1a1018" />
-          {[0, 1, 2, 3].map((k) => <path key={k} d={serit(T([[-w * 0.4 + k * 12, 6 - p.sik * 4, 2 * lw], [-w * 0.45 + k * 13, 14 - p.sik * 3, 0]]))} fill="#1a1018" />)}
+          <path d={serit(TW([[-w, -2 - p.sik * 3, 0], [-w * 0.3, 6 - p.sik * 4, 5.5 * lw + p.sik * 2], [w * 0.4, 5 - p.sik * 4, 5.5 * lw + p.sik * 2], [w + 6, -4 - p.sik * 4, 0]]))} fill="#1a1018" />
+          {[0, 1, 2, 3].map((k) => <path key={k} d={serit(TW([[-w * 0.4 + k * 12, 6 - p.sik * 4, 2 * lw], [-w * 0.45 + k * 13, 14 - p.sik * 3, 0]]))} fill="#1a1018" />)}
           {p.sik > 0.05 ? (
             <g opacity={p.sik}>
-              <path d={serit(T([[w + 10, -10, 0], [w + 20, -6, 2.4 * lw], [w + 28, -2, 0]]))} fill={TEN_C} />
-              <path d={serit(T([[w + 10, 4, 0], [w + 20, 8, 2.4 * lw], [w + 26, 14, 0]]))} fill={TEN_C} />
-              <path d={serit(T([[-w * 0.6, -18, 0], [0, -22, 2.6 * lw], [w * 0.6, -18, 0]]))} fill={TEN_C} opacity={0.6} />
-              <path d={serit(T([[-w * 0.5, 16, 0], [0, 19, 2.2 * lw], [w * 0.5, 15, 0]]))} fill={TEN_C} opacity={0.5} />
+              <path d={serit(TW([[w + 10, -10, 0], [w + 20, -6, 2.4 * lw], [w + 28, -2, 0]]))} fill={TEN_C} />
+              <path d={serit(TW([[w + 10, 4, 0], [w + 20, 8, 2.4 * lw], [w + 26, 14, 0]]))} fill={TEN_C} />
+              <path d={serit(TW([[-w * 0.6, -18, 0], [0, -22, 2.6 * lw], [w * 0.6, -18, 0]]))} fill={TEN_C} opacity={0.6} />
+              <path d={serit(TW([[-w * 0.5, 16, 0], [0, 19, 2.2 * lw], [w * 0.5, 15, 0]]))} fill={TEN_C} opacity={0.5} />
             </g>
           ) : null}
         </g>
       )}
       {/* kaş */}
       <g transform={`translate(${x} ${y - 50 - p.kas * 10 - g * 4 + p.sik * 6})`}>
-        <path d={serit([[-28 * s, 4 + p.kas * 4 - p.kasIc * 10 + p.sik * 8, 3 * lw], [-6 * s, -2, 8 * lw], [30 * s, 4 - p.kas * 2, 1.5 * lw]])} fill="#4a2a1c" />
+        <path d={serit([[-26 * s, 6 + p.kas * 4 - p.kasIc * 12 + p.sik * 10, 2.5 * lw], [-4 * s, -3, 7 * lw], [20 * s, -2 - p.kas * 1, 5 * lw], [34 * s, 6 - p.kas * 2, 0]])} fill="#4a2a1c" />
       </g>
     </g>
   );
@@ -101,25 +110,30 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
   // kollar: omuz → dirsek → bilek (eller karında kenetli; korkuda göğse/yüze kalkar)
   const kol = (s: 1 | -1): PW[] => {
     const wx = 30 + (1 - e) * 26, wy = -130 - e * 300;
-    return [[-188 * s, -402, 108], [-205 * s, -300 + e * 20, 104], [-206 * s, -200 + e * 40, 92], [(-140 + e * 40) * s, (-160 - e * 120), 80], [-wx * s, wy, 70]];
+    return [[-170 * s, -404, 98], [-186 * s, -300 + e * 20, 94], [-186 * s, -200 + e * 40, 86], [(-126 + e * 40) * s, (-160 - e * 120), 76], [-wx * s, wy, 66]];
   };
   const kolSol = kol(1), kolSag = kol(-1);
   const elY = -122 - e * 300;
   return (
     <g transform={`translate(0 ${-p.basKalk * 0})`}>
       <ellipse cx={0} cy={-80} rx={330} ry={720} fill="#8aa0b0" opacity={0.1} />
-      {/* saç: yere yayılmış */}
+      {/* saç: yere yelpaze gibi yayılmış, dalgalı kenar; içten dışa kahve → pembe uç (ombre) */}
+      <defs>
+        <radialGradient id="inf-ombre" gradientUnits="userSpaceOnUse" cx={0} cy={-590} r={300}>
+          <stop offset="0.62" stopColor={SAC} />
+          <stop offset="0.8" stopColor="#7a3a4a" />
+          <stop offset="0.93" stopColor={SAC_UC} />
+        </radialGradient>
+      </defs>
       <g transform={`rotate(${p.basDon * 0.6} 0 -560)`}>
-        <Hacim id="inf-sac" pts={SAC_ARKA} dolgu={SAC} golge={SAC_G} cizgi={SAC_C} isik={{ ...IS, golge: 14 }} ince={2.4 * lw} kalin={7 * lw}>
-          {/* pembe uçlar */}
-          <path d={egri([[-292, -520], [-262, -420], [-236, -350], [-176, -318], [-120, -372], [-190, -380], [-250, -470]], true)} fill={SAC_UC} />
-          <path d={egri([[292, -520], [262, -420], [236, -350], [176, -318], [120, -372], [190, -380], [250, -470]], true)} fill={SAC_UC} />
-          {detay ? new Array(18).fill(0).map((_, i) => {
-            const a = (-160 + i * 20) * (Math.PI / 180);
-            const r0 = 140, r1 = 270 + (i % 3) * 14;
-            return <path key={i} d={serit([[Math.cos(a) * r0, -600 + Math.sin(a) * r0 * 1.2, 0], [Math.cos(a + 0.06) * (r0 + r1) / 2, -600 + Math.sin(a + 0.06) * (r0 + r1) * 0.6, 3 * lw], [Math.cos(a + 0.1) * r1, -600 + Math.sin(a + 0.1) * r1 * 1.2, 0]])} fill="#6a4232" opacity={0.6} />;
-          }) : null}
-        </Hacim>
+        <path d={egri(SAC_YAY, true)} fill="url(#inf-ombre)" stroke={SAC_C} strokeWidth={4 * lw} strokeLinejoin="round" />
+        {detay ? TEL.map(([a0, L, dal], i) => {
+          const pts: PW[] = [0, 0.33, 0.66, 1].map((t) => {
+            const r = ((a0 + Math.sin(t * 3 + dal) * 5) * Math.PI) / 180, R = 120 + t * L;
+            return [Math.cos(r) * R, -590 + Math.sin(r) * R, t === 0 || t === 1 ? 0 : 3.2 * lw];
+          });
+          return <path key={i} d={serit(pts)} fill={i % 3 === 0 ? "#8a5a48" : "#160a06"} opacity={i % 3 === 0 ? 0.55 : 0.45} />;
+        }) : null}
       </g>
       {/* ayakkabılar (burunlar tavana) */}
       {[-1, 1].map((s) => (
@@ -171,7 +185,7 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
       </g>
 
       {/* BAŞ */}
-      <g transform={`rotate(${p.basDon} 0 -560) translate(0 -560) scale(${1 + p.basKalk * 0.05}) translate(0 560)`}>
+      <g transform={`rotate(${p.basDon} 0 -560) translate(0 -470) scale(${1.08 + p.basKalk * 0.05}) translate(0 470)`}>
         {/* altın halka küpeler (yerde, kulakların yanında) */}
         <circle cx={-122} cy={-552} r={18} fill="none" stroke={ALTIN} strokeWidth={5 * lw} />
         <circle cx={122} cy={-552} r={18} fill="none" stroke={ALTIN} strokeWidth={5 * lw} />
@@ -184,13 +198,13 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
         <Goz s={1} p={p} lw={lw} />
         <Goz s={-1} p={p} lw={lw} />
         {/* burun */}
-        <path d={serit([[4, -600, 0], [8, -572, 3 * lw], [2, -556, 0]])} fill={TEN_C} opacity={0.55} />
-        <ellipse cx={-8} cy={-554} rx={4} ry={2.6} fill={TEN_C} opacity={0.7} />
-        <ellipse cx={10} cy={-554} rx={4} ry={2.6} fill={TEN_C} opacity={0.7} />
+        <path d={serit([[6, -598, 0], [10, -572, 3 * lw], [4, -556, 0]])} fill={TEN_C} opacity={0.5} />
+        <path d={serit([[-14, -556, 0], [-8, -550, 3 * lw], [0, -552, 2 * lw], [8, -550, 3 * lw], [14, -556, 0]])} fill={TEN_C} opacity={0.65} />
+        <ellipse cx={2} cy={-566} rx={6} ry={4} fill="#fff" opacity={0.5} />
         {p.sik > 0.3 ? <path d={serit([[-10, -590, 0], [0, -596, 2 * lw], [10, -590, 0]])} fill={TEN_C} opacity={0.5 * p.sik} /> : null}
         {/* taşmış ruj (köşede) */}
-        <ellipse cx={30} cy={-514} rx={12} ry={5} fill={RUJ} opacity={0.4} transform="rotate(20 30 -514)" />
-        <Agiz x={0} y={-520} w={48} ac={p.agiz.ac} yuv={p.agiz.yuv} gul={p.gul} dudak={RUJ} cizgi={TEN_C} lw={lw} />
+        <ellipse cx={24} cy={-506} rx={8} ry={3.5} fill={RUJ} opacity={0.3} transform="rotate(25 24 -506)" />
+        <Agiz x={0} y={-518} w={50} ac={p.agiz.ac} yuv={p.agiz.yuv} gul={p.gul} dudak={RUJ} cizgi={TEN_C} lw={lw} />
         {/* perde kakül + kalp tokalar */}
         {[1, -1].map((s) => (
           <g key={s} transform={`scale(${s} 1)`}>
