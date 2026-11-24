@@ -98,8 +98,9 @@ const Goz: React.FC<{ s: 1 | -1; p: InfPoz; lw: number }> = ({ s, p, lw }) => {
         </g>
       )}
       {/* kaş */}
-      <g transform={`translate(${x} ${y - 50 - p.kas * 10 - g * 4 + p.sik * 6})`}>
-        <path d={serit([[-26 * s, 6 + p.kas * 4 - p.kasIc * 12 + p.sik * 10, 2.5 * lw], [-4 * s, -3, 7 * lw], [20 * s, -2 - p.kas * 1, 5 * lw], [34 * s, 6 - p.kas * 2, 0]])} fill="#4a2a1c" />
+      <g transform={`translate(${x} ${y - 50 - Math.max(0, p.kas) * 10 - g * 4 + p.sik * 4})`}>
+        <path d={serit([[-26 * s, 6 - Math.min(0, p.kas) * 18 - p.kasIc * 14 + p.sik * 6, 2.5 * lw], [-4 * s, -3 - Math.min(0, p.kas) * 6, 7 * lw], [20 * s, -2 + Math.min(0, p.kas) * 2, 5 * lw], [34 * s, 6 - Math.max(0, p.kas) * 2, 0]])} fill="#4a2a1c" />
+        {p.kas < -0.2 ? <path d={serit([[-34 * s, 8, 0], [-38 * s, 22, 2.4 * lw], [-36 * s, 34, 0]])} fill={TEN_C} opacity={-p.kas * 0.6} /> : null}
       </g>
     </g>
   );
@@ -116,7 +117,6 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
   const elY = -122 - e * 300;
   return (
     <g transform={`translate(0 ${-p.basKalk * 0})`}>
-      <ellipse cx={0} cy={-80} rx={330} ry={720} fill="#8aa0b0" opacity={0.1} />
       {/* saç: yere yelpaze gibi yayılmış, dalgalı kenar; içten dışa kahve → pembe uç (ombre) */}
       <defs>
         <radialGradient id="inf-ombre" gradientUnits="userSpaceOnUse" cx={0} cy={-590} r={300}>
@@ -203,7 +203,6 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
         <ellipse cx={2} cy={-566} rx={6} ry={4} fill="#fff" opacity={0.5} />
         {p.sik > 0.3 ? <path d={serit([[-10, -590, 0], [0, -596, 2 * lw], [10, -590, 0]])} fill={TEN_C} opacity={0.5 * p.sik} /> : null}
         {/* taşmış ruj (köşede) */}
-        <ellipse cx={24} cy={-506} rx={8} ry={3.5} fill={RUJ} opacity={0.3} transform="rotate(25 24 -506)" />
         <Agiz x={0} y={-518} w={50} ac={p.agiz.ac} yuv={p.agiz.yuv} gul={p.gul} dudak={RUJ} cizgi={TEN_C} lw={lw} />
         {/* perde kakül + kalp tokalar */}
         {[1, -1].map((s) => (

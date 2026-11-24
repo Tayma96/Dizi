@@ -133,7 +133,7 @@ const infPoz = (f: number): InfPoz => {
   const ag = agizDurum(f, [R_AAA, R_NERDE]);
   const ciglik = f >= R_AAA.bas && f <= R_AAA.son;
   p.agiz = { ac: ag.ac * (ciglik ? 1.55 : 1), yuv: ag.yuv };
-  if (f >= 446) { p.eller = ara(f, 446, 456) * 0.75; p.basKalk = ara(f, 446, 451); }
+  if (f >= 446) { p.eller = ara(f, 446, 456) * 0.12; p.basKalk = ara(f, 446, 451); }
   if (f >= 463) { p.goz = 1.15; p.bak = [Math.sin(f / 3.5) * 0.9, 0.2]; p.kasIc = 1; }
   if (f >= P2.A7) { p.agiz = { ac: 0.25, yuv: 0.3 }; p.bak = [-0.6, 0]; }
   return p;
@@ -177,37 +177,38 @@ const bak = (k: { x: number; y: number; z: number }, t: V3) => ({
 });
 const kamHedef = (pos: V3, t: V3, f: number, cy = 960, extra: Partial<Kam> = {}): Kam => ({ x: pos[0], y: pos[1], z: pos[2], ...bak({ x: pos[0], y: pos[1], z: pos[2] }, t), f, cy, ...extra });
 
-const kamera = (f: number): { k: Kam; infCap?: boolean; gbCap?: [number, number] } => {
-  if (f < P2.A2) return { k: kamHedef([-3.72, 3.42, -1.72], [0.1, 0.0, 4.4], 760, 960) };
+const kamera = (f: number): { k: Kam; infCap?: boolean; gbCap?: [number, number]; hiz?: number } => {
+  if (f < P2.A2) return { k: kamHedef([-3.72, 3.42, -1.72], [0.1, -0.35, 4.4], 1150, 960) };
   if (f < P2.A3) {
     const u = (f - P2.A2) / (P2.A3 - P2.A2);
-    return { k: kamHedef([0.0, 1.6, -0.5 + 0.25 * u], [0.0, 0.0, 4.6], 880, 820) };
+    return { k: kamHedef([-0.2, 1.6, -0.5 + 0.25 * u], [-0.2, 0.0, 4.6], 860, 820) };
   }
-  if (f < P2.A4) return { k: kamHedef([-2.2, 0.4, 1.5], [-2.2, 0.3, 3.0], 1300, 600), gbCap: [-500, -200] };
+  if (f < P2.A4) return { k: kamHedef([-2.3, 0.4, 1.5], [-2.3, 0.3, 3.0], 1300, 600), gbCap: [-560, -200] };
   if (f < P2.A5) {
-    const u = ara(f, P2.A4 + 4, P2.A4 + 64);
+    // horlamaya motive kayma: önce horlayan göbekli, sonra hızlı ama yumuşak kayma, kızın yüzüne kilitlenir
+    const u = ara(f, P2.A4 + 16, P2.A4 + 44);
     const a = kamHedef([-0.35, 0.82, 1.25], [-1.85, 0.25, 3.0], 1000, 860);
-    const b = kamHedef([1.4, 0.98, 3.0], [1.4, 0.15, 3.47], 1950, 700);
+    const b = kamHedef([1.4, 0.98, 3.0], [1.4, 0.15, 3.47], 2350, 690);
     const d = salin(f, 0.5);
-    return { k: { x: mix(a.x, b.x, u), y: mix(a.y, b.y, u), z: mix(a.z, b.z, u), yaw: mix(a.yaw, b.yaw, u), pitch: mix(a.pitch, b.pitch, u), f: mix(a.f, b.f, u), cy: mix(a.cy ?? 960, b.cy ?? 960, u), sx: d.x, sy: d.y }, infCap: u > 0.3 };
+    return { k: { x: mix(a.x, b.x, u), y: mix(a.y, b.y, u), z: mix(a.z, b.z, u), yaw: mix(a.yaw, b.yaw, u), pitch: mix(a.pitch, b.pitch, u), f: mix(a.f, b.f, u * u), cy: mix(a.cy ?? 960, b.cy ?? 960, u), sx: d.x, sy: d.y }, infCap: u > 0.3, hiz: f > P2.A4 + 16 && f < P2.A4 + 44 ? Math.sin(((f - P2.A4 - 16) / 28) * Math.PI) : 0 };
   }
   if (f < P2.A6) {
     const u = (f - P2.A5) / (P2.A6 - P2.A5);
-    return { k: kamHedef([1.92, 0.36, 4.18 + 0.14 * u], [1.92, 0.24, 5.5], 1380, 640) };
+    return { k: kamHedef([2.22, 0.36, 4.22 + 0.12 * u], [2.22, 0.24, 5.5], 1150, 620) };
   }
   if (f < P2.A7) {
     const g = f >= R_AAA.bas ? 14 * Math.exp(-(f - R_AAA.bas) / 7) + 3 : 0;
     const s = sars(f, g), d = salin(f, 0.6);
-    return { k: { ...kamHedef([1.4, 0.98, 3.04], [1.4, 0.15, 3.47], 2050, 690), sx: s.x + d.x, sy: s.y + d.y }, infCap: true };
+    return { k: { ...kamHedef([1.4, 0.98, 3.04], [1.4, 0.15, 3.47], 2400, 690), sx: s.x + d.x, sy: s.y + d.y }, infCap: true };
   }
   if (f < P2.A8) {
     const g = 16 * Math.exp(-Math.max(0, f - P2.IRK) / 5) * (f >= P2.IRK ? 1 : 0.2);
     const s = sars(f, g);
-    return { k: { ...kamHedef([0.15, 1.5, -1.15], [0.1, 0.3, 4.3], 640, 900), sx: s.x, sy: s.y } };
+    return { k: { ...kamHedef([-0.2, 1.45, -1.0], [-0.2, 0.3, 4.3], 880, 860), sx: s.x, sy: s.y } };
   }
   if (f < P2.A9) {
     const d = salin(f, 1.6, 3);
-    return { k: { ...kamHedef([1.2, 0.98, 4.05], [1.45, 0.8, 5.45], 1250, 860), sx: d.x, sy: d.y } };
+    return { k: { ...kamHedef([1.22, 1.0, 4.05], [1.45, 0.9, 5.45], 1750, 900), sx: d.x, sy: d.y } };
   }
   return { k: kamHedef([-1.62, 0.16, 1.2], [-1.62, 0.3, 3.0], 900, 860), gbCap: [-200, -150] };
 };
@@ -228,7 +229,7 @@ const Sahne: React.FC<{ f: number; k: Kam; infCap?: boolean; gbCap?: [number, nu
   add(ciz(k, { tip: "zemin", o: INF_O, t1: [1, 0, 0], t2: [0, 0, -1], cap: infCap ? [0, -600] : undefined }, "inf", (lw) => <OdaInfluencer p={infPoz(f)} lw={lw} detay={lw < 2.5} />));
   add(ciz(k, { tip: "dik", o: TEYZE_O, t1: [1, 0, 0] }, "ty", (lw) => <OdaTeyze p={teyzePoz(f)} lw={lw} />));
   if (f < P2.FIRLA) {
-    add(ciz(k, { tip: "dik", o: KURYE_O, t1: [-1, 0, 0], cap: f >= P2.A5 && f < P2.A6 ? [-450, -150] : undefined }, "ky", (lw) => <KuryeYatan p={kuryePoz(f)} lw={lw} />));
+    add(ciz(k, { tip: "dik", o: KURYE_O, t1: [-1, 0, 0], cap: f >= P2.A5 && f < P2.A6 ? [-560, -150] : undefined }, "ky", (lw) => <KuryeYatan p={kuryePoz(f)} lw={lw} />));
   } else {
     // fırlama: gerilme → ezilme → oturma (squash & stretch)
     const a = f - P2.FIRLA;
@@ -290,7 +291,7 @@ export const KdP2Acilis: React.FC<{ kayit?: KayitAyar }> = ({ kayit = KAYIT }) =
   const kayitta = frame < P2.A2 + 4; // güvenlik kamerası görüntüsü (geçişin ilk kareleri dahil)
   // 15 fps takılma: kayıt görüntüsü her kareyi iki kez gösterir
   const f = kayitta ? Math.floor(frame / 2) * 2 : frame;
-  const { k, infCap, gbCap } = kamera(kayitta ? Math.min(f, P2.A2 - 1) : f);
+  const { k, infCap, gbCap, hiz = 0 } = kamera(kayitta ? Math.min(f, P2.A2 - 1) : f);
   // parazit yoğunluğu: açılış (siyahtan), kayıt → iç kamera geçişi
   const glitch = frame < 6 ? 1 - frame / 6 : frame >= 86 && frame < 90 ? 0.35 : frame >= 90 && frame < 94 ? 1 : frame >= 94 && frame < 100 ? 0.8 * (1 - (frame - 94) / 6) : 0;
   const kaynat = 1 + (Math.floor(frame / 3) % 4);
@@ -303,6 +304,7 @@ export const KdP2Acilis: React.FC<{ kayit?: KayitAyar }> = ({ kayit = KAYIT }) =
             <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves={2} seed={kaynat} result="n" />
             <feDisplacementMap in="SourceGraphic" in2="n" scale={2.4} xChannelSelector="R" yChannelSelector="G" />
           </filter>
+          <filter id="p2_kayma" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation={`${hiz * 22} ${hiz * 6}`} /></filter>
           <radialGradient id="p2_nabiz"><stop offset="0" stopColor="#ff2030" stopOpacity={0.35} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           <filter id="p2_cctv" x={0} y={0} width={1080} height={1920} filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse">
             <feImage href={BALIKGOZU} x={0} y={0} width={1080} height={1920} preserveAspectRatio="none" result="harita" />
@@ -326,7 +328,9 @@ export const KdP2Acilis: React.FC<{ kayit?: KayitAyar }> = ({ kayit = KAYIT }) =
         {siyah ? null : (
           <g filter={glitch > 0.02 ? "url(#p2_parazit)" : undefined}>
             <g filter={kayitta && frame < P2.A2 + (glitch > 0.5 ? 4 : 0) ? "url(#p2_cctv)" : undefined}>
-              <Sahne f={f} k={k} infCap={infCap} gbCap={gbCap} />
+              <g filter={hiz > 0.05 ? "url(#p2_kayma)" : undefined}>
+                <Sahne f={f} k={k} infCap={infCap} gbCap={gbCap} />
+              </g>
             </g>
           </g>
         )}

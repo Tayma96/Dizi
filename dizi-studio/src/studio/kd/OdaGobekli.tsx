@@ -145,7 +145,7 @@ const ProfilBas: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => {
 
 /* ---------------- el (yan): bilek (0,0), +x önkol yönünde ---------------- */
 const El: React.FC<{ id: string; bilek: P; aci: number; bukul: number; lw: number; arka?: boolean; ayna?: boolean }> = ({ id, bilek, aci, bukul, lw, arka, ayna }) => {
-  const d = arka ? TEN_G : TEN;
+  const d = arka ? "#dcc0b6" : TEN;
   const avuc: P[] = [[-6, -34], [40, -40], [80, -30], [98, -4], [90, 26], [50, 36], [4, 32]];
   return (
     <g transform={`translate(${bilek[0]} ${bilek[1]}) rotate(${aci}) scale(1 ${ayna ? -1 : 1})`}>
@@ -237,7 +237,7 @@ export const OdaGobekli: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => 
 
       {/* gövdenin arkasındaki kol (panikte göbeğin üstünden görünür) */}
       <g transform={tr}>
-        <Hacim id="gb-kolarka" pts={uzuv(kolArkaHat)} dolgu={TEN_G} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} />
+        <Hacim id="gb-kolarka" pts={uzuv(kolArkaHat)} dolgu="#dcc0b6" golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} />
         <El id="gb-elarka" bilek={jArka[2]} aci={aciDer(jArka[1], jArka[2])} bukul={0.3} lw={lw} arka />
       </g>
 
@@ -288,8 +288,12 @@ export const OdaGobekli: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => 
         {/* atletin kol oyuğu omzun üstünde */}
         <path d={serit([[S_ON[0] - 70, S_ON[1] - 40, 0], [S_ON[0] - 40, S_ON[1] - 66, 5 * lw], [S_ON[0] + 10, S_ON[1] - 70, 5 * lw], [S_ON[0] + 60, S_ON[1] - 48, 0]])} fill={ATLET} stroke={ATLET_C} strokeWidth={2.2 * lw} />
         <El id="gb-elon" bilek={jOn[2]} aci={aciDer(jOn[1], jOn[2]) + (p.bilek ?? 0)} bukul={p.kasi} lw={lw} ayna />
-        {p.ter ? [[-640, -330], [-700, -310], [-600, -360]].map(([x, y], i) => (
-          <path key={i} d={egri([[x, y - 18], [x + 8, y], [x, y + 8], [x - 8, y]], true)} fill="#cfeaff" stroke="#5a8ab0" strokeWidth={2 * lw} opacity={p.ter} />
+        {/* ter damlaları: alından/tepeden dışa fırlar (gözyaşı gibi okunmasın diye gözden uzakta) */}
+        {p.ter ? [[-930, -250, -30], [-870, -330, -10], [-960, -170, -50]].map(([x, y, a], i) => (
+          <g key={i} transform={`rotate(${a} ${x} ${y})`} opacity={p.ter}>
+            <path d={egri([[x, y - 22], [x + 10, y], [x, y + 10], [x - 10, y]], true)} fill="#e8f6ff" stroke="#5a8ab0" strokeWidth={2.4 * lw} />
+            <path d={serit([[x + 22, y - 8, 0], [x + 30, y - 14, 3 * lw], [x + 38, y - 20, 0]])} fill="#5a8ab0" />
+          </g>
         )) : null}
       </g>
 

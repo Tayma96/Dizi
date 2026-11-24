@@ -104,7 +104,7 @@ const GOVDE: P[] = [[-500, -46], [-420, -8], [-250, -2], [-80, -2], [40, -8], [8
 
 export const KuryeYatan: React.FC<{ p: KuryePoz; lw: number }> = ({ p, lw }) => {
   const S: P = [-420, -196];
-  const j = kemik(S, 16, 200, -146, 184);
+  const j = kemik(S, 16, 200, -166, 176);
   const kol = kemikHat(j, [112, 92, 76]);
   const diz: PW[] = [[80, -96, 150], [176, -206, 136], [258, -296, 118], [328, -190, 100], [386, -74, 88]];
   const arka: PW[] = [[110, -100, 140], [260, -86, 116], [420, -66, 90]];
@@ -217,7 +217,7 @@ export const KuryeComel: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number
   const sv = p.savun;
   const bob = Math.sin(nefes) * 6;
   // kollar: sağdaki (arka omuz) savunmada göğüs önüne kalkar; soldaki dizine dayanır
-  const jA = kemik([150, -720 + bob], 110 - sv * 10, 190, 120 + sv * 30, 170);
+  const jA = kemik([150, -720 + bob], 106 - sv * 6, 190, 92 + sv * 10, 170);
   const jB = kemik([-110, -730 + bob], 104, 200, -30, 170);
   return (
     <g>
