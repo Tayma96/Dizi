@@ -524,6 +524,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Young woman's nervous shaky breathing while tiptoeing slowly, trembling small gasps, very close, no words"
  },
+ "efekt/b8y4_kadin_kos": {
+  "file": "ses/efekt/b8y4_kadin_kos.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A young woman sprinting in panic on tiled floor, sneakers squeaking, ragged terrified breathing and whimpers, close"
+ },
+ "efekt/b8y4_kapi_pat": {
+  "file": "ses/efekt/b8y4_kapi_pat.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Heavy metal storage room door violently kicked open from inside, slamming hard against the wall with a loud bang, frame rattling, short echo"
+ },
  "efekt/b8y4_oksuruk": {
   "file": "ses/efekt/b8y4_oksuruk.mp3",
   "category": "efekt",
