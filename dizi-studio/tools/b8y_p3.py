@@ -50,10 +50,12 @@ YARATIK = [[0, 0.4, 2, 0], [5.15, 0.4, 6.75, 0], [5.9, 0.4, 6.75, 0], [6.6, 0.35
            [7.6, 0.3, 10.8, 9], [7.75, 0.3, 11.0, 9.5], [8.5, 0.3, 13.0, 14], [SURE, 0.3, 16.5, 22]]
 YKAFA = [[0, 0], [5.55, 0], [5.85, 38], [6.2, 38], [6.3, 8]]
 YSEG = [[0, 0], [6.3, 0], [6.35, 1], [6.6, 0], [7.6, 0], [7.65, 1], [7.85, 0]]
+# doğaçlama (kullanıcı izni): başını yatırdıktan sonra dikey yarık ağız açılır, çığlık; koşarken kapanmaz
+YAGIZ = [[0, 0], [5.9, 0], [6.15, 1], [6.9, 0.6], [7.6, 0.9], [SURE, 0.8]]
 
 PRM = {"t0": 0, "kam": KAM, "sallan": SALLAN, "sars": SARS, "titreme": TITREME, "karart": KARART, "sac": SAC, "el": EL,
        "bacak": BACAK, "buk": BUK, "fov": FOV, "kalp": KALP, "kirmizi": KIRMIZI, "yaratik": YARATIK, "yaratikGor": [[0, 1]],
-       "yKafa": YKAFA, "ySeg": YSEG}
+       "yKafa": YKAFA, "ySeg": YSEG, "yAgiz": YAGIZ}
 
 
 def E(isim, t, vol=0.5, **kw):
@@ -68,7 +70,7 @@ SFX = [
        E("b8y3_yaratik", 4.15, 0.45),
        E("b8y3_donus", 4.58, 0.65), E("b8y3_sting", 4.8, 0.6),
        E("b8y3_kafa_cit", 5.6, 0.6),
-       E("kalp_atisi", 5.2, 0.45, sure=4.6),
+       E("kalp_atisi", 5.2, 0.45, sure=4.6), E("b8y3_ciglik", 5.95, 0.7),
        E("b8y3_surunme", 6.4, 0.75),
        E("b8y3_yaratik", 7.3, 0.6, kirp=1.0),
        E("b8y3_donus", 8.5, 0.6),

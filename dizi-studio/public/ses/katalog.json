@@ -433,6 +433,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Fast running footsteps of white sneakers on wet gritty asphalt in a narrow night alley, close, first person, quick rhythm, no voices"
  },
+ "efekt/b8y3_ciglik": {
+  "file": "ses/efekt/b8y3_ciglik.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Monstrous creature splits its jaw open and lets out a horrifying shrill inhuman shriek mixed with wet clicking and a deep rattle, echoing in a narrow alley"
+ },
  "efekt/b8y3_donus": {
   "file": "ses/efekt/b8y3_donus.mp3",
   "category": "efekt",

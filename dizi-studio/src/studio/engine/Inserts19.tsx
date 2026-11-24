@@ -101,7 +101,7 @@ const LAMBALAR: { x: number; z: number }[] = [];
 for (let i = 0; i < 16; i++) LAMBALAR.push({ x: i % 2 ? SAG - 0.25 : SOL + 0.25, z: -84 + i * 12 + (i % 3) * 1.5 });
 const MARKET_Z = 46;
 
-const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratikGor: number; marketFlas: number; egik: number; seg: number }> = ({ c, t, f, yaratik, yaratikGor, marketFlas, egik, seg }) => {
+const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratikGor: number; marketFlas: number; egik: number; seg: number; agiz: number }> = ({ c, t, f, yaratik, yaratikGor, marketFlas, egik, seg, agiz }) => {
   const parcalar: { z: number; el: React.ReactNode }[] = [];
   const ekle = (pts: V3[], renk: string, key: string, extra?: React.SVGProps<SVGPathElement>) => {
     const p = poly(c, pts);
@@ -199,7 +199,7 @@ const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratik
   if (yaratikGor > 0.01 && yc[2] > 0.5) {
     const [x, y] = proj(yc);
     const s = F / yc[2];
-    ya = <g transform={`translate(${x} ${y}) scale(${s})`} opacity={yaratikGor}><Yaratik ph={yaratik[2]} t={t} egik={egik} seg={seg} /></g>;
+    ya = <g transform={`translate(${x} ${y}) scale(${s})`} opacity={yaratikGor}><Yaratik ph={yaratik[2]} t={t} egik={egik} seg={seg} agiz={agiz} /></g>;
   }
 
   return (
@@ -214,54 +214,92 @@ const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratik
   );
 };
 
-/* ------------------------------------------------------------------ yaratık (metre; ayak tabanı = 0, yukarı = -y) */
-const Yaratik: React.FC<{ ph: number; t: number; egik?: number; seg?: number }> = ({ ph, t, egik = 0, seg = 0 }) => {
+/* ------------------------------------------------------------------ yaratık (metre; ayak tabanı = 0, yukarı = -y). Özgün tasarım:
+ * 3,5 m, sıska; dizleri GERİYE kırılan bacaklar, boğumlu eklemler; kaburga ve omurga derinin altından belli;
+ * fazladan eklemli, yere sarkan kollar, asfaltta sürünen iğne pençeler; omur omur uzun boyun;
+ * çatlak kemik beyazı uzun kafa: iki derin göz çukuru + altında küçük siyah göz kümesi; alından çeneye DİKEY YARIK ağız
+ * (agiz 0..1 açılır: içi koyu kırmızı, kenarlarında iğne dişler, sarkan salya). */
+const Yaratik: React.FC<{ ph: number; t: number; egik?: number; seg?: number; agiz?: number }> = ({ ph, t, egik = 0, seg = 0, agiz = 0 }) => {
   const a = Math.sin(ph), b = Math.cos(ph);
-  const sarsil = Math.sin(t * 23) * (Math.sin(t * 1.7) > 0.85 ? 0.08 : 0) + seg * 0.06 * Math.sin(t * 41);       // ara ara kafa seğirmesi
+  const sarsil = Math.sin(t * 23) * (Math.sin(t * 1.7) > 0.85 ? 0.08 : 0) + seg * 0.06 * Math.sin(t * 41);
+  const DERI = "#24232a", DERI2 = "#3a3842", KENAR = "#c89060", KEMIK = "#d9d2c0";
+  const eklem = (x: number, y: number, r: number) => <circle cx={x} cy={y} r={r} fill={DERI2} stroke="#0a090c" strokeWidth={0.015} />;
   const bacak = (s: number) => {
     const k = s * a;
-    const kalca: [number, number] = [s * 0.12, -1.75];
-    const diz: [number, number] = [s * 0.16 + 0.22 * k, -0.95 + 0.08 * Math.abs(k)];
-    const ayak: [number, number] = [s * 0.14 + 0.32 * k, -0.02 - 0.12 * Math.max(0, s * b)];
-    return <path d={`M ${kalca[0]} ${kalca[1]} L ${diz[0]} ${diz[1]} L ${ayak[0]} ${ayak[1]} l ${0.16 * s} 0.02`} stroke="#16141a" strokeWidth={0.075} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
-  };
-  const kol = (s: number) => {
-    const k = -s * a;
-    const omuz: [number, number] = [s * 0.2, -2.85];
-    const dirsek: [number, number] = [s * 0.42 + 0.12 * k, -2.05];
-    const bilek: [number, number] = [s * 0.36 + 0.28 * k, -1.2];
-    const parmak = [0, 1, 2, 3].map((i) => `M ${bilek[0]} ${bilek[1]} q ${s * (0.02 + i * 0.03)} 0.2 ${s * (0.04 + i * 0.04)} ${0.42 - i * 0.03}`).join(" ");
+    const kalca: [number, number] = [s * 0.11, -1.8];
+    const diz: [number, number] = [s * 0.13 - 0.2 + 0.18 * k, -1.08 + 0.06 * Math.abs(k)];     // diz GERİYE kırık
+    const bilek: [number, number] = [s * 0.12 + 0.12 + 0.3 * k, -0.32 - 0.1 * Math.max(0, s * b)];
+    const ayak: [number, number] = [bilek[0] + 0.06, -0.02];
     return (
       <g>
-        <path d={`M ${omuz[0]} ${omuz[1]} L ${dirsek[0]} ${dirsek[1]} L ${bilek[0]} ${bilek[1]}`} stroke="#18161c" strokeWidth={0.06} fill="none" strokeLinecap="round" strokeLinejoin="round" />
-        <path d={parmak} stroke="#18161c" strokeWidth={0.025} fill="none" strokeLinecap="round" />
+        <path d={`M ${kalca[0]} ${kalca[1]} L ${diz[0]} ${diz[1]} L ${bilek[0]} ${bilek[1]} L ${ayak[0]} ${ayak[1]}`} stroke={DERI} strokeWidth={0.07} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        {eklem(diz[0], diz[1], 0.05)}
+        {eklem(bilek[0], bilek[1], 0.04)}
+        {[-1, 0, 1].map((i) => <path key={i} d={`M ${ayak[0]} ${ayak[1]} l ${0.12 + 0.03 * i} ${0.015 * i}`} stroke={DERI} strokeWidth={0.02} strokeLinecap="round" />)}
       </g>
     );
   };
+  const kol = (s: number) => {
+    const k = -s * a;
+    const omuz: [number, number] = [s * 0.21, -2.82];
+    const e1: [number, number] = [s * 0.4 + 0.08 * k, -2.25];
+    const e2: [number, number] = [s * 0.33 + 0.16 * k, -1.55];       // fazladan eklem
+    const bilek: [number, number] = [s * 0.42 + 0.24 * k, -0.85];
+    const parmak = [0, 1, 2, 3, 4].map((i) => {
+      const ux = s * (-0.05 + i * 0.035), uy = 0.78 - Math.abs(i - 2) * 0.05;
+      return `M ${bilek[0]} ${bilek[1]} q ${ux * 0.5} ${uy * 0.5} ${ux} ${uy}`;
+    }).join(" ");
+    return (
+      <g>
+        <path d={`M ${omuz[0]} ${omuz[1]} L ${e1[0]} ${e1[1]} L ${e2[0]} ${e2[1]} L ${bilek[0]} ${bilek[1]}`} stroke={DERI} strokeWidth={0.055} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        {eklem(e1[0], e1[1], 0.04)}
+        {eklem(e2[0], e2[1], 0.035)}
+        <path d={parmak} stroke="#121116" strokeWidth={0.022} fill="none" strokeLinecap="round" />
+        <path d={parmak} stroke={KEMIK} strokeWidth={0.006} fill="none" strokeLinecap="round" opacity={0.5} />
+      </g>
+    );
+  };
+  const ac = Math.max(0, Math.min(1, agiz));
   return (
     <g>
-      <ellipse cx={0} cy={0} rx={0.55} ry={0.08} fill="#000" opacity={0.45} />
+      <ellipse cx={0} cy={0} rx={0.7} ry={0.09} fill="#000" opacity={0.5} />
       {bacak(-1)}
       {bacak(1)}
-      {/* gövde: dar, uzun, kaburgalı; hafif öne kambur */}
-      <path d="M -0.16 -1.72 Q -0.24 -2.3 -0.26 -2.9 Q -0.05 -3.05 0.22 -2.92 Q 0.22 -2.3 0.14 -1.72 Z" fill="#1d1a20" stroke="#0a090c" strokeWidth={0.03} />
-      {[0, 1, 2, 3].map((i) => <path key={i} d={`M -0.2 ${-2.45 - i * 0.12} Q 0 ${-2.4 - i * 0.12} 0.18 ${-2.46 - i * 0.12}`} stroke="#3a343e" strokeWidth={0.018} fill="none" />)}
+      {/* leğen kemiği + sıska gövde, öne kambur */}
+      <path d="M -0.17 -1.72 Q 0 -1.62 0.17 -1.72 L 0.13 -1.9 Q 0 -1.84 -0.13 -1.9 Z" fill={DERI2} />
+      <path d="M -0.14 -1.86 Q -0.26 -2.35 -0.24 -2.9 Q -0.02 -3.06 0.24 -2.9 Q 0.25 -2.35 0.13 -1.86 Q 0 -1.8 -0.14 -1.86 Z" fill={DERI} stroke="#0a090c" strokeWidth={0.025} />
+      {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M -0.21 ${-2.3 - i * 0.1} Q 0 ${-2.22 - i * 0.1} 0.2 ${-2.3 - i * 0.1}`} stroke="#6a6470" strokeWidth={0.016} fill="none" />)}
+      <path d="M 0 -2.92 L 0 -1.9" stroke="#4a4852" strokeWidth={0.012} strokeDasharray="0.03 0.03" />
+      <path d="M -0.12 -2.08 q 0.12 0.05 0.24 0" stroke="#4a4852" strokeWidth={0.012} fill="none" />
       {kol(-1)}
       {kol(1)}
-      {/* boyun: uzun, öne eğik */}
-      <path d="M 0.02 -2.95 Q 0.06 -3.12 0.12 -3.22" stroke="#1d1a20" strokeWidth={0.07} fill="none" strokeLinecap="round" />
-      {/* kafa: kemik beyazı, uzun; çukur gözler, dikey yarık ağız + iğne dişler */}
-      <g transform={`translate(${0.13 + sarsil + egik * 0.004} -3.5) rotate(${8 + 30 * sarsil + egik})`}>
-        <path d="M -0.17 0.28 Q -0.24 -0.05 -0.16 -0.34 Q 0 -0.48 0.16 -0.34 Q 0.24 -0.05 0.17 0.28 Q 0 0.42 -0.17 0.28 Z" fill="#d6d0c2" stroke="#2a2420" strokeWidth={0.02} />
-        <path d="M -0.12 -0.12 q 0.05 -0.07 0.09 0 q -0.04 0.07 -0.09 0 Z M 0.03 -0.12 q 0.05 -0.07 0.09 0 q -0.04 0.07 -0.09 0 Z" fill="#060506" />
-        <circle cx={-0.075} cy={-0.115} r={0.008} fill="#f4f0e0" />
-        <circle cx={0.075} cy={-0.115} r={0.008} fill="#f4f0e0" />
-        <path d="M 0 -0.02 Q 0.035 0.14 0 0.34 Q -0.035 0.14 0 -0.02 Z" fill="#1a0808" />
-        {[0, 1, 2, 3, 4, 5].map((i) => <path key={i} d={`M ${i % 2 ? 0.02 : -0.02} ${0.02 + i * 0.05} l ${i % 2 ? -0.025 : 0.025} 0.01`} stroke="#efe8d8" strokeWidth={0.008} />)}
-        <path d="M -0.15 -0.26 q 0.05 0.06 0.02 0.14 M 0.12 0.05 q 0.03 0.08 -0.01 0.16" stroke="#8a8274" strokeWidth={0.008} fill="none" />
+      {/* omur omur boyun */}
+      {[0, 1, 2, 3, 4].map((i) => <circle key={i} cx={0.02 + i * 0.03} cy={-2.95 - i * 0.07} r={0.04} fill={DERI2} stroke="#0a090c" strokeWidth={0.01} />)}
+      {/* kafa */}
+      <g transform={`translate(${0.16 + sarsil + egik * 0.004} -3.5) rotate(${10 + 30 * sarsil + egik}) scale(1.4)`}>
+        <path d="M -0.18 0.3 Q -0.26 -0.05 -0.17 -0.38 Q 0 -0.52 0.17 -0.38 Q 0.26 -0.05 0.18 0.3 Q 0 0.44 -0.18 0.3 Z" fill={KEMIK} stroke="#2a2420" strokeWidth={0.02} />
+        {/* çatlaklar */}
+        <path d="M -0.14 -0.3 l 0.04 0.08 l -0.02 0.07 M 0.15 -0.18 l -0.05 0.06 l 0.02 0.08 M -0.16 0.12 l 0.05 0.03 M 0.12 0.2 l -0.03 0.07" stroke="#6a5a4a" strokeWidth={0.008} fill="none" />
+        {/* iki derin göz çukuru + küçük göz kümesi */}
+        <ellipse cx={-0.08} cy={-0.16} rx={0.055} ry={0.075} fill="#050405" />
+        <ellipse cx={0.08} cy={-0.16} rx={0.055} ry={0.075} fill="#050405" />
+        <circle cx={-0.075} cy={-0.15} r={0.007} fill="#ffefe0" />
+        <circle cx={0.085} cy={-0.15} r={0.007} fill="#ffefe0" />
+        {[[-0.12, -0.04, 0.016], [-0.09, 0.0, 0.012], [0.1, -0.03, 0.014], [0.13, 0.01, 0.011], [-0.13, 0.05, 0.01], [0.12, 0.07, 0.01]].map(([x, y, r], i) => (
+          <g key={i}><circle cx={x} cy={y} r={r} fill="#080607" /><circle cx={x + r * 0.3} cy={y - r * 0.3} r={r * 0.3} fill="#e8dccc" /></g>
+        ))}
+        {/* dikey yarık ağız: alından çeneye; açılınca baklava şeklinde, içi koyu kırmızı, iğne dişler */}
+        <path d={`M 0 -0.34 Q ${0.01 + 0.1 * ac} 0 0 0.4 Q ${-0.01 - 0.1 * ac} 0 0 -0.34 Z`} fill="#24060a" stroke="#120304" strokeWidth={0.01} />
+        {ac > 0.05 ? <path d={`M 0 -0.2 Q ${0.05 * ac} 0.03 0 0.28 Q ${-0.05 * ac} 0.03 0 -0.2 Z`} fill="#6a0c16" opacity={0.8} /> : null}
+        {new Array(12).fill(0).map((_, i) => {
+          const y = -0.28 + i * 0.055, gen = Math.sin(((y + 0.34) / 0.74) * Math.PI) * (0.01 + 0.1 * ac);
+          return <path key={i} d={`M ${i % 2 ? gen : -gen} ${y} l ${i % 2 ? -0.035 : 0.035} 0.012`} stroke="#f0e8d6" strokeWidth={0.009} strokeLinecap="round" />;
+        })}
+        {ac > 0.3 ? <path d={`M 0.01 0.38 q 0.01 ${0.12 * ac} -0.005 ${0.22 * ac}`} stroke="#c8d0d8" strokeWidth={0.006} fill="none" opacity={0.7} /> : null}
       </g>
       {/* lamba ışığından kenar parlaması */}
-      <path d="M 0.22 -2.92 Q 0.22 -2.3 0.14 -1.72" stroke="#c89060" strokeWidth={0.012} opacity={0.6} fill="none" />
+      <path d="M 0.24 -2.9 Q 0.25 -2.35 0.13 -1.86" stroke={KENAR} strokeWidth={0.012} opacity={0.6} fill="none" />
+      <path d="M 0.36 -3.75 Q 0.44 -3.55 0.38 -3.25" stroke={KENAR} strokeWidth={0.012} opacity={0.5} fill="none" />
     </g>
   );
 };
@@ -403,7 +441,7 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsHale"><stop offset="0" stopColor="#ffd08a" stopOpacity={0.9} /><stop offset="0.25" stopColor="#ff9a40" stopOpacity={0.35} /><stop offset="1" stopColor="#ff9a40" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} />
+          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />
         </svg>
       </AbsoluteFill>
       {/* sis/derinlik: ufukta soğuk sis bandı */}
