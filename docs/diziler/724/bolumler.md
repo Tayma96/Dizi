@@ -353,3 +353,8 @@ Mert: "kurallar, hemen kuralları ezberle" der.
 Mert kurallara bakar.
 - Not: P1'de "rüzgâr/cırcır YOK" kararı P1 içindi; P2'de kullanıcı bu sesi Ece'nin Sabri'ye kilitlendiği ana açıkça istiyor.
 - **P2 ses seçimi (kullanıcı, artifact yorumları):** E1b, E2a, S3b, E3b, E4a; tek çekimler S1a, S2a, S4a, E5a. Dosya: `public/voice/724-08y-p2/secim.json`.
+
+## Bölüm 8 (YENİ), Parça 3 (kullanıcının metni, 24 Kasım 2026; "çok önemli, derin işlenmeli"; 10'ar saniyelik bölümler hâlinde hazırlanır, kullanıcı her bölümü düzeltebilir)
+### 3p1b (ilk 10 sn), AYNEN:
+Fps kamera görüntüsü, loş karanlık bir ara sokakta koşan bir kadının gözünden izliyoruz. Sokak lambaları ara sokağı aydınlatıyor, kadın tüm gücüyle koşup yıkılmış harabe üstünde devrilmeye yüz tutmuş 7/24 yazısı olan bir market var ileride bir anda kadın düşüyor, ellerini görüyoruz yerde (elleri güzel çiz), fps kameradan hiç çıkmadan kadın başını arkasına çevirir arkasında aşırı korkunç slendermen gibi vücudu olan ama kafası çok korkutucu bir yaratık kovalıyordur biraz uzaktadır yaklaşıyordur, kadın götünün üstünde geri geri sürünüyor, o güzel sütun gibi bacaklarını görüyoruz kadının, altında da kırmızı mini etek var, bacaklarıyla kendini geri ite ite fps kameradan görelim ardından kamera tekrar döner kadın kalkar ve markete doğru koşar.
+- Not (Claude): yaratık özgün tasarlanır (Slender Man'in takım elbisesi/yüzsüz başı kopyalanmaz): çok uzun, aşırı ince, fazla eklemli gövde; kafa ayrı ve özgün korkutucu tasarım. Dosya öneki `724-08y-p3`.
