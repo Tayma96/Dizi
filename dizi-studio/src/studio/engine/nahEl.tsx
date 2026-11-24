@@ -42,9 +42,9 @@ export const nahGeo = (a: number, x: number, y: number, s: number, ileri = 0.55)
   else if (a <= 2) { L = lerp2(L0, L1, ss((a - 1) / 0.6)); lRot = lerp(-18, -70, ss((a - 1) / 0.8)); }
   else if (a <= 2.6) { const u = ss((a - 2) / 0.6); L = lerp2(L1, Wd, u); lRot = lerp(-70, -10, u); }
   else if (a < 3) { const u = Math.pow(cl((a - 2.6) / 0.4), 2); L = lerp2(Wd, Lg, u); lRot = lerp(-10, 0, u); }   // hızlanarak çarpar
-  else { L = Lg; lRot = lerp(0, 100, ss((a - 3) / 0.15)); }
+  else { L = Lg; lRot = lerp(0, 16, ss((a - 3) / 0.15)); }
   const kav = a >= 3.08;
-  const solBilek: V2 = kav ? [L[0] + 30 * rS, L[1] + 80 * rS] : a > 2 ? [L[0] + 22 * rS, L[1] + 92 * rS] : [L[0] + 40 * s, L[1] + 72 * s];
+  const solBilek: V2 = kav ? [L[0] + 6 * rS, L[1] + 100 * rS] : a > 2 ? [L[0] + 22 * rS, L[1] + 92 * rS] : [L[0] + 40 * s, L[1] + 72 * s];
   return { R, rS, sagBilek, L, lRot, solBilek, on, Lg, Wd };
 };
 
@@ -84,6 +84,8 @@ const SagElSirt: React.FC<{ c: number }> = ({ c }) => {
 /* ---------------- sağ yumruk ÖNDEN (seyirciye uzanmış): boğumlar yan yana, başparmak ucu işaret-orta arasında */
 const SagYumrukOn: React.FC = () => (
   <g>
+    {/* kullanıcı düzeltmesi: 180° çevrilip aynalandı (= dikey çevirme): boğumlar yukarıdan aşağı, başparmak ucu SAĞDA */}
+    <g transform="scale(1 -1)">
     {/* yumruğun gövdesi (avuç tarafı/üst) */}
     <path d="M -66 -46 Q -70 -70 -40 -72 L 46 -72 Q 74 -70 70 -40 L 70 40 Q 70 68 40 70 L -40 70 Q -70 68 -66 40 Z" fill={TEN} stroke={O} strokeWidth={6} />
     {/* başparmağın gövdesi: işaret parmağının altından dolanır (sağ kenardan) */}
@@ -96,14 +98,15 @@ const SagYumrukOn: React.FC = () => (
         <path d={`M ${cx - 9} ${30} q 9 6 18 0`} stroke={TEN_K} strokeWidth={3} fill="none" />
       </g>
     ))}
-    {/* başparmak UCU: işaret (sağ) ile orta parmağın ARASINDAN dışarı çıkar */}
-    <g transform="translate(32 -14)">
+    {/* üst boğum sırası (elin sırtı, yukarıda) */}
+    {[-48, -16, 16, 48].map((cx, i) => <path key={`k${i}`} d={`M ${cx - 12} -50 q 12 -10 24 0`} stroke={TEN_K} strokeWidth={3.5} fill="none" />)}
+    </g>
+    {/* başparmak UCU: işaret (sağ) ile orta parmağın ARASINDAN dışarı çıkar (tırnak kameraya) */}
+    <g transform="translate(32 -4)">
       <ellipse cx={0} cy={0} rx={17} ry={22} fill={TEN} stroke={O} strokeWidth={5} />
       <ellipse cx={0} cy={-6} rx={10} ry={11} fill={TIRNAK} stroke={TEN_K} strokeWidth={2} />
       <ellipse cx={-3} cy={-9} rx={3.5} ry={4} fill="#ffffff" opacity={0.7} />
     </g>
-    {/* üst boğum sırası (elin sırtı, yukarıda) */}
-    {[-48, -16, 16, 48].map((cx, i) => <path key={`k${i}`} d={`M ${cx - 12} -50 q 12 -10 24 0`} stroke={TEN_K} strokeWidth={3.5} fill="none" />)}
   </g>
 );
 
@@ -132,15 +135,21 @@ const SolElAcik: React.FC = () => (
 /* ---------------- sol el bileği kavrar (elin sırtı görünür, dört parmak önkolun üstünden dolanır) */
 const SolElKavra: React.FC = () => (
   <g>
-    <path d="M -10 -58 Q 44 -62 58 -20 Q 66 28 30 56 Q -14 64 -30 30 Q -40 -30 -10 -58 Z" fill={TEN} stroke={O} strokeWidth={6} />
-    {[-34, -10, 14, 36].map((yy, i) => (
+    {/* elin sırtı/avuç topuğu bileğin ALTINDA (önkol aşağıdan gelir) */}
+    <path d="M -62 34 Q -66 96 -30 118 Q 8 132 44 116 Q 70 96 62 34 Z" fill={TEN} stroke={O} strokeWidth={6} />
+    <path d="M -36 70 Q 0 84 38 70" stroke={TEN_K} strokeWidth={3} fill="none" />
+    {/* başparmak: bileğin ÖBÜR yanından üst kenara dolanır (ucu görünür) */}
+    <path d="M 72 30 Q 86 -40 52 -70" stroke={O} strokeWidth={30} strokeLinecap="round" fill="none" />
+    <path d="M 72 30 Q 86 -40 52 -70" stroke={TEN} strokeWidth={23} strokeLinecap="round" fill="none" />
+    {/* dört parmak bileğin önünden yukarı sarılır (içe kavisli), uçlar üst kenarda içe kıvrık */}
+    {[-45, -16, 13, 41].map((x, i) => (
       <g key={i}>
-        <path d={`M ${-6 - i * 2} ${yy} Q -52 ${yy - 6} -70 ${yy + 10}`} stroke={O} strokeWidth={29} strokeLinecap="round" fill="none" />
-        <path d={`M ${-6 - i * 2} ${yy} Q -52 ${yy - 6} -70 ${yy + 10}`} stroke={TEN} strokeWidth={22} strokeLinecap="round" fill="none" />
-        <ellipse cx={-70} cy={yy + 11} rx={7} ry={6} fill={TIRNAK} opacity={0.85} />
+        <path d={`M ${x} 52 Q ${x - 12} 0 ${x - 2} -50 Q ${x + 2} -64 ${x + 12} -58`} stroke={O} strokeWidth={31} strokeLinecap="round" fill="none" />
+        <path d={`M ${x} 52 Q ${x - 12} 0 ${x - 2} -50 Q ${x + 2} -64 ${x + 12} -58`} stroke={TEN} strokeWidth={24} strokeLinecap="round" fill="none" />
+        <path d={`M ${x - 13} 4 q 7 4 13 0`} stroke={TEN_K} strokeWidth={2.6} fill="none" />
+        <path d={`M ${x - 11} -30 q 6 3 11 0`} stroke={TEN_K} strokeWidth={2.4} fill="none" />
       </g>
     ))}
-    {[-18, 4, 26].map((yy, i) => <path key={`t${i}`} d={`M 10 ${yy - 30} L 40 ${yy - 24}`} stroke={TEN_K} strokeWidth={2.4} opacity={0.5} />)}
   </g>
 );
 

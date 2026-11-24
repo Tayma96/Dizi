@@ -51,6 +51,12 @@ Tarih: 24 Kasım 2026. Metin: `bolumler.md` "Bölüm 8, Parça 2" (AYNEN; yeni r
 - Kapanış: `muzik/b8_komik_buton`, 37,95'te, 0,3.
 - E1 çekimindeki 0,20-0,90 sn gülüş dudak senkronunda yoktu. O aralıkta Ece gözleri kapalı sırıtıyor (`gulen`) ve kıkırdama ağzı yapıyor (yeni opt-in karakter alanı `kikir`: bu aralıkta manifest ağzı yerine kıpır kıpır ağız).
 
+## Kullanıcı düzeltmesi 2 (nah, orta-yakın ve insert)
+- Sağ yumruk 180° çevrildi ve aynalandı. Boğumlar yukarıdan aşağı iniyor, kameraya bakan başparmak ucu yumruğun SAĞINDA, işaret ile orta parmağın arasında.
+- Sol el bileği gerçekten kavrıyor. Avuç bileğin altında, dört parmak içe kavisli ve bileğin önünden sarılı, uçları üst kenarda içe kıvrık. Başparmak bileğin öbür yanından dolanıyor. El önkol ekseninde duruyor.
+- İnsert ve orta-yakın plan aynı bileşeni kullanıyor; ikisi tutarlı.
+- Kontrol: 23,4-26,6 sn aralığı saniyede 6 kare.
+
 ## Yeni varlıklar / motor (hepsi opt-in; eski bölümleri değiştirmez)
 - `engine/nahEl.tsx`: `NahEller` (iki el, adım `a`, kollar/yenler, darbe ışınları, hız izi) ve `nahGeo` (bilek noktaları; kasa görünümünde Ece'nin rig kolları bunlara bağlanıyor).
 - `engine/Inserts18.tsx`:
