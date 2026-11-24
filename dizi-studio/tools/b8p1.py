@@ -37,21 +37,21 @@ METIN = {"R1": ("sabri", "geldin demek, hoş geldin"), "R2": ("ece_sivil", "abi 
 # (ad, replik|None, süre (insert) ya da boşluk (replik), sahne)
 SIRA = [
     ("DIS", None, 3.9, "d"),
-    ("CAM", None, 3.0, "i"),
-    ("KAPI", None, 2.7, "i"),
-    ("R1", "R1", 0.3, "i"),
-    ("VARIS", None, 0.7, "i"),
-    ("R2", "R2", 0.45, "i"),
-    ("R3", "R3", 0.2, "i"),
-    ("DAIRE", None, 1.3, "i"),
-    ("R4", "R4", 0.2, "i"),
-    ("MERAK", None, 1.25, "i"),
-    ("BIRLES", None, 1.45, "i"),
-    ("R5", "R5", 0.3, "i"),
-    ("R6", "R6", 0.45, "i"),
-    ("R7", "R7", 0.0, "i"),
-    ("SON", None, 1.7, "i"),
-    ("YUTKUN", None, 2.0, "i"),
+    ("CAM", None, 3.0, "i1"),
+    ("KAPI", None, 2.7, "i1"),
+    ("R1", "R1", 0.3, "i1"),
+    ("VARIS", None, 0.7, "i1"),
+    ("R2", "R2", 0.45, "i1"),
+    ("R3", "R3", 0.2, "i2"),
+    ("DAIRE", None, 1.3, "i3"),
+    ("R4", "R4", 0.2, "i3"),
+    ("MERAK", None, 1.25, "i3"),
+    ("BIRLES", None, 1.45, "i3"),
+    ("R5", "R5", 0.3, "i3"),
+    ("R6", "R6", 0.45, "i3"),
+    ("R7", "R7", 0.0, "i3"),
+    ("SON", None, 1.7, "i3"),
+    ("YUTKUN", None, 2.0, "i3"),
 ]
 T, DUR, fr = {}, {}, 0
 for ad, r, d, _ in SIRA:
@@ -211,10 +211,10 @@ def cizim_kur():
     # 3) ortak yaşam çizgisi: ortak noktadan sağa ("Bu da ortak" boyunca çizilir)
     l0, l1 = W("R5", "bu") - 0.05, W("R5", "yaşam", "end")
     bekle(b0 - 0.1, l0 - 0.02, MN, 0.2)
-    cizgi(egri_pts(MN, (560, 1308), (935, 1288), n=30, tit=1.2), l0, l1, w=10)
+    cizgi(egri_pts(MN, (540, 1308), (905, 1290), n=30, tit=1.2), l0, l1, w=10)
     # "çizgimiz": kalem çizginin üstünde geri kayar (vurgu, dokunmadan)
     tc = W("R5", "çizgimiz")
-    UC.extend([[round(tc, 3), 935, 1280, 0.15], [round(tc + 0.7, 3), 560, 1292, 0.15], [round(tc + 0.85, 3), 540, 1270, 0.6]])
+    UC.extend([[round(tc, 3), 905, 1282, 0.15], [round(tc + 0.7, 3), 560, 1292, 0.15], [round(tc + 0.85, 3), 540, 1270, 0.6]])
     # 4) paralel çizgiler: her dairenin yanından bağımsız birer çizgi (R6 "hikâyeler" / "korkular" / "yarattı")
     tp = [W("R6", "hikâyeler"), W("R6", "korkular"), W("R6", "yarattı")]
     onceki = (540, 1270)
@@ -356,6 +356,7 @@ SAB = {
             [r7a, -0.18, -0.08, -0.06], [r7b, -0.18, -0.08, -0.06]],
     "tilt": [[0, 4], [t_hos, 4], [t_hos + 0.3, 0], [t_neydi, 0], [t_neydi + 0.7, -3], [r2b, -3], [r3a + 1.2, 0], [r7a, 0], [r7a + 1.5, 2]],
     "egil": [[0, 0]],
+    "parmakUcu": [[0, 0], [r3a + 0.05, 0], [r3a + 0.55, 7], [r3a + 0.95, 0]],
     "goz": [[0, 0], [t_neydi + 0.3, 0], [t_neydi + 0.45, 0.85], [t_neydi + 0.8, 0.85], [t_neydi + 0.95, 0]],
     "konus": [konus(r) for r in ("R1", "R3", "R4", "R5", "R6", "R7")],
 }
@@ -379,38 +380,39 @@ kes(t_bana - 0.05, "tezgah", EX + 10, EYUZ + 330 / 1.95, 1.95)   # "Bana bazı c
 it(r2b + 0.4, "tezgah", EX + 10, EYUZ + 330 / 2.05, 2.05)
 kes(T["R3"], "kasa", SX - 30, SYUZ + 330 / 1.42, 1.42)       # Sabri: lamba, fiş bloğu (orta) "Anlatayım kızım"
 it(T["DAIRE"], "kasa", SX - 30, SYUZ + 330 / 1.5, 1.5)
-KG = (540, 1150)                                             # kâğıt kadrajı: çizim üst-orta bölgede, alt bant altyazıya
-kes(T["DAIRE"], "kagit", KG[0], KG[1], 1.12)                  # üç daire
-it(T["MERAK"], "kagit", KG[0] - 10, KG[1] - 10, 1.16)
+KG = (530, 1118)                                             # kâğıt kadrajı: çizim üst-orta bölgede, alt bant altyazıya
+kes(T["DAIRE"], "kagit", KG[0], KG[1], 1.25)                  # üç daire
+it(T["MERAK"], "kagit", KG[0] - 5, KG[1] - 5, 1.29)
 kes(m0, "tezgah", EX, EYUZ + 330 / 2.1, 2.1)                 # Ece: merak (yakın), öne eğilir
 it(T["BIRLES"], "tezgah", EX, EYUZ + 330 / 2.18, 2.18)
-kes(T["BIRLES"], "kagit", KG[0] - 20, KG[1] + 40, 1.12)      # birleşen çizgiler + ortak yaşam çizgisi
+kes(T["BIRLES"], "kagit", KG[0] - 10, KG[1] + 20, 1.25)      # birleşen çizgiler + ortak yaşam çizgisi
 tc5 = W("R5", "çizgimiz") + 0.4
-it(tc5, "kagit", KG[0] - 10, KG[1] + 50, 1.16)
+it(tc5, "kagit", KG[0], KG[1] + 25, 1.29)
 kes(tc5, "kasa", SX - 15, SYUZ + 330 / 2.25, 2.25)            # Sabri yakın: kâğıttan Ece'ye bakar (alttan sıcak ışık)
 t6_hik = W("R6", "hikâyeler") - 0.05
 it(t6_hik, "kasa", SX - 15, SYUZ + 330 / 2.4, 2.4)
-kes(t6_hik, "kagit", KG[0] + 30, KG[1] - 20, 1.08)            # paralel çizgiler
-it(t6_ve, "kagit", KG[0] + 50, KG[1] - 30, 1.13)
+kes(t6_hik, "kagit", KG[0] + 20, KG[1] - 10, 1.25)            # paralel çizgiler
+it(t6_ve, "kagit", KG[0] + 30, KG[1] - 15, 1.3)
 kes(t6_ve, "tezgah", EX + 10, EYUZ + 330 / 2.3, 2.3)          # Ece: anlamaya çalışır (yakın)
 t6_par = W("R6", "paralel") - 0.15
 it(t6_par, "tezgah", EX + 10, EYUZ + 330 / 2.36, 2.36)
-kes(t6_par, "kagit", KG[0] + 40, KG[1] - 10, 1.1)             # kalem paralel çizgilere dokunur
-it(T["R7"], "kagit", KG[0] + 45, KG[1] - 15, 1.13)
+kes(t6_par, "kagit", KG[0] + 30, KG[1], 1.27)             # kalem paralel çizgilere dokunur
+it(T["R7"], "kagit", KG[0] + 35, KG[1] - 5, 1.3)
 kes(T["R7"], "kasa", SX - 15, SYUZ + 300 / 2.9, 2.9)          # "ancak geceleri": Sabri çok yakın, yavaş itme; floresan kısılır
 t7_tum = W("R7", "tüm") - 0.2
 it(t7_tum, "kasa", SX - 15, SYUZ + 290 / 3.25, 3.25)
-kes(t7_tum, "kagit", 640, 1080, 1.12)                         # yakınsama: buluşma noktasına yavaş itme
-it(W("R7", "buluşuyor"), "kagit", N[0] - 40, N[1] + 180, 1.55)
-it(T["SON"] + DUR["SON"], "kagit", N[0] - 50, N[1] + 160, 1.72)
+kes(t7_tum, "kagit", 620, 1060, 1.3)                         # yakınsama: buluşma noktasına yavaş itme
+it(W("R7", "buluşuyor"), "kagit", N[0] - 40, N[1] + 180, 1.62)
+it(T["SON"] + DUR["SON"], "kagit", N[0] - 45, N[1] + 165, 1.78)
 kes(y0, "tezgah", EX + 5, EYUZ + 330 / 3.0, 3.0)              # Ece çok yakın: yutkunur
 it(SON_T, "tezgah", EX + 5, EYUZ + 330 / 3.2, 3.2)
 
 # ------------------------------------------------------------------ IŞIK
+KESIM = W("R7", "buluşuyor") + 1.6      # el kalkar = müzik kesilir = floresan cızırtısı (ses raporu §3-4)
 FLOR = [[0, 1], [r7a + 0.4, 1], [W("R7", "geceleri", "end"), 0.62], [SON_T, 0.6]]
-CIZIR = [[W("R7", "geceleri"), W("R7", "geceleri") + 0.35], [T["SON"] + 0.3, T["SON"] + 1.4], [y0 + 0.2, y0 + 0.9]]
+CIZIR = [[W("R7", "geceleri"), W("R7", "geceleri") + 0.35], [KESIM, KESIM + 1.1], [y0 + 0.2, y0 + 0.9]]
 LAMBA = [[0, 0], [r3a + 0.52, 0], [r3a + 0.6, 1], [SON_T, 1]]
-LAMBA_CIZIR = [[T["SON"] + 0.95, T["SON"] + 1.15]]
+LAMBA_CIZIR = [[KESIM + 0.6, KESIM + 0.8]]
 
 ORTAK = {"saat": [[0, "19:07"], [r3a, "19:08"]], "kapi": [[0, 0], [t_ac0, 0], [t_ac1, 1]],
          "sensor": [[t_adim + 0.2, t_esik + 0.6]], "disarida": [[0, t_esik]],
@@ -440,19 +442,38 @@ def E(ad, isim, t, vol=0.5, **kw):
     return {"name": f"efekt/{isim}", "at": round(t - T[ad], 3), "volume": vol, **kw}
 
 
+# ses yönetmeni raporu §3 (çizimle aynı formüller); + lamba düğmesi tıkı (görüntüdeki lamba yanışı)
+d0_, b0_ = T["DAIRE"], T["BIRLES"] + 0.06
+tD, tT = W("R4", "dünyadaki"), W("R4", "topluluklar")
+l0, l1 = W("R5", "bu") - 0.05, W("R5", "yaşam", "end")
+tp = [W("R6", "hikâyeler"), W("R6", "korkular"), W("R6", "yarattı")]
+tpar, tolu = W("R6", "paralel"), W("R6", "oluşturdu")
+tq = [W("R7", "tüm"), W("R7", "paralel"), W("R7", "çizgiler")]
+to, tn, tb = W("R7", "ortak"), W("R7", "noktada"), W("R7", "buluşuyor")
 SFX = {
     "DIS": [E("DIS", "ayak_sesleri", T["DIS"] + 0.1, 0.35, sure=2.7)],
     "CAM": [E("CAM", "el_nefes_tutma", c0 + 1.0, 0.45)],
-    "KAPI": [E("KAPI", "otomatik_kapi", t_ac0 - 0.05, 0.6), E("KAPI", "kapi_dingdong", t_ac0 + 0.1, 0.55), E("KAPI", "el_market_adim", t_esik, 0.35)],
-    "VARIS": [E("VARIS", "el_kapi_yumruk", v0 + 0.42, 0.35, sure=0.4)],
-    "R3": [E("R3", "el_kalem_tik", r3a + 0.58, 0.55), E("R3", "el_kagit", r3a + 1.05, 0.35, sure=0.5), E("R3", "kalem_cit", t_kizim + 0.3, 0.5)],
-    "SON": [E("SON", "el_floresan", T["SON"] + 0.3, 0.55, sure=1.2)],
-    "YUTKUN": [E("YUTKUN", "el_yutkunma", y0 + 0.5, 0.7)],
+    "KAPI": [E("KAPI", "otomatik_kapi", t_ac0 - 0.05, 0.6), E("KAPI", "kapi_dingdong", t_ac0 + 0.1, 0.55),
+             {"name": "ortam/b8_trafik_cam", "at": round(t_ac0 - T["KAPI"], 3), "volume": 0.3, "sure": 2.5},
+             E("KAPI", "ayak_sesleri", t_esik, 0.3, sure=1.4)],
+    "VARIS": [E("VARIS", "el_tezgah_carpma", v0 + 0.42 - 0.08, 0.45, sure=0.5)],
+    "R3": [E("R3", "b8_kagit_tezgah", r3a + 0.25 - 0.18, 0.45), E("R3", "el_kalem_tik", r3a + 0.58, 0.3), E("R3", "el_kalem_tik", r3a + 1.0, 0.4)],
+    "DAIRE": [E("DAIRE", f"b8_kalem_daire_{i + 1}", d0_ + 0.08 + i * 0.78, 0.5) for i in range(3)],
+    "R4": [E("R4", "b8_kalem_dokun", t, 0.55) for t in (tD, tD + 0.5, tT + 0.2)],
+    "BIRLES": [E("BIRLES", f"b8_kalem_birles_{i + 1}", b0_ + i * 0.46, 0.5) for i in range(3)],
+    "R5": [E("R5", "b8_kalem_yasam_cizgisi", l0, 0.35, sure=round(l1 - l0 + 0.05, 2))],
+    "R6": [E("R6", f"b8_kalem_paralel_{i + 1}", tp[i], 0.3) for i in range(3)]
+          + [E("R6", "b8_kalem_dokun", t, 0.45) for t in (tpar, tpar + 0.45, tolu + 0.15)],
+    "R7": [E("R7", f"b8_kalem_yakinsa_{j + 1}", tq[j], 0.3) for j in range(3)]
+          + [E("R7", "b8_kalem_dokun", t, 0.45) for t in (to, tn + 0.2)]
+          + [E("R7", "b8_kalem_son_daire", tb, 0.4), E("R7", "b8_kalem_dokun", tb + 0.82, 0.7)],
+    "SON": [E("SON", "el_floresan", KESIM, 0.45, sure=1.2)],
+    "YUTKUN": [E("YUTKUN", "yutkunma", y0 + 0.5, 0.7)],
 }
 
 
 def vuruslar():
-    sc = {"d": [], "i": []}
+    sc = {"d": [], "i1": [], "i2": [], "i3": []}
     for ad, r, d, s in SIRA:
         t0, t1 = T[ad], T[ad] + DUR[ad]
         ek = blob(t0, t1)
@@ -472,13 +493,20 @@ if __name__ == "__main__":
     sc = vuruslar()
     man = {}
     sahneler = []
-    for sid, baslik, amb in (("d", "Dış", {"name": "ortam/sehir_gece", "volume": 0.5}), ("i", "Market", {"name": "ortam/market_gece", "volume": 0.45})):
+    AMB = {"name": "ortam/b8_market_gece", "volume": 0.5}
+    MUZ_FROM = round(33.55 - (KESIM - T["DAIRE"]), 3)   # ses raporu §4: dosyadaki sert kesim KESIM anına denk gelsin
+    SAH = (("d", "Dış", {"name": "ortam/sehir_gece", "volume": 0.5}, {"name": "yok"}),
+           ("i1", "Market · giriş", AMB, {"name": "muzik/market_tedirgin", "volume": 0.14, "from": 0}),
+           ("i2", "Market · anlatayım", AMB, {"name": "yok"}),
+           ("i3", "Market · çizim", AMB, {"name": "muzik/b8_anlatim_uzun", "volume": 0.3, "from": MUZ_FROM}))
+    print("müzik from (i3):", MUZ_FROM, " KESIM:", round(KESIM, 3))
+    for sid, baslik, amb, muz in SAH:
         beats = []
         for i, (ad, r, b) in enumerate(sc[sid]):
             if r:
                 man[f"{sid}_{i + 1:02d}"] = M[TAKE[r]]
             beats.append(b)
-        sahneler.append({"id": sid, "set": "market_kapi", "time": "gece", "title": baslik, "transition": "kesme", "cast": {}, "ambience": amb, "beats": beats})
+        sahneler.append({"id": sid, "set": "market_kapi", "time": "gece", "title": baslik, "transition": "kesme", "cast": {}, "ambience": amb, "music": muz, "beats": beats})
     os.makedirs(f"{K}/public/voice/{ep_id}", exist_ok=True)
     json.dump(man, open(f"{K}/public/voice/{ep_id}/manifest.json", "w"), ensure_ascii=False, indent=1)
     ep = {"series": "724", "seriesTitle": "7/24", "episode": ep_id, "episodeNo": 8, "title": "Bölüm 8 · Parça 1", "endCard": False, "scenes": sahneler}
@@ -501,6 +529,6 @@ if __name__ == "__main__":
                         "parmak_vurus": [round(t_borc + 0.12, 3), round(t_borc + 0.45, 3)], "lamba_tik": round(r3a + 0.58, 3),
                         "gazete_itilir": [round(r3a + 0.3, 3), round(r3a + 0.7, 3)], "fis_cekilir": [round(r3a + 1.0, 3), round(r3a + 1.35, 3)],
                         "floresan_kisilir": [round(r7a + 0.4, 3), round(W("R7", "geceleri", "end"), 3)], "floresan_cizirti": CIZIR,
-                        "lamba_titrer": LAMBA_CIZIR, "el_cekilir": [round(T["SON"] + 0.1, 3), round(T["SON"] + 0.9, 3)], "yutkunma": round(y0 + 0.8, 3)},
+                        "lamba_titrer": LAMBA_CIZIR, "el_cekilir": [round(KESIM, 3), round(T["SON"] + 0.9, 3)], "muzik_kesim": round(KESIM, 3), "yutkunma": round(y0 + 0.8, 3)},
             "toplam": round(SON_T, 3)}
     json.dump(olay, open(f"{K}/../docs/diziler/724/raporlar/b8p1-goruntu-zaman.json", "w"), ensure_ascii=False, indent=1)

@@ -180,6 +180,19 @@ export const Market724DisBG: React.FC<DisProps> = ({ frame, doorOpen, flor = 1, 
       <rect x={-420} y={disP(0, 0, 2)[1] + 26} width={1920} height={600} fill="url(#d8asf)" />
       <rect x={fx(-1.6)} y={disP(0, 0, 2)[1] + 40} width={fx(1.6) - fx(-1.6)} height={300} fill="#ff5a3a" opacity={0.08} filter="url(#d8bl)" />
       <rect x={gL} y={disP(0, 0, 2)[1] + 34} width={gR - gL} height={220} fill="#dff0ff" opacity={0.05} filter="url(#d8bl)" />
+      {/* hafif çisenti (dizi: yağmurlu sokak; ortam sesinde uzak yağmur): ince, seyrek çizgiler; tabela/vitrin önünde parlar */}
+      {new Array(70).fill(0).map((_, i) => {
+        const x = -380 + ((i * 137) % 1840);
+        const y = -280 + ((frame * 26 + i * 211) % 2480);
+        const parla = y > fy(3.4) && y < fy(0) && x > sL - 80 && x < sR + 80;
+        return <path key={`y${i}`} d={`M ${x} ${y} l -4 34`} stroke={parla ? "#e8f0ff" : "#8a9ab8"} strokeWidth={parla ? 2.4 : 1.8} opacity={parla ? 0.5 : 0.28} />;
+      })}
+      {/* asfaltta minik sıçramalar */}
+      {new Array(12).fill(0).map((_, i) => {
+        const k = (frame + i * 5) % 12;
+        const x = -300 + ((i * 173) % 1700), y = disP(0, 0, 2)[1] + 50 + ((i * 89) % 300);
+        return <ellipse key={`s${i}`} cx={x} cy={y} rx={2 + k * 1.6} ry={(2 + k * 1.6) * 0.3} fill="none" stroke="#6a7a90" strokeWidth={1.5} opacity={Math.max(0, 0.45 - k / 26)} />;
+      })}
       {/* sokak lambası (sağda, direk) */}
       <rect x={1270} y={-300} width={16} height={disP(0, 0, 2.6)[1] + 300} fill="#14161a" />
       <circle cx={1180} cy={120} r={300} fill="url(#d8lmb)" />

@@ -1,5 +1,5 @@
 {
- "i_03": {
+ "i1_03": {
   "key": "f0cbb84ce2c6",
   "file": "voice/724-08/R1c_01.mp3",
   "voice": "elevenlabs:Nihat",
@@ -114,7 +114,7 @@
   "kredi": 20,
   "duzeltme": "ilk kelime 0,35 -> 0,10 (dalga biçimi + Whisper medium); ilk kelimenin ağız işaretleri yeniden ölçeklendi"
  },
- "i_05": {
+ "i1_05": {
   "key": "9d66de0df097",
   "file": "voice/724-08/R2b_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -456,7 +456,7 @@
   "hesap": "proxy",
   "kredi": 42
  },
- "i_06": {
+ "i2_01": {
   "key": "fdebe6cecd01",
   "file": "voice/724-08/R3b_01.mp3",
   "voice": "elevenlabs:Nihat",
@@ -544,7 +544,7 @@
   "hesap": "proxy",
   "kredi": 15
  },
- "i_08": {
+ "i3_02": {
   "key": "28459d484142",
   "file": "voice/724-08/R4a_01.mp3",
   "voice": "elevenlabs:Nihat",
@@ -689,7 +689,7 @@
   "hesap": "proxy",
   "kredi": 22
  },
- "i_11": {
+ "i3_05": {
   "key": "8c74e209e847",
   "file": "voice/724-08/R5a_01.mp3",
   "voice": "elevenlabs:Nihat",
@@ -828,7 +828,7 @@
   "hesap": "proxy",
   "kredi": 21
  },
- "i_12": {
+ "i3_06": {
   "key": "d8f234865030",
   "file": "voice/724-08/R6a_01.mp3",
   "voice": "elevenlabs:Nihat",
@@ -1305,7 +1305,7 @@
   "hesap": "proxy",
   "kredi": 55
  },
- "i_13": {
+ "i3_07": {
   "key": "9fdebc584782",
   "file": "voice/724-08/R7d_01.mp3",
   "voice": "elevenlabs:Nihat",

@@ -177,6 +177,14 @@ Kontrol: `Jestler` kompozisyonu.
 - **B7 yakın ekleri (`engine/Inserts17.tsx`):** `b7_ez` (alçak zemin: böcek koşar, Ece'nin ayağı havaya, terlik iner; text[0] JSON {ez}), `b7_bant` (destenin bandı çevrilir, kırmızı "7/24 MARKET" damgası).
 - **Efekt kırpma:** vuruş `sfx` öğesinde `kirp` (baştan atlanan sn) ve `sure` (en uzun sn).
 - **Kontrol aracı:** `node tools/kareler.mjs <bölüm> <parça> <çıktı.png> <sn...> [--yeniden] [--olcek=0.25] [--sutun=8]` (tek paketle çok kare + şerit; kod değişince `--yeniden`). Üreticiler: `tools/b7v3p1.py`, `b7v3p2.py`, `b7v3p3.py` (ortak: `b7v3_ortak.py`).
+- **7/24 B8 elle kurgulanmış sahne `b8_market` (`engine/Inserts18.tsx`; üretici `tools/b8p1.py`; kontrol kompozisyonu `B8Kare`):**
+  - Tek sahne zaman çizelgesi; görünüm vuruştan bağımsız `kurgu` [[t, görünüm]] ile seçilir (sert kesme vuruş ortasında olabilir). Görünüm başına kamera `cam {görünüm: [[t,cx,cy,z]]}`, titreme `titre {görünüm: px}`, karakterler `kar {görünüm: {ece, sabri}}` (Inserts16 `karakter()` alanları).
+  - Görünümler: `dis` (karşı kaldırımdan cephe; Ece vitrin ışığına karşı siluet + kaldırımda gölge), `kapi` (market724 kapı; `disarida` aralığında Ece camın ardında, kanat camı/çerçeve önde), `tezgah` (Sabri'nin tarafından ters açı; gövde tezgâhın arkasında, kollar/eller tezgâhın üstünde; masa lambası, bulmacalı gazete `gazeteTz`, ters duran kâğıt `kagitTz`), `kasa` (market724 kasa + masa lambası, gazete `gazete`, fiş bloğu `blok`; kollar banko üstüne kırpılır), `kagit` (tezgâhın üstünden sipariş fişi; Sabri'nin SOL eli sağ üstten girer).
+  - Canlı çizim: `cizim` [{w, p:[[t,x,y],…]}] zamanlı mürekkep (kâğıt koordinatı), `uc` [[t,x,y,h]] kalem ucu (h = kalkıklık; el gölgesi buna göre ayrılır), `bas` [{t0,t1,x,y,r}] mürekkep noktası/lekesi, `elAra`.
+  - Işık: `flor` [[t,v]] floresan şiddeti (multiply kararma), `cizir` [[t0,t1]] floresan titremesi, `lamba` [[t,v]] sıcak masa lambası (kasada yüze alttan dolgu + üst arka plan kararır; kâğıtta sol üstten sıcak havuz), `lambaCizir`.
+  - Karakter alanları (Inserts16'ya eklendi, opt-in): `yutkun` [[t,v]], `nefes` [[t,v]] (rig `breath`). Yeni eşya: `kalem` (tükenmez, elde).
+  - Set: `sets/market724dis.tsx` (`Market724DisBG`, `Market724DisZemin`, `disP` izdüşümü): gece cephe, ışıklı tabela (7/24 harfleri ara ara cızırdar, pervaneler), üst katlar (TV mavisi, çamaşır), vitrin içi, otomatik kapı + sensör LED'i, komşu kepenk/apartman, kaldırım, ıslak asfalt, hafif çisenti. `sets/market724.tsx`: opt-in `yagmur` (camın ardındaki sokakta yağmur yoğunluğu; 0 = yok).
+  - Süreklilik: Sabri SOLAK (kalem sol elinde; kâğıtta el sağ üstten gelir, lamba yazan elin karşısında).
 - **Dev hamamböceği:** `engine/bocek.tsx` (`DevBocek`, `BocekKafa`, `Bacak`, `Anten`). Kontrol kompozisyonu: `Bocek`. Örnekler: `B5OrnekYuz`, `B5OrnekGovde`, `B5OrnekOmuz`, `B5OrnekDev`, `B5OrnekYakin`.
 
 ### Kırmızı Düğme eklemeleri (`kd_*`; hepsi isteğe bağlı, eski bölümleri değiştirmez)

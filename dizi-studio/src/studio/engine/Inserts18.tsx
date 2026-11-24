@@ -244,7 +244,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     sahne = (
       <>
         <SVG>
-          <Market724BG view="kapi" frame={f} doorOpen={op} saat={saat} iz={0} turb={0} yagmur={0} />
+          <Market724BG view="kapi" frame={f} doorOpen={op} saat={saat} iz={0} turb={0} yagmur={0.4} />
           {/* kapı aralığının dibi: dışarının kaldırımı (iç duvar rengi görünmesin) */}
           <rect x={300} y={1186} width={500} height={66} fill="#1c222a" />
           {sens ? <circle cx={606} cy={571} r={16} fill="#ff3020" opacity={0.35} filter="url(#b8gb6)" /> : null}
@@ -281,7 +281,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     const blokVar = bx > -100;
     sahne = (
       <>
-        <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0} /></SVG>
+        <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0.5} /></SVG>
         {sabri ? sabri.govde : null}
         <SVG>
           <Market724FG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} />
@@ -363,7 +363,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
             </defs>
             <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8lk1)" />
             <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8lk2)" />
-            <ellipse cx={455} cy={1292} rx={40} ry={18} fill="#fff4d0" opacity={0.55 * lmb} filter="url(#b8gb10)" />
+            <ellipse cx={400} cy={1283} rx={34} ry={9} fill="#fff4d0" opacity={0.45 * lmb} filter="url(#b8gb6)" transform="rotate(38 400 1283)" />
           </SVG>
         ) : null}
         {lmb > 0.01 && view === "kagit" ? (
