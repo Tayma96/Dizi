@@ -1,0 +1,395 @@
+{
+ "acilis_01": {
+  "key": "948d4add1d32",
+  "file": "voice/kd-b1-p2/acilis_01.mp3",
+  "voice": "elevenlabs:Veyzel",
+  "emotion": "fisilti",
+  "text": "Vurun şu ayıyı lan artık.",
+  "duration": 2.847,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Vurun",
+    "start": 1.221,
+    "end": 1.461
+   },
+   {
+    "w": "şu",
+    "start": 1.541,
+    "end": 1.621
+   },
+   {
+    "w": "ayıyı",
+    "start": 1.701,
+    "end": 1.901
+   },
+   {
+    "w": "lan",
+    "start": 1.941,
+    "end": 2.101
+   },
+   {
+    "w": "artık.",
+    "start": 2.221,
+    "end": 2.821
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0,
+    "v": "X"
+   },
+   {
+    "t": 1.221,
+    "v": "F"
+   },
+   {
+    "t": 1.301,
+    "v": "U"
+   },
+   {
+    "t": 1.341,
+    "v": "L"
+   },
+   {
+    "t": 1.381,
+    "v": "U"
+   },
+   {
+    "t": 1.421,
+    "v": "L"
+   },
+   {
+    "t": 1.461,
+    "v": "X"
+   },
+   {
+    "t": 1.541,
+    "v": "L"
+   },
+   {
+    "t": 1.581,
+    "v": "U"
+   },
+   {
+    "t": 1.621,
+    "v": "X"
+   },
+   {
+    "t": 1.701,
+    "v": "A"
+   },
+   {
+    "t": 1.754,
+    "v": "I"
+   },
+   {
+    "t": 1.941,
+    "v": "L"
+   },
+   {
+    "t": 1.994,
+    "v": "A"
+   },
+   {
+    "t": 2.048,
+    "v": "L"
+   },
+   {
+    "t": 2.101,
+    "v": "X"
+   },
+   {
+    "t": 2.221,
+    "v": "A"
+   },
+   {
+    "t": 2.261,
+    "v": "L"
+   },
+   {
+    "t": 2.341,
+    "v": "I"
+   },
+   {
+    "t": 2.421,
+    "v": "L"
+   },
+   {
+    "t": 2.501,
+    "v": "X"
+   },
+   {
+    "t": 2.821,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 34
+ },
+ "acilis_02": {
+  "key": "89c6b72f3369",
+  "file": "voice/kd-b1-p2/acilis_02.mp3",
+  "voice": "elevenlabs:Zeynep Ece",
+  "emotion": "korkmus",
+  "text": "Aaaa! Nerdeyim beeen!",
+  "duration": 2.508,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Aaaa!",
+    "start": 0.23,
+    "end": 1.11
+   },
+   {
+    "w": "Nerdeyim",
+    "start": 1.27,
+    "end": 1.75
+   },
+   {
+    "w": "beeen!",
+    "start": 1.83,
+    "end": 2.47
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.123,
+    "v": "X"
+   },
+   {
+    "t": 0.23,
+    "v": "A"
+   },
+   {
+    "t": 0.95,
+    "v": "X"
+   },
+   {
+    "t": 1.27,
+    "v": "L"
+   },
+   {
+    "t": 1.43,
+    "v": "E"
+   },
+   {
+    "t": 1.47,
+    "v": "L"
+   },
+   {
+    "t": 1.55,
+    "v": "E"
+   },
+   {
+    "t": 1.59,
+    "v": "I"
+   },
+   {
+    "t": 1.71,
+    "v": "M"
+   },
+   {
+    "t": 1.75,
+    "v": "X"
+   },
+   {
+    "t": 1.83,
+    "v": "M"
+   },
+   {
+    "t": 1.87,
+    "v": "E"
+   },
+   {
+    "t": 2.07,
+    "v": "L"
+   },
+   {
+    "t": 2.15,
+    "v": "X"
+   },
+   {
+    "t": 2.47,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "acilis_03": {
+  "key": "7e05362e5bd8",
+  "file": "voice/kd-b1-p2/acilis_03.mp3",
+  "voice": "elevenlabs:Veyzel",
+  "emotion": "korkmus",
+  "text": "Noluyo lan.",
+  "duration": 2.011,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Noluyo",
+    "start": 1.216,
+    "end": 1.264
+   },
+   {
+    "w": "lan.",
+    "start": 1.424,
+    "end": 1.984
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0,
+    "v": "X"
+   },
+   {
+    "t": 1.216,
+    "v": "L"
+   },
+   {
+    "t": 1.232,
+    "v": "O"
+   },
+   {
+    "t": 1.24,
+    "v": "L"
+   },
+   {
+    "t": 1.248,
+    "v": "U"
+   },
+   {
+    "t": 1.253,
+    "v": "I"
+   },
+   {
+    "t": 1.259,
+    "v": "O"
+   },
+   {
+    "t": 1.264,
+    "v": "X"
+   },
+   {
+    "t": 1.424,
+    "v": "L"
+   },
+   {
+    "t": 1.477,
+    "v": "A"
+   },
+   {
+    "t": 1.531,
+    "v": "L"
+   },
+   {
+    "t": 1.584,
+    "v": "X"
+   },
+   {
+    "t": 1.984,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 16
+ },
+ "acilis_04": {
+  "key": "57ed1f3b85cf",
+  "file": "voice/kd-b1-p2/acilis_04.mp3",
+  "voice": "elevenlabs:Selim",
+  "emotion": "korkmus",
+  "text": "Hıh... hıh... hııh...",
+  "duration": 4.023,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hıh...",
+    "start": 1.668,
+    "end": 2.068
+   },
+   {
+    "w": "hıh...",
+    "start": 2.228,
+    "end": 2.988
+   },
+   {
+    "w": "hııh...",
+    "start": 3.108,
+    "end": 3.988
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.092,
+    "v": "X"
+   },
+   {
+    "t": 1.668,
+    "v": "L"
+   },
+   {
+    "t": 1.708,
+    "v": "I"
+   },
+   {
+    "t": 1.748,
+    "v": "L"
+   },
+   {
+    "t": 2.068,
+    "v": "X"
+   },
+   {
+    "t": 2.228,
+    "v": "L"
+   },
+   {
+    "t": 2.268,
+    "v": "I"
+   },
+   {
+    "t": 2.308,
+    "v": "L"
+   },
+   {
+    "t": 2.988,
+    "v": "X"
+   },
+   {
+    "t": 3.108,
+    "v": "L"
+   },
+   {
+    "t": 3.188,
+    "v": "I"
+   },
+   {
+    "t": 3.428,
+    "v": "L"
+   },
+   {
+    "t": 3.775,
+    "v": "X"
+   },
+   {
+    "t": 3.988,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 28
+ }
+}

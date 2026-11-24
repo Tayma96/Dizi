@@ -1014,6 +1014,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: high-pitched ear ringing tinnitus with a slow muffled heartbeat underneath, gradually fading away"
  },
+ "efekt/kd_horlama": {
+  "file": "ses/efekt/kd_horlama.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: loud heavy man snoring in a large empty white room with noticeable room echo, includes a short sleep apnea pause then an explosive snort"
+ },
  "efekt/kd_ikaz_alarm": {
   "file": "ses/efekt/kd_ikaz_alarm.mp3",
   "category": "efekt",
