@@ -215,7 +215,25 @@
    "speed": 1.0
   }
  },
+ "kd_influencer_oda": {
+  "voice_id": "ZK5xkctF4yGYZxzqEfRg",
+  "sahip": "48393531ce955ba94bbd99a36538f0ce4e3ebfc1b42bc5400fbec3d1d9b41358",
+  "ad": "Zeynep Ece",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "kd_kurye_kasksiz": {
+  "voice_id": "qiYSibuYxMVcoiWBNsky",
+  "sahip": "0cdbf9e27eeed5c29196c350c7bbfd26cfc0639e93c519578c0b2242a6391a73",
+  "ad": "Veyzel",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "kd_kurye_oda": {
   "voice_id": "qiYSibuYxMVcoiWBNsky",
   "sahip": "0cdbf9e27eeed5c29196c350c7bbfd26cfc0639e93c519578c0b2242a6391a73",
   "ad": "Veyzel",
@@ -228,6 +246,15 @@
   "voice_id": "rtnDjO8siSxeTEeTVczO",
   "sahip": "17a07ad7a7633c080be4e938b96e37fc2b9d0e5b7c634d43e5047b37d8539e63",
   "ad": "rtnDjO8siSxeTEeTVczO",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "mert724": {
+  "voice_id": "Q5n6GDIjpN0pLOlycRFT",
+  "sahip": "d15b5f11de5640f579a48f778534ee62a52ecdfa33b371a6cd4a68c22e676454",
+  "ad": "Yunus - Charismatic Turkish Male",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0
@@ -318,24 +345,6 @@
   "voice_id": "8eSMFxjAUgbRqmAkLPBt",
   "sahip": "dc06dff134bdbdd1b16741be55c3d8748ef86c3ec2622ad1281157d49c8dc110",
   "ad": "8eSMFxjAUgbRqmAkLPBt",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "kd_kurye_oda": {
-  "voice_id": "qiYSibuYxMVcoiWBNsky",
-  "sahip": "0cdbf9e27eeed5c29196c350c7bbfd26cfc0639e93c519578c0b2242a6391a73",
-  "ad": "Veyzel",
-  "ayar": {
-   "similarity_boost": 0.8,
-   "speed": 1.0
-  }
- },
- "kd_influencer_oda": {
-  "voice_id": "ZK5xkctF4yGYZxzqEfRg",
-  "sahip": "48393531ce955ba94bbd99a36538f0ce4e3ebfc1b42bc5400fbec3d1d9b41358",
-  "ad": "Zeynep Ece",
   "ayar": {
    "similarity_boost": 0.8,
    "speed": 1.0

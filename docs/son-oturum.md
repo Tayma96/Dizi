@@ -35,3 +35,7 @@
 - Mert ses adayları (10, ücretsiz önizleme): https://claude.ai/artifact/3U3mQJvHUdYzgJpbzRdwoa · liste: `docs/diziler/724/raporlar/b8y-mert-ses-adaylari.json` (n, vid, sahip). Seçimden sonra: `python3 tools/elevenlabs.py ata mert724 <vid> --sahip <sahip> --ad "<ad>"`.
 - ElevenLabs: proxy hesabında 13.901 kredi kaldı (24 Kasım). api.us.elevenlabs.io önizlemeleri api.elevenlabs.io'ya çevrilerek iniyor.
 - **Model: eleven_v4** (kullanıcı hatırlattı, 24 Kasım; aracın varsayılanı zaten v4, turbo değil).
+- Mert sesi: Yunus - Charismatic Turkish Male (Q5n6GDIjpN0pLOlycRFT), atandı.
+- B8 P1 sesleri üretildi (eleven_v4, 12 dosya, **352 kredi**; tahmin 882'ydi). Ses JSON: `public/episodes/724-08y-p1-ses.json`; dosyalar `public/voice/724-08y-p1/`. Whisper: hepsi temiz (E4a "Abii" uzatması "Ağabey" duyuldu, dinlenecek). Dinleme sayfası: https://claude.ai/artifact/JJWfhK93tGH4byirdedM5x . Bekleyen: kullanıcı dinleyip M1a/M1b seçecek, yeniden çekim isterse kodla.
+- Whisper için ortama `us.aws.cdn.hf.co` eklendi; komut: `HF_HUB_DISABLE_XET=1 /opt/tts/venv/bin/python tools/ses_kontrol.py <id>`.
+- Sonraki: üretici `tools/b8y_p1.py` (`tools/b8p2.py` örnek), render, kontak sayfası.

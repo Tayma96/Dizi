@@ -1,0 +1,226 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-08y-p1",
+ "episodeNo": 8,
+ "title": "Bölüm 8 (yeni) P1 · ses çekimleri (a/b alternatifleri)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "E1a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ölüme gönderdin beni abi",
+     "okunus": "Ölüme gönderdin beni abi!",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[exhausted, accusing, voice cracking]"
+    }
+   ]
+  },
+  {
+   "id": "S1a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Kurallara uy Ece, gayet başarılıydın sadece o önlüğü attığın sövmen 3. kuralı bozdu, zamanlamayla kurtardın.",
+     "okunus": "Kurallara uy Ece. Gayet başarılıydın, sadece o önlüğü attığın sövmen üçüncü kuralı bozdu. Zamanlamayla kurtardın.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[calm, fatherly, matter-of-fact]"
+    }
+   ]
+  },
+  {
+   "id": "S2a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Ha kurallara uyup profesyonelce çalışırsın sorunsuz bi gece geçer",
+     "okunus": "Ha... kurallara uyup profesyonelce çalışırsın, sorunsuz bi gece geçer.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[reassuring, relaxed]"
+    }
+   ]
+  },
+  {
+   "id": "E2a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "aaaa yine miii",
+     "okunus": "Aaaaa! Yine miiii?!",
+     "emotion": "notr",
+     "stab": 0.2,
+     "tags": "[terrified scream]"
+    }
+   ]
+  },
+  {
+   "id": "M1a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "mert724",
+     "text": "Abi depoyu topladım, malzemeleri yerleştirdim",
+     "okunus": "Abi, depoyu topladım. Malzemeleri yerleştirdim.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[cool, effortlessly charismatic, low voice]"
+    }
+   ]
+  },
+  {
+   "id": "M1b",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "mert724",
+     "text": "Abi depoyu topladım, malzemeleri yerleştirdim",
+     "okunus": "Abi depoyu topladım, malzemeleri de yerleştirdim.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[relaxed, confident, slight smile]"
+    }
+   ]
+  },
+  {
+   "id": "E3a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "onee laan",
+     "okunus": "Onee laaan...",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[dreamy, lovestruck, breathless]"
+    }
+   ]
+  },
+  {
+   "id": "E4a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Abi... bu insan mı?",
+     "okunus": "Abi... bu insan mı?",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[dreamy, lovestruck, sighing]"
+    }
+   ]
+  },
+  {
+   "id": "S3a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Sakin ol, henüz gece olmadı.",
+     "okunus": "Sakin ol... henüz gece olmadı.",
+     "emotion": "notr",
+     "stab": 0.55,
+     "tags": "[calm, soothing, knowing]"
+    }
+   ]
+  },
+  {
+   "id": "S4a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Aferin Mert eline sağlık",
+     "okunus": "Aferin Mert, eline sağlık.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[warm, pleased]"
+    }
+   ]
+  },
+  {
+   "id": "S5a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun.",
+     "okunus": "Ece, bu Mert. Bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş, sağ olsun.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[friendly, introducing]"
+    }
+   ]
+  },
+  {
+   "id": "E5a",
+   "set": "market_kasa",
+   "time": "aksam",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Benim önlüğüm nerde abi",
+     "okunus": "Benim önlüğüm nerde abi...",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[dreamy, lovestruck, distracted]"
+    }
+   ]
+  }
+ ]
+}
