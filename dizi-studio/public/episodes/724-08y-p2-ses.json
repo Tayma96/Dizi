@@ -1,0 +1,262 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-08y-p2",
+ "episodeNo": 8,
+ "title": "Bölüm 8 (yeni) P2 · ses çekimleri (a/b)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "P2S1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Bu gece daha rahat geçer, hem 2 kişisiniz. Mert'e de yardımcı olursun.",
+     "okunus": "Bu gece daha rahat geçer, hem iki kişisiniz. Mert'e de yardımcı olursun.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[warm, reassuring, fatherly]"
+    }
+   ]
+  },
+  {
+   "id": "P2E1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "tabi tabii",
+     "okunus": "Tabi, tabii...",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[distracted, dreamy, brushing him off]"
+    }
+   ]
+  },
+  {
+   "id": "P2E1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "tabi tabii",
+     "okunus": "Tabi tabii.",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[absent-minded, lovestruck sigh]"
+    }
+   ]
+  },
+  {
+   "id": "P2S2a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Kural defterine ara sıra bakın Ece",
+     "okunus": "Kural defterine ara sıra bakın, Ece.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[calm, serious reminder]"
+    }
+   ]
+  },
+  {
+   "id": "P2E2a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ezberledim zaten abi?",
+     "okunus": "Ezberledim zaten abi?",
+     "emotion": "notr",
+     "stab": 0.35,
+     "tags": "[casual, slightly cocky, puzzled]"
+    }
+   ]
+  },
+  {
+   "id": "P2E2b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ezberledim zaten abi?",
+     "okunus": "Ezberledim zaten, abi?",
+     "emotion": "notr",
+     "stab": 0.35,
+     "tags": "[confident, dismissive, rising tone]"
+    }
+   ]
+  },
+  {
+   "id": "P2S3a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "kurallar önceden hazırlanmıyor Ece",
+     "okunus": "Kurallar... önceden hazırlanmıyor, Ece.",
+     "emotion": "notr",
+     "stab": 0.55,
+     "tags": "[quiet, ominous, matter-of-fact]"
+    }
+   ]
+  },
+  {
+   "id": "P2S3b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "kurallar önceden hazırlanmıyor Ece",
+     "okunus": "Kurallar önceden hazırlanmıyor Ece.",
+     "emotion": "notr",
+     "stab": 0.55,
+     "tags": "[calm, deadpan, slightly mysterious]"
+    }
+   ]
+  },
+  {
+   "id": "P2S4a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "O zaman ben gidiyorum, nasılsa siz buradasınız.",
+     "okunus": "O zaman ben gidiyorum, nasılsa siz buradasınız.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[cheerful, relieved, putting on his coat]"
+    }
+   ]
+  },
+  {
+   "id": "P2E3a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "kaybol abi.",
+     "okunus": "Kaybol abi...",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[dreamy, lovestruck, dismissive]"
+    }
+   ]
+  },
+  {
+   "id": "P2E3b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "kaybol abi.",
+     "okunus": "Kaybol abi.",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[softly, infatuated, shooing him away]"
+    }
+   ]
+  },
+  {
+   "id": "P2E4a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "başladık yine",
+     "okunus": "Başladık yine...",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[scared, whimpering]"
+    }
+   ]
+  },
+  {
+   "id": "P2E4b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "başladık yine",
+     "okunus": "Başladık yine!",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[startled, panicked, shaky]"
+    }
+   ]
+  },
+  {
+   "id": "P2E5a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Mert kurallar, hemen kuralları ezberle",
+     "okunus": "Mert! Kurallar! Hemen kuralları ezberle!",
+     "emotion": "notr",
+     "stab": 0.3,
+     "tags": "[panicked, urgent]"
+    }
+   ]
+  }
+ ]
+}

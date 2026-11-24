@@ -45,3 +45,6 @@
 - B8y P1 render: `bolumler/724-08y-p1.mp4` (49,8 sn, −14 LUFS). Kullanıcı onayı bekleniyor.
 - **P1 geri bildirimi geldi (bolumler.md "B8 (yeni) P1: kullanıcı geri bildirimi"): görsel yeniden; P2 metni geldi (bolumler.md).** Kullanıcı "görüntü yönetmenini devreye sokalım" dedi.
 - **Kullanıcı (24 Kasım):** "görüntü yönetmenini çalıştır" → goruntu-yonetmeni ajanı bu iş için AÇIKÇA istendi (23 Kasım ajan yasağına istisna). Ana oturum: sesler ("kusursuz", ElevenLabs v4).
+- Ses (ana oturum): P1 âşık müziği `muzik/b8y_ask` (ElevenLabs Music 15 sn, 212 kredi; tek parça, SFX "DON"da d0+0.3). P1 cızırtı (plak/sok) kaldırıldı. P1 toplam: 352 + 212 = 564 kredi.
+- P2 replikleri üretildi (v4, 14 dosya, 337 kredi): `public/episodes/724-08y-p2-ses.json`, `public/voice/724-08y-p2/`. "Mert kurallar, hemen kuralları ezberle" = ECE söyler (kullanıcı). Dinleme sayfası: https://claude.ai/artifact/H1eyKcahVf5AuSfiDgeWaF . Kullanıcı a/b seçecek. Kalan: 13.024 kredi.
+- Görüntü yönetmeni ajanı P1 görselini baştan kuruyor (örnek sahne: açılış → Mert'in çıkışı, `bolumler/724-08y-p1-ornek.mp4`).
