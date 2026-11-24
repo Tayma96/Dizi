@@ -1717,7 +1717,7 @@
   {
     "id": "kacan724",
     "name": "Kaçan kadın",
-    "role": "7/24: sokakta yaratıktan kaçıp depodan fırlayan kadın; sarışın, mavi göz, kırmızı mini elbise",
+    "role": "7/24: sokakta yaratıktan kaçıp depodan fırlayan kadın; sarışın, mavi göz, kırmızı mini elbise, kırmızı ruj, altın küpe/kolye",
     "voice": "kadin",
     "gender": "f",
     "age": "adult",
@@ -1738,7 +1738,16 @@
       "shoes": "#f4f4f2"
     },
     "blush": true,
-    "mini": true
+    "mini": true,
+    "makyaj": {
+      "ruj": "#c8102e",
+      "far": "#8a4a6a",
+      "eyeliner": true,
+      "isilti": true
+    },
+    "earrings": "#f2c850",
+    "kolye": "#f2c850",
+    "bileklik": true
   },
   {
     "id": "kd_gobek",

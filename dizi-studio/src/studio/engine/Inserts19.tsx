@@ -507,11 +507,13 @@ const YaratikTwerk: React.FC<{ t: number; v: number; g?: number; d?: number; o?:
   const w = Math.PI * 2 * 2.6;
   const yay = Math.abs(Math.sin(t * w / 2)) * v;
   const oks = o > 0.5 ? Math.max(0, Math.sin(t * 22)) * 0.04 : 0;                 // öksürük sarsıntısı
-  const kY = L(-0.95, -1.78, d) - 0.08 * yay;
+  // bel dizlerden hızlıca aşağı yukarı yaylanır (twerk), aşağı indikçe dizler açılır
+  const bel = 0.17 * v * Math.sin(t * w);
+  const kY = L(-0.95, -1.78, d) + bel - 0.05 * yay;
   const govB = L(0.78, 1.12, d);                                                  // gövde boyu (öne eğikken kısa görünür)
   const yan = (s: number) => -0.13 * v * Math.max(0, Math.sin(t * w + (s > 0 ? 0 : Math.PI)));
   const sal = 0.04 * v * Math.sin(t * w);
-  const dizX = L(0.62, 0.2, d), dizY = L(-0.62, -0.9, d), ayX = L(0.5, 0.16, d);
+  const dizX = L(0.62, 0.2, d) + 0.5 * Math.max(0, bel), dizY = L(-0.62, -0.9, d) + 0.45 * bel, ayX = L(0.5, 0.16, d);
   const omY = kY - govB + 0.1 - oks;
   return (
     <g>
