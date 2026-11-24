@@ -31,3 +31,6 @@
 - Kanca A seçildi. `cast.json`'a `mert724` eklendi (geçici: slick saç). Rig'e opt-in `yakisikli` bayrağı eklendi (göz altı çizgisi yok, keskin çene, koyu/kalın kaş). Kadro sayfası artık `ids`/`ekstra` props alıyor.
 - Mert görünüm seçenekleri: `docs/diziler/724/raporlar/b8y-mert-secenekler.png` (1 slick, 2 slick+kirli sakal, 3 shortMale+kirli sakal, 4 spiky). Hepsi boy 1.07, omuz 1.15. Kullanıcı seçimi bekleniyor.
 - Still render: `--browser-executable=/opt/pw-browsers/chromium` (remotion.media erişilemiyor).
+- Mert görünümü: ilk dağınık (ek ayar yok). Doğaçlama akışı onaylı (bolumler.md sonu; "bu insan mı" âşık tonda).
+- Mert ses adayları (10, ücretsiz önizleme): https://claude.ai/artifact/3U3mQJvHUdYzgJpbzRdwoa · liste: `docs/diziler/724/raporlar/b8y-mert-ses-adaylari.json` (n, vid, sahip). Seçimden sonra: `python3 tools/elevenlabs.py ata mert724 <vid> --sahip <sahip> --ad "<ad>"`.
+- ElevenLabs: proxy hesabında 13.901 kredi kaldı (24 Kasım). api.us.elevenlabs.io önizlemeleri api.elevenlabs.io'ya çevrilerek iniyor.
