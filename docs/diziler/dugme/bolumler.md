@@ -108,3 +108,13 @@ Hedef: başyapıt, viral, 1 milyon+ izlenme. Kitle: herkese hitap eder, 13-25 k�
 - **Kullanıcı:** "1. bölümü parça parça yapalım. İlk parça kanca, 2. parça beyaz odada dörtlü uyanış, tepkiler, hareketler; kamera stratejilerini ve açılarını iyi belirle." → `b1-p2-cekim.md` (16 çekim, ≈64 sn; gözetleyen tepe açısı, her karaktere kendi kamera dili, 180° ekseni, düğmenin geç fark edilmesi).
 - **Kullanıcı (24 Kasım 2026):** "Örnek bol diyaloglu bir sahne yapsana, komik olsun, gerçekte olsa ne olurdu onu da düşün." → Parça 2 için diyalog TASLAĞI yazıldı (kullanıcı isteğiyle): `b1-p2-senaryo-taslak.md`. Onay/düzeltme bekleniyor; seslendirme öncesi kuru çalıştırma.
 - **Kullanıcı (parça 2 taslak v1):** "Diyaloglar samimiyetsizlikten ve yapmacıklıktan uzak olsun; kaçırılmışlar, ilk tepkileri o mu olur?" → v2: ilk duygu korku ve sersemlik; espriler çıkarıldı; komedi yalnız karakterin gerçekliğinden; teyze sakin değil anaç (ipucu: cebini yoklamaz, çantası elinde, "Dokunma oğlum!" fazla hızlı). **Ders:** Bu dizide diyalog önce gerçekçi psikolojiden yazılır; şaka için replik yazılmaz.
+
+## B1 Parça 2: kullanıcının metni (24 Kasım 2026; aynen)
+İlk sahne bam diye odayı genel açıdan çeken canlı kamera kaydıyla başlar.
+Herkes baygındır, göbekli adamın horlaması tüm odada yankılanıyordur, canlı yayın kamera görüntüsünden iç kameraya geçer ardından göbeklinin horlayışı ve göbeğini kaşıması göbekliye yakın kadraja girer ardından kamera kıza  infulwncer kız sesten rahatsız olmuştur (gözleri hala kapalı) göz kapaklarını sıkıyordur. Kurye sayıklar adanalı keko şivesiyle "vurun şu ayıyı lan artık" der uykusunda sayıklayarak fısıltılı ve öfkeli,
+Kuryenin sesiyle influencer kız uyanır.
+"Aaaa" diye çığlık atar "nerdeyim beeen" der. Odadaki herkes sesten korkup uyanır afallar, 
+"Noluyo lan" der kurye
+Göbekli adam kalkmaya çalışır göbekten doğrulamaz tekrar yatar panik halindedir
+
+- Not (Claude): Bu metin Claude'un v2 taslağının açılışının yerini alır. Kullanıcı kararıyla horlama odada YANKILANIR (önceki "yankısız oda" fikri bu parça için geçersiz). Açılış: genel açıdan canlı kamera kaydı → iç kamera.
