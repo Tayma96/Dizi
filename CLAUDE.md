@@ -45,6 +45,7 @@ Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Bird
 - `src/studio/sets/`: 17 mekân + eşyalar
 - `src/studio/engine/`: bölüm motoru (JSON → kamera, altyazı, ses, geçişler)
 - `src/studio/sheets/`: kontrol sayfaları (Kadro, Duygular, Jestler, Agizlar, Mekanlar)
+- `tools/gemini.py`: ücretsiz Gemini işçisi (Claude görev verir, Gemini yazar, Claude kontrol eder). Anahtar ortamın ağ sırrında (Bearer). Ücretsiz katmanda çalışan: `gemini-2.5-flash`; pro modellerin ücretsiz kotası 0, 3.8-flash sık sık meşgul.
 - `tools/elevenlabs.py`: ElevenLabs seslendirme (bütçe korumalı, çok hesaplı; durum/oyuncu-sec/ata/seslendir/efekt/replikler/ice-aktar) · `tools/ses_kontrol.py`: Whisper kontrolü
 - `tools/seslendir.py`: yedek ücretsiz TTS (Chatterbox) + Whisper kontrolü + dudak senkronu
 - `tools/ses_kutuphanesi.py`: müzik/ortam/efekt sentezi
