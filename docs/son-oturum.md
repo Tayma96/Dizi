@@ -51,3 +51,4 @@
 - P2 ses seçimi yapıldı (secim.json).
 - P1 yeniden kuruldu (kullanıcı kuralı; ana oturum, ajansız): `bolumler/724-08y-p1.mp4`. P2 üretici `tools/b8y_p2.py` + `tools/b8y_p2_ses.py`; render `bolumler/724-08y-p2.mp4`. Kullanıcı: görüntü yönetmeni ajanı çok token harcadı → bundan sonra ajan YOK.
 - P2 render: `bolumler/724-08y-p2.mp4` (43,1 sn, −14 LUFS). Kullanıcı onayı bekleniyor.
+- **Kullanıcı (24 Kasım):** müzik pembe arka planın olduğu HER yerde (kesitler `tools/b8y_muzik.py`, ses 0,35 = "çok az yükselt"); P1+P2 TEK video: `bolumler/724-08.mp4` (ham parçalar out/724-08y-p{1,2}-ham.mp4 → concat → −14 LUFS).

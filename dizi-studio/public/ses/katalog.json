@@ -2220,5 +2220,40 @@
   "duration": 2.429,
   "loop": false,
   "desc": "B8y P2: telefon alarmı: dörtlü dijital bip, iki tur (kendi sentezimiz), 2,4 sn."
+ },
+ "muzik/b8y_ask_a": {
+  "file": "ses/muzik/b8y_ask_a.mp3",
+  "category": "muzik",
+  "duration": 12.517,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 0. sn'den 12.52 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_b": {
+  "file": "ses/muzik/b8y_ask_b.mp3",
+  "category": "muzik",
+  "duration": 3.167,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 12. sn'den 3.17 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_c": {
+  "file": "ses/muzik/b8y_ask_c.mp3",
+  "category": "muzik",
+  "duration": 2.7,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 2. sn'den 2.70 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_d": {
+  "file": "ses/muzik/b8y_ask_d.mp3",
+  "category": "muzik",
+  "duration": 2.1,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 5. sn'den 2.10 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_e": {
+  "file": "ses/muzik/b8y_ask_e.mp3",
+  "category": "muzik",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 8. sn'den 2.50 sn), pembe arka plan boyunca"
  }
 }

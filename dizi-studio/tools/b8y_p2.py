@@ -273,7 +273,9 @@ def E(ad, isim, t, vol=0.5, **kw):
 
 SFX = {
     "SOK": [E("SOK", "b8y_ruzgar_circir", k0 + 0.1, 0.55)],
-    "E3": [E("E3", "b8y_parilti", e3a, 0.35)],
+    "E1": [E("E1", "muzik/b8y_ask_c", e1a, 0.35)],
+    "E3": [E("E3", "b8y_parilti", e3a, 0.35), E("E3", "muzik/b8y_ask_d", e3a, 0.35)],
+    "KASA": [E("KASA", "muzik/b8y_ask_e", ka0, 0.35)],
     "CIKIS": [E("CIKIS", "kapi_dingdong", c0 + 1.1, 0.3)],
     "SAAT": [E("SAAT", "b8y_saat_hizli", sa0 + 0.6, 0.45), E("SAAT", "b8y_saat_bip", sa0 + 2.5, 0.5)],
     "ALARM": [E("ALARM", "b8y_alarm", t_alarm, 0.6), E("ALARM", "floresan_cit", t_alarm + 0.08, 0.35)],

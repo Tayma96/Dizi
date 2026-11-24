@@ -450,8 +450,9 @@ SFX = {
     "S1": [E("S1", "b8y_kol_gicirti", t_kol0 + 0.1, 0.3)],
     "S2": [E("S2", "b8y_kol_mandal", t_kol1 - 0.05, 0.4), E("S2", "b8y_kapi_hiz", t_kapi - 0.02, 0.75)],
     # âşık olduğu süre boyunca TEK parça hafif romantik fon (kullanıcı: 10-15 sn, kesik değil, cızırtı yok)
-    "DON": [E("DON", "b8y_parilti", d0 + 0.3, 0.55), E("DON", "muzik/b8y_ask", d0 + 0.3, 0.75)],
+    "DON": [E("DON", "b8y_parilti", d0 + 0.3, 0.55), E("DON", "muzik/b8y_ask_a", d0 + 0.35, 0.35)],
     "DURT": [E("DURT", "el_kart_pop", t_durt1, 0.3), E("DURT", "el_kart_pop", t_durt2, 0.26)],
+    "E5": [E("E5", "muzik/b8y_ask_b", e5a, 0.35)],
 }
 
 
