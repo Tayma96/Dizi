@@ -524,6 +524,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Young woman's nervous shaky breathing while tiptoeing slowly, trembling small gasps, very close, no words"
  },
+ "efekt/b8y4_oksuruk": {
+  "file": "ses/efekt/b8y4_oksuruk.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A huge monstrous creature awkwardly clears its throat with a deep fake cough, ahem ahem, like it was caught doing something embarrassing and pretends nothing happened, comedic, close"
+ },
+ "efekt/b8y4_radyo_kapan": {
+  "file": "ses/efekt/b8y4_radyo_kapan.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Old small radio being switched off abruptly with a click, music cuts instantly, then dead silence"
+ },
  "efekt/b8y4_raf_dusus": {
   "file": "ses/efekt/b8y4_raf_dusus.mp3",
   "category": "efekt",

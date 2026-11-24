@@ -60,3 +60,4 @@
 - **Kullanıcı (24 Kasım):** P4'te "Mert koşup kapıyı kapatır" sahnesi İPTAL; yerine yeni fikir gelecek. Üretilen sesler: M1a/M1b, E1a/E1b (K1 ve b8y4 efektleri üretilmedi).
 - P4 düzeltme (kullanıcı): "Merak etme ben yanındayım" = ECE (dingin). Seçim: M1=N1a (Ece), E1=E1a, K1=K1b (secim.json). b8y4_raf_dusus üretildi. Kalan kredi ~12.480. KAPAT/DARBE vuruşları hâlâ üreticide: kullanıcının yeni fikriyle değişecek. P3a çıplak kollarla yeniden render edildi.
 - P4 yeni son (kullanıcı fikri): Ece yavaşça depoya yürür → FPS (Inserts19 mekan "depo") → başını sola çevirir: yaratık sırtı dönük twerk (YaratikTwerk) + radyodan trap ritmi (doğaçlama). Render `bolumler/724-08y-p4.mp4` (21,2 sn).
+- P4 ek: yaratık arkadan (kürek kemikleri, dikenli omurga) → 4 sn sonra yana bakar, radyo kapanır → doğrulur → elini ağzına götürüp öksürür (`b8y4_oksuruk`) → önüne döner, eğilip kapıdan Ece'nin üstüne koşar, Ece çığlığı (E1b) → kararma. P4 = 26,6 sn. Kalan kredi 12.173.
