@@ -25,6 +25,10 @@
 
 **Teyze:** A7'de herkesle **aynı anda** irkilir (kullanıcı kararı, 24 Kasım 2026; gecikme önerisi iptal).
 
+**A1 (kullanıcı kararı):** **güvenlik kamerası** kaydı: REC + kırmızı nokta, tarih-saat, kamera no ("KAM 04"); CANLI rozeti ve izleyici sayısı YOK. Sağ alt köşede etiketsiz, yavaşça artan küçük bir sayı (ileride izleyici sayısı olduğu anlaşılacak). Teyze A1'de bayılmış değil, düzgün ve uyuyor gibi yatar (yan yatmış, çantasına sarılı, gözlüğü yerinde).
+
+**Üretim (görüntü yönetmeni, 24 Kasım 2026):** `KDP2Acilis` (`dizi-studio/src/studio/kd/P2Acilis.tsx`), çıktı `ornekler/kd-b1-p2-acilis.mp4` (sessiz), kontrol `ornekler/kd-b1-p2-acilis-kareler.png`. Yerleşim (m): göbekli (-1,55; 3,0) baş batıda; teyze (-1,45; 5,7) baş batıda, yüzü güneye; influencer (1,4; 2,7) baş kuzeyde, sırtüstü; kurye (1,55; 5,5) baş doğuda. Kareler: A1 0, A2 90, A3 135, A4 255, A5 345, A6 435, A7 480 (irkilme 483, kurye fırlar 486), A8 525, A9 555, son 680. Ağız zamanları: kurye fısıltısı 358-416, "Aaaa" 446-462, "nerdeyim beeen" 464-479, "Noluyo lan" 528-548 (ses yönetmeni sesleri bu aralıklara oturtur ya da zamanlar sese göre kaydırılır).
+
 ## 1. Kamera stratejisi: dört katman
 
 1. **Gözetleyen göz (tepeden, simetrik):** Parça, birinin onları yukarıdan izlediği hissiyle açılır ve kapanır. Kuşbakışı, kusursuz simetrik ve kıpırtısız bir kadraj; laboratuvardaki deney fareleri gibi. Bu, dizinin "içeriden biri" fikrini ve odanın bir deney olduğunu görsel olarak eker, tek kelime gerekmeden.
