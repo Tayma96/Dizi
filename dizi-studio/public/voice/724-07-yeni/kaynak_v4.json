@@ -1,0 +1,314 @@
+{
+ "not": "B7 yeni (doğaçlama, GY onaylı) Ece replikleri Y1/Y3/Y4 + esneme Y0, 3'er çekim; A05 (öfkeli, kullanıcı itirazı) ve E07 (net 'lan') ek çekimleri; text AYNEN (eleven_v4)",
+ "series": "724",
+ "episode": "724-07-yeni",
+ "episodeNo": 7,
+ "title": "ses",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "Y1a",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anne vallahi büyük hayranınım.",
+     "okunus": "Anne vallahi büyük hayranınım...",
+     "tags": "[whispering, scared but awed, trembling, nervous giggle]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y1b",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anne vallahi büyük hayranınım.",
+     "okunus": "Anne vallahi büyük hayranınım.",
+     "tags": "[whispers, shaky voice, terrified admiration]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y1c",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "anne vallahi büyük hayranınım.",
+     "okunus": "Anne... vallahi büyük hayranınım.",
+     "tags": "[whispers nervously, awestruck, quiet]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y3a",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "İyiyim!",
+     "okunus": "İyiyim!",
+     "tags": "[out of breath, hurried, calling from behind a door after falling]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y3b",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "İyiyim!",
+     "okunus": "İyiyim!",
+     "tags": "[panting, flustered, quickly shouting]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y3c",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "İyiyim!",
+     "okunus": "İyiyim!",
+     "tags": "[breathless, embarrassed, shouting]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y4a",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Hassiktir…",
+     "okunus": "Hassiktir...",
+     "tags": "[startled, muttering under breath in the dark]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y4b",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Hassiktir…",
+     "okunus": "Hassiktir...",
+     "tags": "[gasps, hushed, spooked]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y4c",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Hassiktir…",
+     "okunus": "Hassiktir...",
+     "tags": "[quiet, startled, annoyed whisper]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y0a",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "(esneme)",
+     "okunus": "Haaaaaahh… hıh.",
+     "tags": "[long sleepy yawn, groggy, just woke up]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "Y0b",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "(esneme)",
+     "okunus": "Hıaaaaahhmm…",
+     "tags": "[yawning loudly, drowsy]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A05c",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "okunus": "Böcek evde de var! Terliği vur, geç!",
+     "tags": "[angry, scolding loudly, irritated mother, no patience]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A05d",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "okunus": "Böcek evde de var! Terliği vur geç!",
+     "tags": "[furious, snapping, sharp, loud]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "A05e",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "anne724",
+     "text": "Böcek evde de var terliği vur geç",
+     "okunus": "Böcek evde de var, terliği vur geç!",
+     "tags": "[angry and fed up, raising voice]",
+     "emotion": "notr",
+     "stab": 0.5,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E07c",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "ama çok para lan",
+     "okunus": "Ama çok para lan!",
+     "tags": "[dreamy, greedy, grinning, says the last word clearly]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  },
+  {
+   "id": "E07d",
+   "set": "ev_antre",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_ev",
+     "text": "ama çok para lan",
+     "okunus": "Ama… çok para lan!",
+     "tags": "[in pain but grinning, greedy, comedic]",
+     "emotion": "notr",
+     "stab": 0.0,
+     "gapAfter": 0.3
+    }
+   ]
+  }
+ ]
+}

@@ -230,6 +230,62 @@
   "loop": false,
   "desc": "B5 2. parça: BÜTÜN ses (56 sn, binaural stereo, -14 LUFS / -1,4 dBTP, 48 kHz). Motorda music olarak tek parça verilir (tools/ses_724_05_p2.py)."
  },
+ "efekt/b7_hayal_zincir": {
+  "file": "ses/efekt/b7_hayal_zincir.mp3",
+  "category": "efekt",
+  "duration": 1.776,
+  "loop": false,
+  "desc": "B7: hayal ekinde kapı zinciri/kilit, rüya yankılı (kilit, kendi sentezimiz, türev)."
+ },
+ "efekt/b7_kapi_arkasi_dolap": {
+  "file": "ses/efekt/b7_kapi_arkasi_dolap.mp3",
+  "category": "efekt",
+  "duration": 2.952,
+  "loop": false,
+  "desc": "B7: oda kapısı arkasından çekmece/askı telaşı (el_dolap_karistir + kapı arkası filtresi)."
+ },
+ "efekt/b7_merdiven_kosu": {
+  "file": "ses/efekt/b7_merdiven_kosu.mp3",
+  "category": "efekt",
+  "duration": 2.638,
+  "loop": false,
+  "desc": "B7 P3: dış kapı arkasında merdivenden hızla inen adımlar, uzaklaşır (kosma türevi + kapı arkası + merdiven yankısı)."
+ },
+ "efekt/b7_musluk_kapat": {
+  "file": "ses/efekt/b7_musluk_kapat.mp3",
+  "category": "efekt",
+  "duration": 1.541,
+  "loop": false,
+  "desc": "B7: musluk kapanır, son damlalar (el_yuz_yikama 2,5-4,0 türevi)."
+ },
+ "efekt/b7_oda_kapi_kut": {
+  "file": "ses/efekt/b7_oda_kapi_kut.mp3",
+  "category": "efekt",
+  "duration": 0.862,
+  "loop": false,
+  "desc": "B7: oda kapısı tek 'KÜT' (kapi_carpma 1,92-2,75 türevi, BigSoundBank #0103 CC0)."
+ },
+ "efekt/b7_otomatik_isik_kapi": {
+  "file": "ses/efekt/b7_otomatik_isik_kapi.mp3",
+  "category": "efekt",
+  "duration": 1.855,
+  "loop": false,
+  "desc": "B7 P3: dış kapı arkasında merdiven otomatiğine basılır, ışık vızıltısı (el_otomatik_isik + kapı arkası)."
+ },
+ "efekt/b7_otomatik_sonme": {
+  "file": "ses/efekt/b7_otomatik_sonme.mp3",
+  "category": "efekt",
+  "duration": 0.392,
+  "loop": false,
+  "desc": "B7: merdiven otomatiği röle tıkı (el_otomatik_isik ilk 0,35 sn, kapı arkası tınısı)."
+ },
+ "efekt/b7_tabak_uzak": {
+  "file": "ses/efekt/b7_tabak_uzak.mp3",
+  "category": "efekt",
+  "duration": 0.993,
+  "loop": false,
+  "desc": "B7 P2 sonu: salondan uzak tabak 'tak' (J-cut köprüsü; el_tabak_tak türevi, koridor yankısı)."
+ },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
   "category": "efekt",
@@ -314,6 +370,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: fingers slowly crinkling an empty torn plastic candy bar wrapper, sparse crisp crackles, quiet room, close"
  },
+ "efekt/el_anahtar_kap": {
+  "file": "ses/efekt/el_anahtar_kap.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a bunch of house keys snatched off a metal wall hook, quick bright metallic jingle, small entrance hall"
+ },
  "efekt/el_anten_hisirti": {
   "file": "ses/efekt/el_anten_hisirti.mp3",
   "category": "efekt",
@@ -327,6 +390,13 @@
   "duration": 12.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Interior of an old sedan car driving at steady speed in the evening, low engine hum, tire rumble on asphalt, soft wind noise, no music, no voices"
+ },
+ "efekt/el_asili_nota": {
+  "file": "ses/efekt/el_asili_nota.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cinematic suspense sting: one single high sustained violin note over a soft low string drone, slowly swelling, unresolved, then stops abruptly"
  },
  "efekt/el_ayakkabi_gicirti": {
   "file": "ses/efekt/el_ayakkabi_gicirti.mp3",
@@ -356,6 +426,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: giant insect legs suddenly unfolding with sharp clicks, many hard chitin legs tapping and skittering on a tiled floor, creepy, close"
  },
+ "efekt/el_bocek_ezme": {
+  "file": "ses/efekt/el_bocek_ezme.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a house slipper stomping hard on a small cockroach on a bathroom tile floor: one quick flat slipper slap with a tiny dry crunch, comedic, close, no voice"
+ },
  "efekt/el_bocek_kukreme": {
   "file": "ses/efekt/el_bocek_kukreme.mp3",
   "category": "efekt",
@@ -384,6 +461,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Outgoing phone call ringback tone heard through a phone speaker, two rings then pickup click"
  },
+ "efekt/el_catal_tik": {
+  "file": "ses/efekt/el_catal_tik.mp3",
+  "category": "efekt",
+  "duration": 0.6,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a metal fork banged once on a wooden dining table, single sharp tick, small room"
+ },
  "efekt/el_cctv_ugultu": {
   "file": "ses/efekt/el_cctv_ugultu.mp3",
   "category": "efekt",
@@ -391,12 +475,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Low CCTV video playback hum with faint tape hiss"
  },
+ "efekt/el_cep_hisirti": {
+  "file": "ses/efekt/el_cep_hisirti.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: stuffing a wad of paper banknotes into a knitted wool cardigan pocket, paper crinkle and soft wool rustle, close"
+ },
  "efekt/el_cigneme": {
   "file": "ses/efekt/el_cigneme.mp3",
   "category": "efekt",
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: chewing food with mouth open, comedic, short"
+ },
+ "efekt/el_damla": {
+  "file": "ses/efekt/el_damla.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: two single water drops falling into a porcelain bathroom sink, small clear plips, quiet"
  },
  "efekt/el_demir_kapi": {
   "file": "ses/efekt/el_demir_kapi.mp3",
@@ -439,6 +537,27 @@
   "duration": 3.0,
   "loop": false,
   "desc": "ElevenLabs SFX: slow wet skin tearing and peeling off in large pieces, sticky stringy organic fibers stretching tight then snapping one by one, gory horror foley, close, no voice"
+ },
+ "efekt/el_deste_kapma": {
+  "file": "ses/efekt/el_deste_kapma.mp3",
+  "category": "efekt",
+  "duration": 0.7,
+  "loop": false,
+  "desc": "ElevenLabs SFX: quickly snatching a wad of paper banknotes out of someone's hand, fast paper swish, close"
+ },
+ "efekt/el_deste_salla": {
+  "file": "ses/efekt/el_deste_salla.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a thick wad of paper banknotes shaken and flapped angrily in the air, quick papery flutter, close, no voice"
+ },
+ "efekt/el_dil_saplatma": {
+  "file": "ses/efekt/el_dil_saplatma.mp3",
+  "category": "efekt",
+  "duration": 0.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: licking a thumb before counting money: one small wet tongue click, close, no voice"
  },
  "efekt/el_dingdong": {
   "file": "ses/efekt/el_dingdong.mp3",
@@ -517,6 +636,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Phone call ending, short hang-up beep tones through a speaker"
  },
+ "efekt/el_havlu": {
+  "file": "ses/efekt/el_havlu.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: vigorously drying a face with a soft cotton towel, fabric rubbing and rustling, close, quiet bathroom"
+ },
  "efekt/el_inleme": {
   "file": "ses/efekt/el_inleme.mp3",
   "category": "efekt",
@@ -587,12 +713,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: huge cockroach wings flaring open, loud dry papery rattle and short angry buzzing flutter"
  },
+ "efekt/el_kapi_arkasi_gum": {
+  "file": "ses/efekt/el_kapi_arkasi_gum.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: muffled through a closed bedroom door: someone hopping on one foot pulling on jeans, quick thumping hops, then one heavy comedic thud of a body falling on the floor"
+ },
  "efekt/el_kapi_yumruk": {
   "file": "ses/efekt/el_kapi_yumruk.mp3",
   "category": "efekt",
   "duration": 2.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Fist pounding three times on a heavy metal hospital door, desperate, irregular rhythm, reverberant"
+ },
+ "efekt/el_kart_pop": {
+  "file": "ses/efekt/el_kart_pop.mp3",
+  "category": "efekt",
+  "duration": 0.6,
+  "loop": false,
+  "desc": "ElevenLabs SFX: cheerful bubbly pop sound, playful light user interface pop, short and bright"
  },
  "efekt/el_kasa": {
   "file": "ses/efekt/el_kasa.mp3",
@@ -664,6 +804,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Small plastic cream tube squeezed, soft wet squelch, close up"
  },
+ "efekt/el_kucuk_bocek": {
+  "file": "ses/efekt/el_kucuk_bocek.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a tiny cockroach scurrying fast across a bathroom tile floor, faint quick light ticking of little legs, close, quiet room"
+ },
+ "efekt/el_kulak_cekme": {
+  "file": "ses/efekt/el_kulak_cekme.mp3",
+  "category": "efekt",
+  "duration": 0.8,
+  "loop": false,
+  "desc": "ElevenLabs SFX: short cartoon comedic rubbery stretch squeak, like an ear being pulled up, playful"
+ },
  "efekt/el_kulak_cinlama": {
   "file": "ses/efekt/el_kulak_cinlama.mp3",
   "category": "efekt",
@@ -712,6 +866,13 @@
   "duration": 15.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Night interior ambience of an empty 24-hour convenience store: low buzzing fluorescent lights, refrigerator compressors humming, faint rain outside, very quiet, seamless"
+ },
+ "efekt/el_musluk": {
+  "file": "ses/efekt/el_musluk.mp3",
+  "category": "efekt",
+  "duration": 6.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: bathroom sink faucet left running steadily into a ceramic basin, constant smooth water flow, no splashes, no voice"
  },
  "efekt/el_nefes_tutma": {
   "file": "ses/efekt/el_nefes_tutma.mp3",
@@ -762,12 +923,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: a quick loud affectionate kiss on the cheek, cartoon smack"
  },
+ "efekt/el_otomatik_isik": {
+  "file": "ses/efekt/el_otomatik_isik.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: old apartment building stairwell timer light: a big plastic push button pressed with a loud click, a relay clunk, then a faint electric hum, echoey stairwell"
+ },
  "efekt/el_otomatik_kapi": {
   "file": "ses/efekt/el_otomatik_kapi.mp3",
   "category": "efekt",
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Automatic sliding glass door of a small convenience store opening slowly at night, soft electric motor whir and rubber seal, followed by heavy rain from outside getting louder through the open door, realistic, close perspective"
+ },
+ "efekt/el_para_sayma": {
+  "file": "ses/efekt/el_para_sayma.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: counting paper banknotes quickly by flicking them one by one with a thumb, crisp individual paper snaps, close, no voice"
  },
  "efekt/el_plak_cizik": {
   "file": "ses/efekt/el_plak_cizik.mp3",
@@ -790,12 +965,26 @@
   "loop": false,
   "desc": "ElevenLabs SFX: cartoon comedic shock sting, short orchestral hit with cymbal"
  },
+ "efekt/el_su_tukurme": {
+  "file": "ses/efekt/el_su_tukurme.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a girl sputters and spits out a mouthful of water into a sink, comedic pfff splutter, close"
+ },
  "efekt/el_surukleme": {
   "file": "ses/efekt/el_surukleme.mp3",
   "category": "efekt",
   "duration": 4.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Hurried footsteps in a hospital corridor, a man resisting while being pulled along, cloth slippers scuffing and dragging on linoleum floor, fabric rustling, reverberant"
+ },
+ "efekt/el_tabak_tak": {
+  "file": "ses/efekt/el_tabak_tak.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a ceramic dinner plate set down hard and angrily on a wooden dining table, one sharp loud clack, small home kitchen"
  },
  "efekt/el_tablet_kilit": {
   "file": "ses/efekt/el_tablet_kilit.mp3",
@@ -817,6 +1006,13 @@
   "duration": 3.0,
   "loop": false,
   "desc": "ElevenLabs SFX: Smartphone vibrating on a hard counter, buzzing twice"
+ },
+ "efekt/el_terlik_surume": {
+  "file": "ses/efekt/el_terlik_surume.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: sleepy slow house slipper shuffling on a tile floor, feet dragging, three lazy steps, quiet hallway"
  },
  "efekt/el_tezgah_carpma": {
   "file": "ses/efekt/el_tezgah_carpma.mp3",
@@ -852,6 +1048,13 @@
   "duration": 1.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Quick tapping of a phone number on a smartphone touchscreen keypad, soft key beeps"
+ },
+ "efekt/el_uzun_koklama": {
+  "file": "ses/efekt/el_uzun_koklama.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a young woman taking one long deep blissful sniff through her nose, then a happy little sigh, close"
  },
  "efekt/el_whoosh_kay": {
   "file": "ses/efekt/el_whoosh_kay.mp3",
@@ -1329,6 +1532,13 @@
   "loop": false,
   "desc": "ElevenLabs Music: Original instrumental film score cue for the quiet morning after a night of terror: sad yet peaceful, tender and healing. Solo soft felt piano with warm sustained string ensemble, slow tempo around 60 bpm, B minor resolving to D major. Opens very sparse and fragile with single piano notes over a soft string drone, gradually adds cello and violins, swells gently into an emotional warm climax around 26 to 36 seconds with full sustained strings and rich piano chords, then settles into a calm, hopeful, quiet resolution and soft fade. No vocals, no percussion, no drums, intimate and cinematic."
  },
+ "muzik/b7_sofra_komik": {
+  "file": "ses/muzik/b7_sofra_komik.mp3",
+  "category": "muzik",
+  "duration": 30.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Original instrumental underscore for a Turkish family comedy web series, an evening at home between a strict mother and her cheeky daughter: playful pizzicato strings, bouncy clarinet melody, light woodblock and soft finger snaps, warm and affectionate, about 110 bpm, F major, energetic from the very first second with small comedic stops. At about 22 seconds the music suddenly thins out into one single held high violin note over a low suspense drone, unresolved, for a cliffhanger. No vocals, no drums kit. | Ölçüm: 0-24 sn oynak pizzicato/klarnet, 24-25 sn söner; istenen 'asılı nota' ÇIKMADI (kanca için efekt/el_asili_nota). -17,5 LUFS."
+ },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",
   "category": "muzik",
@@ -1440,6 +1650,27 @@
   "duration": 51.53,
   "loop": true,
   "desc": "Umut / sıcaklık: majör akorlar, yumuşak pad ve piyano. Barışma, kavuşma."
+ },
+ "ortam/b7_banyo_aksam": {
+  "file": "ses/ortam/b7_banyo_aksam.mp3",
+  "category": "ortam",
+  "duration": 58.04,
+  "loop": true,
+  "desc": "B7 banyo, kasım 18:00 (kuşsuz): oda tonu + aspiratör uğultusu + kapalı pencere arkası gece şehri. oda_tonu/sehir_gece (BigSoundBank CC0) + kendi sentezimiz. -20 LUFS."
+ },
+ "ortam/b7_musluk_dongu": {
+  "file": "ses/ortam/b7_musluk_dongu.mp3",
+  "category": "ortam",
+  "duration": 14.03,
+  "loop": true,
+  "desc": "B7 P2: açık kalan lavabo musluğu, ~14 sn döngü (el_musluk türevi, ElevenLabs SFX kullanıcı hesabı). -24 LUFS."
+ },
+ "ortam/b7_salon_aksam": {
+  "file": "ses/ortam/b7_salon_aksam.mp3",
+  "category": "ortam",
+  "duration": 58.04,
+  "loop": true,
+  "desc": "B7 salon akşamı (kasım 18:00): oda tonu + pencere arkası gece şehri + hafif duvar saati. BigSoundBank CC0 türevi. -20 LUFS."
  },
  "ortam/banyo_sabah": {
   "file": "ses/ortam/banyo_sabah.mp3",
