@@ -9,7 +9,7 @@ import React from "react";
  * ===================================================================================== */
 
 export type BanyoView = "ayna" | "kapi";
-export type BanyoProps = { view: BanyoView; frame: number; doorOpen: number };
+export type BanyoProps = { view: BanyoView; frame: number; doorOpen: number; /** kasım 18:00: pencere karanlık */ gece?: boolean };
 
 const W = 1080;
 const H = 1920;
@@ -50,7 +50,7 @@ const KapiKoridor: React.FC<{ x: number; y: number; w: number; h: number; op: nu
 );
 
 /* ------------------------------- AYNA (FPS) ------------------------------- */
-const AynaBG: React.FC<BanyoProps> = ({ doorOpen }) => {
+const AynaBG: React.FC<BanyoProps> = ({ doorOpen, gece }) => {
   const op = Math.max(0, Math.min(1, doorOpen));
   return (
     <g>
@@ -65,9 +65,10 @@ const AynaBG: React.FC<BanyoProps> = ({ doorOpen }) => {
       <path d="M 0 300 H 1080" stroke="#c8c8c0" strokeWidth={6} />
       <ellipse cx={500} cy={300} rx={120} ry={26} fill="#fffaf0" stroke="#d8d0c0" strokeWidth={4} />
       {/* buzlu pencere (sabah) */}
-      <rect x={170} y={360} width={230} height={260} fill="url(#by_pen)" stroke="#f4f0e8" strokeWidth={14} />
+      <rect x={170} y={360} width={230} height={260} fill={gece ? "#1c2440" : "url(#by_pen)"} stroke="#f4f0e8" strokeWidth={14} />
+      {gece ? [[200, 400], [250, 520], [330, 450], [360, 560]].map(([wx, wy], i) => <rect key={i} x={wx} y={wy} width={14} height={11} fill="#ffcf70" opacity={0.5} />) : null}
       <path d="M 285 360 V 620 M 170 490 H 400" stroke="#f4f0e8" strokeWidth={8} />
-      <rect x={130} y={330} width={310} height={330} fill="#ffffff" opacity={0.18} />
+      <rect x={130} y={330} width={310} height={330} fill="#ffffff" opacity={gece ? 0.04 : 0.18} />
       {/* duş perdesi (sol) */}
       <path d="M 120 700 H 470" stroke="#b8b8b0" strokeWidth={10} />
       <path d="M 130 708 Q 160 1000 140 1500 L 300 1500 Q 320 1000 290 708 Z" fill="#9ac4d8" stroke="#6a94a8" strokeWidth={4} />
@@ -146,8 +147,16 @@ const KapiBG: React.FC<BanyoProps> = ({ doorOpen }) => {
         <radialGradient id="bk_lamba" cx="0.55" cy="0.05" r="0.8"><stop offset="0" stopColor="#fff4d8" stopOpacity={0.45} /><stop offset="1" stopColor="#fff4d8" stopOpacity={0} /></radialGradient>
         <radialGradient id="bk_vin" cx="0.5" cy="0.45" r="0.8"><stop offset="0.55" stopColor="#000" stopOpacity={0} /><stop offset="1" stopColor="#000" stopOpacity={0.4} /></radialGradient>
       </defs>
-      {/* arka duvar (kapının olduğu) */}
-      <Fayans x={0} y={0} w={W} h={H} s={100} c1="#e4eeea" c2="#d4e4de" line="#c4d4ce" />
+      {/* arka duvar (kapının olduğu); kadraj taşmalarına karşı sağa-sola uzatılmış */}
+      <Fayans x={0} y={0} w={W + 500} h={H} s={100} c1="#e4eeea" c2="#d4e4de" line="#c4d4ce" />
+      <rect x={-400} y={0} width={400} height={H} fill="#d8e4de" />
+      <rect x={W} y={0} width={500} height={250} fill="#f2f2ec" />
+      <path d="M 1080 250 H 1580" stroke="#c8c8c0" strokeWidth={6} />
+      <path d="M 1080 1560 L 1580 1560 L 1580 1920 L 1080 1920 Z" fill="#b8c4c0" />
+      <path d="M 1080 1640 H 1580 M 1080 1760 H 1580" stroke="#a4b0ac" strokeWidth={3} />
+      {/* sağ duvarda havlu askısı (uzatılmış bölüm) */}
+      <rect x={1150} y={820} width={190} height={12} rx={6} fill="#c8c8c0" />
+      <path d="M 1165 830 L 1165 1120 Q 1245 1140 1325 1120 L 1325 830 Z" fill="#7ab0a0" stroke="#4a8070" strokeWidth={4} />
       <rect x={0} y={0} width={W} height={250} fill="#f2f2ec" />
       <path d="M 0 250 H 1080" stroke="#c8c8c0" strokeWidth={6} />
       {/* sol duvar (lavabo + ayna, yan açı) */}
@@ -169,18 +178,14 @@ const KapiBG: React.FC<BanyoProps> = ({ doorOpen }) => {
       <path d="M 405 1350 Q 440 1320 480 1345" stroke="#ffffff" strokeWidth={8} opacity={0.5} fill="none" />
       <rect x={350} y={1100} width={64} height={62} rx={8} fill="#3a8ad0" stroke="#1a4a78" strokeWidth={4} />
       <rect x={364} y={1088} width={36} height={16} rx={4} fill="#f0d040" />
-      <path d="M 590 1600 L 760 1600 L 740 1770 L 610 1770 Z" fill="#c8a070" stroke="#6a4a2a" strokeWidth={5} />
-      {[1630, 1670, 1710, 1750].map((y) => <path key={y} d={`M ${596 + (y - 1600) * 0.12} ${y} H ${754 - (y - 1600) * 0.12}`} stroke="#8a6440" strokeWidth={4} />)}
-      <path d="M 600 1600 Q 640 1556 690 1580 Q 730 1550 756 1600 Z" fill="#e8a0b8" stroke={"#a86078"} strokeWidth={4} />
-      <path d="M 640 1600 Q 660 1570 700 1590" stroke="#34466a" strokeWidth={22} strokeLinecap="round" fill="none" />
+      {/* kirli sepeti B7 sahnesinde önde çizilir (Inserts16) */}
       {/* zemin */}
       <path d="M 300 1560 L 1080 1560 L 1080 1920 L 0 1920 Z" fill="#b8c4c0" />
-      {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${300 + i * 98} 1560 L ${i * 135} 1920`} stroke="#a4b0ac" strokeWidth={3} />)}
-      {[1640, 1760].map((y) => <path key={y} d={`M 0 ${y} H 1080`} stroke="#a4b0ac" strokeWidth={3} />)}
+      {new Array(14).fill(0).map((_, i) => <path key={i} d={`M ${300 + i * 98} 1560 L ${i * 135} 1920`} stroke="#a4b0ac" strokeWidth={3} />)}
+      {[1640, 1760].map((y) => <path key={y} d={`M 0 ${y} H 1580`} stroke="#a4b0ac" strokeWidth={3} />)}
       {/* tavan lambası */}
       <ellipse cx={620} cy={250} rx={140} ry={28} fill="#fffaf0" stroke="#d8d0c0" strokeWidth={4} />
-      <rect width={W} height={H} fill="url(#bk_lamba)" />
-      <rect width={W} height={H} fill="url(#bk_vin)" />
+      <rect x={-400} width={W + 900} height={H} fill="url(#bk_lamba)" />
     </g>
   );
 };
@@ -190,6 +195,8 @@ const KapiFG: React.FC<BanyoProps> = () => (
     {/* sol önde lavabo tezgâhının ucu */}
     <path d="M 0 1380 L 250 1440 L 250 1500 L 0 1460 Z" fill="#fbfaf6" stroke="#b8b4a8" strokeWidth={5} />
     <path d="M 0 1460 L 250 1500 L 250 1920 L 0 1920 Z" fill="#e8e4da" stroke="#b8b4a8" strokeWidth={5} />
+    <path d="M -400 1340 L 0 1380 L 0 1920 L -400 1920 Z" fill="#e8e4da" />
+    <path d="M -400 1300 L 0 1380 L 0 1460 L -400 1400 Z" fill="#fbfaf6" />
     <rect x={40} y={1560} width={170} height={20} rx={6} fill="#c8c4b8" />
   </g>
 );

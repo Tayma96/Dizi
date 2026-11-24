@@ -253,3 +253,39 @@ Ece lavaboya gider aynanın karşısında düşünmeye başlar. İlk parçamız 
 - Ton: komik ve samimi (B6 sonrası kullanıcı kararı: ilk 3 bölümün samimiyeti geri gelecek). Ece pijamalı (ece_ev), uykulu ve dağınık; korkuyla komedi iç içe.
 - Mekân: Ece'nin evi; çamaşır makinesi banyoda (Türk evlerinde olağan), Ece'nin odası koridorda. Son: B1'deki ayna (FPS) sahnesine dönüş.
 - Ece'nin "içinden düşünür" repliği iç ses (italik altyazı, dudak kıpırdamaz); "ama çok para lan" sesli.
+
+## Bölüm 7, Parça 2 (kullanıcının metni, 23 Kasım 2026; replikler AYNEN, yalnız yazım düzeltildi)
+Ece aynada yüzünü yıkıyor. "Saçmalama Ece ölüyodun lan canından daha mı değerli"
+Bir duraksama.
+"Günlük bu kadar çalışsam 1 haftalık maaşım 1 yıllık maaşım yapıyo olummmm"
+"Gidip Sabri abiye olanları bir sorayım en iyisi" der kararlı bir şekilde.
+
+## Bölüm 7, Parça 3 (kullanıcının metni, 23 Kasım 2026; replikler AYNEN, yalnız yazım düzeltildi)
+Annesi sofrayı kuruyordur, Ece hızlıca odasına gidip giyinir, anne "otur şu masaya" der, Ece odadan çıkınca annesi "o para...." derken Ece masadan 1 zeytin alıp ağzına atıp annesini öpüp "az işim var gelicemm" deyip çıkar evden.
+- Not (Claude): salon (aynı daire; solda Ece'nin odası, sağda antreye çıkış). Ece pijamayla odasına koşar, sivil kıyafetle (hardal kazak, kot) çıkar. "gelicemm" ağzı zeytin dolu okunur. Anne cümlesini bitiremez (öpücükle kesilir).
+- **B7 P3 v2 (Claude'un sözsüz eklemeleri, kullanıcı "ajan gibi uzun çalış" dedi):** aralık kapıdan fırlayan pijama/çorap, çorabı anne iki parmakla tutup geri fırlatır (P1 çorap koklamasına gönderme); anne desteyi hırka cebinden çıkarır ("o para...."); zeytin yakın planı, Ece zeytini havaya atıp ağzıyla yakalar (yanak şişer); öpücük yakın planı; antre çıkışı; son: anne yanağına dokunur, sonra paraya bakıp gözlerini kısar (kanca). Yeni replik yok.
+
+## Bölüm 8, Parça 1 (kullanıcının metni, 24 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Şimdi Ece markete tedirgin şekilde tam gelir kapıdan girer Sabri kasadadır.
+Sabri: "geldin demek, hoş geldin" der.
+Ece: "abi uzatmaya gerek yok neydi bu gece olanlar? Bana bazı cevaplar borçlusun!"
+
+Bundan sonrası önemli Claude yönetmenler güzel yapsın:
+"Anlatayım kızım" kalemle çizmeye başlar 3 yuvarlak çizer altlı üstlü "bunlar dünyadaki topluluklar", hepsini bir noktada birleştiren çizgi çeker ortak noktanın üstünden yana doğru bir çizgi daha çeker. "Bu da ortak yaşam çizgimiz."
+İlk çizdiği 3 yuvarlağın yanına bağımsız ayrı 1'er çizgi daha ekler, "İnsanlar asırlar boyunca hikâyeler anlattı, korkular yarattı ve bunların her biri paralel bir çizgi oluşturdu" "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor" en son çizdiği hepsinin kesiştiği o yuvarlak son noktada.
+
+### Notlar (genel yönetmen)
+- B8'de doğaçlama izni YOK (B7'ye özeldi): yeni replik eklenmez; sözsüz eylem/tepki ve kamera serbest. Yeni replik önerisi olursa kullanıcıya sorulur.
+- Çizim anlatımın kalbi: kâğıt yakın planları okunur, net ve zamanında (her cümlede ilgili çizgi çizilir).
+
+## Bölüm 8, Parça 2 (kullanıcının metni, 24 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Ece: "he koskoca korkunç paralel evrenler götü boklu markette ortak noktada buluşuyor"
+Sabri şaşkın ve mahçup: "he valla"
+Ece: "haa öbür taraf yok yani?" (tahtalı köyden bahsediyor)
+Sabri: "öbür taraf derken?"
+Ece: "ruhlar alemi Sabri abi ruhlar alemi"
+Sabri: "yoo ne alaka."
+Ece: "heh" deyip kameraya döner. Türklerde bir el hareketi vardır: sağ el 5 şeklinde, parmaklar aşağıya bakar; sol el 5 parmağı kapatır, ardından sağ el ileri doğru yumruk şeklinde uzatılır, aynı anda "şak" sesi duyulur; sol el sağ elin bileğini tutar, baş parmak işaret ve orta parmağın arasındadır. Bu işarete "nah" işareti denir. Yani Ece "heh" derken kameraya, seyirciye el hareketi çeker ve 4. duvarı kırıp seyirciyle konuşur.
+"Did ind jib deyip duruyordunuz al bak tek ortak noktamız market" der (herkes bir başka diziye benzetiyor; diyalogda "did ind jıb" deniyor, çünkü ağız burun eğip seyircinin taklidini yaparak söylesin diye). Sonra mahçup şekilde "tamam böcek biraz sıçana benzemiş olabilir"
+- Kullanıcı: "Bu sahneyi kusursuz yap lütfen."
+- **Kullanıcı kararı (24 Kasım 2026):** 7. ve 8. bölüm TEK bölüm olarak paylaşılır (hepsi 7. Bölüm). Yorum kartı B7 P3 sonundan çıkarılıp en sona kondu. `bolumler/724-07.mp4` = B7 P1 + P2 + P3 (kartsız) + B8 P1 + P2 + kart (3:34). Sonraki bölüm "Bölüm 8" olur.

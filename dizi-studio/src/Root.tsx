@@ -13,6 +13,8 @@ import { B4Ornek, Donus25DSheet } from "./studio/engine/Inserts10";
 import { B5Ornek, BocekSheet } from "./studio/engine/Inserts11";
 import { B5P2Kare } from "./studio/engine/Inserts12";
 import { B6P1Kare } from "./studio/engine/Inserts13";
+import { Insert16 } from "./studio/engine/Inserts16";
+import { Insert18 } from "./studio/engine/Inserts18";
 import { KDKadro, KDMekanlar } from "./studio/sheets/KdSheets";
 import { KDStil } from "./studio/sheets/KdStil";
 import { KDStil2 } from "./studio/sheets/KdStil2";
@@ -96,6 +98,8 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="B5OrnekDev" component={B5Ornek} durationInFrames={78} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_dev" as const, text: [] as string[] }} />
         <Composition id="B5OrnekYakin" component={B5Ornek} durationInFrames={66} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_yakin" as const, text: [] as string[] }} />
         <Composition id="B5OrnekKukreme" component={B5Ornek} durationInFrames={45} fps={30} width={1080} height={1920} defaultProps={{ kind: "bocek_kukreme" as const, text: [] as string[] }} />
+        <Composition id="B8Kare" component={({ text }: { text: string[] }) => <Insert18 kind="b8_market" dur={3} text={text} />} durationInFrames={90} fps={30} width={1080} height={1920} defaultProps={{ text: [] as string[] }} />
+        <Composition id="B7Kare" component={({ text }: { text: string[] }) => <Insert16 kind="b7_banyo" dur={3} text={text} />} durationInFrames={90} fps={30} width={1080} height={1920} defaultProps={{ text: [] as string[] }} />
         <Composition id="B6P1Kare" component={B6P1Kare} durationInFrames={90} fps={30} width={1080} height={1920} defaultProps={{ kind: "b6_kapi" as const, text: [] as string[] }} />
         <Composition id="B5P2Kare" component={B5P2Kare} durationInFrames={90} fps={30} width={1080} height={1920} defaultProps={{ kind: "p2_kasa" as const, text: [] as string[] }} />
         <Composition id="Agizlar" component={MouthSheet} durationInFrames={90} fps={30} width={1540} height={880} />

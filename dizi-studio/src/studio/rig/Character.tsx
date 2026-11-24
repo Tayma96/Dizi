@@ -474,6 +474,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const strong = Math.sign(yaw) * Math.max(0, Math.abs(yaw) - 0.6);
   const dx = yaw * 24 + strong * 70;
   const lookX = pose.lookX ?? yaw * 0.6;
+  const tk = Math.max(0, Math.min(1, pose.taklit ?? 0));
   const lookY = (pose.lookY ?? 0) + 0.3 * (pose.yutkun !== undefined && pose.yutkun > 0 && pose.yutkun < 1 ? Math.sin(Math.PI * pose.yutkun) : 0);
   const eyeOpenBase = face.eyeOpen * (1 - Math.max(blink, pose.eyesClosed ?? 0, hcK > 0 ? 0.48 * hcK + 0.4 * hcSpaz + 0.14 * hcVer : 0));
   const time = pose.speech ? (frame - pose.speech.from) / fps : -1;
@@ -1009,11 +1010,22 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <ellipse cx={252 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
       </g>
       <MakyajAlt look={look} dx={dx} />
-      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} />
-      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX} lookY={lookY} open={eyeOpenBase} smile={face.eyeSmile} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} />
-      <Brow cx={160 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeL} />
-      <Brow cx={240 + dx} cy={160} inner={face.browInner} outer={face.browOuter} lift={face.browLift} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
-      <path d={`M ${202 + dx * 1.3} 214 Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1)} 236 ${204 + dx * 1.3} 244`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
+      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX + (0.95 - lookX) * tk} lookY={lookY + 0.25 * tk} open={eyeOpenBase * (1 - 0.3 * tk)} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} />
+      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX + (-0.95 - lookX) * tk} lookY={lookY - 0.1 * tk} open={eyeOpenBase * (1 + 0.22 * tk)} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} />
+      <Brow cx={160 + dx} cy={160} inner={face.browInner + (-12 - face.browInner) * tk} outer={face.browOuter + (-4 - face.browOuter) * tk} lift={face.browLift + (8 - face.browLift) * tk} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeL} />
+      <Brow cx={240 + dx} cy={160} inner={face.browInner + (14 - face.browInner) * tk} outer={face.browOuter + (12 - face.browOuter) * tk} lift={face.browLift + (-16 - face.browLift) * tk} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
+      <path d={`M ${202 + dx * 1.3} ${214 - 6 * tk} Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1) - 8 * tk} ${236 - 8 * tk} ${204 + dx * 1.3 + 6 * tk} ${244 - 9 * tk}`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
+      {tk > 0.05 ? (
+        // taklit: burun kıvrık (sırt kırışıkları, kalkık burun kanatları)
+        <g opacity={Math.min(1, tk * 1.4)} stroke={OUT} strokeLinecap="round" fill="none">
+          <path d={`M ${190 + dx} 196 Q ${200 + dx} 191 ${212 + dx} 197`} strokeWidth={2.6} />
+          <path d={`M ${188 + dx} 205 Q ${201 + dx} 199 ${214 + dx} 206`} strokeWidth={2.6} />
+          <path d={`M ${186 + dx} 231 Q ${180 + dx} 222 ${192 + dx} 219`} strokeWidth={3} />
+          <path d={`M ${220 + dx} 230 Q ${227 + dx} 220 ${214 + dx} 217`} strokeWidth={3} />
+          <ellipse cx={194 + dx} cy={232} rx={4} ry={2.6} fill={OUT} stroke="none" />
+          <ellipse cx={214 + dx} cy={231} rx={4} ry={2.6} fill={OUT} stroke="none" />
+        </g>
+      ) : null}
       {look.mole ? <circle cx={236 + dx} cy={262} r={3} fill="#5a3a2a" /> : null}
       {pose.yaprak ? (
         <g transform={`rotate(-8 ${200 + dx} 140)`}>
@@ -1067,6 +1079,10 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             <MakyajUst look={look} dx={dx} mouthX={200 + dx * 1.1} mouthY={274 + 2 * yk} konusuyor={!!vis && vis !== "X"} restMouth={face.mouth} />
           </>
         );
+        if (tk > 0.01) {
+          const mx = 200 + dx * 1.1, my = 274 + 2 * yk;
+          return <g transform={`translate(${mx + 16 * tk} ${my - 4 * tk}) rotate(${-15 * tk}) skewX(${-12 * tk}) scale(${1 + 0.12 * tk} ${1 - 0.08 * tk}) translate(${-mx} ${-my})`}>{agiz}</g>;
+        }
         return pose.dudakTitre ? (
           <g transform={`translate(${200 + dx * 1.1} ${274 + 2 * yk + 1.6 * pose.dudakTitre * Math.sin(frame * 2.3)}) scale(${1 + 0.07 * pose.dudakTitre * Math.sin(frame * 3.1)} ${1 + 0.12 * pose.dudakTitre * Math.sin(frame * 2.7 + 1)}) translate(${-(200 + dx * 1.1)} ${-(274 + 2 * yk)})`}>
             {agiz}

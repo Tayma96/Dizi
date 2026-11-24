@@ -1,0 +1,339 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-08",
+ "episodeNo": 8,
+ "title": "Bölüm 8 P1 · ses çekimleri (geçici; asıl bölüm JSON'u genel yönetmende)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "R1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "geldin demek, hoş geldin",
+     "okunus": "Geldin demek… hoş geldin.",
+     "emotion": "notr",
+     "tags": "[calm, tired, knowing]"
+    }
+   ]
+  },
+  {
+   "id": "R1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "geldin demek, hoş geldin",
+     "okunus": "Geldin demek… hoş geldin.",
+     "emotion": "notr",
+     "tags": "[slow, mysterious]"
+    }
+   ]
+  },
+  {
+   "id": "R1c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "geldin demek, hoş geldin",
+     "okunus": "Geldin demek… hoş geldin.",
+     "emotion": "notr",
+     "tags": "[unsurprised, weary, low]",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "R2a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "abi uzatmaya gerek yok neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "okunus": "Abi uzatmaya gerek yok, neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "emotion": "notr",
+     "tags": "[tense, determined, rising]",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "R2b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "abi uzatmaya gerek yok neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "okunus": "Abi uzatmaya gerek yok, neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "emotion": "notr",
+     "tags": "[nervous, then firm, louder]",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "R2c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "abi uzatmaya gerek yok neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "okunus": "Abi uzatmaya gerek yok, neydi bu gece olanlar? Bana bazı cevaplar borçlusun!",
+     "emotion": "notr",
+     "tags": "[uneasy, impatient, then sharp]",
+     "stab": 0.5
+    }
+   ]
+  },
+  {
+   "id": "R3a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Anlatayım kızım",
+     "okunus": "Anlatayım… kızım.",
+     "emotion": "notr",
+     "tags": "[deep breath, heavy]"
+    }
+   ]
+  },
+  {
+   "id": "R3b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Anlatayım kızım",
+     "okunus": "Anlatayım… kızım.",
+     "emotion": "notr",
+     "tags": "[sighs, slow, grave]"
+    }
+   ]
+  },
+  {
+   "id": "R4a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bunlar dünyadaki topluluklar",
+     "okunus": "Bunlar… dünyadaki topluluklar.",
+     "emotion": "notr",
+     "tags": "[wise storyteller, slow]"
+    }
+   ]
+  },
+  {
+   "id": "R4b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "bunlar dünyadaki topluluklar",
+     "okunus": "Bunlar… dünyadaki topluluklar.",
+     "emotion": "notr",
+     "tags": "[soft, slow, old tale]"
+    }
+   ]
+  },
+  {
+   "id": "R5a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Bu da ortak yaşam çizgimiz.",
+     "okunus": "Bu da… ortak yaşam çizgimiz.",
+     "emotion": "notr",
+     "tags": "[wise storyteller, slow]"
+    }
+   ]
+  },
+  {
+   "id": "R5b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "Bu da ortak yaşam çizgimiz.",
+     "okunus": "Bu da… ortak yaşam çizgimiz.",
+     "emotion": "notr",
+     "tags": "[soft, slow, old tale]"
+    }
+   ]
+  },
+  {
+   "id": "R6a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "İnsanlar asırlar boyunca hikâyeler anlattı, korkular yarattı ve bunların her biri paralel bir çizgi oluşturdu",
+     "okunus": "İnsanlar asırlar boyunca hikâyeler anlattı… korkular yarattı… ve bunların her biri, paralel bir çizgi oluşturdu.",
+     "emotion": "notr",
+     "tags": "[wise storyteller, slow]"
+    }
+   ]
+  },
+  {
+   "id": "R6b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "İnsanlar asırlar boyunca hikâyeler anlattı, korkular yarattı ve bunların her biri paralel bir çizgi oluşturdu",
+     "okunus": "İnsanlar asırlar boyunca hikâyeler anlattı… korkular yarattı… ve bunların her biri, paralel bir çizgi oluşturdu.",
+     "emotion": "notr",
+     "tags": "[soft, slow, old tale]"
+    }
+   ]
+  },
+  {
+   "id": "R7a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor",
+     "okunus": "Ancak geceleri… tüm bu paralel çizgiler… bir ortak noktada… buluşuyor.",
+     "emotion": "notr",
+     "tags": "[hushed, eerie, slow]"
+    }
+   ]
+  },
+  {
+   "id": "R7b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor",
+     "okunus": "Ancak geceleri… tüm bu paralel çizgiler… bir ortak noktada… buluşuyor.",
+     "emotion": "notr",
+     "tags": "[ominous half-whisper]"
+    }
+   ]
+  },
+  {
+   "id": "R7c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor",
+     "okunus": "Ancak geceleri… tüm bu paralel çizgiler… bir ortak noktada… buluşuyor.",
+     "emotion": "notr",
+     "tags": "[hushed, eerie, slow]",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "R7d",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor",
+     "okunus": "Ancak geceleri… tüm bu paralel çizgiler… bir ortak noktada… BULUŞUYOR.",
+     "emotion": "notr",
+     "tags": "[slow, hushed, eerie]"
+    }
+   ]
+  },
+  {
+   "id": "R7e",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor",
+     "okunus": "Ancak geceleri… tüm bu paralel çizgiler… bir ortak noktada… BULUŞUYOR.",
+     "emotion": "notr",
+     "tags": "[slow, hushed, eerie]",
+     "stab": 0.0
+    }
+   ]
+  }
+ ]
+}

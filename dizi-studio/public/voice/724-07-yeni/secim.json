@@ -1,0 +1,10 @@
+{
+ "not": "Ses yönetmeni seçimi (B7, 24 Kasım 2026). Ayrıntı: docs/diziler/724/raporlar/b7-ses.md. Manifest anahtarı -> dosya.",
+ "Y1": {"anahtar": "Y1_sec", "dosya": "voice/724-07-yeni/sec/Y1_sec.mp3", "yedek": "Y1_yedek_kikir"},
+ "Y2": {"anahtar": "Y2_sec", "dosya": "voice/724-07-yeni/sec/Y2_sec.mp3", "yedek": "Y2_yedek"},
+ "Y3": {"anahtar": "Y3_kisa", "dosya": "voice/724-07-yeni/sec/Y3_kapi_kisa.mp3", "yedek": "Y3_sec (soluklu, 2,35 sn)"},
+ "Y4": {"anahtar": "Y4_sec", "dosya": "voice/724-07-yeni/sec/Y4_kapi.mp3", "yedek": "Y4_kuru"},
+ "Y0_esneme": {"anahtar": "Y0b_01", "dosya": "voice/724-07-yeni/Y0b_01.mp3", "yedek": "Y0a_01"},
+ "A05": {"anahtar": "A05d_01", "dosya": "voice/724-07-yeni/A05d_01.mp3", "yedek": "A05c_01", "eski": "724-07/cekim/A05a_01 (alaycı/umursamaz; kullanıcı öfkeli istedi)"},
+ "E07": {"anahtar": "E07c_01", "dosya": "voice/724-07-yeni/E07c_01.mp3", "yedek": "724-07/cekim/E07b_01"}
+}

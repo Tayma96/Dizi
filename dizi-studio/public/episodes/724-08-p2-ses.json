@@ -1,0 +1,546 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-08-p2",
+ "episodeNo": 8,
+ "title": "Bölüm 8 P2 · ses çekimleri (geçici; asıl bölüm JSON'u genel yönetmende)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "E1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "he koskoca korkunç paralel evrenler götü boklu markette ortak noktada buluşuyor",
+     "okunus": "He... koskoca, korkunç paralel evrenler... götü boklu markette ortak noktada buluşuyor!",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[mocking laugh]"
+    }
+   ]
+  },
+  {
+   "id": "E1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "he koskoca korkunç paralel evrenler götü boklu markette ortak noktada buluşuyor",
+     "okunus": "He... koskoca, korkunç paralel evrenler... götü boklu markette ortak noktada buluşuyor.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[snorts]"
+    }
+   ]
+  },
+  {
+   "id": "S1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "He... valla.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[sheepish, quiet]"
+    }
+   ]
+  },
+  {
+   "id": "S1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "He valla...",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[embarrassed]"
+    }
+   ]
+  },
+  {
+   "id": "E2a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "haa öbür taraf yok yani?",
+     "okunus": "Haa... öbür taraf yok yani?",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[hopeful]"
+    }
+   ]
+  },
+  {
+   "id": "E2b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "haa öbür taraf yok yani?",
+     "okunus": "Haaa... öbür taraf yok yani?",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[suspicious]"
+    }
+   ]
+  },
+  {
+   "id": "S2a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "öbür taraf derken?",
+     "okunus": "Öbür taraf derken?",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[confused]"
+    }
+   ]
+  },
+  {
+   "id": "S2b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "öbür taraf derken?",
+     "okunus": "Öbür taraf... derken?",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[innocent]"
+    }
+   ]
+  },
+  {
+   "id": "E3a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ruhlar alemi Sabri abi ruhlar alemi",
+     "okunus": "Ruhlar alemi, Sabri abi... ruhlar ALEMİ!",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[exasperated]"
+    }
+   ]
+  },
+  {
+   "id": "E3b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "ruhlar alemi Sabri abi ruhlar alemi",
+     "okunus": "Ruhlar alemi Sabri abi, RUHLAR alemi!",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[sighs]"
+    }
+   ]
+  },
+  {
+   "id": "S3a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "yoo ne alaka.",
+     "okunus": "Yoo, ne alaka.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[calm]"
+    }
+   ]
+  },
+  {
+   "id": "S3b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "yoo ne alaka.",
+     "okunus": "Yoo... ne alaka.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[surprised]"
+    }
+   ]
+  },
+  {
+   "id": "E4a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh!",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[smug]"
+    }
+   ]
+  },
+  {
+   "id": "E4b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[scoffs]"
+    }
+   ]
+  },
+  {
+   "id": "E5a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Did ind jib deyip duruyordunuz al bak tek ortak noktamız market",
+     "okunus": "[nasal mocking voice] Did ind jıb [normal] deyip duruyordunuz... al bak! Tek ortak noktamız... MARKET!",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "E5b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Did ind jib deyip duruyordunuz al bak tek ortak noktamız market",
+     "okunus": "[dumb nasal voice] Did ind jıb! [sarcastic] deyip duruyordunuz, al bak, tek ortak noktamız: MARKET.",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "E6a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "tamam böcek biraz sıçana benzemiş olabilir",
+     "okunus": "Tamam... böcek biraz sıçana benzemiş olabilir.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[sheepish grin]"
+    }
+   ]
+  },
+  {
+   "id": "E6b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "tamam böcek biraz sıçana benzemiş olabilir",
+     "okunus": "Tamam... böcek biraz... sıçana benzemiş olabilir.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[giggles]"
+    }
+   ]
+  },
+  {
+   "id": "S1c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "He, valla.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[sheepish]"
+    }
+   ]
+  },
+  {
+   "id": "S1d",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "Hee... valla.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[embarrassed, quiet]"
+    }
+   ]
+  },
+  {
+   "id": "E4c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[smug]"
+    }
+   ]
+  },
+  {
+   "id": "E4d",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh!",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[confident]"
+    }
+   ]
+  },
+  {
+   "id": "E5c",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Did ind jib deyip duruyordunuz al bak tek ortak noktamız market",
+     "okunus": "[mocking, nasal voice] Dıd ınd jıııb [normal voice] deyip duruyordunuz... al bak! Tek ortak noktamız... MARKET!",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "E5d",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Did ind jib deyip duruyordunuz al bak tek ortak noktamız market",
+     "okunus": "[nasal, dumb voice] Diid iind jııb [normal voice] deyip duruyordunuz, al bak... tek ortak noktamız MARKET!",
+     "emotion": "notr",
+     "stab": 0.0
+    }
+   ]
+  },
+  {
+   "id": "S1e",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "He. Valla.",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[sheepish]"
+    }
+   ]
+  },
+  {
+   "id": "S1f",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "sabri",
+     "text": "he valla",
+     "okunus": "He... valla...",
+     "emotion": "notr",
+     "stab": 1.0,
+     "tags": "[mumbling, ashamed]"
+    }
+   ]
+  },
+  {
+   "id": "E4e",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh.",
+     "emotion": "notr",
+     "stab": 1.0,
+     "tags": "[smug, short]"
+    }
+   ]
+  },
+  {
+   "id": "E4f",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Hehh!",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[triumphant]"
+    }
+   ]
+  },
+  {
+   "id": "E4g",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Heh!",
+     "emotion": "notr",
+     "stab": 0.5,
+     "tags": "[smug]"
+    }
+   ]
+  },
+  {
+   "id": "E4h",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "heh",
+     "okunus": "Hehh.",
+     "emotion": "notr",
+     "stab": 0.0,
+     "tags": "[victorious, smug]"
+    }
+   ]
+  }
+ ]
+}
