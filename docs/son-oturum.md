@@ -49,3 +49,4 @@
 - P2 replikleri üretildi (v4, 14 dosya, 337 kredi): `public/episodes/724-08y-p2-ses.json`, `public/voice/724-08y-p2/`. "Mert kurallar, hemen kuralları ezberle" = ECE söyler (kullanıcı). Dinleme sayfası: https://claude.ai/artifact/H1eyKcahVf5AuSfiDgeWaF . Kullanıcı a/b seçecek. Kalan: 13.024 kredi.
 - Görüntü yönetmeni ajanı P1 görselini baştan kuruyor (örnek sahne: açılış → Mert'in çıkışı, `bolumler/724-08y-p1-ornek.mp4`).
 - P2 ses seçimi yapıldı (secim.json).
+- P1 yeniden kuruldu (kullanıcı kuralı; ana oturum, ajansız): `bolumler/724-08y-p1.mp4`. P2 üretici `tools/b8y_p2.py` + `tools/b8y_p2_ses.py`; render `bolumler/724-08y-p2.mp4`. Kullanıcı: görüntü yönetmeni ajanı çok token harcadı → bundan sonra ajan YOK.

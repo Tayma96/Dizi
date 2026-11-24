@@ -130,8 +130,32 @@ const KasaAcilir: React.FC<{ dur: number }> = ({ dur }) => {
 };
 
 /** Telefon ekranı: "SABRİ ABİ arıyor", titreşim */
-const TelefonEkran: React.FC<{ dur: number }> = ({ dur }) => {
+/** 7/24 B8 (opt-in, text ["alarm", "00:00"]): Ece'nin elinde titreyen telefon, çalan alarm ekranı */
+const TelefonAlarm: React.FC<{ saat: string }> = ({ saat }) => {
   const f = useCurrentFrame();
+  const sh = (f % 10) < 6 ? (random(`ta${f}`) - 0.5) * 16 : 0;
+  const nab = 1 + 0.06 * Math.sin(f / 2.2);
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#0e1014", overflow: "hidden" }}>
+      <AbsoluteFill style={{ background: "radial-gradient(ellipse 70% 55% at 50% 50%, rgba(120,150,200,0.25) 0%, rgba(0,0,0,0) 70%)" }} />
+      <div style={{ position: "absolute", left: 230 + sh, top: 330, width: 620, height: 1200, borderRadius: 70, background: "#111", border: "14px solid #2a2c32", overflow: "hidden", transform: `rotate(${-3 + sh * 0.15}deg)` }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg,#2a1a3a,#0a0e1a)" }} />
+        <div style={{ position: "absolute", top: 150, width: "100%", textAlign: "center", fontFamily: SANS, color: "#ffd0c8", fontSize: 46, fontWeight: 800, letterSpacing: 4 }}>⏰ ALARM</div>
+        <div style={{ position: "absolute", top: 260, width: "100%", textAlign: "center", fontFamily: SANS, color: "#fff", fontSize: 150, fontWeight: 900, transform: `scale(${nab})` }}>{saat}</div>
+        <div style={{ position: "absolute", top: 520, width: "100%", textAlign: "center", fontFamily: SANS, color: "#cfd8e8", fontSize: 40 }}>Vardiya başladı</div>
+        <div style={{ position: "absolute", bottom: 150, left: 110, width: 400, height: 120, borderRadius: 60, background: "#d83a3a", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: SANS, color: "#fff", fontSize: 46, fontWeight: 900 }}>KAPAT</div>
+      </div>
+      {/* Ece'nin parmakları (hardal kazak kolu) telefonu tutar */}
+      <div style={{ position: "absolute", left: 150 + sh, top: 1180, width: 180, height: 120, borderRadius: 60, background: "#f0c8a8", border: "6px solid #2b1d1a", transform: "rotate(-20deg)" }} />
+      <div style={{ position: "absolute", left: -120 + sh, top: 1240, width: 330, height: 260, borderRadius: 80, background: "#c8902a", border: "6px solid #2b1d1a", transform: "rotate(-20deg)" }} />
+      <Vig v={0.55} />
+    </AbsoluteFill>
+  );
+};
+
+const TelefonEkran: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => {
+  const f = useCurrentFrame();
+  if (text?.[0] === "alarm") return <TelefonAlarm saat={text?.[1] ?? "00:00"} />;
   const sh = (f % 12) < 7 ? (random(`te${f}`) - 0.5) * 14 : 0;
   return (
     <AbsoluteFill style={{ backgroundColor: "#0e1014", overflow: "hidden" }}>
@@ -184,7 +208,7 @@ export const Insert5: React.FC<{ kind: Insert5Kind; dur: number; text?: string[]
     case "ayak_izi": return <AyakIzi dur={dur} text={text} />;
     case "ekmek_raf": return <EkmekRaf dur={dur} />;
     case "kasa_acilir": return <KasaAcilir dur={dur} />;
-    case "telefon_ekran": return <TelefonEkran dur={dur} />;
+    case "telefon_ekran": return <TelefonEkran dur={dur} text={text} />;
     case "kapusonlu": return <Kapusonlu dur={dur} />;
   }
 };

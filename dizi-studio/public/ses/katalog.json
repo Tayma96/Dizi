@@ -2192,5 +2192,33 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
+ },
+ "efekt/b8y_ruzgar_circir": {
+  "file": "ses/efekt/b8y_ruzgar_circir.mp3",
+  "category": "efekt",
+  "duration": 3.082,
+  "loop": false,
+  "desc": "B8y P2: tuhaf sessizlik: boş rüzgâr uğultusu + cırcır böceği (kendi sentezimiz), 3 sn."
+ },
+ "efekt/b8y_saat_hizli": {
+  "file": "ses/efekt/b8y_saat_hizli.mp3",
+  "category": "efekt",
+  "duration": 2.247,
+  "loop": false,
+  "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
+ },
+ "efekt/b8y_saat_bip": {
+  "file": "ses/efekt/b8y_saat_bip.mp3",
+  "category": "efekt",
+  "duration": 0.549,
+  "loop": false,
+  "desc": "B8y P2: dijital saat 00:00'da tek bip (kendi sentezimiz)."
+ },
+ "efekt/b8y_alarm": {
+  "file": "ses/efekt/b8y_alarm.mp3",
+  "category": "efekt",
+  "duration": 2.429,
+  "loop": false,
+  "desc": "B8y P2: telefon alarmı: dörtlü dijital bip, iki tur (kendi sentezimiz), 2,4 sn."
  }
 }
