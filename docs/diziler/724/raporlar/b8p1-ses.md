@@ -65,7 +65,8 @@ SFX = {
     "DIS": [E("DIS", "ayak_sesleri", T["DIS"] + 0.1, 0.35, sure=2.7)],
     "CAM": [E("CAM", "el_nefes_tutma", c0 + 1.0, 0.45)],
     "KAPI": [E("KAPI", "otomatik_kapi", t_ac0 - 0.05, 0.6), E("KAPI", "kapi_dingdong", t_ac0 + 0.1, 0.55),
-             E("KAPI", "b8_trafik_cam", t_ac0, 0.3, sure=2.5), E("KAPI", "ayak_sesleri", t_esik, 0.3, sure=1.4)],
+             {"name": "ortam/b8_trafik_cam", "at": round(t_ac0 - T["KAPI"], 3), "volume": 0.3, "sure": 2.5},  # E() efekt/ ekler; bu ortam/
+             E("KAPI", "ayak_sesleri", t_esik, 0.3, sure=1.4)],
     "VARIS": [E("VARIS", "el_tezgah_carpma", v0 + 0.42 - 0.08, 0.45, sure=0.5)],
     "R3": [E("R3", "b8_kagit_tezgah", r3a + 0.25 - 0.18, 0.45), E("R3", "el_kalem_tik", r3a + 1.0, 0.4)],
     "DAIRE": [E("DAIRE", f"b8_kalem_daire_{i + 1}", d0 + 0.08 + i * 0.78, 0.5) for i in range(3)],
