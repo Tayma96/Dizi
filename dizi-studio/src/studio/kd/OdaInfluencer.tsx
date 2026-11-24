@@ -53,54 +53,58 @@ const SWEAT: P[] = [[-62, -452], [-30, -432], [0, -428], [30, -432], [62, -452],
 const KALCA: P[] = [[-184, 10], [184, 10], [190, 120], [0, 150], [-190, 120]];
 
 const Goz: React.FC<{ s: 1 | -1; p: InfPoz; lw: number }> = ({ s, p, lw }) => {
-  const x = 46 * s, y = -606;
-  const g = p.goz, w = 33;
+  /* gerçekçi oranlı göz (stil 1 ailesi: göbekli/teyze/kuryeyle aynı ölçek); makyaj üstüne */
+  const x = 44 * s, y = -604;
+  const g = p.goz, w = 23;
   const id = `infg${s}`;
   const T = (pts: P[]): P[] => pts.map(([a, b]) => [x + a * s, y + b]);
   const TW = (pts: PW[]): PW[] => pts.map(([a, b, c]) => [x + a * s, y + b, c]);
+  const sek = T([[-w, 1], [-w * 0.45, -9.5 * g], [w * 0.45, -9 * g], [w + 3, -2], [w * 0.35, 6 * g], [-w * 0.45, 5.5 * g]]);
+  const ix = x + p.bak[0] * 6, iy = y - 1 + p.bak[1] * 3;
+  const genis = g > 1.1;
   return (
     <g>
-      {/* lila far */}
-      <path d={egri(T([[-w - 4, -4], [-w * 0.3, -20 - g * 6], [w * 0.6, -19 - g * 6], [w + 10, -8], [w * 0.4, -10 - g * 4], [-w * 0.4, -10 - g * 4]]), true)} fill={FAR} opacity={0.5} />
+      {/* lila far: kapak ve kaş altı */}
+      <path d={egri(T([[-w - 3, -3], [-w * 0.3, -15 - g * 4], [w * 0.6, -14 - g * 4], [w + 8, -6], [w * 0.4, -7 - g * 3], [-w * 0.4, -7 - g * 3]]), true)} fill={FAR} opacity={0.5} />
       {/* dağılmış rimel: göz altında soluk mor bulaşma (makyaj, gözyaşı değil) */}
-      <path d={serit(TW([[-w * 0.7, 14, 0], [-w * 0.1, 19, 7], [w * 0.7, 14, 0]]))} fill="#6a5a7a" opacity={0.2} />
-      <path d={serit(TW([[w * 0.5, 16, 0], [w * 0.62, 30, 4], [w * 0.55, 40, 0]]))} fill="#6a5a7a" opacity={0.16} />
+      <path d={serit(TW([[-w * 0.7, 10, 0], [-w * 0.1, 14, 5], [w * 0.7, 10, 0]]))} fill="#6a5a7a" opacity={0.2} />
+      <path d={serit(TW([[w * 0.5, 12, 0], [w * 0.6, 22, 3], [w * 0.55, 30, 0]]))} fill="#6a5a7a" opacity={0.15} />
       {g > 0.08 ? (
         <g>
-          <defs><clipPath id={id}><path d={egri(T([[-w, 2], [-w * 0.4, -16 * g], [w * 0.5, -15 * g], [w + 6, -4], [w * 0.4, 10 * g], [-w * 0.4, 9 * g]]), true)} /></clipPath></defs>
-          <path d={egri(T([[-w, 2], [-w * 0.4, -16 * g], [w * 0.5, -15 * g], [w + 6, -4], [w * 0.4, 10 * g], [-w * 0.4, 9 * g]]), true)} fill="#fbf7f4" />
+          <defs><clipPath id={id}><path d={egri(sek, true)} /></clipPath></defs>
+          <path d={egri(sek, true)} fill="#f8f3f0" />
           <g clipPath={`url(#${id})`}>
-            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 12 : 16} fill="#6a4a2c" />
-            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 12 : 16} fill="none" stroke="#3a2412" strokeWidth={2.4} />
-            <circle cx={x + p.bak[0] * 9} cy={y + 2 + p.bak[1] * 5} r={g > 1.1 ? 7 : 10} fill="#9a7450" opacity={0.6} />
-            <circle cx={x + p.bak[0] * 9} cy={y - 2 + p.bak[1] * 5} r={g > 1.1 ? 4.5 : 7.5} fill="#1a100a" />
-            <circle cx={x + p.bak[0] * 9 - 5} cy={y - 8 + p.bak[1] * 5} r={4.5} fill="#fff" />
-            <circle cx={x + p.bak[0] * 9 + 6} cy={y + 4 + p.bak[1] * 5} r={2} fill="#fff" />
+            <circle cx={ix} cy={iy} r={genis ? 7.5 : 9} fill="#6a4a2c" stroke="#3a2412" strokeWidth={1.6} />
+            <circle cx={ix} cy={iy + 2} r={genis ? 4.5 : 5.5} fill="#9a7450" opacity={0.5} />
+            <circle cx={ix} cy={iy} r={genis ? 2.6 : 4} fill="#1a100a" />
+            <circle cx={ix - 2.6} cy={iy - 3} r={2.2} fill="#fff" />
+            <rect x={x - w - 4} y={y - 12 * g} width={2 * w + 8} height={4} fill="#d8b0a8" opacity={0.45} />
           </g>
-          {/* eyeliner + kanat */}
-          <path d={serit(TW([[-w - 2, 3, 2 * lw], [-w * 0.4, -16 * g - 1, 6 * lw], [w * 0.5, -15 * g - 1, 6.5 * lw], [w + 8, -6, 5 * lw], [w + 20, -16, 0]]))} fill="#1a1018" />
-          {[0, 1, 2].map((k) => <path key={k} d={serit(TW([[w * 0.2 + k * 9, -15 * g, 2.4 * lw], [w * 0.3 + k * 11, -15 * g - 9, 0]]))} fill="#1a1018" />)}
-          <path d={serit(TW([[-w * 0.6, 9 * g + 1, 0], [0, 10 * g + 2, 2 * lw], [w * 0.6, 8 * g, 0]]))} fill={TEN_C} opacity={0.5} />
+          {/* üst kapak çizgisi + eyeliner kanadı, kapak kıvrımı, alt kapak */}
+          <path d={serit(TW([[-w - 1, 2, 1.4 * lw], [-w * 0.45, -9.5 * g - 1, 3.8 * lw], [w * 0.45, -9 * g - 1, 4.2 * lw], [w + 4, -3, 3 * lw], [w + 13, -10, 0]]))} fill="#1a1018" />
+          {[0, 1, 2].map((k) => <path key={k} d={serit(TW([[w * 0.15 + k * 7, -9 * g, 1.6 * lw], [w * 0.25 + k * 8, -9 * g - 6, 0]]))} fill="#1a1018" />)}
+          <path d={serit(TW([[-w * 0.6, -13 * g - 3, 0], [0, -15 * g - 3, 2 * lw], [w * 0.7, -12 * g - 2, 0]]))} fill={TEN_C} opacity={0.45} />
+          <path d={serit(TW([[-w * 0.6, 6 * g + 1, 0], [0, 7 * g + 1.5, 1.6 * lw], [w * 0.6, 5 * g, 0]]))} fill={TEN_C} opacity={0.5} />
         </g>
       ) : (
         <g>
           {/* kapalı göz: aşağı kavis, kirpikler; sıkınca kırışır ve kısalır */}
-          <path d={serit(TW([[-w, -2 - p.sik * 3, 0], [-w * 0.3, 6 - p.sik * 4, 5.5 * lw + p.sik * 2], [w * 0.4, 5 - p.sik * 4, 5.5 * lw + p.sik * 2], [w + 6, -4 - p.sik * 4, 0]]))} fill="#1a1018" />
-          {[0, 1, 2, 3].map((k) => <path key={k} d={serit(TW([[-w * 0.4 + k * 12, 6 - p.sik * 4, 2 * lw], [-w * 0.45 + k * 13, 14 - p.sik * 3, 0]]))} fill="#1a1018" />)}
+          <path d={serit(TW([[-w, -1 - p.sik * 3, 0], [-w * 0.3, 4 - p.sik * 3, 3.8 * lw + p.sik * 1.6], [w * 0.4, 3.5 - p.sik * 3, 3.8 * lw + p.sik * 1.6], [w + 4, -3 - p.sik * 3, 0]]))} fill="#1a1018" />
+          {[0, 1, 2, 3].map((k) => <path key={k} d={serit(TW([[-w * 0.4 + k * 9, 4 - p.sik * 3, 1.5 * lw], [-w * 0.45 + k * 10, 10 - p.sik * 2, 0]]))} fill="#1a1018" />)}
           {p.sik > 0.05 ? (
             <g opacity={p.sik}>
-              <path d={serit(TW([[w + 10, -10, 0], [w + 20, -6, 2.4 * lw], [w + 28, -2, 0]]))} fill={TEN_C} />
-              <path d={serit(TW([[w + 10, 4, 0], [w + 20, 8, 2.4 * lw], [w + 26, 14, 0]]))} fill={TEN_C} />
-              <path d={serit(TW([[-w * 0.6, -18, 0], [0, -22, 2.6 * lw], [w * 0.6, -18, 0]]))} fill={TEN_C} opacity={0.6} />
-              <path d={serit(TW([[-w * 0.5, 16, 0], [0, 19, 2.2 * lw], [w * 0.5, 15, 0]]))} fill={TEN_C} opacity={0.5} />
+              <path d={serit(TW([[w + 6, -8, 0], [w + 14, -5, 2 * lw], [w + 21, -1, 0]]))} fill={TEN_C} />
+              <path d={serit(TW([[w + 6, 3, 0], [w + 14, 6, 2 * lw], [w + 19, 11, 0]]))} fill={TEN_C} />
+              <path d={serit(TW([[-w * 0.6, -13, 0], [0, -16, 2.2 * lw], [w * 0.6, -13, 0]]))} fill={TEN_C} opacity={0.6} />
+              <path d={serit(TW([[-w * 0.5, 12, 0], [0, 14, 1.8 * lw], [w * 0.5, 11, 0]]))} fill={TEN_C} opacity={0.5} />
             </g>
           ) : null}
         </g>
       )}
-      {/* kaş */}
-      <g transform={`translate(${x} ${y - 50 - Math.max(0, p.kas) * 10 - g * 4 + p.sik * 4})`}>
-        <path d={serit([[-26 * s, 6 - Math.min(0, p.kas) * 18 - p.kasIc * 14 + p.sik * 6, 2.5 * lw], [-4 * s, -3 - Math.min(0, p.kas) * 6, 7 * lw], [20 * s, -2 + Math.min(0, p.kas) * 2, 5 * lw], [34 * s, 6 - Math.max(0, p.kas) * 2, 0]])} fill="#4a2a1c" />
-        {p.kas < -0.2 ? <path d={serit([[-34 * s, 8, 0], [-38 * s, 22, 2.4 * lw], [-36 * s, 34, 0]])} fill={TEN_C} opacity={-p.kas * 0.6} /> : null}
+      {/* kaş: ince, şekilli */}
+      <g transform={`translate(${x} ${y - 36 - Math.max(0, p.kas) * 8 - g * 3 + p.sik * 3})`}>
+        <path d={serit([[-20 * s, 5 - Math.min(0, p.kas) * 14 - p.kasIc * 11 + p.sik * 5, 2 * lw], [-3 * s, -2 - Math.min(0, p.kas) * 5, 5 * lw], [16 * s, -2 + Math.min(0, p.kas) * 2, 3.6 * lw], [28 * s, 5 - Math.max(0, p.kas) * 2, 0]])} fill="#4a2a1c" />
+        {p.kas < -0.2 ? <path d={serit([[-27 * s, 6, 0], [-30 * s, 17, 2 * lw], [-28 * s, 27, 0]])} fill={TEN_C} opacity={-p.kas * 0.6} /> : null}
       </g>
     </g>
   );
@@ -185,7 +189,7 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
       </g>
 
       {/* BAŞ */}
-      <g transform={`rotate(${p.basDon} 0 -560) translate(0 -470) scale(${1.08 + p.basKalk * 0.05}) translate(0 470)`}>
+      <g transform={`rotate(${p.basDon} 0 -560) translate(0 -470) scale(${1 + p.basKalk * 0.05}) translate(0 470)`}>
         {/* altın halka küpeler (yerde, kulakların yanında) */}
         <circle cx={-122} cy={-552} r={18} fill="none" stroke={ALTIN} strokeWidth={5 * lw} />
         <circle cx={122} cy={-552} r={18} fill="none" stroke={ALTIN} strokeWidth={5 * lw} />
