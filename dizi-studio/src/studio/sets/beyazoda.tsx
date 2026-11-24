@@ -331,7 +331,7 @@ export type OdaDurum = {
   kaide?: boolean;
 };
 
-export const BeyazOda: React.FC<{ k: Kam; durum: OdaDurum; karakterler?: OdaKarakter[]; frame: number; ekstra?: React.ReactNode }> = ({ k, durum, karakterler = [], frame, ekstra }) => {
+export const BeyazOda: React.FC<{ k: Kam; durum: OdaDurum; karakterler?: OdaKarakter[]; frame: number; ekstra?: React.ReactNode; cizimler?: { z: number; el: React.ReactNode }[] }> = ({ k, durum, karakterler = [], frame, ekstra, cizimler = [] }) => {
   const H = 1920;
   const bolmeIds = new Set((durum.bolmeler ?? []).map((b) => b.petek.id));
   type Ciz = { z: number; el: React.ReactNode };
@@ -391,6 +391,8 @@ export const BeyazOda: React.FC<{ k: Kam; durum: OdaDurum; karakterler?: OdaKara
     const pz = proj(k, pos).z;
     list.push({ z: pz, el: <Nesne key={`n${i}`} k={k} pos={pos} boy={n.boy ?? 0.45} tur={n.tur} donus={tt * (n.donHiz ?? 400) + i * 40} /> });
   });
+  // dışarıdan gelen, derinliğe göre sıralanacak çizimler (yeni çizim dilindeki karakterler)
+  cizimler.forEach((c) => list.push(c));
   list.sort((a, b) => b.z - a.z);
 
   // yüzeyler + derzler
