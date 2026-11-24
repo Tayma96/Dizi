@@ -50,7 +50,7 @@ SIRA = [
     ("R5", "R5", 0.3, "i3"),
     ("R6", "R6", 0.45, "i3"),
     ("R7", "R7", 0.0, "i3"),
-    ("SON", None, 1.7, "i3"),
+    ("SON", None, 2.2, "i3"),
     ("YUTKUN", None, 2.0, "i3"),
 ]
 T, DUR, fr = {}, {}, 0
@@ -256,7 +256,7 @@ def cizim_kur():
     BAS.append({"t0": round(tb + 0.82, 3), "t1": round(tb + 1.5, 3), "x": N[0], "y": N[1], "r": 15})
     # el kalkar ve çekilir (SON)
     s0 = T["SON"]
-    UC.extend([[round(max(tb + 1.6, s0 + 0.1), 3), N[0] - 20, N[1] - 40, 0.8], [round(s0 + 0.9, 3), -200, -500, 1]])
+    UC.extend([[round(tb + 1.6, 3), N[0] + 20, N[1] - 40, 0.8], [round(tb + 1.6 + 0.75, 3), 1450, -520, 1]])
 
 
 cizim_kur()
@@ -311,6 +311,7 @@ y0 = T["YUTKUN"]
 r6a, r6b = V("R6"); r7a, r7b = V("R7")
 t6_ve = W("R6", "ve")
 EL_L, EL_R = (474, 1192), (648, 1190)
+tE0, tE1 = W("R7", "çizgiler") + 0.55, W("R7", "ortak") - 0.08   # Ece: ürperti başlar (genel yönetmen denetimi)
 ECE_TZ = {
     "id": "ece_sivil", "onKol": True, "dogalKol": True,
     "yer": [[v0, EX, EY - 110, ES - 120], [v0 + 0.42, EX, EY, ES], [t_bana, EX, EY, ES], [t_borc + 0.3, EX, EY + 40, ES + 40], [r2b + 0.4, EX, EY, ES],
@@ -321,17 +322,18 @@ ECE_TZ = {
     "elR": sirala([[v0, 650, 1300], [v0 + 0.3, 648, 1150], [v0 + 0.42, *EL_R], [t_borc - 0.25, *EL_R], [t_borc - 0.05, 656, 1125], [t_borc + 0.12, 656, 1192],
                    [t_borc + 0.3, 656, 1125], [t_borc + 0.45, 656, 1192], [m0, 656, 1192], [m0 + 0.4, 650, 1196], [y0, 650, 1196], [y0 + 0.5, 640, 1194], [SON_T, 640, 1194]]),
     "duygu": [[0, "kararli"], [r2a + 0.1, "ofkeli"], [t_bana - 0.1, "ofkeli"], [r2b + 0.2, "kararli"],
-              [m0, "saskin"], [m0 + 0.6, "dusunceli"], [r6a, "dusunceli"], [t6_ve, "supheli"], [y0, "korkmus"]],
+              [m0, "saskin"], [m0 + 0.6, "dusunceli"], [r6a, "dusunceli"], [t6_ve, "supheli"], [tE0, "korkmus"], [y0, "korkmus"]],
     "bak": [[v0, 0.15, 0.1, 0.1], [r2a, 0.2, -0.05, 0.12], [t_bana, 0.2, -0.1, 0.12], [r2b + 0.3, 0.2, 0, 0.1],
             [m0, 0.05, 0.75, 0.0], [m0 + 0.7, 0.05, 0.8, 0.0], [m0 + 1.0, 0.25, -0.05, 0.1],
             [t6_ve - 0.1, 0.05, 0.75, 0.0], [t6_ve + 0.55, 0.25, -0.05, 0.12], [t6_ve + 1.1, 0.05, 0.75, 0], [t6_ve + 1.5, 0.22, 0, 0.1],
+            [tE0, 0.05, 0.7, 0], [tE0 + 0.45, 0.2, 0.0, 0.1], [tE1, 0.05, 0.7, 0],
             [y0, 0.05, 0.6, 0], [y0 + 0.9, 0.05, 0.62, 0], [y0 + 1.3, 0.22, -0.05, 0.1]],
     "tilt": [[v0, 0], [t_bana, -3], [r2b, 0], [m0, 0], [m0 + 0.6, 5], [t6_ve, 5], [t6_ve + 0.8, -4], [y0, 0]],
     "egil": [[0, 0]],
     "goz": [[y0, 0], [y0 + 1.45, 0], [y0 + 1.55, 0.7], [y0 + 1.65, 0]],
-    "gozSok": [[y0, 0], [y0 + 0.2, 0.3], [SON_T, 0.3]],
+    "gozSok": [[tE0, 0], [tE0 + 0.25, 0.25], [tE1, 0.25], [y0, 0.2], [y0 + 0.2, 0.3], [SON_T, 0.3]],
     "yutkun": [[y0, 0], [y0 + 0.45, 0], [y0 + 1.15, 1]],
-    "solgun": [[y0, 0], [y0 + 0.6, 0.35]],
+    "solgun": [[tE0, 0], [tE0 + 0.6, 0.15], [y0, 0.15], [y0 + 0.6, 0.35]],
     "nefes": [[r2b, 2.5], [r2b + 0.8, 1.2]],
     "kulak": [[0, 0.3]],
     "konus": [konus("R2")],
@@ -380,30 +382,36 @@ kes(t_bana - 0.05, "tezgah", EX + 10, EYUZ + 330 / 1.95, 1.95)   # "Bana bazı c
 it(r2b + 0.4, "tezgah", EX + 10, EYUZ + 330 / 2.05, 2.05)
 kes(T["R3"], "kasa", SX - 30, SYUZ + 330 / 1.42, 1.42)       # Sabri: lamba, fiş bloğu (orta) "Anlatayım kızım"
 it(T["DAIRE"], "kasa", SX - 30, SYUZ + 330 / 1.5, 1.5)
-KG = (530, 1118)                                             # kâğıt kadrajı: çizim üst-orta bölgede, alt bant altyazıya
-kes(T["DAIRE"], "kagit", KG[0], KG[1], 1.25)                  # üç daire
-it(T["MERAK"], "kagit", KG[0] - 5, KG[1] - 5, 1.29)
+KG = (545, 1168)                                             # kâğıt kadrajı: şemanın tamamı (x 165..930) kadrajda, çizim üst-orta, alt bant altyazıya
+kes(T["DAIRE"], "kagit", 550, KG[1], 1.17)                  # üç daire
+it(T["MERAK"], "kagit", 550, KG[1] - 5, 1.2)
 kes(m0, "tezgah", EX, EYUZ + 330 / 2.1, 2.1)                 # Ece: merak (yakın), öne eğilir
 it(T["BIRLES"], "tezgah", EX, EYUZ + 330 / 2.18, 2.18)
-kes(T["BIRLES"], "kagit", KG[0] - 10, KG[1] + 20, 1.25)      # birleşen çizgiler + ortak yaşam çizgisi
+kes(T["BIRLES"], "kagit", 550, KG[1], 1.17)                 # birleşen çizgiler + ortak yaşam çizgisi
 tc5 = W("R5", "çizgimiz") + 0.4
-it(tc5, "kagit", KG[0], KG[1] + 25, 1.29)
+it(tc5, "kagit", 550, KG[1] + 5, 1.2)
 kes(tc5, "kasa", SX - 15, SYUZ + 330 / 2.25, 2.25)            # Sabri yakın: kâğıttan Ece'ye bakar (alttan sıcak ışık)
 t6_hik = W("R6", "hikâyeler") - 0.05
 it(t6_hik, "kasa", SX - 15, SYUZ + 330 / 2.4, 2.4)
-kes(t6_hik, "kagit", KG[0] + 20, KG[1] - 10, 1.25)            # paralel çizgiler
-it(t6_ve, "kagit", KG[0] + 30, KG[1] - 15, 1.3)
+kes(t6_hik, "kagit", 550, KG[1] - 5, 1.17)                   # paralel çizgiler
+it(t6_ve, "kagit", 552, KG[1] - 10, 1.21)
 kes(t6_ve, "tezgah", EX + 10, EYUZ + 330 / 2.3, 2.3)          # Ece: anlamaya çalışır (yakın)
 t6_par = W("R6", "paralel") - 0.15
 it(t6_par, "tezgah", EX + 10, EYUZ + 330 / 2.36, 2.36)
-kes(t6_par, "kagit", KG[0] + 30, KG[1], 1.27)             # kalem paralel çizgilere dokunur
-it(T["R7"], "kagit", KG[0] + 35, KG[1] - 5, 1.3)
+kes(t6_par, "kagit", 552, KG[1], 1.19)                  # kalem paralel çizgilere dokunur
+it(T["R7"], "kagit", 553, KG[1] - 5, 1.21)
 kes(T["R7"], "kasa", SX - 15, SYUZ + 300 / 2.9, 2.9)          # "ancak geceleri": Sabri çok yakın, yavaş itme; floresan kısılır
 t7_tum = W("R7", "tüm") - 0.2
 it(t7_tum, "kasa", SX - 15, SYUZ + 290 / 3.25, 3.25)
-kes(t7_tum, "kagit", 620, 1060, 1.3)                         # yakınsama: buluşma noktasına yavaş itme
-it(W("R7", "buluşuyor"), "kagit", N[0] - 40, N[1] + 180, 1.62)
-it(T["SON"] + DUR["SON"], "kagit", N[0] - 45, N[1] + 165, 1.78)
+kes(t7_tum, "kagit", 553, 1150, 1.17)                          # yakınsama (bütün şema kadrajda), yavaş itme
+it(tE0, "kagit", 555, 1142, 1.19)
+kes(tE0, "tezgah", EX + 5, EYUZ + 330 / 2.6, 2.6)             # Ece: ürperti başlar (kısa kesme)
+it(tE1, "tezgah", EX + 5, EYUZ + 330 / 2.7, 2.7)
+KESIM_ = W("R7", "buluşuyor") + 1.6
+kes(tE1, "kagit", 555, 1140, 1.2)                            # "bir ortak noktada… BULUŞUYOR": daire + bastırma
+it(KESIM_, "kagit", 556, 1132, 1.23)
+it(KESIM_ + 1.3, "kagit", 548, 1150, 1.04)                    # KESIM: el kalkar, geri çekilir → bütün şema tek karede
+it(T["SON"] + DUR["SON"], "kagit", 548, 1150, 1.03)
 kes(y0, "tezgah", EX + 5, EYUZ + 330 / 3.0, 3.0)              # Ece çok yakın: yutkunur
 it(SON_T, "tezgah", EX + 5, EYUZ + 330 / 3.2, 3.2)
 
