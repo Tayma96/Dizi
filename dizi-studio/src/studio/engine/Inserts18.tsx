@@ -187,6 +187,94 @@ const KalemEl: React.FC<{ x: number; y: number; h: number; golge?: boolean }> = 
   );
 };
 
+/* ------------------------------------------------------------------ B8 (yeni) P1: anime âşık anı
+ * AnimeArka: karakterin ARKASINA pembe-lila ışıma, ışık hüzmeleri, bokeh. yarim>0: ekran ikiye bölünür (sol soğuk şüphe, sağ pembe aşk).
+ * AnimeOn: karakterin ÖNÜNE yıldızcıklar (başın çevresinde yanıp söner). Hepsi kendi çizimimiz. */
+const yildiz = (x: number, y: number, r: number) => `M ${x} ${y - r} L ${x + r * 0.22} ${y - r * 0.22} L ${x + r} ${y} L ${x + r * 0.22} ${y + r * 0.22} L ${x} ${y + r} L ${x - r * 0.22} ${y + r * 0.22} L ${x - r} ${y} L ${x - r * 0.22} ${y - r * 0.22} Z`;
+const AnimeArka: React.FC<{ v: number; tg: number; cx: number; cy: number; yarim?: number }> = ({ v, tg, cx, cy, yarim = 0 }) => {
+  if (v < 0.005) return null;
+  const pembe = (
+    <g>
+      <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8anP)" />
+      {/* ışık hüzmeleri: üst soldan, yavaşça döner */}
+      <g transform={`rotate(${-8 + 4 * Math.sin(tg * 0.6)} ${cx - 420} -300)`} opacity={0.55}>
+        {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${cx - 420} -300 L ${cx - 360 + i * 210} 2300 L ${cx - 250 + i * 210} 2300 Z`} fill="#ffffff" opacity={0.16 + 0.08 * Math.sin(tg * 1.3 + i)} />)}
+      </g>
+      {/* bokeh daireleri: yavaşça yükselir */}
+      {new Array(16).fill(0).map((_, i) => {
+        const x = cx - 560 + ((i * 173) % 1120), y0 = cy + 900 - ((tg * (24 + (i % 5) * 9) + i * 211) % 1700);
+        const r = 18 + (i % 4) * 14;
+        return <circle key={i} cx={x} cy={y0} r={r} fill={i % 3 ? "#ffffff" : "#ffd6ec"} opacity={0.22 + 0.12 * Math.sin(tg * 2 + i)} />;
+      })}
+    </g>
+  );
+  return (
+    <g opacity={v}>
+      <defs>
+        <radialGradient id="b8anP" gradientUnits="userSpaceOnUse" cx={cx} cy={cy} r={1100}><stop offset="0" stopColor="#fff2fa" /><stop offset="0.35" stopColor="#ffc8e4" /><stop offset="0.75" stopColor="#e8a8e0" /><stop offset="1" stopColor="#b48ad8" /></radialGradient>
+        <linearGradient id="b8anS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#1a2a5a" /><stop offset="1" stopColor="#2a3a6a" /></linearGradient>
+        <clipPath id="b8anR"><rect x={cx} y={-400} width={2280} height={2720} /></clipPath>
+        <clipPath id="b8anL"><rect x={-600} y={-400} width={cx + 600} height={2720} /></clipPath>
+      </defs>
+      {yarim > 0.01 ? (
+        <>
+          <g clipPath="url(#b8anR)">{pembe}</g>
+          <g clipPath="url(#b8anL)" opacity={yarim}>
+            {/* şüphe yarısı: koyu lacivert, çapraz çizgiler (gerilim) */}
+            <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8anS)" />
+            {new Array(30).fill(0).map((_, i) => <path key={i} d={`M ${-600 + i * 70} -400 l 900 2700`} stroke="#4a5a9a" strokeWidth={10} opacity={0.35} />)}
+          </g>
+          <g clipPath="url(#b8anL)" opacity={1 - yarim}>{pembe}</g>
+          <path d={`M ${cx} -400 V 2320`} stroke="#ffffff" strokeWidth={8} opacity={0.8 * yarim} />
+        </>
+      ) : pembe}
+    </g>
+  );
+};
+const AnimeOn: React.FC<{ v: number; tg: number; cx: number; cy: number; r?: number; sag?: boolean }> = ({ v, tg, cx, cy, r = 330, sag }) => {
+  if (v < 0.005) return null;
+  return (
+    <g opacity={v}>
+      {new Array(9).fill(0).map((_, i) => {
+        const a = (i / 9) * Math.PI * 2 + 0.4;
+        const x = cx + Math.cos(a) * r * (0.85 + 0.2 * ((i * 37) % 5) / 5), y = cy + Math.sin(a) * r * 0.9;
+        if (sag && x < cx) return null;
+        const ph = Math.max(0, Math.sin(tg * 3.2 + i * 1.7));
+        return <path key={i} d={yildiz(x, y, 10 + 30 * ph)} fill="#ffffff" opacity={0.3 + 0.7 * ph} stroke="#ffd0ea" strokeWidth={3} />;
+      })}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ depo kapısının kolu (kasa görünümü; kanat kenarında) */
+const DepoKol: React.FC<{ acik: number; kol: number }> = ({ acik, kol }) => {
+  // B8 (yeni) P1: menteşe SAĞDA (kol kadrajın içinde kalsın); BG'nin kanadını ve topuzunu karanlıkla örter, kendi kanadını çizer
+  const w = Math.max(6, 110 * (1 - Math.max(0, Math.min(1.1, acik))));
+  const x0 = 1085 - w, dy = 22 * (1 - w / 110) + 2;
+  const px = x0 + 18, py = 860;
+  return (
+    <g>
+      <rect x={975} y={350} width={110} height={990} fill="#0a0b0d" />
+      {acik > 0.02 ? (
+        <>
+          <defs><radialGradient id="b8depoI" gradientUnits="userSpaceOnUse" cx={1000} cy={760} r={440}><stop offset="0" stopColor="#ffd890" stopOpacity={0.8} /><stop offset="1" stopColor="#ffd890" stopOpacity={0} /></radialGradient></defs>
+          <rect x={975} y={350} width={110} height={990} fill="url(#b8depoI)" opacity={Math.min(1, acik * 1.4)} />
+        </>
+      ) : null}
+      <path d={`M 1085 350 L ${x0} ${350 + dy} L ${x0} ${1340 - dy} L 1085 1340 Z`} fill="#4a5056" stroke="#2a2e32" strokeWidth={4} />
+      {w > 40 ? (
+        <g>
+          <rect x={px - 10} y={py - 34} width={20} height={78} rx={6} fill="#9aa0a6" stroke="#2a2e32" strokeWidth={3} />
+          <g transform={`rotate(${42 * kol} ${px} ${py})`}>
+            <rect x={px - 2} y={py - 7} width={60} height={14} rx={7} fill="#d0d4d8" stroke="#2a2e32" strokeWidth={3} />
+          </g>
+          <circle cx={px} cy={py} r={9} fill="#c8ccd0" stroke="#2a2e32" strokeWidth={3} />
+        </g>
+      ) : null}
+    </g>
+  );
+};
+
 /* ------------------------------------------------------------------ masa lambası (kasa görünümü, tezgâhta, Sabri'nin sağında) */
 const Lamba: React.FC<{ v: number }> = ({ v }) => (
   <g>
@@ -210,7 +298,8 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const t0f = -Math.round(t0 * fps);
   const view = basamak<string>(p.kurgu, tg, "dis");
   const [cx, cy, z] = kf(p.cam?.[view], tg, [540, 960, 1]);
-  const tA = p.titre?.[view] ?? 2;
+  const sars = kf1(p.sars, tg, 0);
+  const tA = (p.titre?.[view] ?? 2) + 26 * sars;
   const sx = tA * (Math.sin(tg * 1.7) * 0.7 + Math.sin(tg * 3.1) * 0.3), sy = tA * (Math.sin(tg * 1.3 + 1) * 0.6 + Math.sin(tg * 2.7) * 0.4);
   // floresan: temel şiddet × titreme (cızırtı aralıklarında rastgele düşüşler)
   const titrer = aralik(p.cizir, tg);
@@ -236,6 +325,12 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const nahEl = nahVar && view !== "nah" ? <SVG><NahEller a={nahA} x={nahYer[0]} y={nahYer[1]} s={nahYer[2]} ileri={nahIleri} darbe={darbe} titre={nahTit} /></SVG> : null;
   const ece = eceQ ? karakter(eceQ.id ?? "ece_sivil", eceQ, tg, f, fps, t0f) : null;
   const sabri = K.sabri ? karakter("sabri", K.sabri, tg, f, fps, t0f) : null;
+  // B8 (yeni) P1: Mert (kasa görünümü, Sabri'nin sağında), depo kapısı + kolu, anime anı, masa vuruşu sarsıntısı
+  const mert = K.mert ? karakter("mert724", K.mert, tg, f, fps, t0f) : null;
+  const depoAcik = p.depo ? kf1(p.depo, tg, 0) : undefined;
+  const depoKol = kf1(p.depoKol, tg, 0);
+  const anime = kf1(p.anime?.[view], tg, 0), animeYarim = kf1(p.animeYarim?.[view], tg, 0);
+  const animeMerkez = kf(p.animeMerkez?.[view], tg, [540, 800]);
   const saat = basamak<string>(p.saat, tg, "19:07");
 
   let sahne: React.ReactNode = null;
@@ -283,12 +378,14 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
           </SVG>
         ) : null}
         {!dis && view === "kapi" ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kar(ece)}</div> : null}
+        {view === "tezgah" ? <SVG><AnimeArka v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} yarim={animeYarim} /></SVG> : null}
         {view === "tezgah" && ece ? ece.govde : null}
         <SVG>
           {view === "kapi" ? <Market724FG view="kapi" frame={f} doorOpen={op} saat={saat} iz={0} turb={0} /> : <TezgahOn p={p} tg={tg} lamba={lamba} />}
         </SVG>
         {/* tezgah: kollar ve eller tezgâhın ÜSTÜNDE (gövde tezgâhın arkasında kalır) */}
         {view === "tezgah" && ece ? ece.on : null}
+        {view === "tezgah" ? <SVG><AnimeOn v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} r={270} sag={animeYarim > 0.5} /></SVG> : null}
       </>
     );
   } else if (view === "kasa") {
@@ -300,8 +397,13 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     sahne = (
       <>
       <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, filter: odak > 0.01 ? `blur(${(odak * 7).toFixed(2)}px) brightness(${(1 - 0.32 * odak).toFixed(3)}) saturate(${(1 - 0.3 * odak).toFixed(3)})` : undefined }}>
-        <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0.5} /></SVG>
+        <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0.5} depoAcik={depoAcik} />
+          {depoAcik !== undefined ? <DepoKol acik={depoAcik} kol={depoKol} /> : null}
+        </SVG>
+        {mert && p.mertGolge && (depoAcik ?? 0) > 0.3 ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, transform: `translate(${p.mertGolge[0]}px, ${p.mertGolge[1]}px)`, filter: "brightness(0) blur(7px)", opacity: p.mertGolge[2] ?? 0.28 }}>{mert.govde}</div> : null}
         {sabri ? sabri.govde : null}
+        {anime > 0.005 ? <SVG><AnimeArka v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} /></SVG> : null}
+        {mert ? mert.govde : null}
         <SVG>
           <Market724FG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} />
           {/* tezgâhın üstü (bankonun üst tablası, hafif üstten): gazete, sipariş fişi bloğu, kâğıt */}
@@ -311,6 +413,8 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         </SVG>
         {/* kollar ve eller tezgâhın üstünde (banko ön panelinin altına taşmasın) */}
         {sabri ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: "polygon(-600px -400px, 1680px -400px, 1680px 1448px, -600px 1448px)" }}>{sabri.on}</div> : null}
+        {mert ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: "polygon(-600px -400px, 1680px -400px, 1680px 1448px, -600px 1448px)" }}>{mert.on}</div> : null}
+        {anime > 0.005 ? <SVG><AnimeOn v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} r={230} /></SVG> : null}
         {/* B8 P2: Sabri'nin bıraktığı kalem tezgâhta (düşüş: y 0..1) */}
         {kalemX[0] > -900 ? <SVG><g transform={`translate(${kalemX[0]} ${1438 - 40 * (1 - kalemX[1])}) rotate(${-14 + 30 * (1 - kalemX[1])})`}><rect x={-62} y={-5} width={124} height={10} rx={5} fill="#f4f4f2" stroke={O} strokeWidth={3} /><rect x={42} y={-6} width={22} height={12} rx={4} fill="#2a4aa8" /><path d="M -62 0 L -76 0" stroke="#9aa0a6" strokeWidth={6} strokeLinecap="round" /></g></SVG> : null}
       </div>

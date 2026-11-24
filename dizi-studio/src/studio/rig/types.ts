@@ -332,6 +332,10 @@ export type Pose = {
   seed?: number;
   /** 7/24 B5: göz kırpmaz (sahte Sabri) */
   kirpmaz?: boolean;
+  /** 7/24 B8: göz başına anime parıltısı [sol, sağ] 0..1 */
+  parilti?: [number, number];
+  /** 7/24 B8: göz başına kısma [sol, sağ] 0..1 (1 = şüpheyle kısılmış) */
+  gozKis?: [number, number];
   /** 7/24 B5: yüzde mum gibi, maske gibi parlaklık 0..1 */
   mumParlak?: number;
   /** 7/24 B5: yağmurda ıslanmış (omuzlar koyu, başta damlalar, çeneden damlayan su) 0..1 */

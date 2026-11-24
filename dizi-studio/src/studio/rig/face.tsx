@@ -61,7 +61,9 @@ export const Eye: React.FC<{
   uid: string;
   /** anime şok gözü 0..1: göz akı büyür, iris/bebek nokta olur, parlama söner */
   sok?: number;
-}> = ({ cx, cy, look, lookX, lookY, open: open0, smile, pupil, flip, squeeze = 1, uid, sok = 0 }) => {
+  /** 7/24 B8: anime âşık parıltısı 0..1: iri iris, büyük bebek, iki büyük parlama + yıldızcık */
+  parilti?: number;
+}> = ({ cx, cy, look, lookX, lookY, open: open0, smile, pupil, flip, squeeze = 1, uid, sok = 0, parilti = 0 }) => {
   const open = sok > 0 ? open0 + (1.42 - open0) * sok : open0;
   const w = 22 * squeeze;
   const h = 15;
@@ -92,10 +94,18 @@ export const Eye: React.FC<{
       </defs>
       <path d={shape} fill="#fdfaf5" />
       <g clipPath={`url(#${clipId})`}>
-        <circle cx={ix} cy={iy} r={11.5 - 7.6 * sok} fill={look.iris} />
-        <circle cx={ix} cy={iy} r={6 * pupil * (1 - sok) + 2.1 * sok} fill="#120c0a" />
-        <circle cx={ix + 4} cy={iy - 4} r={3.2} fill="#fff" opacity={1 - sok} />
-        <circle cx={ix - 4} cy={iy + 4} r={1.4} fill="#fff" opacity={0.8 * (1 - sok)} />
+        <circle cx={ix} cy={iy} r={11.5 - 7.6 * sok + 2.5 * parilti} fill={look.iris} />
+        <circle cx={ix} cy={iy} r={6 * pupil * (1 - sok) + 2.1 * sok + 1.6 * parilti} fill="#120c0a" />
+        <circle cx={ix + 4} cy={iy - 4} r={3.2 + 2 * parilti} fill="#fff" opacity={1 - sok} />
+        <circle cx={ix - 4} cy={iy + 4} r={1.4 + 1.4 * parilti} fill="#fff" opacity={0.8 * (1 - sok)} />
+        {parilti > 0.01 ? (
+          <g opacity={parilti}>
+            {/* irisin alt yarısında pembe ışıltı + yıldızcık (anime âşık gözü) */}
+            <path d={`M ${ix - 12} ${iy + 3} A 13 13 0 0 0 ${ix + 12} ${iy + 3} Z`} fill="#ff9ad0" opacity={0.45} />
+            <path d={`M ${ix - 3} ${iy - 13} l 2.2 -6.5 l 2.2 6.5 l 6.5 2.2 l -6.5 2.2 l -2.2 6.5 l -2.2 -6.5 l -6.5 -2.2 Z`} fill="#fff" />
+            <path d={`M ${ix + 7} ${iy + 6} l 1.2 -3.2 l 1.2 3.2 l 3.2 1.2 l -3.2 1.2 l -1.2 3.2 l -1.2 -3.2 l -3.2 -1.2 Z`} fill="#fff" />
+          </g>
+        ) : null}
       </g>
       {squint > 0 ? (
         <path d={`M ${cx - w * 0.8 * s} ${cy + 2} Q ${cx} ${bot + 3} ${cx + w * 0.85 * s} ${cy}`} fill="none" stroke={OUT} strokeWidth={2.6} strokeOpacity={0.35 + squint * 0.4} strokeLinecap="round" />

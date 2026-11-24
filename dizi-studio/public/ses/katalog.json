@@ -2122,5 +2122,61 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
+ },
+ "efekt/b8y_bam": {
+  "file": "ses/efekt/b8y_bam.mp3",
+  "category": "efekt",
+  "duration": 0.627,
+  "loop": false,
+  "desc": "B8y P1: Ece iki avucunu tezgâha vurur (tokat + el_tezgah_carpma gövdesi; ikinci el 15 ms sonra). Tepe baştadır."
+ },
+ "efekt/b8y_kol_gicirti": {
+  "file": "ses/efekt/b8y_kol_gicirti.mp3",
+  "category": "efekt",
+  "duration": 2.038,
+  "loop": false,
+  "desc": "B8y P1: depo kapısının kolu yavaşça iner (kapi_gicirti %65 hız, perde düşük, boğuk)."
+ },
+ "efekt/b8y_kol_mandal": {
+  "file": "ses/efekt/b8y_kol_mandal.mp3",
+  "category": "efekt",
+  "duration": 0.496,
+  "loop": false,
+  "desc": "B8y P1: kol dibe varır, mandal dili çekilir (kilit_yarim ilk 0,45 sn)."
+ },
+ "efekt/b8y_kapi_hiz": {
+  "file": "ses/efekt/b8y_kapi_hiz.mp3",
+  "category": "efekt",
+  "duration": 2.038,
+  "loop": false,
+  "desc": "B8y P1: depo kapısı hızla açılır ve duvara çarpar (el_banyo_kapi). Tepe ~0,05 sn."
+ },
+ "efekt/b8y_parilti": {
+  "file": "ses/efekt/b8y_parilti.mp3",
+  "category": "efekt",
+  "duration": 1.724,
+  "loop": false,
+  "desc": "B8y P1: anime parıltısı: C6-E6-G6-C7-E7 çan arpeji + ışıltı (kendi sentezimiz)."
+ },
+ "muzik/b8y_rom_1": {
+  "file": "ses/muzik/b8y_rom_1.mp3",
+  "category": "muzik",
+  "duration": 4.31,
+  "loop": false,
+  "desc": "B8y P1: romantik (0. sn'den 4.28 sn), yumuşak giriş/çıkış."
+ },
+ "muzik/b8y_rom_2": {
+  "file": "ses/muzik/b8y_rom_2.mp3",
+  "category": "muzik",
+  "duration": 3.971,
+  "loop": false,
+  "desc": "B8y P1: romantik (14. sn'den 3.93 sn), yumuşak giriş/çıkış."
+ },
+ "muzik/b8y_rom_3": {
+  "file": "ses/muzik/b8y_rom_3.mp3",
+  "category": "muzik",
+  "duration": 3.109,
+  "loop": false,
+  "desc": "B8y P1: romantik (28. sn'den 3.07 sn), yumuşak giriş/çıkış."
  }
 }
