@@ -226,6 +226,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
         gesture: q.jest ? (basamak<string | null>(q.jest, tg, null) ?? undefined) as never : undefined,
         sweat: aralik(q.ter, tg) || undefined, pale: q.solgun ? kf1(q.solgun, tg, 0) || undefined : undefined,
         yutkun: q.yutkun ? kf1(q.yutkun, tg, 0) || undefined : undefined, breath: q.nefes ? kf1(q.nefes, tg, 1) : undefined,
+        omuzDus: q.omuzDus ? kf1(q.omuzDus, tg, 0) || undefined : undefined, taklit: q.taklit ? kf1(q.taklit, tg, 0) || undefined : undefined,
       }} />
     </div>
   );

@@ -361,4 +361,6 @@ export type Pose = {
   aglaAgiz?: number;
   /** 7/24 B6 (opt-in): kolu çizme (sarılmada kol ayrıca çizilir) */
   kolGizle?: "l" | "r" | "ikisi";
+  /** 7/24 B8 p2 (opt-in): taklit suratı 0..1 (seyirciyi taklit: gözler şaşı, kaşlar ters, burun kıvrık, dudak çarpık) */
+  taklit?: number;
 };

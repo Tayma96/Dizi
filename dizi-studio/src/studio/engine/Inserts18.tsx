@@ -21,6 +21,7 @@ import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
 import { sstep } from "./bocek";
 import { karakter, type KarCiz } from "./Inserts16";
+import { NahEller, nahGeo } from "./nahEl";
 
 export type Insert18Kind = "b8_market";
 export const INSERT18_KINDS: Insert18Kind[] = ["b8_market"];
@@ -219,7 +220,21 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const lamba = kf1(p.lamba, tg, 0) * lambaTit;
   const kapi = kf1(p.kapi, tg, 0);
   const K = (p.kar?.[view] ?? {}) as Prm;
-  const ece = K.ece ? karakter(K.ece.id ?? "ece_sivil", K.ece, tg, f, fps, t0f) : null;
+  // B8 P2: nah işareti (a: adım, yer: sağ elin dayanağı ve ölçeği); Ece'nin rig kolları ellere bağlanır
+  const nahA = kf1(p.nahA, tg, -1);
+  const nahYer = kf(p.nahYer?.[view], tg, [540, 1200, 1]);
+  const nahVar = nahA > 0.001 && !!p.nahYer?.[view];
+  const darbe = kf1(p.darbe, tg, 0);
+  const nahTit: [number, number] = [darbe * 10 * Math.sin(tg * 90), darbe * 8 * Math.cos(tg * 77)];
+  let eceQ = K.ece as Prm | undefined;
+  if (view === "kasa" && p.eceKasaAra && !aralik(p.eceKasaAra, tg)) eceQ = undefined;
+  const nahIleri = view === "nah" ? p.nahIleriIns ?? p.nahIleri ?? 0.55 : p.nahIleri ?? 0.55;
+  if (eceQ && nahVar && view !== "nah") {
+    const g = nahGeo(nahA, nahYer[0] + nahTit[0], nahYer[1] + nahTit[1], nahYer[2], nahIleri);
+    eceQ = { ...eceQ, elL: [[0, g.sagBilek[0], g.sagBilek[1]]], elR: [[0, g.solBilek[0], g.solBilek[1]]], elLara: [[-99, 99]], elRara: [[-99, 99]] };
+  }
+  const nahEl = nahVar && view !== "nah" ? <SVG><NahEller a={nahA} x={nahYer[0]} y={nahYer[1]} s={nahYer[2]} ileri={nahIleri} darbe={darbe} titre={nahTit} /></SVG> : null;
+  const ece = eceQ ? karakter(eceQ.id ?? "ece_sivil", eceQ, tg, f, fps, t0f) : null;
   const sabri = K.sabri ? karakter("sabri", K.sabri, tg, f, fps, t0f) : null;
   const saat = basamak<string>(p.saat, tg, "19:07");
 
@@ -279,8 +294,12 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   } else if (view === "kasa") {
     const bx = kf1(p.blok, tg, 560), gx = kf1(p.gazete, tg, 640);
     const blokVar = bx > -100;
+    // B8 P2: 4. duvar odağı (arka plan bulanır, kararır; Ece önde keskin)
+    const odak = kf1(p.odak, tg, 0);
+    const kalemX = kf(p.kalemMasa, tg, [-999, 0]);
     sahne = (
       <>
+      <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, filter: odak > 0.01 ? `blur(${(odak * 7).toFixed(2)}px) brightness(${(1 - 0.32 * odak).toFixed(3)}) saturate(${(1 - 0.3 * odak).toFixed(3)})` : undefined }}>
         <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0.5} /></SVG>
         {sabri ? sabri.govde : null}
         <SVG>
@@ -292,7 +311,36 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         </SVG>
         {/* kollar ve eller tezgâhın üstünde (banko ön panelinin altına taşmasın) */}
         {sabri ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: "polygon(-600px -400px, 1680px -400px, 1680px 1448px, -600px 1448px)" }}>{sabri.on}</div> : null}
+        {/* B8 P2: Sabri'nin bıraktığı kalem tezgâhta (düşüş: y 0..1) */}
+        {kalemX[0] > -900 ? <SVG><g transform={`translate(${kalemX[0]} ${1438 - 40 * (1 - kalemX[1])}) rotate(${-14 + 30 * (1 - kalemX[1])})`}><rect x={-62} y={-5} width={124} height={10} rx={5} fill="#f4f4f2" stroke={O} strokeWidth={3} /><rect x={42} y={-6} width={22} height={12} rx={4} fill="#2a4aa8" /><path d="M -62 0 L -76 0" stroke="#9aa0a6" strokeWidth={6} strokeLinecap="round" /></g></SVG> : null}
+      </div>
+        {/* B8 P2: Ece önde (müşteri tarafı, kameraya yakın) */}
+        {ece ? ece.govde : null}
+        {ece ? ece.on : null}
+        {nahEl}
       </>
+    );
+  } else if (view === "nah") {
+    // el yakın planı: Ece'nin göğsü (hardal kazak) önünde iki el; kamera seyircinin yerinde
+    sahne = (
+      <SVG>
+        <defs>
+          <radialGradient id="b8nahIsik" gradientUnits="userSpaceOnUse" cx={560} cy={820} r={1100}><stop offset="0" stopColor="#d89a34" /><stop offset="0.7" stopColor="#a8741a" /><stop offset="1" stopColor="#6a4810" /></radialGradient>
+          <filter id="b8nahBlur"><feGaussianBlur stdDeviation="5" /></filter>
+        </defs>
+        <g filter="url(#b8nahBlur)">
+          <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8nahIsik)" />
+          {/* örgü dokusu (dikey fitiller) */}
+          {new Array(44).fill(0).map((_, i) => <path key={i} d={`M ${-560 + i * 52} -400 V 2320`} stroke="#9a6814" strokeWidth={9} opacity={0.35} />)}
+          {/* boyun ve çene (üstte), at kuyruğu (sağ omuzda) */}
+          <path d="M 330 -400 L 330 40 Q 540 160 750 40 L 750 -400 Z" fill="#dcac88" />
+          <path d="M 300 60 Q 540 200 780 60" stroke="#a8741a" strokeWidth={34} fill="none" />
+          <path d="M 900 -400 Q 1010 200 940 760 Q 920 860 880 900" stroke="#3a2418" strokeWidth={120} fill="none" strokeLinecap="round" />
+          <rect x={-600} y={-400} width={2280} height={2720} fill="#1a0e04" opacity={0.3} />
+        </g>
+        <NahEller a={nahA} x={nahYer[0]} y={nahYer[1]} s={nahYer[2]} ileri={nahIleri} darbe={darbe} titre={nahTit}
+          kollar={{ sagDirsek: [nahYer[0] - 620, nahYer[1] - 900], solDirsek: [nahYer[0] + 760, nahYer[1] + 900], sagDirsek3: [-700, nahYer[1] - 300], solDirsek3: [nahYer[0] + 300, 2300] }} />
+      </SVG>
     );
   } else if (view === "kagit") {
     const [ux, uy, uh] = kfLin(p.uc, tg, [700, -400, 1]);
