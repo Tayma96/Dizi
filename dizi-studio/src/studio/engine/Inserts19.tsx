@@ -315,8 +315,9 @@ const El: React.FC<{ s: 1 | -1 }> = ({ s }) => {
     <g transform={`scale(${s} 1)`}>
       <ellipse cx={8} cy={-40} rx={120} ry={95} fill="#000" opacity={0.35} />
       {/* kol: siyah deri ceket kolu */}
-      <path d="M -120 420 L -70 120 Q 0 70 70 120 L 130 420 Z" fill="#1a1a1e" stroke={O} strokeWidth={6} />
-      <path d="M -70 120 Q 0 70 70 120" stroke="#3a3a42" strokeWidth={8} fill="none" />
+      {/* çıplak ön kol (kırmızı mini elbise; kol yok) */}
+      <path d="M -96 440 L -66 116 Q 0 84 70 116 L 104 440 Z" fill={ten} stroke={O} strokeWidth={6} />
+      <path d="M -40 300 Q -30 200 -40 140" stroke={tenK} strokeWidth={10} fill="none" opacity={0.6} />
       {/* bilek + avuç sırtı */}
       <path d="M -62 118 Q -80 40 -70 -20 Q -40 -70 20 -66 Q 78 -58 86 -10 Q 92 50 66 118 Z" fill={ten} stroke={O} strokeWidth={6} />
       <path d="M -40 -10 Q 0 -30 50 -14" stroke={tenK} strokeWidth={4} fill="none" opacity={0.7} />

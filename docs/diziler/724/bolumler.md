@@ -358,3 +358,9 @@ Mert kurallara bakar.
 ### 3p1b (ilk 10 sn), AYNEN:
 Fps kamera görüntüsü, loş karanlık bir ara sokakta koşan bir kadının gözünden izliyoruz. Sokak lambaları ara sokağı aydınlatıyor, kadın tüm gücüyle koşup yıkılmış harabe üstünde devrilmeye yüz tutmuş 7/24 yazısı olan bir market var ileride bir anda kadın düşüyor, ellerini görüyoruz yerde (elleri güzel çiz), fps kameradan hiç çıkmadan kadın başını arkasına çevirir arkasında aşırı korkunç slendermen gibi vücudu olan ama kafası çok korkutucu bir yaratık kovalıyordur biraz uzaktadır yaklaşıyordur, kadın götünün üstünde geri geri sürünüyor, o güzel sütun gibi bacaklarını görüyoruz kadının, altında da kırmızı mini etek var, bacaklarıyla kendini geri ite ite fps kameradan görelim ardından kamera tekrar döner kadın kalkar ve markete doğru koşar.
 - Not (Claude): yaratık özgün tasarlanır (Slender Man'in takım elbisesi/yüzsüz başı kopyalanmaz): çok uzun, aşırı ince, fazla eklemli gövde; kafa ayrı ve özgün korkutucu tasarım. Dosya öneki `724-08y-p3`.
+
+## Bölüm 8 (YENİ), Parça 4 (kullanıcının metni, 24 Kasım 2026; AYNEN; FPS yok)
+Kamera yine Ece'yi gösterir. "Merak etme ben yanındayım" der yine dingin bir sesle, tam cümlesi biterken depo kapısı pat diye açılır, kırmızı mini elbiseli sarışın mavi gözlü kadın içeri rafların arasına fırlar ve yere düşer. Ece o deponun kapısının açılmasıyla çığlık atıp Mert'e yapışması bir olur.
+Kaçan kadın "Peşimdeee" diye bağırır. Mert koşup deponun kapısını kapatır.
+Kamera açılarını yine iyi hesapla, bu parçada fps yok.
+- Not (Claude): "Merak etme ben yanındayım" = Mert (dingin ses). Kaçan kadın = P3'teki birinci şahıs kadın (sarışın, mavi göz, kırmızı mini elbise, beyaz spor ayakkabı). Doğaçlama izni (P3 izni) geçerli.

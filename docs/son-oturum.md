@@ -56,3 +56,4 @@
 - **B8y P3 (10 sn bölümler):** 3p1b → `bolumler/724-08y-p3a.mp4` (motor: Inserts19 `b8_fps`, üretici `tools/b8y_p3.py`). Ses şimdilik kütüphaneden (ücretsiz); ElevenLabs efektleri onay bekliyor.
 - 3p1b v2: koreografi baştan (sert adım darbesi, takılıp düşme + kararma, ses → donma → yavaş sonra hızlı dönüş + saç, yaratık durup baş eğer, dolly zoom, kalp nabzı, 4 itiş, panik dönüş, ellerle itip sendeleyerek kalkış). ElevenLabs SFX 11 adet `efekt/b8y3_*` (415 kredi; kalan 12.609).
 - 3p1b v3: yaratık yeniden (geri kırık dizler, kaburga/omurga, fazladan eklemli kollar + sürünen pençeler, göz kümesi, açılan dikey yarık ağız + çığlık `b8y3_ciglik`). Doğaçlama izni CLAUDE.md'ye eklendi. Kalan kredi 12.584.
+- P4 (Parça 4): üretici `tools/b8y_p4.py`, yeni görünüm `reyon` (Inserts18), kadın `kacan724` (ses: Aura, mini elbise `mini`). Ses ONAY BEKLİYOR (kuru çalıştırma tahmini 303 kredi + 2 efekt ~75). P3a eller: ceket kolu → çıplak kol (kırmızı mini elbise sürekliliği).

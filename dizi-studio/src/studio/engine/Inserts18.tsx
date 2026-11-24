@@ -382,6 +382,8 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const sabri = K.sabri ? karakter("sabri", K.sabri, tg, f, fps, t0f) : null;
   // B8 (yeni) P1: Mert (kasa görünümü, Sabri'nin sağında), depo kapısı + kolu, anime anı, masa vuruşu sarsıntısı
   const mert = K.mert ? karakter("mert724", K.mert, tg, f, fps, t0f) : null;
+  // B8 (yeni) P4: kaçan kadın (yan: depodan fırlar; reyon: raflar arasında düşer)
+  const kadin = K.kadin ? karakter("kacan724", K.kadin, tg, f, fps, t0f) : null;
   const depoAcik = p.depo ? kf1(p.depo, tg, 0) : undefined;
   const depoKol = kf1(p.depoKol, tg, 0);
   const anime = kf1(p.anime?.[view], tg, 0), animeYarim = kf1(p.animeYarim?.[view], tg, 0);
@@ -460,11 +462,71 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
             {mert.govde}{mert.on}
           </div>
         ) : null}
+        {kadin ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}{kadin.on}</div> : null}
         {sabri ? sabri.govde : null}
         <SVG><Market724YanTezgah sars={sars} frame={f} /></SVG>
         {sabri ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{sabri.on}</div> : null}
         {ece ? ece.govde : null}
         {ece ? ece.on : null}
+      </>
+    );
+  } else if (view === "reyon") {
+    // B8 (yeni) P4: raflar arası koridor (kasadan ön cama doğru); iki yanda ürün rafları, floresan, parlak karo zemin
+    const VX = 540, VY = 820;
+    const raf = (s: number) => {
+      const x0 = s < 0 ? -40 : 1120, x1 = s < 0 ? 380 : 700;
+      const kat = [0, 1, 2, 3, 4, 5];
+      const yUst = (x: number) => VY - (VY - 120) * Math.abs((x - VX) / (x0 - VX));
+      const yAlt = (x: number) => VY + (1900 - VY) * Math.abs((x - VX) / (x0 - VX));
+      return (
+        <g>
+          <path d={`M ${x0} ${yUst(x0)} L ${x1} ${yUst(x1)} L ${x1} ${yAlt(x1)} L ${x0} ${yAlt(x0)} Z`} fill="#3a3e44" />
+          {kat.map((k) => {
+            const u = k / 6;
+            const yA = (x: number) => yUst(x) + (yAlt(x) - yUst(x)) * u, yB = (x: number) => yUst(x) + (yAlt(x) - yUst(x)) * (u + 1 / 6);
+            return (
+              <g key={k}>
+                {new Array(9).fill(0).map((_, i) => {
+                  const xa = x0 + ((x1 - x0) * i) / 9, xb = x0 + ((x1 - x0) * (i + 0.85)) / 9;
+                  const renk = ["#d8402a", "#2a7ad8", "#f2c830", "#3ab86a", "#e8e0d0", "#a83ad8", "#f28a2a"][(k * 3 + i * 5 + (s < 0 ? 0 : 2)) % 7];
+                  return <path key={i} d={`M ${xa} ${yA(xa) + 6} L ${xb} ${yA(xb) + 6} L ${xb} ${yB(xb) - 4} L ${xa} ${yB(xa) - 4} Z`} fill={renk} opacity={0.88} />;
+                })}
+                <path d={`M ${x0} ${yB(x0)} L ${x1} ${yB(x1)}`} stroke="#c8ccd0" strokeWidth={8} />
+              </g>
+            );
+          })}
+          <path d={`M ${x0} ${yUst(x0)} L ${x1} ${yUst(x1)} L ${x1} ${yAlt(x1)} L ${x0} ${yAlt(x0)} Z`} fill="url(#b8ryG)" />
+        </g>
+      );
+    };
+    sahne = (
+      <>
+        <SVG>
+          <defs>
+            <linearGradient id="b8ryG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#000" stopOpacity={0.25} /><stop offset="1" stopColor="#000" stopOpacity={0.05} /></linearGradient>
+            <linearGradient id="b8ryZ" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#9aa0a4" /><stop offset="1" stopColor="#d8dcdc" /></linearGradient>
+          </defs>
+          <rect x={-600} y={-400} width={2280} height={2720} fill="#d6dadb" />
+          {/* tavan + floresan şeritleri */}
+          <path d={`M -600 -400 L 1680 -400 L ${VX + 160} ${VY - 280} L ${VX - 160} ${VY - 280} Z`} fill="#e8eaea" />
+          {[-1, 1].map((s) => <path key={s} d={`M ${VX + s * 300} -400 L ${VX + s * 40} ${VY - 280} L ${VX + s * 60} ${VY - 280} L ${VX + s * 420} -400 Z`} fill="#ffffff" opacity={flor} />)}
+          {/* koridor sonu: ön cam (gece), otomatik kapı */}
+          <rect x={VX - 160} y={VY - 280} width={320} height={380} fill="#1a2230" />
+          <rect x={VX - 60} y={VY - 230} width={120} height={330} fill="#24304a" stroke="#9aa2a8" strokeWidth={6} />
+          {/* zemin karoları */}
+          <path d={`M -600 2320 L 1680 2320 L ${VX + 160} ${VY + 100} L ${VX - 160} ${VY + 100} Z`} fill="url(#b8ryZ)" />
+          {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${VX - 160 + i * 40} ${VY + 100} L ${-600 + i * 285} 2320`} stroke="#b8bcbe" strokeWidth={3} />)}
+          {new Array(7).fill(0).map((_, i) => { const y = VY + 100 + (1820 - VY) * Math.pow(i / 7, 1.8); return <path key={i} d={`M -600 ${y} L 1680 ${y}`} stroke="#b8bcbe" strokeWidth={3} />; })}
+          <path d={`M ${VX - 40} ${VY + 110} L ${VX - 260} 1920 L ${VX + 260} 1920 L ${VX + 40} ${VY + 110} Z`} fill="#ffffff" opacity={0.18 * flor} />
+          {raf(-1)}
+          {raf(1)}
+          {/* yere düşen ürünler (P4: kadın rafa çarpınca) */}
+          {(p.dusen ?? []).filter((d: number[]) => tg >= d[0]).map((d: number[], i: number) => {
+            const u = Math.min(1, (tg - d[0]) / 0.35);
+            return <rect key={i} x={d[1] - 22} y={d[2] - 300 * (1 - u) * (1 - u) - 30} width={44} height={60} rx={6} fill={d[3] ? "#d8402a" : "#2a7ad8"} stroke="#2b1d1a" strokeWidth={4} transform={`rotate(${d[4] * u} ${d[1]} ${d[2]})`} />;
+          })}
+        </SVG>
+        {kadin ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}{kadin.on}</div> : null}
       </>
     );
   } else if (view === "kasa") {

@@ -1,0 +1,118 @@
+{
+ "series": "724",
+ "seriesTitle": "7/24",
+ "episode": "724-08y-p4",
+ "episodeNo": 8,
+ "title": "B8 P4 ses (a/b)",
+ "endCard": false,
+ "scenes": [
+  {
+   "id": "M1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "mert724",
+     "text": "Merak etme ben yanındayım",
+     "okunus": "Merak etme... ben yanındayım.",
+     "emotion": "notr",
+     "stab": 0.6,
+     "tags": "[calm, soft, reassuring, close]"
+    }
+   ]
+  },
+  {
+   "id": "M1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "mert724",
+     "text": "Merak etme ben yanındayım",
+     "okunus": "Merak etme, ben yanındayım.",
+     "emotion": "notr",
+     "stab": 0.6,
+     "tags": "[gentle, warm, quietly confident]"
+    }
+   ]
+  },
+  {
+   "id": "E1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Aaaaa!",
+     "okunus": "Aaaaaaaah!",
+     "emotion": "notr",
+     "stab": 0.2,
+     "tags": "[screams in terror]"
+    }
+   ]
+  },
+  {
+   "id": "E1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "ece_sivil",
+     "text": "Aaaaa!",
+     "okunus": "Aaaaah! Aaah!",
+     "emotion": "notr",
+     "stab": 0.2,
+     "tags": "[shrieks, panicked]"
+    }
+   ]
+  },
+  {
+   "id": "K1a",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "kacan724",
+     "text": "Peşimdeee!",
+     "okunus": "Peşimdeeee!",
+     "emotion": "notr",
+     "stab": 0.2,
+     "tags": "[screaming in terror, out of breath, desperate]"
+    }
+   ]
+  },
+  {
+   "id": "K1b",
+   "set": "market_kasa",
+   "time": "gece",
+   "title": "ses",
+   "cast": {},
+   "beats": [
+    {
+     "type": "line",
+     "who": "kacan724",
+     "text": "Peşimdeee!",
+     "okunus": "Peşimde! Peşimdeeee!",
+     "emotion": "notr",
+     "stab": 0.2,
+     "tags": "[hysterical, sobbing, gasping for air]"
+    }
+   ]
+  }
+ ]
+}

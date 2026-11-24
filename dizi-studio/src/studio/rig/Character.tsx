@@ -826,14 +826,14 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         {t === "hoodie" ? <path d="M 140 330 Q 200 390 260 330 Q 250 300 200 296 Q 150 300 140 330 Z" fill={out.topShade} stroke={OUT} strokeWidth={SW} /> : null}
         {skirtGirl ? (
           <path
-            d={`M 136 590 L ${t === "dress" ? 96 : 110} ${t === "dress" ? 830 : 760} Q 200 ${t === "dress" ? 850 : 776} ${t === "dress" ? 304 : 290} ${t === "dress" ? 830 : 760} L 264 590 Z`}
+            d={`M 136 590 L ${t === "dress" ? 96 : 110} ${t === "dress" ? (look.mini ? 690 : 830) : 760} Q 200 ${t === "dress" ? (look.mini ? 706 : 850) : 776} ${t === "dress" ? 304 : 290} ${t === "dress" ? (look.mini ? 690 : 830) : 760} L 264 590 Z`}
             fill={t === "dress" ? out.top : out.bottom}
             stroke={OUT}
             strokeWidth={SW}
             strokeLinejoin="round"
           />
         ) : null}
-        {skirtGirl ? <path d={`M 170 610 L 150 ${t === "dress" ? 830 : 760} M 230 610 L 250 ${t === "dress" ? 830 : 760} M 200 612 L 200 ${t === "dress" ? 840 : 768}`} stroke={t === "dress" ? out.topShade : "#00000033"} strokeWidth={4} /> : null}
+        {skirtGirl ? <path d={`M 170 610 L 150 ${t === "dress" ? (look.mini ? 690 : 830) : 760} M 230 610 L 250 ${t === "dress" ? (look.mini ? 690 : 830) : 760} M 200 612 L 200 ${t === "dress" ? (look.mini ? 698 : 840) : 768}`} stroke={t === "dress" ? out.topShade : "#00000033"} strokeWidth={4} /> : null}
         <path d={body} fill={t === "atlet" ? skin : out.top} stroke={OUT} strokeWidth={SW} strokeLinejoin="round" />
         <path d={`M 250 360 Q 268 470 ${longCoat ? 266 : 252} ${torsoEnd - 8} L ${longCoat ? 284 : 268} ${torsoEnd - 8} Q 286 470 268 350 Z`} fill={out.topShade} opacity={0.7} />
         {/* per-outfit details */}

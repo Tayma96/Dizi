@@ -179,6 +179,15 @@
    "speed": 1.0
   }
  },
+ "kacan724": {
+  "voice_id": "wYM8FTSOj72VzJ7kgprn",
+  "sahip": "a6feac1cffa25b9215476b6713f5123606bec5164937e5cbab395bdbb43aadcf",
+  "ad": "Aura - Versatile & Expressive Female",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
  "kd_dorduncu_teyze": {
   "voice_id": "4HclTlBfboI5cdK18dRI",
   "sahip": "83e11980ee8416a09a97764b8c27aaedebaea16cb68817eca6c4facb64e4ea85",

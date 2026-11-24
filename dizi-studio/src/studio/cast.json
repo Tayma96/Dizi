@@ -1715,6 +1715,32 @@
     "blush": false
   },
   {
+    "id": "kacan724",
+    "name": "Kaçan kadın",
+    "role": "7/24: sokakta yaratıktan kaçıp depodan fırlayan kadın; sarışın, mavi göz, kırmızı mini elbise",
+    "voice": "kadin",
+    "gender": "f",
+    "age": "adult",
+    "build": "slim",
+    "skin": "#f0c8a8",
+    "skinShade": "#d8ac8a",
+    "iris": "#3f8fd8",
+    "hair": {
+      "style": "longWavy",
+      "color": "#e8c878",
+      "shade": "#c8a456"
+    },
+    "outfit": {
+      "type": "dress",
+      "top": "#c4162a",
+      "topShade": "#9a0e20",
+      "bottom": "#f0c8a8",
+      "shoes": "#f4f4f2"
+    },
+    "blush": true,
+    "mini": true
+  },
+  {
     "id": "kd_gobek",
     "name": "Göbekli Adam",
     "role": "Kırmızı Düğme: 1 yıldır evden çıkmayan göbekli adam, 38 (geçici ad)",
