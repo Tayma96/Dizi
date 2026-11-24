@@ -286,7 +286,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
     const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
-    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "isaret" && q.isaretAci !== undefined ? (q.isaretAci as number) : tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");

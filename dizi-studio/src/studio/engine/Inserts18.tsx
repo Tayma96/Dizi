@@ -479,7 +479,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         <SVG><Market724BG view="kasa" frame={f} doorOpen={0} saat={saat} iz={0} turb={0} yagmur={0.5} depoAcik={depoAcik} />
           {depoAcik !== undefined ? <DepoKol acik={depoAcik} kol={depoKol} /> : null}
         </SVG>
-        {mert && p.mertGolge && (depoAcik ?? 0) > 0.3 ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, transform: `translate(${p.mertGolge[0]}px, ${p.mertGolge[1]}px)`, filter: "brightness(0) blur(7px)", opacity: p.mertGolge[2] ?? 0.28 }}>{mert.govde}</div> : null}
+        {mert && p.mertGolge && (depoAcik ?? 0) > 0.3 ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, transform: `translate(${p.mertGolge[0]}px, ${p.mertGolge[1]}px)`, filter: "brightness(0) blur(4px)", opacity: p.mertGolge[2] ?? 0.28 }}>{mert.govde}</div> : null}
         {sabri ? sabri.govde : null}
         {anime > 0.005 ? <SVG><AnimeArka v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} /></SVG> : null}
         {mert ? mert.govde : null}
