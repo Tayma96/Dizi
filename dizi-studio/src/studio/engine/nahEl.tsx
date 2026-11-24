@@ -2,8 +2,9 @@
  * 7/24 B8 P2: "NAH" el işareti (iki el, adım adım). Ece kameraya (seyirciye) dönük; sağ eli kadrajın SOLUNDA.
  *  a: 0..1  sağ el açık, beş parmak aşağı (elin sırtı seyirciye), sol el açık avuç yanda hazır
  *     1..2  sol avuç sağ elin parmaklarını yukarı süpürüp kapatır (parmaklar kıvrılır → yumruk)
- *     2..3  yumruk ileri (seyirciye) uzar, yaklaşır; sol el sağ bileği kavrar ("ŞAK" a = 3'te)
- *     3..   tutuş (pompa için dışarıdan konum/ölçek oynatılır)
+ *     2..3  yumruk ileri (seyirciye) uzar (2,75'te tam); sol el AÇIK AVUÇLA geri çekilip sağ bileğin içine şaklar:
+ *           TEMAS a = 3 ("ŞAK" bu kare; kullanıcı: ses sağ bileğin sol avuç içine çarpmasıyla oluşur)
+ *     3..3,3 sol el bileği kavrar (parmaklar kapanır); sonrası tutuş (pompa dışarıdan konum/ölçekle)
  *  Yumruk önden: dört parmağın kıvrık boğumları yan yana, BAŞPARMAK UCU işaret ile orta parmağın ARASINDAN çıkar.
  *  Geometri yerel birimde (avuç ~100 birim); s = ölçek. nahGeo bilekleri verir (rig kolları buraya bağlanır).
  * ===================================================================================== */
@@ -20,27 +21,31 @@ const lerp2 = (a: V2, b: V2, u: number): V2 => [lerp(a[0], b[0], u), lerp(a[1], 
 
 export type NahGeo = {
   R: V2; rS: number; /** sağ el merkezi ve ölçeği */
-  sagBilek: V2; L: V2; lRot: number; solBilek: V2; on: number; /** 0: elin sırtı (açık/kapanan), 1: yumruk önden */
+  sagBilek: V2; L: V2; lRot: number; solBilek: V2; on: number; Lg: V2; Wd: V2; /** 0: elin sırtı (açık/kapanan), 1: yumruk önden */
 };
 /** a ve sağ elin dayanak noktası (x,y) + ölçekten iki elin yerleri */
 export const nahGeo = (a: number, x: number, y: number, s: number, ileri = 0.55): NahGeo => {
-  const u2 = ss(a - 1), u3 = ss((a - 2) / 0.8);
+  const u2 = ss(a - 1), u3 = ss((a - 2) / 0.75);
   // yumruk: aşağıdan biraz yukarı + merkeze, ölçek büyür (seyirciye doğru)
   const R: V2 = [x + 40 * s * u3, y - 10 * s * u2 - 30 * s * u3];
   const rS = s * (1 + ileri * u3);
   const on = ss((a - 2) / 0.35);
   // sağ bilek: açıkken avucun üstünde; yumruk önden olunca geri-yukarı-sola (önkol kısalır)
   const sagBilek: V2 = lerp2([R[0] - 4 * rS, R[1] - 62 * rS], [R[0] - 118 * rS, R[1] - 34 * rS], on);
-  // sol el: sağda hazır → parmakların üstünden süpürür → bileği kavrar
+  // sol el: sağda hazır → parmakların üstünden süpürür → geri çekilir (hazırlık) → bileğe ŞAK → kavrar
   const L0: V2 = [x + 150 * s, y + 62 * s];
   const L1: V2 = [x + 34 * s, y + 52 * s - 70 * s * ss((a - 1.45) / 0.55)];
-  const Lg: V2 = [R[0] - 92 * rS, R[1] - 22 * rS];
+  const Lg: V2 = [R[0] - 92 * rS, R[1] - 22 * rS];       // temas: sağ bileğin iç yanı
+  const Wd: V2 = [Lg[0] + 40 * rS, Lg[1] + 150 * rS];     // hazırlık: bileğin altı
   let L: V2, lRot: number;
   if (a <= 1) { L = L0; lRot = -18; }
   else if (a <= 2) { L = lerp2(L0, L1, ss((a - 1) / 0.6)); lRot = lerp(-18, -70, ss((a - 1) / 0.8)); }
-  else { L = lerp2(L1, Lg, u3); lRot = a > 2.35 ? 100 : lerp(-70, -30, u3); }
-  const solBilek: V2 = a <= 2.35 ? [L[0] + 40 * s, L[1] + 72 * s] : [L[0] + 30 * rS, L[1] + 80 * rS];
-  return { R, rS, sagBilek, L, lRot, solBilek, on };
+  else if (a <= 2.6) { const u = ss((a - 2) / 0.6); L = lerp2(L1, Wd, u); lRot = lerp(-70, -10, u); }
+  else if (a < 3) { const u = Math.pow(cl((a - 2.6) / 0.4), 2); L = lerp2(Wd, Lg, u); lRot = lerp(-10, 0, u); }   // hızlanarak çarpar
+  else { L = Lg; lRot = lerp(0, 100, ss((a - 3) / 0.15)); }
+  const kav = a >= 3.08;
+  const solBilek: V2 = kav ? [L[0] + 30 * rS, L[1] + 80 * rS] : a > 2 ? [L[0] + 22 * rS, L[1] + 92 * rS] : [L[0] + 40 * s, L[1] + 72 * s];
+  return { R, rS, sagBilek, L, lRot, solBilek, on, Lg, Wd };
 };
 
 /* ---------------- sağ el, sırtı seyirciye, parmaklar aşağı; c = kıvrılma 0..1 */
@@ -164,9 +169,10 @@ const Yen: React.FC<{ a: V2; b: V2; w: number }> = ({ a, b, w }) => {
 export const NahEller: React.FC<{ a: number; x: number; y: number; s: number; ileri?: number; kollar?: { sagDirsek: V2; solDirsek: V2; sagDirsek3?: V2; solDirsek3?: V2 }; darbe?: number; titre?: V2 }> = ({ a, x, y, s, ileri, kollar, darbe = 0, titre = [0, 0] }) => {
   const g = nahGeo(a, x + titre[0], y + titre[1], s, ileri);
   const c = ss((a - 1.15) / 0.75);
-  const kavra = a > 2.35;
+  const kavra = a >= 3.08;
+  const tokat = a > 2.35 && a < 3.08; // açık avuç bileğe gidiyor/çarpıyor
   const solEl = (
-    <g transform={`translate(${g.L[0]} ${g.L[1]}) rotate(${g.lRot}) scale(${(kavra ? g.rS * 0.82 : s) * 1.02})`}>
+    <g transform={`translate(${g.L[0]} ${g.L[1]}) rotate(${g.lRot}) scale(${(kavra ? g.rS * 0.82 : tokat ? g.rS * 0.78 : s) * 1.02})`}>
       {kavra ? <SolElKavra /> : <SolElAcik />}
     </g>
   );
@@ -174,19 +180,27 @@ export const NahEller: React.FC<{ a: number; x: number; y: number; s: number; il
     <g>
       {kollar ? <Yen a={g.sagBilek} b={g.on > 0.5 && kollar.sagDirsek3 ? kollar.sagDirsek3 : kollar.sagDirsek} w={118 * g.rS * (1 - 0.15 * g.on)} /> : null}
       {/* darbe çizgileri (ŞAK): yumruğun çevresinde kısa ışınlar */}
-      {darbe > 0.01 ? new Array(10).fill(0).map((_, i) => {
-        const an = (i / 10) * Math.PI * 2 + 0.3;
-        const r0 = 150 * g.rS * (1 + 0.25 * (1 - darbe)), r1 = r0 + 90 * g.rS * darbe;
-        return <path key={i} d={`M ${g.R[0] + Math.cos(an) * r0} ${g.R[1] + Math.sin(an) * r0} L ${g.R[0] + Math.cos(an) * r1} ${g.R[1] + Math.sin(an) * r1}`} stroke="#fff6d8" strokeWidth={14 * g.rS} strokeLinecap="round" opacity={0.9 * darbe} />;
+      {darbe > 0.01 ? new Array(9).fill(0).map((_, i) => {
+        const an = (i / 9) * Math.PI * 2 + 0.3;
+        const r0 = 70 * g.rS * (1 + 0.4 * (1 - darbe)), r1 = r0 + 85 * g.rS * darbe;
+        return <path key={i} d={`M ${g.Lg[0] + Math.cos(an) * r0} ${g.Lg[1] + Math.sin(an) * r0} L ${g.Lg[0] + Math.cos(an) * r1} ${g.Lg[1] + Math.sin(an) * r1}`} stroke="#fff6d8" strokeWidth={12 * g.rS} strokeLinecap="round" opacity={0.9 * darbe} />;
       }) : null}
+      {darbe > 0.3 ? <circle cx={g.Lg[0]} cy={g.Lg[1]} r={60 * g.rS * (1.4 - 0.4 * darbe)} fill="#fffbe8" opacity={0.35 * darbe} /> : null}
       {/* sırası: açıkken sol el sağın ÖNÜNDE süpürür; yumrukta sol el bileğin üstünde */}
       {kollar ? <Yen a={g.solBilek} b={kavra && kollar.solDirsek3 ? kollar.solDirsek3 : kollar.solDirsek} w={112 * s} /> : null}
-      {kavra ? solEl : null}
+      {a > 2.62 && a < 3.12 ? [0, 1, 2].map((i) => {
+        const k = (i - 1) * 34 * g.rS;
+        const dx = g.Lg[0] - g.Wd[0], dy = g.Lg[1] - g.Wd[1], d = Math.hypot(dx, dy) || 1;
+        const nx = -dy / d, ny = dx / d;
+        const bas = a < 3 ? g.Wd : [g.L[0] - dx * 0.9, g.L[1] - dy * 0.9];
+        return <path key={`iz${i}`} d={`M ${bas[0] + nx * k} ${bas[1] + ny * k} L ${g.L[0] - dx / d * 70 * g.rS + nx * k} ${g.L[1] - dy / d * 70 * g.rS + ny * k}`} stroke="#fff6d8" strokeWidth={9 * g.rS} strokeLinecap="round" opacity={a < 3 ? 0.75 : 0.75 * (3.12 - a) / 0.12} />;
+      }) : null}
+      {kavra || tokat ? solEl : null}
       <g transform={`translate(${g.R[0]} ${g.R[1]}) scale(${g.rS})`}>
         <g opacity={1 - g.on}><SagElSirt c={c} /></g>
         {g.on > 0.01 ? <g opacity={g.on}><SagYumrukOn /></g> : null}
       </g>
-      {!kavra && a > 0.02 ? solEl : null}
+      {!kavra && !tokat && a > 0.02 ? solEl : null}
     </g>
   );
 };

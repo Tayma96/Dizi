@@ -124,7 +124,7 @@ e6a, e6b = V("E6"); t_tam = W("E6", "tamam"); t_boc = W("E6", "böcek"); t_sic =
 t_lamba = s1b + 0.45          # Sabri lambayı söndürür (tık)
 t_pop = g0 + 0.5              # floresan normale döner (büyü bozulur)
 t_kalem = t_val + 0.1         # kalem tezgâha düşer
-t_sak = n0 + 0.82             # yumruk ileri + sol el bileği kavrar: ŞAK
+t_sak = n0 + 0.95             # ŞAK: sol AVUÇ sağ bileğin içine çarpar (kullanıcı düzeltmesi), sonra kavrar
 
 # ------------------------------------------------------------------ ÇİZİM (P1'in son hâli: tamamlanmış şema)
 _argv = sys.argv
@@ -229,13 +229,13 @@ ECE_KS = {
 }
 
 # ------------------------------------------------------------------ NAH: adımlar ve el yerleri
-NAH_A = [[0, 0], [t_heh + 0.05, 0], [t_heh + 0.45, 1], [n0 + 0.3, 1], [n0 + 0.62, 2], [t_sak, 3], [e5a - 0.02, 3], [e5a, -1]]
+NAH_A = [[0, 0], [t_heh + 0.05, 0], [t_heh + 0.45, 1], [n0 + 0.28, 1], [n0 + 0.6, 2], [t_sak, 3], [t_sak + 0.15, 3.3], [e5a - 0.02, 3.3], [e5a, -1]]
 # kasa (orta-yakın): sağ elin dayanağı Ece'nin göğsünün önünde (kadraj solu); yükselir, NAH'tan sonra iki pompa
 MX, MS = KX - 50, 0.95
 NAH_KASA = [[t_heh + 0.05, MX, 1820, MS], [t_heh + 0.45, MX, 1335, MS], [n0, MX, 1330, MS],
             [u0, MX, 1300, MS], [u0 + 0.28, MX + 6, 1262, MS * 1.08], [u0 + 0.45, MX, 1300, MS], [u0 + 0.62, MX + 6, 1262, MS * 1.08], [u0 + 0.8, MX, 1300, MS]]
-NAH_INS = [[n0, 420, 960, 3.2], [n0 + 0.3, 420, 920, 3.2], [t_sak, 420, 900, 3.2], [n0 + 1.2, 420, 900, 3.2], [n0 + 1.34, 425, 860, 3.36],
-           [n0 + 1.5, 420, 900, 3.2], [n0 + 1.64, 425, 860, 3.36], [n0 + 1.8, 420, 900, 3.2]]
+NAH_INS = [[n0, 440, 960, 2.9], [n0 + 0.3, 440, 920, 2.9], [n0 + 0.6, 470, 910, 2.9], [t_sak, 500, 900, 2.9], [n0 + 1.2, 500, 900, 2.9], [n0 + 1.34, 505, 860, 3.04],
+           [n0 + 1.5, 500, 900, 2.9], [n0 + 1.64, 505, 860, 3.04], [n0 + 1.8, 500, 900, 2.9]]
 DARBE = [[0, 0], [t_sak - 0.02, 0], [t_sak, 1], [t_sak + 0.35, 0]]
 
 # ------------------------------------------------------------------ KURGU + KAMERA
@@ -357,7 +357,8 @@ if __name__ == "__main__":
             "kurgu": KURGU,
             "olaylar": {"floresan_normale": round(t_pop, 3), "kalem_duser": round(t_kalem, 3), "lamba_soner": round(t_lamba, 3),
                         "heh_kameraya_doner": round(t_heh, 3), "hizli_yaklasma": [round(t_heh, 3), round(t_heh + 0.22, 3)],
-                        "nah_el_acik": round(n0, 3), "nah_parmaklar_kapanir": [round(n0 + 0.3, 3), round(n0 + 0.62, 3)], "SAK": round(t_sak, 3),
+                        "nah_el_acik": round(n0, 3), "nah_parmaklar_kapanir": [round(n0 + 0.28, 3), round(n0 + 0.6, 3)], "yumruk_ileri": [round(n0 + 0.6, 3), round(n0 + 0.86, 3)],
+                        "sak": round(t_sak, 3), "sak_not": "sol avuç sağ bileğin içine çarptığı kare (temas); sonra 0,15 sn kavrama",
                         "nah_pompa": [round(n0 + 1.34, 3), round(n0 + 1.64, 3), round(u0 + 0.28, 3), round(u0 + 0.62, 3)],
                         "taklit_surat": [round(t_did - 0.12, 3), round(t_jib_e + 0.2, 3)], "market_gosterir": round(t_mkt, 3),
                         "sabri_cene_ovar": [round(p0 + 0.45, 3), round(p0 + 0.9, 3)], "ense_kasir": [round(t_tam, 3), round(t_ola, 3)],

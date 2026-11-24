@@ -164,10 +164,15 @@
   ],
   "nah_el_acik": 23.467,
   "nah_parmaklar_kapanir": [
-   23.767,
-   24.087
+   23.747,
+   24.067
   ],
-  "SAK": 24.287,
+  "yumruk_ileri": [
+   24.067,
+   24.327
+  ],
+  "sak": 24.417,
+  "sak_not": "sol avuç sağ bileğin içine çarptığı kare (temas); sonra 0,15 sn kavrama",
   "nah_pompa": [
    24.807,
    25.107,
