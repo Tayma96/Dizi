@@ -5,7 +5,7 @@ Tarih: 24 Kasım 2026. Metin: `bolumler.md` "Bölüm 8, Parça 2" (AYNEN; yeni r
 ## Çıktılar
 | | |
 |---|---|
-| Video | `bolumler/724-08-p2.mp4` (−14 LUFS, aac 256k, yorum kartı yok) |
+| Video | `bolumler/724-08-p2.mp4` (38,6 sn; ölçülen −13,6 LUFS entegre, tepe −0,5 dBTP; aac 256k; yorum kartı yok) |
 | Bölüm JSON | `dizi-studio/public/episodes/724-08-p2.json` (üretici: `python3 tools/b8p2.py [--cekim E1=E1b_01,...]`; çekim seçimlerini `public/voice/724-08-p2/secim.json`'dan da okur; motorun `i_NN` anahtarlarını `manifest.json`'a EKLER, çekimlere dokunmaz) |
 | Olay zamanları (ses için) | `docs/diziler/724/raporlar/b8p2-goruntu-zaman.json` (`sak`, floresan, kalem, lamba, hızlı yaklaşma, pompa, taklit, market, omuz silkme) |
 | Motor | `engine/Inserts18.tsx` (`b8_market`: yeni `nah` görünümü, kasada Ece önde, `odak`, `kalemMasa`), `engine/nahEl.tsx` (NAH elleri), rig `taklit` (opt-in) |
