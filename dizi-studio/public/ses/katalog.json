@@ -342,6 +342,13 @@
   "loop": false,
   "desc": "B8: kalem ucuyla kâğıda dokunma (kısa tık; kendi sentezimiz)"
  },
+ "efekt/b8_kalem_dus": {
+  "file": "ses/efekt/b8_kalem_dus.mp3",
+  "category": "efekt",
+  "duration": 0.522,
+  "loop": false,
+  "desc": "B8 P2: tükenmez kalem tahta tezgâha düşer, 3 kez seker (b8_kalem_dokun türevi, kendi sentezimiz). Tepe baştadır."
+ },
  "efekt/b8_kalem_paralel_1": {
   "file": "ses/efekt/b8_kalem_paralel_1.mp3",
   "category": "efekt",
@@ -404,6 +411,20 @@
   "duration": 2.09,
   "loop": false,
   "desc": "B8: kalem kâğıtta (ortak yaşam çizgisi: tek uzun çizgi (~2 sn), sonu bastırarak); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 0.45-2.5 sn"
+ },
+ "efekt/b8_nah_sak": {
+  "file": "ses/efekt/b8_nah_sak.mp3",
+  "category": "efekt",
+  "duration": 0.444,
+  "loop": false,
+  "desc": "B8 P2: nah işaretinde sağ bilek sol avuç içine çarpar: tok, etli tek şaplak (el_nah_sak tek vuruşu, tizleri biraz kısılıp gövdesi artırıldı + kendi sentezimiz et 'tok'u). Tepe baştadır, at = SAK karesi (24,287)."
+ },
+ "efekt/b8_plak_kisa": {
+  "file": "ses/efekt/b8_plak_kisa.mp3",
+  "category": "efekt",
+  "duration": 0.418,
+  "loop": false,
+  "desc": "B8 P2: plak çiziği ilk 0,38 sn (el_plak_cizik türevi); müzik durur, 4. duvar"
  },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
@@ -1027,6 +1048,13 @@
   "duration": 1.0,
   "loop": false,
   "desc": "ElevenLabs SFX: close-up single sharp comedic slap: an open palm smacking hard onto a closed fist, crisp skin clap, dry room, one hit only"
+ },
+ "efekt/el_nah_sak_bilek": {
+  "file": "ses/efekt/el_nah_sak_bilek.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: single meaty dull slap: the inside of a wrist striking hard into an open cupped palm, fleshy thick thud with a short skin smack, close, dry, one hit only, not a clap"
  },
  "efekt/el_nefes_tutma": {
   "file": "ses/efekt/el_nefes_tutma.mp3",
@@ -1716,12 +1744,27 @@
   "loop": false,
   "desc": "B8 P1: b8_anlatim uzatılmış (baş: alçak drone 2-15 sn tekrar), büyüyen rampa, 33,55'te sert kesim + 10 sn sessizlik"
  },
+ "muzik/b8_komik_buton": {
+  "file": "ses/muzik/b8_komik_buton.mp3",
+  "category": "muzik",
+  "duration": 2.142,
+  "loop": false,
+  "desc": "B8 P2: b8_komik_dusus son pizzicato vuruşu ve sönümü (13,97-son); E6 sonrası kapanış butonu"
+ },
  "muzik/b8_komik_dusus": {
   "file": "ses/muzik/b8_komik_dusus.mp3",
   "category": "muzik",
   "duration": 16.0,
   "loop": false,
   "desc": "ElevenLabs Music: Original instrumental comedic underscore for a Turkish web series, deadpan deflating comedy right after a spooky mystery scene in a small night market. Starts immediately on a clear plucky downbeat. Sparse playful pizzicato strings, staccato bassoon, soft woodblock, muted plucks, cheeky and dry, about 100 bpm, light and thin so dialogue sits on top, steady to the end, no vocals"
+ },
+ "muzik/b8_komik_dusus_kesik": {
+  "file": "ses/muzik/b8_komik_dusus_kesik.mp3",
+  "category": "muzik",
+  "duration": 24.424,
+  "loop": false,
+  "desc": "B8 P2: b8_komik_dusus 0-14.38 sn, 14.38'te sert kesim (son pizzicato çınlarken; plak çiziğiyle aynı an) + 10 sn sessizlik",
+  "kesim": 14.38
  },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",
@@ -2002,27 +2045,5 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
- },
- "efekt/b8_nah_sak": {
-  "file": "ses/efekt/b8_nah_sak.mp3",
-  "category": "efekt",
-  "duration": 0.549,
-  "loop": false,
-  "desc": "B8 P2: nah hareketindeki 'ŞAK' (avuç yumruğa şaklar). el_nah_sak (ElevenLabs SFX) ilk 0,5 sn + kendi sentezimiz alçak tok katman. Tepe baştadır, at = yumruğun ileri uzandığı kare."
- },
- "muzik/b8_komik_dusus_kesik": {
-  "file": "ses/muzik/b8_komik_dusus_kesik.mp3",
-  "category": "muzik",
-  "duration": 24.189,
-  "loop": false,
-  "desc": "B8 P2: b8_komik_dusus 0-14.15 sn, 14.15'te sert kesim (son pizzicato çınlarken; plak çiziğiyle aynı an) + 10 sn sessizlik",
-  "kesim": 14.15
- },
- "muzik/b8_komik_buton": {
-  "file": "ses/muzik/b8_komik_buton.mp3",
-  "category": "muzik",
-  "duration": 2.142,
-  "loop": false,
-  "desc": "B8 P2: b8_komik_dusus son pizzicato vuruşu ve sönümü (13,97-son); E6 sonrası kapanış butonu"
  }
 }
