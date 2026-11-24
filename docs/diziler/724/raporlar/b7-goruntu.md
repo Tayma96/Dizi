@@ -5,11 +5,11 @@ Tarih: 24 Kasım 2026, gece çalışması. Kaynaklar: `b7-gece-brief.md` (kontro
 ## Çıktılar
 | Parça | Video | Süre | Bölüm JSON | Üretici |
 |---|---|---|---|---|
-| P1 banyo | `bolumler/724-07-p1.mp4` | ~65,7 sn | `public/episodes/724-07-p1.json` | `tools/b7v3p1.py json` |
-| P2 ayna | `bolumler/724-07-p2.mp4` | ~21,9 sn | `public/episodes/724-07-p2.json` | `tools/b7v3p2.py` |
-| P3 sofra + antre + kanca | `bolumler/724-07-p3.mp4` | ~30,4 sn + 3,5 sn yorum kartı | `public/episodes/724-07-p3.json` | `tools/b7v3p3.py` |
+| P1 banyo | `bolumler/724-07-p1.mp4` | 65,7 sn (−14,6 LUFS) | `public/episodes/724-07-p1.json` | `tools/b7v3p1.py json` |
+| P2 ayna | `bolumler/724-07-p2.mp4` | 22,0 sn (−14,7 LUFS) | `public/episodes/724-07-p2.json` | `tools/b7v3p2.py` |
+| P3 sofra + antre + kanca | `bolumler/724-07-p3.mp4` | 34,1 sn, 3,5 sn yorum kartı dahil (−14,6 LUFS) | `public/episodes/724-07-p3.json` | `tools/b7v3p3.py` |
 
-Her video −14 LUFS'e getirildi (`volume=(-14.6-I)dB,alimiter=limit=0.89:level=false:attack=1:release=50`, aac 256k). Ölçümler aşağıda.
+Her video brifteki formülle −14 LUFS hedefine getirildi (`volume=(-14.6-I)dB,alimiter=limit=0.89:level=false:attack=1:release=50`, aac 256k; `tools/b7v3_bitir.sh`). P3 ham çıkışı −18,7 LUFS idi; sınırlayıcı yüzünden ikinci geçişte +4,7 dB verildi. Render kaynakları: `dizi-studio/out/724-07-p{1,2,3}.mp4`.
 
 ## Ne yaptım (kontrol listesine göre)
 - **Saat ve ışık (kasım 18:00):** Bütün sahneler gece. Pencereler karanlık; karşı apartmanda birkaç ışık yanıyor. Gün batımı huzmesi kaldırıldı. Yeni ışık katmanı (`gece: true`) şöyle kuruldu:
@@ -112,7 +112,11 @@ Her video −14 LUFS'e getirildi (`volume=(-14.6-I)dB,alimiter=limit=0.89:level=
   - hayal ekinde annenin kanadın arkasında kalması
   - antrede kapalı kapının karanlık görünmesi
   - kapı altı ışığının gece katmanında kaybolması
-- Render sonrası saniyede 4 kare şeritlerle tekrar bakıldı (aşağıda).
+- Render sonrası saniyede 4 kare şeritlerle tekrar bakıldı. Bu turda düzeltilenler:
+  - Kulak çekmede Ece'nin başı dönünce kulak içeri kayıyordu, annenin yumruğu yanağa düşüyordu. Kulak çekme boyunca baş dönüşü sıfırlandı, eğim −6° sabitlendi.
+  - Kızarıklık kulağın altına düşüyordu; merkezi ve boyutu düzeltildi.
+  - E02'de deste Ece'nin ağzını kapatıyordu; öne eğilme azaltıldı.
+  Ardından üç parça yeniden render edildi.
 
 ## Bilinen eksikler ve riskler
 - Y2 "Iıh!" kesimi "ah/oh" tınısında (ses raporu §6). Beğenilmezse yaklaşık 15 kredilik tek çekim yeter.
