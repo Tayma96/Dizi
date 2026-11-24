@@ -54,3 +54,4 @@
 - **Kullanıcı (24 Kasım):** müzik pembe arka planın olduğu HER yerde (kesitler `tools/b8y_muzik.py`, ses 0,35 = "çok az yükselt"); P1+P2 TEK video: `bolumler/724-08.mp4` (ham parçalar out/724-08y-p{1,2}-ham.mp4 → concat → −14 LUFS).
 - Birleşik B8: `bolumler/724-08.mp4` (92,8 sn, −14 LUFS). Kullanıcı onayı bekleniyor.
 - **B8y P3 (10 sn bölümler):** 3p1b → `bolumler/724-08y-p3a.mp4` (motor: Inserts19 `b8_fps`, üretici `tools/b8y_p3.py`). Ses şimdilik kütüphaneden (ücretsiz); ElevenLabs efektleri onay bekliyor.
+- 3p1b v2: koreografi baştan (sert adım darbesi, takılıp düşme + kararma, ses → donma → yavaş sonra hızlı dönüş + saç, yaratık durup baş eğer, dolly zoom, kalp nabzı, 4 itiş, panik dönüş, ellerle itip sendeleyerek kalkış). ElevenLabs SFX 11 adet `efekt/b8y3_*` (415 kredi; kalan 12.609).

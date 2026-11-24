@@ -426,6 +426,90 @@
   "loop": false,
   "desc": "B8 P2: plak çiziği ilk 0,38 sn (el_plak_cizik türevi); müzik durur, 4. duvar"
  },
+ "efekt/b8y3_adim": {
+  "file": "ses/efekt/b8y3_adim.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Fast running footsteps of white sneakers on wet gritty asphalt in a narrow night alley, close, first person, quick rhythm, no voices"
+ },
+ "efekt/b8y3_donus": {
+  "file": "ses/efekt/b8y3_donus.mp3",
+  "category": "efekt",
+  "duration": 1.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Very fast whoosh of a head snapping around, long hair swishing past the ear, close"
+ },
+ "efekt/b8y3_dusus": {
+  "file": "ses/efekt/b8y3_dusus.mp3",
+  "category": "efekt",
+  "duration": 1.8,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A woman trips and falls hard face-first onto asphalt, heavy body thud, both palms slap the ground, sharp pained gasp, close"
+ },
+ "efekt/b8y3_kafa_cit": {
+  "file": "ses/efekt/b8y3_kafa_cit.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Creature's bones cracking and clicking as its head tilts unnaturally, close-ish, wet, horror"
+ },
+ "efekt/b8y3_kalk_kos": {
+  "file": "ses/efekt/b8y3_kalk_kos.mp3",
+  "category": "efekt",
+  "duration": 2.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Woman scrambles up from the ground and bursts into a sprint, sneakers scuffing and slipping on asphalt, panicked gasp"
+ },
+ "efekt/b8y3_nefes_korku": {
+  "file": "ses/efekt/b8y3_nefes_korku.mp3",
+  "category": "efekt",
+  "duration": 5.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Terrified young woman hyperventilating on the ground, trembling whimpering breaths, tiny sobs, very close, no words"
+ },
+ "efekt/b8y3_nefes_kosu": {
+  "file": "ses/efekt/b8y3_nefes_kosu.mp3",
+  "category": "efekt",
+  "duration": 4.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Young woman sprinting for her life in panic, heavy ragged breathing and gasping, very close to the microphone, first person perspective, no music"
+ },
+ "efekt/b8y3_ortam": {
+  "file": "ses/efekt/b8y3_ortam.mp3",
+  "category": "efekt",
+  "duration": 10.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Dark empty back alley at night ambience, cold wind between old buildings, faint electric buzz of a flickering street lamp, distant city hum, eerie, no music"
+ },
+ "efekt/b8y3_sting": {
+  "file": "ses/efekt/b8y3_sting.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Horror reveal sting: low reverse swell rising into a deep dissonant orchestral hit with metallic screech tail"
+ },
+ "efekt/b8y3_surunme": {
+  "file": "ses/efekt/b8y3_surunme.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Sneakers frantically scraping and pushing backwards on gritty asphalt, body sliding, fabric dragging, short panicked breaths"
+ },
+ "efekt/b8y3_yaratik": {
+  "file": "ses/efekt/b8y3_yaratik.mp3",
+  "category": "efekt",
+  "duration": 4.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Distant monstrous creature in a narrow alley: deep wet guttural growl mixed with fast bone clicking, echoing, unnatural, horror"
+ },
+ "efekt/b8y_alarm": {
+  "file": "ses/efekt/b8y_alarm.mp3",
+  "category": "efekt",
+  "duration": 2.429,
+  "loop": false,
+  "desc": "B8y P2: telefon alarmı: dörtlü dijital bip, iki tur (kendi sentezimiz), 2,4 sn."
+ },
  "efekt/b8y_bam": {
   "file": "ses/efekt/b8y_bam.mp3",
   "category": "efekt",
@@ -460,6 +544,27 @@
   "duration": 1.724,
   "loop": false,
   "desc": "B8y P1: anime parıltısı: C6-E6-G6-C7-E7 çan arpeji + ışıltı (kendi sentezimiz)."
+ },
+ "efekt/b8y_ruzgar_circir": {
+  "file": "ses/efekt/b8y_ruzgar_circir.mp3",
+  "category": "efekt",
+  "duration": 3.082,
+  "loop": false,
+  "desc": "B8y P2: tuhaf sessizlik: boş rüzgâr uğultusu + cırcır böceği (kendi sentezimiz), 3 sn."
+ },
+ "efekt/b8y_saat_bip": {
+  "file": "ses/efekt/b8y_saat_bip.mp3",
+  "category": "efekt",
+  "duration": 0.549,
+  "loop": false,
+  "desc": "B8y P2: dijital saat 00:00'da tek bip (kendi sentezimiz)."
+ },
+ "efekt/b8y_saat_hizli": {
+  "file": "ses/efekt/b8y_saat_hizli.mp3",
+  "category": "efekt",
+  "duration": 2.247,
+  "loop": false,
+  "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
  },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
@@ -1871,6 +1976,41 @@
   "loop": false,
   "desc": "B8y P1: âşık anı fonu, tek parça 15 sn (ElevenLabs Music b8y_ask_el; 1 sn giriş, 2,7 sn çıkış)"
  },
+ "muzik/b8y_ask_a": {
+  "file": "ses/muzik/b8y_ask_a.mp3",
+  "category": "muzik",
+  "duration": 12.517,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 0. sn'den 12.52 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_b": {
+  "file": "ses/muzik/b8y_ask_b.mp3",
+  "category": "muzik",
+  "duration": 3.167,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 12. sn'den 3.17 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_c": {
+  "file": "ses/muzik/b8y_ask_c.mp3",
+  "category": "muzik",
+  "duration": 2.7,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 2. sn'den 2.70 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_d": {
+  "file": "ses/muzik/b8y_ask_d.mp3",
+  "category": "muzik",
+  "duration": 2.1,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 5. sn'den 2.10 sn), pembe arka plan boyunca"
+ },
+ "muzik/b8y_ask_e": {
+  "file": "ses/muzik/b8y_ask_e.mp3",
+  "category": "muzik",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 8. sn'den 2.50 sn), pembe arka plan boyunca"
+ },
  "muzik/b8y_ask_el": {
   "file": "ses/muzik/b8y_ask_el.mp3",
   "category": "muzik",
@@ -2192,68 +2332,5 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
- },
- "efekt/b8y_ruzgar_circir": {
-  "file": "ses/efekt/b8y_ruzgar_circir.mp3",
-  "category": "efekt",
-  "duration": 3.082,
-  "loop": false,
-  "desc": "B8y P2: tuhaf sessizlik: boş rüzgâr uğultusu + cırcır böceği (kendi sentezimiz), 3 sn."
- },
- "efekt/b8y_saat_hizli": {
-  "file": "ses/efekt/b8y_saat_hizli.mp3",
-  "category": "efekt",
-  "duration": 2.247,
-  "loop": false,
-  "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
- },
- "efekt/b8y_saat_bip": {
-  "file": "ses/efekt/b8y_saat_bip.mp3",
-  "category": "efekt",
-  "duration": 0.549,
-  "loop": false,
-  "desc": "B8y P2: dijital saat 00:00'da tek bip (kendi sentezimiz)."
- },
- "efekt/b8y_alarm": {
-  "file": "ses/efekt/b8y_alarm.mp3",
-  "category": "efekt",
-  "duration": 2.429,
-  "loop": false,
-  "desc": "B8y P2: telefon alarmı: dörtlü dijital bip, iki tur (kendi sentezimiz), 2,4 sn."
- },
- "muzik/b8y_ask_a": {
-  "file": "ses/muzik/b8y_ask_a.mp3",
-  "category": "muzik",
-  "duration": 12.517,
-  "loop": false,
-  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 0. sn'den 12.52 sn), pembe arka plan boyunca"
- },
- "muzik/b8y_ask_b": {
-  "file": "ses/muzik/b8y_ask_b.mp3",
-  "category": "muzik",
-  "duration": 3.167,
-  "loop": false,
-  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 12. sn'den 3.17 sn), pembe arka plan boyunca"
- },
- "muzik/b8y_ask_c": {
-  "file": "ses/muzik/b8y_ask_c.mp3",
-  "category": "muzik",
-  "duration": 2.7,
-  "loop": false,
-  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 2. sn'den 2.70 sn), pembe arka plan boyunca"
- },
- "muzik/b8y_ask_d": {
-  "file": "ses/muzik/b8y_ask_d.mp3",
-  "category": "muzik",
-  "duration": 2.1,
-  "loop": false,
-  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 5. sn'den 2.10 sn), pembe arka plan boyunca"
- },
- "muzik/b8y_ask_e": {
-  "file": "ses/muzik/b8y_ask_e.mp3",
-  "category": "muzik",
-  "duration": 2.5,
-  "loop": false,
-  "desc": "B8y: âşık fonu kesiti (b8y_ask_el 8. sn'den 2.50 sn), pembe arka plan boyunca"
  }
 }

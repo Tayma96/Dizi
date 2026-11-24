@@ -40,7 +40,8 @@ const kf = (k: KF | undefined, t: number, def: number[]): number[] => {
 };
 const kf1 = (k: KF | undefined, t: number, d: number) => kf(k, t, [d])[0];
 const O = "#2b1d1a";
-const W = 1080, H = 1920, F = 980;
+const W = 1080, H = 1920;
+let F = 980;   // odak uzaklığı: her karede fov ile ayarlanır (dolly zoom)
 
 type V3 = [number, number, number];
 type Cam = { x: number; y: number; z: number; yaw: number; pitch: number; roll: number };
@@ -100,7 +101,7 @@ const LAMBALAR: { x: number; z: number }[] = [];
 for (let i = 0; i < 16; i++) LAMBALAR.push({ x: i % 2 ? SAG - 0.25 : SOL + 0.25, z: -84 + i * 12 + (i % 3) * 1.5 });
 const MARKET_Z = 46;
 
-const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratikGor: number; marketFlas: number }> = ({ c, t, f, yaratik, yaratikGor, marketFlas }) => {
+const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratikGor: number; marketFlas: number; egik: number; seg: number }> = ({ c, t, f, yaratik, yaratikGor, marketFlas, egik, seg }) => {
   const parcalar: { z: number; el: React.ReactNode }[] = [];
   const ekle = (pts: V3[], renk: string, key: string, extra?: React.SVGProps<SVGPathElement>) => {
     const p = poly(c, pts);
@@ -198,7 +199,7 @@ const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratik
   if (yaratikGor > 0.01 && yc[2] > 0.5) {
     const [x, y] = proj(yc);
     const s = F / yc[2];
-    ya = <g transform={`translate(${x} ${y}) scale(${s})`} opacity={yaratikGor}><Yaratik ph={yaratik[2]} t={t} /></g>;
+    ya = <g transform={`translate(${x} ${y}) scale(${s})`} opacity={yaratikGor}><Yaratik ph={yaratik[2]} t={t} egik={egik} seg={seg} /></g>;
   }
 
   return (
@@ -214,9 +215,9 @@ const Sahne: React.FC<{ c: Cam; t: number; f: number; yaratik: number[]; yaratik
 };
 
 /* ------------------------------------------------------------------ yaratık (metre; ayak tabanı = 0, yukarı = -y) */
-const Yaratik: React.FC<{ ph: number; t: number }> = ({ ph, t }) => {
+const Yaratik: React.FC<{ ph: number; t: number; egik?: number; seg?: number }> = ({ ph, t, egik = 0, seg = 0 }) => {
   const a = Math.sin(ph), b = Math.cos(ph);
-  const sarsil = Math.sin(t * 23) * (Math.sin(t * 1.7) > 0.85 ? 0.08 : 0);       // ara ara kafa seğirmesi
+  const sarsil = Math.sin(t * 23) * (Math.sin(t * 1.7) > 0.85 ? 0.08 : 0) + seg * 0.06 * Math.sin(t * 41);       // ara ara kafa seğirmesi
   const bacak = (s: number) => {
     const k = s * a;
     const kalca: [number, number] = [s * 0.12, -1.75];
@@ -250,7 +251,7 @@ const Yaratik: React.FC<{ ph: number; t: number }> = ({ ph, t }) => {
       {/* boyun: uzun, öne eğik */}
       <path d="M 0.02 -2.95 Q 0.06 -3.12 0.12 -3.22" stroke="#1d1a20" strokeWidth={0.07} fill="none" strokeLinecap="round" />
       {/* kafa: kemik beyazı, uzun; çukur gözler, dikey yarık ağız + iğne dişler */}
-      <g transform={`translate(${0.13 + sarsil} -3.5) rotate(${8 + 30 * sarsil})`}>
+      <g transform={`translate(${0.13 + sarsil + egik * 0.004} -3.5) rotate(${8 + 30 * sarsil + egik})`}>
         <path d="M -0.17 0.28 Q -0.24 -0.05 -0.16 -0.34 Q 0 -0.48 0.16 -0.34 Q 0.24 -0.05 0.17 0.28 Q 0 0.42 -0.17 0.28 Z" fill="#d6d0c2" stroke="#2a2420" strokeWidth={0.02} />
         <path d="M -0.12 -0.12 q 0.05 -0.07 0.09 0 q -0.04 0.07 -0.09 0 Z M 0.03 -0.12 q 0.05 -0.07 0.09 0 q -0.04 0.07 -0.09 0 Z" fill="#060506" />
         <circle cx={-0.075} cy={-0.115} r={0.008} fill="#f4f0e0" />
@@ -302,47 +303,65 @@ const El: React.FC<{ s: 1 | -1 }> = ({ s }) => {
 
 /* ------------------------------------------------------------------ bacaklar (oturarak geri itme; ekran katmanı) */
 const Bacak: React.FC<{ s: 1 | -1; buk: number }> = ({ s, buk }) => {
-  // Oturan kadının gözünden kendi bacağı (kamera ~22° aşağı bakar): kalçadan bileğe TEK kesintisiz hat (uyluk dolgun, diz hafif
-  // kabarık, baldır ince), uçta beyaz spor ayakkabı (topuğu bize dönük). buk 0..0,6: diz hafifçe kalkar, ayak yaklaşır (itme).
+  // Oturan kadının gözünden kendi bacağı (kamera ~20° aşağı): kalça altta geniş, uyluk dolgun, diz kapağı belirgin, baldır incelir;
+  // bacaklar korkuyla hafif açık (ayaklar dizlerden dışarıda). Uçta iri beyaz spor ayakkabı (taban kenarı ve burnu görünür).
   const b = Math.min(0.6, buk);
-  const ten = "#efc6a4", tenK = "#cf9e7c", isik = "#ffdcc0";
-  const hy = 2120, ky = 1690 - 300 * b, ay = 1300 + 160 * b;
+  const ten = "#efc6a4", tenK = "#c99878", isik = "#ffe0c6";
   const X = (v: number) => s * v;
-  const kx = 168 + 14 * b, ax = 124 + 22 * b;
-  // dış hat (kadraj kenarına bakan) ve iç hat; diz bölgesinde hafif kabarıklık
-  const d = `M ${X(410)} ${hy} C ${X(390)} ${hy - 160} ${X(kx + 150)} ${ky + 170} ${X(kx + 118)} ${ky + 20}
-    C ${X(kx + 112)} ${ky - 30} ${X(kx + 98)} ${ky - 50} ${X(kx + 86)} ${ky - 90}
-    C ${X(ax + 92)} ${(ky + ay) / 2} ${X(ax + 64)} ${ay + 70} ${X(ax + 52)} ${ay}
-    L ${X(ax - 46)} ${ay}
-    C ${X(ax - 56)} ${ay + 80} ${X(kx - 82)} ${(ky + ay) / 2 + 40} ${X(kx - 92)} ${ky - 60}
-    C ${X(kx - 104)} ${ky - 20} ${X(kx - 110)} ${ky + 20} ${X(kx - 108)} ${ky + 60}
-    C ${X(kx - 120)} ${ky + 200} ${X(70)} ${hy - 160} ${X(30)} ${hy} Z`;
+  const hy = 2150, ky = 1600 - 250 * b, ay = 1235 + 170 * b;
+  const kx = 205 + 10 * b, ax = 250 - 35 * b;
+  const d = `M ${X(560)} ${hy} C ${X(520)} 1950 ${X(kx + 140)} ${ky + 180} ${X(kx + 105)} ${ky + 20}
+    C ${X(kx + 98)} ${ky - 25} ${X(kx + 88)} ${ky - 50} ${X(kx + 70)} ${ky - 80}
+    C ${X(ax + 64)} ${(ky + ay) / 2} ${X(ax + 50)} ${ay + 60} ${X(ax + 46)} ${ay + 12}
+    L ${X(ax - 44)} ${ay + 12}
+    C ${X(ax - 48)} ${ay + 80} ${X(kx - 64)} ${(ky + ay) / 2 + 60} ${X(kx - 80)} ${ky - 50}
+    C ${X(kx - 98)} ${ky - 10} ${X(kx - 106)} ${ky + 30} ${X(kx - 104)} ${ky + 80}
+    C ${X(kx - 112)} ${ky + 260} ${X(40)} 1980 ${X(-20)} ${hy} Z`;
   return (
     <g>
       <path d={d} fill={ten} stroke={O} strokeWidth={7} strokeLinejoin="round" />
-      {/* iç uyluk gölgesi, diz kapağı çizgisi, lamba ışığı sırtı */}
-      <path d={`M ${X(60)} ${hy - 40} C ${X(kx - 90)} ${ky + 220} ${X(kx - 96)} ${ky + 80} ${X(kx - 98)} ${ky + 30}`} stroke={tenK} strokeWidth={26} fill="none" opacity={0.35} strokeLinecap="round" />
-      <path d={`M ${X(kx - 40)} ${ky - 20} Q ${X(kx)} ${ky + 8} ${X(kx + 40)} ${ky - 20}`} stroke={tenK} strokeWidth={5} fill="none" />
-      <path d={`M ${X(380)} ${hy - 60} C ${X(kx + 150)} ${ky + 230} ${X(kx + 100)} ${ky + 60} ${X(kx + 70)} ${ky - 50}`} stroke={isik} strokeWidth={20} fill="none" opacity={0.3} strokeLinecap="round" />
-      {/* spor ayakkabı: topuk bize dönük, burnu ileride (yukarıda); bilekten geniş */}
-      <g transform={`translate(${X(ax + 3)} ${ay - 4}) rotate(${s * 6})`}>
-        <path d="M -78 34 Q -86 -40 -50 -104 Q 0 -134 50 -104 Q 86 -40 78 34 Q 0 58 -78 34 Z" fill="#f4f4f2" stroke={O} strokeWidth={6} />
-        <path d="M -56 -84 Q 0 -122 56 -84 Q 34 -128 0 -132 Q -34 -128 -56 -84 Z" fill="#dcdce2" stroke={O} strokeWidth={4} />
-        <path d="M -46 -50 Q 0 -70 46 -50 L 40 6 Q 0 -6 -40 6 Z" fill="#e8e8ec" stroke={O} strokeWidth={4} />
-        {[0, 1, 2].map((i) => <path key={i} d={`M -28 ${-40 + i * 15} L 28 ${-40 + i * 15}`} stroke="#8a8a92" strokeWidth={5} strokeLinecap="round" />)}
-        <path d="M -74 22 Q 0 50 74 22" stroke="#c4162a" strokeWidth={10} fill="none" />
-        <path d="M -30 30 Q 0 40 30 30" stroke="#b8b8c0" strokeWidth={5} fill="none" />
+      <path d={`M ${X(40)} ${hy - 60} C ${X(kx - 92)} ${ky + 240} ${X(kx - 92)} ${ky + 110} ${X(kx - 94)} ${ky + 50}`} stroke={tenK} strokeWidth={30} fill="none" opacity={0.3} strokeLinecap="round" />
+      {/* diz kapağı: yarım ay gölge + parlama */}
+      <path d={`M ${X(kx - 52)} ${ky - 6} Q ${X(kx)} ${ky + 40} ${X(kx + 52)} ${ky - 6}`} stroke={tenK} strokeWidth={6} fill="none" />
+      <ellipse cx={X(kx + 6)} cy={ky - 22} rx={38} ry={20} fill={isik} opacity={0.45} />
+      <path d={`M ${X(400)} ${hy - 80} C ${X(kx + 150)} ${ky + 250} ${X(kx + 104)} ${ky + 90} ${X(kx + 76)} ${ky - 30}`} stroke={isik} strokeWidth={22} fill="none" opacity={0.28} strokeLinecap="round" />
+      {/* beyaz spor ayakkabı (kendi ayağı, arkadan-üstten): dil ve bağcık bileğe yakın, burun ileride; korkuyla dışa açık */}
+      <path d={`M ${X(ax - 50)} ${ay + 40} Q ${X(ax)} ${ay + 58} ${X(ax + 52)} ${ay + 40} L ${X(ax + 48)} ${ay - 6} Q ${X(ax)} ${ay + 8} ${X(ax - 46)} ${ay - 6} Z`} fill="#f2f2f0" stroke={O} strokeWidth={5} />
+      {[0, 1, 2].map((i) => <path key={`c${i}`} d={`M ${X(ax - 30 + i * 30)} ${ay - 2} L ${X(ax - 30 + i * 30)} ${ay + 44}`} stroke="#c8c8ce" strokeWidth={4} />)}
+      <g transform={`translate(${X(ax)} ${ay + 8}) rotate(${s * 22})`}>
+        <path d="M -62 26 Q -70 -60 -54 -150 Q -32 -206 0 -210 Q 32 -206 54 -150 Q 70 -60 62 26 Q 0 46 -62 26 Z" fill="#f6f6f4" stroke={O} strokeWidth={6} />
+        <path d="M -62 20 Q -72 -60 -56 -150 M 62 20 Q 72 -60 56 -150" stroke="#5a5a62" strokeWidth={10} fill="none" />
+        <path d="M -48 -160 Q 0 -214 48 -160 Q 0 -180 -48 -160 Z" fill="#e2e2e8" stroke={O} strokeWidth={4} />
+        <path d="M -34 14 Q 0 -4 34 14 L 30 -44 Q 0 -60 -30 -44 Z" fill="#ececf0" stroke={O} strokeWidth={4} />
+        {[0, 1, 2, 3].map((i) => <path key={i} d={`M -30 ${-62 - i * 20} L 30 ${-62 - i * 20}`} stroke="#8a8a92" strokeWidth={6} strokeLinecap="round" />)}
+        <path d="M -60 -20 Q -66 -90 -40 -130" stroke="#c4162a" strokeWidth={9} fill="none" strokeLinecap="round" />
       </g>
     </g>
   );
 };
 const Etek: React.FC<{ sal: number }> = ({ sal }) => (
-  // kırmızı mini etek kenarı, kadrajın altında (kamera aşağı baktıkça görünür)
+  // kırmızı mini etek (kendi gözünden): uylukların üst kısmını örten geniş bant; kenarı hafif dalgalı, kıvrımlı
   <g>
-    <path d={`M -60 1920 L -60 ${1800 + sal} Q 200 ${1760 - sal} 540 ${1790 + sal} Q 880 ${1760 - sal} 1140 ${1800 + sal} L 1140 1920 Z`} fill="#c4162a" stroke={O} strokeWidth={7} />
-    <path d={`M 120 1790 q 30 50 10 130 M 380 1785 q 20 60 0 135 M 700 1785 q -20 60 0 135 M 960 1790 q -30 50 -10 130`} stroke="#8a0c1c" strokeWidth={6} fill="none" opacity={0.7} />
+    <path d={`M -80 1920 L -80 ${1690 + sal} Q 160 ${1640 - sal} 330 ${1668 + sal} Q 540 ${1700 - sal} 750 ${1668 + sal} Q 920 ${1640 - sal} 1160 ${1690 + sal} L 1160 1920 Z`} fill="#c4162a" stroke={O} strokeWidth={8} />
+    <path d={`M -80 ${1700 + sal} Q 160 ${1652 - sal} 330 ${1680 + sal} Q 540 ${1712 - sal} 750 ${1680 + sal} Q 920 ${1652 - sal} 1160 ${1700 + sal}`} stroke="#ff5a66" strokeWidth={6} fill="none" opacity={0.5} />
+    <path d="M 150 1680 q 40 90 10 240 M 330 1690 q 30 100 0 230 M 540 1715 q 0 100 -10 205 M 750 1690 q -30 100 0 230 M 930 1680 q -40 90 -10 240" stroke="#7a0a18" strokeWidth={8} fill="none" opacity={0.6} />
   </g>
 );
+
+/* ------------------------------------------------------------------ saç: baş hızla dönerken kadrajı süpüren tutamlar (v: -1..1 geçiş) */
+const Sac: React.FC<{ v: number }> = ({ v }) => {
+  if (Math.abs(v) > 1.3) return null;
+  const op = Math.max(0, 1 - Math.abs(v) * 0.85);
+  return (
+    <g style={{ filter: "blur(3px)" }} opacity={0.75 * op}>
+      {new Array(9).fill(0).map((_, i) => {
+        const x = 540 + v * 760 + (i - 4) * 34 + 22 * Math.sin(i * 2.1);
+        const egri = 120 * Math.sin(i * 1.3 + v * 3);
+        return <path key={i} d={`M ${x - 40} -100 C ${x + egri} 400 ${x - egri} 1000 ${x + 30} ${1500 + 300 * Math.sin(i)}`} stroke={i % 3 ? "#2a1a14" : "#4a3222"} strokeWidth={8 + (i % 4) * 7} fill="none" strokeLinecap="round" />;
+      })}
+    </g>
+  );
+};
 
 /* ------------------------------------------------------------------ ana bileşen */
 const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
@@ -354,10 +373,15 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
   const [x, y, z, yawD, pitD, rolD] = kf(p.kam, t, [0, 1.62, 0, 0, 0, 0]);
   // koşu/sürünme sallantısı: [t, koşuGenliği 0..1, adımHz]
   const [kos, hz] = kf(p.sallan, t, [0, 2.8]);
+  F = 980 * kf1(p.fov, t, 1);
   const faz = 2 * Math.PI * hz * t;
-  const bobY = kos * (0.055 * Math.abs(Math.sin(faz)) - 0.03), bobX = kos * 0.05 * Math.sin(faz / 2 + 0.3), bobR = kos * 2.2 * Math.sin(faz / 2);
-  const sars = kf1(p.sars, t, 0);
-  const shX = sars * 30 * (random(`sx${f}`) - 0.5), shY = sars * 30 * (random(`sy${f}`) - 0.5);
+  // koşu: her ayak basışında sert iniş (|sin| tabanı keskin), yanal salınım, omuz yalpası; basış anında kısa sarsıntı
+  const adimU = (faz / Math.PI) % 1;                         // 0 = ayak yere değdi
+  const darbe = kos * Math.exp(-adimU * 9);
+  const bobY = kos * (0.085 * Math.abs(Math.sin(faz)) - 0.045) - 0.025 * darbe, bobX = kos * 0.07 * Math.sin(faz / 2 + 0.3), bobR = kos * 3.4 * Math.sin(faz / 2);
+  const sars = kf1(p.sars, t, 0) + 0.35 * darbe;
+  const tit = kf1(p.titreme, t, 0);
+  const shX = sars * 30 * (random(`sx${f}`) - 0.5) + tit * 5 * Math.sin(t * 37), shY = sars * 30 * (random(`sy${f}`) - 0.5) + tit * 4 * Math.cos(t * 43);
   const cam: Cam = { x: x + bobX, y: y + bobY, z, yaw: (yawD * Math.PI) / 180, pitch: (pitD * Math.PI) / 180 + kos * 0.012 * Math.sin(faz), roll: 0 };
   const roll = rolD + bobR;
   // dönüş hızına göre hareket bulanıklığı
@@ -379,7 +403,7 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsHale"><stop offset="0" stopColor="#ffd08a" stopOpacity={0.9} /><stop offset="0.25" stopColor="#ff9a40" stopOpacity={0.35} /><stop offset="1" stopColor="#ff9a40" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} />
+          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} />
         </svg>
       </AbsoluteFill>
       {/* sis/derinlik: ufukta soğuk sis bandı */}
@@ -407,9 +431,15 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
           </svg>
         </AbsoluteFill>
       ) : null}
+      <AbsoluteFill><svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}><Sac v={kf1(p.sac, t, 9)} /></svg></AbsoluteFill>
+      {/* kalp atışı: kenarlar nabızla kararır (korku) */}
+      {kf1(p.kalp, t, 0) > 0.01 ? (() => { const k = kf1(p.kalp, t, 0), u = (t * 1.17) % 1, n = Math.exp(-u * 7) + 0.6 * Math.exp(-Math.max(0, u - 0.18) * 7) * (u > 0.18 ? 1 : 0);
+        return <AbsoluteFill style={{ background: `radial-gradient(ellipse 60% 50% at 50% 46%, rgba(0,0,0,0) 30%, rgba(30,0,4,${(0.65 * k * n).toFixed(3)}) 100%)` }} />; })() : null}
       {/* renk: soğuk gece, kenar kararması, nefes buğusu titremesi, grenli */}
       <AbsoluteFill style={{ background: "radial-gradient(ellipse 75% 62% at 50% 48%, rgba(0,0,0,0) 45%, rgba(2,3,8,0.88) 100%)" }} />
       <AbsoluteFill style={{ background: `rgba(160,0,10,${(kf1(p.kirmizi, t, 0) * 0.25).toFixed(3)})`, mixBlendMode: "multiply" }} />
+      <AbsoluteFill style={{ backgroundColor: "#000", opacity: kf1(p.karart, t, 0) }} />
+      <AbsoluteFill style={{ backgroundColor: "#fff", opacity: kf1(p.flas, t, 0), mixBlendMode: "overlay" }} />
       <AbsoluteFill style={{ opacity: 0.08, backgroundImage: `radial-gradient(circle at ${(random(`gr${f}`) * 100).toFixed(1)}% ${(random(`gq${f}`) * 100).toFixed(1)}%, #fff 0.5px, transparent 1.2px)`, backgroundSize: "5px 5px" }} />
     </AbsoluteFill>
   );
