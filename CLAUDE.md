@@ -2,6 +2,8 @@
 
 Remotion (React) ile kodla dikey (9:16) animasyon dizileri üretme projesi. Birden fazla dizi yapılabilir; şu an odak tek dizi.
 
+> **Yeni oturumda önce `docs/son-oturum.md` dosyasını oku** (son konuşmanın özeti: token düzeni, Gemini, 7/24 B8'de kaldığımız yer).
+
 ## Değişmez kurallar
 - **Kullanıcı açıkça istemeden senaryo/hikâye/replik yazma.** Fikir ve öneri sunulabilir.
   - **7/24 Bölüm 7 için izin (23 Kasım 2026):** kullanıcı "Doğaçlamalar serbest" dedi. Kullanıcının replikleri aynen korunur; aradaki boşluklar, sözsüz şakalar ve kısa yeni replikler doğaçlanabilir, her biri kullanıcıya açıkça belirtilir. Ayrıntı: `docs/diziler/724/b7-gece-brief.md`.
