@@ -264,3 +264,16 @@ Bir duraksama.
 Annesi sofrayı kuruyordur, Ece hızlıca odasına gidip giyinir, anne "otur şu masaya" der, Ece odadan çıkınca annesi "o para...." derken Ece masadan 1 zeytin alıp ağzına atıp annesini öpüp "az işim var gelicemm" deyip çıkar evden.
 - Not (Claude): salon (aynı daire; solda Ece'nin odası, sağda antreye çıkış). Ece pijamayla odasına koşar, sivil kıyafetle (hardal kazak, kot) çıkar. "gelicemm" ağzı zeytin dolu okunur. Anne cümlesini bitiremez (öpücükle kesilir).
 - **B7 P3 v2 (Claude'un sözsüz eklemeleri, kullanıcı "ajan gibi uzun çalış" dedi):** aralık kapıdan fırlayan pijama/çorap, çorabı anne iki parmakla tutup geri fırlatır (P1 çorap koklamasına gönderme); anne desteyi hırka cebinden çıkarır ("o para...."); zeytin yakın planı, Ece zeytini havaya atıp ağzıyla yakalar (yanak şişer); öpücük yakın planı; antre çıkışı; son: anne yanağına dokunur, sonra paraya bakıp gözlerini kısar (kanca). Yeni replik yok.
+
+## Bölüm 8, Parça 1 (kullanıcının metni, 24 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Şimdi Ece markete tedirgin şekilde tam gelir kapıdan girer Sabri kasadadır.
+Sabri: "geldin demek, hoş geldin" der.
+Ece: "abi uzatmaya gerek yok neydi bu gece olanlar? Bana bazı cevaplar borçlusun!"
+
+Bundan sonrası önemli Claude yönetmenler güzel yapsın:
+"Anlatayım kızım" kalemle çizmeye başlar 3 yuvarlak çizer altlı üstlü "bunlar dünyadaki topluluklar", hepsini bir noktada birleştiren çizgi çeker ortak noktanın üstünden yana doğru bir çizgi daha çeker. "Bu da ortak yaşam çizgimiz."
+İlk çizdiği 3 yuvarlağın yanına bağımsız ayrı 1'er çizgi daha ekler, "İnsanlar asırlar boyunca hikâyeler anlattı, korkular yarattı ve bunların her biri paralel bir çizgi oluşturdu" "ancak geceleri tüm bu paralel çizgiler bir ortak noktada buluşuyor" en son çizdiği hepsinin kesiştiği o yuvarlak son noktada.
+
+### Notlar (genel yönetmen)
+- B8'de doğaçlama izni YOK (B7'ye özeldi): yeni replik eklenmez; sözsüz eylem/tepki ve kamera serbest. Yeni replik önerisi olursa kullanıcıya sorulur.
+- Çizim anlatımın kalbi: kâğıt yakın planları okunur, net ve zamanında (her cümlede ilgili çizgi çizilir).
