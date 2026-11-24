@@ -32,6 +32,12 @@ export type KuryePoz = {
   /** yerden doğrulma (derece, kalçadan; 0 = yatık) ve bacak bükme 0..1: yatma → dirsek/oturma ara pozu */
   kalk?: number;
   bacakBuk?: number;
+  /** belini tutma 0..1 (sağ el bel arkasında, dirsek dışarı; gövde öne eğik) */
+  belTut?: number;
+  /** acı: yüz buruşur 0..1 */
+  aci?: number;
+  /** bakış dikey (-1 yukarı .. 1 aşağı): tavana/köşelere bakınma */
+  bakY?: number;
 };
 export const KURYE_UYKU: KuryePoz = { goz: 0, sik: 0.5, kas: -0.6, agiz: { ac: 0, yuv: 0 }, basEg: 6, bak: 0, savun: 0, nefes: 0 };
 
@@ -189,15 +195,16 @@ const BasOn: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number; yuv: numbe
         <defs><clipPath id={id}><path d={egri(sek, true)} /></clipPath></defs>
         <path d={egri(sek, true)} fill="#f8f2ec" />
         <g clipPath={`url(#${id})`}>
-          <circle cx={x - 6 * dar + p.bak * 6} cy={-1} r={g > 1.1 ? 8 : 10} fill="#4a2e1c" />
-          <circle cx={x - 6 * dar + p.bak * 6} cy={-1} r={g > 1.1 ? 3.5 : 5} fill="#120a06" />
-          <circle cx={x - 9 * dar + p.bak * 6} cy={-5} r={2.6} fill="#fff" />
+          <circle cx={x - 6 * dar + p.bak * 6} cy={-1 + (p.bakY ?? 0) * 5} r={g > 1.1 ? 8 : 10} fill="#4a2e1c" />
+          <circle cx={x - 6 * dar + p.bak * 6} cy={-1 + (p.bakY ?? 0) * 5} r={g > 1.1 ? 3.5 : 5} fill="#120a06" />
+          <circle cx={x - 9 * dar + p.bak * 6} cy={-5 + (p.bakY ?? 0) * 5} r={2.6} fill="#fff" />
         </g>
         <path d={serit([[x - w - 2, 1, 2 * lw], [x - w * 0.3, -h * 1.3 - 1, 6 * lw], [x + w * 0.5, -h * 1.2 - 1, 6 * lw], [x + w + 2, -3, 1 * lw]])} fill="#1a100c" />
       </g>
     );
   };
   const kk = p.kas * 12;
+  const aci = p.aci ?? 0;
   return (
     <g>
       <Hacim id="kc-bas" pts={BAS34} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2.4 * lw} kalin={8 * lw}>
@@ -218,7 +225,16 @@ const BasOn: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number; yuv: numbe
       {/* burun: yanaktan taşar */}
       <Hacim id="kc-burun" pts={[[-58, -10], [-74, 20], [-96, 40], [-84, 52], [-56, 50], [-44, 36]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} acik={[0]} />
       <ellipse cx={-72} cy={48} rx={6} ry={3} fill="#5a2a1a" />
-      <Agiz x={-46} y={84} w={44} ac={konus.ac} yuv={konus.yuv} gul={p.kas < 0 ? -0.5 : 0} dudak="#c98a7a" cizgi={TEN_C} lw={lw} />
+      <Agiz x={-46} y={84} w={44 + aci * 8} ac={Math.max(konus.ac, aci * 0.22)} yuv={konus.yuv * (1 - aci * 0.5)} gul={p.kas < 0 ? -0.5 : -aci * 0.9} dudak="#c98a7a" cizgi={TEN_C} lw={lw} />
+      {aci > 0.1 ? (
+        <g opacity={aci}>
+          {/* acıdan buruşma: burun kökü ve göz kenarı kırışıkları */}
+          <path d={serit([[-50, -30, 0], [-44, -18, 2.4 * lw], [-46, -6, 0]])} fill={TEN_C} />
+          <path d={serit([[-36, -32, 0], [-30, -20, 2.4 * lw], [-32, -8, 0]])} fill={TEN_C} />
+          <path d={serit([[28, -4, 0], [38, 2, 2.4 * lw], [44, 10, 0]])} fill={TEN_C} />
+          <path d={serit([[28, 8, 0], [36, 16, 2 * lw], [40, 24, 0]])} fill={TEN_C} />
+        </g>
+      ) : null}
     </g>
   );
 };
@@ -227,7 +243,9 @@ export const KuryeComel: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number
   const sv = p.savun;
   const bob = Math.sin(nefes) * 6;
   // kollar: sağdaki (arka omuz) savunmada göğüs önüne kalkar; soldaki dizine dayanır
-  const jA = kemik([150, -720 + bob], 106 - sv * 6, 190, 92 + sv * 10, 170);
+  const bt = p.belTut ?? 0;
+  const jA = kemik([150, -720 + bob], 106 - sv * 6 + (58 - 106 + sv * 6) * bt, 190, 92 + sv * 10 + (66 - 92 - sv * 10) * bt, 170);
+  const egil = -7 * bt;
   const jB = kemik([-110, -730 + bob], 104, 200, -30, 170);
   return (
     <g>
@@ -242,8 +260,13 @@ export const KuryeComel: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number
         <path d={serit([[-250, -470, 0], [-226, -430, 3], [-216, -400, 0]])} fill={PANT_C} opacity={0.6} />
       </Hacim>
       <Ayakkabi id="kc-ayk1" at={[-246, -40]} aci={180} lw={lw} />
-      {/* gövde (mont), hafif öne eğik */}
-      <g transform={`translate(0 ${bob})`}>
+      {/* gövde (mont), hafif öne eğik; belini tutarken daha da eğilir */}
+      <g transform={`translate(0 ${bob}) rotate(${egil} 0 -360)`}>
+        {bt >= 0.5 ? (
+          <g>
+            <Hacim id="kc-kolA2" pts={uzuv(kemikHat(jA, [112, 96, 78]))} dolgu={MONT_G} golge={MONT_G} cizgi={MONT_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} />
+          </g>
+        ) : null}
         <Hacim id="kc-mont" pts={[[-130, -730], [-50, -776], [60, -780], [160, -756], [204, -690], [196, -560], [164, -430], [130, -360], [-90, -350], [-140, -440], [-170, -600], [-174, -690]]} dolgu={MONT} golge={MONT_G} cizgi={MONT_C} isik={IS} ince={2.6 * lw} kalin={8 * lw} golgeCarp={1.2}>
           <path d={egri([[-174, -690], [-130, -740], [-50, -780], [60, -784], [160, -760], [204, -690], [200, -640], [100, -660], [-40, -660], [-160, -630]], true)} fill={KOYU} />
           <path d={egri([[-170, -540], [196, -520], [192, -480], [-164, -500]], true)} fill={REF} />
@@ -268,7 +291,17 @@ export const KuryeComel: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number
         {/* sol kol: dizine dayalı */}
         <Hacim id="kc-kolB" pts={uzuv(kemikHat(jB, [108, 94, 76]))} dolgu={MONT} golge={MONT_G} cizgi={MONT_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} />
         <Hacim id="kc-elB" pts={[[jB[2][0] - 34, jB[2][1] - 6], [jB[2][0] + 30, jB[2][1] - 8], [jB[2][0] + 36, jB[2][1] + 40], [jB[2][0] - 30, jB[2][1] + 44]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} />
+        {/* sağ el bel arkasında: başparmak belin yanından görünür, parmaklar arkada */}
+        {bt >= 0.5 ? (
+          <g transform={`translate(${jA[2][0]} ${jA[2][1]})`}>
+            <Hacim id="kc-belel" pts={[[-14, -26], [16, -30], [30, -6], [22, 26], [-10, 30], [-22, 4]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} />
+            <path d={serit([[-6, -20, 14], [-30, -10, 12], [-40, 4, 0]])} fill={TEN} stroke={TEN_C} strokeWidth={2.2 * lw} />
+            {/* acı çizgileri (belde) */}
+            {[0, 1, 2].map((k) => <path key={k} d={serit([[44 + k * 6, -40 + k * 26, 0], [60 + k * 8, -46 + k * 26, 4 * lw], [74 + k * 10, -44 + k * 26, 0]])} fill="#4a5a6a" opacity={0.6 * (p.aci ?? 0)} />)}
+          </g>
+        ) : null}
         {/* sağ kol: savunmada, elinde eldivenler */}
+        <g opacity={bt >= 0.5 ? 0 : 1}>
         <Hacim id="kc-kolA" pts={uzuv(kemikHat(jA, [112, 96, 78]))} dolgu={MONT} golge={MONT_G} cizgi={MONT_C} isik={IS} ince={2.4 * lw} kalin={7 * lw}>
           <path d={serit([[jA[1][0] - 30, jA[1][1] - 20, 0], [jA[1][0], jA[1][1], 4], [jA[1][0] + 20, jA[1][1] + 26, 0]])} fill={MONT_C} opacity={0.5} />
         </Hacim>
@@ -276,6 +309,7 @@ export const KuryeComel: React.FC<{ p: KuryePoz; lw: number; konus: { ac: number
           <path d={egri([[20, -30], [70, -44], [118, -40], [130, -10], [112, 14], [60, 20], [24, 26]], true)} fill={ELD} stroke={ELD_C} strokeWidth={2.4 * lw} />
           <Hacim id="kc-elA" pts={[[4, -32], [50, -36], [80, -20], [86, 8], [64, 32], [18, 32], [2, 0]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} />
           {[0, 1, 2, 3].map((k) => <path key={k} d={serit([[72, -22 + k * 14, 13], [100, -22 + k * 14, 12], [110, -12 + k * 14, 0]])} fill={TEN} stroke={TEN_C} strokeWidth={2.2 * lw} />)}
+        </g>
         </g>
       </g>
     </g>

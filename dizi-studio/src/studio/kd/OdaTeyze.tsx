@@ -18,12 +18,20 @@ const GOZLUK = "#8a2a4a", ALTIN = "#c9a24a", CANTA = "#8a4a32", CANTA_G = "#6a34
 const KIRMIZI = "#e2202e";
 const IS = ODA_ISIK;
 
-export type TeyzePoz = { kalk: number; goz: number; kas: number; agiz: number; basDon: number; nefes: number };
+export type TeyzePoz = {
+  kalk: number; goz: number; kas: number; agiz: number; basDon: number; nefes: number;
+  /** göz bebeği yönü (-1 sol .. 1 sağ) */
+  bak?: number;
+  /** çantayı göğsüne bastırma 0..1 */
+  canta?: number;
+};
 export const TEYZE_UYKU: TeyzePoz = { kalk: 0, goz: 0, kas: 0, agiz: 0, basDon: 0, nefes: 0 };
 
 /** dik üst beden: kalça (0,0), baş yukarı */
 const UstBeden: React.FC<{ p: TeyzePoz; lw: number }> = ({ p, lw }) => {
   const sy = 1 + 0.012 * p.nefes;
+  const cy = -(p.canta ?? 0) * 110; // çanta göğse kalkar
+  const bk = (p.bak ?? 0) * 4;
   const bukle: [number, number, number][] = [];
   for (let i = 0; i < 15; i++) {
     const a = ((-205 + i * 16.5) * Math.PI) / 180;
@@ -37,15 +45,17 @@ const UstBeden: React.FC<{ p: TeyzePoz; lw: number }> = ({ p, lw }) => {
     ) : (
       <g>
         <ellipse cx={x} cy={-518} rx={10} ry={11 * g} fill="#fbf6f2" stroke={TEN_C} strokeWidth={2 * lw} />
-        <circle cx={x} cy={-517} r={6.5} fill="#3a2418" />
-        <circle cx={x - 2.5} cy={-520} r={2.2} fill="#fff" />
+        <circle cx={x + bk} cy={-517} r={6.5} fill="#3a2418" />
+        <circle cx={x - 2.5 + bk} cy={-520} r={2.2} fill="#fff" />
       </g>
     );
   return (
     <g transform={`scale(1 ${sy})`}>
       {/* çanta sapı (kolların arkasında) */}
+      <g transform={`translate(0 ${cy})`}>
       <path d="M -60 -250 Q 0 -330 60 -250" stroke={CANTA_C} strokeWidth={14 * Math.max(0.6, lw * 0.8)} fill="none" />
       <path d="M -60 -250 Q 0 -330 60 -250" stroke={CANTA} strokeWidth={9 * Math.max(0.6, lw * 0.8)} fill="none" />
+      </g>
       {/* hırka gövde */}
       <Hacim id="ty-govde" pts={[[-150, -30], [-164, -190], [-156, -320], [-118, -384], [-44, -408], [44, -408], [118, -384], [156, -320], [164, -190], [150, -30], [80, 6], [-80, 6]]} dolgu={HIRKA} golge={HIRKA_G} cizgi={HIRKA_C} isik={IS} ince={2.4 * lw} kalin={7.5 * lw}>
         <path d={egri([[-44, -410], [44, -410], [30, -260], [0, -220], [-30, -260]], true)} fill={BLUZ} />
@@ -63,22 +73,24 @@ const UstBeden: React.FC<{ p: TeyzePoz; lw: number }> = ({ p, lw }) => {
         </g>
       ))}
       {/* kocaman el çantası, kollarının arasında */}
+      <g transform={`translate(0 ${cy})`}>
       <Hacim id="ty-canta" pts={[[-110, -250], [110, -250], [130, -140], [120, -70], [-120, -70], [-130, -140]]} dolgu={CANTA} golge={CANTA_G} cizgi={CANTA_C} isik={IS} ince={2.4 * lw} kalin={7 * lw}>
         <path d={serit([[-118, -210, 0], [0, -200, 5], [118, -210, 0]])} fill={CANTA_C} opacity={0.5} />
         <rect x={-14} y={-214} width={28} height={20} rx={4} fill={ALTIN} stroke="#6a5010" strokeWidth={1.6 * lw} />
       </Hacim>
+      </g>
       {/* kollar: çantaya sarılı */}
       {[-1, 1].map((s) => {
-        const hat: PW[] = [[s * 140, -360, 84], [s * 160, -280, 80], [s * 150, -200, 72], [s * 96, -168, 64], [s * 52, -176, 56]];
+        const hat: PW[] = [[s * 140, -360, 84], [s * 166, -280 + cy * 0.3, 80], [s * 156, -200 + cy * 0.75, 72], [s * 96, -168 + cy, 64], [s * 52, -176 + cy, 56]];
         return (
           <g key={s}>
             <Hacim id={`ty-kol${s}`} pts={uzuv(hat)} dolgu={HIRKA} golge={HIRKA_G} cizgi={HIRKA_C} isik={IS} ince={2.2 * lw} kalin={6.5 * lw} />
-            <Hacim id={`ty-el${s}`} pts={[[s * 56, -200], [s * 20, -196], [s * 8, -170], [s * 22, -148], [s * 56, -150]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5 * lw} />
+            <Hacim id={`ty-el${s}`} pts={[[s * 56, -200 + cy], [s * 20, -196 + cy], [s * 8, -170 + cy], [s * 22, -148 + cy], [s * 56, -150 + cy]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5 * lw} />
           </g>
         );
       })}
       {/* altın bilezik */}
-      <ellipse cx={-62} cy={-172} rx={7} ry={20} fill="none" stroke={ALTIN} strokeWidth={4 * lw} />
+      <ellipse cx={-62} cy={-172 + cy} rx={7} ry={20} fill="none" stroke={ALTIN} strokeWidth={4 * lw} />
       {/* boyun */}
       <Hacim id="ty-boyun" pts={[[-40, -430], [40, -430], [44, -396], [0, -380], [-44, -396]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5 * lw} />
       {/* BAŞ */}
@@ -149,4 +161,35 @@ export const OdaTeyze: React.FC<{ p: TeyzePoz; lw: number }> = ({ p, lw }) => (
     </g>
   </g>
 );
+/** AYAKTA (tekli çekim): önden, tam boy; yerel (0,0) iki ayağın arası, zemin. Adım fazı ile geri çekilir. */
+export const TeyzeAyakta: React.FC<{ p: TeyzePoz; lw: number; adim?: number; adimG?: number }> = ({ p, lw, adim = 0, adimG = 0 }) => {
+  const kS = Math.max(0, Math.sin(adim)) * 34 * adimG, kG = Math.max(0, -Math.sin(adim)) * 34 * adimG;
+  const bob = -Math.abs(Math.sin(adim)) * 10 * adimG;
+  return (
+    <g>
+      {/* bacaklar (ten çorap) + ayakkabılar */}
+      {[-1, 1].map((s) => {
+        const k = s < 0 ? kS : kG;
+        return (
+          <g key={s}>
+            <Hacim id={`tya-b${s}`} pts={uzuv([[s * 58, -270, 86], [s * 60, -150 - k * 0.5, 72], [s * 60, -46 - k, 62]])} dolgu="#dcb8a0" golge="#c4a08c" cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} />
+            <Hacim id={`tya-a${s}`} pts={[[s * 26, -40 - k], [s * 92, -44 - k], [s * 112, -18 - k], [s * 104, 2 - k], [s * 20, 2 - k]]} dolgu="#2a2224" golge="#1a1416" cizgi="#0a0608" isik={IS} ince={2 * lw} kalin={5.5 * lw}>
+              <ellipse cx={s * 66} cy={-34 - k} rx={16} ry={5} fill="#fff" opacity={0.4} />
+            </Hacim>
+          </g>
+        );
+      })}
+      <g transform={`translate(0 ${bob})`}>
+        {/* etek (A kesim, diz altına) */}
+        <Hacim id="tya-etek" pts={[[-150, -520], [150, -520], [168, -380], [188, -240], [0, -226], [-188, -240], [-168, -380]]} dolgu={ETEK} golge={ETEK_G} cizgi={ETEK_C} isik={IS} ince={2.2 * lw} kalin={6.5 * lw}>
+          <path d={serit([[-60, -500, 0], [-80, -360, 4], [-96, -240, 0]])} fill={ETEK_C} opacity={0.4} />
+          <path d={serit([[70, -500, 0], [90, -360, 4], [104, -240, 0]])} fill={ETEK_C} opacity={0.4} />
+        </Hacim>
+        <g transform="translate(0 -470)">
+          <UstBeden p={p} lw={lw} />
+        </g>
+      </g>
+    </g>
+  );
+};
 export type { P };
