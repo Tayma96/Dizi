@@ -119,3 +119,4 @@ Göbekli adam kalkmaya çalışır göbekten doğrulamaz tekrar yatar panik hali
 
 - Not (Claude): Bu metin Claude'un v2 taslağının açılışının yerini alır. Kullanıcı kararıyla horlama odada YANKILANIR (önceki "yankısız oda" fikri bu parça için geçersiz). Açılış: genel açıdan canlı kamera kaydı → iç kamera.
 - **Kullanıcı kararı:** A7'de teyze herkesle aynı anda irkilir (gecikme yok).
+- **Kullanıcı kararları (24 Kasım 2026):** açılış kaydı **güvenlik kamerası** (REC); devam akışı senarist yardımcısının **1. ve 2. seçeneğinin karışımı** → `b1-p2-senaryo-taslak.md` v3 (açılış kullanıcının, devamı Claude taslağı). Kanca o hâliyle kalır, sahnesi 3. bölüm civarında; "Duuur" sesi göbekli sesi kalabilir, **önemli değil**. **Göbekliye şiveli (Trakya) ses ayarlanacak; kancadaki sesle aynı olmak zorunda değil.**
