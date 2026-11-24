@@ -34,3 +34,4 @@
 - Mert görünümü: ilk dağınık (ek ayar yok). Doğaçlama akışı onaylı (bolumler.md sonu; "bu insan mı" âşık tonda).
 - Mert ses adayları (10, ücretsiz önizleme): https://claude.ai/artifact/3U3mQJvHUdYzgJpbzRdwoa · liste: `docs/diziler/724/raporlar/b8y-mert-ses-adaylari.json` (n, vid, sahip). Seçimden sonra: `python3 tools/elevenlabs.py ata mert724 <vid> --sahip <sahip> --ad "<ad>"`.
 - ElevenLabs: proxy hesabında 13.901 kredi kaldı (24 Kasım). api.us.elevenlabs.io önizlemeleri api.elevenlabs.io'ya çevrilerek iniyor.
+- **Model: eleven_v4** (kullanıcı hatırlattı, 24 Kasım; aracın varsayılanı zaten v4, turbo değil).
