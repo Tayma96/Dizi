@@ -19,6 +19,7 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
+import { Market724YanBG, Market724YanTezgah, YAN_KAPI, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
 import { sstep } from "./bocek";
 import { karakter, type KarCiz } from "./Inserts16";
 import { NahEller, nahGeo } from "./nahEl";
@@ -275,6 +276,56 @@ const DepoKol: React.FC<{ acik: number; kol: number }> = ({ acik, kol }) => {
   );
 };
 
+/* ------------------------------------------------------------------ B8 (yeni) P1: omuz üstü (OTS) ön plan: ensesi/omzu kadrajda olan kişi
+ * Kendi çizimimiz; rig'in arkadan görünüşü olmadığı için baş arkası + omuz ayrı çizilir. Ön plan: bulanık ve hafif karanlık.
+ * yon: +1 → kişi kadraj SAĞINA bakar (yanağı/kulağı sağda görünür), -1 → SOLA. (x,y): başın merkezi; s: ölçek (baş eni ~300·s) */
+const SirtEce: React.FC<{ x: number; y: number; s: number; yon?: number }> = ({ x, y, s, yon = 1 }) => (
+  <g transform={`translate(${x} ${y}) scale(${s * yon} ${s})`}>
+    {/* kazak: omuzlar */}
+    <path d="M -460 760 Q -440 420 -250 330 Q -120 290 0 292 Q 120 290 250 330 Q 440 420 460 760 Z" fill="#c8902a" stroke={O} strokeWidth={8} />
+    <path d="M -300 380 Q -380 480 -400 760 M 300 380 Q 380 480 400 760" stroke="#a8741a" strokeWidth={30} fill="none" opacity={0.6} />
+    {new Array(9).fill(0).map((_, i) => <path key={i} d={`M ${-260 + i * 65} ${330 + Math.abs(i - 4) * 6} V 760`} stroke="#a8741a" strokeWidth={8} opacity={0.35} />)}
+    {/* boyun (arkadan, gölgede) */}
+    <path d="M -70 150 L -78 312 Q 0 336 78 312 L 70 150 Z" fill="#dcac88" stroke={O} strokeWidth={6} />
+    {/* yanak ve çene kenarı (baktığı yöne doğru) + kulak */}
+    <path d="M 96 40 Q 150 120 120 190 Q 90 230 40 236 L 40 60 Z" fill="#f0c8a8" stroke={O} strokeWidth={6} />
+    <ellipse cx={146} cy={44} rx={26} ry={44} fill="#f0c8a8" stroke={O} strokeWidth={6} />
+    <path d="M 146 20 q 12 22 0 46" stroke="#dcac88" strokeWidth={6} fill="none" />
+    {/* baş (saç, arkadan) */}
+    <ellipse cx={-6} cy={-10} rx={156} ry={178} fill="#3a2418" stroke={O} strokeWidth={8} />
+    <path d="M -110 -120 Q -40 -170 40 -150" stroke="#5a3a28" strokeWidth={18} fill="none" strokeLinecap="round" />
+    <path d="M -130 20 Q -90 -60 -20 -70 M 110 -20 Q 70 -70 10 -70" stroke="#5a3a28" strokeWidth={9} fill="none" />
+    {/* at kuyruğu (tepeden enseye, omza düşer) + toka */}
+    <path d="M 10 -60 Q 70 40 50 160 Q 30 290 90 430 Q 120 500 80 560" stroke={O} strokeWidth={98} fill="none" strokeLinecap="round" />
+    <path d="M 10 -60 Q 70 40 50 160 Q 30 290 90 430 Q 120 500 80 560" stroke="#3a2418" strokeWidth={84} fill="none" strokeLinecap="round" />
+    <path d="M 26 0 Q 60 120 40 240 Q 34 330 80 430" stroke="#5a3a28" strokeWidth={12} fill="none" />
+    <ellipse cx={14} cy={-62} rx={44} ry={22} fill="#e86a9a" stroke={O} strokeWidth={6} />
+  </g>
+);
+const SirtSabri: React.FC<{ x: number; y: number; s: number; yon?: number }> = ({ x, y, s, yon = -1 }) => (
+  <g transform={`translate(${x} ${y}) scale(${-s * yon} ${s})`}>
+    {/* hırka: geniş omuzlar (iri yapı), yaka */}
+    <path d="M -560 820 Q -540 430 -300 330 Q -150 285 0 288 Q 150 285 300 330 Q 540 430 560 820 Z" fill="#6a6a66" stroke={O} strokeWidth={8} />
+    <path d="M -150 300 Q 0 360 150 300 L 130 260 Q 0 300 -130 260 Z" fill="#525250" stroke={O} strokeWidth={6} />
+    <path d="M -380 400 Q -470 520 -490 820 M 380 400 Q 470 520 490 820" stroke="#525250" strokeWidth={34} fill="none" opacity={0.6} />
+    {/* kalın boyun */}
+    <path d="M -100 140 L -112 300 Q 0 330 112 300 L 100 140 Z" fill="#c08a64" stroke={O} strokeWidth={6} />
+    {/* kulak + bıyık ucu (baktığı yöne) */}
+    <ellipse cx={-160} cy={50} rx={30} ry={50} fill="#d8a47c" stroke={O} strokeWidth={6} />
+    <path d="M -160 26 q -14 24 0 50" stroke="#c08a64" strokeWidth={6} fill="none" />
+    <path d="M -150 150 Q -190 160 -205 140" stroke="#7a746c" strokeWidth={18} strokeLinecap="round" fill="none" />
+    {/* kel tepe + arkada gri saç kuşağı */}
+    <ellipse cx={0} cy={-6} rx={166} ry={186} fill="#d8a47c" stroke={O} strokeWidth={8} />
+    <path d="M -150 -60 Q -60 -150 60 -140" stroke="#e8bc94" strokeWidth={26} fill="none" strokeLinecap="round" opacity={0.7} />
+    <path d="M -166 10 Q -160 150 0 178 Q 160 150 166 10 Q 150 90 0 100 Q -150 90 -166 10 Z" fill="#9a948c" stroke={O} strokeWidth={6} />
+    {[-120, -70, -20, 30, 80, 125].map((dx) => <path key={dx} d={`M ${dx} ${110 + Math.abs(dx) * -0.25} q 6 30 0 54`} stroke="#7a746c" strokeWidth={5} fill="none" />)}
+  </g>
+);
+/** OTS katmanı: ön planda bulanık, hafif karanlık */
+const OnPlan: React.FC<{ children: React.ReactNode; bulan?: number; karanlik?: number }> = ({ children, bulan = 9, karanlik = 0.72 }) => (
+  <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, filter: `blur(${bulan}px) brightness(${karanlik})` }}><SVG>{children}</SVG></div>
+);
+
 /* ------------------------------------------------------------------ masa lambası (kasa görünümü, tezgâhta, Sabri'nin sağında) */
 const Lamba: React.FC<{ v: number }> = ({ v }) => (
   <g>
@@ -317,6 +368,10 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const nahTit: [number, number] = [darbe * 10 * Math.sin(tg * 90), darbe * 8 * Math.cos(tg * 77)];
   let eceQ = K.ece as Prm | undefined;
   if (view === "kasa" && p.eceKasaAra && !aralik(p.eceKasaAra, tg)) eceQ = undefined;
+  // B8 (yeni) P1 (opt-in): kasa görünümünde Ece'nin yerine ensesi/omzu (OTS); tezgah görünümünde Sabri'nin ensesi
+  const eceSirt = view === "kasa" && p.eceSirt && aralik(p.eceSirtAra ?? [[-99, 99]], tg) ? kf(p.eceSirt, tg, [200, 1250, 1]) : null;
+  if (eceSirt) eceQ = undefined;
+  const sabriSirt = view === "tezgah" && p.sabriSirt && aralik(p.sabriSirtAra ?? [[-99, 99]], tg) ? kf(p.sabriSirt, tg, [950, 950, 1]) : null;
   const nahIleri = view === "nah" ? p.nahIleriIns ?? p.nahIleri ?? 0.55 : p.nahIleri ?? 0.55;
   if (eceQ && nahVar && view !== "nah") {
     const g = nahGeo(nahA, nahYer[0] + nahTit[0], nahYer[1] + nahTit[1], nahYer[2], nahIleri);
@@ -386,6 +441,30 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {/* tezgah: kollar ve eller tezgâhın ÜSTÜNDE (gövde tezgâhın arkasında kalır) */}
         {view === "tezgah" && ece ? ece.on : null}
         {view === "tezgah" ? <SVG><AnimeOn v={anime} tg={tg} cx={animeMerkez[0]} cy={animeMerkez[1]} r={270} sag={animeYarim > 0.5} /></SVG> : null}
+        {sabriSirt ? <OnPlan><SirtSabri x={sabriSirt[0]} y={sabriSirt[1]} s={sabriSirt[2]} /></OnPlan> : null}
+      </>
+    );
+  } else if (view === "yan") {
+    // B8 (yeni) P1: tezgâhın yan açısı: Ece solda (önde), Sabri sağda (tezgâhın arkasında), depo kapısı arkada kadraj içinde
+    const acik = depoAcik ?? 0;
+    const sil = kf1(p.mertSil, tg, 0);
+    const klip = aralik(p.mertKlip, tg);
+    const ustY = yanTezgahUst(0.7);
+    const bosluk = yanKapiBosluk().map(([x, y]) => `${x.toFixed(1)}px ${y.toFixed(1)}px`).join(", ");
+    sahne = (
+      <>
+        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} /></SVG>
+        {mert ? (
+          <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: klip ? `polygon(${bosluk})` : undefined,
+            filter: sil > 0.01 ? `brightness(${(1 - 0.9 * sil).toFixed(3)}) saturate(${(1 - 0.7 * sil).toFixed(3)}) drop-shadow(0 0 ${(4 * sil).toFixed(1)}px rgba(255,214,150,${(0.9 * sil).toFixed(2)}))` : undefined }}>
+            {mert.govde}{mert.on}
+          </div>
+        ) : null}
+        {sabri ? sabri.govde : null}
+        <SVG><Market724YanTezgah sars={sars} frame={f} /></SVG>
+        {sabri ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{sabri.on}</div> : null}
+        {ece ? ece.govde : null}
+        {ece ? ece.on : null}
       </>
     );
   } else if (view === "kasa") {
@@ -418,6 +497,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {/* B8 P2: Sabri'nin bıraktığı kalem tezgâhta (düşüş: y 0..1) */}
         {kalemX[0] > -900 ? <SVG><g transform={`translate(${kalemX[0]} ${1438 - 40 * (1 - kalemX[1])}) rotate(${-14 + 30 * (1 - kalemX[1])})`}><rect x={-62} y={-5} width={124} height={10} rx={5} fill="#f4f4f2" stroke={O} strokeWidth={3} /><rect x={42} y={-6} width={22} height={12} rx={4} fill="#2a4aa8" /><path d="M -62 0 L -76 0" stroke="#9aa0a6" strokeWidth={6} strokeLinecap="round" /></g></SVG> : null}
       </div>
+        {eceSirt ? <OnPlan><SirtEce x={eceSirt[0]} y={eceSirt[1]} s={eceSirt[2]} /></OnPlan> : null}
         {/* B8 P2: Ece önde (müşteri tarafı, kameraya yakın) */}
         {ece ? ece.govde : null}
         {ece ? ece.on : null}
@@ -518,6 +598,24 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
             <ellipse cx={400} cy={1283} rx={34} ry={9} fill="#fff4d0" opacity={0.45 * lmb} filter="url(#b8gb6)" transform="rotate(38 400 1283)" />
           </SVG>
         ) : null}
+        {view === "yan" ? (() => {
+          // köşe: kapı kapalıyken depo köşesi loş (gizem); açılınca sıcak ışık odaya taşar (Sabri'nin sağı, Mert)
+          const ac = Math.min(1, (depoAcik ?? 0) * 1.1);
+          return (
+            <>
+              <SVG blend="multiply">
+                <defs><radialGradient id="yanKose" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0] + 60} cy={YAN_KAPI[1] - 60} r={420}><stop offset="0" stopColor="#5a6070" stopOpacity={0.5 * (1 - ac)} /><stop offset="1" stopColor="#5a6070" stopOpacity={0} /></radialGradient></defs>
+                <rect x={-600} y={-400} width={2280} height={2720} fill="url(#yanKose)" />
+              </SVG>
+              {ac > 0.01 ? (
+                <SVG blend="screen">
+                  <defs><radialGradient id="yanSicak" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0]} cy={YAN_KAPI[1] + 40} r={560}><stop offset="0" stopColor="#ffb860" stopOpacity={0.42 * ac} /><stop offset="0.6" stopColor="#ff9a40" stopOpacity={0.12 * ac} /><stop offset="1" stopColor="#ff9a40" stopOpacity={0} /></radialGradient></defs>
+                  <rect x={-600} y={-400} width={2280} height={2720} fill="url(#yanSicak)" />
+                </SVG>
+              ) : null}
+            </>
+          );
+        })() : null}
         {lmb > 0.01 && view === "kagit" ? (
           <SVG blend="screen">
             <defs>
