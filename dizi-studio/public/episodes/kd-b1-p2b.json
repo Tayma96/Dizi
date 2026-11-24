@@ -1,0 +1,11 @@
+{
+  "episode": "kd-b1-p2b",
+  "title": "Kırmızı Düğme · B1 Parça 2 devamı (C) sesleri — kullanıcının replikleri",
+  "scenes": [
+    {"id": "c", "set": "kd_beyaz_oda", "beats": [
+      {"type": "line", "who": "kd_kurye_oda", "emotion": "korkmus", "tags": "[in pain, holding his lower back, Adana street accent]", "text": "Haydee, nereye düştük biz gardaş? Kamera şakası mı bu?"},
+      {"type": "line", "who": "kd_influencer_oda", "emotion": "ofkeli", "tags": "[shouting, on the verge of tears]", "text": "Dava edicem sizi! Çıkarın beni hemen burdan!"},
+      {"type": "line", "who": "kd_gobek_oda", "emotion": "aci", "tags": "[groggy, rubbing his head, Thracian accent]", "text": "Başım ağrıyo... Ne vermişler öyle bre?"}
+    ]}
+  ]
+}
