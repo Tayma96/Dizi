@@ -87,7 +87,10 @@ export const yerlestir = (k: Kam, y0: Yer): { tr: string; s: number; z: number; 
     const b = proj(k, [y.o[0] + y.t2[0] * e, y.o[1] + y.t2[1] * e, y.o[2] + y.t2[2] * e]);
     c2 = [(b.x - p.x) / e / U, (b.y - p.y) / e / U];
     const yat = Math.hypot(y.o[0] - k.x, y.o[2] - k.z);
-    const sinE = Math.max(0.02, Math.sin(Math.atan2(k.y - y.o[1], yat)));
+    const sinE0 = Math.sin(Math.atan2(k.y - y.o[1], yat));
+    // zemine neredeyse yatay bakış: yere yatırılmış çizim kenardan görünür ve şeride dönüşür → çizme
+    if (sinE0 < 0.12) return null;
+    const sinE = sinE0;
     const ks = Math.max(1, (y.min ?? 0.5) / sinE);
     c1 = [c1[0], c1[1] * ks];
     c2 = [c2[0], c2[1] * ks];

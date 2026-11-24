@@ -63,7 +63,7 @@ export const RemotionRoot: React.FC = () => {
         <Composition id="KDKanca" component={KdKanca} durationInFrames={128} fps={30} width={1080} height={1920} defaultProps={{ kol: "kurye" as const }} />
         <Composition id="KDStil" component={KDStil} durationInFrames={30} fps={30} width={4400} height={2640} />
         <Composition id="KDKancaSahne" component={KdKancaSahne} durationInFrames={178} fps={30} width={1080} height={1920} />
-        <Composition id="KDP2Acilis" component={KdP2Acilis} durationInFrames={680} fps={30} width={1080} height={1920} />
+        <Composition id="KDP2Acilis" component={KdP2Acilis} durationInFrames={728} fps={30} width={1080} height={1920} />
         <Composition id="KDGobekOrnek" component={KdGobekOrnek} durationInFrames={150} fps={30} width={1080} height={1920} />
         <Composition id="KDStil2" component={KDStil2} durationInFrames={30} fps={30} width={4300} height={2920} />
         <Composition id="KDLogo" component={KdLogoKare} durationInFrames={1} fps={30} width={1080} height={1920} />

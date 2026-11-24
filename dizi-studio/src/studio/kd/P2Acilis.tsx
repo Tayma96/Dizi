@@ -2,12 +2,13 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame } from "remotion";
 import { BeyazOda, proj, KAIDE, type Kam, type OdaDurum } from "../sets/beyazoda";
 import { SANS } from "../../dizi/fonts";
-import { yerlestir, lwOlcek, ara, mix, agizDurum, salin, sars, type Yer, type Replik, type V3 } from "./kukla";
+import { yerlestir, lwOlcek, ara, mix, salin, sars, type Yer, type V3 } from "./kukla";
 import { OdaGobekli, GOBEK_UYKU, type GobekPoz } from "./OdaGobekli";
 import { OdaInfluencer, INF_UYKU, type InfPoz } from "./OdaInfluencer";
 import { KuryeYatan, KuryeComel, KURYE_UYKU, type KuryePoz } from "./OdaKurye";
 import { OdaTeyze, TEYZE_UYKU, type TeyzePoz } from "./OdaTeyze";
 import { BALIKGOZU, BALIKGOZU_OLCEK } from "./balikgozu";
+import { KURYE_SAYIKLA, KIZ_CIGLIK, KURYE_NOLUYO, GOBEK_SOLUK, HORLAMA } from "./p2Ses";
 
 /* =====================================================================================
  * Kırmızı Düğme · B1 · Parça 2 AÇILIŞ (A1-A9, ≈22,5 sn), kompozisyon KDP2Acilis. SESSİZ (ses sonra eklenecek).
@@ -15,50 +16,74 @@ import { BALIKGOZU, BALIKGOZU_OLCEK } from "./balikgozu";
  *
  *  A1   0- 89  GÜVENLİK KAMERASI kaydı: tavan köşesi, balıkgözü, soluk/yeşilimsi, 15 fps takılma; REC + tarih-saat + KAM 04,
  *              köşede etiketsiz yavaş artan küçük sayı. Siyahtan dijital parazitle "bam" diye açılır.
- *  A2  90-134  parazitle kırılır → iç kamera: orta-genel, göz hizasına yakın, güneyden; çok yavaş itme
+ *  A2  90-134  parazitle kırılır → iç kamera: orta-genel, güneybatıdan çapraz (bedenler kısalır, karakterler büyük); yavaş itme
  *  A3 135-254  Göbekli orta-yakın, yer hizası, kilitli: sırtüstü horluyor, göbeğini kaşıyor, kırıntılar dökülüyor
  *  A4 255-344  horlamaya motive kayma: Göbekli'den kıza (tepeden yakın); kız gözleri kapalı, kapaklarını sıkıyor, kaş çatıyor
  *  A5 345-434  Kurye orta-yakın, yan profil, yer hizası, çok hafif itme; uykusunda sayıklar (fısıltı)
- *  A6 435-479  Influencer yakın: gözleri açılır → çığlık (sarsıntı) → "nerdeyim beeen"
- *  A7 480-524  Genel, güneyden, kısa sarsıntı: kurye fırlar, teyze ve göbekli AYNI ANDA irkilir (kullanıcı kararı)
- *  A8 525-554  Kurye orta, elde: "Noluyo lan"
- *  A9 555-679  Göbekli orta, alçak açı, kilitli: kalkmaya çalışır, göbekten doğrulamaz, geri yatar, panik
+ *  A6 435-506  Influencer yakın: gözleri açılır → çığlık (sarsıntı) → "nerdeyim beeen" (ses 441'de başlar)
+ *  A7 507-551  Genel, güneyden, kısa sarsıntı: hepsi AYNI ANDA irkilir (509); kurye dirseklenip doğrulur (510-518),
+ *              519'da çömelmeye fırlar
+ *  A8 552-602  Kurye orta, elde: "Noluyo lan" (ses 555)
+ *  A9 603-727  Göbekli orta, alçak açı, çapraz kadraj: kalkmaya çalışır, doğrulamaz, geri yatar, panik (soluk sesi 603)
+ *  A3 ve A9 çapraz kadraj (eğik kamera): baş üst köşede, beden kadrajı çapraz keser; dikey kadrajda boş zemin kalmaz.
+ *  Ağız ve horlama nefesi ses zarflarına bağlı (p2Ses.ts); ses dosyaları gömülmez, miks ayrı (P2_SES kareleri).
  * 180° ekseni: kaideden geçen K-G çizgisi; kamera hep güney tarafında. Batı (ekranda sol): göbekli + teyze;
  * doğu (sağ): kurye + influencer. Işık: kaynağı görünmeyen soğuk beyaz, gölgesiz; kırmızıyı yalnız düğme taşır.
  * ===================================================================================== */
 
-export const P2 = { A1: 0, A2: 90, A3: 135, A4: 255, A5: 345, A6: 435, A7: 480, A8: 525, A9: 555, SON: 680, IRK: 483, FIRLA: 486 };
+export const P2 = { A1: 0, A2: 90, A3: 135, A4: 255, A5: 345, A6: 435, A7: 507, A8: 552, A9: 603, SON: 728, IRK: 509, KALK: 510, FIRLA: 519 };
 
-/* replikler (yaklaşık zaman; ağız hareketi için) */
-const R_KURYE: Replik = { bas: 358, son: 416, sesli: "uuuaııaaı" };
-const R_AAA: Replik = { bas: 446, son: 462, sesli: "a", sabit: true };
-const R_NERDE: Replik = { bas: 464, son: 479, sesli: "eeiee" };
-const R_NOLUYO: Replik = { bas: 528, son: 548, sesli: "ouoa" };
+/* ElevenLabs/efekt seslerinin başlayacağı kareler (miks ayrı yapılır; ağız ve nefes bu zamanlara göre sese bağlı) */
+export const P2_SES = { horlama: [0, 180], sayikla: 351, ciglik: 441, noluyo: 555, soluk: P2.A9 };
+
+/* konuşma: ses zarfı (kare başına 0..1) + sesli harf dizisi (yuvarlaklık) */
+type Konusma = { bas: number; zarf: number[]; parca: [number, number, string][] };
+const K_SAYIKLA: Konusma = { bas: P2_SES.sayikla, zarf: KURYE_SAYIKLA, parca: [[4, 77, "uuuaııaaı"]] };
+const K_CIGLIK: Konusma = { bas: P2_SES.ciglik, zarf: KIZ_CIGLIK, parca: [[5, 17, "a"], [30, 63, "eeiee"]] };
+const K_NOLUYO: Konusma = { bas: P2_SES.noluyo, zarf: KURYE_NOLUYO, parca: [[2, 46, "ouoa"]] };
+const YUV: Record<string, number> = { a: 0.1, e: 0, "ı": 0, i: 0, o: 0.8, u: 1 };
+const sesAgiz = (f: number, k: Konusma, kazanc = 1.3) => {
+  const i = f - k.bas;
+  if (i < 0 || i >= k.zarf.length) return { ac: 0, yuv: 0, parca: -1 };
+  let yuv = 0, parca = -1;
+  k.parca.forEach(([a, b, sl], pi) => {
+    if (i >= a && i <= b) { const j = Math.min(sl.length - 1, Math.floor(((i - a) / (b - a + 1)) * sl.length)); yuv = YUV[sl[j]] ?? 0; parca = pi; }
+  });
+  const e = (k.zarf[i] + (k.zarf[i - 1] ?? 0) * 0.5) / 1.5;
+  return { ac: parca < 0 ? 0 : Math.min(1, Math.pow(e * kazanc, 0.7)), yuv, parca };
+};
 const ALTYAZI: { bas: number; son: number; metin: string; fisilti?: boolean }[] = [
-  { bas: 357, son: 421, metin: "Vurun şu ayıyı lan artık", fisilti: true },
-  { bas: 445, son: 463, metin: "Aaaa!" },
-  { bas: 463, son: 481, metin: "Nerdeyim beeen" },
-  { bas: 527, son: 553, metin: "Noluyo lan" },
+  { bas: P2_SES.sayikla + 3, son: P2_SES.sayikla + 80, metin: "Vurun şu ayıyı lan artık", fisilti: true },
+  { bas: P2_SES.ciglik + 4, son: P2_SES.ciglik + 27, metin: "Aaaa!" },
+  { bas: P2_SES.ciglik + 28, son: P2_SES.ciglik + 66, metin: "Nerdeyim beeen" },
+  { bas: P2_SES.noluyo + 1, son: P2.A9, metin: "Noluyo lan" },
 ];
 
 /* ---------------- yerler (dünya, metre) ---------------- */
-const GOBEK_O: V3 = [-1.55, 0, 3.0];
-const KURYE_O: V3 = [1.55, 0, 5.5];
-const INF_O: V3 = [1.4, 0.15, 2.7];
-const TEYZE_O: V3 = [-1.45, 0, 5.7];
-const KURYE_COMEL_O: V3 = [1.5, 0, 5.45];
+const GOBEK_O: V3 = [-1.2, 0, 3.3];
+const KURYE_O: V3 = [1.25, 0, 5.3];
+const INF_O: V3 = [1.1, 0.15, 2.9];
+const TEYZE_O: V3 = [-1.15, 0, 5.5];
+const KURYE_COMEL_O: V3 = [1.2, 0, 5.25];
+/* kameralar karakterle birlikte kayar (ilk yerleşime göre farklar) */
+const dG = (v: V3): V3 => [v[0] + 0.35, v[1], v[2] + 0.3];
+const dI = (v: V3): V3 => [v[0] - 0.3, v[1], v[2] + 0.2];
+const dK = (v: V3): V3 => [v[0] - 0.3, v[1], v[2] - 0.2];
 
-/* ---------------- horlama döngüsü ---------------- */
-const HORLA = 72;
+/* ---------------- horlama: efekt dosyasına bağlı (kare 0 ve 180'de başlar, A1-A4 boyunca) ---------------- */
 const horla = (f: number) => {
-  const ph = (f % HORLA) / HORLA;
-  return { nefes: -Math.cos(ph * Math.PI * 2), ses: ph > 0.22 && ph < 0.58 ? Math.sin(((ph - 0.22) / 0.36) * Math.PI) : 0 };
+  const n = HORLAMA.length, i = ((f % n) + n) % n;
+  let t = 0;
+  for (let d = -5; d <= 5; d++) t += HORLAMA[Math.min(n - 1, Math.max(0, i + d))];
+  const yumu = t / 11;
+  // horultu nefes alırken çıkar: göbek sesle birlikte kalkar
+  return { nefes: -1 + 2 * Math.min(1, yumu * 1.4), ses: HORLAMA[i] };
 };
 
 /* ---------------- pozlar (zaman çizelgesi) ---------------- */
 const gobekPoz = (f: number): GobekPoz => {
   const h = horla(f);
-  const p: GobekPoz = { ...GOBEK_UYKU, nefes: h.nefes, agiz: 0.26 + 0.34 * Math.max(0, h.nefes) };
+  const p: GobekPoz = { ...GOBEK_UYKU, nefes: h.nefes, agiz: 0.22 + 0.5 * Math.min(1, h.ses * 1.2) };
   // uykuda göbek kaşıma (A3'ün içinde, kırıntılar dökülür)
   const ks = ara(f, 150, 158) * (1 - ara(f, 232, 242));
   if (ks > 0) {
@@ -84,13 +109,13 @@ const gobekPoz = (f: number): GobekPoz => {
     p.dizOn = mix(0.05, 0.45, i); p.dizArka = mix(0, 0.3, i); p.kalk = 5 * i; p.kasi = 0; p.bilek = 10;
   }
   // A9: kalkmaya çalışır → göbekten doğrulamaz → geri yatar → panik
-  if (f >= 556) {
-    const haz = ara(f, 556, 564);
-    const kalk = ara(f, 562, 590) * (1 - ara(f, 600, 606));
-    const zor = ara(f, 562, 570) * (1 - ara(f, 600, 604));
-    const pan = ara(f, 604, 612);
+  if (f >= P2.A9 + 1) {
+    const haz = ara(f, P2.A9 + 1, P2.A9 + 9);
+    const kalk = ara(f, P2.A9 + 7, P2.A9 + 35) * (1 - ara(f, P2.A9 + 45, P2.A9 + 51));
+    const zor = ara(f, P2.A9 + 7, P2.A9 + 15) * (1 - ara(f, P2.A9 + 45, P2.A9 + 49));
+    const pan = ara(f, P2.A9 + 49, P2.A9 + 57);
     const tit = Math.sin(f * 2.1) * 1.4 * zor;
-    p.kalk = 19 * kalk + tit + (f >= 604 && f < 610 ? Math.max(0, 2.5 - (f - 604) * 0.6) : 0);
+    p.kalk = 19 * kalk + tit + (f >= P2.A9 + 49 && f < P2.A9 + 55 ? Math.max(0, 2.5 - (f - P2.A9 + 49) * 0.6) : 0);
     p.basEg = mix(-4, 22, zor);
     p.goz = mix(1.2, 0, zor);
     p.sik = zor;
@@ -102,9 +127,10 @@ const gobekPoz = (f: number): GobekPoz => {
     p.dizOn = 0.3; p.dizArka = 0.15;
     p.ter = zor;
     if (pan > 0) {
-      const a = f - 604;
+      const a = f - P2.A9 + 49;
       p.goz = 1.3 * pan; p.sik = 0; p.kas = pan; p.ter = 1;
-      p.agiz = mix(p.agiz, 0.4 + 0.45 * Math.abs(Math.sin(a * 0.55)), pan);
+      const so = GOBEK_SOLUK[f - P2_SES.soluk] ?? 0;
+      p.agiz = mix(p.agiz, 0.4 + 0.25 * Math.abs(Math.sin(a * 0.55)) + 0.5 * Math.min(1, so * 1.5), pan);
       p.nefes = Math.sin(a * 0.55);
       p.basEg = mix(p.basEg, 2 + 5 * Math.sin(a * 0.45), pan);
       p.kolOn = [mix(p.kolOn[0], -70 + 45 * Math.sin(a * 0.62), pan), mix(p.kolOn[1], -45 + 35 * Math.sin(a * 0.9 + 1), pan)];
@@ -130,11 +156,12 @@ const infPoz = (f: number): InfPoz => {
     p.sik *= 1 - ac; p.goz = 1.3 * ac; p.kas = ac; p.kasIc = ac; p.gul = 0; p.basDon *= 1 - ac;
     p.bak = [0.25 * Math.sin(f / 5), 0];
   }
-  const ag = agizDurum(f, [R_AAA, R_NERDE]);
-  const ciglik = f >= R_AAA.bas && f <= R_AAA.son;
+  const ag = sesAgiz(f, K_CIGLIK, 1.1);
+  const ciglik = ag.parca === 0;
   p.agiz = { ac: ag.ac * (ciglik ? 1.55 : 1), yuv: ag.yuv };
-  if (f >= 446) { p.eller = ara(f, 446, 456) * 0.12; p.basKalk = ara(f, 446, 451); }
-  if (f >= 463) { p.goz = 1.15; p.bak = [Math.sin(f / 3.5) * 0.9, 0.2]; p.kasIc = 1; }
+  const c0 = P2_SES.ciglik + 5;
+  if (f >= c0) { p.eller = ara(f, c0, c0 + 10) * 0.12; p.basKalk = ara(f, c0, c0 + 5); }
+  if (f >= P2_SES.ciglik + 18) { p.goz = 1.15; p.bak = [Math.sin(f / 3.5) * 0.9, 0.2]; p.kasIc = 1; }
   if (f >= P2.A7) { p.agiz = { ac: 0.25, yuv: 0.3 }; p.bak = [-0.6, 0]; }
   return p;
 };
@@ -143,7 +170,7 @@ const teyzePoz = (f: number): TeyzePoz => {
   const p: TeyzePoz = { ...TEYZE_UYKU, nefes: Math.sin(f / 40) };
   if (f >= P2.IRK) {
     const i = ara(f, P2.IRK, P2.IRK + 6);
-    p.kalk = 22 * i; p.goz = 1.15 * i; p.kas = i; p.agiz = 0.7 * i * (1 - 0.5 * ara(f, P2.IRK + 12, P2.IRK + 30)); p.basDon = 10 * i;
+    p.kalk = 38 * i; p.goz = 1.15 * i; p.kas = i; p.agiz = 0.7 * i * (1 - 0.5 * ara(f, P2.IRK + 12, P2.IRK + 30)); p.basDon = 10 * i;
   }
   return p;
 };
@@ -154,17 +181,20 @@ const kuryePoz = (f: number): KuryePoz => {
   p.sik = 0.5 + 0.4 * fs;
   p.kas = -0.6 - 0.4 * fs;
   p.basEg = 6 + 4 * Math.sin(f / 7) * fs;
-  const ag = agizDurum(f, [R_KURYE]);
+  const ag = sesAgiz(f, K_SAYIKLA, 1.6);
   p.agiz = { ac: ag.ac * 0.8, yuv: ag.yuv };
   if (f >= P2.IRK) {
-    p.goz = 1.3; p.sik = 0; p.kas = 0.9; p.savun = 1; p.bak = -1; p.basEg = -4;
+    // irkilir → dirseklenip doğrulur (ara poz) → çömelmeye fırlar
+    const k = ara(f, P2.KALK, P2.FIRLA - 1);
+    p.goz = 1.3; p.sik = 0; p.kas = 0.9; p.savun = 1; p.bak = -1; p.basEg = mix(6, -30, k);
+    p.kalk = 64 * Math.pow(k, 0.8); p.bacakBuk = ara(f, P2.KALK + 2, P2.FIRLA);
   }
   if (f >= P2.A8) {
     const a = f - P2.A8;
     p.goz = 1.15; p.kas = 0.7;
     p.bak = Math.sin(a / 7) * 1;
     p.basEg = -4 + 6 * Math.sin(a / 9);
-    const ag2 = agizDurum(f, [R_NOLUYO]);
+    const ag2 = sesAgiz(f, K_NOLUYO, 1.2);
     p.agiz = { ac: ag2.ac, yuv: ag2.yuv };
   }
   return p;
@@ -177,48 +207,56 @@ const bak = (k: { x: number; y: number; z: number }, t: V3) => ({
 });
 const kamHedef = (pos: V3, t: V3, f: number, cy = 960, extra: Partial<Kam> = {}): Kam => ({ x: pos[0], y: pos[1], z: pos[2], ...bak({ x: pos[0], y: pos[1], z: pos[2] }, t), f, cy, ...extra });
 
-const kamera = (f: number): { k: Kam; infCap?: boolean; gbCap?: [number, number]; hiz?: number } => {
+/** çapraz kadraj: sahne `don` derece döndürülür ve kareyi boşluksuz kaplayacak kadar büyütülür */
+const kaplama = (don: number) => {
+  const r = (Math.abs(don) * Math.PI) / 180, c = Math.cos(r), sn = Math.sin(r);
+  return Math.max((1080 * c + 1920 * sn) / 1080, (1080 * sn + 1920 * c) / 1920);
+};
+type Cekim = { k: Kam; infCap?: boolean; gbCap?: [number, number]; hiz?: number; don?: number };
+const kamera = (f: number): Cekim => {
   if (f < P2.A2) return { k: kamHedef([-3.72, 3.42, -1.72], [0.1, -0.35, 4.4], 1150, 960) };
   if (f < P2.A3) {
     const u = (f - P2.A2) / (P2.A3 - P2.A2);
-    return { k: kamHedef([-0.2, 1.6, -0.5 + 0.25 * u], [-0.2, 0.0, 4.6], 860, 820) };
+    return { k: kamHedef([-1.95 + 0.12 * u, 2.3, 0.45 + 0.15 * u], [0.05, 0.0, 4.3], 1000, 900) };
   }
-  if (f < P2.A4) return { k: kamHedef([-2.3, 0.3, 1.5], [-2.3, 0.24, 3.0], 1300, 640), gbCap: [-560, -200] };
+  if (f < P2.A4) return { k: kamHedef(dG([-2.2, 0.3, 1.55]), dG([-2.2, 0.24, 3.0]), 960, 960), gbCap: [-480, -200], don: 34 };
   if (f < P2.A5) {
     // horlamaya motive kayma: önce horlayan göbekli, sonra hızlı ama yumuşak kayma, kızın yüzüne kilitlenir
     const u = ara(f, P2.A4 + 16, P2.A4 + 44);
-    const a = kamHedef([-0.35, 0.82, 1.25], [-1.85, 0.25, 3.0], 1000, 860);
-    const b = kamHedef([1.4, 0.98, 3.0], [1.4, 0.15, 3.47], 2350, 690);
+    const a = kamHedef(dG([-0.35, 0.82, 1.25]), dG([-1.85, 0.25, 3.0]), 1000, 860);
+    const b = kamHedef(dI([1.4, 0.98, 3.0]), dI([1.4, 0.15, 3.47]), 2350, 690);
     const d = salin(f, 0.5);
     return { k: { x: mix(a.x, b.x, u), y: mix(a.y, b.y, u), z: mix(a.z, b.z, u), yaw: mix(a.yaw, b.yaw, u), pitch: mix(a.pitch, b.pitch, u), f: mix(a.f, b.f, u * u), cy: mix(a.cy ?? 960, b.cy ?? 960, u), sx: d.x, sy: d.y }, infCap: u > 0.3, hiz: f > P2.A4 + 16 && f < P2.A4 + 44 ? Math.sin(((f - P2.A4 - 16) / 28) * Math.PI) : 0 };
   }
   if (f < P2.A6) {
     const u = (f - P2.A5) / (P2.A6 - P2.A5);
-    return { k: kamHedef([2.22, 0.36, 4.22 + 0.12 * u], [2.22, 0.24, 5.5], 1150, 620) };
+    return { k: kamHedef(dK([2.22, 0.36, 4.22 + 0.12 * u]), dK([2.22, 0.24, 5.5]), 1150, 620) };
   }
   if (f < P2.A7) {
-    const g = f >= R_AAA.bas ? 14 * Math.exp(-(f - R_AAA.bas) / 7) + 3 : 0;
+    const c0 = P2_SES.ciglik + 5;
+    const g = f >= c0 ? 14 * Math.exp(-(f - c0) / 7) + 3 : 0;
     const s = sars(f, g), d = salin(f, 0.6);
-    return { k: { ...kamHedef([1.4, 0.98, 3.04], [1.4, 0.15, 3.47], 2400, 690), sx: s.x + d.x, sy: s.y + d.y }, infCap: true };
+    return { k: { ...kamHedef(dI([1.4, 0.98, 3.04]), dI([1.4, 0.15, 3.47]), 2400, 690), sx: s.x + d.x, sy: s.y + d.y }, infCap: true };
   }
   if (f < P2.A8) {
     const g = 16 * Math.exp(-Math.max(0, f - P2.IRK) / 5) * (f >= P2.IRK ? 1 : 0.2);
     const s = sars(f, g);
-    return { k: { ...kamHedef([-0.2, 1.45, -1.0], [-0.2, 0.3, 4.3], 880, 860), sx: s.x, sy: s.y } };
+    return { k: { ...kamHedef([-1.8, 2.05, 0.45], [-0.05, 0.0, 4.35], 960, 930), sx: s.x, sy: s.y } };
   }
   if (f < P2.A9) {
     const d = salin(f, 1.6, 3);
-    return { k: { ...kamHedef([1.22, 1.0, 4.05], [1.45, 0.9, 5.45], 1750, 900), sx: d.x, sy: d.y } };
+    return { k: { ...kamHedef(dK([1.22, 1.0, 4.05]), dK([1.45, 0.9, 5.45]), 1750, 900), sx: d.x, sy: d.y } };
   }
-  return { k: kamHedef([-1.62, 0.16, 1.2], [-1.62, 0.3, 3.0], 900, 860), gbCap: [-200, -150] };
+  return { k: kamHedef(dG([-2.0, 0.16, 1.25]), dG([-2.0, 0.3, 3.0]), 720, 1010), gbCap: [-380, -150], don: 26 };
 };
 
 /* ---------------- yardımcılar ---------------- */
+let LW_CARP = 1; // çapraz kadrajda sahne büyütülür; çizgi kalınlığı ekrandaki ölçeğe göre
 const ciz = (k: Kam, yer: Yer, key: string, el: (lw: number) => React.ReactNode, sy = 1) => {
   const y = yerlestir(k, yer);
   if (!y) return null;
   const tr = sy === 1 ? y.tr : `translate(${y.p.x} ${y.p.y}) scale(1 ${sy}) translate(${-y.p.x} ${-y.p.y}) ${y.tr}`;
-  return { z: y.z, el: <g key={key} filter="url(#kd_kaynat)"><g transform={tr}>{el(lwOlcek(y.s))}</g></g> };
+  return { z: y.z, el: <g key={key} filter="url(#kd_kaynat)"><g transform={tr}>{el(lwOlcek(y.s * LW_CARP))}</g></g> };
 };
 
 const Sahne: React.FC<{ f: number; k: Kam; infCap?: boolean; gbCap?: [number, number] }> = ({ f, k, infCap, gbCap }) => {
@@ -233,7 +271,7 @@ const Sahne: React.FC<{ f: number; k: Kam; infCap?: boolean; gbCap?: [number, nu
   } else {
     // fırlama: gerilme → ezilme → oturma (squash & stretch)
     const a = f - P2.FIRLA;
-    const sy = a < 2 ? 1.14 : a < 4 ? 0.93 : a < 6 ? 1.03 : 1;
+    const sy = a < 2 ? 1.08 : a < 4 ? 0.95 : a < 6 ? 1.02 : 1;
     const kp = kuryePoz(f);
     add(ciz(k, { tip: "dik", o: KURYE_COMEL_O, t1: [1, 0, 0], cap: f >= P2.A8 ? [0, -700] : undefined }, "kc", (lw) => <KuryeComel p={kp} lw={lw} konus={kp.agiz} nefes={f / 4} />, sy));
   }
@@ -291,7 +329,9 @@ export const KdP2Acilis: React.FC<{ kayit?: KayitAyar }> = ({ kayit = KAYIT }) =
   const kayitta = frame < P2.A2 + 4; // güvenlik kamerası görüntüsü (geçişin ilk kareleri dahil)
   // 15 fps takılma: kayıt görüntüsü her kareyi iki kez gösterir
   const f = kayitta ? Math.floor(frame / 2) * 2 : frame;
-  const { k, infCap, gbCap, hiz = 0 } = kamera(kayitta ? Math.min(f, P2.A2 - 1) : f);
+  const { k, infCap, gbCap, hiz = 0, don = 0 } = kamera(kayitta ? Math.min(f, P2.A2 - 1) : f);
+  const olc = don ? kaplama(don) : 1;
+  LW_CARP = olc;
   // parazit yoğunluğu: açılış (siyahtan), kayıt → iç kamera geçişi
   const glitch = frame < 6 ? 1 - frame / 6 : frame >= 86 && frame < 90 ? 0.35 : frame >= 90 && frame < 94 ? 1 : frame >= 94 && frame < 100 ? 0.8 * (1 - (frame - 94) / 6) : 0;
   const kaynat = 1 + (Math.floor(frame / 3) % 4);
@@ -328,7 +368,7 @@ export const KdP2Acilis: React.FC<{ kayit?: KayitAyar }> = ({ kayit = KAYIT }) =
         {siyah ? null : (
           <g filter={glitch > 0.02 ? "url(#p2_parazit)" : undefined}>
             <g filter={kayitta && frame < P2.A2 + (glitch > 0.5 ? 4 : 0) ? "url(#p2_cctv)" : undefined}>
-              <g filter={hiz > 0.05 ? "url(#p2_kayma)" : undefined}>
+              <g filter={hiz > 0.05 ? "url(#p2_kayma)" : undefined} transform={don ? `rotate(${don} 540 960) translate(540 960) scale(${olc}) translate(-540 -960)` : undefined}>
                 <Sahne f={f} k={k} infCap={infCap} gbCap={gbCap} />
               </g>
             </g>

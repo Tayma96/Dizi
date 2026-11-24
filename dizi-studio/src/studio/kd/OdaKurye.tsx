@@ -29,6 +29,9 @@ export type KuryePoz = {
   /** çömelmiş: kollar savunmada 0..1 */
   savun: number;
   nefes: number;
+  /** yerden doğrulma (derece, kalçadan; 0 = yatık) ve bacak bükme 0..1: yatma → dirsek/oturma ara pozu */
+  kalk?: number;
+  bacakBuk?: number;
 };
 export const KURYE_UYKU: KuryePoz = { goz: 0, sik: 0.5, kas: -0.6, agiz: { ac: 0, yuv: 0 }, basEg: 6, bak: 0, savun: 0, nefes: 0 };
 
@@ -106,25 +109,31 @@ export const KuryeYatan: React.FC<{ p: KuryePoz; lw: number }> = ({ p, lw }) => 
   const S: P = [-420, -196];
   const j = kemik(S, 16, 200, -166, 176);
   const kol = kemikHat(j, [112, 92, 76]);
-  const diz: PW[] = [[80, -96, 150], [176, -206, 136], [258, -296, 118], [328, -190, 100], [386, -74, 88]];
-  const arka: PW[] = [[110, -100, 140], [260, -86, 116], [420, -66, 90]];
+  const bb = p.bacakBuk ?? 0, kalk = p.kalk ?? 0;
+  const m = (a: number, b: number) => a + (b - a) * bb;
+  const diz: PW[] = [[80, -96, 150], [m(176, 160), m(-206, -250), 136], [m(258, 230), m(-296, -400), 118], [m(328, 300), m(-190, -230), 100], [m(386, 350), -74, 88]];
+  const arka: PW[] = [[110, -100, 140], [m(260, 230), m(-86, -170), 116], [m(420, 340), m(-66, -50), 90]];
   const sy = 1 + 0.015 * p.nefes;
+  const PIV: P = [40, -96];
   return (
     <g>
       <ellipse cx={-100} cy={4} rx={620} ry={14} fill="#8aa0b0" opacity={0.16} />
       {/* kulaklık kablosu: kulaktan yere sarkar, öbür kulaklık yerde */}
-      <path d="M -700 -100 Q -660 -10 -600 2 T -470 8" stroke="#f4f6f8" strokeWidth={4.5 * lw} fill="none" />
-      <path d="M -700 -100 Q -660 -10 -600 2 T -470 8" stroke="#8a96a0" strokeWidth={1.2 * lw} fill="none" opacity={0.6} />
-      <circle cx={-466} cy={6} r={10} fill="#f6f8fa" stroke="#8a96a0" strokeWidth={2 * lw} />
+      <g opacity={1 - Math.min(1, kalk / 20)}>
+        <path d="M -700 -100 Q -660 -10 -600 2 T -470 8" stroke="#f4f6f8" strokeWidth={4.5 * lw} fill="none" />
+        <path d="M -700 -100 Q -660 -10 -600 2 T -470 8" stroke="#8a96a0" strokeWidth={1.2 * lw} fill="none" opacity={0.6} />
+        <circle cx={-466} cy={6} r={10} fill="#f6f8fa" stroke="#8a96a0" strokeWidth={2 * lw} />
+      </g>
       {/* arka bacak (düz) + ayakkabı (burnu tavana) */}
       <Hacim id="ky-barka" pts={uzuv(arka)} dolgu={PANT_G} golge={PANT_G} cizgi={PANT_C} isik={IS} ince={2.2 * lw} kalin={6.5 * lw} />
-      <Ayakkabi id="ky-ayk2" at={[430, -40]} aci={-78} lw={lw} koyu />
+      <Ayakkabi id="ky-ayk2" at={[m(430, 350), m(-40, -30)]} aci={m(-78, 0)} lw={lw} koyu />
       {/* kalça + kalkık ön bacak */}
       <Hacim id="ky-kalca" pts={[[10, -4], [120, -6], [150, -70], [140, -170], [90, -206], [40, -200], [24, -100]]} dolgu={PANT} golge={PANT_G} cizgi={PANT_C} isik={IS} ince={2.2 * lw} kalin={6.5 * lw} />
       <Hacim id="ky-bon" pts={uzuv(diz)} dolgu={PANT} golge={PANT_G} cizgi={PANT_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} acik={[0]}>
         <path d={serit([[230, -300, 0], [256, -276, 3], [270, -250, 0]])} fill={PANT_C} opacity={0.6} />
       </Hacim>
-      <Ayakkabi id="ky-ayk1" at={[392, -44]} aci={0} lw={lw} />
+      <Ayakkabi id="ky-ayk1" at={[m(392, 356), -44]} aci={0} lw={lw} />
+      <g transform={`rotate(${kalk} ${PIV[0]} ${PIV[1]})`}>
       {/* gövde: kabarık mont */}
       <g transform={`translate(0 -100) scale(1 ${sy}) translate(0 100)`}>
         <Hacim id="ky-mont" pts={GOVDE} dolgu={MONT} golge={MONT_G} cizgi={MONT_C} isik={IS} ince={2.6 * lw} kalin={8 * lw} golgeCarp={1.3}>
@@ -158,6 +167,7 @@ export const KuryeYatan: React.FC<{ p: KuryePoz; lw: number }> = ({ p, lw }) => 
         <path d={egri([[40, 10], [90, 0], [136, 14], [140, 40], [100, 52], [50, 44]], true)} fill="#30353b" stroke={ELD_C} strokeWidth={2.4 * lw} />
         <Hacim id="ky-el" pts={[[12, -30], [52, -34], [78, -20], [84, 6], [66, 30], [22, 30], [10, 0]]} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2 * lw} kalin={5.5 * lw} />
         {[0, 1, 2].map((k) => <path key={k} d={serit([[70, -16 + k * 14, 13], [96, -14 + k * 14, 12], [104, -4 + k * 14, 0]])} fill={TEN} stroke={TEN_C} strokeWidth={2.2 * lw} />)}
+      </g>
       </g>
     </g>
   );
