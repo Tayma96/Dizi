@@ -314,3 +314,16 @@ Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ apta
 - Rüzgâr ve cırcır böceği KONMAZ; âşık bakış anı anime tarzı (parıltı, ışık hüzmesi, saç/arka plan efekti vb.).
 - İlk 3-4 sn kanca iyi bağlanmalı. Kullanıcı: "En önemli şey senaryo; senaryo izleyiciye merak hissettirir, sevdirirse izleyici viral yapıyor."
 - **Kanca kararı (kullanıcı, 24 Kasım 2026): A.** Ece kasaya avuçlarını "bam" vurur + "ölüme gönderdin beni abi"; Sabri konuşurken arkada depo kapısının kolu yavaşça iner (izleyici görür, Ece görmez); kapı Sabri'nin "geçer" kelimesinde açılır → "aaaa yine miii".
+- **Mert görünümü (kullanıcı):** dağınık saç, sakalsız (`mert724`: daginik, yakisikli, boy 1.07, omuz 1.15). Kontrol: `raporlar/b8y-mert-son.png`.
+- **Yeni istek (kullanıcı, 24 Kasım 2026, aynen):** "Ece çocuk kapıdan çıkınca âşık olsun ama insan olup olmadığını anlayamasın, Sabri 'sakin ol henüz gece olmadı' telkini versin." Doğaçlama izni verildi; eski bölümlerin replikleri ve aynı kelimeler kullanılmaz ("gerçek" B6'da kullanıldı → yok).
+- Süreklilik dayanağı: B5'teki sahte Sabri (anomali insan kılığında) → Ece'nin Mert'ten şüphelenmesi tutarlı; anomaliler gece çıkıyor → "henüz gece olmadı" tutarlı.
+
+### B8 (yeni) P1: doğaçlama önerisi (Claude, onay bekliyor). [D] = doğaçlama
+1. Kanca A → "ölüme gönderdin beni abi" + Sabri'nin repliği; kapı "geçer"de açılır → "aaaa yine miii".
+2. Mert çıkar: "Abi depoyu topladım, malzemeleri yerleştirdim".
+3. Anime âşık anı (parıltı, ışık hüzmesi) → Ece: "onee laan".
+4. [D] Sözsüz: Ece'nin bir gözü hâlâ parıl parıl âşık, öbürü şüpheyle kısılır (anime bölünmüş yüz). Gözü Mert'in ayaklarına iner: yerde gölgesi var mı? Var. Yetmez; tek parmakla Mert'in koluna yavaşça dürter. Mert parmağa bakar, tek kaşını kaldırır, ses etmez.
+5. [D] Ece (dudağının kenarından fısıltıyla, gözü Mert'te): "Abi... bu insan mı?"
+6. Sabri (kullanıcının telkini): "Sakin ol, henüz gece olmadı."
+7. Sabri: "Aferin Mert eline sağlık" "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun."
+8. Ece (gözünü ayırmadan): "Benim önlüğüm nerde abi" (parça sonu).

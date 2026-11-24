@@ -1701,7 +1701,7 @@
     "skinShade": "#d8ac84",
     "iris": "#3f8fd8",
     "hair": {
-      "style": "slick",
+      "style": "daginik",
       "color": "#7a5434",
       "shade": "#5a3a22"
     },
@@ -1712,7 +1712,10 @@
       "bottom": "#3a4a66",
       "shoes": "#e8e8e8"
     },
-    "blush": false
+    "blush": false,
+    "boy": 1.07,
+    "omuzEn": 1.15,
+    "yakisikli": true
   },
   {
     "id": "kd_gobek",
