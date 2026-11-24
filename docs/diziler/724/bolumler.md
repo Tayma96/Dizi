@@ -328,3 +328,27 @@ Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ apta
 7. Sabri: "Aferin Mert eline sağlık" "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun."
 8. Ece (gözünü ayırmadan): "Benim önlüğüm nerde abi" (parça sonu).
 - **Kullanıcı onayı (24 Kasım 2026):** doğaçlama akışı onaylandı. Değişiklik: "Abi... bu insan mı?" şüpheli fısıltı değil, **âşık tonda** söylenir (rüya gibi, iç çekerek; gözü Mert'te). Şüphe yalnız yüzde/sözsüz şakada kalır, ses âşık.
+
+### B8 (yeni) P1: kullanıcı geri bildirimi (24 Kasım 2026, ilk render `bolumler/724-08y-p1.mp4`)
+- Diyalog sesleri çok iyi. **Görsel hissiyat hiç beğenilmedi** → görüntü yönetmenliği baştan.
+- "onee laan" ile "abi bu insan mı" arasında bakış atarken **cızırtı** geliyor (plak çiziği) → kaldır.
+- "Bu insan mı" öncesi **dürtme anlaşılmıyor**.
+- **Depo kapısının açılışı** ve **Mert'in çıkışı** kötü.
+- Ece'nin tek çekimlerinde (tezgah açısı) **kameraya dönük, Sabri'ye sırtı dönük** gibi görünüyor (coğrafya kurulmuyor).
+- Müzik: âşık olduğu süre boyunca fonda **tek parça, 10-15 sn'lik hafif romantik müzik** (kesik kesik değil).
+
+## Bölüm 8 (YENİ), Parça 2 (kullanıcının metni, 24 Kasım 2026; replikler AYNEN, yalnız yazım düzeltildi)
+Sabri: "Bu gece daha rahat geçer, hem 2 kişisiniz. Mert'e de yardımcı olursun." der Ece'ye bakıp.
+Ece: "tabi tabii" der Sabri'yi geçiştirir gibi, gözleri Mert'tedir.
+Sabri: "Kural defterine ara sıra bakın Ece" der.
+Ece: "ezberledim zaten abi?"
+Sabri: "kurallar önceden hazırlanmıyor Ece" der.
+Ece şaşırır. Bakışları bir anda Sabri'ye kilitlenir ve o rüzgâr, cırcır böceği sesi orada gelir.
+Sabri: "O zaman ben gidiyorum, nasılsa siz buradasınız."
+Ece: "kaybol abi." der âşık âşık ses tonuyla Mert'e bakarken, Sabri'yi kovarcasına.
+Kamera saate zoom yapar, saat 00:00 olur.
+Kamera kasaya döner: Ece kolunu kasada bir yere dayamış Mert'e bakıyordur. Mert de kasayı topluyordur.
+Bir anda Ece'nin alarmı çalar, Ece irkilir, telefonuna bakar: saat 00:00 olmuş. İrkilir, korkak: "başladık yine" der.
+Mert: "kurallar, hemen kuralları ezberle" der.
+Mert kurallara bakar.
+- Not: P1'de "rüzgâr/cırcır YOK" kararı P1 içindi; P2'de kullanıcı bu sesi Ece'nin Sabri'ye kilitlendiği ana açıkça istiyor.

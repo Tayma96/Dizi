@@ -43,3 +43,4 @@
 - **B8y P1 üretimi (24 Kasım gece):** üretici `tools/b8y_p1.py` (+ `tools/b8y_p1_ses.py` efekt/müzik türevleri; önce ses, sonra üretici). Motor eklemeleri: Inserts18 → Mert (kasa, `kar.kasa.mert`), depo kapısı (menteşe sağda, `depo`/`depoKol`), Mert'in duvardaki gölgesi (`mertGolge`, depo ışığından sola), anime arka/ön (`anime`, `animeYarim`, `animeMerkez`), sarsıntı (`sars`). Rig: göz başına `parilti` ve `gozKis`.
 - Kontrol: `node tools/kareler.mjs 724-08y-p1 1 <png> <sn...> --olcek=0.25 --sutun=6 --yeniden`. Render: chromium_headless_shell-1243 yolu (parca.sh'deki yol çalışmıyor), sonra -14 LUFS.
 - B8y P1 render: `bolumler/724-08y-p1.mp4` (49,8 sn, −14 LUFS). Kullanıcı onayı bekleniyor.
+- **P1 geri bildirimi geldi (bolumler.md "B8 (yeni) P1: kullanıcı geri bildirimi"): görsel yeniden; P2 metni geldi (bolumler.md).** Kullanıcı "görüntü yönetmenini devreye sokalım" dedi.
