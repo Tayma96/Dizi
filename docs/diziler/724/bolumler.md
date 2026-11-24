@@ -277,3 +277,14 @@ Bundan sonrası önemli Claude yönetmenler güzel yapsın:
 ### Notlar (genel yönetmen)
 - B8'de doğaçlama izni YOK (B7'ye özeldi): yeni replik eklenmez; sözsüz eylem/tepki ve kamera serbest. Yeni replik önerisi olursa kullanıcıya sorulur.
 - Çizim anlatımın kalbi: kâğıt yakın planları okunur, net ve zamanında (her cümlede ilgili çizgi çizilir).
+
+## Bölüm 8, Parça 2 (kullanıcının metni, 24 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Ece: "he koskoca korkunç paralel evrenler götü boklu markette ortak noktada buluşuyor"
+Sabri şaşkın ve mahçup: "he valla"
+Ece: "haa öbür taraf yok yani?" (tahtalı köyden bahsediyor)
+Sabri: "öbür taraf derken?"
+Ece: "ruhlar alemi Sabri abi ruhlar alemi"
+Sabri: "yoo ne alaka."
+Ece: "heh" deyip kameraya döner. Türklerde bir el hareketi vardır: sağ el 5 şeklinde, parmaklar aşağıya bakar; sol el 5 parmağı kapatır, ardından sağ el ileri doğru yumruk şeklinde uzatılır, aynı anda "şak" sesi duyulur; sol el sağ elin bileğini tutar, baş parmak işaret ve orta parmağın arasındadır. Bu işarete "nah" işareti denir. Yani Ece "heh" derken kameraya, seyirciye el hareketi çeker ve 4. duvarı kırıp seyirciyle konuşur.
+"Did ind jib deyip duruyordunuz al bak tek ortak noktamız market" der (herkes bir başka diziye benzetiyor; diyalogda "did ind jıb" deniyor, çünkü ağız burun eğip seyircinin taklidini yaparak söylesin diye). Sonra mahçup şekilde "tamam böcek biraz sıçana benzemiş olabilir"
+- Kullanıcı: "Bu sahneyi kusursuz yap lütfen."
