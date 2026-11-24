@@ -157,7 +157,7 @@ export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: nu
     );
   if (n === "basparmakArka")  // B8 P2: omzun üstünden arkayı gösteren başparmak (yumruk + kadraj sağına-yukarı başparmak)
     return (
-      <g transform={`${tr} scale(1.7)`}>
+      <g transform={`${tr} scale(1.2)`}>
         <path d="M 2 -10 Q 18 -34 34 -58" stroke={O} strokeWidth={24} strokeLinecap="round" fill="none" />
         <path d="M 2 -10 Q 18 -34 34 -58" stroke="#f0c8a8" strokeWidth={17} strokeLinecap="round" fill="none" />
         <ellipse cx={33} cy={-55} rx={4.5} ry={5.5} fill="#f8e0d0" />
