@@ -497,7 +497,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {/* B8 P2: Sabri'nin bıraktığı kalem tezgâhta (düşüş: y 0..1) */}
         {kalemX[0] > -900 ? <SVG><g transform={`translate(${kalemX[0]} ${1438 - 40 * (1 - kalemX[1])}) rotate(${-14 + 30 * (1 - kalemX[1])})`}><rect x={-62} y={-5} width={124} height={10} rx={5} fill="#f4f4f2" stroke={O} strokeWidth={3} /><rect x={42} y={-6} width={22} height={12} rx={4} fill="#2a4aa8" /><path d="M -62 0 L -76 0" stroke="#9aa0a6" strokeWidth={6} strokeLinecap="round" /></g></SVG> : null}
       </div>
-        {eceSirt ? <OnPlan><SirtEce x={eceSirt[0]} y={eceSirt[1]} s={eceSirt[2]} /></OnPlan> : null}
+        {eceSirt ? <OnPlan karanlik={0.82}><SirtEce x={eceSirt[0]} y={eceSirt[1]} s={eceSirt[2]} /></OnPlan> : null}
         {/* B8 P2: Ece önde (müşteri tarafı, kameraya yakın) */}
         {ece ? ece.govde : null}
         {ece ? ece.on : null}
@@ -604,7 +604,12 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
           return (
             <>
               <SVG blend="multiply">
-                <defs><radialGradient id="yanKose" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0] + 60} cy={YAN_KAPI[1] - 60} r={420}><stop offset="0" stopColor="#5a6070" stopOpacity={0.5 * (1 - ac)} /><stop offset="1" stopColor="#5a6070" stopOpacity={0} /></radialGradient></defs>
+                {/* ışık havuzu: tezgâh ve yüzler aydınlık; tavan, ön zemin ve kenarlar düşer (gece marketi) */}
+                <defs><radialGradient id="yanHavuz" gradientUnits="userSpaceOnUse" cx={470} cy={1000} r={760}><stop offset="0.35" stopColor="#ffffff" /><stop offset="1" stopColor="#6c7290" /></radialGradient></defs>
+                <rect x={-600} y={-400} width={2280} height={2720} fill="url(#yanHavuz)" opacity={0.55} />
+              </SVG>
+              <SVG blend="multiply">
+                <defs><radialGradient id="yanKose" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0] + 60} cy={YAN_KAPI[1] - 60} r={420}><stop offset="0" stopColor="#4a5060" stopOpacity={0.6 * (1 - Math.min(1, (depoAcik ?? 0) * 9))} /><stop offset="1" stopColor="#5a6070" stopOpacity={0} /></radialGradient></defs>
                 <rect x={-600} y={-400} width={2280} height={2720} fill="url(#yanKose)" />
               </SVG>
               {ac > 0.01 ? (

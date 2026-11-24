@@ -1,90 +1,55 @@
-Görüntü ve sanat yönetmeni olarak, "Bölüm 8 (YENİ), Parça 1" için çekim planını ve istenen varlıkları hazırladım.
+> Eski (Gemini denemesi) görüntü raporu: `b8y-p1-goruntu-gemini.md`. Bu dosya DoP yeniden tasarımının raporudur.
 
----
+# 7/24 B8 (yeni) P1: görüntü yönetmenliği (DoP), 24 Kasım 2026
 
-## Bölüm 8 (YENİ), Parça 1: Çekim Planı
+Örnek sahne (açılış → Mert'in çıkışı, 0-22,1 sn): `bolumler/724-08y-p1-ornek.mp4` (−14 LUFS).
+Kontak sayfası: `docs/diziler/724/raporlar/b8y-p1-ornek-kareler.png`.
+Sesler, replikler, `public/voice/724-08y-p1/` ve `tools/b8y_p1_ses.py` değişmedi. Replik sırası ve aralıklar (SIRA) aynı.
 
-**Mekân:** Market (kasa, sol duvar kapı, arka-sol DEPO kapısı)
-**Karakterler:** Ece (müşteri tarafında, sivil kıyafet), Sabri (kasada), Mert (yeni karakter, market çalışanı)
-**Işık:** Marketin genel aydınlatması beyaz floresan ışık. Depo kapısından Mert'in girişi sırasında daha sıcak bir ışık süzülecek.
-**180 Derece Kuralı:** Ece müşteri tarafında (kamera sağ tarafında), Sabri kasa tarafında (kamera sol tarafında). Mert depodan çıktığında, sahnenin kamera eksenine göre Ece'nin arkasında ve solunda (Sabri'nin yanında) yer alacak. Kamera bu ekseni koruyacak.
+## Coğrafya ve 180° kararı
+- Oda tek: soldan sağa vitrin, monitör, sigara dolabı, kazı kazan + takvim, **DEPO · PERSONEL** kapısı (sağ köşe). Tezgâh odanın önünde, doğu-batı uzanır.
+- Eksen: Ece (müşteri tarafı) ↔ Sabri (tezgâh arkası). Bütün kameralar eksenin aynı (müşteri/depo) tarafında. Sonuç: **Ece her açıda SOLDA ve sağa bakar; Sabri ve Mert SAĞDA ve sola bakar.**
+- Yeni ana açı `yan` (`src/studio/sets/market724yan.tsx`): gerçek bir izdüşümle çizildi (kamera tezgâhın sağ ucunun önünden ~12° çapraz bakar). Ece önde solda, Sabri tezgâhın arkasında, depo kapısı Sabri'nin sağında, kadrajın içinde ve büyük. Karakter boyları aynı izdüşümden hesaplanır (`yI()` Python, `yanIsaret()` TS).
+- "Sırtı dönük" sorunu: ters açılarda artık kameraya dönük tek kişi yok. Her tek çekim omuz üstü (OTS):
+  - `kasa`: önde Ece'nin ensesi ve at kuyruğu (bulanık), Sabri kadraj soluna bakar.
+  - `tezgah`: önde Sabri'nin kel başı, kulağı ve omzu sağda (bulanık), Ece kadraj sağına bakar.
+  - Arkadan baş çizimleri yeni: `SirtEce`, `SirtSabri` (Inserts18, opt-in `eceSirt` / `sabriSirt`).
 
-| No | Süre (sn) | Ölçek     | Açı     | Kamera Hareketi | Kim   | Eylem/Mimik                                                                                                              | Hangi Replik                                                                                                                                                                                                                                                |
-|----|-----------|-----------|---------|-----------------|-------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1  | 2.5       | yakın     | normal  | sabit           | Ece   | Gergin, korkulu ama suçlayıcı bir ifadeyle Sabri'ye bakar.                                                               | "ölüme gönderdin beni abi"                                                                                                                                                                                                                                  |
-| 2  | 4.0       | orta      | normal  | sabit           | Sabri | Sakin, bilgece, hafif bıkkın bir ifadeyle Ece'ye bakar. Elini kasada tutar.                                              | "kurallara uy ece, gayet başarılıydın sadece o önlüğü attığın sövmen 3. Kuralı bozdu, zamanlamayla kurtardın."                                                                                                                                            |
-| 3  | 3.5       | orta      | normal  | yaklas          | Sabri | Ciddi ve yönlendirici bir ifadeyle konuşur, "profesyonelce" kelimesinde kamera hafifçe yaklaşır.                          | "Ha kurallara uyup profesyonelce çalışırsın sorunsuz bi gece geçer"                                                                                                                                                                                         |
-| 4  | 2.0       | geniş     | normal  | sabit           | Ortam | Arka-sol depo kapısı yavaşça açılır. Kapıdan hafif bir uğultu sesi ve sıcak, yumuşak bir ışık süzülür.                  | (sessiz) "Tam o anda depo kapısı açılır."                                                                                                                                                                                                                   |
-| 5  | 2.0       | çok_yakın | üst     | sarsinti        | Ece   | Gözleri kocaman açılmış, şok ve korku içinde yüz ifadesi. Eli anlık olarak kalbine gider. Kısa bir titreme.             | "aaaa yine miii"                                                                                                                                                                                                                                            |
-| 6  | 3.0       | orta      | normal  | kaydir          | Mert  | Depodan cool ve karizmatik bir duruşla Mert çıkar, depo ışığı onu vurgular. Kamera, Mert'in çıkışını takip eder.        | (sessiz) "Depodan çok yakışıklı aşırı yakışıklı mavi gözlü kumral kahverengi saçlı bir erkek çıkar. Adı Mert."                                                                                                                                            |
-| 7  | 3.0       | çok_yakın | normal  | sabit           | Ece   | **AŞIK BAKIŞ GAG:** Ece donakalır, ağzı hafif açık, gözleri parıldar, yanakları kızarır. Saçları yavaşça dalgalanır. Mert'ten yansıyan yumuşak bir parıltı Ece'nin yüzünü aydınlatır. Arka plan bulanıklaşır ve doygunluğu azalır. Kameranın içsel `slowMotion` efekti (0.25x hız) uygulanır. | (sessiz) "Ece bir an donakalır, rüzgâr sesi ve cırcır böceği sesi gelir 2-3 saniyeliğine, âşık olduğu belli oluyordur."                                                                                                                                |
-| 8  | 3.0       | orta      | normal  | sabit           | Mert  | Kendinden emin, karizmatik bir ifadeyle konuşur.                                                                         | "Abi depoyu topladım, malzemeleri yerleştirdim"                                                                                                                                                                                                             |
-| 9  | 1.5       | yakın     | normal  | sabit           | Ece   | Hala sersemlemiş, aptal âşık bir ifadeyle konuşur, gözleri Mert'e dönük (kadraj dışı).                                  | "onee laan"                                                                                                                                                                                                                                                 |
-| 10 | 2.0       | iki       | normal  | sabit           | Sabri | Mert'e memnuniyetle dönerek konuşur, Mert başını sallar. Ece kadrajda değildir, ancak Sabri'nin bakışı Ece'nin yönündedir. | "Aferin Mert eline sağlık"                                                                                                                                                                                                                                  |
-| 11 | 4.0       | iki       | normal  | sabit           | Sabri | Sabri Ece'ye döner ve Mert'i tanıtır. Ece önde, şaşkın ve hayran bakışlarla dinler.                                       | "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun."                                                                                                                                                            |
-| 12 | 2.5       | yakın     | normal  | sabit           | Ece   | Gözünü Mert'ten (kadraj dışı) ayırmadan, hala aptal âşık bir ifadeyle önlüğünü sorar. Hafifçe kıkırdar.                  | "Benim önlüğüm nerde abi"                                                                                                                                                                                                                                   |
+## Çekim listesi (örnek sahne)
+| # | sn | açı / ölçek | ne oluyor | kamera |
+|---|----|-------------|-----------|--------|
+| 1 | 0,00-2,70 | yan, orta-geniş (establishing) | Eller havada → BAM (0,20) + "ölüme gönderdin beni abi" | yavaş yaklaş (gerilim), BAM'de sarsıntı |
+| 2 | 2,70-6,56 | kasa, Sabri OTS (orta) | "Kurallara uy Ece…", işaret parmağı | hafif itme |
+| 3 | 6,56-9,55 | tezgah, Ece ters OTS (yakın) | azar; "sövmen"de mahçup bakış, "bozdu"da göz devirme | hafif itme |
+| 4 | 9,55-13,21 | yan, geniş → kapıya kaydır | Ece somurtup parmağıyla tezgâhta daire çizer (görmez); 10,0'da kol iner; kamera kapıya kayar | kaydır (dikkati kapıya taşır) |
+| 5 | 13,21-14,86 | yan, kol çok yakın | kol dibe (13,76, mandal), kapı aralanır (13,88; kenarda sıcak ışık çizgisi) | yavaş itme |
+| 6 | 14,86-16,60 | yan, orta (3'lü coğrafya) | "sorunsuz bi gece geçer" → 15,78 kapı açılır, depo ışığı, içeride ters ışıkta siluet | sarsıntı |
+| 7 | 16,60-18,61 | yan, Ece yakın | "aaaa yine miii": geri sıçrar, şok gözler | sarsıntı |
+| 8 | 18,61-20,44 | yan, kapı (orta) | Mert siluet → "topladım"da eşiği geçer, ışığa çıkar (siluet → aydınlık) | yavaş itme |
+| 9 | 20,44-22,07 | yan, geniş | Mert tezgâhın arkasına, Sabri'nin sağına yürür; Ece ağzı açık, farkında olmadan ona doğru süzülür | hafif itme |
 
----
+Ölçek dizisi: orta-geniş · orta · yakın · geniş · çok yakın · orta · yakın · orta · geniş. Aynı ölçek art arda yok; görsel değişim 1,6-3,9 sn.
 
-## Mert Karakteri İçin cast.json Girdisi Önerisi
+## Işık
+- Gece marketi: üstten floresan anahtar ışık, tezgâh ve yüzler aydınlık, tavan, ön zemin ve kenarlar düşük (yan için ışık havuzu, multiply).
+- Kapı kapalıyken depo köşesi loş (gizem). Bu sırada kol, metal parlamasıyla tek parlak nokta.
+- Aralanınca kenarda sıcak ışık çizgisi ve zeminde ince ışık kaması. Açılınca sıcak depo ışığı (çıplak ampul) odaya taşar: zeminde ışık lekesi, Sabri'nin sağına ve Mert'e sıcak dolgu. Soğuk floresan ile sıcak depo ışığı arasında renk karşıtlığı var.
+- Mert ters ışıkta siluet (koyu, sıcak kenar ışığı). Işığa adım atınca aydınlanır.
 
-`src/studio/cast.json` dosyasına eklenmek üzere Mert karakterinin görünüm bilgileri:
+## Yeni olay zamanları (ses bunlara bağlı)
+`t_bam=0,20` · `t_kol0=10,00` · `t_kol1=13,76` · `t_aralik=13,88` (yeni, kapı aralanır) · `t_kapi=15,78` ("geçer") · `d0=22,07` · `t_durt1=29,98` · `t_durt2=30,28`.
+Not: Ses yönetmeninin aralanma anına ayrı bir efekt koymak isteyebileceği yer `t_aralik`. Şu an mandal sesi `t_kol1 − 0,05`'te.
 
-```json
-"mert": {
-    "id": "mert",
-    "name": "Mert",
-    "role": "market_calisani",
-    "voice": "cool_karizmatik_erkek",
-    "gender": "male",
-    "age": 22,
-    "build": "fit",
-    "skin": "normal",
-    "skinShade": "light",
-    "iris": "blue",
-    "hair": {
-        "style": "orta_kisa_daginik",
-        "color": "kahverengi",
-        "shade": "kumral"
-    },
-    "facialHair": "yok",
-    "outfit": {
-        "type": "casual",
-        "top": "tshirt",
-        "topShade": "beyaz",
-        "bottom": "jeans",
-        "shoes": "sneakers"
-    },
-    "blush": 0
-}
-```
+## Görsel riskler
+- Kol yakın planındaki ışık çizgisi telefonda ince görünebilir. Mandal sesiyle birlikte okunuyor; gerekirse aralık açısı büyütülür.
+- Rig'in gövdesi önden çizilir; yan açıda baş 3/4 döner. Kollar tezgâha uzandığı için konuşma yönü okunuyor ama gövde tam profil değil.
+- Çekim 8'de Sabri'nin başı kadrajın sol kenarında yarım görünüyor (bilinçli "kirli" kadraj).
 
-*   **`voice`**: "cool_karizmatik_erkek" değeri, ses yönetmeni tarafından seçilecek seslendirme sanatçısı için bir referanstır.
-*   **`age`**: Yakışıklı ve genç bir market çalışanı imajına uygun olarak 22 olarak belirlenmiştir.
-*   **`outfit`**: İlk girişi için "casual" (beyaz tişört ve kot pantolon) olarak düşünülmüştür, market önlüğü giymeden önce bu şekilde görünecektir.
-
----
-
-## Rapor
-
-**Değiştirilen JSON Alanları:**
-*   `cast.json`: Yeni karakter "mert" için girdi önerisi eklendi.
-*   `beats` bölümü (`724-08y-p1.json` içinde): Yukarıdaki çekim planına göre `shot` ve `look` parametreleri düzenlenecek, özellikle "AŞIK BAKIŞ GAG" için görsel efekt parametreleri eklenecektir (bu, `look` objesi altında `name` ve `params` ile tanımlanacaktır).
-
-**Eklenen Varlıklar:**
-*   **Karakter:** Mert (yeni karakter). `src/studio3d/Character3D.tsx`'te oluşturulması gereken 3D model, saç ve kıyafet varlıkları.
-*   **Görsel Efekt:** Aşık bakış gag'i için özel efekt seti (`slowMotion`, `hairWaveIntensity`, `sparkleStrength`, `bgBlur`, `bgDesaturate`, `bgWarmth`, `blush` artışı, `goz` ve `agiz` durumları). Bu efektler sahne zaman çizelgesine uygun olarak karakterin `look` parametreleri veya sahnenin genel `look` alanında tanımlanacaktır.
-
-**Kontrol Karelerinin Yolu:**
-Yeni varlıklar (Mert karakteri ve aşık bakış gag'i) üretildikten sonra aşağıdaki kontrol kompozisyonlarından kareler alınmalıdır:
-*   `Kadro3D`: Mert'in genel görünümünü ve oranlarını kontrol etmek için.
-*   `Duygular3D`: Mert'in temel yüz ifadeleri ve Ece'nin "asik_bakis" ifadesini kontrol etmek için.
-*   `Jestler3D`: Mert'in duruşu ve "cool" jestlerini kontrol etmek için.
-*   `Donus3D`: Mert'in 360 derece tutarlılığını kontrol etmek için.
-*   `Mekanlar3D`: Depo kapısından gelen ışığın ve market ortamıyla uyumunu kontrol etmek için.
-
-**Görsel Riskler:**
-*   **S7 (Aşık Bakış Gag):** Efektlerin (slow-motion, saç dalgalanması, parıltı, arka plan bulanıklığı) abartı seviyesi kullanıcının tercihine bırakılmıştır. İlk denemede belirgin ancak komik bir etki hedeflenmiştir; geri bildirimlere göre yoğunluğu ayarlanabilir. `slowMotion` süresi 3 saniye olarak planlanmıştır, bu da normal sürenin 0.75-1 saniyesi civarında olması anlamına gelir; ancak efektin kendisi bu süreyi dolduracaktır.
-*   **Depo Işığı:** Depodan gelen sıcak ışığın marketin floresan ışığıyla çatışmaması ve Mert'i "kahramanvari" bir şekilde vurgulaması için renk sıcaklığı ve yoğunluk ayarı dikkatlice yapılmalıdır.
-
----
+## Kalan sahneler için plan (onaydan sonra)
+1. **Anime âşık anı (d0 → E3):** `yan` açıda Ece'nin yakın planı (Mert kadraj sağında, bakış yönü korunur) → Mert'e Ece'nin bakışından OTS (önde Ece'nin ensesi, `kasa` ya da yeni `yan` ters OTS) → pembe ışıma, hüzme, yıldızcık ve göz parıltısı korunur. Işık sıcak-pembeye kayar, arka plan bulanır.
+2. **Bölünmüş yüz:** Ece'nin yakın planı korunur (bir göz âşık, bir göz şüpheli). Gözü Mert'in ayaklarına ve duvara iner.
+3. **Gölge kontrolü:** `yan` açıda Mert'in arka duvara düşen gölgesi (depo ışığı arkasında, gölge öne ya da duvara düşmeli). Işık kaynağıyla tutarlı olacak şekilde yeniden çizilir.
+4. **Dürtme:** önce `yan` orta 3'lü (Ece tezgâh boyunca uzanır, kolu Sabri'nin önünden GEÇMEZ; Mert tezgâhın ucunda, Ece'ye yakın durur). Ardından **yakın insert**: Ece'nin işaret parmağı Mert'in koluna iki kez (`t_durt1`, `t_durt2`; tişört kolu + ön kol çizimi). Sonra **Mert yakın**: parmağa bakar, tek kaşını kaldırır.
+5. **"Abi... bu insan mı?" / "Sakin ol, henüz gece olmadı.":** Ece ters OTS (önde Sabri'nin ensesi) ↔ Sabri OTS (önde Ece'nin ensesi). Ece fısıldarken gözü Mert'te kalır (bakış sağ-yukarı).
+6. **"Aferin Mert…" / "Ece bu Mert…":** `yan` orta 3'lü. Sabri avucuyla Mert'i tanıtır, Mert başıyla selam verir.
+7. **"Benim önlüğüm nerde abi" (parça sonu):** Ece yakın (yan), gözü Mert'te. Yavaş itme ve hafif pembe kalıntı.

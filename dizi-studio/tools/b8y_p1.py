@@ -108,7 +108,7 @@ def it(t, view, cx, cy, z):
 
 # ------------------------------------------------------------------ YAN açı izdüşümü (src/studio/sets/market724yan.tsx ile AYNI)
 import math  # noqa: E402
-_YC, _YH, _YF = (2.6, 1.45, -4.3), (0.9, 0.8), 1500
+_YC, _YH, _YF = (1.9, 1.45, -3.4), (1.0, 1.0), 1600
 _YT = math.atan2(_YH[0] - _YC[0], _YH[1] - _YC[2])
 _YS, _YCS = math.sin(_YT), math.cos(_YT)
 
@@ -213,16 +213,16 @@ ECE_TZ = {
 }
 
 # --- YAN: Ece (solda, tezgâhın önünde; gövde önden, baş Sabri'ye dönük)
-YE = yI(0.3, -0.38)
-YE_G = yI(0.12, -0.66)                                 # "aaaa": geri sıçrar
+YE = yI(0.62, -0.3)
+YE_G = yI(0.45, -0.58)                                 # "aaaa": geri sıçrar
 YS_ = YE[2] / 1000
-Y_EL_L, Y_EL_R = [round(v) for v in yP(0.08, 0.95, 0.1)], [round(v) for v in yP(0.5, 0.95, 0.12)]
-Y_ELH_L, Y_ELH_R = (YE[0] - 70, YE[1] - 610 * YS_), (YE[0] + 60, YE[1] - 640 * YS_)  # vurmadan önce: eller başının yanında
+Y_EL_L, Y_EL_R = [round(v) for v in yP(0.66, 0.95, 0.03)], [round(v) for v in yP(0.92, 0.95, 0.12)]
+Y_ELH_L, Y_ELH_R = (YE[0] + 40, YE[1] - 880 * YS_), (YE[0] + 175, YE[1] - 860 * YS_)  # vurmadan önce: eller tezgâhın üstünde havada
 YB = {"sabri": (0.62, 0.0, 0.78), "tezgah": (0.5, 0.62, 0.45), "kapi": (0.85, -0.3, 0.95), "mert": (0.8, -0.2, 0.85)}
 YECE = {
     "id": "ece_sivil", "onKol": True, "dogalKol": True,
     "yer": sirala([[0, YE[0], YE[1] - 18, YE[2]], [t_bam, YE[0], YE[1] + 8, YE[2]], [t_bam + 0.3, *YE], [e2a, *YE],
-                   [e2a + 0.22, *YE_G], [SON_T, *YE_G]]),
+                   [e2a + 0.22, *YE_G], [t_malz, *YE_G], [m1b + 0.1, *YE], [SON_T, *YE]]),   # Mert'e doğru farkında olmadan geri süzülür
     "elL": sirala([[0, *Y_ELH_L], [t_bam - 0.07, *Y_ELH_L], [t_bam, *Y_EL_L], [e2a, *Y_EL_L],
                    [e2a + 0.15, YE_G[0] - 40, YE_G[1] - 560 * YS_], [m1a, YE_G[0] - 30, YE_G[1] - 545 * YS_], [SON_T, YE_G[0] - 30, YE_G[1] - 545 * YS_]]),
     # sağ el: S1-S2 somurtarken tezgâhta işaret parmağıyla küçük daireler çizer (ikincil hareket)
@@ -244,7 +244,7 @@ YECE = {
     "konus": [konus(r) for r in ("E1", "E2")],
 }
 # --- YAN: Sabri (tezgâhın arkası, sağda; Ece'ye bakar)
-YSB = yI(0.7, 0.95, 1.72)
+YSB = yI(0.85, 0.95, 1.72)
 YSS = YSB[2] / 1000
 YSAB = {
     "onKol": True, "dogalKol": True,
@@ -262,7 +262,7 @@ YSAB = {
     "konus": [konus(r) for r in ("S1", "S2")],
 }
 # --- YAN: Mert (depoda ters ışıkta siluet → eşik → tezgâhın arkası, Sabri'nin sağı)
-YM_IC, YM_ES, YM_YN = yI(1.68, 2.4, 1.8), yI(1.66, 1.8, 1.8), yI(1.42, 1.05, 1.8)
+YM_IC, YM_ES, YM_YN = yI(1.48, 2.4, 1.8), yI(1.46, 1.8, 1.8), yI(1.27, 1.2, 1.8)
 t_esik = t_top = W("M1", "topladım")
 YMERT = {
     "onKol": True, "dogalKol": False,
@@ -288,7 +288,7 @@ SAB = {
     "duygu": [[0, "dusunceli"], [s1a, "notr"], [t_boz, "dusunceli"], [t_zam, "mutlu"], [s2a, "mutlu"], [t_gecer + 0.05, "saskin"],
               [m1a + 0.4, "notr"], [m1b, "mutlu"], [s3a, "mutlu"], [s4a, "mutlu"]],
     # bakış: Ece'ye (kadraj solu); kapı açılınca kapıya, sonra Mert'e (kadraj sağı)
-    "bak": sirala([[0, -0.18, -0.05, -0.08], [t_gecer + 0.05, 0.6, -0.1, 0.45], [m1a + 0.6, 0.45, -0.05, 0.32], [m1b + 0.2, 0.45, -0.05, 0.32],
+    "bak": sirala([[0, -0.45, 0.04, -0.42], [c3, -0.45, 0.04, -0.42], [c3 + 0.3, -0.18, -0.05, -0.08], [t_gecer + 0.05, 0.6, -0.1, 0.45], [m1a + 0.6, 0.45, -0.05, 0.32], [m1b + 0.2, 0.45, -0.05, 0.32],
                    [s3a - 0.1, -0.2, -0.05, -0.1], [s4a, 0.42, -0.05, 0.3], [s5a, -0.18, -0.05, -0.08], [t_bum + 0.1, 0.4, -0.05, 0.3],
                    [t_bum + 0.7, -0.18, -0.05, -0.08], [SON_T, -0.18, -0.05, -0.08]]),
     "tilt": sirala([[0, 0], [s1a, 0], [t_ece, -4], [t_boz, 3], [s2a, 0], [t_prof, 4], [t_gecer, 0], [s3a, -3], [t_hen, 3], [SON_T, 0]]),
@@ -344,27 +344,27 @@ KAPI = (900, 820, 1.9)                      # kapı + Sabri'nin sağ yarısı
 ECE_O = (EX, EYUZ + 400 / 1.45, 1.45)        # Ece orta-yakın
 ECE_Y = (EX, EYUZ + 300 / 2.1, 2.1)          # Ece yakın
 # --- ÖRNEK SAHNE (açılış → Mert'in çıkışı): ölçek dizisi orta-geniş · orta OTS · yakın OTS · geniş→kaydır · çok yakın · orta · yakın · orta · geniş
-YK = yP(1.33, 1.0, 1.9)                                       # kapı kolu (ekran)
-YD = yP(1.675, 1.05, 1.9)                                     # kapı ortası
-kes(g0, "yan", 505, 1010, 1.24)                               # 1 YAN (establishing): BAM + "ölüme gönderdin beni abi"; yavaş itme (gerilim)
-it(c2, "yan", 470, 985, 1.4)
-kes(c2, "kasa", 520, 1010, 1.5)                               # 2 Sabri OTS (önde Ece'nin ensesi): "Kurallara uy Ece…"
-it(c3, "kasa", 530, 1000, 1.6)
+YK = yP(1.13, 1.0, 1.9)                                       # kapı kolu (ekran)
+YD = yP(1.475, 1.05, 1.9)                                     # kapı ortası
+kes(g0, "yan", 505, 1100, 1.36)                               # 1 YAN (establishing): BAM + "ölüme gönderdin beni abi"; yavaş itme (gerilim)
+it(c2, "yan", 495, 1075, 1.48)
+kes(c2, "kasa", 520, 1250, 1.5)                               # 2 Sabri OTS (önde Ece'nin ensesi): "Kurallara uy Ece…"
+it(c3, "kasa", 528, 1238, 1.58)
 kes(c3, "tezgah", EX + 110, EYUZ + 260 / 1.75, 1.75)          # 3 Ece ters OTS (önde Sabri'nin ensesi): azar, mahçup bakış, göz devirme
 it(c4, "tezgah", EX + 105, EYUZ + 250 / 1.86, 1.86)
-kes(c4, "yan", 520, 1000, 1.12)                               # 4 YAN geniş: kol iner; kamera kapıya kayar (dikkat kapıya)
-it(t_kol0 + 0.3, "yan", 520, 1000, 1.12)
-it(c5, "yan", YK[0] - 60, 995, 1.75)
-kes(c5, "yan", YK[0] + 25, YK[1] - 20, 4.1)                   # 5 kol çok yakın: kol dibe iner, mandal, kapı ARALANIR (ışık çizgisi)
-it(c6, "yan", YK[0] + 30, YK[1] - 22, 4.45)
-kes(c6, "yan", 590, 990, 1.3)                                 # 6 YAN orta: "sorunsuz bi gece geçer" → kapı AÇILIR, depo ışığı, siluet
-it(c7, "yan", 595, 985, 1.36)
-kes(c7, "yan", YE[0] + 40, YE[1] - 765 * YS_ + 150 / 2.4, 2.4)  # 7 Ece yakın: "aaaa yine miii" (sarsıntı)
-it(c8, "yan", YE[0] + 30, YE[1] - 765 * YS_ + 160 / 2.3, 2.3)
+kes(c4, "yan", 500, 1110, 1.3)                               # 4 YAN geniş: kol iner; kamera kapıya kayar (dikkat kapıya)
+it(t_kol0 + 0.3, "yan", 500, 1110, 1.3)
+it(c5, "yan", YK[0] + 20, 1060, 1.95)
+kes(c5, "yan", YK[0] + 72, YK[1] - 25, 4.1)                   # 5 kol çok yakın: kol dibe iner, mandal, kapı ARALANIR (ışık çizgisi)
+it(c6, "yan", YK[0] + 74, YK[1] - 27, 4.45)
+kes(c6, "yan", 482, 1090, 1.42)                                 # 6 YAN orta: "sorunsuz bi gece geçer" → kapı AÇILIR, depo ışığı, siluet
+it(c7, "yan", 486, 1085, 1.48)
+kes(c7, "yan", YE_G[0] + 95, YE[1] - 765 * YS_ + 150 / 2.4, 2.4)  # 7 Ece yakın: "aaaa yine miii" (sarsıntı)
+it(c8, "yan", YE_G[0] + 90, YE[1] - 765 * YS_ + 160 / 2.3, 2.3)
 kes(c8, "yan", YD[0] - 5, YD[1] - 25, 2.05)                   # 8 kapı: Mert ters ışıkta siluet → ışığa adım atar
 it(c9, "yan", YD[0] - 25, YD[1] - 30, 2.3)
-kes(c9, "yan", 560, 1000, 1.14)                               # 9 YAN geniş: Mert tezgâha, Sabri'nin yanına yürür; Ece donmuş
-it(d0, "yan", 555, 995, 1.2)
+kes(c9, "yan", 490, 1105, 1.3)                               # 9 YAN geniş: Mert tezgâha, Sabri'nin yanına yürür; Ece donmuş
+it(d0, "yan", 492, 1095, 1.36)
 kes(d0, "tezgah", *ECE_Y)                                     # G: Ece donar → anime
 it(p0, "tezgah", ECE_Y[0], ECE_Y[1] - 6, ECE_Y[2] + 0.18)
 kes(p0, "kasa", MX - 10, MYUZ + 150 / 2.3, 2.3)               # H: Mert, anime ışığında (yavaş itme)
@@ -399,13 +399,13 @@ ORTAK = {"saat": [[0, "19:12"]], "kapi": [[0, 0]], "flor": [[0, 1]], "cizir": []
          "titre": {"tezgah": 1.3, "kasa": 1.2, "yan": 1.0},
          "blok": [[0, 560]], "gazete": [[0, 1300]], "gazeteTz": [[0, -700]], "kagitTz": [[0, 1]], "elAra": [],
          "kalemMasa": [[0, 640, 1]], "eceKasaAra": ECE_KASA_ARA, "odak": [[0, 0]],
-         "depo": [[0, 0], [t_aralik, 0], [t_aralik + 0.3, 0.035], [t_kapi - 0.06, 0.04], [t_kapi + 0.28, 1.0], [t_kapi + 0.45, 0.96], [SON_T, 0.96]],
+         "depo": [[0, 0], [t_aralik, 0], [t_aralik + 0.3, 0.06], [t_kapi - 0.06, 0.065], [t_kapi + 0.28, 1.0], [t_kapi + 0.45, 0.96], [SON_T, 0.96]],
          "depoKol": [[0, 0], [t_kol0, 0], [t_kol0 + 0.5, 0.12], [t_kol1, 1], [t_kapi - 0.05, 1], [t_kapi + 0.3, 0]],
          "sars": [[0, 0], [t_bam - 0.01, 0], [t_bam, 1], [t_bam + 0.3, 0], [t_kapi - 0.01, 0], [t_kapi, 0.5], [t_kapi + 0.25, 0], [e2a + 0.08, 0], [e2a + 0.16, 0.35], [e2a + 0.7, 0]],
          "mertGolge": [-175, -40, 0.42],
          # OTS ön planları (örnek sahne): kasa'da Ece'nin ensesi (solda), tezgah'ta Sabri'nin ensesi (sağda)
-         "eceSirt": [[0, 175, 1195, 1.05], [c3, 185, 1190, 1.05]], "eceSirtAra": [[c2 - 0.01, c3]],
-         "sabriSirt": [[0, EX + 520, EYUZ + 75, 1.15], [c4, EX + 515, EYUZ + 70, 1.15]], "sabriSirtAra": [[c3 - 0.01, c4]],
+         "eceSirt": [[0, 290, 1440, 1.3], [c3, 296, 1436, 1.3]], "eceSirtAra": [[c2 - 0.01, c3]],
+         "sabriSirt": [[0, EX + 410, EYUZ + 70, 0.95], [c4, EX + 405, EYUZ + 66, 0.95]], "sabriSirtAra": [[c3 - 0.01, c4]],
          # Mert: kapı eşiğini geçene dek kapı boşluğuna kesilir; ters ışıkta siluet → ışığa adım atınca aydınlanır
          "mertKlip": [[0, t_top + 0.05]],
          "mertSil": [[0, 1], [t_dep + 0.1, 1], [t_top + 0.25, 0.25], [c9, 0], [SON_T, 0]],
