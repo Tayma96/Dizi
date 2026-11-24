@@ -286,6 +286,125 @@
   "loop": false,
   "desc": "B7 P2 sonu: salondan uzak tabak 'tak' (J-cut köprüsü; el_tabak_tak türevi, koridor yankısı)."
  },
+ "efekt/b8_kagit_tezgah": {
+  "file": "ses/efekt/b8_kagit_tezgah.mp3",
+  "category": "efekt",
+  "duration": 1.149,
+  "loop": false,
+  "desc": "B8: kâğıt tezgâha konur, avuçla bir kez düzlenir (el_kagit_tezgah 0,30-1,40; tepe ~0,17 sn)"
+ },
+ "efekt/b8_kalem_birles_1": {
+  "file": "ses/efekt/b8_kalem_birles_1.mp3",
+  "category": "efekt",
+  "duration": 0.418,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (1. birleşme yayı (0,36 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 0.1-0.48 sn"
+ },
+ "efekt/b8_kalem_birles_2": {
+  "file": "ses/efekt/b8_kalem_birles_2.mp3",
+  "category": "efekt",
+  "duration": 0.418,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (2. birleşme yayı (0,36 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 1.05-1.43 sn"
+ },
+ "efekt/b8_kalem_birles_3": {
+  "file": "ses/efekt/b8_kalem_birles_3.mp3",
+  "category": "efekt",
+  "duration": 0.418,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (3. birleşme yayı (0,36 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 2.2-2.58 sn"
+ },
+ "efekt/b8_kalem_daire_1": {
+  "file": "ses/efekt/b8_kalem_daire_1.mp3",
+  "category": "efekt",
+  "duration": 0.653,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (1. yuvarlak (0,6 sn)); ElevenLabs SFX el_kalem_daire kesimi 0.15-0.77 sn"
+ },
+ "efekt/b8_kalem_daire_2": {
+  "file": "ses/efekt/b8_kalem_daire_2.mp3",
+  "category": "efekt",
+  "duration": 0.653,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (2. yuvarlak (0,6 sn)); ElevenLabs SFX el_kalem_daire kesimi 1.35-1.97 sn"
+ },
+ "efekt/b8_kalem_daire_3": {
+  "file": "ses/efekt/b8_kalem_daire_3.mp3",
+  "category": "efekt",
+  "duration": 0.653,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (3. yuvarlak (0,6 sn)); ElevenLabs SFX el_kalem_daire kesimi 2.55-3.17 sn"
+ },
+ "efekt/b8_kalem_dokun": {
+  "file": "ses/efekt/b8_kalem_dokun.mp3",
+  "category": "efekt",
+  "duration": 0.261,
+  "loop": false,
+  "desc": "B8: kalem ucuyla kâğıda dokunma (kısa tık; kendi sentezimiz)"
+ },
+ "efekt/b8_kalem_paralel_1": {
+  "file": "ses/efekt/b8_kalem_paralel_1.mp3",
+  "category": "efekt",
+  "duration": 0.601,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (1. paralel çizgi (0,55 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 0.05-0.62 sn"
+ },
+ "efekt/b8_kalem_paralel_2": {
+  "file": "ses/efekt/b8_kalem_paralel_2.mp3",
+  "category": "efekt",
+  "duration": 0.601,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (2. paralel çizgi (0,55 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 0.95-1.52 sn"
+ },
+ "efekt/b8_kalem_paralel_3": {
+  "file": "ses/efekt/b8_kalem_paralel_3.mp3",
+  "category": "efekt",
+  "duration": 0.601,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (3. paralel çizgi (0,55 sn)); ElevenLabs SFX el_kalem_kisa_cizgi kesimi 2.35-2.92 sn"
+ },
+ "efekt/b8_kalem_son_daire": {
+  "file": "ses/efekt/b8_kalem_son_daire.mp3",
+  "category": "efekt",
+  "duration": 0.705,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (son daire: kesişim noktasında, bastırarak (0,62 sn)); ElevenLabs SFX el_kalem_daire kesimi 2.95-3.62 sn"
+ },
+ "efekt/b8_kalem_uzun_tam": {
+  "file": "ses/efekt/b8_kalem_uzun_tam.mp3",
+  "category": "efekt",
+  "duration": 2.508,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (tek uzun çizgi, tam (2,5 sn)); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 0.08-2.55 sn"
+ },
+ "efekt/b8_kalem_yakinsa_1": {
+  "file": "ses/efekt/b8_kalem_yakinsa_1.mp3",
+  "category": "efekt",
+  "duration": 0.549,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (1. yakınsayan çizgi, gecenin noktasına (0,5 sn)); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 0.1-0.62 sn"
+ },
+ "efekt/b8_kalem_yakinsa_2": {
+  "file": "ses/efekt/b8_kalem_yakinsa_2.mp3",
+  "category": "efekt",
+  "duration": 0.549,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (2. yakınsayan çizgi, gecenin noktasına (0,5 sn)); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 1.45-1.97 sn"
+ },
+ "efekt/b8_kalem_yakinsa_3": {
+  "file": "ses/efekt/b8_kalem_yakinsa_3.mp3",
+  "category": "efekt",
+  "duration": 0.549,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (3. yakınsayan çizgi, gecenin noktasına (0,5 sn)); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 2.0-2.52 sn"
+ },
+ "efekt/b8_kalem_yasam_cizgisi": {
+  "file": "ses/efekt/b8_kalem_yasam_cizgisi.mp3",
+  "category": "efekt",
+  "duration": 2.09,
+  "loop": false,
+  "desc": "B8: kalem kâğıtta (ortak yaşam çizgisi: tek uzun çizgi (~2 sn), sonu bastırarak); ElevenLabs SFX el_kalem_uzun_cizgi kesimi 0.45-2.5 sn"
+ },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
   "category": "efekt",
@@ -685,12 +804,40 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Crumpling a thick sheet of paper in a fist, then tossing it into a crackling fire, paper catches and burns with a whoosh"
  },
+ "efekt/el_kagit_tezgah": {
+  "file": "ses/efekt/el_kagit_tezgah.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: a single sheet of paper placed flat onto a wooden shop counter and smoothed once with the palm, soft paper slap and rustle, close, quiet"
+ },
+ "efekt/el_kalem_daire": {
+  "file": "ses/efekt/el_kalem_daire.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: close-up ballpoint pen drawing three separate small circles on a sheet of paper lying on a wooden counter, three distinct circular scratching strokes with short pauses between them, quiet room"
+ },
+ "efekt/el_kalem_kisa_cizgi": {
+  "file": "ses/efekt/el_kalem_kisa_cizgi.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: close-up ballpoint pen making three short quick straight strokes on a sheet of paper on a counter, three separate scratches with small pauses, quiet room"
+ },
  "efekt/el_kalem_tik": {
   "file": "ses/efekt/el_kalem_tik.mp3",
   "category": "efekt",
   "duration": 0.6,
   "loop": false,
   "desc": "ElevenLabs SFX: Single ballpoint pen click, very close, crisp"
+ },
+ "efekt/el_kalem_uzun_cizgi": {
+  "file": "ses/efekt/el_kalem_uzun_cizgi.mp3",
+  "category": "efekt",
+  "duration": 3.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: close-up ballpoint pen drawing one long slow straight line across a sheet of paper on a wooden counter, single continuous scratch, quiet room"
  },
  "efekt/el_kalp_yavas": {
   "file": "ses/efekt/el_kalp_yavas.mp3",
@@ -1539,6 +1686,29 @@
   "loop": false,
   "desc": "ElevenLabs Music: Original instrumental underscore for a Turkish family comedy web series, an evening at home between a strict mother and her cheeky daughter: playful pizzicato strings, bouncy clarinet melody, light woodblock and soft finger snaps, warm and affectionate, about 110 bpm, F major, energetic from the very first second with small comedic stops. At about 22 seconds the music suddenly thins out into one single held high violin note over a low suspense drone, unresolved, for a cliffhanger. No vocals, no drums kit. | Ölçüm: 0-24 sn oynak pizzicato/klarnet, 24-25 sn söner; istenen 'asılı nota' ÇIKMADI (kanca için efekt/el_asili_nota). -17,5 LUFS."
  },
+ "muzik/b8_anlatim": {
+  "file": "ses/muzik/b8_anlatim.mp3",
+  "category": "muzik",
+  "duration": 30.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Slow mysterious underscore for a night scene where a wise old shopkeeper draws circles and lines on paper and reveals an ancient secret, like telling a dark fairy tale. Starts almost silent with a very low warm sub-bass drone and a soft dark pad. Around 8 seconds a faint, slow, slightly detuned celesta motif enters. Low strings slowly swell and the tension grows steadily the whole time, building into a big ominous crescendo that peaks at 27 seconds, then stops abruptly, dead silence after. No drums, no percussion, no vocals. Eerie, wise, hushed, dark, cinematic."
+ },
+ "muzik/b8_anlatim_kesik": {
+  "file": "ses/muzik/b8_anlatim_kesik.mp3",
+  "category": "muzik",
+  "duration": 35.579,
+  "kesim": 25.55,
+  "loop": false,
+  "desc": "B8 P1: b8_anlatim 0-25,55 sn, büyüyen kazanç rampası (-5 -> +1 dB), 25,55'te sert kesim + 10 sn sessizlik"
+ },
+ "muzik/b8_anlatim_uzun": {
+  "file": "ses/muzik/b8_anlatim_uzun.mp3",
+  "category": "muzik",
+  "duration": 43.598,
+  "kesim": 33.55,
+  "loop": false,
+  "desc": "B8 P1: b8_anlatim uzatılmış (baş: alçak drone 2-15 sn tekrar), büyüyen rampa, 33,55'te sert kesim + 10 sn sessizlik"
+ },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",
   "category": "muzik",
@@ -1671,6 +1841,27 @@
   "duration": 58.04,
   "loop": true,
   "desc": "B7 salon akşamı (kasım 18:00): oda tonu + pencere arkası gece şehri + hafif duvar saati. BigSoundBank CC0 türevi. -20 LUFS."
+ },
+ "ortam/b8_floresan": {
+  "file": "ses/ortam/b8_floresan.mp3",
+  "category": "ortam",
+  "duration": 40.046,
+  "loop": true,
+  "desc": "B8: floresan tüp vızıltısı (100 Hz + harmonikler, kendi sentezimiz), kısık katman"
+ },
+ "ortam/b8_market_gece": {
+  "file": "ses/ortam/b8_market_gece.mp3",
+  "category": "ortam",
+  "duration": 52.036,
+  "loop": true,
+  "desc": "B8: gece marketi (buzdolabı, floresan vızıltısı, uzakta yağmur, camın arkasında seyrek trafik); P1 ana ortam katmanı"
+ },
+ "ortam/b8_trafik_cam": {
+  "file": "ses/ortam/b8_trafik_cam.mp3",
+  "category": "ortam",
+  "duration": 58.044,
+  "loop": true,
+  "desc": "B8: market camının arkasından gece trafiği (sehir_gece #0680 CC0, cam filtresi)"
  },
  "ortam/banyo_sabah": {
   "file": "ses/ortam/banyo_sabah.mp3",
