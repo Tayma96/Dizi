@@ -30,6 +30,22 @@
 **Üretim (görüntü yönetmeni, 24 Kasım 2026):** `KDP2Acilis` (`dizi-studio/src/studio/kd/P2Acilis.tsx`), çıktı `ornekler/kd-b1-p2-acilis.mp4` (sessiz), kontrol `ornekler/kd-b1-p2-acilis-kareler.png`. Baş yönleri: göbekli baş batıda (sırtüstü), teyze baş batıda ve yüzü güneye (yan yatmış), influencer baş kuzeyde (sırtüstü), kurye baş doğuda. Güncel yerleşim ve zamanlar aşağıdaki düzeltme turunda (eski: A7 480, son 680).
 - **Düzeltme turu (kullanıcı: "Düzelt hepsini"):** kızın gözleri gerçekçi orana indirildi (stil 1 ailesi, büyük anime göz yok; makyaj, toka, halka, dağılmış rimel duruyor). A3 ve A9 çapraz kadraj (eğik kamera; baş üst köşede, beden kadrajı çapraz keser). Dördü kaideye yaklaştırıldı (batı/doğu ve 180° ekseni aynı): göbekli (-1,2; 3,3), teyze (-1,15; 5,5), influencer (1,1; 2,9), kurye (1,25; 5,3); A2 ve A7 genel planlar güneybatıdan çapraz bakar (eksenin güney tarafı korunur; yatan bedenler kısalır, grup dikey kadraja yayılır): karakterler ilk sürüme göre belirgin büyük, dördü ve kaide aynı karede. Kurye A7'de yatma → dirseklenip doğrulma → oturma (510-518) → çömelme (519). ElevenLabs seslerine göre yeniden zamanlama: A6 435-506, A7 507-551, A8 552-602, A9 603-727, toplam 728 kare (24,27 sn). Ses başlangıç kareleri: horlama 0 ve 180 (A1-A4; ikinci kopya 345'te kesilir), acilis_01 351, acilis_02 441, acilis_03 555, acilis_04 603. Ağız ve horlama nefesi ses zarfına bağlı (`kd/p2Ses.ts`).
 
+## 0b. PARÇA 2 DEVAMI (C1-C7): kullanıcının metni → tekli çekimler (görüntü yönetmeni, 24 Kasım 2026)
+> Metin kullanıcıya aittir (`bolumler.md` sonu). **Kalıcı kural:** grup/toplu çekim yok; her karakter tek kişilik kamerayla. Bakışlar 180° eksenine göre: göbekli ve teyze (batı) sağa, kurye ve kız (doğu) sola bakar. Tekli çekimde kadrajda yalnız o karakter çizilir.
+> Kompozisyon `KDP2Devam` (`dizi-studio/src/studio/kd/P2Devam.tsx`), çıktı `ornekler/kd-b1-p2b.mp4` (sessiz, 680 kare, 22,7 sn), kontrol `ornekler/kd-b1-p2b-kareler.png`.
+
+| # | Kareler | Ölçek / açı | Kamera | Görüntü | Ses (başlangıç karesi) |
+|---|---|---|---|---|---|
+| C1 | 0-74 | **Kız**, orta (dizden yukarı), göz hizası, güneybatıdan | Elde, onu izleyen yumuşak kaydırma | Kadrajın altından doğrulup kalkar (hareket bulanıklığı), elleri önde avuçlar dışa, 2-3 adım geri (doğuya) çekilir; korkulu, sola bakar | — |
+| C2 | 75-149 | **Teyze**, tek kişilik genel (tam boy), göz hizası | Kusursuz sabit, ortalı | Çömelmişken doğrulur (ezilme → gerilme), çantasını göğsüne bastırır, 2-3 adım geri (batıya); sakin ama temkinli, gözleri sağa | — |
+| C3 | 150-224 | **Göbekli**, orta, alçak açı | Kilitli | Ayağa kalkmaz: ellerine yaslanıp oturarak kalçasıyla 3 kez geri (batıya) sürünür; terli, nefes nefese, sağa bakar | — |
+| C4 | 225-269 | **Kurye**, orta (3/4) | Elde | Yerinde kalır; sağ eli BELİNDE (dirsek dışarı, gövde öne eğik), yüzü acıyla buruşur | — |
+| C5 | 270-449 | **Kurye**, yakın | Elde, çok hafif itme | Acılı, etrafa bakınır; ikinci cümlede gözleri tavana/köşelere | `c_01.mp3` **272** (konuşma 278-443; 2. cümle ≈410) |
+| C6 | 450-547 | **Kız**, yakın, **üst açı** (tavan köşesinden: görünmeyen kaçıranların gözü) | Elde; bağırırken sarsıntı | Başını kaldırıp bu kameraya bağırır, yumrukları sıkılı, ağlamaklı (ıslak göz, süzülen yaş) | `c_02.mp3` **452** (konuşma 454-541) |
+| C7 | 548-679 | **Göbekli**, orta-yakın, oturan göz hizası | Kilitli | Daha dik oturur, bir eli yerde, öbür eliyle başının arkasını ovar; sersem, gözleri yarı kapalı | `c_03.mp3` **551** (konuşma 553-667) |
+
+Ölçek ritmi: orta → genel → orta (alçak) → orta → yakın → yakın (üst) → orta-yakın. Ağız hareketi ses zarfından (`kd/p2bSes.ts`); ses dosyaları gömülmez, miks ayrı (`P2B_SES`).
+
 ## 1. Kamera stratejisi: dört katman
 
 1. **Gözetleyen göz (tepeden, simetrik):** Parça, birinin onları yukarıdan izlediği hissiyle açılır ve kapanır. Kuşbakışı, kusursuz simetrik ve kıpırtısız bir kadraj; laboratuvardaki deney fareleri gibi. Bu, dizinin "içeriden biri" fikrini ve odanın bir deney olduğunu görsel olarak eker, tek kelime gerekmeden.

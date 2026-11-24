@@ -74,7 +74,7 @@ const Goz: React.FC<{ s: 1 | -1; p: InfPoz; lw: number }> = ({ s, p, lw }) => {
   const T = (pts: P[]): P[] => pts.map(([a, b]) => [x + a * s, y + b]);
   const TW = (pts: PW[]): PW[] => pts.map(([a, b, c]) => [x + a * s, y + b, c]);
   const sek = T([[-w, 1], [-w * 0.45, -9.5 * g], [w * 0.45, -9 * g], [w + 3, -2], [w * 0.35, 6 * g], [-w * 0.45, 5.5 * g]]);
-  const ix = x + p.bak[0] * 6, iy = y - 1 + p.bak[1] * 3;
+  const ix = x + p.bak[0] * 6, iy = y - 1 + p.bak[1] * 5;
   const genis = g > 1.1;
   return (
     <g>
@@ -184,15 +184,8 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
           return <path key={i} d={serit(pts)} fill={i % 3 === 0 ? "#8a5a48" : "#160a06"} opacity={i % 3 === 0 ? 0.55 : 0.45} />;
         }) : null}
       </g>
-      {/* ayakkabılar: ayaktayken önden (beyaz spor ayakkabı burnu), yatarken burunlar tavana */}
-      {ay ? [-1, 1].map((s) => (
-        <g key={`a${s}`} transform={`translate(0 ${-(s > 0 ? kalkSag : kalkSol)})`}>
-          <Hacim id={`inf-aon${s}`} pts={[[s * 64, 712], [s * 84, 676], [s * 122, 666], [s * 162, 678], [s * 180, 714], [s * 174, 748], [s * 70, 748]]} dolgu={AYK} golge={AYK_G} cizgi={AYK_C} isik={IS} ince={2.2 * lw} kalin={6 * lw}>
-            <path d={egri([[s * 60, 736], [s * 184, 736], [s * 184, 752], [s * 60, 752]], true)} fill="#c8d0d8" />
-            <path d={serit([[s * 104, 690, 0], [s * 122, 694, 4], [s * 140, 690, 0]])} fill={AYK_C} opacity={0.5} />
-          </Hacim>
-        </g>
-      )) : [-1, 1].map((s) => (
+      {!ay ? null : null}
+      {ay ? null : [-1, 1].map((s) => (
         <Hacim key={s} id={`inf-ayk${s}`} pts={[[s * 70, 640], [s * 120, 610], [s * 168, 640], [s * 176, 700], [s * 150, 744], [s * 106, 748], [s * 74, 710]]} dolgu={AYK} golge={AYK_G} cizgi={AYK_C} isik={IS} ince={2.2 * lw} kalin={6 * lw}>
           <path d={serit([[s * 96, 660, 0], [s * 122, 668, 4], [s * 148, 662, 0]])} fill={AYK_C} opacity={0.5} />
           <path d={serit([[s * 96, 682, 0], [s * 122, 690, 4], [s * 148, 684, 0]])} fill={AYK_C} opacity={0.5} />
@@ -205,9 +198,18 @@ export const OdaInfluencer: React.FC<{ p: InfPoz; lw: number; detay?: boolean }>
           <path d={serit([[s * 70, 360, 0], [s * 104, 376, 3], [s * 140, 368, 0]])} fill={JEAN_C} opacity={0.35} />
         </Hacim>
       ))}
-      <Hacim id="inf-kalca" pts={KALCA} dolgu={JEAN} golge={JEAN_G} cizgi={JEAN_C} isik={IS} ince={2.4 * lw} kalin={7 * lw}>
+      <Hacim id="inf-kalca" pts={ay ? [[-150, -20], [150, -20], [160, 110], [0, 130], [-160, 110]] : KALCA} dolgu={JEAN} golge={JEAN_G} cizgi={JEAN_C} isik={IS} ince={2.4 * lw} kalin={7 * lw}>
         <path d={serit([[0, 20, 0], [0, 80, 4], [-6, 140, 0]])} fill={JEAN_C} opacity={0.5} />
       </Hacim>
+      {/* ayaktayken önden beyaz spor ayakkabı (paçanın önünde) */}
+      {ay ? [-1, 1].map((s) => (
+        <g key={`a${s}`} transform={`translate(0 ${-(s > 0 ? kalkSag : kalkSol)})`}>
+          <Hacim id={`inf-aon${s}`} pts={[[s * 64, 712], [s * 84, 676], [s * 122, 666], [s * 162, 678], [s * 180, 714], [s * 174, 748], [s * 70, 748]]} dolgu={AYK} golge={AYK_G} cizgi={AYK_C} isik={IS} ince={2.2 * lw} kalin={6 * lw}>
+            <path d={egri([[s * 60, 736], [s * 184, 736], [s * 184, 752], [s * 60, 752]], true)} fill="#c8d0d8" />
+            <path d={serit([[s * 104, 690, 0], [s * 122, 694, 4], [s * 140, 690, 0]])} fill={AYK_C} opacity={0.5} />
+          </Hacim>
+        </g>
+      )) : null}
       {/* sweatshirt */}
       <Hacim id="inf-sw" pts={SWEAT} dolgu={SW} golge={SW_G} cizgi={SW_C} isik={IS} ince={2.4 * lw} kalin={7.5 * lw}>
         {/* gülen slime baskısı */}

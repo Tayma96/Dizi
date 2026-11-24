@@ -110,10 +110,10 @@ export const Hacim: React.FC<{
     <g>
       <defs>
         <clipPath id={`k-${id}`}><path d={d} /></clipPath>
-        <mask id={`m-${id}`} maskUnits="userSpaceOnUse" x={-6000} y={-6000} width={14000} height={14000}>
+        <mask id={`m-${id}`} maskUnits="userSpaceOnUse" x={-3000} y={-3000} width={6000} height={6000}>
           <path d={d} fill="#fff" />
           <path d={d} fill="#000" transform={`translate(${f(ux * isik.kenar)} ${f(uy * isik.kenar)})`} />
-          {kenarAlt !== undefined && <rect x={-6000} y={-6000} width={14000} height={kenarAlt + 6000} fill="#000" />}
+          {kenarAlt !== undefined && <rect x={-3000} y={-3000} width={6000} height={kenarAlt + 3000} fill="#000" />}
         </mask>
       </defs>
       <g clipPath={`url(#k-${id})`}>

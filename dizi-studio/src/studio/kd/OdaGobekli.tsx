@@ -37,6 +37,9 @@ export type GobekPoz = {
   kasi: number;
   /** bilek bükümü (derece; elin önkola göre açısı) */
   bilek?: number;
+  /** arka elin bükümü; elArkaUstte: arka el başın ÖNÜNDE çizilir (başını ovarken eli başın arkasını kavrar) */
+  bilekArka?: number;
+  elArkaUstte?: boolean;
   /** göz açıklığı 0 (kapalı) .. 1 (açık) .. 1.4 (fal taşı) */
   goz: number;
   /** gözleri sıkma 0..1 */
@@ -243,7 +246,7 @@ export const OdaGobekli: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => 
       {/* gövdenin arkasındaki kol (panikte göbeğin üstünden görünür) */}
       <g transform={tr}>
         <Hacim id="gb-kolarka" pts={uzuv(kolArkaHat)} dolgu="#dcc0b6" golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2.4 * lw} kalin={7 * lw} />
-        <El id="gb-elarka" bilek={jArka[2]} aci={aciDer(jArka[1], jArka[2])} bukul={0.3} lw={lw} arka />
+        {p.elArkaUstte ? null : <El id="gb-elarka" bilek={jArka[2]} aci={aciDer(jArka[1], jArka[2]) + (p.bilekArka ?? 0)} bukul={0.3} lw={lw} arka />}
       </g>
 
       {/* kalça + ön bacak + çoraplı ayak */}
@@ -285,6 +288,7 @@ export const OdaGobekli: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => 
           <ProfilBas p={p} lw={lw} />
         </g>
 
+        {p.elArkaUstte ? <El id="gb-elarka2" bilek={jArka[2]} aci={aciDer(jArka[1], jArka[2]) + (p.bilekArka ?? 0)} bukul={0.6 + 0.4 * Math.sin(p.nefes * 3)} lw={lw} /> : null}
         {/* ön kol: tek parça (omuz deltoiti + üst kol + önkol), kaşınan el */}
         <Hacim id="gb-kolon" pts={uzuv(kolOnHat)} dolgu={TEN} golge={TEN_G} cizgi={TEN_C} isik={IS} ince={2.4 * lw} kalin={7.5 * lw} golgeCarp={0.7}>
           <KolKil hat={kolOnHat} seed={11} />

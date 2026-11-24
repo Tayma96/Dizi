@@ -137,3 +137,4 @@ Kız:"dava edicem sizi, çıkarın beni hemen burdan!"
 Göbekli ayağa kalkmamıştır oturarak konuşur:"başım ağrıyo ne vermişler öyle bre"
 
 - **Kural (kullanıcı):** Grup/toplu çekimlerde 2D perspektif kötü duruyor → bu ve sonraki parçalarda karakterler **tekli kamerayla** (tek kişilik çekimler) gösterilir; toplu genel plan zorunlu olmadıkça kullanılmaz.
+- **Parça 2 devamı üretildi (görüntü yönetmeni, 24 Kasım 2026):** `ornekler/kd-b1-p2b.mp4` (C1-C7, 680 kare, 22,7 sn, SESSİZ), kontrol `ornekler/kd-b1-p2b-kareler.png`, kompozisyon `KDP2Devam`. Tekli çekimler (kalıcı kural). Ses başlangıç kareleri: `c_01` 272, `c_02` 452, `c_03` 551. Yeni pozlar: kız ve teyze ayakta (adım, savunma, çanta göğüste, tavana bağırma, ağlamaklı), göbekli oturarak geri sürünme ve başını ovma, kurye belini tutma ve acılı yüz. Metin değiştirilmedi, yeni replik yok.
