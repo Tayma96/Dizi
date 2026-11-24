@@ -59,3 +59,4 @@
 - P4 (Parça 4): üretici `tools/b8y_p4.py`, yeni görünüm `reyon` (Inserts18), kadın `kacan724` (ses: Aura, mini elbise `mini`). Ses ONAY BEKLİYOR (kuru çalıştırma tahmini 303 kredi + 2 efekt ~75). P3a eller: ceket kolu → çıplak kol (kırmızı mini elbise sürekliliği).
 - **Kullanıcı (24 Kasım):** P4'te "Mert koşup kapıyı kapatır" sahnesi İPTAL; yerine yeni fikir gelecek. Üretilen sesler: M1a/M1b, E1a/E1b (K1 ve b8y4 efektleri üretilmedi).
 - P4 düzeltme (kullanıcı): "Merak etme ben yanındayım" = ECE (dingin). Seçim: M1=N1a (Ece), E1=E1a, K1=K1b (secim.json). b8y4_raf_dusus üretildi. Kalan kredi ~12.480. KAPAT/DARBE vuruşları hâlâ üreticide: kullanıcının yeni fikriyle değişecek. P3a çıplak kollarla yeniden render edildi.
+- P4 yeni son (kullanıcı fikri): Ece yavaşça depoya yürür → FPS (Inserts19 mekan "depo") → başını sola çevirir: yaratık sırtı dönük twerk (YaratikTwerk) + radyodan trap ritmi (doğaçlama). Render `bolumler/724-08y-p4.mp4` (21,2 sn).

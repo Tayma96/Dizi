@@ -402,6 +402,140 @@ const Sac: React.FC<{ v: number }> = ({ v }) => {
   );
 };
 
+/* ------------------------------------------------------------------ B8 (yeni) P4: DEPO (Ece'nin gözünden)
+ * Tezgâhın arkasındaki dar koridor (x -0.9..0.9, z 0..6); sol duvarda depo kapısı (z 3.0..3.9, açık).
+ * Depo odası (x -5.5..-0.9, z 1..6): metal raflar, koliler, eski radyo, sallanan çıplak ampul.
+ * Yaratık depo ortasında, SIRTI kapıya dönük, dizlerine abanmış twerk atıyor (twerk 0..1 şiddet). */
+const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number }> = ({ c, t, f, twerk, radyo }) => {
+  const el: React.ReactNode[] = [];
+  const q = (pts: V3[], renk: string, key: string, op = 1) => {
+    const p = poly(c, pts);
+    if (p) el.push(<path key={key} d={p.d} fill={renk} opacity={op} />);
+  };
+  // depo odası (önce: kapı boşluğundan görünür)
+  const bx0 = -5.5, bx1 = -0.9, bz0 = 1.0, bz1 = 6.0, bh = 3.2;
+  q([[bx0, 0, bz0], [bx1, 0, bz0], [bx1, 0, bz1], [bx0, 0, bz1]], "#4a3e32", "df");
+  q([[bx0, 0, bz0], [bx0, 0, bz1], [bx0, bh, bz1], [bx0, bh, bz0]], "#5a4c3c", "dw1");
+  q([[bx0, 0, bz0], [bx1, 0, bz0], [bx1, bh, bz0], [bx0, bh, bz0]], "#54473a", "dw2");
+  q([[bx0, 0, bz1], [bx1, 0, bz1], [bx1, bh, bz1], [bx0, bh, bz1]], "#54473a", "dw3");
+  q([[bx0, bh, bz0], [bx1, bh, bz0], [bx1, bh, bz1], [bx0, bh, bz1]], "#2e2620", "dc");
+  // arka duvarda metal raflar + koliler
+  for (let k = 0; k < 4; k++) {
+    const y = 0.35 + k * 0.62;
+    q([[bx0 + 0.02, y, 1.4], [bx0 + 0.02, y, 5.6], [bx0 + 0.5, y, 5.6], [bx0 + 0.5, y, 1.4]], "#7a7e84", `rf${k}`);
+    for (let i = 0; i < 7; i++) {
+      const z0 = 1.5 + i * 0.58, w = 0.42 + 0.1 * random(`kw${k}${i}`), h = 0.3 + 0.2 * random(`kh${k}${i}`);
+      if (random(`kv${k}${i}`) > 0.2) q([[bx0 + 0.05, y, z0], [bx0 + 0.05, y, z0 + w], [bx0 + 0.05, y + h, z0 + w], [bx0 + 0.05, y + h, z0]], ["#b8895a", "#a87a4c", "#c89a6a"][i % 3], `kl${k}${i}`);
+    }
+  }
+  // eski radyo (raf 2'de), ritimle titreyen ışığı
+  q([[bx0 + 0.06, 1.6, 2.2], [bx0 + 0.06, 1.6, 2.75], [bx0 + 0.06, 1.95, 2.75], [bx0 + 0.06, 1.95, 2.2]], "#3a2a22", "rd");
+  q([[bx0 + 0.07, 1.66, 2.25], [bx0 + 0.07, 1.66, 2.45], [bx0 + 0.07, 1.89, 2.45], [bx0 + 0.07, 1.89, 2.25]], "#1a1412", "rdh");
+  q([[bx0 + 0.07, 1.8, 2.52], [bx0 + 0.07, 1.8, 2.7], [bx0 + 0.07, 1.88, 2.7], [bx0 + 0.07, 1.88, 2.52]], radyo > 0.5 && (f % 8) < 4 ? "#ffd060" : "#6a5030", "rdi");
+  // koridor (sonra: depoyu kapı boşluğu dışında örter)
+  const kx0 = -0.9, kx1 = 0.9, kh = 2.6;
+  q([[kx0, 0, -1], [kx1, 0, -1], [kx1, 0, 7], [kx0, 0, 7]], "#5e5e5a", "kf");
+  for (let z = -1; z < 7; z += 0.6) q([[kx0, 0.002, z], [kx1, 0.002, z], [kx1, 0.002, z + 0.02], [kx0, 0.002, z + 0.02]], "#4a4a46", `kfz${z}`);
+  q([[kx0, kh, -1], [kx1, kh, -1], [kx1, kh, 7], [kx0, kh, 7]], "#6e726e", "kc");
+  q([[-0.2, kh - 0.01, 0.5], [0.2, kh - 0.01, 0.5], [0.2, kh - 0.01, 2.5], [-0.2, kh - 0.01, 2.5]], "#c8d0c8", "kl");
+  q([[kx1, 0, -1], [kx1, 0, 7], [kx1, kh, 7], [kx1, kh, -1]], "#6a6e6a", "kw");
+  q([[kx0, 0, 7], [kx1, 0, 7], [kx1, kh, 7], [kx0, kh, 7]], "#5a5e5a", "kend");
+  q([[kx0, 0, -1], [kx0, 0, 3.0], [kx0, kh, 3.0], [kx0, kh, -1]], "#727672", "kl1");
+  q([[kx0, 0, 3.9], [kx0, 0, 7], [kx0, kh, 7], [kx0, kh, 3.9]], "#727672", "kl2");
+  q([[kx0, 2.1, 3.0], [kx0, 2.1, 3.9], [kx0, kh, 3.9], [kx0, kh, 3.0]], "#727672", "kl3");
+  // kapı kasası + içeri açılmış kanat (menteşe z 3.9 tarafında)
+  q([[kx0 + 0.005, 0, 2.94], [kx0 + 0.005, 0, 3.0], [kx0 + 0.005, 2.16, 3.0], [kx0 + 0.005, 2.16, 2.94]], "#5a6066", "kk1");
+  q([[kx0 + 0.005, 0, 3.9], [kx0 + 0.005, 0, 3.96], [kx0 + 0.005, 2.16, 3.96], [kx0 + 0.005, 2.16, 3.9]], "#5a6066", "kk2");
+  q([[kx0 + 0.005, 2.1, 2.94], [kx0 + 0.005, 2.1, 3.96], [kx0 + 0.005, 2.16, 3.96], [kx0 + 0.005, 2.16, 2.94]], "#5a6066", "kk3");
+  q([[kx0, 0, 3.9], [kx0 - 0.85, 0, 3.6], [kx0 - 0.85, 2.1, 3.6], [kx0, 2.1, 3.9]], "#4a5056", "kanat");
+  // sallanan ampul + ışık konisi (depo)
+  const sal = 0.18 * Math.sin(t * 2.2);
+  const amp = toCam(c, [-3.2 + sal, 2.55, 3.45]);
+  const isik: React.ReactNode[] = [];
+  if (amp[2] > NEAR) {
+    const [ax, ay] = proj(amp);
+    const r = F / amp[2];
+    const ust = toCam(c, [-3.2, bh, 3.45]);
+    if (ust[2] > NEAR) { const [ux, uy] = proj(ust); isik.push(<path key="tel" d={`M ${ux} ${uy} L ${ax} ${ay}`} stroke="#1a1410" strokeWidth={Math.max(1, r * 0.01)} />); }
+    isik.push(<circle key="ah" cx={ax} cy={ay} r={r * 1.4} fill="url(#fpsHale)" opacity={0.85} />);
+    isik.push(<circle key="ab" cx={ax} cy={ay} r={Math.max(2, r * 0.06)} fill="#fff4c8" />);
+    const zemin = toCam(c, [-3.2 + sal * 1.5, 0, 3.45]);
+    if (zemin[2] > NEAR) { const [zx, zy] = proj(zemin); isik.push(<ellipse key="az" cx={zx} cy={zy} rx={(F * 1.6) / zemin[2]} ry={(F * 0.5) / zemin[2]} fill="url(#fpsHavuz)" opacity={0.9} />); }
+  }
+  // yaratık: depo ortasında, sırtı kapıya (+x yönüne) dönük
+  let ya: React.ReactNode = null;
+  const yc = toCam(c, [-3.3, 0, 3.15]);
+  if (yc[2] > 0.5) {
+    const [x, y] = proj(yc);
+    const s = F / yc[2];
+    ya = <g transform={`translate(${x} ${y}) scale(${s})`}><YaratikTwerk t={t} v={twerk} /></g>;
+  }
+  const ki = el.findIndex((e) => (e as React.ReactElement).key === "kf");
+  const depo = el.slice(0, ki), kor = el.slice(ki).filter((e) => (e as React.ReactElement).key !== "kanat"), kanat = el.filter((e) => (e as React.ReactElement).key === "kanat");
+  // depo öğelerini kapı boşluğuna kırp: depo yalnız kapıdan görünür (koridor çokgenleri zaten üstte; ışık ve yaratık da kırpılır)
+  const bosluk = poly(c, [[kx0, 0, 3.0], [kx0, 0, 3.9], [kx0, 2.1, 3.9], [kx0, 2.1, 3.0]]);
+  return (
+    <g>
+      <rect x={-400} y={-600} width={W + 800} height={H + 1200} fill="#1a1612" />
+      {kor}
+      {bosluk ? (
+        <>
+          <defs><clipPath id="depoBosluk"><path d={bosluk.d} /></clipPath></defs>
+          <g clipPath="url(#depoBosluk)">
+            {depo}
+            <g style={{ mixBlendMode: "screen" }}>{isik}</g>
+            {ya}
+            {kanat}
+          </g>
+        </>
+      ) : null}
+    </g>
+  );
+};
+
+/* yaratık ARKADAN: dizler bükük, gövde öne eğik, eller dizlerde; kalça (kemikli leğen) ritimle sallanır */
+const YaratikTwerk: React.FC<{ t: number; v: number }> = ({ t, v }) => {
+  // derin çömelme: kalça alçakta (y≈-0.95), gövde öne eğik (arkadan kısa görünür), baş omuzların arasında aşağıda; eller dizlerde.
+  // kalçanın iki yanı dönüşümlü zıplar (twerk), tüm gövde ritimle yaylanır.
+  const DERI = "#24232a", DERI2 = "#3a3842", KEMIK = "#d9d2c0";
+  const w = Math.PI * 2 * 2.6;
+  const yay = Math.abs(Math.sin(t * w / 2)) * v;
+  const kY = -0.95 - 0.08 * yay;
+  const yan = (s: number) => -0.13 * v * Math.max(0, Math.sin(t * w + (s > 0 ? 0 : Math.PI)));
+  const sal = 0.04 * v * Math.sin(t * w);
+  return (
+    <g>
+      <ellipse cx={0} cy={0} rx={0.85} ry={0.1} fill="#000" opacity={0.5} />
+      {[-1, 1].map((s) => (
+        <g key={s}>
+          {/* uyluk kalçadan dışa-aşağı dize, baldır dizden ayağa */}
+          <path d={`M ${s * 0.14} ${kY + 0.05} L ${s * 0.62} -0.62 L ${s * 0.5} -0.04 l ${s * 0.14} 0`} stroke={DERI} strokeWidth={0.08} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx={s * 0.62} cy={-0.62} r={0.055} fill={DERI2} />
+        </g>
+      ))}
+      {/* gövde: öne eğik (sırt bize dönük, kısa görünür) */}
+      <g transform={`translate(${sal} ${-0.05 * yay})`}>
+        <path d={`M -0.24 ${kY - 0.02} Q -0.34 ${kY - 0.4} -0.3 ${kY - 0.7} Q 0 ${kY - 0.82} 0.3 ${kY - 0.7} Q 0.34 ${kY - 0.4} 0.24 ${kY - 0.02} Z`} fill={DERI} stroke="#0a090c" strokeWidth={0.025} />
+        {new Array(6).fill(0).map((_, i) => <circle key={i} cx={0} cy={kY - 0.1 - i * 0.11} r={0.024} fill="#6a6470" />)}
+        <path d={`M -0.24 ${kY - 0.62} q 0.08 0.1 0.16 0.03 M 0.24 ${kY - 0.62} q -0.08 0.1 -0.16 0.03`} stroke="#5a5662" strokeWidth={0.02} fill="none" />
+        {/* kollar: omuzdan dizlere (eller dizlerin üstünde) */}
+        {[-1, 1].map((s) => <path key={s} d={`M ${s * 0.28} ${kY - 0.66} L ${s * 0.56} ${kY - 0.3} L ${s * 0.6} -0.68 l ${s * 0.04} 0.06`} stroke={DERI} strokeWidth={0.055} fill="none" strokeLinecap="round" strokeLinejoin="round" />)}
+        {/* kafanın arkası: omuzların arasında, aşağıda; ritimle sallanır */}
+        <g transform={`translate(${2 * sal} ${kY - 0.78 + 0.05 * yay}) rotate(${-120 * sal})`}>
+          <ellipse cx={0} cy={0} rx={0.17} ry={0.19} fill={KEMIK} stroke="#2a2420" strokeWidth={0.02} />
+          <path d="M 0 -0.17 L 0 0.15 M -0.1 -0.08 l 0.05 0.06 M 0.11 0.02 l -0.04 0.05" stroke="#6a5a4a" strokeWidth={0.012} fill="none" />
+        </g>
+      </g>
+      {/* kemikli kalça: iki yan dönüşümlü zıplar */}
+      {[-1, 1].map((s) => (
+        <ellipse key={s} cx={s * 0.15 + sal} cy={kY + 0.06 + yan(s)} rx={0.17} ry={0.15} fill={DERI2} stroke="#0a090c" strokeWidth={0.02} />
+      ))}
+      {/* hareket çizgileri (komik vurgu) */}
+      {v > 0.3 ? [-1, 1].map((s) => <path key={s} d={`M ${s * 0.38} ${kY - 0.02} q ${s * 0.09} 0.05 ${s * 0.05} 0.15 M ${s * 0.43} ${kY - 0.1} q ${s * 0.11} 0.06 ${s * 0.06} 0.2`} stroke="#e8e0c8" strokeWidth={0.016} fill="none" opacity={0.75 * yay} />) : null}
+    </g>
+  );
+};
+
 /* ------------------------------------------------------------------ ana bileşen */
 const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
   const f = useCurrentFrame();
@@ -442,7 +576,8 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsHale"><stop offset="0" stopColor="#ffd08a" stopOpacity={0.9} /><stop offset="0.25" stopColor="#ff9a40" stopOpacity={0.35} /><stop offset="1" stopColor="#ff9a40" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />
+          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} /> : (
+          <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />)}
         </svg>
       </AbsoluteFill>
       {/* sis/derinlik: ufukta soğuk sis bandı */}

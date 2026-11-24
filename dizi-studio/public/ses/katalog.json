@@ -510,6 +510,20 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Distant monstrous creature in a narrow alley: deep wet guttural growl mixed with fast bone clicking, echoing, unnatural, horror"
  },
+ "efekt/b8y4_adim_yavas": {
+  "file": "ses/efekt/b8y4_adim_yavas.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Slow cautious footsteps of sneakers on a tiled floor in a quiet narrow corridor, close, tiptoe"
+ },
+ "efekt/b8y4_ece_nefes": {
+  "file": "ses/efekt/b8y4_ece_nefes.mp3",
+  "category": "efekt",
+  "duration": 4.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Young woman's nervous shaky breathing while tiptoeing slowly, trembling small gasps, very close, no words"
+ },
  "efekt/b8y4_raf_dusus": {
   "file": "ses/efekt/b8y4_raf_dusus.mp3",
   "category": "efekt",
@@ -1982,6 +1996,13 @@
   "loop": false,
   "desc": "B8 P2: b8_komik_dusus 0-14.38 sn, 14.38'te sert kesim (son pizzicato çınlarken; plak çiziğiyle aynı an) + 10 sn sessizlik",
   "kesim": 14.38
+ },
+ "muzik/b8y4_twerk": {
+  "file": "ses/muzik/b8y4_twerk.mp3",
+  "category": "muzik",
+  "duration": 8.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Funky energetic trap twerk beat with heavy 808 bass, claps and hi-hats, sounds like it is playing from a small old radio in a storage room, instrumental, no vocals"
  },
  "muzik/b8y_ask": {
   "file": "ses/muzik/b8y_ask.mp3",

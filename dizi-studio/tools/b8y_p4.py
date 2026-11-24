@@ -22,7 +22,7 @@ METIN = {"M1": ("ece_sivil", "Merak etme ben yanındayım"), "E1": ("ece_sivil",
 SES_VAR = all(TAKE[r] in M for r in TAKE)
 
 SIRA = [("GIRIS", None, 0.35), ("M1", "M1", 0.0), ("PAT", None, 0.75), ("E1", "E1", 0.05), ("DUS", None, 1.25),
-        ("K1", "K1", 0.25), ("KAPAT", None, 2.3), ("DARBE", None, 1.7)]
+        ("K1", "K1", 0.25), ("YAKLAS", None, 2.6), ("FPS", None, 7.6)]
 
 
 def sure(r):
@@ -41,11 +41,11 @@ konus = lambda r: {"t": round(T[r] + VFROM, 3), "cues": M[TAKE[r]]["mouth"]} if 
 sirala = lambda k: sorted(k, key=lambda q: q[0])
 
 g0 = T["GIRIS"]; m1a, m1b = V("M1"); p0 = T["PAT"]; e1a, e1b = V("E1"); d0 = T["DUS"]; k1a, k1b = V("K1")
-ka0 = T["KAPAT"]; da0 = T["DARBE"]
+ka0 = T["YAKLAS"]; fp0 = T["FPS"]
 t_pat = p0 + 0.08                 # kapı pat diye açılır (cümle biterken)
 t_carp = d0 + 0.62                # kadın rafa çarpar, düşer
-t_kapan = ka0 + 1.55              # Mert kapıyı çarpar
-t_darbe = da0 + 0.45              # (doğaçlama) arkadan dev darbe
+t_kapan = 999                     # (iptal) Mert kapıyı kapatmaz
+t_darbe = 999                     # (iptal)
 
 # ------------------------------------------------------------------ kamera
 SINIR = {"kasa": (0, 1080, 0, 1920), "tezgah": (0, 1080, 0, 1920), "yan": (0, 1080, 0, 1920), "reyon": (-200, 1280, -200, 2120)}
@@ -116,15 +116,19 @@ ECE_KS = {
 }
 # yan: Mert (tezgâhta → kapıya koşar, kapatır, sırtını dayar), kadın (kapıdan fırlar)
 MERT_YAN = {
-    "onKol": True, "dogalKol": True,
-    "yer": sirala([[0, *YM_TZ], [ka0 + 0.15, *YM_TZ], [ka0 + 1.2, *YM_KAPI], [SON_T, *YM_KAPI]]),
-    "yuru": [[ka0 + 0.15, ka0 + 1.2]],
-    "elR": sirala([[0, YM_TZ[0] + 80, YM_TZ[1] - 330 * YM_TZ[2] / 1000], [ka0 + 1.1, YM_KAPI[0] + 60, YM_KAPI[1] - 560 * YM_KAPI[2] / 1000],
-                   [t_kapan, YM_KAPI[0] + 90, YM_KAPI[1] - 600 * YM_KAPI[2] / 1000], [SON_T, YM_KAPI[0] + 90, YM_KAPI[1] - 600 * YM_KAPI[2] / 1000]]),
-    "duygu": [[0, "notr"], [t_pat, "saskin"], [ka0, "kararli"], [t_darbe, "korkmus"]],
-    "bak": sirala([[0, -0.3, 0, -0.2], [t_pat, 0.6, -0.1, 0.45], [ka0, 0.6, -0.1, 0.45], [t_kapan + 0.3, -0.3, 0.05, -0.2], [t_darbe, 0.6, -0.15, 0.5]]),
-    "gozSok": [[0, 0], [t_pat, 0], [t_pat + 0.1, 0.6], [t_pat + 0.5, 0], [t_darbe, 0], [t_darbe + 0.1, 0.8]],
-    "tilt": [[0, 0], [t_darbe, -6]], "egil": [[0, 0], [t_kapan - 0.1, 0], [t_kapan, -5], [t_darbe, -5], [t_darbe + 0.12, 4], [t_darbe + 0.4, -3]],
+    "onKol": True, "dogalKol": True, "yer": [[0, *YM_TZ]],
+    "duygu": [[0, "notr"], [t_pat, "saskin"], [ka0, "korkmus"]],
+    "bak": sirala([[0, -0.3, 0, -0.2], [t_pat, 0.6, -0.1, 0.45], [ka0, -0.4, 0.05, -0.3], [ka0 + 1.2, 0.3, 0, 0.2], [SON_T, 0.3, 0, 0.2]]),
+    "gozSok": [[0, 0], [t_pat, 0], [t_pat + 0.1, 0.6], [t_pat + 0.5, 0]], "tilt": [[0, 0], [ka0, -4]], "egil": [[0, 0]],
+}
+# yan: Ece titreyerek, yavaş adımlarla tezgâhın önünden depoya doğru yürür, kadrajdan sağa çıkar
+ECE_YAN = {
+    "id": "ece_sivil", "onKol": True, "dogalKol": True,
+    "yer": sirala([[0, 233, 1604, 957], [ka0 + 0.1, 233, 1604, 957], [ka0 + 2.5, 1250, 1680, 1060]]),
+    "yuru": [[ka0 + 0.1, ka0 + 2.5]], "egil": [[0, -6]],
+    "duygu": [[0, "korkmus"]], "bak": [[0, 0.6, -0.1, 0.45]], "tilt": [[0, -3]],
+    "kolL": [[0, 8, 25]], "kolR": [[0, 8, 25]],
+    "nefes": [[0, 2.2]], "kulak": [[0, 0.3]],
 }
 KADIN_YAN = {
     "onKol": True, "dogalKol": True,
@@ -158,23 +162,20 @@ kes(d0, "reyon", 600, 1150, 1.0)                               # 4 REYON: kadın
 it(k1a - 0.1, "reyon", 560, 1350, 1.2)
 kes(k1a - 0.1, "reyon", 520, 1330, 1.9)                        # 5 kadın yerde, doğrulup kapıya bakar: "Peşimdeee!"
 it(ka0, "reyon", 530, 1320, 2.05)
-kes(ka0, "yan", 640, 1000, 1.35)                               # 6 YAN: Mert koşup kapıyı ÇARPAR, sırtını dayar
-it(t_kapan, "yan", 690, 1010, 1.55)
-it(da0, "yan", 700, 1010, 1.62)
-kes(da0, "yan", 700, 1000, 1.7)                                # 7 (doğaçlama) kapıya arkadan DEV DARBE: kapı sarsılır, Mert irkilir
-it(SON_T, "yan", 700, 990, 1.85)
+kes(ka0, "yan", 600, 1050, 1.25)                              # 6 YAN: Ece yavaşça, titreyerek depo kapısına yürür; Mert endişeyle bakar
+it(fp0, "yan", 680, 1040, 1.38)
+# 7 FPS (b8_fps "depo"): Ece'nin gözünden koridor → kapının girişi → başını sola çevirir: yaratık twerk atıyor
 
 ECE_KASA_ARA = [[e1a - 0.01, d0]]
 DEPO = [[0, 0], [t_pat - 0.02, 0], [t_pat + 0.12, 1.05], [t_pat + 0.25, 0.96], [t_kapan - 0.25, 0.96], [t_kapan, 0], [SON_T, 0]]
 SARS = [[0, 0], [t_pat - 0.01, 0], [t_pat, 0.7], [t_pat + 0.3, 0], [t_carp - 0.01, 0], [t_carp + 0.25, 0.5], [t_carp + 0.5, 0],
         [t_kapan - 0.01, 0], [t_kapan, 0.6], [t_kapan + 0.3, 0], [t_darbe - 0.01, 0], [t_darbe, 1.2], [t_darbe + 0.5, 0]]
 DUSEN = [[t_carp + 0.05, 860, 1640, 1, 40], [t_carp + 0.1, 930, 1700, 0, -70], [t_carp + 0.15, 1000, 1760, 1, 95], [t_carp + 0.22, 820, 1790, 0, 20]]
-ORTAK = {"saat": [[0, "00:03"]], "kapi": [[0, 0]], "flor": [[0, 0.85], [t_darbe, 0.85], [t_darbe + 0.05, 0.4], [t_darbe + 0.3, 0.8]],
-         "cizir": [[t_darbe, t_darbe + 0.6]], "lamba": [[0, 0]], "titre": {"tezgah": 1.3, "kasa": 1.2, "yan": 1.0, "reyon": 1.6},
+ORTAK = {"saat": [[0, "00:03"]], "kapi": [[0, 0]], "flor": [[0, 0.85]], "cizir": [], "lamba": [[0, 0]], "titre": {"tezgah": 1.3, "kasa": 1.2, "yan": 1.0, "reyon": 1.6},
          "blok": [[0, 560]], "gazete": [[0, 1300]], "gazeteTz": [[0, -700]], "kagitTz": [[0, 1]], "elAra": [],
          "kalemMasa": [[0, 640, 1]], "eceKasaAra": ECE_KASA_ARA, "odak": [[0, 0]], "depo": DEPO, "depoKol": [[0, 0]], "sars": SARS,
          "dusen": DUSEN, "anime": {}, "animeMerkez": {}}
-KAR = {"tezgah": {"ece": ECE_TZ}, "kasa": {"mert": MERT_KS, "ece": ECE_KS}, "yan": {"mert": MERT_YAN, "kadin": KADIN_YAN}, "reyon": {"kadin": KADIN_RY}}
+KAR = {"tezgah": {"ece": ECE_TZ}, "kasa": {"mert": MERT_KS, "ece": ECE_KS}, "yan": {"mert": MERT_YAN, "kadin": KADIN_YAN, "ece": ECE_YAN}, "reyon": {"kadin": KADIN_RY}}
 
 
 def blob(t0, t1):
@@ -195,14 +196,25 @@ def E(ad, isim, t, vol=0.5, **kw):
 
 SFX = {"PAT": [E("PAT", "b8y_kapi_hiz", t_pat - 0.03, 0.9), E("PAT", "b8y3_adim", t_pat, 0.6, sure=0.8)],
        "DUS": [E("DUS", "b8y3_adim", d0, 0.6, sure=0.65), E("DUS", "b8y4_raf_dusus", t_carp - 0.05, 0.85)],
-       "KAPAT": [E("KAPAT", "el_ayakkabi_gicirti", ka0 + 0.2, 0.4), E("KAPAT", "kapi_carpma", t_kapan - 0.05, 0.85)],
-       "DARBE": [E("DARBE", "b8y4_kapi_darbe", t_darbe - 0.05, 0.9), E("DARBE", "floresan_cit", t_darbe + 0.05, 0.4)]}
+       "YAKLAS": [E("YAKLAS", "b8y4_adim_yavas", ka0 + 0.1, 0.55), E("YAKLAS", "b8y4_ece_nefes", ka0 + 0.2, 0.6)]}
+FPS_SFX = [E("FPS", "b8y4_adim_yavas", fp0, 0.6, sure=3.2), E("FPS", "b8y4_ece_nefes", fp0 + 0.3, 0.55),
+           E("FPS", "muzik/b8y4_twerk", fp0 + 0.0, 0.08, sure=3.9), E("FPS", "muzik/b8y4_twerk", fp0 + 3.9, 0.75, kirp=3.9)]
+# FPS (Ece'nin gözünden, depo): [t, x, y, z, yaw°, pitch°, roll°] (yaw 0 = koridor boyunca, -90 = sola/depoya)
+FPS = {"t0": 0, "mekan": "depo",
+       "kam": [[0, 0.1, 1.55, -0.4, 0, 2, 0], [3.2, -0.25, 1.52, 3.3, -4, 3, -1], [3.5, -0.35, 1.5, 3.42, -8, 3, 0],
+               [4.4, -0.45, 1.5, 3.45, -70, 2, 1], [4.75, -0.48, 1.5, 3.45, -90, 1, 0], [7.6, -0.5, 1.5, 3.45, -91, 0, 0]],
+       "sallan": [[0, 0.4, 1.5], [3.2, 0.4, 1.5], [3.4, 0, 1.5]], "titreme": [[0, 0.5], [4.4, 0.6], [4.8, 0.1]],
+       "fov": [[0, 1], [4.75, 1], [7.6, 1.18]], "twerk": [[0, 0], [3.9, 0], [4.1, 1]], "radyo": [[0, 0], [3.9, 0], [4.0, 1]],
+       "kalp": [[0, 0.5], [3.9, 0.7], [4.4, 0]]}
 
 
 if __name__ == "__main__":
     ep_id = "724-08y-p4"
     man, beats = {}, []
     for i, (ad, r, d) in enumerate(SIRA):
+        if ad == "FPS":
+            beats.append({"type": "insert", "dur": round(DUR[ad], 4), "kind": "b8_fps", "text": [json.dumps(FPS, separators=(",", ":"))], "sfx": FPS_SFX})
+            continue
         ek = blob(T[ad], T[ad] + DUR[ad])
         if r and SES_VAR:
             who, metin = METIN[r]

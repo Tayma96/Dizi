@@ -364,3 +364,7 @@ Kamera yine Ece'yi gösterir. "Merak etme ben yanındayım" der yine dingin bir 
 Kaçan kadın "Peşimdeee" diye bağırır. Mert koşup deponun kapısını kapatır.
 Kamera açılarını yine iyi hesapla, bu parçada fps yok.
 - Not (Claude): "Merak etme ben yanındayım" = Mert (dingin ses). Kaçan kadın = P3'teki birinci şahıs kadın (sarışın, mavi göz, kırmızı mini elbise, beyaz spor ayakkabı). Doğaçlama izni (P3 izni) geçerli.
+### Parça 4 değişiklik (kullanıcı, 24 Kasım 2026, AYNEN): "Mert'in koşup kapıyı kapama sahnesi iptal."
+- "Merak etme ben yanındayım" diye ECE söylüyor.
+- Yeni: Ece yavaşça kapıya yaklaşır. Yaklaşınca fps kameraya geçer; kapı soldadır, arkası Ece'nin görüşünde değildir. Ece yavaş ve ürkek şekilde kapının girişine gelirken içeriye doğru kafasını döndürür ve o yaratık Ece'ye götünü dönmüş twerk atıyordur. Baya baya twerk atıyor.
+- Doğaçlama (Claude): depoda raftaki eski radyodan bas ağırlıklı trap ritmi; Ece başını çevirince ritim patlar.
