@@ -115,7 +115,8 @@ SYUZ = SY - 765 * SS / 1000
 C = [(330, 600), (330, 840), (330, 1080)]
 R = 78
 MN = (165, 1300)          # birleşme noktası (ortak nokta)
-N = (870, 840)            # gecenin buluşma noktası
+YASAM_SON = (962, 1288)    # ortak yaşam çizgisinin ucu (buluşma noktasından geçip devam eder)
+N = (858, 1293)           # gecenin buluşma noktası: ORTAK YAŞAM ÇİZGİSİNİN ÜZERİNDE (kullanıcı: "o ortak noktada bizim de yaşam çizgimizin olması lazım")
 CIZIM, UC, BAS, NOKTA = [], [], [], []
 
 
@@ -211,10 +212,10 @@ def cizim_kur():
     # 3) ortak yaşam çizgisi: ortak noktadan sağa ("Bu da ortak" boyunca çizilir)
     l0, l1 = W("R5", "bu") - 0.05, W("R5", "yaşam", "end")
     bekle(b0 - 0.1, l0 - 0.02, MN, 0.2)
-    cizgi(egri_pts(MN, (540, 1308), (905, 1290), n=30, tit=1.2), l0, l1, w=10)
+    cizgi(egri_pts(MN, (540, 1308), YASAM_SON, n=30, tit=1.2), l0, l1, w=10)
     # "çizgimiz": kalem çizginin üstünde geri kayar (vurgu, dokunmadan)
     tc = W("R5", "çizgimiz")
-    UC.extend([[round(tc, 3), 905, 1282, 0.15], [round(tc + 0.7, 3), 560, 1292, 0.15], [round(tc + 0.85, 3), 540, 1270, 0.6]])
+    UC.extend([[round(tc, 3), 950, 1280, 0.15], [round(tc + 0.7, 3), 560, 1292, 0.15], [round(tc + 0.85, 3), 540, 1270, 0.6]])
     # 4) paralel çizgiler: her dairenin yanından bağımsız birer çizgi (R6 "hikâyeler" / "korkular" / "yarattı")
     tp = [W("R6", "hikâyeler"), W("R6", "korkular"), W("R6", "yarattı")]
     onceki = (540, 1270)
@@ -232,7 +233,7 @@ def cizim_kur():
     bekle(tolu + 0.3, W("R7", "tüm") - 0.25, (700, C[2][1] - 40), 0.7)
     # 5) gece: paralel çizgiler tek noktada buluşur ("tüm bu" / "paralel" / "çizgiler")
     tq = [W("R7", "tüm"), W("R7", "paralel"), W("R7", "çizgiler")]
-    yak = [((690, 598), (800, 612)), ((690, 841), (780, 841)), ((690, 1083), (800, 1068))]
+    yak = [((690, 598), (848, 690)), ((690, 841), (800, 1000)), ((690, 1083), (742, 1248))]
     sira = [2, 0, 1]
     onceki = (700, C[2][1] - 40)
     for j, i in enumerate(sira):
@@ -410,8 +411,8 @@ it(tE1, "tezgah", EX + 5, EYUZ + 330 / 2.7, 2.7)
 KESIM_ = W("R7", "buluşuyor") + 1.6
 kes(tE1, "kagit", 555, 1140, 1.2)                            # "bir ortak noktada… BULUŞUYOR": daire + bastırma
 it(KESIM_, "kagit", 556, 1132, 1.23)
-it(KESIM_ + 1.3, "kagit", 548, 1150, 1.04)                    # KESIM: el kalkar, geri çekilir → bütün şema tek karede
-it(T["SON"] + DUR["SON"], "kagit", 548, 1150, 1.03)
+it(KESIM_ + 1.3, "kagit", 560, 1146, 1.1)                     # KESIM: el kalkar, geri çekilir → bütün şema tek karede (kesişim net)
+it(T["SON"] + DUR["SON"], "kagit", 560, 1146, 1.09)
 kes(y0, "tezgah", EX + 5, EYUZ + 330 / 3.0, 3.0)              # Ece çok yakın: yutkunur
 it(SON_T, "tezgah", EX + 5, EYUZ + 330 / 3.2, 3.2)
 

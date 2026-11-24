@@ -29,9 +29,9 @@ Tarih: 24 Kasım 2026. Metin: `bolumler.md` "Bölüm 8, Parça 1" (AYNEN; yeni r
 | 38,7-40,2 | tezgah | yakın | Ece anlamaya çalışır: gözleri kâğıt ile Sabri arasında gider gelir, başı yana eğilir. |
 | 40,2-42,8 | kâğıt | ek | "paralel bir çizgi oluşturdu": kalem üç çizgiye sırayla dokunur. |
 | 42,8-44,4 | kasa | çok yakın, itme | "ancak geceleri": floresan kısılır ve titrer, yüz alttan aydınlanır. |
-| 44,4-46,15 | kâğıt | ek, yavaş itme | Paralel çizgiler tek noktaya kıvrılır ("tüm bu / paralel / çizgiler"). Bütün şema kadrajda. |
+| 44,4-46,15 | kâğıt | ek, yavaş itme | Paralel çizgiler yelpaze gibi farklı açılardan aşağı kıvrılıp ORTAK YAŞAM ÇİZGİSİNİN ÜZERİNDEKİ tek noktada buluşur ("tüm bu / paralel / çizgiler"). Bütün şema kadrajda. |
 | 46,15-46,96 | tezgah | yakın | Ece: ürperti başlar (gözler açılır, hafif solgun), kâğıda bakar. |
-| 46,96-51,6 | kâğıt | ek, yavaş itme → geri çekilme | Kalem noktanın üstünde iki kez dokunur ("bir ortak noktada"), "BULUŞUYOR"da noktaya daire çizer, ortasına bastırır (mürekkep lekesi). 50,16'da (KESIM) el sağ üstten kalkar, müzik kesilir, floresan cızırdar; kamera 1,3 sn'de geri çekilir: TÜM şema (3 daire, yaylar, yaşam çizgisi, paralel/yakınsayan çizgiler, son daire) tek karede, 51,6'ya kadar durur. |
+| 46,96-51,6 | kâğıt | ek, yavaş itme → geri çekilme | Kalem noktanın üstünde iki kez dokunur ("bir ortak noktada"), "BULUŞUYOR"da yaşam çizgisiyle kesişen bu noktaya daire çizer, ortasına bastırır (mürekkep lekesi); yaşam çizgisi daireden geçip sağa devam eder. 50,16'da (KESIM) el sağ üstten kalkar, müzik kesilir, floresan cızırdar; kamera 1,3 sn'de geri çekilir: TÜM şema (3 daire, yaylar, yaşam çizgisi, paralel/yakınsayan çizgiler, son daire) tek karede, 51,6'ya kadar durur. |
 | 51,6-53,6 | tezgah | çok yakın | Ece yutkunur, solgun, gözleri kâğıtta; ışık titrer. Parça sonu. |
 
 Ölçek sırası: genel → orta-yakın → genel → orta → orta → yakın → yakın → orta → ek → yakın → ek → yakın → ek → yakın → ek → çok yakın → ek → yakın → ek (geri çekilen genel şema) → çok yakın. Aynı ölçek arka arkaya üç kez kullanılmıyor (kâğıt ekleri arasına hep bir yüz giriyor). Kamera dili genel → orta → yakın; son cümlede iki yavaş itme var.
@@ -93,5 +93,5 @@ Tarih: 24 Kasım 2026. Metin: `bolumler.md` "Bölüm 8, Parça 1" (AYNEN; yeni r
 - Ece dışarıda siluet olduğu için önden çizim siyaha boyanmış. Arkadan çizilmiş bir rig yok; at kuyruğu yanda görünüyor.
 - Sabri aşağı (kâğıda, bulmacaya) bakarken yaşlı göz kapağı yüzünden gözleri kapalı gibi okunuyor. Bu anlar kısa.
 - Kâğıttaki el stilize: avuç, kıvrık parmaklar ve kalem. Yakın itmede elle kalem okunuyor ama gerçekçi değil.
-- Sonda yakınsayan çizgiler bir "ok başı / mercek" biçimi çiziyor. Kullanıcının tarifiyle örtüşüyor (paralel çizgiler son noktada buluşur, üstüne yuvarlak), ama yorumu kullanıcıya göstermek gerek.
+- Kullanıcı geri bildirimi (24 Kasım): "o ortak noktada bizim de yaşam çizgimizin olması lazım" → buluşma noktası (858, 1293) ortak yaşam çizgisinin üzerine alındı; yaşam çizgisi 962'ye uzatıldı (noktadan geçip devam eder); paraleller yaşam çizgisine yelpaze gibi (dik, eğik, yatığa yakın) iner. Anlam: geceleri bütün hikâye/korku çizgileri bizim yaşam çizgimizle kesişir. Geri çekilen son plan (z 1,1) bu kesişimi tek karede gösterir. Zamanlama değişmedi.
 - Genel yönetmen denetimi (24 Kasım): sol kenarda kesik daireler düzeltildi; 46,15'e 0,8 sn Ece ürpertisi, KESIM sonrasına 1,44 sn geri çekilen tam şema planı eklendi (SON 1,7 → 2,2 sn; parça 53,1 → 53,6 sn). Müzik `from` ve KESIM değişmedi.
