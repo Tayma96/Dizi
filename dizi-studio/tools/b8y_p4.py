@@ -18,7 +18,7 @@ TAKE = {"M1": "M1a_01", "E1": "E1a_01", "K1": "K1a_01"}
 if os.path.exists(f"{VD}/secim.json"):
     TAKE.update(json.load(open(f"{VD}/secim.json")))
 TAHMIN = {"M1": 2.4, "E1": 1.5, "K1": 1.8}
-METIN = {"M1": ("mert724", "Merak etme ben yanındayım"), "E1": ("ece_sivil", "Aaaaa!"), "K1": ("kacan724", "Peşimdeee!")}
+METIN = {"M1": ("ece_sivil", "Merak etme ben yanındayım"), "E1": ("ece_sivil", "Aaaaa!"), "K1": ("kacan724", "Peşimdeee!")}
 SES_VAR = all(TAKE[r] in M for r in TAKE)
 
 SIRA = [("GIRIS", None, 0.35), ("M1", "M1", 0.0), ("PAT", None, 0.75), ("E1", "E1", 0.05), ("DUS", None, 1.25),
@@ -89,11 +89,12 @@ A_MERT = (0.55, -0.12, 0.32)
 ECE_TZ = {
     "id": "ece_sivil", "onKol": True, "dogalKol": True, "yer": [[0, EX, P1.EY, P1.ES]],
     "elL": [[0, EX - 64, 1194]], "elR": [[0, EX + 80, 1194]],
-    "duygu": [[0, "korkmus"], [m1a + 0.5, "uzgun"]],
+    # Ece dingin, hafif gülümseyerek Mert'e güven verir (kendisi korkarken; ironi)
+    "duygu": [[0, "korkmus"], [m1a - 0.1, "mutlu"]],
     "bak": sirala([[0, *A_MERT], [SON_T, *A_MERT]]),
     "tilt": [[0, -3], [m1a + 0.6, 4], [m1b, 6]], "egil": [[0, 0]],
     "nefes": [[0, 2.2], [m1a + 0.8, 1.4]], "goz": [[0, 0], [m1a + 1.0, 0], [m1a + 1.08, 0.9], [m1a + 1.16, 0]],
-    "parilti": [[0, 0, 0], [m1a + 0.9, 0, 0], [m1b - 0.2, 0.6, 0.6]], "kulak": [[0, 0.3]],
+    "parilti": [[0, 0, 0], [m1a, 0, 0], [m1a + 0.4, 0.6, 0.6]], "kulak": [[0, 0.3]], "konus": [konus("M1")],
 }
 # kasa: Ece önde (çığlık, Mert'e yapışır), Mert tezgâhın arkasında
 MERT_KS = {
@@ -101,7 +102,6 @@ MERT_KS = {
     "duygu": [[0, "notr"], [e1a, "saskin"], [e1a + 0.5, "kararli"]],
     "bak": sirala([[0, -0.35, 0.1, -0.25], [e1a, 0.6, -0.1, 0.45], [e1a + 0.45, -0.35, 0.25, -0.25], [e1b, 0.65, -0.1, 0.5]]),
     "tilt": [[0, -2], [e1a, 4], [e1b, -3]], "egil": [[0, 0]],
-    "konus": [konus("M1")],
 }
 ECE_KS = {
     "id": "ece_sivil", "onKol": True, "dogalKol": True,

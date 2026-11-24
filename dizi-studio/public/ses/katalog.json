@@ -510,6 +510,13 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Distant monstrous creature in a narrow alley: deep wet guttural growl mixed with fast bone clicking, echoing, unnatural, horror"
  },
+ "efekt/b8y4_raf_dusus": {
+  "file": "ses/efekt/b8y4_raf_dusus.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A woman crashes into a supermarket shelf and falls hard on a tiled floor, packaged goods and cans tumbling down and rolling, close"
+ },
  "efekt/b8y_alarm": {
   "file": "ses/efekt/b8y_alarm.mp3",
   "category": "efekt",

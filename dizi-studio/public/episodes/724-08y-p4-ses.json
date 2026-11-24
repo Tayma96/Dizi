@@ -7,7 +7,7 @@
  "endCard": false,
  "scenes": [
   {
-   "id": "M1a",
+   "id": "N1a",
    "set": "market_kasa",
    "time": "gece",
    "title": "ses",
@@ -15,17 +15,17 @@
    "beats": [
     {
      "type": "line",
-     "who": "mert724",
+     "who": "ece_sivil",
      "text": "Merak etme ben yanındayım",
      "okunus": "Merak etme... ben yanındayım.",
      "emotion": "notr",
-     "stab": 0.6,
-     "tags": "[calm, soft, reassuring, close]"
+     "stab": 0.55,
+     "tags": "[calm, serene, softly reassuring, a little flirty]"
     }
    ]
   },
   {
-   "id": "M1b",
+   "id": "N1b",
    "set": "market_kasa",
    "time": "gece",
    "title": "ses",
@@ -33,12 +33,12 @@
    "beats": [
     {
      "type": "line",
-     "who": "mert724",
+     "who": "ece_sivil",
      "text": "Merak etme ben yanındayım",
      "okunus": "Merak etme, ben yanındayım.",
      "emotion": "notr",
-     "stab": 0.6,
-     "tags": "[gentle, warm, quietly confident]"
+     "stab": 0.55,
+     "tags": "[gentle, tender, confident smile in voice]"
     }
    ]
   },

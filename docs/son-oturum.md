@@ -58,3 +58,4 @@
 - 3p1b v3: yaratık yeniden (geri kırık dizler, kaburga/omurga, fazladan eklemli kollar + sürünen pençeler, göz kümesi, açılan dikey yarık ağız + çığlık `b8y3_ciglik`). Doğaçlama izni CLAUDE.md'ye eklendi. Kalan kredi 12.584.
 - P4 (Parça 4): üretici `tools/b8y_p4.py`, yeni görünüm `reyon` (Inserts18), kadın `kacan724` (ses: Aura, mini elbise `mini`). Ses ONAY BEKLİYOR (kuru çalıştırma tahmini 303 kredi + 2 efekt ~75). P3a eller: ceket kolu → çıplak kol (kırmızı mini elbise sürekliliği).
 - **Kullanıcı (24 Kasım):** P4'te "Mert koşup kapıyı kapatır" sahnesi İPTAL; yerine yeni fikir gelecek. Üretilen sesler: M1a/M1b, E1a/E1b (K1 ve b8y4 efektleri üretilmedi).
+- P4 düzeltme (kullanıcı): "Merak etme ben yanındayım" = ECE (dingin). Seçim: M1=N1a (Ece), E1=E1a, K1=K1b (secim.json). b8y4_raf_dusus üretildi. Kalan kredi ~12.480. KAPAT/DARBE vuruşları hâlâ üreticide: kullanıcının yeni fikriyle değişecek. P3a çıplak kollarla yeniden render edildi.
