@@ -16,6 +16,7 @@ import { Insert13, INSERT13_KINDS, type Insert13Kind } from "./Inserts13";
 import { Insert14, INSERT14_KINDS, type Insert14Kind } from "./Inserts14";
 import { Insert15, INSERT15_KINDS, type Insert15Kind } from "./Inserts15";
 import { Insert16, INSERT16_KINDS, type Insert16Kind } from "./Inserts16";
+import { Insert17, INSERT17_KINDS, type Insert17Kind } from "./Inserts17";
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const O = "#1b1412";
@@ -587,8 +588,8 @@ const UcakCarpma: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-export type Insert3Kind = Insert16Kind | Insert15Kind | Insert14Kind | Insert13Kind | Insert12Kind | Insert11Kind | Insert10Kind | Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | Insert9Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
-export const INSERT3_KINDS: Insert3Kind[] = [...INSERT16_KINDS, ...INSERT15_KINDS, ...INSERT14_KINDS, ...INSERT13_KINDS, ...INSERT12_KINDS, ...INSERT11_KINDS, ...INSERT10_KINDS, ...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, ...INSERT9_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
+export type Insert3Kind = Insert17Kind | Insert16Kind | Insert15Kind | Insert14Kind | Insert13Kind | Insert12Kind | Insert11Kind | Insert10Kind | Insert4Kind | Insert5Kind | Insert6Kind | Insert7Kind | Insert8Kind | Insert9Kind | "kahve_yudum" | "kahve_titresim" | "notlar" | "ucak_dis" | "kemer_isareti" | "pencere_motor" | "kol_dayama" | "emir_kumda" | "sopa_murettebat" | "sopa_emir" | "emir_goz" | "emir_parmak" | "tasima" | "sargi_yakin" | "pov_acilis" | "pov_kadin" | "ucak_carpma";
+export const INSERT3_KINDS: Insert3Kind[] = [...INSERT17_KINDS, ...INSERT16_KINDS, ...INSERT15_KINDS, ...INSERT14_KINDS, ...INSERT13_KINDS, ...INSERT12_KINDS, ...INSERT11_KINDS, ...INSERT10_KINDS, ...INSERT4_KINDS, ...INSERT5_KINDS, ...INSERT6_KINDS, ...INSERT7_KINDS, ...INSERT8_KINDS, ...INSERT9_KINDS, "kahve_yudum", "kahve_titresim", "notlar", "ucak_dis", "kemer_isareti", "pencere_motor", "kol_dayama", "emir_kumda", "sopa_murettebat", "sopa_emir", "emir_goz", "emir_parmak", "tasima", "sargi_yakin", "pov_acilis", "pov_kadin", "ucak_carpma"];
 
 export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[] }> = ({ kind, dur, text }) => {
   switch (kind) {
@@ -617,6 +618,7 @@ export const Insert3: React.FC<{ kind: Insert3Kind; dur: number; text?: string[]
     case "b6_kapi": case "b6_zemin": case "b6_dis": return <Insert13 kind={kind} dur={dur} text={text} />;
     case "ev_anahtar": case "ev_zincir": return <Insert14 kind={kind} dur={dur} text={text} />;
     case "cep_deste": case "para_say": case "kulak_cek": case "zeytin_al": return <Insert15 kind={kind} dur={dur} text={text} />;
+    case "b7_ez": case "b7_bant": return <Insert17 kind={kind} dur={dur} text={text} />;
     case "b7_banyo": return <Insert16 kind={kind} dur={dur} text={text} />;
     case "p2_kasa": case "p2_kapi": case "p2_kepenk": case "p2_koridor": case "p2_fisilti": case "p2_kulaklik": return <Insert12 kind={kind} dur={dur} text={text} />;
     case "omuz_el": case "donusum_yuz": case "donusum_govde": case "bocek_dev": case "bocek_yakin": case "ece_yakin": case "ece_sirt": case "sabri_omuz": case "bocek_golge": case "bocek_kukreme": return <Insert11 kind={kind} dur={dur} text={text} />;
