@@ -313,3 +313,4 @@ Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ apta
 - Bölüm 8 = 3-4 parça. Bu parça "Benim önlüğüm nerde abi" ile biter (bölüm sonu değil; parça sonuna ek kanca yok).
 - Rüzgâr ve cırcır böceği KONMAZ; âşık bakış anı anime tarzı (parıltı, ışık hüzmesi, saç/arka plan efekti vb.).
 - İlk 3-4 sn kanca iyi bağlanmalı. Kullanıcı: "En önemli şey senaryo; senaryo izleyiciye merak hissettirir, sevdirirse izleyici viral yapıyor."
+- **Kanca kararı (kullanıcı, 24 Kasım 2026): A.** Ece kasaya avuçlarını "bam" vurur + "ölüme gönderdin beni abi"; Sabri konuşurken arkada depo kapısının kolu yavaşça iner (izleyici görür, Ece görmez); kapı Sabri'nin "geçer" kelimesinde açılır → "aaaa yine miii".

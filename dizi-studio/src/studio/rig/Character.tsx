@@ -485,7 +485,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   }
   const yk = pose.yutkun !== undefined && pose.yutkun > 0 && pose.yutkun < 1 ? Math.sin(Math.PI * pose.yutkun) : 0;
   const amp = emo === "dehset" ? 1.45 : emo === "ofkeli" || emo === "korkmus" || emo === "sok" ? 1.25 : emo === "uzgun" || emo === "yorgun" ? 0.8 : 1;
-  const browColor = look.age === "old" && !["hijab"].includes(look.hair.style) ? "#7d746c" : look.hair.style === "hijab" ? "#4a3428" : look.hair.color;
+  const browColor = look.yakisikli ? look.hair.shade : look.age === "old" && !["hijab"].includes(look.hair.style) ? "#7d746c" : look.hair.style === "hijab" ? "#4a3428" : look.hair.color;
 
   // --- arms ---
   const g = GESTURES[pose.gesture ?? "rest"] ?? GESTURES.rest;
@@ -956,6 +956,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
   const old = look.age === "old";
   const facePath = kilo > 0
     ? "M 106 150 Q 98 250 122 294 Q 138 324 166 338 Q 200 354 234 338 Q 262 324 278 294 Q 302 250 294 150 Q 286 86 200 86 Q 114 86 106 150 Z"
+    : look.yakisikli
+    ? "M 114 150 Q 112 236 126 266 Q 146 304 184 314 Q 200 318 216 314 Q 254 304 274 266 Q 288 236 286 150 Q 280 90 200 90 Q 120 90 114 150 Z"
     : male
     ? "M 114 150 Q 112 250 140 286 Q 170 312 200 312 Q 230 312 260 286 Q 288 250 286 150 Q 280 90 200 90 Q 120 90 114 150 Z"
     : "M 116 150 Q 112 246 146 284 Q 174 310 200 310 Q 226 310 254 284 Q 288 246 284 150 Q 278 92 200 92 Q 122 92 116 150 Z";
@@ -1012,8 +1014,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
       <MakyajAlt look={look} dx={dx} />
       <Eye cx={160 + dx} cy={198} look={look} lookX={lookX + (0.95 - lookX) * tk} lookY={lookY + 0.25 * tk} open={eyeOpenBase * (1 - 0.3 * tk)} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} />
       <Eye cx={240 + dx} cy={198} look={look} lookX={lookX + (-0.95 - lookX) * tk} lookY={lookY - 0.1 * tk} open={eyeOpenBase * (1 + 0.22 * tk)} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} />
-      <Brow cx={160 + dx} cy={160} inner={face.browInner + (-12 - face.browInner) * tk} outer={face.browOuter + (-4 - face.browOuter) * tk} lift={face.browLift + (8 - face.browLift) * tk} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeL} />
-      <Brow cx={240 + dx} cy={160} inner={face.browInner + (14 - face.browInner) * tk} outer={face.browOuter + (12 - face.browOuter) * tk} lift={face.browLift + (-16 - face.browLift) * tk} color={browColor} thick={male ? 8 : 6.5} squeeze={squeezeR} flip />
+      <Brow cx={160 + dx} cy={160} inner={face.browInner + (-12 - face.browInner) * tk} outer={face.browOuter + (-4 - face.browOuter) * tk} lift={face.browLift + (8 - face.browLift) * tk} color={browColor} thick={look.yakisikli ? 9.5 : male ? 8 : 6.5} squeeze={squeezeL} />
+      <Brow cx={240 + dx} cy={160} inner={face.browInner + (14 - face.browInner) * tk} outer={face.browOuter + (12 - face.browOuter) * tk} lift={face.browLift + (-16 - face.browLift) * tk} color={browColor} thick={look.yakisikli ? 9.5 : male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} ${214 - 6 * tk} Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1) - 8 * tk} ${236 - 8 * tk} ${204 + dx * 1.3 + 6 * tk} ${244 - 9 * tk}`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
       {tk > 0.05 ? (
         // taklit: burun kıvrık (sırt kırışıkları, kalkık burun kanatları)

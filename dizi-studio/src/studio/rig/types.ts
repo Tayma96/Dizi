@@ -192,6 +192,8 @@ export type Look = {
   agizOlcek?: number;
   /** imza rozet: göğüste minik altıgen (petek) rozet; içinde karakterin simgesi */
   rozet?: { simge: "cips" | "kalp" | "simsek" | "damla" | "ay" | "dambil"; renk: string };
+  /** yakışıklı yüz (7/24 Mert): göz altı çizgisi yok, keskin çene hattı, kalın ve koyu kaş */
+  yakisikli?: boolean;
   /** boy çarpanı (silüet ayrımı için; 1 = normal) */
   boy?: number;
   /** omuz/gövde genişliği çarpanı (kabarık mont, geniş omuz) */

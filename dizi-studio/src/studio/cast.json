@@ -1690,6 +1690,31 @@
     "korkunc": true
   },
   {
+    "id": "mert724",
+    "name": "Mert",
+    "role": "7/24: yeni gece vardiyası çalışanı, çok yakışıklı, cool",
+    "voice": "erkek",
+    "gender": "m",
+    "age": "adult",
+    "build": "normal",
+    "skin": "#f0c8a4",
+    "skinShade": "#d8ac84",
+    "iris": "#3f8fd8",
+    "hair": {
+      "style": "slick",
+      "color": "#7a5434",
+      "shade": "#5a3a22"
+    },
+    "outfit": {
+      "type": "tshirt",
+      "top": "#1f2a3c",
+      "topShade": "#161e2c",
+      "bottom": "#3a4a66",
+      "shoes": "#e8e8e8"
+    },
+    "blush": false
+  },
+  {
     "id": "kd_gobek",
     "name": "Göbekli Adam",
     "role": "Kırmızı Düğme: 1 yıldır evden çıkmayan göbekli adam, 38 (geçici ad)",

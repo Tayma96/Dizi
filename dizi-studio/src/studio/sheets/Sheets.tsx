@@ -8,9 +8,10 @@ import { SANS } from "../../dizi/fonts";
 
 const label = { fontFamily: SANS, fontWeight: 900, fontSize: 26, color: "#2b1d1a", textAlign: "center" as const };
 
-export const CastSheet = () => (
+// ids: yalnız bu oyuncular; ekstra: kadroda olmayan deneme görünümleri (ör. saç seçenekleri)
+export const CastSheet = ({ ids, ekstra = [] }: { ids?: string[]; ekstra?: typeof CAST }) => (
   <AbsoluteFill style={{ backgroundColor: "#efe3cf", flexDirection: "row", flexWrap: "wrap", padding: 30, gap: 0 }}>
-    {CAST.map((c, i) => (
+    {[...(ids ? CAST.filter((c) => ids.includes(c.id)) : CAST), ...ekstra].map((c, i) => (
       <div key={c.id} style={{ width: 380, height: 760, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end" }}>
         <Character look={c} size={640} pose={{ seed: i * 3 + 1, emotion: "notr" }} />
         <div style={label}>{c.name}</div>

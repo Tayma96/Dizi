@@ -20,9 +20,14 @@
 - Diğer oturumun dalı (`claude/affectionate-allen-dxvfpb`) bu dala birleştirildi; birleşik 7. bölüm `bolumler/724-07.mp4`.
 - Metin + kararlar: `docs/diziler/724/bolumler.md` sonu. Devir: `docs/diziler/724/b8y-p1-devir.md`. Gemini raporları: `docs/diziler/724/raporlar/b8y-p1-*.md`. Dosya öneki `724-08y`.
 - Kararlar: Bölüm 8 = 3-4 parça; P1 "Benim önlüğüm nerde abi" ile biter; rüzgâr/cırcır YOK, âşık bakışı anime tarzı; doğaçlama izni yok (yeni replik eklenmez).
-- **Bekleyen kullanıcı kararı: kanca A/B/C.** Önerim A: Ece kasaya avuçlarını "bam" vurur + "ölüme gönderdin beni abi"; Sabri konuşurken arkada depo kapısının kolu yavaşça iner (izleyici görür, Ece görmez); kapı Sabri'nin "geçer" kelimesinde açılır → "aaaa yine miii". B: ileriden 1,5 sn anime anı. C: hızlı yaklaşma.
+- **Kanca kararı verildi: A** (kullanıcı, 24 Kasım). Eski not: Önerim A: Ece kasaya avuçlarını "bam" vurur + "ölüme gönderdin beni abi"; Sabri konuşurken arkada depo kapısının kolu yavaşça iner (izleyici görür, Ece görmez); kapı Sabri'nin "geçer" kelimesinde açılır → "aaaa yine miii". B: ileriden 1,5 sn anime anı. C: hızlı yaklaşma.
 - Sonra: Mert cast girdisi (`cast.json`, adam724 biçimi; genç, mavi göz, kumral-kahve saç), ElevenLabs ses önizlemeleri (ücretsiz, kullanıcı seçer; parça kredi tavanı 1.000, tahmin ~409), üretici `tools/b8y_p1.py` (`tools/b8p2.py` örnek), render, kontak sayfasıyla denetim.
 - Sahnenin asıl esprisi (Gemini kaçırdı): işi bağıra çağıra bırakan Ece, Mert'i görünce önlüğünü istiyor.
 
 ## 4. Kırmızı Düğme: beklemede
 - Durum `docs/diziler/dugme/bolumler.md` sonunda (kanca v6 ve Parça 2 onaylı; 3D denemesi 18/300 karede durduruldu). Kullanıcı istemedikçe devam edilmez.
+
+## 5. 24 Kasım gece, /clear sonrası
+- Kanca A seçildi. `cast.json`'a `mert724` eklendi (geçici: slick saç). Rig'e opt-in `yakisikli` bayrağı eklendi (göz altı çizgisi yok, keskin çene, koyu/kalın kaş). Kadro sayfası artık `ids`/`ekstra` props alıyor.
+- Mert görünüm seçenekleri: `docs/diziler/724/raporlar/b8y-mert-secenekler.png` (1 slick, 2 slick+kirli sakal, 3 shortMale+kirli sakal, 4 spiky). Hepsi boy 1.07, omuz 1.15. Kullanıcı seçimi bekleniyor.
+- Still render: `--browser-executable=/opt/pw-browsers/chromium` (remotion.media erişilemiyor).
