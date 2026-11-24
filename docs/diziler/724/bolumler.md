@@ -327,3 +327,4 @@ Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ apta
 6. Sabri (kullanıcının telkini): "Sakin ol, henüz gece olmadı."
 7. Sabri: "Aferin Mert eline sağlık" "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun."
 8. Ece (gözünü ayırmadan): "Benim önlüğüm nerde abi" (parça sonu).
+- **Kullanıcı onayı (24 Kasım 2026):** doğaçlama akışı onaylandı. Değişiklik: "Abi... bu insan mı?" şüpheli fısıltı değil, **âşık tonda** söylenir (rüya gibi, iç çekerek; gözü Mert'te). Şüphe yalnız yüzde/sözsüz şakada kalır, ses âşık.
