@@ -320,12 +320,12 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
   // hırka cebinde deste (sağ cep, rig (262,640)): üst yarısı cepten görünür
   const cepte: React.ReactNode[] = [];
   if (basamak<number>(q.cepDeste, tg, 0) > 0.5) {
-    const [cx2, cy2] = rot([left + 258 * S, top - parmak + 640 * S], [piv[0], piv[1] - parmak], egil);
-    cepte.push(<g key="cep" transform={`translate(${cx2.toFixed(1)} ${cy2.toFixed(1)}) rotate(${(-12 + egil).toFixed(1)}) scale(${(S * 0.95).toFixed(3)})`}>
-      <rect x={-30} y={-58} width={60} height={60} rx={3} fill="#7ab88a" stroke={O} strokeWidth={3} />
-      <rect x={-8} y={-62} width={16} height={64} fill="#e8d8b0" stroke={O} strokeWidth={2} />
-      <path d="M -46 -6 L 46 -6 L 42 52 L -42 52 Z" fill={look.outfit.top} stroke={O} strokeWidth={4} />
-      <path d="M -46 -6 L 46 -6" stroke={look.outfit.topShade} strokeWidth={7} />
+    const [cx2, cy2] = rot([left + 240 * S, top - parmak + 610 * S], [piv[0], piv[1] - parmak], egil);
+    cepte.push(<g key="cep" transform={`translate(${cx2.toFixed(1)} ${cy2.toFixed(1)}) rotate(${(-8 + egil).toFixed(1)}) scale(${(S * 0.8).toFixed(3)})`}>
+      <rect x={-26} y={-44} width={52} height={50} rx={3} fill="#7ab88a" stroke={O} strokeWidth={3} />
+      <rect x={-7} y={-47} width={14} height={52} fill="#e8d8b0" stroke={O} strokeWidth={2} />
+      <path d="M -40 -4 L 40 -4 L 36 60 L -36 60 Z" fill={look.outfit.topShade} stroke={O} strokeWidth={4} />
+      <path d="M -34 4 L 34 4 M -30 54 L 30 54" stroke={look.outfit.top} strokeWidth={3} strokeDasharray="6 4" />
     </g>);
   }
   // başında/omzunda eşya (ör. fırlatılan pijama annenin başına düşer): kafada [[t, eşya|null]]
@@ -498,10 +498,9 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
             <path d="M 768 1702 Q 810 1650 860 1676 Q 910 1640 956 1702 Z" fill="#e8a0b8" stroke="#a86078" strokeWidth={4} />
             <path d="M 800 1702 Q 830 1664 880 1690" stroke="#7ab0d8" strokeWidth={26} strokeLinecap="round" fill="none" />
           </g> : null}
-          {antre ? <Ev724FG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={p.kanatOnde ?? true} gece={gece} /> : salon ? <Ev724SalonFG yukari={p.yukari ?? 270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} gece={gece} />}
+          {antre ? <Ev724FG frame={f} doorOpen={kf1(p.kapi, tg, 0)} zincir={!!p.zincir} kanatOnde={p.kanatOnde ?? true} gece={gece} /> : salon ? <Ev724SalonFG yukari={p.yukari ?? 270} frame={f} tabak2={tg >= (p.tabak2 ?? 0)} tabak1={tg >= (p.tabak1 ?? 0)} zeytin={tg >= (p.zeytinAl ?? 99) ? 5 : 6} /> : <Banyo724FG view={ayna ? "ayna" : "kapi"} frame={f} doorOpen={0} gece={gece} />}
           {salon ? <>{yerde}{ucanlar}</> : null}
           {/* antre: kapalı kapının altından sızan sahanlık ışığı (kapiAlti 0..1) */}
-          {antre && alt > 0.01 ? <g><rect x={384} y={1594} width={332} height={9} fill="#ffe2a0" opacity={alt} /><ellipse cx={550} cy={1612} rx={210} ry={22} fill="#ffd890" opacity={0.35 * alt} filter="url(#b7_gbl)" /></g> : null}
           {/* musluk suyu (ayna görünümü, p.su [[t0,t1]]): bataryadan lavaboya akan su + sıçrama */}
           {ayna && aralik(p.su, tg) ? (
             <g>
@@ -576,6 +575,14 @@ const B7Banyo: React.FC<{ text?: string[] }> = ({ text }) => {
           })}
         </svg>
         )}
+        {/* antre: kapalı kapının altından sızan sahanlık ışığı (kapiAlti 0..1) — ışık kaynağı olduğu için ışık katmanlarının ÜSTÜNDE */}
+        {antre && alt > 0.01 ? (
+          <svg viewBox="-600 -200 2280 2320" width={2280} height={2320} style={{ position: "absolute", left: -600, top: -200, overflow: "visible", pointerEvents: "none" }}>
+            <defs><filter id="b7_abl"><feGaussianBlur stdDeviation="16" /></filter></defs>
+            <ellipse cx={550} cy={1622} rx={300} ry={40} fill="#ffd890" opacity={0.5 * alt} filter="url(#b7_abl)" />
+            <rect x={384} y={1590} width={332} height={12} fill="#fff4d0" opacity={alt} />
+          </svg>
+        ) : null}
       </AbsoluteFill>
       {/* renk: gece = sıcak tepe / soğuk taban (tungsten + gece), değilse sıcak; vinyet */}
       {gece ? (

@@ -1,5 +1,26 @@
 {
- "a_02": {
+ "s_04": {
+  "key": "turev",
+  "file": "voice/724-07-yeni/sec/Y3_kapi_kisa.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "İyiyim!",
+  "duration": 1.332,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "İyiyim!",
+    "start": 0.0,
+    "end": 0.66
+   }
+  ],
+  "mouth": [],
+  "kaynak": "turev: Y3b_01 2,22-3,24 (soluksuz) + kapi_arkasi_hafif",
+  "model": "eleven_v4",
+  "kredi": 0
+ },
+ "s_06": {
   "key": "fb5c9834c057",
   "file": "voice/724-07-p3/cekim/A1a_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
@@ -88,7 +109,7 @@
   "hesap": "proxy",
   "kredi": 27
  },
- "a_05": {
+ "s_08": {
   "key": "36985fcb508a",
   "file": "voice/724-07-p3/cekim/A2a_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
@@ -144,7 +165,7 @@
   "hesap": "proxy",
   "kredi": 22
  },
- "a_09": {
+ "s_12": {
   "key": "da67f874fe2d",
   "file": "voice/724-07-p3/cekim/E1a_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -265,5 +286,26 @@
   "model": "eleven_v4",
   "hesap": "proxy",
   "kredi": 28
+ },
+ "a_03": {
+  "key": "turev",
+  "file": "voice/724-07-yeni/sec/Y4_kapi.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "Hassiktir…",
+  "duration": 2.534,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Hassiktir…",
+    "start": 0.69,
+    "end": 1.9
+   }
+  ],
+  "mouth": [],
+  "kaynak": "turev: Y4b_01 + kapi_arkasi (-24 LUFS), antre kapısı arkası",
+  "model": "eleven_v4",
+  "kredi": 0
  }
 }

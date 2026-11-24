@@ -159,7 +159,8 @@ export type BeatCommon = {
   shot?: Shot;
   /** karakter durum değişiklikleri (kalıcıdır, sonraki vuruşlara taşınır) */
   cast?: Record<string, CharState>;
-  sfx?: { name: string; at?: number; volume?: number }[];
+  /** kirp: dosyanın başından atlanacak sn; sure: çalınacak en uzun sn */
+  sfx?: { name: string; at?: number; volume?: number; kirp?: number; sure?: number }[];
   lightning?: boolean;
   /** aralik: kapı birkaç santim aralanır */
   door?: "ac" | "kapat" | "aralik" | "acik";

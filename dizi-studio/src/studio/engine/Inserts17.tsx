@@ -133,7 +133,6 @@ const Bant: React.FC<{ dur: number }> = ({ dur }) => {
   const cev = ease(interpolate(t, [0.35, 0.85], [0, 1], cl)); // 0: ön, 1: arka
   const sx = Math.abs(Math.cos(cev * Math.PI));
   const arka = cev > 0.5;
-  const bas = ease(interpolate(t, [1.2, 1.9], [0, 1], cl)); // başparmak damganın üstünden geçer
   const z = 1 + 0.08 * (t / Math.max(1, dur));
   const BANT = "#e8d8b0";
   return (
@@ -141,7 +140,7 @@ const Bant: React.FC<{ dur: number }> = ({ dur }) => {
       <svg viewBox="0 0 1080 1920" width={1080} height={1920}>
         <defs>
           <radialGradient id="i17_lmb" cx="0.5" cy="0.25" r="0.8"><stop offset="0" stopColor="#ffd8a0" stopOpacity={0.45} /><stop offset="1" stopColor="#140c10" stopOpacity={0.6} /></radialGradient>
-          <filter id="i17_mur"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" /><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.4" /><feComposite in2="SourceGraphic" operator="in" /></filter>
+          <filter id="i17_mur"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n" /><feColorMatrix in="n" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.6 1.5" result="m" /><feComposite in="SourceGraphic" in2="m" operator="in" /></filter>
           <filter id="i17_bl"><feGaussianBlur stdDeviation="10" /></filter>
         </defs>
         {/* arka: sofra, bulanık */}
@@ -162,7 +161,7 @@ const Bant: React.FC<{ dur: number }> = ({ dur }) => {
             </g>
           ))}
           {/* deste (dönen) */}
-          <g transform={`translate(540 960) scale(${Math.max(0.04, sx) * 2.4} 2.4) rotate(${-4})`}>
+          <g transform={`translate(540 960) scale(${Math.max(0.04, sx) * 3.0} 3.0) rotate(${-4})`}>
             {[0, 1, 2, 3, 4, 5, 6].map((i) => <rect key={i} x={-150} y={-70 - i * 7} width={300} height={140} rx={8} fill={i % 2 ? "#86c096" : "#7ab88a"} stroke={O} strokeWidth={3} />)}
             <rect x={-150} y={-120} width={300} height={140} rx={8} fill="#8ac89a" stroke={O} strokeWidth={3} />
             {arka ? null : <><circle cx={0} cy={-50} r={30} fill="none" stroke="#3a7a4a" strokeWidth={4} /><text x={-130} y={2} fontFamily="Arial" fontSize={30} fontWeight={900} fill="#2a5a3a">200</text></>}
@@ -180,18 +179,11 @@ const Bant: React.FC<{ dur: number }> = ({ dur }) => {
           </g>
           {/* eller desteyi yanlardan tutar */}
           {[-1, 1].map((k) => (
-            <g key={k} transform={`translate(${540 + k * Math.max(60, 330 * sx + 20)} 1000)`}>
+            <g key={k} transform={`translate(${540 + k * Math.max(60, 470 * sx + 20)} 1010)`}>
               <ellipse cx={0} cy={0} rx={70} ry={92} fill="#eec4a2" stroke={O} strokeWidth={6} />
               {[0, 1, 2].map((i) => <path key={i} d={`M ${-k * 40} ${-50 + i * 40} q ${-k * 50} 6 ${-k * 56} 26`} stroke={O} strokeWidth={5} fill="#eec4a2" />)}
             </g>
           ))}
-          {/* başparmak damganın üstünden kayar (arka yüzde) */}
-          {arka ? (
-            <g transform={`translate(${540 + 150 - 260 * bas} ${780 + 30 * bas})`}>
-              <path d="M 0 0 q 60 -40 140 -10 q 30 30 -10 60 q -80 20 -130 -10 Z" fill="#eec4a2" stroke={O} strokeWidth={6} />
-              <path d="M 90 0 q 20 6 22 24" stroke={O} strokeWidth={4} fill="none" />
-            </g>
-          ) : null}
         </g>
         <rect width={1080} height={1920} fill="url(#i17_lmb)" />
       </svg>

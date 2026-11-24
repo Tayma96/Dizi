@@ -718,7 +718,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
                 ) : null}
                 {(b.beat.sfx ?? []).map((s, i) => (
                   <Sequence key={i} from={Math.round((s.at ?? 0) * fps)} layout="none">
-                    <Audio src={staticFile(`ses/${s.name}.mp3`)} volume={s.volume ?? 0.7} />
+                    <Audio src={staticFile(`ses/${s.name}.mp3`)} volume={s.volume ?? 0.7} trimBefore={s.kirp ? Math.round(s.kirp * fps) : undefined} trimAfter={s.sure ? Math.round(((s.kirp ?? 0) + s.sure) * fps) : undefined} />
                   </Sequence>
                 ))}
                 {b.beat.lightning ? <Audio src={staticFile("ses/efekt/gok_gurultusu.mp3")} volume={0.55} /> : null}

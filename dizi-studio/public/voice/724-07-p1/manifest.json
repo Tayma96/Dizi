@@ -426,7 +426,7 @@
   "hesap": "proxy",
   "kredi": 35
  },
- "a_12": {
+ "b_01": {
   "key": "3190888935b9",
   "file": "voice/724-07/cekim/E01a_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -635,342 +635,333 @@
   "hesap": "proxy",
   "kredi": 36
  },
- "a_13": {
-  "key": "ed0bb58e05aa",
-  "file": "voice/724-07/cekim/A05a_01.mp3",
+ "b_02": {
+  "key": "39746ecb2bc0",
+  "file": "voice/724-07-yeni/A05d_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
   "emotion": "notr",
   "text": "Böcek evde de var terliği vur geç",
   "duration": 2.691,
-  "asrScore": 1.0,
-  "heard": "Böcek evde de var. Terliği vur geç.",
+  "asrScore": null,
+  "heard": null,
   "words": [
    {
     "w": "Böcek",
-    "start": 0.084,
-    "end": 0.404
+    "start": 0.219,
+    "end": 0.4
    },
    {
     "w": "evde",
-    "start": 0.484,
-    "end": 0.724
+    "start": 0.48,
+    "end": 0.72
    },
    {
     "w": "de",
-    "start": 0.804,
-    "end": 0.884
+    "start": 0.76,
+    "end": 0.8
    },
    {
     "w": "var",
-    "start": 1.004,
-    "end": 1.244
+    "start": 0.88,
+    "end": 1.24
    },
    {
     "w": "terliği",
-    "start": 1.364,
-    "end": 1.844
+    "start": 1.44,
+    "end": 1.76
    },
    {
     "w": "vur",
-    "start": 1.884,
-    "end": 2.084
+    "start": 1.8,
+    "end": 1.92
    },
    {
     "w": "geç",
-    "start": 2.204,
-    "end": 2.724
+    "start": 2.0,
+    "end": 2.64
    }
   ],
   "mouth": [
    {
-    "t": 0.084,
+    "t": 0.219,
     "v": "M"
    },
    {
-    "t": 0.164,
+    "t": 0.229,
     "v": "O"
    },
    {
-    "t": 0.244,
+    "t": 0.24,
     "v": "L"
    },
    {
-    "t": 0.297,
+    "t": 0.293,
     "v": "E"
    },
    {
-    "t": 0.351,
+    "t": 0.347,
     "v": "L"
    },
    {
-    "t": 0.484,
+    "t": 0.48,
     "v": "E"
    },
    {
-    "t": 0.564,
+    "t": 0.56,
     "v": "F"
    },
    {
-    "t": 0.644,
+    "t": 0.64,
     "v": "L"
    },
    {
-    "t": 0.684,
+    "t": 0.68,
     "v": "E"
    },
    {
-    "t": 0.724,
-    "v": "X"
-   },
-   {
-    "t": 0.804,
+    "t": 0.76,
     "v": "L"
    },
    {
-    "t": 0.844,
+    "t": 0.78,
     "v": "E"
    },
    {
-    "t": 0.884,
-    "v": "X"
-   },
-   {
-    "t": 1.004,
+    "t": 0.88,
     "v": "F"
    },
    {
-    "t": 1.044,
+    "t": 0.933,
     "v": "A"
    },
    {
-    "t": 1.084,
+    "t": 0.987,
     "v": "L"
    },
    {
-    "t": 1.124,
+    "t": 1.04,
     "v": "X"
    },
    {
-    "t": 1.364,
+    "t": 1.44,
     "v": "L"
    },
    {
-    "t": 1.444,
+    "t": 1.493,
     "v": "E"
    },
    {
-    "t": 1.524,
+    "t": 1.547,
     "v": "L"
    },
    {
-    "t": 1.664,
+    "t": 1.64,
     "v": "I"
    },
    {
-    "t": 1.724,
+    "t": 1.68,
     "v": "L"
    },
    {
-    "t": 1.784,
+    "t": 1.72,
     "v": "I"
    },
    {
-    "t": 1.884,
+    "t": 1.8,
     "v": "F"
    },
    {
-    "t": 1.924,
+    "t": 1.84,
     "v": "U"
    },
    {
-    "t": 2.004,
+    "t": 1.88,
     "v": "L"
    },
    {
-    "t": 2.084,
+    "t": 1.92,
     "v": "X"
    },
    {
-    "t": 2.204,
+    "t": 2.0,
     "v": "L"
    },
    {
-    "t": 2.264,
+    "t": 2.08,
     "v": "E"
    },
    {
-    "t": 2.324,
+    "t": 2.16,
     "v": "L"
    },
    {
-    "t": 2.484,
+    "t": 2.32,
     "v": "X"
    },
    {
-    "t": 2.724,
+    "t": 2.64,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 29
+  "kredi": 27
  },
- "a_15": {
-  "key": "ef7d6f93f41e",
-  "file": "voice/724-07-yeni/Y1b_01.mp3",
+ "b_04": {
+  "key": "turev",
+  "file": "voice/724-07-yeni/sec/Y1_sec.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
   "text": "anne vallahi büyük hayranınım.",
-  "duration": 2.691,
-  "asrScore": 0.909,
-  "heard": "Anne vallaha hep büyük hayranınım.",
+  "duration": 3.109,
+  "asrScore": null,
+  "heard": null,
   "words": [
    {
     "w": "anne",
-    "start": 0.016,
-    "end": 0.336
+    "start": 0.1,
+    "end": 1.06
    },
    {
     "w": "vallahi",
-    "start": 0.496,
-    "end": 1.056
+    "start": 1.22,
+    "end": 1.7
    },
    {
     "w": "büyük",
-    "start": 1.216,
-    "end": 1.536
+    "start": 1.86,
+    "end": 2.1
    },
    {
     "w": "hayranınım.",
-    "start": 1.656,
-    "end": 2.656
+    "start": 2.18,
+    "end": 3.14
    }
   ],
   "mouth": [
    {
-    "t": 0.016,
+    "t": 0.1,
     "v": "A"
    },
    {
-    "t": 0.096,
+    "t": 0.2,
     "v": "L"
    },
    {
-    "t": 0.256,
+    "t": 0.4,
     "v": "E"
    },
    {
-    "t": 0.336,
+    "t": 0.5,
     "v": "X"
    },
    {
-    "t": 0.496,
+    "t": 1.22,
     "v": "F"
    },
    {
-    "t": 0.656,
+    "t": 1.3,
     "v": "A"
    },
    {
-    "t": 0.709,
+    "t": 1.353,
     "v": "L"
    },
    {
-    "t": 0.816,
+    "t": 1.46,
     "v": "A"
    },
    {
-    "t": 0.896,
+    "t": 1.54,
     "v": "L"
    },
    {
-    "t": 0.976,
+    "t": 1.62,
     "v": "I"
    },
    {
-    "t": 1.056,
+    "t": 1.7,
     "v": "X"
    },
    {
-    "t": 1.216,
+    "t": 1.86,
     "v": "M"
    },
    {
-    "t": 1.256,
+    "t": 1.9,
     "v": "U"
    },
    {
-    "t": 1.296,
+    "t": 1.94,
     "v": "I"
    },
    {
-    "t": 1.376,
+    "t": 1.993,
     "v": "U"
    },
    {
-    "t": 1.456,
+    "t": 2.047,
     "v": "L"
    },
    {
-    "t": 1.536,
+    "t": 2.1,
     "v": "X"
    },
    {
-    "t": 1.656,
+    "t": 2.18,
     "v": "L"
    },
    {
-    "t": 1.696,
+    "t": 2.233,
     "v": "A"
    },
    {
-    "t": 1.736,
+    "t": 2.287,
     "v": "I"
    },
    {
-    "t": 1.776,
+    "t": 2.34,
     "v": "L"
    },
    {
-    "t": 1.856,
+    "t": 2.42,
     "v": "A"
    },
    {
-    "t": 1.936,
+    "t": 2.5,
     "v": "L"
    },
    {
-    "t": 2.016,
+    "t": 2.58,
     "v": "I"
    },
    {
-    "t": 2.096,
+    "t": 2.66,
     "v": "L"
    },
    {
-    "t": 2.176,
+    "t": 2.74,
     "v": "I"
    },
    {
-    "t": 2.256,
+    "t": 2.82,
     "v": "M"
    },
    {
-    "t": 2.336,
+    "t": 2.9,
     "v": "X"
    },
    {
-    "t": 2.656,
+    "t": 3.14,
     "v": "X"
    }
   ],
-  "kaynak": "elevenlabs",
+  "kaynak": "turev: Y1c_01 tam (fısıltı -17 LUFS)",
   "model": "eleven_v4",
-  "hesap": "proxy",
-  "kredi": 30
+  "kredi": 0
  },
- "a_16": {
+ "c_01": {
   "key": "19161466fb62",
   "file": "voice/724-07/cekim/A06b_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
@@ -1180,7 +1171,7 @@
   "hesap": "proxy",
   "kredi": 33
  },
- "a_17": {
+ "c_02": {
   "key": "2bb4a703568e",
   "file": "voice/724-07/cekim/E02b_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -1358,7 +1349,7 @@
   "hesap": "proxy",
   "kredi": 25
  },
- "a_20": {
+ "c_05": {
   "key": "9d7770399373",
   "file": "voice/724-07/cekim/E03a_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -1506,7 +1497,7 @@
   "hesap": "proxy",
   "kredi": 27
  },
- "a_21": {
+ "c_06": {
   "key": "fc54dc869b3f",
   "file": "voice/724-07/cekim/E04b_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -1633,7 +1624,7 @@
   "hesap": "proxy",
   "kredi": 20
  },
- "a_22": {
+ "c_07": {
   "key": "09c5ed642137",
   "file": "voice/724-07/cekim/E05a_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -1727,7 +1718,7 @@
   "hesap": "proxy",
   "kredi": 26
  },
- "a_23": {
+ "c_08": {
   "key": "7a59374cf342",
   "file": "voice/724-07/cekim/A07a_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",
@@ -1833,7 +1824,7 @@
   "hesap": "proxy",
   "kredi": 20
  },
- "a_24": {
+ "c_09": {
   "key": "d81bb8b2b55a",
   "file": "voice/724-07/cekim/E06a_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
@@ -2195,117 +2186,143 @@
   "hesap": "proxy",
   "kredi": 47
  },
- "a_25": {
-  "key": "5b3bb1735b31",
-  "file": "voice/724-07/cekim/E07b_01.mp3",
+ "c_10": {
+  "key": "de90d75431fc",
+  "file": "voice/724-07-yeni/E07c_01.mp3",
   "voice": "elevenlabs:Nazlı Yeni",
   "emotion": "notr",
   "text": "ama çok para lan",
-  "duration": 2.586,
-  "asrScore": 0.923,
-  "heard": "Ama çok paralam.",
+  "duration": 1.829,
+  "asrScore": null,
+  "heard": null,
   "words": [
    {
     "w": "ama",
-    "start": 0.88,
-    "end": 1.12
+    "start": 0.111,
+    "end": 0.431
    },
    {
     "w": "çok",
-    "start": 1.28,
-    "end": 1.52
+    "start": 0.511,
+    "end": 0.751
    },
    {
     "w": "para",
-    "start": 1.6,
-    "end": 1.84
+    "start": 0.831,
+    "end": 1.071
    },
    {
     "w": "lan",
-    "start": 2.04,
-    "end": 2.56
+    "start": 1.151,
+    "end": 1.791
    }
   ],
   "mouth": [
    {
-    "t": 0.88,
+    "t": 0.111,
     "v": "A"
    },
    {
-    "t": 0.96,
+    "t": 0.191,
     "v": "M"
    },
    {
-    "t": 1.04,
+    "t": 0.311,
     "v": "A"
    },
    {
-    "t": 1.12,
-    "v": "X"
-   },
-   {
-    "t": 1.28,
+    "t": 0.511,
     "v": "L"
    },
    {
-    "t": 1.36,
+    "t": 0.591,
     "v": "O"
    },
    {
-    "t": 1.44,
+    "t": 0.671,
     "v": "L"
    },
    {
-    "t": 1.52,
-    "v": "X"
-   },
-   {
-    "t": 1.6,
+    "t": 0.831,
     "v": "M"
    },
    {
-    "t": 1.66,
+    "t": 0.891,
     "v": "A"
    },
    {
-    "t": 1.72,
+    "t": 0.951,
     "v": "L"
    },
    {
-    "t": 1.78,
+    "t": 1.011,
     "v": "A"
    },
    {
-    "t": 1.84,
+    "t": 1.071,
     "v": "X"
    },
    {
-    "t": 2.04,
+    "t": 1.151,
     "v": "L"
    },
    {
-    "t": 2.107,
+    "t": 1.284,
     "v": "A"
    },
    {
-    "t": 2.173,
+    "t": 1.418,
     "v": "L"
    },
    {
-    "t": 2.24,
+    "t": 1.551,
     "v": "X"
    },
    {
-    "t": 2.56,
+    "t": 1.791,
     "v": "X"
    }
   ],
   "kaynak": "elevenlabs",
   "model": "eleven_v4",
   "hesap": "proxy",
-  "kredi": 17
+  "kredi": 29
  },
- "a_26": {
+ "c_11": {
+  "key": "turev",
+  "file": "voice/724-07-yeni/sec/Y2_sec.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "Iıh!",
+  "duration": 0.549,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Iıh!",
+    "start": 0.0,
+    "end": 0.499
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.0,
+    "v": "I"
+   },
+   {
+    "t": 0.247,
+    "v": "A"
+   },
+   {
+    "t": 0.499,
+    "v": "X"
+   }
+  ],
+  "kaynak": "turev: 724-07/cekim/E05b_01 1.78-2.28 sn",
+  "model": "eleven_v4",
+  "kredi": 0
+ },
+ "c_12": {
   "key": "0f5fb358a8c7",
   "file": "voice/724-07/cekim/A08a_01.mp3",
   "voice": "elevenlabs:JgYekNWmelei0oWTtYie",

@@ -202,7 +202,7 @@ export const Ev724SalonBG: React.FC<{ frame: number; odaKapi: number }> = ({ oda
 );
 
 /** Sofra (FG): masa örtüsü, tabaklar, ekmek, çay bardakları, peynir, domates, zeytin kâsesi (zeytin: kalan sayı) */
-export const Ev724SalonFG: React.FC<{ frame: number; tabak2: boolean; zeytin: number; yukari?: number }> = ({ tabak2, zeytin, yukari = 0 }) => (
+export const Ev724SalonFG: React.FC<{ frame: number; tabak2: boolean; zeytin: number; yukari?: number; tabak1?: boolean }> = ({ tabak2, zeytin, yukari = 0, tabak1 = true }) => (
   <g transform={`translate(0 ${-yukari})`}>
     {/* sarkıt lamba */}
     <path d="M 540 0 V 330" stroke="#3a2a1c" strokeWidth={5} />
@@ -214,8 +214,8 @@ export const Ev724SalonFG: React.FC<{ frame: number; tabak2: boolean; zeytin: nu
     {new Array(14).fill(0).map((_, i) => <rect key={i} x={20 + i * 74.3} y={1770} width={37} height={30} fill="#c8483a" opacity={0.8} />)}
     <rect x={90} y={1800} width={30} height={400} fill="#6a4a2c" /><rect x={960} y={1800} width={30} height={400} fill="#6a4a2c" />
     {/* tabaklar */}
-    <ellipse cx={330} cy={1585} rx={86} ry={26} fill="#ffffff" stroke="#9a9488" strokeWidth={4} />
-    <ellipse cx={330} cy={1583} rx={56} ry={16} fill="#f2f0ea" />
+    {tabak1 ? <g><ellipse cx={330} cy={1585} rx={86} ry={26} fill="#ffffff" stroke="#9a9488" strokeWidth={4} />
+    <ellipse cx={330} cy={1583} rx={56} ry={16} fill="#f2f0ea" /></g> : null}
     {tabak2 ? <g><ellipse cx={760} cy={1585} rx={86} ry={26} fill="#ffffff" stroke="#9a9488" strokeWidth={4} /><ellipse cx={760} cy={1583} rx={56} ry={16} fill="#f2f0ea" /></g> : null}
     {/* ekmek sepeti */}
     <path d="M 470 1560 L 590 1560 L 575 1600 L 485 1600 Z" fill="#b8844c" stroke="#5a3a1c" strokeWidth={4} />

@@ -38,15 +38,16 @@ def _b7_gece(t0, dur, cam, anne, **ek):
 V2.b7 = _b7_gece
 
 # ------------------------------------------------------------------ devam zaman çizelgesi (mutlak sahne zamanı)
-Y1 = "Y1b_01" if "Y1b_01" in M else None
-Y2 = next((k for k in ("Y2a_01", "Y2b_01") if k in M), None)
+Y1 = "Y1_sec"          # ses yönetmeni seçimi (Y1c_01 kesimi, 3,11 sn)
+Y2 = "Y2_sec"          # "Iıh!" (E05b kesimi)
+A05_TK, E07_TK = "A05d_01", "E07c_01"   # öfkeli terlik lafı; net "lan"
 SIRA = [  # (ad, kim, metin, çekim, boşluk)
     ("G1", None, None, None, 1.1),
     ("G2", None, None, None, 1.15),
     ("G3", None, None, None, 1.55),
     ("A04", "anne724", "nerden geldi bu paralar nasıl bi marketmiş lan o", "A04b_01", 0.2),
     ("E01", "ece_ev", "anneee dev gibi böcek vardı markette ölüyodummm", "E01a_01", 0.15),
-    ("A05", "anne724", "Böcek evde de var terliği vur geç", "A05a_01", 0.3),
+    ("A05", "anne724", "Böcek evde de var terliği vur geç", A05_TK, 0.3),
     ("SES", None, None, None, 0.75),
     ("Y1", "ece_ev", "anne vallahi büyük hayranınım.", Y1, 0.2),
     ("A06", "anne724", "para diyorum Ece para bu para ne alakaaaa?", "A06b_01", 0.15),
@@ -58,7 +59,7 @@ SIRA = [  # (ad, kim, metin, çekim, boşluk)
     ("E05", "ece_ev", "aauuv ah ah acıyo", "E05a_01", 0.1),
     ("A07", "anne724", "nerden geldi bu para?", "A07a_01", 0.2),
     ("E06", "ece_ev", "şimdi olanları anlatırsam hem bana inanmaz hem de tekrar gitmeme izin vermez", "E06a_01", 0.2),
-    ("E07", "ece_ev", "ama çok para lan", "E07b_01", 0.05),
+    ("E07", "ece_ev", "ama çok para lan", E07_TK, 0.05),
     ("Y2", "ece_ev", "Iıh!", Y2, 0.1),
     ("A08", "anne724", "git elini yüzünü yıka bu paranın hesabını vereceksin bana!", "A08a_01", 0.2),
     ("CIK", None, None, None, 2.3),
@@ -74,13 +75,25 @@ g1, g2, g3, a4, e1, a5, ses, a6, e2, bos, tuk, e3, e4, e5, a7, e6, e7, a8, ck = 
 y1 = T.get("Y1", ses + 0.75)
 y2 = T.get("Y2")
 sonE07 = y2 if y2 else a8
-W = lambda ad, w: T[ad] + 0.08 + w  # repliğin içindeki kelime anı (manifest kelime zamanı)
+# kelime anı: anahtar kareler ilk çekimlerin kelime saatlerine göre yazıldı; yeni çekimlerde kelime çapalarıyla doğrusal eşlenir
+ESKI = {"A05": [0.08, 0.48, 0.8, 1.0, 1.36, 1.88, 2.2], "E07": [0.88, 1.28, 1.6, 2.04]}
+YENI = {"A05": [w["start"] for w in M[A05_TK]["words"]], "E07": [w["start"] for w in M[E07_TK]["words"]]}
+
+
+def W(ad, w):
+    if ad in ESKI and len(ESKI[ad]) == len(YENI[ad]):
+        a, b = [0.0] + ESKI[ad] + [99.0], [0.0] + YENI[ad] + [99.0 + YENI[ad][-1] - ESKI[ad][-1]]
+        for i in range(len(a) - 1):
+            if w <= a[i + 1]:
+                w = b[i] + (b[i + 1] - b[i]) * (w - a[i]) / (a[i + 1] - a[i])
+                break
+    return T[ad] + 0.08 + w
 konus = lambda ad, tk: {"t": T[ad] + 0.08, "cues": M[tk]["mouth"]}
 
 # ------------------------------------------------------------------ yerleşim (180°: anne solda sağa bakar, Ece sağda sola bakar)
-AX0, AX1, AX2 = 610, 640, 730   # anne: başlangıç, böceği ezdikten sonra, A06'da yaklaştıktan sonra
+AX0, AX1, AX2 = 610, 640, 660   # anne: başlangıç, böceği ezdikten sonra, A06'da yaklaştıktan sonra
 AY, AS = 1880, 1290
-EX0, EX1, EY, ES = 1000, 1030, 1880, 1300   # Ece: güvenli mesafe, Y1'de bir adım geri
+EX0, EX1, EY, ES = 1000, 1050, 1880, 1300   # Ece: güvenli mesafe, Y1'de bir adım geri
 S = ES / 1000
 YUZ_Y = EY - 765 * S             # Ece yüz merkezi y (≈886)
 KULAK = lambda ex, pu=0: (ex - 90 * S, EY - 742 * S - pu)
@@ -111,8 +124,8 @@ anne_elR = [
     [W("A08", 2.9), 840, 1080], [W("A08", 3.25), *CEP(AX2)], [SON, *CEP(AX2)],
 ]
 ANNE = {
-    "yer": [[g1, AX0, AY, AS], [W("A05", 1.72), AX0, AY, AS], [W("A05", 1.84), AX1, AY, AS], [a6 + 0.05, AX1, AY, AS], [a6 + 0.6, AX2, AY, AS]],
-    "yuru": [[a6 + 0.05, a6 + 0.6]],
+    "yer": [[g1, AX0, AY, AS], [W("A05", 1.72), AX0, AY, AS], [W("A05", 1.84), AX1, AY, AS], [a6 + 0.05, AX1, AY, AS], [a6 + 0.35, AX2, AY, AS]],
+    "yuru": [[a6 + 0.05, a6 + 0.35]],
     "kolL": [[0, 9, 4]], "onKol": True, "dogalKol": True,
     "elR": sirala(anne_elR), "elRara": [[-99, 99]],
     "elL": [[a8, 520, 1300], [W("A08", 2.0), 520, 1300], [W("A08", 2.2), 420, 1040], [W("A08", 2.9), 420, 1040], [W("A08", 3.2), 545, 1320]],
@@ -133,7 +146,7 @@ ANNE = {
     "tilt": [[0, 0], [g1, 4], [g3, 0], [a5, 0], [a5 + 0.2, -4], [ses, -4], [ses + 0.3, 0], [a6 + 2.7, 0], [a6 + 2.9, 6], [e2, 0]],
     "egil": [[0, 0], [a4 + 0.2, 0], [a4 + 0.5, 3], [e1, 0], [W("A06", 2.6), 0], [W("A06", 2.85), 5], [e2 + 0.4, 0], [e3 + 1.85, 0], [e3 + 2.05, 6], [e3 + 2.7, 6], [e3 + 2.9, 0],
              [a7, 0], [a7 + 0.25, 2], [e6 + 1.0, 2], [e6 + 4.5, 3], [a8, 3], [a8 + 0.3, 0]],
-    "konus": [konus("A04", "A04b_01"), konus("A05", "A05a_01"), konus("A06", "A06b_01"), konus("A07", "A07a_01"), konus("A08", "A08a_01")],
+    "konus": [konus("A04", "A04b_01"), konus("A05", A05_TK), konus("A06", "A06b_01"), konus("A07", "A07a_01"), konus("A08", "A08a_01")],
 }
 
 # ---------------------------------------------------------------- ECE
@@ -144,8 +157,8 @@ GOGUS_R = lambda ex: (ex + 38, 1185)
 ECE_KAPI = [620, 430, 960, 1560]
 ece_yer = [[g1, 1180, 1480, 960], [g2 + 0.2, 1180, 1480, 960], [g2 + 0.25, 948, 1480, 960], [g2 + 0.95, 942, 1480, 960],   # pervazın arkasında (yarım yüz)
            [g3, 942, 1480, 960], [g3 + 0.35, 872, 1500, 975], [g3 + 0.6, 850, 1600, 1060], [g3 + 1.25, EX0, EY, ES],
-           [y1 + 0.3, EX0, EY, ES], [y1 + 0.7, EX1, EY, ES], [e4 + 1.8, EX1, EY, ES], [e5, EX1 - 30, EY, ES],
-           [ck, EX1 - 30, EY, ES], [ck + 0.15, EX1 - 50, EY + 15, ES + 10], [SON, 330, EY + 30, ES + 30]]
+           [y1 + 0.3, EX0, EY, ES], [y1 + 0.7, EX1, EY, ES], [e4 + 1.8, EX1, EY, ES], [e5, EX1 - 8, EY, ES],
+           [ck, EX1 - 8, EY, ES], [ck + 0.15, EX1 - 30, EY + 15, ES + 10], [SON - 0.3, 260, EY + 30, ES + 30]]
 ece_elL = [  # (kadrajın solundaki el = annenin tarafı)
     [g2, 940, 1150], [g2 + 0.2, 958, 985], [g3 - 0.05, 958, 985], [g3 + 0.3, 930, 1250], [e1 - 0.3, 930, 1250],
     [e1, *GOGUS_L(EX0)], [W("E01", 1.35), 888, 790], [W("E01", 1.55), 880, 778], [W("E01", 1.75), 888, 792], [W("E01", 1.95), 880, 778], [W("E01", 2.3), 886, 790],
@@ -201,12 +214,12 @@ ECE = {
     "ter": [[e6 + 1.0, a8]],
     "kulak": [[0, 0], [e5 + 2.0, 0], [e5 + 2.8, 0.7], [W("E07", 2.2), 0.8], [a8, 1.0], [SON, 1.0]],
     "sacDagin": True,
-    "konus": [konus("E01", "E01a_01"), konus("E02", "E02b_01"), konus("E04", "E04b_01"), konus("E05", "E05a_01"), konus("E07", "E07b_01")]
+    "konus": [konus("E01", "E01a_01"), konus("E02", "E02b_01"), konus("E04", "E04b_01"), konus("E05", "E05a_01"), konus("E07", E07_TK)]
              + ([konus("Y1", Y1)] if Y1 else []) + ([konus("Y2", Y2)] if Y2 else []),
 }
 
 # böcek: makinenin altından çıkar, Ece'ye doğru koşar, annenin ayağının altında ezilir
-EZ = W("A05", 1.82)
+EZ = W("A05", 1.88)
 BOCEK = {"t0": W("E01", 2.9), "ez": EZ, "s": 1.35, "durAci": 30,
          "yol": [[W("E01", 2.9), 470, 1566], [W("E01", 3.3), 470, 1574], [a5 + 0.4, 560, 1680], [a5 + 0.75, 600, 1740], [a5 + 1.0, 610, 1745],   # durup anten oynatır
                  [a5 + 1.25, 650, 1800], [EZ - 0.05, 700, 1866], [EZ, 702, 1868]]}
@@ -256,32 +269,36 @@ cam.kes(W("E07", 1.95), 815, 975, 1.9).it(a8, 815, 970, 1.95)             # ikin
 cam.kes(a8, 830, 1100, 1.25).it(ck, 820, 1100, 1.28)                      # git elini yüzünü yıka (genel)
 cam.it(SON, 520, 1100, 1.25)                                              # Ece lavaboya, kamera izler
 
+VUR = W("A05", 1.88) - a5   # "vur" (A05 içinde)
+LAN7 = W("E07", 2.04) - e7  # "lan" (E07 içinde)
 SFX = {
-    "G1": [{"name": "efekt/ayak_sesleri", "at": 0.0, "volume": 0.3}],
-    "G2": [{"name": "efekt/kapi_gicirti", "at": 0.05, "volume": 0.35}],
-    "G3": [{"name": "efekt/ayak_sesleri", "at": 0.3, "volume": 0.3}, {"name": "efekt/yutkunma", "at": 1.25, "volume": 0.8}],
-    "A04": [{"name": "efekt/el_kagit", "at": 0.25, "volume": 0.35}, {"name": "efekt/el_kagit", "at": 1.85, "volume": 0.35}, {"name": "efekt/el_bocek_tislama", "at": 2.45, "volume": 0.5}],
-    "E01": [{"name": "efekt/el_bocek_bacak", "at": 3.0, "volume": 0.35}],
-    "A05": [{"name": "efekt/el_bocek_bacak", "at": 0.2, "volume": 0.45}, {"name": "efekt/el_nefes_tutma", "at": 0.85, "volume": 0.6},
-            {"name": "efekt/darbe", "at": EZ - a5, "volume": 0.8}, {"name": "efekt/tokat", "at": EZ - a5, "volume": 0.5}],
-    "A06": [{"name": "efekt/el_kagit", "at": 0.5, "volume": 0.3}, {"name": "efekt/el_kagit", "at": 1.35, "volume": 0.3}, {"name": "efekt/el_kagit", "at": 2.3, "volume": 0.3}],
-    "E02": [{"name": "efekt/whoosh", "at": 1.82, "volume": 0.3}, {"name": "efekt/el_kagit", "at": 1.9, "volume": 0.55}],
-    "TUK": [{"name": "efekt/el_tukurme", "at": 0.25, "volume": 0.35}],
-    "E04": [{"name": "efekt/el_koklama", "at": 1.25, "volume": 0.7}],
-    "E05": [{"name": "efekt/el_sok_vurgu", "at": 0.05, "volume": 0.3}],
-    "E06": [{"name": "efekt/kilit", "at": 3.45, "volume": 0.4}],
-    "A08": [{"name": "efekt/whoosh", "at": 1.65, "volume": 0.25}, {"name": "efekt/el_kagit", "at": 1.72, "volume": 0.6}, {"name": "efekt/el_kumas_burus", "at": 3.2, "volume": 0.4}],
-    "CIK": [{"name": "efekt/ayak_sesleri", "at": 0.1, "volume": 0.3}],
+    "G1": [{"name": "efekt/el_terlik_surume", "at": 0.0, "volume": 0.45}, {"name": "efekt/b7_esneme", "at": 0.1, "volume": 0.55}],
+    "G2": [{"name": "efekt/kapi_gicirti", "at": 0.05, "volume": 0.35, "sure": 0.7}],
+    "G3": [{"name": "efekt/el_terlik_surume", "at": 0.3, "volume": 0.3, "sure": 1.3}, {"name": "efekt/yutkunma", "at": 1.2, "volume": 0.5}],
+    "A04": [{"name": "efekt/el_deste_salla", "at": 0.0, "volume": 0.4}, {"name": "efekt/el_deste_salla", "at": 1.39, "volume": 0.4},
+            {"name": "efekt/el_bocek_tislama", "at": 2.42, "volume": 0.55, "sure": 0.35}, {"name": "efekt/nefes_kesilme", "at": 2.72, "volume": 0.5}],
+    "E01": [{"name": "efekt/el_kucuk_bocek", "at": round(a5 - e1 - 0.3, 2), "volume": 0.35}],
+    "A05": [{"name": "efekt/el_kucuk_bocek", "at": 0.6, "volume": 0.3}, {"name": "efekt/el_bocek_ezme", "at": round(VUR + 0.08 - 0.45, 2), "volume": 0.8},
+            {"name": "efekt/el_irkilme", "at": round(VUR + 0.13, 2), "volume": 0.35}],
+    "A06": [{"name": "efekt/el_deste_salla", "at": 0.91, "volume": 0.3}, {"name": "efekt/el_deste_salla", "at": 1.87, "volume": 0.3}],
+    "E02": [{"name": "efekt/el_deste_kapma", "at": 1.9, "volume": 0.6}],
+    "TUK": [{"name": "efekt/el_dil_saplatma", "at": 0.25, "volume": 0.5}],
+    "E03": [{"name": "efekt/el_para_sayma", "at": 0.3, "volume": 0.45}],
+    "E04": [{"name": "efekt/el_uzun_koklama", "at": 1.3, "volume": 0.55}],
+    "E05": [{"name": "efekt/el_kulak_cekme", "at": 0.05, "volume": 0.45}],
+    "E06": [{"name": "efekt/whoosh", "at": 3.38, "volume": 0.25, "sure": 0.3}, {"name": "efekt/b7_hayal_zincir", "at": 3.6, "volume": 0.5}],
+    "E07": [{"name": "efekt/el_kulak_cekme", "at": round(LAN7 + 0.05, 2), "volume": 0.55}],
+    "A08": [{"name": "efekt/el_deste_kapma", "at": 1.25, "volume": 0.6}, {"name": "efekt/el_cep_hisirti", "at": 3.12, "volume": 0.45}],
+    "CIK": [{"name": "efekt/el_terlik_surume", "at": 0.0, "volume": 0.35}],
 }
 
 
 def vuruslar():
-    V = V2.vuruslar()
-    for b in V:
-        b.pop("_take", None) if b["type"] != "line" else None
-    camk = cam.k
+    """sahne listesi: müzik böcek paniğinde (E01) kesilir, A06'da baştan girer (ses raporu §4)"""
+    acilis = V2.vuruslar()
+    gruplar = {"a": acilis, "b": [], "c": []}
     for ad, kim, metin, tk, gap in SIRA:
-        ek = b7(T[ad], camk, ORT)
+        ek = b7(T[ad], cam.k, ORT)
         if kim:
             b = {"type": "line", "who": kim, "text": metin, "emotion": "notr", "gapAfter": gap, "_take": tk, "ekle": ek}
             if ad == "E06":
@@ -290,18 +307,22 @@ def vuruslar():
             b = {"type": "insert", "dur": round(gap, 3), **ek}
         if ad in SFX:
             b["sfx"] = SFX[ad]
-        V.append(b)
-    return V
+        g = "a" if T[ad] < e1 else "b" if T[ad] < a6 else "c"
+        gruplar[g].append(b)
+    return gruplar
 
 
 def json_yaz():
-    beats = vuruslar()
-    # açılışın satırları v2 manifestinden (_take anahtarları)
-    sc = {"id": "a", "set": "banyo_kapi", "time": "gece", "title": "Deste", "transition": "kesme", "cast": {},
-          "music": {"name": "muzik/banyo_komik", "volume": 0.12}, "ambience": {"name": "ortam/oda_tonu", "volume": 0.3},
-          "ambience2": {"name": "ortam/sehir_gece", "volume": 0.06}, "beats": beats}
-    yaz("724-07-p1", "Bölüm 7 · Parça 1", [sc], M)
-    print(f"P1 toplam {SON:.2f} sn; açılış {AC}; {len(beats)} vuruş", {k: round(v, 2) for k, v in T.items()})
+    g = vuruslar()
+    amb = {"name": "ortam/b7_banyo_aksam", "volume": 0.5}
+    ortak = {"set": "banyo_kapi", "time": "gece", "transition": "kesme", "cast": {}, "ambience": amb}
+    sahneler = [
+        {"id": "a", "title": "Deste", **ortak, "music": {"name": "muzik/banyo_komik", "volume": 0.16}, "beats": g["a"]},
+        {"id": "b", "title": "Böcek", **ortak, "music": {"name": "yok"}, "beats": g["b"]},
+        {"id": "c", "title": "Kulak", **ortak, "music": {"name": "muzik/banyo_komik", "volume": 0.14, "from": 0}, "beats": g["c"]},
+    ]
+    yaz("724-07-p1", "Bölüm 7 · Parça 1", sahneler, M)
+    print(f"P1 toplam {SON:.2f} sn; açılış {AC}", {k: round(v, 2) for k, v in T.items()})
 
 
 if __name__ == "__main__":
