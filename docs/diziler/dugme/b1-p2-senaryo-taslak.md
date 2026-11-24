@@ -137,6 +137,6 @@ Herkes teyzeye döner. Kısa bir an.
 - **Kesme ritmi:** Komik replikten sonra yarım saniye "sessiz bakış" bırakılır (2.8'de "On dört ay." sonrası, 2.12'de tuvalet sonrası). Komedi oradan doğar.
 
 ## Seslendirme maliyeti (tahmin)
-- Replik metni ≈ 1.150 harf; duygu etiketleriyle ≈ **1.350 kredi** (eleven_v4).
-- B1 bütçesi: kalan ≈ 2.889 kredi. Bu parçadan sonra ≈ **1.540 kredi** kalır; flashback'ler ve final için dar.
+- 31 replik, metin ≈ 1.040 harf; duygu etiketleriyle ≈ **1.475 kredi** (eleven_v4).
+- B1 bütçesi: kalan ≈ 2.889 kredi. Bu parçadan sonra ≈ **1.410 kredi** kalır; flashback'ler ve final için dar.
 - **Kısaltma seçenekleri (gerekirse):** 2.5 ("canlı yayın") ve 2.15'in son repliği atılabilir (≈ −80 kredi). Ya da şive denemesi B1 dışından sayılır.
