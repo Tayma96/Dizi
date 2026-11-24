@@ -4,6 +4,27 @@
 
 **Sahnenin amacı (tek cümle):** Birbirini tanımayan dört kişi kapısız, dikişsiz, bembeyaz bir odada uyanır, birbirini ve odadaki tek kırmızı düğmeyi fark eder.
 
+## 0. GÜNCEL AÇILIŞ: kullanıcının metni (24 Kasım 2026) → çekim dökümü
+> Bu bölüm aşağıdaki çekim listesinin 2.1-2.5 çekimlerinin yerini alır. Metin kullanıcıya aittir; buradaki yalnız kamera, ışık ve ses tasarımıdır.
+
+| # | Süre | Kaynak / ölçek / açı | Kamera | Görüntü | Ses |
+|---|---|---|---|---|---|
+| A1 | 0,0-3,0 | **CANLI KAMERA KAYDI**: tavan köşesinden genel, hafif balıkgözü | Kıpırtısız; kayıt görüntüsü 15 fps'te takılır | "Bam" diye açılır: başlık kartının siyahından dijital bir parazitle. Bembeyaz oda, ortada kaide ve tek düğme, yerde baygın dört kişi. Ekranda kayıt arayüzü: kırmızı nokta, tarih ve saat, kamera numarası; görüntü soluk, sıkıştırılmış, hafif tarama çizgili | Göbekli adamın horlaması **odada yankılanır**; kamera mikrofonundan, cızırtılı ve ince |
+| A2 | 3,0-4,5 | **Geçiş: canlı kayıttan iç kameraya** | Kayıt görüntüsü parazitle kırılır → sinema görüntüsüne açılır | Aynı oda, şimdi renkli, net ve yumuşak; orta-genel, göz hizasına yakın, güneyden | Horlama birden dolgunlaşır, yankısı odayı sarar |
+| A3 | 4,5-8,5 | **Göbekliye yakın kadraj**: orta-yakın, yer hizası, kilitli | Sabit | Sırtüstü horluyor; uykusunda göbeğini kaşıyor, atletinden kırıntılar dökülüyor | Horlama (yakın, dolgun), kaşınma |
+| A4 | 8,5-11,5 | **Kamera kıza geçer**: horlamanın sesine motive, yavaş yatay kayma | Göbekliden kıza kayan çevrinme | Influencer yakın; gözleri kapalı, sesten rahatsız, göz kapaklarını sıkıyor, kaşlarını çatıyor | Horlama arkada, biraz uzak |
+| A5 | 11,5-14,5 | **Kurye**: orta-yakın, yan profil, yer hizası | Çok hafif itme | Uykusunda sayıklıyor, kaşları çatık: **"vurun şu ayıyı lan artık"** (Adanalı keko, fısıltılı ve öfkeli) | Fısıltı + horlama |
+| A6 | 14,5-16,0 | **Influencer yakın** | Sabit → çığlıkla sarsıntı | Kuryenin sesiyle gözleri açılır; çığlık **"Aaaa"**, ardından **"nerdeyim beeen"** | Çığlık odada yankılanır |
+| A7 | 16,0-17,5 | **Genel, güneyden** | Kısa sarsıntı | Herkes sesten korkup uyanır, afallar: kurye fırlar, teyze ve göbekli adam irkilir | Çığlığın yankısı söner |
+| A8 | 17,5-18,5 | **Kurye**: orta | Elde | **"Noluyo lan"** | — |
+| A9 | 18,5-22,5 | **Göbekli adam**: orta, alçak açı, kilitli | Sabit | Kalkmaya çalışır; göbekten doğrulamaz, tekrar yatar, panik hâlinde (kolları çırpınır, nefes nefese) | Panik soluklar, zemine düşüş |
+
+**Işık:** Canlı kayıtta düz, soluk, hafif yeşilimsi, "güvenlik kamerası" ışığı. İç kamerada kaynağı görünmeyen soğuk beyaz; gölgesiz, kırmızıyı yalnız düğme taşır.
+
+**Ses:** Bu parçada oda **yankılı** (kullanıcı kararı); horlama ve çığlık duvarlardan geri döner. Canlı kayıt sesi ince, cızırtılı ve tek kanal; iç kamerada tam ve dolgun.
+
+**Teyze:** A7'de "herkes afallar" (kullanıcı). Öneri: teyzenin irkilmesi yarım saniye gecikmeli olsun; sanki uyanık bekliyormuş gibi. Karar kullanıcıda.
+
 ## 1. Kamera stratejisi: dört katman
 
 1. **Gözetleyen göz (tepeden, simetrik):** Parça, birinin onları yukarıdan izlediği hissiyle açılır ve kapanır. Kuşbakışı, kusursuz simetrik ve kıpırtısız bir kadraj; laboratuvardaki deney fareleri gibi. Bu, dizinin "içeriden biri" fikrini ve odanın bir deney olduğunu görsel olarak eker, tek kelime gerekmeden.
