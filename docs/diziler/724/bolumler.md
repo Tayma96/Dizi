@@ -289,3 +289,22 @@ Ece: "heh" deyip kameraya döner. Türklerde bir el hareketi vardır: sağ el 5 
 "Did ind jib deyip duruyordunuz al bak tek ortak noktamız market" der (herkes bir başka diziye benzetiyor; diyalogda "did ind jıb" deniyor, çünkü ağız burun eğip seyircinin taklidini yaparak söylesin diye). Sonra mahçup şekilde "tamam böcek biraz sıçana benzemiş olabilir"
 - Kullanıcı: "Bu sahneyi kusursuz yap lütfen."
 - **Kullanıcı kararı (24 Kasım 2026):** 7. ve 8. bölüm TEK bölüm olarak paylaşılır (hepsi 7. Bölüm). Yorum kartı B7 P3 sonundan çıkarılıp en sona kondu. `bolumler/724-07.mp4` = B7 P1 + P2 + P3 (kartsız) + B8 P1 + P2 + kart (3:34). Sonraki bölüm "Bölüm 8" olur.
+
+## Bölüm 8 (YENİ; eski B8 artık B7'nin içinde), Parça 1 (kullanıcının metni, 24 Kasım 2026; replikler ve noktalama AYNEN, yalnız yazım düzeltildi)
+Ece: "ölüme gönderdin beni abi"
+Sabri: "kurallara uy ece, gayet başarılıydın sadece o önlüğü attığın sövmen 3. Kuralı bozdu, zamanlamayla kurtardın." "Ha kurallara uyup profesyonelce çalışırsın sorunsuz bi gece geçer"
+Tam o anda depo kapısı açılır.
+Ece korkar "aaaa yine miii"
+Depodan çok yakışıklı aşırı yakışıklı mavi gözlü kumral kahverengi saçlı bir erkek çıkar.
+Adı Mert.
+Mert: "Abi depoyu topladım, malzemeleri yerleştirdim" der cool ve aşırı karizmatik bir sesle.
+Ece bir an donakalır, rüzgâr sesi ve cırcır böceği sesi gelir 2-3 saniyeliğine, âşık olduğu belli oluyordur.
+Ece: "onee laan" der aptal âşık bi şekilde.
+Sabri: "Aferin Mert eline sağlık" "Ece bu Mert, bu gece vardiyasında o olacak. Erkenden gelip yardım etmek istemiş sağ olsun."
+Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ aptal âşık gibi bakarak.
+
+### Notlar (Claude)
+- Dosya öneki `724-08y` (eski `724-08-p1/p2` B7'nin içinde kaldı, çakışmasın).
+- Süreklilik: 3. kural (B1) = "Asla kimseye saygısızlık yapma! Tartışmaya girme!" → B4'te önlüğü atıp "sıçarım işinedeee marketinedeee" demesi bu kuralı bozuyor; tutarlı. Depo kapısı B4-B5 travması (2. kural: depodan ses/çağrı) → "aaaa yine miii" tutarlı. Ece sivil (hardal kazak, kot); önlüğü B4'te yere atmıştı → "Benim önlüğüm nerde abi" tutarlı.
+- Yeni karakter: Mert (yakışıklı, mavi göz, kumral-kahverengi saç; sesi cool, karizmatik). Doğaçlama izni yok: yeni replik eklenmez.
+- **Deneme (kullanıcı kararı):** senarist, görüntü ve ses yönetmenliği raporlarını Gemini (tools/gemini.py) yazar; Claude yönetir ve denetler; token tasarrufu ölçülür.
