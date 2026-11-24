@@ -134,7 +134,12 @@ const ProfilBas: React.FC<{ p: GobekPoz; lw: number }> = ({ p, lw }) => {
         <path d={serit([[-40, -14, 0], [-22, -16, 4], [-20, 14, 4], [-34, 30, 0]])} fill={TEN_C} opacity={0.45} />
       </Hacim>
       {/* saç: kulak üstü/arkası seyrek tutam + tepeye yatırılmış yağlı teller */}
-      {[0, 1, 2, 3, 4, 5, 6].map((k) => <path key={k} d={serit([[-158 + k * 2, -70 + k * 18, 1 * lw], [-128 + k * 5, -62 + k * 19, 6.5 * lw - (k % 3) * lw], [-96 + k * 3, -58 + k * 20, 3 * lw], [-80 + k * 2, -46 + k * 21, 0]])} fill={k % 2 ? "#3a302a" : SAC} />)}
+      {/* kulak arkası/üstü seyrek saç: yarı saydam kütle (deri seçilir) + ince, kıvrık teller */}
+      <path d={egri([[-150, -58], [-118, -86], [-76, -74], [-60, -46], [-76, -16], [-100, 16], [-114, 54], [-140, 62], [-160, 12]], true)} fill="#4a3e36" opacity={0.42} />
+      {new Array(10).fill(0).map((_, k) => {
+        const y0 = -70 + k * 13, x0 = -148 + (k % 3) * 3;
+        return <path key={k} d={serit([[x0, y0, 0], [x0 + 22, y0 - 4 + (k % 2) * 4, 2.6 * lw], [x0 + 48, y0 + 2, 2 * lw], [x0 + 66 - k * 2, y0 + 10, 0]])} fill={k % 2 ? "#2a221e" : "#4a3e36"} opacity={0.85} />;
+      })}
       <path d={serit([[86, -150, 1 * lw], [30, -176, 7 * lw], [-50, -172, 6 * lw], [-118, -134, 1 * lw]])} fill={SAC} />
       <path d={serit([[70, -138, 1 * lw], [10, -164, 6 * lw], [-70, -158, 5 * lw], [-130, -110, 0]])} fill={SAC} />
       <path d={serit([[50, -124, 0], [-10, -150, 5 * lw], [-90, -140, 4 * lw], [-140, -88, 0]])} fill={SAC} />

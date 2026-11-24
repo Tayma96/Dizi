@@ -183,7 +183,7 @@ const kamera = (f: number): { k: Kam; infCap?: boolean; gbCap?: [number, number]
     const u = (f - P2.A2) / (P2.A3 - P2.A2);
     return { k: kamHedef([-0.2, 1.6, -0.5 + 0.25 * u], [-0.2, 0.0, 4.6], 860, 820) };
   }
-  if (f < P2.A4) return { k: kamHedef([-2.3, 0.4, 1.5], [-2.3, 0.3, 3.0], 1300, 600), gbCap: [-560, -200] };
+  if (f < P2.A4) return { k: kamHedef([-2.3, 0.3, 1.5], [-2.3, 0.24, 3.0], 1300, 640), gbCap: [-560, -200] };
   if (f < P2.A5) {
     // horlamaya motive kayma: önce horlayan göbekli, sonra hızlı ama yumuşak kayma, kızın yüzüne kilitlenir
     const u = ara(f, P2.A4 + 16, P2.A4 + 44);
