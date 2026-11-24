@@ -308,3 +308,8 @@ Ece: "Benim önlüğüm nerde abi" der Mert'ten gözünü ayırmadan hâlâ apta
 - Süreklilik: 3. kural (B1) = "Asla kimseye saygısızlık yapma! Tartışmaya girme!" → B4'te önlüğü atıp "sıçarım işinedeee marketinedeee" demesi bu kuralı bozuyor; tutarlı. Depo kapısı B4-B5 travması (2. kural: depodan ses/çağrı) → "aaaa yine miii" tutarlı. Ece sivil (hardal kazak, kot); önlüğü B4'te yere atmıştı → "Benim önlüğüm nerde abi" tutarlı.
 - Yeni karakter: Mert (yakışıklı, mavi göz, kumral-kahverengi saç; sesi cool, karizmatik). Doğaçlama izni yok: yeni replik eklenmez.
 - **Deneme (kullanıcı kararı):** senarist, görüntü ve ses yönetmenliği raporlarını Gemini (tools/gemini.py) yazar; Claude yönetir ve denetler; token tasarrufu ölçülür.
+
+### Bölüm 8 (yeni), Parça 1: kullanıcı kararları (24 Kasım 2026, Gemini raporlarından sonra)
+- Bölüm 8 = 3-4 parça. Bu parça "Benim önlüğüm nerde abi" ile biter (bölüm sonu değil; parça sonuna ek kanca yok).
+- Rüzgâr ve cırcır böceği KONMAZ; âşık bakış anı anime tarzı (parıltı, ışık hüzmesi, saç/arka plan efekti vb.).
+- İlk 3-4 sn kanca iyi bağlanmalı. Kullanıcı: "En önemli şey senaryo; senaryo izleyiciye merak hissettirir, sevdirirse izleyici viral yapıyor."
