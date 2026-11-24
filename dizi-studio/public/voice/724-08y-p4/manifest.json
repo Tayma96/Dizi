@@ -1,0 +1,373 @@
+{
+ "M1a_01": {
+  "key": "7334b4db4464",
+  "file": "voice/724-08y-p4/M1a_01.mp3",
+  "voice": "elevenlabs:Yunus - Charismatic Turkish Male",
+  "emotion": "notr",
+  "text": "Merak etme ben yanındayım",
+  "duration": 2.456,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Merak",
+    "start": 0.093,
+    "end": 0.413
+   },
+   {
+    "w": "etme",
+    "start": 0.493,
+    "end": 1.133
+   },
+   {
+    "w": "ben",
+    "start": 1.453,
+    "end": 1.613
+   },
+   {
+    "w": "yanındayım",
+    "start": 1.693,
+    "end": 2.493
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.093,
+    "v": "M"
+   },
+   {
+    "t": 0.146,
+    "v": "E"
+   },
+   {
+    "t": 0.2,
+    "v": "L"
+   },
+   {
+    "t": 0.253,
+    "v": "A"
+   },
+   {
+    "t": 0.333,
+    "v": "L"
+   },
+   {
+    "t": 0.413,
+    "v": "X"
+   },
+   {
+    "t": 0.493,
+    "v": "E"
+   },
+   {
+    "t": 0.533,
+    "v": "L"
+   },
+   {
+    "t": 0.573,
+    "v": "M"
+   },
+   {
+    "t": 0.693,
+    "v": "E"
+   },
+   {
+    "t": 0.813,
+    "v": "X"
+   },
+   {
+    "t": 1.453,
+    "v": "M"
+   },
+   {
+    "t": 1.506,
+    "v": "E"
+   },
+   {
+    "t": 1.56,
+    "v": "L"
+   },
+   {
+    "t": 1.613,
+    "v": "X"
+   },
+   {
+    "t": 1.693,
+    "v": "I"
+   },
+   {
+    "t": 1.72,
+    "v": "A"
+   },
+   {
+    "t": 1.746,
+    "v": "L"
+   },
+   {
+    "t": 1.773,
+    "v": "I"
+   },
+   {
+    "t": 1.826,
+    "v": "L"
+   },
+   {
+    "t": 1.933,
+    "v": "A"
+   },
+   {
+    "t": 2.013,
+    "v": "I"
+   },
+   {
+    "t": 2.173,
+    "v": "M"
+   },
+   {
+    "t": 2.253,
+    "v": "X"
+   },
+   {
+    "t": 2.493,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 24
+ },
+ "M1b_01": {
+  "key": "9e712703f6e0",
+  "file": "voice/724-08y-p4/M1b_01.mp3",
+  "voice": "elevenlabs:Yunus - Charismatic Turkish Male",
+  "emotion": "notr",
+  "text": "Merak etme ben yanındayım",
+  "duration": 2.299,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Merak",
+    "start": 0.009,
+    "end": 0.409
+   },
+   {
+    "w": "etme",
+    "start": 0.489,
+    "end": 0.969
+   },
+   {
+    "w": "ben",
+    "start": 1.209,
+    "end": 1.369
+   },
+   {
+    "w": "yanındayım",
+    "start": 1.449,
+    "end": 2.249
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.009,
+    "v": "M"
+   },
+   {
+    "t": 0.089,
+    "v": "E"
+   },
+   {
+    "t": 0.169,
+    "v": "L"
+   },
+   {
+    "t": 0.249,
+    "v": "A"
+   },
+   {
+    "t": 0.329,
+    "v": "L"
+   },
+   {
+    "t": 0.409,
+    "v": "X"
+   },
+   {
+    "t": 0.489,
+    "v": "E"
+   },
+   {
+    "t": 0.529,
+    "v": "L"
+   },
+   {
+    "t": 0.569,
+    "v": "M"
+   },
+   {
+    "t": 0.649,
+    "v": "E"
+   },
+   {
+    "t": 0.729,
+    "v": "X"
+   },
+   {
+    "t": 1.209,
+    "v": "M"
+   },
+   {
+    "t": 1.262,
+    "v": "E"
+   },
+   {
+    "t": 1.316,
+    "v": "L"
+   },
+   {
+    "t": 1.369,
+    "v": "X"
+   },
+   {
+    "t": 1.449,
+    "v": "I"
+   },
+   {
+    "t": 1.476,
+    "v": "A"
+   },
+   {
+    "t": 1.502,
+    "v": "L"
+   },
+   {
+    "t": 1.529,
+    "v": "I"
+   },
+   {
+    "t": 1.582,
+    "v": "L"
+   },
+   {
+    "t": 1.689,
+    "v": "A"
+   },
+   {
+    "t": 1.729,
+    "v": "I"
+   },
+   {
+    "t": 1.889,
+    "v": "M"
+   },
+   {
+    "t": 2.009,
+    "v": "X"
+   },
+   {
+    "t": 2.249,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 24
+ },
+ "E1a_01": {
+  "key": "9448b2d3b044",
+  "file": "voice/724-08y-p4/E1a_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "Aaaaa!",
+  "duration": 2.769,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Aaaaa!",
+    "start": 1.2,
+    "end": 2.72
+   }
+  ],
+  "mouth": [
+   {
+    "t": 1.2,
+    "v": "A"
+   },
+   {
+    "t": 2.16,
+    "v": "L"
+   },
+   {
+    "t": 2.32,
+    "v": "X"
+   },
+   {
+    "t": 2.72,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 12
+ },
+ "E1b_01": {
+  "key": "3fb5c0e3e54f",
+  "file": "voice/724-08y-p4/E1b_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "notr",
+  "text": "Aaaaa!",
+  "duration": 2.429,
+  "asrScore": null,
+  "heard": null,
+  "words": [
+   {
+    "w": "Aaaaah!",
+    "start": 0.8,
+    "end": 1.48
+   },
+   {
+    "w": "Aaah!",
+    "start": 1.52,
+    "end": 2.4
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.68,
+    "v": "X"
+   },
+   {
+    "t": 0.8,
+    "v": "A"
+   },
+   {
+    "t": 1.24,
+    "v": "L"
+   },
+   {
+    "t": 1.52,
+    "v": "A"
+   },
+   {
+    "t": 2.04,
+    "v": "L"
+   },
+   {
+    "t": 2.16,
+    "v": "X"
+   },
+   {
+    "t": 2.4,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 13
+ }
+}
