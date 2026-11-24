@@ -96,7 +96,7 @@ const KolYumusak: React.FC<{ S: V2; E: V2; H: V2; w: number; renk: string; manse
 };
 
 /* ------------------------------------------------------------------ eşyalar (el ölçeğinde, s = karakter ölçeği) */
-const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }> = ({ n, x, y, s, a = 0 }) => {
+export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }> = ({ n, x, y, s, a = 0 }) => {
   const tr = `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${s.toFixed(3)})`;
   if (n === "corap")
     return (
@@ -170,6 +170,15 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
         <circle cx={32} cy={-106} r={6} fill={O} />
       </g>
     );
+  if (n === "kalem")  // B8: tükenmez kalem (el içinde, uç aşağıda)
+    return (
+      <g transform={tr}>
+        <path d="M 0 10 L 0 -92" stroke={O} strokeWidth={13} strokeLinecap="round" />
+        <path d="M 0 4 L 0 -92" stroke="#f2f2f0" strokeWidth={8} strokeLinecap="round" />
+        <path d="M 0 -76 L 0 -94" stroke="#2a4aa8" strokeWidth={9} strokeLinecap="round" />
+        <path d="M 0 8 L 0 22" stroke="#8a8e94" strokeWidth={5} strokeLinecap="round" />
+      </g>
+    );
   if (n === "deste" || n === "para")
     return (
       <g transform={tr}>
@@ -182,8 +191,8 @@ const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }>
 };
 
 /* ------------------------------------------------------------------ bir karakter (rig + IK kollar + eşyalar) */
-type KarCiz = { govde: React.ReactNode; on: React.ReactNode };
-const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: number, t0f: number): KarCiz | null => {
+export type KarCiz = { govde: React.ReactNode; on: React.ReactNode };
+export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: number, t0f: number): KarCiz | null => {
   if (!q) return null;
   const look = castById(id);
   const [x, y, size] = kf(q.yer, tg, [540, 1850, 1200]);
@@ -216,6 +225,7 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
         body: aralik(q.yuru, tg) ? "walk" : undefined, tears: q.tears, sacDagin: q.sacDagin, seed: id.length * 7,
         gesture: q.jest ? (basamak<string | null>(q.jest, tg, null) ?? undefined) as never : undefined,
         sweat: aralik(q.ter, tg) || undefined, pale: q.solgun ? kf1(q.solgun, tg, 0) || undefined : undefined,
+        yutkun: q.yutkun ? kf1(q.yutkun, tg, 0) || undefined : undefined, breath: q.nefes ? kf1(q.nefes, tg, 1) : undefined,
       }} />
     </div>
   );
@@ -266,7 +276,7 @@ const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: nu
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
     const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
-    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" || tut === "isaret" || tut === "iki" ? 0 : side === "L" ? -15 : 15} />);
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "corap" || tut === "isaret" || tut === "iki" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");
