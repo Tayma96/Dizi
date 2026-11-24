@@ -1,142 +1,133 @@
-# Kırmızı Düğme · B1 · Parça 2: Dörtlü uyanış (DİYALOG TASLAĞI)
+# Kırmızı Düğme · B1 · Parça 2: Dörtlü uyanış (DİYALOG TASLAĞI v2)
 
-> 24 Kasım 2026. **Claude taslağı, kullanıcının isteğiyle yazıldı** ("Örnek bol diyaloglu bir sahne yapsana, komik olsun, gerçekte olsa ne olurdu onu da düşün"). Kullanıcı onaylayana ya da düzeltene kadar taslaktır.
+> 24 Kasım 2026. **Claude taslağı, kullanıcının isteğiyle yazıldı.** Kullanıcı onaylayana ya da düzeltene kadar taslaktır.
 >
-> **Şiveler:** göbekli Trakya, kurye Adanalı keko, influencer tiki, teyze tonton Anadolu kadını.
-> **Adlar yok:** birbirlerini tanımıyorlar; "abi, teyze, kardeşim, abla" diye hitap ediyorlar.
-> **Spoiler kuralı:** Kancaya gönderme yok. Odada tek düğme var, sayacı 001. Bu parçada düğmeye basılmaz.
-> **Çekim numaraları:** `b1-p2-cekim.md`.
+> **Kullanıcı geri bildirimi (v1):** "Diyaloglar samimiyetsizlikten ve yapmacıklıktan uzak olsun; kaçırılmışlar, ilk tepkileri o mu olur?"
+> → v1'deki espri replikleri ("Anne çayı koy", "On dört ay", prank, tuvalet) çıkarıldı. Bu sürümde ilk duygu korku ve sersemlik. Komedi yalnız karakterin gerçekliğinden, istemeden doğuyor. Şive her cümlede değil, ağızdan doğal çıkan birkaç kelimede.
+>
+> **Kurallar:** kancaya gönderme yok · tek düğme, sayacı 001 · bu parçada basılmaz · adlar yok.
 
-## Gerçekte olsa ne olurdu? (sahnenin dayandığı tepkiler)
-1. **Uyuşturulup uyanan kişi:** sersem, başı ağrıyor, ağzı kupkuru; ilk saniye evinde sanıyor.
-2. **İlk refleks cebe gider:** telefon, cüzdan, anahtar.
-3. **Yabancıya ilk duygu şüphe:** "Beni sen mi getirdin?"
-4. **Bir kısmı inkâr eder:** "Şaka bu, gizli kamera."
-5. **Çıkış aranır, bağırılır.** Sessizlik cevap verir.
-6. **Bedenin ihtiyaçları araya girer:** susuzluk, tuvalet. Gerçek ve komik.
-7. **Teyze (içeriden biri) "fazla" rahattır.** Küçük bir dil sürçmesiyle ele verir: saatsiz odada "hayırlı sabahlar" der.
+## Gerçekte ne olur? (sahnenin dayandığı psikoloji)
+1. **Sersemlik:** Uyuşturucuyla bayıltılan kişi baş ağrısı, bulantı, ağız kuruluğu ve ışığa karşı göz kırpmayla uyanır. Konuşma kısık ve kesik olur.
+2. **Önce son anı:** Uyanan kişi kendini sormaz, son hatırladığı anı hatırlar: minibüs, çarpma, çuval. Kurye arabayla çarpışmıştı; ilk iş canının yandığı yeri tutar.
+3. **Yabancıdan korku:** "Beni bunlar mı kaçırdı?" Geri çekilme, savunma, bağırma.
+4. **"Sen de mi?":** Ortak durum anlaşılınca korku yerini kısa, kesik bilgi alışverişine bırakır. Bu, ileride gelecek flashback'lere de zemin hazırlıyor.
+5. **Çıkış arama ve bağırma.** Cevap gelmez; çaresizlik.
+6. **Komedi zorla gelmez:** Göbekli adam ayağa kalkınca nefesi kesilip geri oturur. Kurye "hey" diye bağırır, sonra utanır. Gerçek ve hafif.
+7. **Teyze (içeriden biri) rol yapar:** Sakin değil, **anaç**. Ağlayan kızı teselli eder, Anadolu'da bayılana yapıldığı gibi bileklerine kolonya sürer. İpucu, yaptığında değil **yapmadığında**: herkes cebini yoklarken o yoklamaz. Çantası da elinden alınmamış.
 
 ---
 
-**2.1 · GENEL, TAM TEPEDEN.** Bembeyaz oda. Ortada kaide, üstünde tek kırmızı düğme. Yerde baygın dört kişi. *İki saniye tam sessizlik.*
+**2.1 · GENEL, TAM TEPEDEN.** Bembeyaz oda; ortada kaide ve tek düğme. Yerde dört kişi. *İki saniye tam sessizlik.*
 
-**2.2 · ORTA, YER HİZASI, KİLİTLİ.** Göbekli adam sırtüstü yatıyor, horluyor. Kendi horultusuyla uyanır, gözleri hâlâ kapalı.
+**2.2 · ORTA, YER HİZASI, KİLİTLİ.** Göbekli adam inleyerek kıpırdar, öksürür, ağzını şapırdatır. Işığa gözlerini kısar. Doğrulur, odayı görünce donar.
 
-> **GÖBEKLİ** (esneyerek): Anne... çayı koy be...
+> **GÖBEKLİ** (fısıltıyla): Ne...
 
-Gözünü açar. Tavan bembeyaz.
+Ellerine bakar, sonra tavana.
 
-> **GÖBEKLİ:** Ula... burası neresi bre?
+> **GÖBEKLİ:** Minibüs... Minibüs vardı...
 
-**2.3 · ORTA, ELDE.** Kurye tek hamlede doğrulur, yumruklar havada.
+**2.3 · ORTA, ELDE.** Kurye bir soluklanmayla uyanır, ilk iş kaburgasını tutar, yüzü buruşur. Bacağını oynatır, kırık mı diye bakar. Sonra öbürlerini görür ve sıçrayıp sırtını duvara verir.
 
-> **KURYE:** Noluyo la burda?!
+> **KURYE:** Kimsiniz la?!
 
-Kulağındaki kabloyu yoklar, kask yok.
+**2.4 · YAKIN, SIĞ ODAK, TİTREK.** Influencer gözünü açar, birden doğrulur. Yabancıları görünce sürünerek duvara kadar geri kaçar, hızlı hızlı nefes alır.
 
-> **KURYE:** Motor... Motorum nerde la?!
+> **INFLUENCER:** Yaklaşmayın... Yaklaşmayın bana!
 
-**2.4 · YAKIN, SIĞ ODAK.** Influencer gözlerini açar, makyajı akmış. İlk iş cebi.
+Elini başına götürür.
 
-> **INFLUENCER:** Telefonum... Telefonum yok. Telefonum YOK!
+> **INFLUENCER** (ağlamaklı): Başıma bir şey geçirdiler... Başıma...
 
-**2.5 · INFLUENCER'IN GÖZÜNDEN.** Bulanık; üç yabancı netleşir.
+**2.5 · INFLUENCER'IN GÖZÜNDEN.** Bulanık; teyze ona doğru eğiliyor, netleşir.
 
-> **INFLUENCER:** Ben bugün canlı yayın açcaktım ya!
+**2.6 · ORTA, SABİT, ORTALI.** Teyze kızın yanına diz çöker, yavaşça, elleri görünür.
 
-**2.6 · ORTA, KUSURSUZ SABİT, ORTALI.** Teyze oturuyor. Perma kusursuz, çanta kucakta. Elini kolonyalıyor.
+> **TEYZE:** Tamam kızım, tamam... Kimse bir şey yapmıyo. Bak, ben de buradayım.
 
-> **TEYZE** (tatlı tatlı): Uyandınız mı guzum? Hayırlı sabahlar.
+Çantasını açar, kolonya çıkarır.
 
-> **KURYE:** Ne sabahı teyze, saat kaç?
+> **TEYZE:** Ver bileğini.
 
-> **TEYZE:** Ne biliyim yavrım... Sabah gibi geldi bana.
+**2.7 · YAKIN.** Teyze kızın bileklerine kolonya sürer. Hırkasının kırmızı mantar düğmeleri kadrajın altında bir an görünür. Kız ağlamayı bırakmaya çalışır.
 
-**2.7 · YAKIN.** Teyzenin elleri: avuçta kolonya. Hırka düğmeleri kırmızı mantar düğme, bir an parlar.
+**2.8 · GENEL, 3/4 AÇI.** Dördü ve kaide aynı karede. Kurye hâlâ duvarda, göbekli adama bakar.
 
-**2.8 · GENEL, 3/4 AÇI.** Dördü ve kaide aynı karede. Birbirlerini süzerler. Kurye göbekli adama döner.
+> **KURYE:** Sen... Sen de mi?
 
-> **KURYE:** Sen kimsin la? Beni buraya sen mi getirdin?
+Göbekli adam ağır ağır başını sallar.
 
-> **GÖBEKLİ:** Ben mi? Gardaşım ben bir yıldır evden çıkmadım be, seni nerden getireyim!
+> **GÖBEKLİ:** Markete çıkmıştım. Bi minibüs geldi... Sonrası yok.
 
-> **KURYE:** Bir yıl mı?!
+> **KURYE:** Bana araba çarptı. Motordaydım. Sonra... Sonrası yok.
 
-> **GÖBEKLİ** (gururla): On dört ay.
+> **INFLUENCER** (titrek): Ben evimdeydim. Evimdeydim ya...
 
-**2.9 · ORTA.** Influencer ayağa kalkar, tavana doğru gülümser.
+*Sessizlik. Birbirlerine bakarlar.*
 
-> **INFLUENCER:** Tamam, anladım. Bu prank. Kesin prank. Kamera nerde?
+**2.9 · ORTA, ART ARDA KISA ÇEKİMLER.** Kurye ceplerini yoklar.
 
-Tavana el sallar.
+> **KURYE:** Telefon yok.
 
-> **INFLUENCER:** Selam aşkolaaar! Çok komik, yakaladınız!
+> **GÖBEKLİ** (cebini yoklar): Bende de.
 
-Sessizlik. Hiçbir şey olmaz.
+> **INFLUENCER:** Benimki de...
 
-> **INFLUENCER:** ...Yakaladınız diyorum ama.
+**2.9b · YAKIN (ipucu, uzun tutulmaz).** Teyze cebini yoklamaz. Çantası kucağında, iki eliyle tutuyor. Kimse fark etmez.
 
-> **TEYZE** (kolonyayı uzatır): Al guzum, kolonya dök, ferahlarsın.
+**2.10 · GENEL, KAİDEYİ DOLANAN YARIM TUR.** Kurye topallayarak duvar boyunca yürür, avucunu duvarda gezdirir.
 
-> **INFLUENCER:** Teyzecim şu an kolonyanın sırası mı ya?!
+> **KURYE:** Bi yerden soktular bizi... Kapı olması lazım.
 
-Yine de avucunu uzatır, döktürür, koklar.
+Köşeye gelir. Pürüzsüz.
 
-**2.10 · GENEL, KAİDEYİ DOLANAN YARIM TUR.** Kurye duvarları yoklayarak odayı dolaşır.
+> **KURYE** (kendi kendine): Yok. Dikiş bile yok.
 
-> **KURYE:** Kapı nerde la bunun? ...Kapı yok. Pencere yok. Priz bile yok la!
+**2.11 · ORTA, PROFİL.** Kurye yumruğunu duvara indirir: tok, yankısız ses.
 
-**2.11 · ORTA, PROFİL.** Duvarı yumruklar: tok, yankısız ses.
+> **KURYE** (bağırır): Kimse var mı?! AÇIN ŞUNU!
 
-> **KURYE** (bağırır): İMDAAAT! KİMSE YOK MU LAAA?!
+*Ses hiç yankılanmaz, sanki emiliyor. Ölü sessizlik.* Kurye nefes nefese yumruğuna bakar.
 
-*Hiç yankı yok. Ölü sessizlik.*
+**2.11b · ORTA, KİLİTLİ.** Göbekli adam ayağa kalkmaya çalışır, yarıda nefesi kesilir, geri oturur.
 
-> **GÖBEKLİ** (şakaklarını ovarak): Bağırma be, kafam zaten ağrıyo. Bizi bayıltmışlar galiba... Ağzım kupkuru.
+> **GÖBEKLİ:** Bi dakka... Başım dönüyo.
 
-**2.12 · GENEL, YÜKSEK AÇI, KÖŞEDEN (güvenlik kamerası gibi).** Herkes dağınık, ayakta. Uzun bir an.
+**2.12 · GENEL, YÜKSEK AÇI, KÖŞEDEN (güvenlik kamerası gibi).** Herkes dağınık. Influencer köşelere, tavana bakar.
 
-> **GÖBEKLİ:** Benim tuvaletim geldi ama.
+> **INFLUENCER** (fısıltıyla): Bizi izliyolar mı?
 
-> **KURYE:** Şimdi mi la?!
+*Kimse cevap vermez.*
 
-> **GÖBEKLİ:** Zamanını ben mi seçtim be!
+**2.13 · ÖNDE KARAKTERLER, ARKADA KAİDE FLU → ODAK KAYMASI.** Göbekli adam, oturduğu yerden kaideyi görür.
 
-**2.13 · ÖNDE KARAKTERLER, ARKADA KAİDE FLU → ODAK KAYMASI.** Göbekli adam bir şey fark eder.
-
-> **GÖBEKLİ:** Ula... Şu ne?
+> **GÖBEKLİ:** Şu ne?
 
 Herkes döner.
 
-**2.14 · YAKIN, ALT AÇI.** Kırmızı mantar düğme. Sayaç: **001**. LED nabız gibi atıyor.
+**2.14 · YAKIN, ALT AÇI.** Kırmızı mantar düğme. Sayaç: **001**. LED, yavaş bir nabız gibi atıyor.
 
-**2.15 · ORTA, KAİDENİN ARKASINDAN.** Dördü düğmeye bakıyor. Kurye bir adım atar.
+**2.15 · ORTA, KAİDENİN ARKASINDAN.** Kurye, topallayarak bir adım atar, eli kalkar.
 
-> **KURYE:** Basıyom.
+> **TEYZE** (birden, fazla hızlı): Dokunma oğlum!
 
-> **INFLUENCER:** Sakın! Ya bombaysa?!
+Herkes ona döner. Teyze sesini yumuşatır.
 
-> **KURYE:** Ne bombası la, düz kırmızı düğme işte!
+> **TEYZE:** Ne olduğu belli değil... Dokunma.
 
-> **INFLUENCER:** Aynen, filmlerde de hep böyle diyorlar, sonra BUM!
+Kuryenin eli havada kalır.
 
-> **TEYZE** (hiç kımıldamadan, sakin): Acele etmeyin yavrım. Düğme bir yere gitmiyo.
-
-Herkes teyzeye döner. Kısa bir an.
-
-> **GÖBEKLİ:** Ben tuvaleti soracaktım ama...
-
-**2.16 · GENEL, TAM TEPEDEN.** Dördü düğmenin çevresinde, deney fareleri gibi. *Tek bir kalp atışı.* **Kesme.**
+**2.16 · GENEL, TAM TEPEDEN.** Dördü düğmenin çevresinde. *Tek bir kalp atışı.* **Kesme.**
 
 ---
 
 ## Yönetmen notları
-- **Komedinin kaynağı:** Gerçekçi tepkilerin karakterle çarpışması. Göbekli adamın derdi bedeni (tuvalet, baş ağrısı, ağız kuruluğu), kuryenin derdi motoru, influencer'ın derdi telefonu ve yayını, teyzenin derdi... hiçbir şey. Komik görünür ama şüphelidir.
-- **Teyzenin üç ipucu:** saatsiz odada "hayırlı sabahlar", panik yokken kolonya, "Düğme bir yere gitmiyo" (sanki biliyormuş gibi). Hepsi tatlı söylenir; izleyici gülerken not alır.
-- **Ses ve tempo:** Kurye bağırdıktan sonra yankısız sessizlik (≈1,5 sn); oda "ölü". Teyzenin repliklerinde müzik yok, çok hafif uyumsuz bir nota.
-- **Kesme ritmi:** Komik replikten sonra yarım saniye "sessiz bakış" bırakılır (2.8'de "On dört ay." sonrası, 2.12'de tuvalet sonrası). Komedi oradan doğar.
+- **Oyunculuk:** Replikler kısık, kesik ve aralıklı söylenir; cümle bitmeden susulur. Bağırış yalnız kuryenin "AÇIN ŞUNU"sunda var. Seslendirmede `[whispers]`, `[shaky]`, `[out of breath]` gibi etiketler kullanılacak; kahkaha ya da espri tonu yok.
+- **Sessizlikler replik kadar önemli.** Özellikle "Sonrası yok" ile "Evimdeydim ya" sonrasında ve "AÇIN ŞUNU"dan sonra yaklaşık 1,5 saniye bırakılır.
+- **Teyzenin ipuçları:** "Dokunma oğlum!" demesi gerçekçi bir anne refleksi gibi duruyor, ama fazla hızlı ve fazla emin. Cebini yoklamaması ve çantasının elinden alınmamış olması da ince ipuçları. İzleyici ilk izleyişte kaçırır, ikincisinde yakalar.
+- **Bu parça flashback'lere zemin hazırlıyor:** "Minibüs", "araba çarptı", "evimdeydim" kırıntıları merak uyandırıyor. Ardından gelecek "Sen nasıl geldin buraya?" sorusu doğal olarak cevaplanıyor.
 
 ## Seslendirme maliyeti (tahmin)
-- 31 replik, metin ≈ 1.040 harf; duygu etiketleriyle ≈ **1.475 kredi** (eleven_v4).
-- B1 bütçesi: kalan ≈ 2.889 kredi. Bu parçadan sonra ≈ **1.410 kredi** kalır; flashback'ler ve final için dar.
-- **Kısaltma seçenekleri (gerekirse):** 2.5 ("canlı yayın") ve 2.15'in son repliği atılabilir (≈ −80 kredi). Ya da şive denemesi B1 dışından sayılır.
+- 22 replik, metin ≈ 568 harf; duygu etiketleriyle ≈ **920 kredi** (eleven_v4). v1'den (≈1.475) çok daha ucuz.
+- B1'de kalan ≈ 2.889 kredi → bu parçadan sonra ≈ **1969** kredi kalır.
