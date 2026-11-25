@@ -90,7 +90,7 @@ FPSP["kacis"] = {"kar": [mert, kiz]}
 
 # ------------------------------------------------------------------ YAN: Ece kapıyı çarpar, yaslanır, nefes nefese → fısıltı → "sus" → tırnaklar → ayakkabı → kibar vuruş → ses
 K1 = M["K1a_01"]                           # kız (ekran dışı, Mert'in göğsüne gömülü): "Gitti mi?"
-Y1 = M["Y1c_01"]                           # yaratık (kapının ardından, kibar): "Sayın bezmenler, lütfen kapıyı açar mısınız?"
+Y1 = M["Y1d_01"]                           # yaratık (kapının ardından, kibar): "Sayın bezmenler, lütfen kapıyı açar mısınız?"
 y0 = L0
 r = lambda v: round(y0 + v, 3)             # YAN içi göreli zaman → sahne zamanı
 t_bak = r(0.12)                            # başını kapıya çevirir
