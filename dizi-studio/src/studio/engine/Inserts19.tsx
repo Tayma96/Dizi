@@ -407,7 +407,7 @@ const Sac: React.FC<{ v: number }> = ({ v }) => {
  * Tezgâhın arkasındaki dar koridor (x -0.9..0.9, z 0..6); sol duvarda depo kapısı (z 3.0..3.9, açık).
  * Depo odası (x -5.5..-0.9, z 1..6): metal raflar, koliler, eski radyo, sallanan çıplak ampul.
  * Yaratık depo ortasında, SIRTI kapıya dönük, dizlerine abanmış twerk atıyor (twerk 0..1 şiddet). */
-const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean; ara?: React.ReactNode }> = ({ c, t, f, twerk, radyo, y, kacis, ara }) => {
+const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean; ara?: React.ReactNode; koli?: number; siluet?: KF }> = ({ c, t, f, twerk, radyo, y, kacis, ara, koli, siluet }) => {
   const el: React.ReactNode[] = [];
   const q = (pts: V3[], renk: string, key: string, op = 1) => {
     const p = poly(c, pts);
@@ -594,6 +594,33 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
       yazi(tx, 2.5, tz + 0.005, 0.1, ad, "#ffffff", `tbt${sd}`);
     }
   }
+  // B9: kutu (koli): merkez, yarı boyutlar, yaw (y ekseni) + devrilme (z ekseni) açıları; arka yüzler ayıklanır
+  const kutu = (m0: V3, h: V3, ryD: number, rzD: number, renkI: number, key: string) => {
+    const A = (rzD * Math.PI) / 180, B = (ryD * Math.PI) / 180;
+    const R = (v: V3): V3 => {
+      const x1 = v[0] * Math.cos(A) - v[1] * Math.sin(A), y1 = v[0] * Math.sin(A) + v[1] * Math.cos(A);
+      return [x1 * Math.cos(B) + v[2] * Math.sin(B), y1, -x1 * Math.sin(B) + v[2] * Math.cos(B)];
+    };
+    const W3 = (v: V3): V3 => { const r = R(v); return [m0[0] + r[0], m0[1] + r[1], m0[2] + r[2]]; };
+    const [hx, hy, hz] = h;
+    const ton = [["#b8895a", "#9a6e42", "#d4a874"], ["#a87a4c", "#8e663e", "#c89a6a"], ["#c89a6a", "#a87c50", "#dcb080"]][renkI % 3];
+    const yuz: [V3, V3[], string][] = [
+      [[1, 0, 0], [[hx, -hy, -hz], [hx, -hy, hz], [hx, hy, hz], [hx, hy, -hz]], ton[1]],
+      [[-1, 0, 0], [[-hx, -hy, -hz], [-hx, -hy, hz], [-hx, hy, hz], [-hx, hy, -hz]], ton[0]],
+      [[0, 1, 0], [[-hx, hy, -hz], [hx, hy, -hz], [hx, hy, hz], [-hx, hy, hz]], ton[2]],
+      [[0, -1, 0], [[-hx, -hy, -hz], [hx, -hy, -hz], [hx, -hy, hz], [-hx, -hy, hz]], "#6a4a2a"],
+      [[0, 0, 1], [[-hx, -hy, hz], [hx, -hy, hz], [hx, hy, hz], [-hx, hy, hz]], ton[1]],
+      [[0, 0, -1], [[-hx, -hy, -hz], [hx, -hy, -hz], [hx, hy, -hz], [-hx, hy, -hz]], ton[0]],
+    ];
+    for (const [i, [n, pts, renk]] of yuz.entries()) {
+      const nw = R(n), mm = W3([n[0] * hx, n[1] * hy, n[2] * hz]);
+      if (nw[0] * (c.x - mm[0]) + nw[1] * (c.y - mm[1]) + nw[2] * (c.z - mm[2]) <= 0) continue;
+      const pp = poly(c, pts.map(W3));
+      if (pp) el.push(<path key={`${key}${i}`} d={pp.d} fill={renk} stroke="#3a2614" strokeWidth={1.5} strokeLinejoin="round" />);
+      if (i === 2) { const bt = poly(c, ([[-hx, hy + 0.002, -0.025], [hx, hy + 0.002, -0.025], [hx, hy + 0.002, 0.025], [-hx, hy + 0.002, 0.025]] as V3[]).map(W3)); if (bt) el.push(<path key={`${key}b`} d={bt.d} fill="#e8d8a0" opacity={0.9} />); }
+      if (i === 1) { const et = poly(c, ([[-hx - 0.001, -hy * 0.1, -hz * 0.7], [-hx - 0.001, -hy * 0.1, hz * 0.7], [-hx - 0.001, hy * 0.1, hz * 0.7], [-hx - 0.001, hy * 0.1, -hz * 0.7]] as V3[]).map(W3)); if (et) el.push(<path key={`${key}t`} d={et.d} fill="#e8d8a0" />); }
+    }
+  };
   if (kacis) {
     // uç duvar (kapı boşluğu x -0.45..0.45, h 2.1) + kasa + koridora açık kanat (menteşe x 0.45)
     q([[kx0, 0, -1], [-0.45, 0, -1], [-0.45, kh, -1], [kx0, kh, -1]], "#6c706c", "ku1");
@@ -613,14 +640,28 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
     // --- koridor: titreyen tavan floresanı (eskimiş starter), duvar dibinde koliler, yangın tüpü
     const fl = random(`kfl${Math.floor(f / 2)}`) > 0.8 ? 0.35 : 1;
     q([[-0.2, kh - 0.012, 0.5], [0.2, kh - 0.012, 0.5], [0.2, kh - 0.012, 2.5], [-0.2, kh - 0.012, 2.5]], fl > 0.5 ? "#f4fbf2" : "#8a908a", "klf");
-    [[0.55, 0.0, 0.45, 0.4], [0.62, 0.4, 0.38, 0.3], [0.5, 0.0, 1.15, 0.55], [0.58, 0.55, 1.2, 0.35], [0.6, 0.0, 1.85, 0.3]].forEach(([xx, yy, zz, hh], i) => {
-      const dd = 0.42;
-      q([[xx, yy, zz], [kx1 - 0.01, yy, zz], [kx1 - 0.01, yy + hh, zz], [xx, yy + hh, zz]], ["#b8895a", "#a87a4c", "#c89a6a"][i % 3], `kk${i}a`);
-      q([[xx, yy, zz], [xx, yy, zz + dd], [xx, yy + hh, zz + dd], [xx, yy + hh, zz]], ["#9a6e42", "#8e663e", "#a87c50"][i % 3], `kk${i}b`);
-      q([[xx, yy + hh, zz], [kx1 - 0.01, yy + hh, zz], [kx1 - 0.01, yy + hh, zz + dd], [xx, yy + hh, zz + dd]], "#d4a874", `kk${i}c`);
-      q([[xx - 0.001, yy + hh * 0.45, zz + 0.05], [xx - 0.001, yy + hh * 0.45, zz + dd - 0.05], [xx - 0.001, yy + hh * 0.55, zz + dd - 0.05], [xx - 0.001, yy + hh * 0.55, zz + 0.05]], "#e8d8a0", `kk${i}t`);
-    });
+    {
+      const KUT: number[][] = [[0.55, 0.0, 0.45, 0.4], [0.62, 0.4, 0.38, 0.3], [0.5, 0.0, 1.15, 0.55], [0.58, 0.55, 1.2, 0.35], [0.6, 0.0, 1.85, 0.3]];
+      KUT.map((b, i) => ({ b, i, d: Math.hypot((b[0] + kx1) / 2 - c.x, b[1] + b[3] / 2 - c.y, b[2] + 0.21 - c.z) })).sort((a, b) => b.d - a.d).forEach(({ b, i }) => {
+        const [xx, yy, zz, hh] = b;
+        kutu([(xx + kx1 - 0.01) / 2, yy + hh / 2, zz + 0.21], [(kx1 - 0.01 - xx) / 2, hh / 2, 0.21], 0, 0, i, `ks${i}`);
+      });
+    }
     q([[kx0 + 0.01, 0.35, -0.35], [kx0 + 0.01, 0.35, -0.55], [kx0 + 0.01, 0.95, -0.55], [kx0 + 0.01, 0.95, -0.35]], "#c8281e", "ytu");
+    // --- B9: arka uç duvarında kafesli ampul (geriye bakınca kontra ışık): çıplak ampul + tel kafes + hale; duvarda ve zeminde sıcak leke
+    {
+      const titr = random(`ka${Math.floor(f / 3)}`) > 0.9 ? 0.6 : 1;
+      const am = toCam(c, [0, 2.25, 6.96]);
+      if (am[2] > NEAR) {
+        const [ax, ay] = proj(am);
+        const r = F / am[2];
+        const lk = poly(c, [[-0.9, 0.003, 4.6], [0.9, 0.003, 4.6], [0.9, 0.003, 6.99], [-0.9, 0.003, 6.99]]);
+        if (lk) el.push(<path key="amz" d={lk.d} fill="#ffd9a0" opacity={0.1 * titr} style={{ mixBlendMode: "screen" }} />);
+        el.push(<circle key="amh" cx={ax} cy={ay} r={r * 1.3} fill="url(#fpsHale)" opacity={0.75 * titr} style={{ mixBlendMode: "screen" }} />);
+        el.push(<circle key="amb" cx={ax} cy={ay} r={Math.max(2, r * 0.05)} fill="#fff6d8" opacity={titr} />);
+        for (let i = -2; i <= 2; i++) el.push(<path key={`amk${i}`} d={`M ${ax + r * 0.025 * i} ${ay - r * 0.07} Q ${ax + r * 0.045 * i} ${ay} ${ax + r * 0.025 * i} ${ay + r * 0.07}`} stroke="#2a2420" strokeWidth={Math.max(1, r * 0.006)} fill="none" />);
+      }
+    }
     // --- arka uçtaki kafesli ampul (z 6.8) gölgeleri İLERİ, kapıya doğru düşürür: Ece'nin ve peşindeki yaratığın gölgesi
     const L: [number, number] = [0, 6.8];
     const golge = (px: number, pz: number, uz: number, gen: (u: number) => number, key: string, op: number) => {
@@ -655,6 +696,27 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
         const parmak = u > 0.9 ? 0.05 * Math.abs(Math.sin(u * 140)) : 0;
         return Math.max(0.02, govde + kol + parmak);
       }, "gY", 0.7 * kor[3]);
+    }
+    // --- B9: koli yığınının tepesindeki koli (Ece omzuyla çarpınca devrilir, koridora düşer, bir kez seker)
+    {
+      const KK: number[][] = [[0, 0.75, 1.05, 1.37, 0, 0], [0.08, 0.72, 1.06, 1.3, 14, 4], [0.2, 0.62, 0.99, 1.24, 22, 28], [0.31, 0.5, 0.66, 1.17, 28, 60],
+        [0.4, 0.41, 0.16, 1.11, 32, 90], [0.47, 0.39, 0.21, 1.1, 33, 84], [0.55, 0.38, 0.15, 1.1, 33, 90]];
+      const [bx, by, bz, ry, rz] = koli !== undefined ? kf(KK, t - koli, [0.75, 1.05, 1.37, 0, 0]) : [0.75, 1.05, 1.37, 0, 0];
+      kutu([bx, by, bz], [0.15, 0.15, 0.19], ry, rz, 1, "kd");
+    }
+    // --- B9: geriye bakış: yaratığın KONTRA IŞIKTA silueti (gövdenin yalnız kenarı kadrajın solunda; ayrıntı yok, kenarı sıcak hale)
+    const sil = siluet ? kf1(siluet, t, 0) : 0;
+    if (sil > 0.01 && kor) {
+      const g = toCam(c, [kor[0], 0, kor[1]]);
+      if (g[2] > 0.3) {
+        const [gx, gy] = proj(g);
+        const sc = F / g[2];
+        el.push(
+          <g key="sil" opacity={sil} style={{ filter: "brightness(0) drop-shadow(5px -2px 4px rgba(255,214,160,0.75)) drop-shadow(0 0 10px rgba(255,200,150,0.35))" }}>
+            <g transform={`translate(${gx} ${gy}) scale(${sc} ${sc * 0.76})`}><Yaratik ph={kor[2]} t={t} agiz={0} egik={0} seg={0.4} /></g>
+          </g>,
+        );
+      }
     }
     // --- kapıdan koridora taşan aydınlık market ışığı + içinde süzülen toz zerreleri
     const tas = poly(c, [[-0.45, 0.003, -1], [0.45, 0.003, -1], [0.78, 0.003, 0.9], [-0.78, 0.003, 0.9]]);
@@ -803,24 +865,77 @@ const KacisKar: React.FC<{ p: Prm; c: Cam; t: number; f: number; fps: number }> 
   const yig: React.ReactNode[] = [];
   const RENK = ["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#7a4ad0"];
   for (let i = 0; i < 11; i++) {
-    const x0 = -1.0 + i * 0.17 + 0.06 * random(`yx${i}`), z0 = zMin + 0.28 + 0.25 * random(`yz${i}`), w = 0.16 + 0.1 * random(`yw${i}`), h = 0.1 + 0.16 * random(`yh${i}`);
+    if (i >= 7 && i <= 9) continue;   // B9: kızın bacakları bu boşluktan uzanır
+    const x0 = (i === 10 ? 1.02 : -1.0 + i * 0.17) + 0.06 * random(`yx${i}`), z0 = zMin + 0.28 + 0.25 * random(`yz${i}`), w = 0.16 + 0.1 * random(`yw${i}`), h = 0.1 + 0.16 * random(`yh${i}`);
     const pp = poly(c, [[x0, 0, z0], [x0 + w, 0, z0], [x0 + w, h, z0], [x0, h, z0]]);
     if (pp) yig.push(<path key={i} d={pp.d} fill={RENK[i % RENK.length]} stroke="#2b1d1a" strokeWidth={2} />);
     const et = poly(c, [[x0 + w * 0.15, h * 0.35, z0 + 0.001], [x0 + w * 0.85, h * 0.35, z0 + 0.001], [x0 + w * 0.85, h * 0.65, z0 + 0.001], [x0 + w * 0.15, h * 0.65, z0 + 0.001]]);
     if (et) yig.push(<path key={`e${i}`} d={et.d} fill="#f4f0e4" opacity={0.85} />);
   }
-  const sx = 0.75, sz = zMin + 0.5;
+  const sx = -1.2, sz = zMin + 0.62;
   const sep = poly(c, [[sx, 0, sz], [sx + 0.42, 0, sz + 0.05], [sx + 0.46, 0.24, sz + 0.05], [sx - 0.02, 0.26, sz]]);
   if (sep) {
     yig.push(<path key="sep" d={sep.d} fill="#c8281e" stroke="#4a0e0a" strokeWidth={2} />);
     for (let i = 1; i < 6; i++) { const u = i / 6; const l = poly(c, [[sx + 0.42 * u - 0.01, 0.04, sz + 0.05 * u + 0.002], [sx + 0.42 * u + 0.01, 0.04, sz + 0.05 * u + 0.002], [sx + 0.44 * u + 0.01, 0.22, sz + 0.05 * u + 0.002], [sx + 0.44 * u - 0.01, 0.22, sz + 0.05 * u + 0.002]]); if (l) yig.push(<path key={`sl${i}`} d={l.d} fill="#7a1410" />); }
+  }
+  // B9: yerde uzanan bacaklar (dünya noktaları: kalça, diz, bilek, parmak ucu): biri çıplak ayak (kirli taban, sıyrık), biri beyaz spor ayakkabı
+  const bac: React.ReactNode[] = [];
+  const P = (v: V3) => { const g = toCam(c, v); return g[2] > 0.2 ? { p: proj(g), d: g[2] } : null; };
+  const deri = "#f0c8a8", deriG = "#d8ac8a";
+  for (const k of kars) {
+    for (const [j, b] of ((k.bacak3 ?? []) as Prm[]).entries()) {
+      const n = (b.n as V3[]).map(P);
+      if (n.some((v) => !v)) continue;
+      const [h, d, a, u] = n.map((v) => v!.p);
+      const px = (m: number, i: number) => (F * m) / n[i]!.d;
+      const yol = `M ${h[0]} ${h[1]} L ${d[0]} ${d[1]} L ${a[0]} ${a[1]}`;
+      bac.push(<path key={`bo${j}`} d={yol} stroke="#2b1d1a" strokeWidth={px(0.12, 1) + 5} fill="none" strokeLinecap="round" strokeLinejoin="round" />);
+      bac.push(<path key={`bi${j}`} d={yol} stroke={deri} strokeWidth={px(0.12, 1)} fill="none" strokeLinecap="round" strokeLinejoin="round" />);
+      bac.push(<path key={`bg${j}`} d={`M ${d[0]} ${d[1] + px(0.03, 1)} L ${a[0]} ${a[1] + px(0.025, 2)}`} stroke={deriG} strokeWidth={px(0.04, 2)} strokeLinecap="round" opacity={0.6} />);
+      const ang = (Math.atan2(u[1] - a[1], u[0] - a[0]) * 180) / Math.PI, L = Math.hypot(u[0] - a[0], u[1] - a[1]), wv = px(0.1, 3);
+      if (b.ayak === "ciplak") {
+        bac.push(
+          <g key={`ay${j}`} transform={`translate(${a[0]} ${a[1]}) rotate(${ang})`}>
+            <path d={`M ${-wv * 0.3} ${-wv * 0.42} Q ${L * 0.5} ${-wv * 0.62} ${L} ${-wv * 0.4} Q ${L + wv * 0.32} 0 ${L} ${wv * 0.42} Q ${L * 0.5} ${wv * 0.58} ${-wv * 0.3} ${wv * 0.42} Z`} fill={deri} stroke="#2b1d1a" strokeWidth={3} />
+            <path d={`M ${L * 0.15} ${wv * 0.36} Q ${L * 0.55} ${wv * 0.5} ${L * 0.92} ${wv * 0.3}`} stroke="#8a7a6a" strokeWidth={wv * 0.2} fill="none" opacity={0.55} strokeLinecap="round" />
+            {[-0.3, -0.12, 0.05, 0.2, 0.33].map((o, i) => <ellipse key={i} cx={L + wv * (0.1 - Math.abs(o) * 0.35)} cy={o * wv} rx={wv * (i === 0 ? 0.13 : 0.09)} ry={wv * (i === 0 ? 0.11 : 0.08)} fill={deri} stroke="#2b1d1a" strokeWidth={2} />)}
+            <path d={`M ${L * 0.35} ${-wv * 0.5} l ${L * 0.18} ${wv * 0.12}`} stroke="#c8283a" strokeWidth={2} opacity={0.8} />
+          </g>,
+        );
+      } else {
+        bac.push(
+          <g key={`ay${j}`} transform={`translate(${a[0]} ${a[1]}) rotate(${ang})`}>
+            <path d={`M ${-wv * 0.35} ${-wv * 0.55} Q ${L * 0.5} ${-wv * 0.7} ${L} ${-wv * 0.45} Q ${L + wv * 0.45} 0 ${L} ${wv * 0.5} Q ${L * 0.5} ${wv * 0.66} ${-wv * 0.35} ${wv * 0.55} Z`} fill="#f4f4f2" stroke="#2b1d1a" strokeWidth={3} />
+            <path d={`M ${-wv * 0.3} ${wv * 0.5} Q ${L * 0.5} ${wv * 0.7} ${L + wv * 0.1} ${wv * 0.45}`} stroke="#c8c8c4" strokeWidth={wv * 0.16} fill="none" />
+            {[0.2, 0.35, 0.5].map((o) => <path key={o} d={`M ${L * o} ${-wv * 0.3} l ${L * 0.06} ${wv * 0.5}`} stroke="#b8b8b4" strokeWidth={2.5} />)}
+            <path d={`M ${L * 0.55} ${-wv * 0.2} q ${wv * 0.25} ${-wv * 0.4} ${wv * 0.5} ${-wv * 0.1}`} stroke="#d8d8d4" strokeWidth={2} fill="none" />
+          </g>,
+        );
+      }
+    }
+  }
+  // B9: kızın yumruğu Mert'in tişörtünü buruşturur (kumaş kırışıkları yumruktan dışa)
+  const kir: React.ReactNode[] = [];
+  for (const k of kars) {
+    if (!k.tutam3) continue;
+    const g = P(k.tutam3 as V3);
+    if (!g) continue;
+    const r = (F * 0.05) / g.d, sik = 1 + 0.15 * Math.sin(t * 5.3);
+    [-150, -110, -60, 20, 70, 115, 160].forEach((a, i) => {
+      const rr = (a * Math.PI) / 180, r0 = r * 0.9, r1 = r * (1.9 + 0.5 * (i % 2)) * sik;
+      const d = `M ${g.p[0] + Math.cos(rr) * r0} ${g.p[1] + Math.sin(rr) * r0} Q ${g.p[0] + Math.cos(rr + 0.2) * (r0 + r1) / 2} ${g.p[1] + Math.sin(rr + 0.2) * (r0 + r1) / 2} ${g.p[0] + Math.cos(rr) * r1} ${g.p[1] + Math.sin(rr) * r1}`;
+      kir.push(<path key={`h${i}`} d={d} stroke="#4a5a7a" strokeWidth={3} fill="none" strokeLinecap="round" opacity={0.8} transform="translate(-2 -2)" />);
+      kir.push(<path key={i} d={d} stroke="#06090f" strokeWidth={2.5} fill="none" strokeLinecap="round" opacity={0.9} />);
+    });
   }
   return (
     <g>
       <foreignObject x={0} y={0} width={W} height={H}>
         <div style={{ position: "relative", width: W, height: H, clipPath: zemin }}>{parca}</div>
       </foreignObject>
+      {kir}
       {yig}
+      {bac}
     </g>
   );
 };
@@ -866,7 +981,7 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsYesil"><stop offset="0" stopColor="#40ff80" stopOpacity={0.35} /><stop offset="1" stopColor="#40ff80" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} ara={p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null} /> : (
+          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} koli={p.koli} siluet={p.siluet} ara={p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null} /> : (
           <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />)}
         </svg>
       </AbsoluteFill>

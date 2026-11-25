@@ -280,3 +280,76 @@ export const Market724YanTezgah: React.FC<{ sars?: number; frame: number }> = ({
 };
 /** tezgâh üst tablasının ön kenarı (ekran): Sabri'nin kollarını keserken */
 export const yanTezgahUst = (X: number) => yanP(X, 0.95, 0.65)[1];
+
+/** B9 P1 kanca: kapının altındaki aralıktan itilen beyaz spor ayakkabı (zemin düzleminde, yan açı izdüşümüyle).
+ *  X,Z: ayakkabı merkezi (m); yaw: burun yönü (derece, 0 = -Z, kameraya doğru); ezik: 0 normal, 1 aralıkta yassı (negatif: "pop" taşması);
+ *  iz: aralıktan sürüklenme izinin başladığı [X, Z] (depo tozu). Kapı düzleminin (Z = WZ) arkasında kalan parçalar çizilmez. */
+export const YanAyakkabi: React.FC<{ X: number; Z: number; yaw: number; ezik: number; iz?: [number, number]; isik?: number }> = ({ X, Z, yaw, ezik, iz, isik = 0 }) => {
+  type V3 = [number, number, number];
+  const a = (yaw * Math.PI) / 180, ca = Math.cos(a), sa = Math.sin(a);
+  const sx = 1 + 0.08 * ezik, sw = 1 + 0.28 * ezik, sh = Math.max(0.2, 1 - 0.72 * ezik);
+  // yerel: l burun yönü (+), s yan; dünya: burun -Z yönüne bakar (yaw 0)
+  const W = (l: number, s: number, y: number): V3 => [X + s * ca + l * sx * sa, y, Z - l * sx * ca + s * sa];
+  const N = 18;
+  const ring = (y: (l: number) => number, ic: number) => new Array(N).fill(0).map((_, i) => {
+    const th = (i / N) * Math.PI * 2, l = 0.135 * Math.cos(th);
+    const w = (l > 0 ? 0.048 - 0.06 * Math.pow(l / 0.135, 3) * 0.35 : 0.044) * sw * ic;
+    return W(l * (ic < 1 ? 0.94 : 1), w * Math.sin(th), y(l));
+  });
+  const h = (l: number) => (0.028 + (0.1 - 0.028) * Math.min(1, Math.max(0, (0.06 - l) / 0.19)) ** 0.8) * sh;
+  const alt = ring(() => 0.002, 1), orta = ring(() => 0.026 * Math.max(0.45, sh), 1), ust = ring((l) => h(l), 0.82);
+  // kapı düzleminin önüne kırp (Z <= WZ)
+  const kirp = (pts: V3[]): V3[] => {
+    const out: V3[] = [];
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i], q = pts[(i + 1) % pts.length];
+      const pi = p[2] <= WZ, qi = q[2] <= WZ;
+      if (pi) out.push(p);
+      if (pi !== qi) { const u = (WZ - p[2]) / (q[2] - p[2]); out.push([p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u, WZ]); }
+    }
+    return out;
+  };
+  const ciz = (pts: V3[]) => { const k = kirp(pts); return k.length >= 3 ? pl(k.map((v) => yanP(...v))) : null; };
+  const derin = (pts: V3[]) => pts.reduce((m, v) => m + yanD(v[0], v[2]), 0) / pts.length;
+  const yuz: { d: number; el: React.ReactNode }[] = [];
+  for (let i = 0; i < N; i++) {
+    const j = (i + 1) % N;
+    const tab = [alt[i], alt[j], orta[j], orta[i]], ys = [orta[i], orta[j], ust[j], ust[i]];
+    const d1 = ciz(tab), d2 = ciz(ys);
+    const parlak = 0.5 + 0.5 * Math.cos((i / N) * Math.PI * 2 - a + 2.2);
+    const ur = parlak > 0.45 ? "#f4f4f0" : "#dcdcd6";
+    if (d1) yuz.push({ d: derin(tab) + 0.001, el: <path key={`t${i}`} d={d1} fill="#c9c7c0" stroke="#c9c7c0" strokeWidth={1} /> });
+    if (d2) yuz.push({ d: derin(ys), el: <path key={`u${i}`} d={d2} fill={ur} stroke={ur} strokeWidth={1} /> });
+  }
+  yuz.sort((p, q) => q.d - p.d);
+  const ustD = ciz(ust);
+  const ag = ciz(new Array(10).fill(0).map((_, i) => { const th = (i / 10) * Math.PI * 2; return W(-0.075 + 0.04 * Math.cos(th), 0.026 * sw * Math.sin(th), h(-0.075) + 0.002); }));
+  const bag = [-0.02, 0.01, 0.04].map((l, i) => { const p = W(l, -0.028 * sw, h(l) + 0.004), q = W(l + 0.012, 0.028 * sw, h(l) + 0.004); return Math.max(p[2], q[2]) <= WZ ? <path key={`b${i}`} d={`M ${yanP(...p).join(" ")} L ${yanP(...q).join(" ")}`} stroke="#a8a8a2" strokeWidth={2.4} strokeLinecap="round" /> : null; });
+  const golge = ciz(ring(() => 0.001, 1.25).map((v) => [v[0] + 0.015, v[1], v[2] - 0.02] as V3));
+  const izD = iz ? ciz([[iz[0] - 0.05, 0.0015, iz[1]], [iz[0] + 0.05, 0.0015, iz[1]], [X + 0.045, 0.0015, Z], [X - 0.045, 0.0015, Z]]) : null;
+  // dış hat: tüm görünür noktaların dışbükey zarfı (mürekkep çizgisi)
+  const nok = [...alt, ...ust].filter((v) => v[2] <= WZ).map((v) => yanP(...v));
+  const zarf = (() => {
+    const p = [...nok].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    if (p.length < 3) return null;
+    const cr = (o: P2, a: P2, b: P2) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo: P2[] = [], up: P2[] = [];
+    for (const q of p) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+    for (const q of [...p].reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
+    return pl([...lo.slice(0, -1), ...up.slice(0, -1)]);
+  })();
+  const tabanCizgi = ciz(orta);
+  return (
+    <g>
+      {izD ? <path d={izD} fill="#6a6458" opacity={0.22} /> : null}
+      {golge ? <path d={golge} fill="#1a1612" opacity={0.4} filter="url(#yanBl3)" /> : null}
+      {yuz.map((y) => y.el)}
+      {tabanCizgi ? <path d={tabanCizgi} fill="none" stroke="#8a8680" strokeWidth={1.6} /> : null}
+      {ustD ? <path d={ustD} fill="#fbfbf8" stroke="#6a6660" strokeWidth={1.4} /> : null}
+      {ag ? <path d={ag} fill="#3a3430" stroke="#2b1d1a" strokeWidth={1.4} /> : null}
+      {bag}
+      {zarf ? <path d={zarf} fill="none" stroke="#2b1d1a" strokeWidth={2.6} strokeLinejoin="round" /> : null}
+      {isik > 0.01 && ustD ? <path d={ustD} fill="#ffb860" opacity={0.25 * isik} style={{ mixBlendMode: "multiply" }} /> : null}
+    </g>
+  );
+};

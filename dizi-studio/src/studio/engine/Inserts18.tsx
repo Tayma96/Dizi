@@ -19,7 +19,7 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
-import { Market724YanBG, Market724YanTezgah, YAN_KAPI, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
+import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
 import { sstep } from "./bocek";
 import { AnimeFxDunya, AnimeFxEkran, fxKamera, type Fx } from "./canli";
 import { karakter, type KarCiz } from "./Inserts16";
@@ -471,6 +471,11 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {ece && p.eceArkada ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{ece.on}</div> : null}
         {ece && !p.eceArkada ? ece.govde : null}
         {ece && !p.eceArkada ? ece.on : null}
+        {p.ayakkabi && tg >= p.ayakkabi[0][0] ? (() => {
+          // B9 P1 kanca: [t, X, Z, yaw°, ezik]; iz: sürüklenme izinin başı [X, Z]
+          const [ax, az, ayw, aez] = kf(p.ayakkabi, tg, [0, 0, 0, 0]);
+          return <SVG><YanAyakkabi X={ax} Z={az} yaw={ayw} ezik={aez} iz={p.ayakkabiIz} isik={kf(p.kapiAlt, tg, [0])[0]} /></SVG>;
+        })() : null}
         {kf1(p.toz, tg, 0) > 0.01 ? <SVG>{new Array(14).fill(0).map((_, i) => { const u = kf1(p.toz, tg, 0); const [kx, ky] = YAN_KAPI; return <circle key={i} cx={kx - 120 + (i * 37) % 240 + 60 * u * Math.sin(i)} cy={ky + 260 - (i * 53) % 520 - 80 * u} r={14 + (i % 5) * 7} fill="#e8d8b8" opacity={0.35 * (1 - u)} />; })}</SVG> : null}
       </>
     );
