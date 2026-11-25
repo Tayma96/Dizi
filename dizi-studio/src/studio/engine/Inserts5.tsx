@@ -36,6 +36,13 @@ const Kurallar: React.FC<{ dur: number; text?: string[] }> = ({ dur, text }) => 
               <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 50, lineHeight: 1.22, color: "#1a1a1a" }}>{k}</div>
             </div>
           ))}
+          {text?.[2] ? (
+            // B9: kâğıda sonradan eklenen kural, ELLE yazılmış (kırmızı tükenmez); soldan sağa yazılarak belirir
+            <div style={{ display: "flex", gap: 22, marginTop: 6, padding: "8px 10px", clipPath: `inset(0 ${interpolate(f, [8, dur * 0.6], [100, 0], clamp)}% 0 0)` }}>
+              <div style={{ fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontWeight: 700, fontSize: 60, color: "#b81818", minWidth: 56, transform: "rotate(-3deg)" }}>{KURALLAR.length + 1}.</div>
+              <div style={{ fontFamily: "'Comic Sans MS', 'Segoe Print', cursive", fontWeight: 700, fontSize: 50, lineHeight: 1.22, color: "#a01010", transform: "rotate(-2deg)" }}>{text[2]}</div>
+            </div>
+          ) : null}
           <AbsoluteFill style={{ background: "linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.45) 42%, rgba(255,255,255,0) 52%)", borderRadius: 8 }} />
         </div>
       </AbsoluteFill>
