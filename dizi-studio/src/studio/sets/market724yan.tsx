@@ -61,7 +61,7 @@ export const YAN_KOL: P2 = yanP(DX1 + 0.1, 1.0, WZ);
 export const YAN_KAPI: P2 = yanP((DX1 + DX2) / 2, 1.05, WZ);
 
 /* ------------------------------------------------------------------ arka plan */
-export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number }> = ({ frame, acik, kol, saat, fl = 1 }) => {
+export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number; levha?: number; kapiAlt?: number[] }> = ({ frame, acik, kol, saat, fl = 1, levha = 0, kapiAlt }) => {
   const [ex, ez] = kenar(acik);
   const a = kanatAci(acik);
   const ic = Math.min(1, acik * 6); // depo ışığı (aralıkta bile parlak)
@@ -193,10 +193,41 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
       <path d={`M ${kdx} ${kdy} L ${kux} ${kuy}`} stroke="#d4d8dc" strokeWidth={kolKal} strokeLinecap="round" />
       <path d={`M ${kdx} ${kdy - kolKal * 0.2} L ${kux} ${kuy - kolKal * 0.2}`} stroke="#ffffff" strokeWidth={kolKal * 0.3} strokeLinecap="round" opacity={0.85} />
       <circle cx={kdx} cy={kdy} r={kolKal * 0.75} fill="#c8ccd0" stroke="#22262a" strokeWidth={2.5} />
-      {/* DEPO · PERSONEL levhası */}
-      <path d={qZ(WZ - 0.02, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
-      <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.27, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={56} fill="#1a1a1a">DEPO</text>
-      <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.17, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={40} fill="#1a1a1a">PERSONEL</text>
+      {/* DEPO · PERSONEL levhası (B9: kapı çarpınca sağ vidası düşer, sol vidada sallanır: levha = açı°) */}
+      {(() => {
+        const [vx, vy] = yanP(DX1 + 0.16, DH + 0.38, WZ - 0.02);
+        return (
+          <g transform={levha ? `rotate(${levha.toFixed(2)} ${vx} ${vy})` : undefined}>
+            {levha ? <path d={qZ(WZ - 0.019, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#000" opacity={0.25} transform="translate(5 7)" /> : null}
+            <path d={qZ(WZ - 0.02, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
+            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.27, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={56} fill="#1a1a1a">DEPO</text>
+            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.17, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={40} fill="#1a1a1a">PERSONEL</text>
+            <circle cx={vx} cy={vy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />
+            {!levha ? (() => { const [wx, wy] = yanP(DX2 - 0.16, DH + 0.38, WZ - 0.02); return <circle cx={wx} cy={wy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />; })() : null}
+          </g>
+        );
+      })()}
+      {/* B9: kapının altındaki aralıktan depo ışığı sızar; [ışık 0..1, gölge merkezi (0..1 kapı boyunca, <0 yok), gölge genişliği] */}
+      {kapiAlt && kapiAlt[0] > 0.01 && acik < 0.02 ? (() => {
+        const [isik, gx, gw] = kapiAlt;
+        const cizgi = (a: number, b: number, renk: string, op: number, k: string) => (
+          <path key={k} d={pl([yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * a, 0.004, WZ - 0.005), yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * b, 0.004, WZ - 0.005),
+            yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * b, 0.045, WZ - 0.005), yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * a, 0.045, WZ - 0.005)])} fill={renk} opacity={op} />
+        );
+        const yansi = <path key="y" d={pl([yanP(DX1 + 0.02, 0.001, WZ - 0.01), yanP(DX2 - 0.02, 0.001, WZ - 0.01), yanP(DX2 + 0.16, 0.001, WZ - 0.6), yanP(DX1 - 0.16, 0.001, WZ - 0.6)])} fill="url(#kapiAltIsik)" opacity={isik} />;
+        const [g0x, g0y] = yanP((DX1 + DX2) / 2, 0.01, WZ);
+        return (
+          <g>
+            <defs>
+              <linearGradient id="kapiAltIsik" gradientUnits="userSpaceOnUse" x1={g0x} y1={g0y} x2={g0x} y2={g0y + 70}><stop offset="0" stopColor="#ffb860" stopOpacity={0.55} /><stop offset="1" stopColor="#ffb860" stopOpacity={0} /></linearGradient>
+              <filter id="kapiAltBlur" x="-20%" y="-200%" width="140%" height="500%"><feGaussianBlur stdDeviation="5" /></filter>
+            </defs>
+            <g style={{ mixBlendMode: "screen" }}>{yansi}<g filter="url(#kapiAltBlur)">{cizgi(0, 1, "#ffb050", 0.9 * isik, "gl")}</g></g>
+            {cizgi(0, 1, "#ffd890", 0.95 * isik, "s")}
+            {gx >= 0 ? <>{cizgi(Math.max(0, gx - gw / 2), Math.min(1, gx - gw * 0.08), "#0a0604", 0.95, "g1")}{cizgi(Math.max(0, gx + gw * 0.08), Math.min(1, gx + gw / 2), "#0a0604", 0.95, "g2")}</> : null}
+          </g>
+        );
+      })() : null}
       {/* zemin + karolar */}
       <path d={pl([yanP(-4, 0, WZ), yanP(2.9, 0, WZ), yanP(2.9, 0, -2.4), yanP(-4, 0, -2.4)])} fill="url(#yanZemin)" />
       {[-3, -2.4, -1.8, -1.2, -0.6, 0, 0.6, 1.2, 1.8, 2.4].map((X) => <path key={`zx${X}`} d={line([X, 0, WZ], [X, 0, -2.4])} stroke="#b0b5b2" strokeWidth={2.5} />)}

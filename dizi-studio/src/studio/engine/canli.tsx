@@ -70,7 +70,7 @@ export const yaySim = (x: (t: number) => number, t: number, sert = 70, sonum = 7
 /** [t, tür, görünüm|"*", x, y, ölçek, süre] — x,y dünya koordinatı (kamera içinde); "cakma"/"hiz" ekran koordinatı */
 export type Fx = [number, string, string, number, number, number?, number?];
 
-const SURE: Record<string, number> = { cakma: 0.1, hiz: 0.6, ter: 1.2, sok: 1.2, unlem: 0.7, ofke: 1.0, kalp: 1.4, toz: 0.5, titres: 0.4, kizar: 1.4 };
+const SURE: Record<string, number> = { cakma: 0.1, hiz: 0.6, ter: 1.2, sok: 1.2, unlem: 0.7, ofke: 1.0, kalp: 1.4, toz: 0.5, titres: 0.4, kizar: 1.4, dokuntu: 1.6 };
 const pop = (u: number) => (u < 0.35 ? 1.18 * Math.sin((u / 0.35) * Math.PI * 0.5) : 1 + 0.18 * Math.exp(-9 * (u - 0.35)) * Math.cos(16 * (u - 0.35)));
 const ICI = "#1c1626";
 
@@ -189,6 +189,22 @@ export const AnimeFxDunya: React.FC<{ fx?: Fx[]; view: string; tg: number; f: nu
                 const ox = x + k * (150 + 22 * j + 20 * u) * s, R = (22 + 10 * j) * s;
                 return <path key={`${k}${j}`} d={`M ${ox} ${y - R} Q ${ox + k * R * 0.55} ${y} ${ox} ${y + R}`} opacity={1 - j * 0.3} />;
               }))}
+            </g>
+          );
+        }
+        if (tur === "dokuntu") {
+          // sarsıntıda kapı kasasının üstünden dökülen sıva tozu: ince zerreler düşer, hafif salınır (x,y: kasa üstü, s: genişlik ölçeği)
+          return (
+            <g key={key}>
+              {Array.from({ length: 26 }, (_, j) => {
+                const gec = random(`dk${j}`) * 0.35, v = (tg - t - gec) / (d - gec);
+                if (v <= 0 || v >= 1) return null;
+                const dx = (random(`dx${j}`) - 0.5) * 360 * s + 10 * Math.sin(v * 7 + j);
+                const dy = v * v * (380 + 240 * random(`dy${j}`)) * s;
+                const r = (1.6 + 2.6 * random(`dr${j}`)) * s;
+                return <circle key={j} cx={x + dx} cy={y + dy} r={r} fill="#e8e2d4" opacity={0.85 * (1 - v)} />;
+              })}
+              <ellipse cx={x} cy={y + 30 * s * u} rx={190 * s * (0.6 + u)} ry={26 * s * (0.6 + u)} fill="#e8e2d4" opacity={0.28 * (1 - u)} />
             </g>
           );
         }

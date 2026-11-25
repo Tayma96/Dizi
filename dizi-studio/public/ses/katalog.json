@@ -622,6 +622,27 @@
   "loop": false,
   "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
  },
+ "efekt/b9_floresan": {
+  "file": "ses/efekt/b9_floresan.mp3",
+  "category": "efekt",
+  "duration": 2.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Fluorescent ceiling light buzzing and flickering with electric clicks, quiet"
+ },
+ "efekt/b9_kapi_arkasi": {
+  "file": "ses/efekt/b9_kapi_arkasi.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Muffled heavy creature breathing behind a closed metal door, slow wet snarl, then long claws slowly scraping down the metal door, horror, close"
+ },
+ "efekt/b9_levha": {
+  "file": "ses/efekt/b9_levha.mp3",
+  "category": "efekt",
+  "duration": 1.6,
+  "loop": false,
+  "desc": "ElevenLabs SFX: Thin metal door sign rattling and swinging on a single loose screw after a door slam, small metallic clinks fading out"
+ },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
   "category": "efekt",

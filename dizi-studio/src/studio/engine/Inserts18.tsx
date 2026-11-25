@@ -456,7 +456,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     const bosluk = yanKapiBosluk().map(([x, y]) => `${x.toFixed(1)}px ${y.toFixed(1)}px`).join(", ");
     sahne = (
       <>
-        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} /></SVG>
+        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2]) : undefined} /></SVG>
         {mert ? (
           <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: klip ? `polygon(${bosluk})` : undefined,
             filter: sil > 0.01 ? `brightness(${(1 - 0.9 * sil).toFixed(3)}) saturate(${(1 - 0.7 * sil).toFixed(3)}) drop-shadow(0 0 ${(4 * sil).toFixed(1)}px rgba(255,214,150,${(0.9 * sil).toFixed(2)}))` : undefined }}>
@@ -715,6 +715,26 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
                 <defs><radialGradient id="yanKose" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0] + 60} cy={YAN_KAPI[1] - 60} r={420}><stop offset="0" stopColor="#4a5060" stopOpacity={0.6 * (1 - Math.min(1, (depoAcik ?? 0) * 9))} /><stop offset="1" stopColor="#5a6070" stopOpacity={0} /></radialGradient></defs>
                 <rect x={-600} y={-400} width={2280} height={2720} fill="url(#yanKose)" />
               </SVG>
+              {p.kapiAlt && ac < 0.02 ? (() => {
+                // B9: kapı altı ışığı karanlık köşede de parlasın (renk katmanlarından SONRA, ekran karışımı)
+                const [isk, gx, gw] = kf(p.kapiAlt, tg, [0, -1, 0.2]);
+                if (isk < 0.01) return null;
+                const [a0, b0] = yanKapiBosluk();
+                const X = (u: number) => a0[0] + (b0[0] - a0[0]) * (0.05 + 0.9 * u), Yy = (u: number) => a0[1] + (b0[1] - a0[1]) * (0.05 + 0.9 * u);
+                const u0g = (p.kapiAltBas as number | undefined) ?? 0; // önünde duran karakterin bacaklarının sağından başla
+                const parca = (gx >= 0 ? [[0, gx - gw / 2], [gx - gw * 0.08, gx + gw * 0.08], [gx + gw / 2, 1]] : [[0, 1]]).map(([a, b]) => [Math.max(a, u0g), b]);
+                return (
+                  <SVG blend="screen">
+                    <defs><filter id="kaB" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="9" /></filter></defs>
+                    {parca.map(([u0, u1], i) => u1 > u0 ? (
+                      <g key={i}>
+                        <path d={`M ${X(Math.max(0, u0))} ${Yy(Math.max(0, u0)) - 4} L ${X(Math.min(1, u1))} ${Yy(Math.min(1, u1)) - 4}`} stroke="#ffa040" strokeWidth={22} opacity={0.75 * isk} filter="url(#kaB)" />
+                        <path d={`M ${X(Math.max(0, u0))} ${Yy(Math.max(0, u0)) - 3} L ${X(Math.min(1, u1))} ${Yy(Math.min(1, u1)) - 3}`} stroke="#ffe0a0" strokeWidth={4} opacity={0.9 * isk} />
+                      </g>
+                    ) : null)}
+                  </SVG>
+                );
+              })() : null}
               {ac > 0.01 ? (
                 <SVG blend="screen">
                   <defs><radialGradient id="yanSicak" gradientUnits="userSpaceOnUse" cx={YAN_KAPI[0]} cy={YAN_KAPI[1] + 40} r={560}><stop offset="0" stopColor="#ffb860" stopOpacity={0.42 * ac} /><stop offset="0.6" stopColor="#ff9a40" stopOpacity={0.12 * ac} /><stop offset="1" stopColor="#ff9a40" stopOpacity={0} /></radialGradient></defs>

@@ -73,3 +73,4 @@
 - Ses: Mert "Geçti... tamam." M1a_01 (eleven_v4, 19 kredi; kalan ~12.114). B9 ses onayı kalıcı (CLAUDE.md).
 - CANLILIK katmanı: `engine/canli.tsx` (yayEase/kfYay, yaySim saç takibi, AnimeFxDunya/AnimeFxEkran, fxKamera); karakterde `yay`, `ezil`; b8_market'te `fx` listesi.
 - Kullanıcı: B8 denemesi istemiyor (limit). B9'dan sonra 3-4 gün paylaşım yok, B9 özenli olmalı.
+- B9 P1 v2 (9,3 sn): kalite çıtası kuralıyla yeniden. Ayrıntılar: arka ampulün ileri düşürdüğü Ece + yaratık gölgesi (yaratığın parmak gölgesi Ece'ninkine uzanır), koşarken hardal kollu yumruklar, titreyen floresan, koliler, yeşil ÇIKIŞ levhası, kapıdan taşan market ışığı + toz zerreleri, Mert "tamam"da başını kaldırıp Ece'ye bakar, kızın eli Mert'in gömleğinde, Mert saçını okşar; kapı çarpınca DEPO levhası tek vidada sallanır, kasadan sıva tozu döner; kapı altındaki ışıkta gölge (ayaklar) durur, Ece nefesini tutar, gözleri yana kayar. Yeni efektler: b9_levha, b9_kapi_arkasi, b9_floresan.
