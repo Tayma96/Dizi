@@ -369,3 +369,10 @@ Kamera açılarını yine iyi hesapla, bu parçada fps yok.
 - Yeni: Ece yavaşça kapıya yaklaşır. Yaklaşınca fps kameraya geçer; kapı soldadır, arkası Ece'nin görüşünde değildir. Ece yavaş ve ürkek şekilde kapının girişine gelirken içeriye doğru kafasını döndürür ve o yaratık Ece'ye götünü dönmüş twerk atıyordur. Baya baya twerk atıyor.
 - Doğaçlama (Claude): depoda raftaki eski radyodan bas ağırlıklı trap ritmi; Ece başını çevirince ritim patlar.
 - **P4 ek (kullanıcı, 24 Kasım 2026, AYNEN):** Canavarın sırtının dönük olduğunu anlayalım, Ece gördükten 4 saniye sonra falan yaratık yan bakıp Ece'nin gördüğünü anlayıp doğrulur ve yakalanmış gibi öksürük vardır ya, bozuntuya vermeme şeklinde, sanki sesini düzeltmek için öksürmüş gibi, elini ağzına getirip o şekilde öksürsün, sonra Ece'ye dönüp koşmaya başlasın.
+
+
+## Bölüm 9, Parça 1 (kullanıcının metni AYNEN, 25 Kasım 2026)
+> En son canavar twerk attıktan sonra eceye doğru saldırıyordu, ordan baslıcak sahne, ece depodan koşarak cıkacak fps modda, marketin içide kapının arkası görünsün he kaçan kız yerde basını mertin göğsüne koymuş mert diz çökmüş teselli eder gibi geçti tamam diyor
+> Ece o esnada depodan kaçıp markete doğru kosuyor. Markete gelince fps moddan cıkar deponun kapısını kapatır ece ve kapıya yaslanır aniden nefes nefese kalmıştır.
+
+Notlar: B9'da doğaçlama izni verilmedi; yalnız metindeki eylemler. Yeni CANLILIK katmanı (engine/canli.tsx: yaylı hareket, saç takibi, anime efektleri) B9'dan itibaren kullanılır (kullanıcı: "Bunları deneyelim").

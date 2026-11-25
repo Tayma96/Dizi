@@ -418,6 +418,25 @@ ORTAK = {"saat": [[0, "19:12"]], "kapi": [[0, 0]], "flor": [[0, 1]], "cizir": []
          "animeMerkez": {"tezgah": [[0, EX, EYUZ - 20]], "kasa": [[0, MX, MYUZ - 40]]}}
 KAR = {"tezgah": {"ece": ECE_TZ}, "kasa": {"sabri": SAB, "mert": MERT, "ece": ECE_KS}, "yan": {"sabri": YSAB, "mert": YMERT}}
 
+# ------------------------------------------------------------------ CANLILIK denemesi (--canli): yaylı hareket + saç takibi + anime efektleri
+CANLI = "--canli" in sys.argv
+if CANLI:
+    sys.argv.remove("--canli")
+    for _v in KAR.values():
+        for _q in _v.values():
+            _q["yay"] = 1
+    ECE_TZ["ezil"] = [[t_bam - 0.01, 0], [t_bam + 0.03, 0.08], [t_bam + 0.12, -0.035], [t_bam + 0.22, 0.012], [t_bam + 0.32, 0]]
+    ECE_KS["ezil"] = ECE_TZ["ezil"]
+    ORTAK["fx"] = [
+        [t_bam, "cakma", "tezgah", EX + 8, 1150, 1], [t_bam, "toz", "tezgah", EX - 64, 1192, 1.1, 0.32], [t_bam, "toz", "tezgah", EX + 80, 1192, 1.1, 0.32],
+        [t_bam + 0.02, "titres", "tezgah", EX + 8, 1175, 1.0, 0.35],
+        [t_gon - 0.05, "ofke", "tezgah", EX + 120, EYUZ - 150, 1.3, 1.3],
+        [e2a + 0.05, "hiz", "tezgah", 540, 760, 1, 0.7], [e2a + 0.08, "unlem", "*", EX + 190, EYUZ - 120, 1.2],
+        [e2a + 0.2, "sok", "tezgah", EX, EYUZ - 10, 1.2, 1.1], [e2a + 0.25, "ter", "tezgah", EX + 120, EYUZ - 70, 1.1, 1.0],
+        [d0 + 0.45, "kalp", "*", EX, EYUZ - 160, 1.3, 1.8], [d0 + 0.5, "kizar", "tezgah", EX, EYUZ + 40, 1.2, 2.2],
+    ]
+    print("canli zamanlar: bam", round(t_bam, 2), "gon", round(t_gon, 2), "e2a", round(e2a, 2), "d0", round(d0, 2), "p0", round(p0, 2))
+
 # ------------------------------------------------------------------ çizim (P1'in tamamlanmış şeması kâğıtta)
 _argv = sys.argv
 sys.argv = [sys.argv[0]]
@@ -473,7 +492,7 @@ def vuruslar():
 
 
 if __name__ == "__main__":
-    ep_id = "724-08y-p1"
+    ep_id = "724-canli-test" if CANLI else "724-08y-p1"
     man, beats = {}, []
     for i, (ad, r, b) in enumerate(vuruslar()):
         if r:
@@ -483,7 +502,8 @@ if __name__ == "__main__":
            "ambience": {"name": "ortam/b8_market_gece", "volume": 0.5}, "music": {"name": "yok"}, "beats": beats}
     tum = {k: v for k, v in M.items() if not k.startswith("i_")}
     tum.update(man)
-    json.dump(tum, open(f"{VD}/manifest.json", "w"), ensure_ascii=False, indent=1)
+    if not CANLI:
+        json.dump(tum, open(f"{VD}/manifest.json", "w"), ensure_ascii=False, indent=1)
     ep = {"series": "724", "seriesTitle": "7/24", "episode": ep_id, "episodeNo": 8, "title": "Bölüm 8 · Parça 1", "endCard": False, "scenes": [sah]}
     json.dump(ep, open(f"{K}/public/episodes/{ep_id}.json", "w"), ensure_ascii=False, indent=1)
     print(f"toplam {SON_T:.2f} sn  çekimler: {TAKE}")

@@ -67,3 +67,9 @@
 
 - Bölüm 8 tam hâli iki dosya: `bolumler/724-08-tam-a.mp4` (P1+P2, 92,8 sn) ve `bolumler/724-08-tam-b.mp4` (P3a+P4+bitiş kartı, 40,2 sn). Tek parça `724-08-tam.mp4` (138 MB) GitHub sınırını aştığı için gitignore'da.
 - Sıradaki öneri (kullanıcıya sunuldu, onay bekliyor): aynı çizim tarzıyla animasyon kalitesini artırma. Yaylı hareket, takip eden parçalar (saç/etek fiziği), anime çarpma kareleri ve duygu işaretleri, nefes/göz kırpma, kenar ışığı/parallaks, hareket kütüphanesi. İlk adım: B8 P1 BAM anından 5-6 sn test sahnesi.
+
+## 25 Kasım 2026: Bölüm 9 başladı
+- B9 P1 (8 sn): `dizi-studio/tools/b9_p1.py` → `bolumler/724-09-p1.mp4`. FPS kaçış (Inserts19 `kacis`: market + kapının arkası + FPS içinde rig karakterleri `KacisKar`), YAN: kapıyı çarpar, yaslanır, nefes nefese.
+- Ses: Mert "Geçti... tamam." M1a_01 (eleven_v4, 19 kredi; kalan ~12.114). B9 ses onayı kalıcı (CLAUDE.md).
+- CANLILIK katmanı: `engine/canli.tsx` (yayEase/kfYay, yaySim saç takibi, AnimeFxDunya/AnimeFxEkran, fxKamera); karakterde `yay`, `ezil`; b8_market'te `fx` listesi.
+- Kullanıcı: B8 denemesi istemiyor (limit). B9'dan sonra 3-4 gün paylaşım yok, B9 özenli olmalı.

@@ -21,6 +21,7 @@ import type { ArmPose, Emotion, MouthCue } from "../rig/types";
 import { Banyo724BG, Banyo724FG } from "../sets/banyo724";
 import { Ev724BG, Ev724FG, Ev724SalonBG, Ev724SalonFG } from "../sets/ev724";
 import { sstep } from "./bocek";
+import { kfYay, yaySim } from "./canli";
 import { ik, Kol, type V2 } from "./Inserts13";
 import { Insert11, type Insert11Kind } from "./Inserts11";
 import { Insert14, type Insert14Kind } from "./Inserts14";
@@ -53,6 +54,7 @@ const kf = (k: KF | undefined, t: number, def: number[]): number[] => {
   return k[k.length - 1].slice(1);
 };
 const kf1 = (k: KF | undefined, t: number, d: number) => kf(k, t, [d])[0];
+const kfDuz = kf;
 const basamak = <T,>(k: [number, T][] | undefined, t: number, def: T): T => {
   let v = def;
   for (const [a, x] of k ?? []) if (t >= a) v = x;
@@ -203,6 +205,11 @@ export type KarCiz = { govde: React.ReactNode; on: React.ReactNode };
 export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, fps: number, t0f: number): KarCiz | null => {
   if (!q) return null;
   const look = castById(id);
+  // CANLILIK (opt-in, q.yay = güç ~1): hareket anahtarları hazırlık + aşma eğrisiyle; saç yaylı takip; ezilme/uzama
+  const yay = (q.yay as number | undefined) ?? 0;
+  const kf = (k: KF | undefined, t: number, def: number[]) => (yay ? kfYay(k, t, def, yay) : kfDuz(k, t, def));
+  const kf1 = (k: KF | undefined, t: number, d: number) => kf(k, t, [d])[0];
+  const kfD1 = (k: KF | undefined, t: number, d: number) => kfDuz(k, t, [d])[0];
   const [x, y, size] = kf(q.yer, tg, [540, 1850, 1200]);
   if (size <= 1) return null;
   const S = size / 1000;
@@ -223,19 +230,26 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
   const kolL = kf(q.kolL, tg, [6, 0]), kolR = kf(q.kolR, tg, [6, 0]);
   const armL: ArmPose = { upper: kolL[0], fore: kolL[1] }, armR: ArmPose = { upper: kolR[0], fore: kolR[1] };
   const kolGizle = ozelL && ozelR ? "ikisi" : ozelL ? "l" : ozelR ? "r" : undefined;
-  const parmak = kf1(q.parmakUcu, tg, 0);
+  const parmak = kfD1(q.parmakUcu, tg, 0);
+  // ezilme (+) / uzama (-): ayak noktasından, alan korunur (sx·sy ≈ 1)
+  const ez = q.ezil ? kfDuz(q.ezil, tg, [0])[0] : 0;
+  const ezY = 1 - ez, ezX = 1 / Math.max(0.5, ezY);
+  // saç takibi: baş (yatay konum + eğilme + yatma) hareket edince saç geriden gelir, sallanıp durur
+  const sacEk = yay ? yaySim((tt) => kf(q.yer, tt, [540])[0] / S * 0.35 + kf(q.egil, tt, [0])[0] * 2.2 + kf(q.tilt, tt, [0])[0] * 1.6 + kf(q.bak, tt, [0, 0, 0])[2] * 40, tg) * -1.2 : 0;
+  const tf = [egil ? `rotate(${egil}deg)` : "", ez ? `scale(${ezX.toFixed(4)}, ${ezY.toFixed(4)})` : ""].join(" ").trim() || undefined;
   const govde = (
-    <div style={{ position: "absolute", left, top: top - parmak, transformOrigin: `${200 * S}px ${980 * S}px`, transform: egil ? `rotate(${egil}deg)` : undefined }}>
+    <div style={{ position: "absolute", left, top: top - parmak, transformOrigin: `${200 * S}px ${980 * S}px`, transform: tf }}>
       <Character look={look} size={size} pose={{
         emotion: emo, lookX: lx, lookY: ly, yaw, tilt: kf1(q.tilt, tg, 0), armL: q.jest ? undefined : armL, armR: q.jest ? undefined : armR, kolGizle,
-        eyesClosed: q.goz ? kf1(q.goz, tg, 0) || undefined : undefined, gozSok: q.gozSok ? kf1(q.gozSok, tg, 0) || undefined : undefined,
+        eyesClosed: q.goz ? kfD1(q.goz, tg, 0) || undefined : undefined, gozSok: q.gozSok ? kfD1(q.gozSok, tg, 0) || undefined : undefined,
         speech: aralik(q.kikir, tg) ? undefined : speech, talk: aralik(q.kikir, tg) || (!speech && aralik(q.agzi, tg)) ? [[f - 2, f + 2]] : undefined,
         body: aralik(q.yuru, tg) ? "walk" : undefined, tears: q.tears, sacDagin: q.sacDagin, seed: id.length * 7,
         gesture: q.jest ? (basamak<string | null>(q.jest, tg, null) ?? undefined) as never : undefined,
-        sweat: aralik(q.ter, tg) || undefined, pale: q.solgun ? kf1(q.solgun, tg, 0) || undefined : undefined,
-        yutkun: q.yutkun ? kf1(q.yutkun, tg, 0) || undefined : undefined, breath: q.nefes ? kf1(q.nefes, tg, 1) : undefined,
-        omuzDus: q.omuzDus ? kf1(q.omuzDus, tg, 0) || undefined : undefined, taklit: q.taklit ? kf1(q.taklit, tg, 0) || undefined : undefined,
-        parilti: q.parilti ? (kf(q.parilti, tg, [0, 0]) as [number, number]) : undefined, gozKis: q.gozKis ? (kf(q.gozKis, tg, [0, 0]) as [number, number]) : undefined,
+        sweat: aralik(q.ter, tg) || undefined, pale: q.solgun ? kfD1(q.solgun, tg, 0) || undefined : undefined,
+        yutkun: q.yutkun ? kfD1(q.yutkun, tg, 0) || undefined : undefined, breath: q.nefes ? kfD1(q.nefes, tg, 1) : undefined,
+        omuzDus: q.omuzDus ? kfD1(q.omuzDus, tg, 0) || undefined : undefined, taklit: q.taklit ? kfD1(q.taklit, tg, 0) || undefined : undefined,
+        parilti: q.parilti ? (kfDuz(q.parilti, tg, [0, 0]) as [number, number]) : undefined, gozKis: q.gozKis ? (kfDuz(q.gozKis, tg, [0, 0]) as [number, number]) : undefined,
+        sacEk: sacEk ? Math.max(-40, Math.min(40, sacEk)) : undefined,
       }} />
     </div>
   );
@@ -245,7 +259,8 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
   const renk = look.outfit.top, manset = look.outfit.topShade;
   const L1 = 140 * S, L2 = 124 * S, w = 20 * S;
   const sideDraw = (side: "L" | "R") => {
-    const omuz = rot([left + (200 + (side === "L" ? -72 : 72) * wx) * S, top - parmak + 352 * S], [piv[0], piv[1] - parmak], egil);
+    const omuz0: V2 = [left + (200 + (side === "L" ? -72 : 72) * wx) * S, top - parmak + 352 * S];
+    const omuz = rot(ez ? [x + (omuz0[0] - x) * ezX, y - parmak + (omuz0[1] - (y - parmak)) * ezY] : omuz0, [piv[0], piv[1] - parmak], egil);
     const ozel = side === "L" ? ozelL : ozelR;
     const tut = basamak<string | null>(side === "L" ? q.tutL : q.tutR, tg, null);
     let H: V2;
@@ -293,7 +308,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
   // kirli sepeti sağ kalçada (sağ kol sarar; el sepetin arkasında kalır)
   let sepet: React.ReactNode = null;
   const birak = q.sepetBirak as number[] | undefined;
-  if (kf1(q.sepet, tg, 0) > 0.5 && !(birak && tg >= birak[1])) {
+  if (kfD1(q.sepet, tg, 0) > 0.5 && !(birak && tg >= birak[1])) {
     const [hx0, hy0] = rot([left + 300 * S, top - parmak + 600 * S], [piv[0], piv[1] - parmak], egil);
     const u = birak ? sstep(birak[0], birak[1], tg) : 0;
     const hx = hx0 + (MAK_SEPET[0] - hx0) * u, hy = hy0 + (MAK_SEPET[1] - hy0) * u - 60 * Math.sin(Math.PI * u);
@@ -310,7 +325,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
   }
   const damlaOnce: React.ReactNode[] = [];
   // ıslak yüz: alından ve çeneden süzülen damlalar (yüz merkezi rig (200,210))
-  const yk = kf1(q.yanak, tg, 0);
+  const yk = kfD1(q.yanak, tg, 0);
   if (yk > 0.02) {
     const [fx, fy] = rot([left + 200 * S, top - parmak + 215 * S], [piv[0], piv[1] - parmak], egil);
     const ten = look.skin;

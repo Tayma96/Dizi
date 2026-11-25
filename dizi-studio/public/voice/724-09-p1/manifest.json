@@ -1,0 +1,230 @@
+{
+ "M1a_01": {
+  "key": "2608869cbb3a",
+  "file": "voice/724-09-p1/M1a_01.mp3",
+  "voice": "elevenlabs:Yunus - Charismatic Turkish Male",
+  "emotion": "ic_ses",
+  "text": "Geçti... tamam.",
+  "duration": 1.698,
+  "asrScore": 1.0,
+  "heard": "Geçti. Tamam.",
+  "words": [
+   {
+    "w": "Geçti...",
+    "start": 0.068,
+    "end": 0.948
+   },
+   {
+    "w": "tamam.",
+    "start": 1.068,
+    "end": 1.668
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.068,
+    "v": "L"
+   },
+   {
+    "t": 0.148,
+    "v": "E"
+   },
+   {
+    "t": 0.228,
+    "v": "L"
+   },
+   {
+    "t": 0.428,
+    "v": "I"
+   },
+   {
+    "t": 0.548,
+    "v": "X"
+   },
+   {
+    "t": 1.068,
+    "v": "L"
+   },
+   {
+    "t": 1.108,
+    "v": "A"
+   },
+   {
+    "t": 1.148,
+    "v": "M"
+   },
+   {
+    "t": 1.188,
+    "v": "A"
+   },
+   {
+    "t": 1.268,
+    "v": "M"
+   },
+   {
+    "t": 1.348,
+    "v": "X"
+   },
+   {
+    "t": 1.668,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 10
+ },
+ "M1b_01": {
+  "key": "8a53ffe6aca7",
+  "file": "voice/724-09-p1/M1b_01.mp3",
+  "voice": "elevenlabs:Yunus - Charismatic Turkish Male",
+  "emotion": "sakin",
+  "text": "Geçti, tamam.",
+  "duration": 1.724,
+  "asrScore": 1.0,
+  "heard": "geçti tamam",
+  "words": [
+   {
+    "w": "Geçti,",
+    "start": 0.091,
+    "end": 0.891
+   },
+   {
+    "w": "tamam.",
+    "start": 0.971,
+    "end": 1.691
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.091,
+    "v": "L"
+   },
+   {
+    "t": 0.131,
+    "v": "E"
+   },
+   {
+    "t": 0.171,
+    "v": "L"
+   },
+   {
+    "t": 0.411,
+    "v": "I"
+   },
+   {
+    "t": 0.491,
+    "v": "X"
+   },
+   {
+    "t": 0.971,
+    "v": "L"
+   },
+   {
+    "t": 1.024,
+    "v": "A"
+   },
+   {
+    "t": 1.078,
+    "v": "M"
+   },
+   {
+    "t": 1.131,
+    "v": "A"
+   },
+   {
+    "t": 1.211,
+    "v": "M"
+   },
+   {
+    "t": 1.291,
+    "v": "X"
+   },
+   {
+    "t": 1.691,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 9
+ },
+ "i_02": {
+  "key": "2608869cbb3a",
+  "file": "voice/724-09-p1/M1a_01.mp3",
+  "voice": "elevenlabs:Yunus - Charismatic Turkish Male",
+  "emotion": "ic_ses",
+  "text": "Geçti... tamam.",
+  "duration": 1.698,
+  "asrScore": 1.0,
+  "heard": "Geçti. Tamam.",
+  "words": [
+   {
+    "w": "Geçti...",
+    "start": 0.068,
+    "end": 0.948
+   },
+   {
+    "w": "tamam.",
+    "start": 1.068,
+    "end": 1.668
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.068,
+    "v": "L"
+   },
+   {
+    "t": 0.148,
+    "v": "E"
+   },
+   {
+    "t": 0.228,
+    "v": "L"
+   },
+   {
+    "t": 0.428,
+    "v": "I"
+   },
+   {
+    "t": 0.548,
+    "v": "X"
+   },
+   {
+    "t": 1.068,
+    "v": "L"
+   },
+   {
+    "t": 1.108,
+    "v": "A"
+   },
+   {
+    "t": 1.148,
+    "v": "M"
+   },
+   {
+    "t": 1.188,
+    "v": "A"
+   },
+   {
+    "t": 1.268,
+    "v": "M"
+   },
+   {
+    "t": 1.348,
+    "v": "X"
+   },
+   {
+    "t": 1.668,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 10
+ }
+}

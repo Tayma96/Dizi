@@ -1189,7 +1189,7 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         {/* back hair (follows the head) */}
         <g transform={bodyT}>
           <g transform={headT}>
-            {kapali ? null : <HairBack look={look} dx={yaw * 10} sway={sway * 2 + (running ? 26 * Math.sin(runPh - 1.1) : 0)} />}
+            {kapali ? null : <HairBack look={look} dx={yaw * 10} sway={sway * 2 + (pose.sacEk ?? 0) + (running ? 26 * Math.sin(runPh - 1.1) : 0)} />}
           </g>
         </g>
         <g transform={bodyT}>

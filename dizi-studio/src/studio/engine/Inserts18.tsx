@@ -21,6 +21,7 @@ import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
 import { Market724YanBG, Market724YanTezgah, YAN_KAPI, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
 import { sstep } from "./bocek";
+import { AnimeFxDunya, AnimeFxEkran, fxKamera, type Fx } from "./canli";
 import { karakter, type KarCiz } from "./Inserts16";
 import { NahEller, nahGeo } from "./nahEl";
 
@@ -666,7 +667,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const lmb = lamba;
   return (
     <AbsoluteFill style={{ backgroundColor: "#000", overflow: "hidden" }}>
-      <AbsoluteFill style={{ transformOrigin: "0 0", transform: camT(cx, cy, z, sx, sy) }}>
+      <AbsoluteFill style={{ transformOrigin: "0 0", transform: camT(cx, cy, z * fxKamera(p.fx as Fx[] | undefined, view, tg), sx, sy) }}>
         <svg width={0} height={0} style={{ position: "absolute" }}>
           <defs>
             <filter id="b8gb6"><feGaussianBlur stdDeviation="6" /></filter>
@@ -739,6 +740,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
             <rect x={-600} y={-400} width={2280} height={2720} fill="url(#b8lk4)" />
           </SVG>
         ) : null}
+        <AnimeFxDunya fx={p.fx as Fx[] | undefined} view={view} tg={tg} f={f} />
       </AbsoluteFill>
       {/* renk: dışarıda soğuk gece; içeride floresan yeşilimsi-soğuk, lamba yanınca alt sıcak; vinyet */}
       {view === "dis" ? (
@@ -747,6 +749,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(214,232,236,0.9) 0%, rgba(236,240,236,0.9) 50%, rgba(200,206,226,0.9) 100%)", mixBlendMode: "multiply", opacity: 0.3 }} />
       )}
       <AbsoluteFill style={{ background: `radial-gradient(ellipse 80% 70% at 50% 44%, rgba(0,0,0,0) ${view === "kagit" ? 50 : 55}%, rgba(8,10,24,${0.5 + 0.25 * karart}) 100%)` }} />
+      <AnimeFxEkran fx={p.fx as Fx[] | undefined} view={view} tg={tg} f={f} />
     </AbsoluteFill>
   );
 };
