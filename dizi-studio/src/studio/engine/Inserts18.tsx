@@ -393,7 +393,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const saat = basamak<string>(p.saat, tg, "19:07");
   // B9 P2: duvar TV'si yayın akışı (sahne zamanı): jen (jenerik), sp (spiker), term [t0, t1] (termal görüntü)
   const tvY = p.tvYayin as Prm | undefined;
-  const tvDurum: number[] | undefined = tvY ? (tg < tvY.jen ? [0, tg] : tg < tvY.sp ? [1, tg - tvY.jen] : tvY.term && tg >= tvY.term[0] && tg < tvY.term[1] ? [3, tg - tvY.term[0]] : [2, tg - tvY.sp]) : undefined;
+  const tvDurum: number[] | undefined = tvY ? (tvY.kapat !== undefined && tg >= tvY.kapat ? [4, tg - tvY.kapat] : tg < tvY.jen ? [0, tg] : tg < tvY.sp ? [1, tg - tvY.jen] : tvY.term && tg >= tvY.term[0] && tg < tvY.term[1] ? [3, tg - tvY.term[0]] : [2, tg - tvY.sp]) : undefined;
 
   let sahne: React.ReactNode = null;
   if (view === "dis") {
@@ -460,7 +460,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     const bosluk = yanKapiBosluk().map(([x, y]) => `${x.toFixed(1)}px ${y.toFixed(1)}px`).join(", ");
     sahne = (
       <>
-        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]) : undefined} tv={tvDurum} levhaDy={p.levhaDy ? kf1(p.levhaDy, tg, 0) : 0} /></SVG>
+        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]) : undefined} tv={tvDurum} levhaDy={p.levhaDy ? kf1(p.levhaDy, tg, 0) : 0} kanatTit={p.kanatTit ? kf1(p.kanatTit, tg, 0) : 0} /></SVG>
         {mert ? (
           <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: klip ? `polygon(${bosluk})` : undefined,
             filter: sil > 0.01 ? `brightness(${(1 - 0.9 * sil).toFixed(3)}) saturate(${(1 - 0.7 * sil).toFixed(3)}) drop-shadow(0 0 ${(4 * sil).toFixed(1)}px rgba(255,214,150,${(0.9 * sil).toFixed(2)}))` : undefined }}>

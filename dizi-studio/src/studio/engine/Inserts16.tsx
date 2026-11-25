@@ -111,6 +111,15 @@ export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: nu
         {n === "su" ? <rect x={-10} y={-92} width={20} height={14} rx={2} fill="#2a5ad8" stroke={O} strokeWidth={3} /> : <rect x={-8} y={-84} width={16} height={5} fill="#e8f4fa" stroke={O} strokeWidth={2} />}
       </g>
     );
+  if (n === "kumanda")  // B9 P2: TV kumandası (avuçta, ucu ileri-yukarı)
+    return (
+      <g transform={tr}>
+        <rect x={-11} y={-78} width={22} height={92} rx={7} fill="#1c1d21" stroke={O} strokeWidth={3} />
+        <circle cx={0} cy={-64} r={4.5} fill="#c82a2a" />
+        {[-50, -38, -26].map((yy) => <g key={yy}><circle cx={-5} cy={yy} r={2.6} fill="#5a5c62" /><circle cx={5} cy={yy} r={2.6} fill="#5a5c62" /></g>)}
+        <path d="M -8 -76 L 8 -76" stroke="#6a6c72" strokeWidth={2} />
+      </g>
+    );
   if (n === "kapak")  // B9 P2: şişe kapağı (parmaklar arasında)
     return (
       <g transform={tr}>

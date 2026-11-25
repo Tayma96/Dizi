@@ -98,6 +98,10 @@ const TvMini: React.FC<{ mod: number; tt: number; frame: number }> = ({ mod, tt,
       <path d="M 57 30 Q 60 18 70 20 Q 80 21 79 30 Q 74 24 66 25 Z" fill="#2a1f1a" />
       <rect y={68} width={36} height={8} fill="#c8102e" /><rect x={36} y={68} width={124} height={8} fill="#f4f4f2" /><rect y={76} width={160} height={5} fill="#0a1a30" />
     </g>);
+  } else if (mod > 3.5) {
+    // B9 P2: kapatıldı: görüntü yatay bir çizgiye çöker, sonra kararır (camda yalnız floresan yansıması)
+    const u = Math.min(1, tt / 0.16);
+    ic = (<g><rect width={160} height={90} fill="#060709" />{u < 1 ? <rect x={80 * u} y={45 - 22 * (1 - u)} width={160 * (1 - u)} height={Math.max(0.8, 44 * (1 - u) * (1 - u))} fill="#e8f2ff" /> : null}</g>);
   } else {
     ic = (<g>
       <rect width={160} height={90} fill="#1a0a3a" />
@@ -108,7 +112,7 @@ const TvMini: React.FC<{ mod: number; tt: number; frame: number }> = ({ mod, tt,
   }
   return (
     <g>
-      <g transform={tr} opacity={fl}>{ic}</g>
+      <g transform={tr} opacity={mod > 3.5 ? 1 : fl}>{ic}</g>
       <path d={qZ(Z - 0.002, X0, X1, Y0, Y1)} fill="#ffffff" opacity={0.06} />
       <path d={pl([yanP(X0 + 0.05, Y1, Z - 0.002), yanP(X0 + 0.14, Y1, Z - 0.002), yanP(X0 + 0.04, Y0, Z - 0.002), yanP(X0 - 0.05 + 0.04, Y0, Z - 0.002)])} fill="#ffffff" opacity={0.07} />
     </g>
@@ -116,7 +120,7 @@ const TvMini: React.FC<{ mod: number; tt: number; frame: number }> = ({ mod, tt,
 };
 export const yanTvRenk = (mod: number) => (mod < 0.5 ? "#5a7ad8" : mod < 1.5 ? "#ff3040" : mod < 2.5 ? "#4a90ff" : "#c050ff");
 
-export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number; levha?: number; kapiAlt?: number[]; tv?: number[]; levhaDy?: number }> = ({ frame, acik, kol, saat, fl = 1, levha = 0, kapiAlt, tv, levhaDy = 0 }) => {
+export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number; levha?: number; kapiAlt?: number[]; tv?: number[]; levhaDy?: number; kanatTit?: number }> = ({ frame, acik, kol, saat, fl = 1, levha = 0, kapiAlt, tv, levhaDy = 0, kanatTit = 0 }) => {
   const [ex, ez] = kenar(acik);
   const a = kanatAci(acik);
   const ic = Math.min(1, acik * 6); // depo ışığı (aralıkta bile parlak)
@@ -233,10 +237,10 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
           <g>
             <path d={qZ(WZ - 0.005, 0.27, 0.45, 2.3, 2.5)} fill="#3a3e44" stroke="#1a1c20" strokeWidth={2} />
             <path d={qZ(WZ - 0.004, X0 - 0.02, X1 + 0.02, Y0 - 0.03, Y1 + 0.02)} fill="#000" opacity={0.22} filter="url(#yanBl3)" transform="translate(6 10)" />
-            <g style={{ mixBlendMode: "screen" }}><circle cx={cx} cy={cy} r={260} fill={yanTvRenk(tv[0])} opacity={0.2 * fl2} filter="url(#yanBl)" /></g>
+            {tv[0] > 3.5 ? null : <g style={{ mixBlendMode: "screen" }}><circle cx={cx} cy={cy} r={260} fill={yanTvRenk(tv[0])} opacity={0.2 * fl2} filter="url(#yanBl)" /></g>}
             <path d={qZ(Z, X0 - 0.022, X1 + 0.022, Y0 - 0.022, Y1 + 0.022)} fill="#141518" stroke="#050506" strokeWidth={3} />
             <path d={qZ(Z - 0.0005, X0 - 0.022, X1 + 0.022, Y0 - 0.022, Y0 - 0.012)} fill="#2a2c30" />
-            <circle cx={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[0]} cy={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[1]} r={2} fill="#ff3030" />
+            <circle cx={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[0]} cy={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[1]} r={2} fill={tv[0] > 3.5 ? "#ff7a20" : "#ff3030"} />
             <TvMini mod={tv[0]} tt={tv[1]} frame={frame} />
           </g>
         );
@@ -263,6 +267,8 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
         </g>
       ) : null}
       {/* kanat (menteşe sağda, depoya doğru açılır): ön yüz gri metal, tekme sacı, levha */}
+      {/* B9 P2: kanat titremesi (kapı ardından konuşma vurguları; px) */}
+      <g transform={kanatTit ? `translate(${kanatTit.toFixed(2)} ${(kanatTit * 0.3).toFixed(2)})` : undefined}>
       <path d={kanat} fill="#4c5258" stroke="#22262a" strokeWidth={4} />
       <path d={pl([yanP(ex + ux * 0.04, 0.05, ez + uz * 0.04), yanP(DX2 - 0.03, 0.05, WZ), yanP(DX2 - 0.03, 0.3, WZ), yanP(ex + ux * 0.04, 0.3, ez + uz * 0.04)])} fill="#8a9098" opacity={0.7} />
       {a < 0.9 ? <path d={pl([yanP(ex + ux * 0.25, 1.45, ez + uz * 0.25), yanP(ex + ux * 0.62, 1.45, ez + uz * 0.62), yanP(ex + ux * 0.62, 1.62, ez + uz * 0.62), yanP(ex + ux * 0.25, 1.62, ez + uz * 0.25)])} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={2} opacity={1 - a} /> : null}
@@ -283,6 +289,7 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
       <path d={`M ${kdx} ${kdy} L ${kux} ${kuy}`} stroke="#d4d8dc" strokeWidth={kolKal} strokeLinecap="round" />
       <path d={`M ${kdx} ${kdy - kolKal * 0.2} L ${kux} ${kuy - kolKal * 0.2}`} stroke="#ffffff" strokeWidth={kolKal * 0.3} strokeLinecap="round" opacity={0.85} />
       <circle cx={kdx} cy={kdy} r={kolKal * 0.75} fill="#c8ccd0" stroke="#22262a" strokeWidth={2.5} />
+      </g>
       {/* DEPO · PERSONEL levhası (B9: kapı çarpınca sağ vidası düşer, sol vidada sallanır: levha = açı°) */}
       {levhaDy < 1.6 ? levhaCiz() : null}
       {/* B9: kapının altındaki aralıktan depo ışığı sızar; [ışık 0..1, gölge merkezi (0..1 kapı boyunca, <0 yok), gölge genişliği] */}
