@@ -351,7 +351,8 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
     const tut = basamak<string | null>(side === "L" ? q.tutL : q.tutR, tg, null);
     let H: V2;
     if (ozel) {
-      const [hx, hy] = kf(side === "L" ? q.elL : q.elR, tg, [omuz[0], omuz[1] + 250 * S]);
+      let [hx, hy] = kf(side === "L" ? q.elL : q.elR, tg, [omuz[0], omuz[1] + 250 * S]);
+      if (q.elGoreli) { hx = x + hx * S; hy = y + hy * S; }   // B9: el hedefi karakterin işaretine göre (rig birimi): yürürken eller gövdeyle gelir
       let r: { E: V2; H: V2 };
       const uzak = Math.hypot(hx - omuz[0], hy - omuz[1]);
       if (q.onKol && uzak < (L1 + L2) * 0.84) {
