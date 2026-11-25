@@ -165,7 +165,6 @@ export const SiseYakin: React.FC<{ tg: number; odak: number; f: number }> = ({ t
           <path d="M 120 -340 L 130 -30 L 190 -30 L 200 -340 Z" fill="#f0c8a8" stroke={O} strokeWidth={5} />
           <path d="M 110 -40 Q 90 40 190 44 Q 280 44 260 0 Q 230 -36 190 -36 Z" fill="#f4f4f2" stroke={O} strokeWidth={5} />
         </g>
-        </g>
       </g>
       <g filter="url(#ssS)">
         {/* şişe (yere yakın, ön plan; hafif sola) */}
