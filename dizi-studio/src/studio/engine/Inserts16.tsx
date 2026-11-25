@@ -100,6 +100,23 @@ const KolYumusak: React.FC<{ S: V2; E: V2; H: V2; w: number; renk: string; manse
 /* ------------------------------------------------------------------ eşyalar (el ölçeğinde, s = karakter ölçeği) */
 export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: number }> = ({ n, x, y, s, a = 0 }) => {
   const tr = `translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${a.toFixed(1)}) scale(${s.toFixed(3)})`;
+  if (n === "su" || n === "suAcik" || n === "suYarim")  // B9 P2: pet su şişesi (el ortasından kavrar); suAcik: kapaksız; suYarim: yarıya inmiş
+    return (
+      <g transform={tr}>
+        <path d="M -19 52 L -19 -46 Q -19 -60 -9 -68 L -8 -80 L 8 -80 L 9 -68 Q 19 -60 19 -46 L 19 52 Q 19 58 13 58 L -13 58 Q -19 58 -19 52 Z" fill="#d8eef8" fillOpacity={0.78} stroke={O} strokeWidth={4} />
+        <path d={`M -17 ${n === "suYarim" ? 12 : -38} L 17 ${n === "suYarim" ? 12 : -38} L 17 52 Q 17 56 12 56 L -12 56 Q -17 56 -17 52 Z`} fill="#9ccbe8" opacity={0.75} />
+        <rect x={-19} y={-18} width={38} height={30} fill="#2a7ad0" stroke={O} strokeWidth={2.5} />
+        <path d="M -12 -4 Q 0 -12 12 -4" stroke="#ffffff" strokeWidth={3} fill="none" />
+        <path d="M -11 -52 L -11 40" stroke="#ffffff" strokeWidth={4} opacity={0.6} strokeLinecap="round" />
+        {n === "su" ? <rect x={-10} y={-92} width={20} height={14} rx={2} fill="#2a5ad8" stroke={O} strokeWidth={3} /> : <rect x={-8} y={-84} width={16} height={5} fill="#e8f4fa" stroke={O} strokeWidth={2} />}
+      </g>
+    );
+  if (n === "kapak")  // B9 P2: şişe kapağı (parmaklar arasında)
+    return (
+      <g transform={tr}>
+        <rect x={-10} y={-26} width={20} height={14} rx={2} fill="#2a5ad8" stroke={O} strokeWidth={3} />
+      </g>
+    );
   if (n === "corap")
     return (
       <g transform={tr}>
@@ -250,6 +267,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
         omuzDus: q.omuzDus ? kfD1(q.omuzDus, tg, 0) || undefined : undefined, taklit: q.taklit ? kfD1(q.taklit, tg, 0) || undefined : undefined,
         parilti: q.parilti ? (kfDuz(q.parilti, tg, [0, 0]) as [number, number]) : undefined, gozKis: q.gozKis ? (kfDuz(q.gozKis, tg, [0, 0]) as [number, number]) : undefined,
         sacEk: sacEk ? Math.max(-40, Math.min(40, sacEk)) : undefined,
+        yerOtur: q.yerOtur ? kfD1(q.yerOtur, tg, 0) || undefined : undefined,
       }} />
     </div>
   );
@@ -258,8 +276,9 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
   const esyalar: React.ReactNode[] = [];
   const renk = look.outfit.top, manset = look.outfit.topShade;
   const L1 = 140 * S, L2 = 124 * S, w = 20 * S;
+  const yerK = q.yerOtur ? Math.max(0, Math.min(1, kfD1(q.yerOtur, tg, 0))) : 0;   // B9 P2: yere oturunca omuz 345 birim iner
   const sideDraw = (side: "L" | "R") => {
-    const omuz0: V2 = [left + (200 + (side === "L" ? -72 : 72) * wx) * S, top - parmak + 352 * S];
+    const omuz0: V2 = [left + (200 + (side === "L" ? -72 : 72) * wx) * S, top - parmak + (352 + 345 * yerK) * S];
     const omuz = rot(ez ? [x + (omuz0[0] - x) * ezX, y - parmak + (omuz0[1] - (y - parmak)) * ezY] : omuz0, [piv[0], piv[1] - parmak], egil);
     const ozel = side === "L" ? ozelL : ozelR;
     const tut = basamak<string | null>(side === "L" ? q.tutL : q.tutR, tg, null);
@@ -301,7 +320,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
     const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
-    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={tut === "isaret" && q.isaretAci !== undefined ? (q.isaretAci as number) : tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={q.esyaAci && (tut === "su" || tut === "suAcik" || tut === "suYarim") ? kfD1(q.esyaAci, tg, 0) : tut === "isaret" && q.isaretAci !== undefined ? (q.isaretAci as number) : tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");

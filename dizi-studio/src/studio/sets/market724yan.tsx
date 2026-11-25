@@ -61,7 +61,62 @@ export const YAN_KOL: P2 = yanP(DX1 + 0.1, 1.0, WZ);
 export const YAN_KAPI: P2 = yanP((DX1 + DX2) / 2, 1.05, WZ);
 
 /* ------------------------------------------------------------------ arka plan */
-export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number; levha?: number; kapiAlt?: number[] }> = ({ frame, acik, kol, saat, fl = 1, levha = 0, kapiAlt }) => {
+/** B9 P2: kapı altı gölgeleri (0..1 kapı boyunca aralıklar): [ışık, ayakMerkez, ayakGenişlik, patiMerkez, patiGenişlik, ayakOpaklık] */
+export const kapiAltGolge = (k: number[]): [number, number, number][] => {
+  const [, gx, gw, px = -1, pw = 0, gop = 1] = k;
+  const r: [number, number, number][] = [];
+  if (gx >= 0) r.push([gx - gw / 2, gx - gw * 0.08, gop], [gx + gw * 0.08, gx + gw / 2, gop]);
+  if (px >= 0 && pw > 0.005) r.push([px - pw / 2, px - pw * 0.12, 1], [px + pw * 0.12, px + pw / 2, 1]);
+  return r.map(([a, b, o]) => [Math.max(0, a), Math.min(1, b), o]);
+};
+/** B9 P2: duvar televizyonu (tezgâh ile depo kapısı arası, kazı kazan standının üstü): ekran dünya kutusu */
+export const YAN_TV = { X0: 0.04, X1: 0.68, Y0: 2.215, Y1: 2.575, Z: 1.8 };
+const TvMini: React.FC<{ mod: number; tt: number; frame: number }> = ({ mod, tt, frame }) => {
+  const { X0, X1, Y0, Y1, Z } = YAN_TV;
+  const ol = (X1 - X0) / 160;   // yerel 160 × 90 birim
+  const tr = zMatris(Z - 0.001, X0, Y1, ol);
+  const fl = 0.9 + 0.1 * Math.sin(frame * 1.7) * Math.sin(frame * 0.31);
+  let ic: React.ReactNode;
+  if (mod < 0.5) {
+    // gece köprü kamerası: lacivert gök, kemer ışıkları, akan araba ışıkları
+    ic = (<g>
+      <rect width={160} height={90} fill="#0e1a34" />
+      <rect y={58} width={160} height={32} fill="#08101e" />
+      <path d="M 0 50 Q 80 18 160 50" stroke="#6a8ad8" strokeWidth={1.5} fill="none" />
+      {new Array(12).fill(0).map((_, i) => <circle key={i} cx={8 + i * 13} cy={50 - 32 * Math.sin((Math.PI * (8 + i * 13)) / 160) * 0.98} r={1.6} fill={i % 3 ? "#bfe0ff" : "#ff6aa8"} />)}
+      <rect y={52} width={160} height={2.5} fill="#2a3450" />
+      {[0, 1, 2, 3].map((i) => <rect key={`a${i}`} x={((tt * 30 + i * 47) % 190) - 15} y={51.5} width={6} height={1.6} fill={i % 2 ? "#ff4030" : "#fff4c0"} />)}
+    </g>);
+  } else if (mod < 1.5) {
+    ic = (<g><rect width={160} height={90} fill="#b80e22" /><rect y={34} width={160 * Math.min(1, tt * 3)} height={22} fill="#ffffff" /><rect x={10} y={40} width={70} height={10} fill="#b80e22" opacity={tt > 0.25 ? 1 : 0} /></g>);
+  } else if (mod < 2.5) {
+    ic = (<g>
+      <rect width={160} height={90} fill="#123a6a" />
+      {new Array(9).fill(0).map((_, i) => <circle key={i} cx={(i * 37) % 160} cy={12 + (i * 23) % 40} r={3} fill="#5aa0e8" opacity={0.35} />)}
+      <path d="M 40 72 Q 40 50 62 46 L 74 46 Q 96 50 96 72 Z" fill="#20242e" />
+      <ellipse cx={68} cy={34} rx={10} ry={12} fill="#e8b890" />
+      <path d="M 57 30 Q 60 18 70 20 Q 80 21 79 30 Q 74 24 66 25 Z" fill="#2a1f1a" />
+      <rect y={68} width={36} height={8} fill="#c8102e" /><rect x={36} y={68} width={124} height={8} fill="#f4f4f2" /><rect y={76} width={160} height={5} fill="#0a1a30" />
+    </g>);
+  } else {
+    ic = (<g>
+      <rect width={160} height={90} fill="#1a0a3a" />
+      <path d="M 0 60 L 160 54 L 160 90 L 0 90 Z" fill="#3a1050" />
+      <ellipse cx={30 + Math.min(1, tt / 1.6) * 80} cy={52} rx={16} ry={7} fill="#ffd040" opacity={tt < 1.8 ? 1 : 0} />
+      <rect x={110} y={30} width={30} height={34} fill="#2a0a40" />
+    </g>);
+  }
+  return (
+    <g>
+      <g transform={tr} opacity={fl}>{ic}</g>
+      <path d={qZ(Z - 0.002, X0, X1, Y0, Y1)} fill="#ffffff" opacity={0.06} />
+      <path d={pl([yanP(X0 + 0.05, Y1, Z - 0.002), yanP(X0 + 0.14, Y1, Z - 0.002), yanP(X0 + 0.04, Y0, Z - 0.002), yanP(X0 - 0.05 + 0.04, Y0, Z - 0.002)])} fill="#ffffff" opacity={0.07} />
+    </g>
+  );
+};
+export const yanTvRenk = (mod: number) => (mod < 0.5 ? "#5a7ad8" : mod < 1.5 ? "#ff3040" : mod < 2.5 ? "#4a90ff" : "#c050ff");
+
+export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number; saat: string; fl?: number; levha?: number; kapiAlt?: number[]; tv?: number[]; levhaDy?: number }> = ({ frame, acik, kol, saat, fl = 1, levha = 0, kapiAlt, tv, levhaDy = 0 }) => {
   const [ex, ez] = kenar(acik);
   const a = kanatAci(acik);
   const ic = Math.min(1, acik * 6); // depo ışığı (aralıkta bile parlak)
@@ -77,6 +132,24 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
   const kolDip = kP(0.08, 1.0, 0.05);
   const [kdx, kdy] = yanP(...kolDip), [kux, kuy] = yanP(...kolUc);
   const kolKal = 0.024 * F / yanD(kolDip[0], kolDip[2]);
+  // levha: dönme (sol vida ekseni) + B9 P2 düşüş: levhaDy (m) kadar kapı yüzeyinden aşağı kayar; yere inince kapıya yaslı kalır
+  const levhaCiz = () => {
+    const [vx, vy0] = yanP(DX1 + 0.16, DH + 0.38, WZ - 0.02);
+    const dyPx = yanP(DX1 + 0.16, DH + 0.38 - levhaDy, WZ - 0.02)[1] - vy0;
+    const vy = vy0;
+    return (
+      <g transform={dyPx ? `translate(0 ${dyPx.toFixed(1)})` : undefined}>
+          <g transform={levha ? `rotate(${levha.toFixed(2)} ${vx} ${vy})` : undefined}>
+            {levha ? <path d={qZ(WZ - 0.019, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#000" opacity={0.25} transform="translate(5 7)" /> : null}
+            <path d={qZ(WZ - 0.02, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
+            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.27, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={56} fill="#1a1a1a">DEPO</text>
+            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.17, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={40} fill="#1a1a1a">PERSONEL</text>
+            <circle cx={vx} cy={vy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />
+            {!levha ? (() => { const [wx, wy] = yanP(DX2 - 0.16, DH + 0.38, WZ - 0.02); return <circle cx={wx} cy={wy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />; })() : null}
+          </g>
+      </g>
+    );
+  };
   return (
     <g>
       <defs>
@@ -151,6 +224,23 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
       <path d={qZ(WZ - 0.021, 0.03, 0.38, 1.27, 1.36)} fill="#c02020" />
       <text transform={zMatris(WZ - 0.022, 0.205, 1.295, 0.0016)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={34} fill="#ffffff">KASIM</text>
       <text transform={zMatris(WZ - 0.022, 0.205, 1.03, 0.0016)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={110} fill="#2a2a2a">19</text>
+      {/* B9 P2: duvar televizyonu (kol üstünde, duvardan 10 cm): gövde, ekran, ışığı duvara vurur */}
+      {tv ? (() => {
+        const { X0, X1, Y0, Y1, Z } = YAN_TV;
+        const [cx, cy] = yanP((X0 + X1) / 2, (Y0 + Y1) / 2, WZ - 0.005);
+        const fl2 = 0.8 + 0.2 * Math.sin(frame * 1.3) * Math.sin(frame * 0.27) + (tv[0] > 0.5 && tv[0] < 1.5 ? 0.25 * Math.max(0, Math.sin(frame * 0.9)) : 0);
+        return (
+          <g>
+            <path d={qZ(WZ - 0.005, 0.27, 0.45, 2.3, 2.5)} fill="#3a3e44" stroke="#1a1c20" strokeWidth={2} />
+            <path d={qZ(WZ - 0.004, X0 - 0.02, X1 + 0.02, Y0 - 0.03, Y1 + 0.02)} fill="#000" opacity={0.22} filter="url(#yanBl3)" transform="translate(6 10)" />
+            <g style={{ mixBlendMode: "screen" }}><circle cx={cx} cy={cy} r={260} fill={yanTvRenk(tv[0])} opacity={0.2 * fl2} filter="url(#yanBl)" /></g>
+            <path d={qZ(Z, X0 - 0.022, X1 + 0.022, Y0 - 0.022, Y1 + 0.022)} fill="#141518" stroke="#050506" strokeWidth={3} />
+            <path d={qZ(Z - 0.0005, X0 - 0.022, X1 + 0.022, Y0 - 0.022, Y0 - 0.012)} fill="#2a2c30" />
+            <circle cx={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[0]} cy={yanP(X1 + 0.008, Y0 - 0.016, Z - 0.001)[1]} r={2} fill="#ff3030" />
+            <TvMini mod={tv[0]} tt={tv[1]} frame={frame} />
+          </g>
+        );
+      })() : null}
       {/* yangın tüpü (kapının sağı) */}
       <path d={qZ(WZ - 0.06, 2.12, 2.26, 0.55, 1.12)} fill="#c8281e" stroke="#4a0e0a" strokeWidth={3} />
       <path d={qZ(WZ - 0.061, 2.14, 2.2, 1.12, 1.2)} fill="#2a2a2a" />
@@ -194,22 +284,10 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
       <path d={`M ${kdx} ${kdy - kolKal * 0.2} L ${kux} ${kuy - kolKal * 0.2}`} stroke="#ffffff" strokeWidth={kolKal * 0.3} strokeLinecap="round" opacity={0.85} />
       <circle cx={kdx} cy={kdy} r={kolKal * 0.75} fill="#c8ccd0" stroke="#22262a" strokeWidth={2.5} />
       {/* DEPO · PERSONEL levhası (B9: kapı çarpınca sağ vidası düşer, sol vidada sallanır: levha = açı°) */}
-      {(() => {
-        const [vx, vy] = yanP(DX1 + 0.16, DH + 0.38, WZ - 0.02);
-        return (
-          <g transform={levha ? `rotate(${levha.toFixed(2)} ${vx} ${vy})` : undefined}>
-            {levha ? <path d={qZ(WZ - 0.019, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#000" opacity={0.25} transform="translate(5 7)" /> : null}
-            <path d={qZ(WZ - 0.02, DX1 + 0.1, DX2 - 0.1, DH + 0.14, DH + 0.42)} fill="#e8e0c0" stroke="#2a2e32" strokeWidth={3} />
-            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.27, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={56} fill="#1a1a1a">DEPO</text>
-            <text transform={zMatris(WZ - 0.021, (DX1 + DX2) / 2, DH + 0.17, 0.002)} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={900} fontSize={40} fill="#1a1a1a">PERSONEL</text>
-            <circle cx={vx} cy={vy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />
-            {!levha ? (() => { const [wx, wy] = yanP(DX2 - 0.16, DH + 0.38, WZ - 0.02); return <circle cx={wx} cy={wy} r={4} fill="#8a9098" stroke="#2a2e32" strokeWidth={1.5} />; })() : null}
-          </g>
-        );
-      })()}
+      {levhaDy < 1.6 ? levhaCiz() : null}
       {/* B9: kapının altındaki aralıktan depo ışığı sızar; [ışık 0..1, gölge merkezi (0..1 kapı boyunca, <0 yok), gölge genişliği] */}
       {kapiAlt && kapiAlt[0] > 0.01 && acik < 0.02 ? (() => {
-        const [isik, gx, gw] = kapiAlt;
+        const [isik] = kapiAlt;
         const cizgi = (a: number, b: number, renk: string, op: number, k: string) => (
           <path key={k} d={pl([yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * a, 0.004, WZ - 0.005), yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * b, 0.004, WZ - 0.005),
             yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * b, 0.045, WZ - 0.005), yanP(DX1 + 0.04 + (DX2 - DX1 - 0.08) * a, 0.045, WZ - 0.005)])} fill={renk} opacity={op} />
@@ -224,10 +302,11 @@ export const Market724YanBG: React.FC<{ frame: number; acik: number; kol: number
             </defs>
             <g style={{ mixBlendMode: "screen" }}>{yansi}<g filter="url(#kapiAltBlur)">{cizgi(0, 1, "#ffb050", 0.9 * isik, "gl")}</g></g>
             {cizgi(0, 1, "#ffd890", 0.95 * isik, "s")}
-            {gx >= 0 ? <>{cizgi(Math.max(0, gx - gw / 2), Math.min(1, gx - gw * 0.08), "#0a0604", 0.95, "g1")}{cizgi(Math.max(0, gx + gw * 0.08), Math.min(1, gx + gw / 2), "#0a0604", 0.95, "g2")}</> : null}
+            {kapiAltGolge(kapiAlt).map(([a, b, o], i) => (b > a ? cizgi(a, b, "#0a0604", 0.95 * o, `g${i}`) : null))}
           </g>
         );
       })() : null}
+      {levhaDy >= 1.6 ? levhaCiz() : null}
       {/* zemin + karolar */}
       <path d={pl([yanP(-4, 0, WZ), yanP(2.9, 0, WZ), yanP(2.9, 0, -2.4), yanP(-4, 0, -2.4)])} fill="url(#yanZemin)" />
       {[-3, -2.4, -1.8, -1.2, -0.6, 0, 0.6, 1.2, 1.8, 2.4].map((X) => <path key={`zx${X}`} d={line([X, 0, WZ], [X, 0, -2.4])} stroke="#b0b5b2" strokeWidth={2.5} />)}

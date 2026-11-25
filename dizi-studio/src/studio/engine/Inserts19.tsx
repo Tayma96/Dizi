@@ -6,6 +6,7 @@
  * Ekran katmanları: yerdeki eller (düşüş), oturarak geri itilen bacaklar + kırmızı mini etek.
  * Zaman çizelgesi JSON'dan (text[0]): kamera anahtar kareleri, yaratık konumu, el/bacak görünürlüğü. Hepsi kendi çizimimiz.
  * ===================================================================================== */
+import { Aslan, aslanGoz } from "./aslan724";
 import React from "react";
 import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { karakter } from "./Inserts16";
@@ -407,7 +408,7 @@ const Sac: React.FC<{ v: number }> = ({ v }) => {
  * Tezgâhın arkasındaki dar koridor (x -0.9..0.9, z 0..6); sol duvarda depo kapısı (z 3.0..3.9, açık).
  * Depo odası (x -5.5..-0.9, z 1..6): metal raflar, koliler, eski radyo, sallanan çıplak ampul.
  * Yaratık depo ortasında, SIRTI kapıya dönük, dizlerine abanmış twerk atıyor (twerk 0..1 şiddet). */
-const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean; ara?: React.ReactNode; koli?: number; siluet?: KF }> = ({ c, t, f, twerk, radyo, y, kacis, ara, koli, siluet }) => {
+const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean; ara?: React.ReactNode; koli?: number; siluet?: KF; aslan?: number[] }> = ({ c, t, f, twerk, radyo, y, kacis, ara, koli, siluet, aslan }) => {
   const el: React.ReactNode[] = [];
   const q = (pts: V3[], renk: string, key: string, op = 1) => {
     const p = poly(c, pts);
@@ -529,6 +530,28 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
       m([[fx - 0.14, mh - 0.01, z], [fx + 0.14, mh - 0.01, z], [fx + 0.14, mh - 0.01, z - 1.4], [fx - 0.14, mh - 0.01, z - 1.4]], "#8a908a", `flk${fx}${z}`);
       m([[fx - 0.1, mh - 0.012, z - 0.04], [fx + 0.1, mh - 0.012, z - 0.04], [fx + 0.1, mh - 0.012, z - 1.36], [fx - 0.1, mh - 0.012, z - 1.36]], "#f6fbf0", `fl${fx}${z}`);
       m([[fx * 0.55 - 0.1, 0.002, z + 0.3], [fx * 0.55 + 0.1, 0.002, z + 0.3], [fx * 0.55 + 0.16, 0.002, z - 1.6], [fx * 0.55 - 0.16, 0.002, z - 1.6]], "#ffffff", `fy${fx}${z}`, 0.18);
+    }
+    // B9 P2: dişi aslan, reyonların ucundaki ara koridordan (içecek dolaplarının önünden) geçer; reyonlar sonra çizilir → raf arkasında kalan kısım örtülür
+    if (aslan && aslan[5] > 0.01) {
+      const [ax, az, afaz, ahiz, abak] = aslan;
+      const g = toCam(c, [ax, 0, az]), g2 = toCam(c, [ax + 0.1, 0, az]);
+      if (g[2] > NEAR + 0.5) {
+        const [gx, gy] = proj(g), sol = proj(g2)[0] < gx;   // dünya +x ekranda sola düşüyorsa aynala (aslan +x'e yürür)
+        const sk = (F * 0.01) / g[2];
+        const yon = (aslan[6] ?? 1) * (sol ? -1 : 1);
+        const goz = aslanGoz(afaz, ahiz);
+        mk.push(
+          <g key="aslan" opacity={aslan[5]}>
+            <ellipse cx={gx} cy={gy + sk * 2} rx={sk * 95} ry={sk * 9} fill="#20262a" opacity={0.35} />
+            <g transform={`translate(${gx} ${gy}) scale(${sk * yon} ${sk})`} style={{ filter: `drop-shadow(0 0 ${(sk * 2.2).toFixed(1)}px rgba(225,240,255,0.85)) brightness(0.86) saturate(0.85)` }}>
+              <Aslan faz={afaz} hiz={ahiz} bak={abak} uid="fpsAs" kuyrukT={t} />
+            </g>
+            {abak > 0.3 ? goz.map(([ex, ey], i) => (
+              <circle key={i} cx={gx + ex * sk * yon} cy={gy + ey * sk} r={sk * 4.5} fill="#c8ff9a" opacity={(abak - 0.3) * 0.9 * (0.85 + 0.15 * Math.sin(t * 11 + i))} style={{ mixBlendMode: "screen" }} />
+            )) : null}
+          </g>,
+        );
+      }
     }
     // reyonlar: ürün biçimleri (şişe, kutu, teneke, paket), etiket bantları, raf önü fiyat şeritleri
     const RENK = ["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#f2f0e6", "#7a4ad0", "#e85a1a", "#1a8a8a", "#8a5a2a"];
@@ -933,6 +956,27 @@ const KacisKar: React.FC<{ p: Prm; c: Cam; t: number; f: number; fps: number }> 
       <foreignObject x={0} y={0} width={W} height={H}>
         <div style={{ position: "relative", width: W, height: H, clipPath: zemin }}>{parca}</div>
       </foreignObject>
+      {/* B9 P2: hale (ışık onun üstünde): baş çevresinde yumuşak sıcak-beyaz ışık, saçta parıltı */}
+      {kars.map((k, i) => {
+        if (!k.hale) return null;
+        const [hr, hop] = kf(k.hale as KF, t, [0.5, 0]);
+        if (hop < 0.01) return null;
+        const [wx, wy, wz] = k.w as V3;
+        const g = pr([wx + 0.02, wy + (k.boy ?? 1.7) * 0.86, wz]);
+        if (!g) return null;
+        const r = (F * hr) / g.d;
+        return (
+          <g key={`hl${i}`} style={{ mixBlendMode: "screen" }}>
+            <defs><radialGradient id={`hl${i}`}><stop offset="0" stopColor="#fff2dc" stopOpacity={0.5 * hop} /><stop offset="0.45" stopColor="#ffd8b0" stopOpacity={0.2 * hop} /><stop offset="1" stopColor="#ffd8b0" stopOpacity={0} /></radialGradient></defs>
+            <circle cx={g.xy[0]} cy={g.xy[1]} r={r} fill={`url(#hl${i})`} />
+            {[0, 1, 2, 3, 4].map((j) => {
+              const u = (t * 0.7 + j * 0.37) % 1, a = j * 1.3 + 0.4;
+              const px = g.xy[0] + Math.cos(a) * r * 0.32, py = g.xy[1] - r * 0.1 + Math.sin(a) * r * 0.3;
+              return <circle key={j} cx={px} cy={py} r={r * 0.018 * (1 + Math.sin(u * Math.PI))} fill="#ffffff" opacity={hop * Math.sin(u * Math.PI) * 0.9} />;
+            })}
+          </g>
+        );
+      })}
       {kir}
       {yig}
       {bac}
@@ -981,7 +1025,7 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsYesil"><stop offset="0" stopColor="#40ff80" stopOpacity={0.35} /><stop offset="1" stopColor="#40ff80" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} koli={p.koli} siluet={p.siluet} ara={p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null} /> : (
+          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} koli={p.koli} siluet={p.siluet} aslan={p.aslan ? kf(p.aslan, t, [0, -8.9, 0, 0, 0, 0, 1]) : undefined} ara={p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null} /> : (
           <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />)}
         </svg>
       </AbsoluteFill>

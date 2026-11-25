@@ -19,7 +19,8 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
-import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
+import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, kapiAltGolge, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
+import { TvEkran } from "./tv724";
 import { sstep } from "./bocek";
 import { AnimeFxDunya, AnimeFxEkran, fxKamera, type Fx } from "./canli";
 import { karakter, type KarCiz } from "./Inserts16";
@@ -390,6 +391,9 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
   const anime = kf1(p.anime?.[view], tg, 0), animeYarim = kf1(p.animeYarim?.[view], tg, 0);
   const animeMerkez = kf(p.animeMerkez?.[view], tg, [540, 800]);
   const saat = basamak<string>(p.saat, tg, "19:07");
+  // B9 P2: duvar TV'si yayın akışı (sahne zamanı): jen (jenerik), sp (spiker), term [t0, t1] (termal görüntü)
+  const tvY = p.tvYayin as Prm | undefined;
+  const tvDurum: number[] | undefined = tvY ? (tg < tvY.jen ? [0, tg] : tg < tvY.sp ? [1, tg - tvY.jen] : tvY.term && tg >= tvY.term[0] && tg < tvY.term[1] ? [3, tg - tvY.term[0]] : [2, tg - tvY.sp]) : undefined;
 
   let sahne: React.ReactNode = null;
   if (view === "dis") {
@@ -456,7 +460,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     const bosluk = yanKapiBosluk().map(([x, y]) => `${x.toFixed(1)}px ${y.toFixed(1)}px`).join(", ");
     sahne = (
       <>
-        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2]) : undefined} /></SVG>
+        <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]) : undefined} tv={tvDurum} levhaDy={p.levhaDy ? kf1(p.levhaDy, tg, 0) : 0} /></SVG>
         {mert ? (
           <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: klip ? `polygon(${bosluk})` : undefined,
             filter: sil > 0.01 ? `brightness(${(1 - 0.9 * sil).toFixed(3)}) saturate(${(1 - 0.7 * sil).toFixed(3)}) drop-shadow(0 0 ${(4 * sil).toFixed(1)}px rgba(255,214,150,${(0.9 * sil).toFixed(2)}))` : undefined }}>
@@ -479,6 +483,10 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {kf1(p.toz, tg, 0) > 0.01 ? <SVG>{new Array(14).fill(0).map((_, i) => { const u = kf1(p.toz, tg, 0); const [kx, ky] = YAN_KAPI; return <circle key={i} cx={kx - 120 + (i * 37) % 240 + 60 * u * Math.sin(i)} cy={ky + 260 - (i * 53) % 520 - 80 * u} r={14 + (i % 5) * 7} fill="#e8d8b8" opacity={0.35 * (1 - u)} />; })}</SVG> : null}
       </>
     );
+  } else if (view === "tv" && tvDurum) {
+    // B9 P2: duvar televizyonu yakın plan; spiker rig'i ekran koordinatında (960×540), dudak senkronu sahne zamanından
+    const sp = K.spiker ? karakter("spiker", K.spiker, tg, f, fps, t0f) : null;
+    sahne = <TvEkran mod={tvDurum[0]} tt={tvDurum[1]} f={f} tg={tg} spiker={sp ? <>{sp.govde}{sp.on}</> : null} />;
   } else if (view === "tepe") {
     // B8 (yeni) P4: raflar arası koridor TEPEDEN (kuşbakışı): karo zemin, iki yanda rafların üstü, floresan; yerde kadın
     sahne = (
@@ -722,12 +730,19 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
               </SVG>
               {p.kapiAlt && ac < 0.02 ? (() => {
                 // B9: kapı altı ışığı karanlık köşede de parlasın (renk katmanlarından SONRA, ekran karışımı)
-                const [isk, gx, gw] = kf(p.kapiAlt, tg, [0, -1, 0.2]);
+                const ka = kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]);
+                const isk = ka[0];
                 if (isk < 0.01) return null;
                 const [a0, b0] = yanKapiBosluk();
                 const X = (u: number) => a0[0] + (b0[0] - a0[0]) * (0.05 + 0.9 * u), Yy = (u: number) => a0[1] + (b0[1] - a0[1]) * (0.05 + 0.9 * u);
                 const u0g = (p.kapiAltBas as number | undefined) ?? 0; // önünde duran karakterin bacaklarının sağından başla
-                const parca = (gx >= 0 ? [[0, gx - gw / 2], [gx - gw * 0.08, gx + gw * 0.08], [gx + gw / 2, 1]] : [[0, 1]]).map(([a, b]) => [Math.max(a, u0g), b]);
+                // ışıklı parçalar = gölgelerin (ayak + pati) tümleyeni
+                const gol = kapiAltGolge(ka).filter((g) => g[2] > 0.5).sort((a, b) => a[0] - b[0]);
+                const parca: number[][] = [];
+                let u = 0;
+                for (const [a, b] of gol) { if (a > u) parca.push([u, a]); u = Math.max(u, b); }
+                if (u < 1) parca.push([u, 1]);
+                for (const pc of parca) pc[0] = Math.max(pc[0], u0g);
                 return (
                   <SVG blend="screen">
                     <defs><filter id="kaB" x="-20%" y="-300%" width="140%" height="700%"><feGaussianBlur stdDeviation="9" /></filter></defs>
@@ -775,6 +790,7 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
       )}
       <AbsoluteFill style={{ background: `radial-gradient(ellipse 80% 70% at 50% 44%, rgba(0,0,0,0) ${view === "kagit" ? 50 : 55}%, rgba(8,10,24,${0.5 + 0.25 * karart}) 100%)` }} />
       <AnimeFxEkran fx={p.fx as Fx[] | undefined} view={view} tg={tg} f={f} />
+      {p.karart ? <AbsoluteFill style={{ backgroundColor: "#000", opacity: kf1(p.karart, tg, 0) }} /> : null}
     </AbsoluteFill>
   );
 };
