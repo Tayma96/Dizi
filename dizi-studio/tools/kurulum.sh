@@ -6,9 +6,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 T="${TTS_DIR:-/opt/tts}"
 npm ci --no-audit --no-fund
-if [ ! -x "$T/venv/bin/python" ]; then
+# venv var ama paketler yarım kalmışsa (ör. ağ hatası) yeniden dene
+if ! "$T/venv/bin/python" -c "import torch, faster_whisper" 2>/dev/null; then
   mkdir -p "$T"
-  python3 -m venv "$T/venv"
+  [ -x "$T/venv/bin/python" ] || python3 -m venv "$T/venv"
   "$T/venv/bin/pip" install -q --upgrade pip
   "$T/venv/bin/pip" install -q torch torchaudio --index-url https://download.pytorch.org/whl/cpu
   "$T/venv/bin/pip" install -q chatterbox-tts==0.1.7 --no-deps
