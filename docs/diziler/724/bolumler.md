@@ -376,3 +376,14 @@ Kamera açılarını yine iyi hesapla, bu parçada fps yok.
 > Ece o esnada depodan kaçıp markete doğru kosuyor. Markete gelince fps moddan cıkar deponun kapısını kapatır ece ve kapıya yaslanır aniden nefes nefese kalmıştır.
 
 Notlar: B9 doğaçlama izni var (25 Kasım: "doğaçlama serbest", görüntü yönetmeni + senarist yardımcısı). CANLILIK katmanından yalnız yaylı hareket ve saç takibi kullanılır; anime efektleri YOK (yalnız hız çizgileri, nadiren).
+
+## Bölüm 9, Parça 2 (kullanıcının metni AYNEN, 25 Kasım 2026)
+> Son sahnenin üstüne biraz zaman geçsin yani o süreçte ece mertin kadına ilgi gösterdiğini görüp kadınında çok güzel oldupunu görüp kıskansın,
+> Sonra o haber cıksın tvde, ece şaşırsın ama o senin söylediğin somut bulgu sırtımda sözünü söylemesin o depodaki aslan değil çünkü saçma olur,
+> Sonra ece dediğin gibi bu ses diye bi soru işareti olsun sonra kapının arkasındakine seslenip sen konuşmayı haberlerden mi öğrendin lan desin
+> Bu arada aranan askanda yanımda o da kapıyı açmanızı rica ediyor desin, ece "he amına koyim bi bu eksikti,  barkodu okutulmamıs twörkçü desin. (twerk i düzgün seslendirmez o yüzden okunuşunu yazdım tüm cümlenin)
+>
+> Kapının arkasında canavar utansın, sonra bir anda çıldırıp kükremeye başlasın.
+> Ece depo kapısında hala yaslanıyordur fps kamerasıyla mert ve kızın yerdeki o hallerine bakarken arkalarında rafın arasından aslan geçmiştir.
+
+Bağlam: Sarıyer aslanı (22 Kasım 2026, Uskumruköy; termal kameralardan kayboldu; dişi aslan olduğu söylendi). Replikler: Ece "Bu ses...?", Ece "Sen konuşmayı haberlerden mi öğrendin lan?", Yaratık (spiker sesi) "Bu arada aranan aslan da yanımda. O da kapıyı açmanızı rica ediyor.", Ece "He amına koyim, bi bu eksikti! Barkodu okutulmamış twerkçü!" (okunuş: twörkçü). Doğaçlama: TV bülten metni, Ece'nin kıskançlık "Hıh"ı, Mert'in kıza ilgisi (su şişesi vb.).

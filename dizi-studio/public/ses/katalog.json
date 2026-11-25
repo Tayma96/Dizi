@@ -622,6 +622,13 @@
   "loop": false,
   "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
  },
+ "efekt/b9_aslan_adim": {
+  "file": "ses/efekt/b9_aslan_adim.mp3",
+  "category": "efekt",
+  "duration": 3.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX:  large lioness walking slowly on a supermarket tile floor, soft heavy paw pads, a low calm breath"
+ },
  "efekt/b9_ayakkabi": {
   "file": "ses/efekt/b9_ayakkabi.mp3",
   "category": "efekt",
@@ -635,6 +642,13 @@
   "duration": 2.5,
   "loop": false,
   "desc": "ElevenLabs SFX: Fluorescent ceiling light buzzing and flickering with electric clicks, quiet"
+ },
+ "efekt/b9_haber_jenerik": {
+  "file": "ses/efekt/b9_haber_jenerik.mp3",
+  "category": "efekt",
+  "duration": 2.0,
+  "loop": false,
+  "desc": "ElevenLabs SFX: rt TV breaking news sting, urgent synth hits and a whoosh, news channel jingle"
  },
  "efekt/b9_kapi_arkasi": {
   "file": "ses/efekt/b9_kapi_arkasi.mp3",
@@ -650,12 +664,33 @@
   "loop": false,
   "desc": "ElevenLabs SFX: Two slow polite gentle knocks on a closed metal door, knuckles, quiet hallway"
  },
+ "efekt/b9_kukreme": {
+  "file": "ses/efekt/b9_kukreme.mp3",
+  "category": "efekt",
+  "duration": 4.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX:  monstrous creature suddenly going berserk behind a metal door: furious deep roar like a lion mixed with a screech, fists banging and shaking the door violently, metal rattling"
+ },
  "efekt/b9_levha": {
   "file": "ses/efekt/b9_levha.mp3",
   "category": "efekt",
   "duration": 1.6,
   "loop": false,
   "desc": "ElevenLabs SFX: Thin metal door sign rattling and swinging on a single loose screw after a door slam, small metallic clinks fading out"
+ },
+ "efekt/b9_su_sise": {
+  "file": "ses/efekt/b9_su_sise.mp3",
+  "category": "efekt",
+  "duration": 1.5,
+  "loop": false,
+  "desc": "ElevenLabs SFX: astic water bottle cap being twisted open with a crackle, then a small sip"
+ },
+ "efekt/b9_utanma": {
+  "file": "ses/efekt/b9_utanma.mp3",
+  "category": "efekt",
+  "duration": 2.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A monster behind a closed metal door making a small embarrassed, hurt little whimper, then awkward silence and shy shuffling feet"
  },
  "efekt/bildirim": {
   "file": "ses/efekt/bildirim.mp3",
