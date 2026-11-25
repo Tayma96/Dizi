@@ -68,7 +68,7 @@ MP = yI(0.55, 1.28, 1.78)                    # Mert (tezgâhın arka ucunda)
 SM = MP[2] / 1000
 MF = [MP[0], MP[1] - 765 * SM]
 ELK = yI(1.78, 1.46, 1.66)                   # Elif: kapının sağında (paraların başında)
-ELM = yI(0.98, 1.18, 1.66)                    # Elif: Mert'in yanında
+ELM = yI(0.9, 1.4, 1.66)                    # Elif: Mert'in yanında
 ELE = yI(1.6, 1.36, 1.66)                    # Elif: Ece'nin dibinde (P6 başı)
 ELA = yI(0.68, 1.46, 1.66)                   # Elif: Mert'in arkasında (P6 son)
 SL = ELK[2] / 1000
@@ -131,7 +131,7 @@ for i in range(5):
 E_EL_R.a(45.4, *CRR)
 # "Sen kime tatlım": adım + işaret parmağı Elif'e (sol)
 E_YER.a(51.5, *EK).a(52.15, *EA)
-E_EL_L.a(51.45, *CRL).a(51.9, *el(EA, -130, -520)).a(ws(11, 1), *el(EA, -175, -640)).a(we(11, 7), *el(EA, -185, -650)).a(ve(11) + 0.2, *el(EA, -175, -640)).a(59.6, *el(EA, -150, -470)).a(60.0, *el(EA, -110, -440))
+E_EL_L.a(51.45, *CRL).a(51.9, *el(EA, -130, -520)).a(ws(11, 1), *el(EA, -175, -640)).a(we(11, 7), *el(EA, -185, -650)).a(ve(11) + 0.05, *el(EA, -175, -640)).a(ve(11) + 0.5, *el(EA, -110, -440))
 E_EL_R.a(51.45, *CRR).a(52.0, *el(EA, 112, -430))
 # "Kızlar lütfen" sırasında yine kollar kavuşur; "Mert?" adım geri, el yarım uzanır
 E_YER.a(60.4, *EA).a(61.2, *EK)
@@ -236,7 +236,7 @@ ECE = {"id": "ece_sivil", "onKol": True, "dogalKol": True, "yay": 1, "yer": E_YE
 # ================================================================== MERT
 M_YER = KF().a(0, 0, 0, 0).a(17.55, 0, 0, 0).a(17.6, *MP)
 MYL, MYR = el(MP, -118, -420), el(MP, 115, -415)
-SAAT = el(MP, 60, -575)                      # sağ bileği göğüs önünde (Elif kaldırır)
+SAAT = el(MP, 118, -610)                      # sağ bileği göğüs önünde (Elif kaldırır)
 M_EL_L, M_EL_R = KF().a(0, *MYL), KF().a(0, *MYR)
 # P3: "sakın" anı FPS'te; yanda eli yarı kalkık, sonra şok
 M_EL_L.a(9.0, *el(MP, -150, -520)).a(12.0, *el(MP, -150, -520)).a(12.6, *MYL)
@@ -431,7 +431,7 @@ for i, t in enumerate(NOT_T):
     al = 17.4 + 0.04 * i if i % 3 != 2 else 79.75
     PARA_NOT.append([R3(t), round(x, 3), round(z, 3), (i * 53) % 80 - 40, R3(al)])
 # Elif'in eli (para görünümü): soldan girer, süpürür
-PARA_EL = [[16.6, -1.2, 0.5, 0], [16.65, -1.2, 0.5, 1], [17.15, -0.3, 0.48, 1], [17.4, 0.25, 0.52, 1], [17.6, -0.9, 0.5, 1], [17.65, -1.4, 0.5, 0]]
+PARA_EL = [[16.6, -0.75, 0.5, 0], [16.65, -0.75, 0.5, 1], [17.1, -0.12, 0.47, 1], [17.4, 0.1, 0.5, 1], [17.6, -0.6, 0.5, 1], [17.65, -0.8, 0.5, 0]]
 # P4 başı: Elif yelpazeyi bırakır: süzülerek düşen notlar (ekran), yerde kalır, P5'te yenir
 EYP = el(ELK, -60, -560)
 DUSEN = [[R3(32.15 + 0.07 * i), round(EYP[0] - 30 + 22 * i, 1), round(EYP[1] + 10 * (i % 3), 1), round(ELK[1] - 6 - 12 * (i % 3), 1), 0.42, 79.9]
@@ -549,6 +549,30 @@ kes(127.4, "yan", (MP[0] + EK[0]) / 2, fM + 260, 1.9); it(131.6, "yan", (MP[0] +
 kes(131.6, "yan", EK[0] + 5, fy(EK) + 70, 4.2); it(133.6, "yan", EK[0] + 5, fy(EK) + 65, 4.6)
 kes(133.6, "saat", 540, 900, 1.0); it(SON, "saat", 540, 900, 1.12)
 
+def goreli(ch):
+    """mutlak ekran el hedeflerini karakterin o anki işaretine göre (rig birimi) çevir: yürürken eller gövdeyle gelir"""
+    yer = ch["yer"]
+
+    def pos(t):
+        if t <= yer[0][0]:
+            return yer[0][1:]
+        for a, b in zip(yer[:-1], yer[1:]):
+            if t < b[0]:
+                u = (t - a[0]) / max(1e-6, b[0] - a[0])
+                return [a[j] + (b[j] - a[j]) * u for j in (1, 2, 3)]
+        return yer[-1][1:]
+    for k in ("elL", "elR"):
+        out = []
+        for t, x, y in ch[k]:
+            X, Y, Sz = pos(t)
+            out.append([t, 0, 0] if Sz <= 1 else [t, round((x - X) / (Sz / 1000), 1), round((y - Y) / (Sz / 1000), 1)])
+        ch[k] = out
+    ch["elGoreli"] = True
+
+
+for _c in (ECE, MERT, ELIF):
+    goreli(_c)
+
 ORTAK = {"saat": [[0, "02:51"], [40, "02:53"], [80, "02:56"], [120, "02:58"], [130, "02:59"]], "duvarSaat": [[0, "02:59"]],
          "kapi": [[0, 0]], "flor": FLOR.s(), "cizir": CIZIR, "lamba": [[0, 0]], "titre": {"yan": 1.0, "para": 0.6, "sise": 0.5, "golge": 0.4, "saat": 0.3},
          "eceArkada": True, "depo": [[0, 0]], "depoKol": [[0, 0], [125.5, 0], [126.4, 0.12], [132.6, 0.12], [133.3, 0.22]], "toz": [[0, 0]],
@@ -557,7 +581,7 @@ ORTAK = {"saat": [[0, "02:51"], [40, "02:53"], [80, "02:56"], [120, "02:58"], [1
          "tvYayin": {"jen": -300, "sp": -200, "kapat": -100}, "karart": KARART.s(),
          "yanPara": YAN_NOT, "paraYakin": PARA_NOT, "paraEl": PARA_EL, "dusen": DUSEN, "orumcek": ORUMCEK.s(),
          "siseOdak": [[62.6, 0], [63.6, 0], [64.5, 1]], "golgeTuhaf": [[65.5, 0.15], [66.2, 0.2], [68.4, 1.0]],
-         "kadinOnde": [[31.9, 34.7]], "kadinArka": [[127.0, 999]],
+         "kadinOnde": [[31.9, 34.7]], "kadinArka": [[34.7, 77.2], [93.4, 98.8], [127.0, 999]],
          "kurgu": KURGU, "cam": CAM, "kar": {"yan": {"ece": ECE, "mert": MERT, "kadin": ELIF}}}
 
 # ================================================================== FPS (Ece'nin gözünden)

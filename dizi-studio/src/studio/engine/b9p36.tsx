@@ -153,16 +153,18 @@ export const SiseYakin: React.FC<{ tg: number; odak: number; f: number }> = ({ t
       <rect x={-600} y={-400} width={2280} height={2720} fill="url(#ssZ)" />
       <g filter="url(#ssA)">
         {/* arka plan: zemin derzleri, rafın tabanı, Elif'in ayakları (biri çıplak, biri spor ayakkabı) + kırmızı etek ucu */}
-        <rect x={-600} y={-400} width={2280} height={900} fill="#2a3040" />
-        <rect x={-600} y={420} width={2280} height={80} fill="#c8402e" opacity={0.6} />
-        {[0, 1, 2].map((i) => <path key={i} d={`M -600 ${560 + i * 160} H 1680`} stroke="#4a505a" strokeWidth={4} opacity={0.5} />)}
-        <g transform={`translate(${700 + 2 * Math.sin(tg * 0.6)} 560)`}>
+        <rect x={-600} y={-400} width={2280} height={900} fill="#3a4250" />
+        <rect x={-600} y={380} width={2280} height={120} fill="#2a2e36" />
+        {[0, 1, 2, 3, 4, 5].map((i) => <rect key={i} x={-560 + i * 300} y={180} width={240} height={190} fill={["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#7a4ad0"][i]} opacity={0.55} />)}
+        {[0, 1, 2].map((i) => <path key={`z${i}`} d={`M -600 ${560 + i * 160} H 1680`} stroke="#4a505a" strokeWidth={4} opacity={0.5} />)}
+        <g transform={`translate(${640 + 2 * Math.sin(tg * 0.6)} 640) scale(1.5)`}>
+          <ellipse cx={80} cy={40} rx={200} ry={26} fill="#0a0c12" opacity={0.35} />
           <path d="M -40 -340 L -20 -30 L 40 -30 L 48 -340 Z" fill="#f0c8a8" stroke={O} strokeWidth={5} />
           <path d="M -30 -40 Q -60 30 30 40 Q 110 40 100 0 Q 70 -30 40 -30 Z" fill="#f0c8a8" stroke={O} strokeWidth={5} />
           <path d="M -10 -10 Q 30 20 80 8" stroke="#8a7a6a" strokeWidth={6} fill="none" opacity={0.5} />
           <path d="M 120 -340 L 130 -30 L 190 -30 L 200 -340 Z" fill="#f0c8a8" stroke={O} strokeWidth={5} />
           <path d="M 110 -40 Q 90 40 190 44 Q 280 44 260 0 Q 230 -36 190 -36 Z" fill="#f4f4f2" stroke={O} strokeWidth={5} />
-          <path d="M -60 -420 L 230 -420 L 250 -330 L -80 -330 Z" fill="#c4162a" stroke={O} strokeWidth={5} />
+        </g>
         </g>
       </g>
       <g filter="url(#ssS)">
