@@ -19,7 +19,7 @@ import React from "react";
 import { AbsoluteFill, random, useCurrentFrame, useVideoConfig } from "remotion";
 import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
-import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, kapiAltGolge, yanKapiBosluk, yanTezgahUst } from "../sets/market724yan";
+import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, kapiAltGolge, yanKapiBosluk, yanTezgahSagX, yanTezgahUst } from "../sets/market724yan";
 import { TvEkran } from "./tv724";
 import { sstep } from "./bocek";
 import { AnimeFxDunya, AnimeFxEkran, fxKamera, type Fx } from "./canli";
@@ -472,7 +472,11 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {ece && p.eceArkada ? ece.govde : null}
         <SVG><Market724YanTezgah sars={sars} frame={f} /></SVG>
         {sabri ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{sabri.on}</div> : null}
-        {ece && p.eceArkada ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{ece.on}</div> : null}
+        {ece && p.eceArkada ? (() => {
+          // kollar yalnız TEZGÂHIN önünde kalan kısımda kırpılır; tezgâhın sağında (kapı önü) serbest
+          const rx = yanTezgahSagX();
+          return <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: `polygon(-600px -400px, 1680px -400px, 1680px 2400px, ${rx}px 2400px, ${rx}px ${ustY + 4}px, -600px ${ustY + 4}px)` }}>{ece.on}</div>;
+        })() : null}
         {ece && !p.eceArkada ? ece.govde : null}
         {ece && !p.eceArkada ? ece.on : null}
         {p.ayakkabi && tg >= p.ayakkabi[0][0] ? (() => {

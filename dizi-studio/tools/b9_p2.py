@@ -296,6 +296,18 @@ mertL = {"id": "mert724", "w": [-0.42, -0.55, MZ], "boy": 1.75,
 kizL = {"id": "kacan724", "w": [-0.04, -0.74, KZ], "boy": 1.65, "tutam3": [-0.27, 0.66, MZ + 0.25], "bacak3": kizB["bacak3"],
         "q": {"onKol": True, "dogalKol": True, "yay": 1, "sacDagin": 0.5, "duygu": [[0, "dehset"]], "bak": [[0, -0.1, -0.6, -0.08]],
               "tilt": [[0, 6]], "egil": [[0, -8]], "elL3": [-0.27, 0.66, MZ + 0.25], "elR3": [[0, 0.3, 0.42, KZ + 0.25]], "gozSok": [[0, 1]], "nefes": [[0, 4]]}}
+# FPS'te kamera markete bakar (yaw −180): dünyanın −x'i EKRANIN SAĞI. Rig'in L/R kolları ekran solu/sağıdır;
+# el hedefleri ve bakışlar buna göre: Mert (ekran sağı) kıza (ekran soluna) bakar, kız Mert'e (ekran sağına) bakar;
+# her el kendi tarafındaki hedefe uzanır (kollar gövdenin önünden çaprazlanmaz).
+def _ayna(q):
+    for a, b_ in (("elL3", "elR3"), ("tutL", "tutR")):
+        q[a], q[b_] = q.get(b_), q.get(a)
+        if q[a] is None: q.pop(a)
+        if q[b_] is None: q.pop(b_)
+    q["bak"] = [[k[0], -k[1], k[2], -k[3]] for k in q["bak"]]
+for _k in (mertB, kizB, mertL, kizL):
+    _ayna(_k["q"])
+
 KAM_L = [[tL0, *cL, -180, 13, -2], [R3(tL0 + 0.5), *cL, -180, 11, 1], [R3(tL0 + 1.0), *cL, -180, 9, 0],
          [R3(L_dur + 0.5), cL[0] - 0.02, cL[1] - 0.02, cL[2], -180.5, 6, 0], [SON, cL[0] - 0.02, cL[1] - 0.02, cL[2], -180.5, 5.5, 0]]
 FPS_L = {"mekan": "depo", "kacis": {"kar": [mertL, kizL]}, "kam": KAM_L, "sallan": [[0, 0, 2.8]], "aslan": ASL,

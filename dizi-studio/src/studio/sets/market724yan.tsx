@@ -366,6 +366,8 @@ export const Market724YanTezgah: React.FC<{ sars?: number; frame: number }> = ({
 };
 /** tezgâh üst tablasının ön kenarı (ekran): Sabri'nin kollarını keserken */
 export const yanTezgahUst = (X: number) => yanP(X, 0.95, 0.65)[1];
+/** tezgâhın ekrandaki sağ kenarı (bunun sağında kalan karakter tezgâhın ARKASINDA değildir, kırpılmaz) */
+export const yanTezgahSagX = () => Math.max(...[[1.45, 0, 0], [1.45, 0.95, 0], [1.45, 0, 0.65], [1.45, 0.95, 0.65]].map(([x, y, z]) => yanP(x, y, z)[0]));
 
 /** B9 P1 kanca: kapının altındaki aralıktan itilen beyaz spor ayakkabı (zemin düzleminde, yan açı izdüşümüyle).
  *  X,Z: ayakkabı merkezi (m); yaw: burun yönü (derece, 0 = -Z, kameraya doğru); ezik: 0 normal, 1 aralıkta yassı (negatif: "pop" taşması);
