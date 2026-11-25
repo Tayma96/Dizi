@@ -622,6 +622,13 @@
   "loop": false,
   "desc": "B8y P2: saat hızla akar: hızlanan tik-tak + hava süpürmesi (kendi sentezimiz), 2,2 sn."
  },
+ "efekt/b9_ayakkabi": {
+  "file": "ses/efekt/b9_ayakkabi.mp3",
+  "category": "efekt",
+  "duration": 2.2,
+  "loop": false,
+  "desc": "ElevenLabs SFX: A white sneaker being slowly pushed and squeezed through the narrow gap under a closed metal door, rubber squeaking against the floor, then a soft pop as it springs back to shape"
+ },
  "efekt/b9_floresan": {
   "file": "ses/efekt/b9_floresan.mp3",
   "category": "efekt",

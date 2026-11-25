@@ -151,6 +151,134 @@
   "hesap": "proxy",
   "kredi": 9
  },
+ "K1a_01": {
+  "key": "20ee75e097dc",
+  "file": "voice/724-09-p1/K1a_01.mp3",
+  "voice": "elevenlabs:Aura - Versatile & Expressive Female",
+  "emotion": "fisilti",
+  "text": "Gitti mi?",
+  "duration": 0.862,
+  "asrScore": 0.857,
+  "heard": "Gittime",
+  "words": [
+   {
+    "w": "Gitti",
+    "start": 0.021,
+    "end": 0.341
+   },
+   {
+    "w": "mi?",
+    "start": 0.421,
+    "end": 0.901
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.021,
+    "v": "L"
+   },
+   {
+    "t": 0.101,
+    "v": "I"
+   },
+   {
+    "t": 0.161,
+    "v": "L"
+   },
+   {
+    "t": 0.281,
+    "v": "I"
+   },
+   {
+    "t": 0.341,
+    "v": "X"
+   },
+   {
+    "t": 0.421,
+    "v": "M"
+   },
+   {
+    "t": 0.541,
+    "v": "I"
+   },
+   {
+    "t": 0.661,
+    "v": "X"
+   },
+   {
+    "t": 0.901,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 8
+ },
+ "K1b_01": {
+  "key": "53825794e1e3",
+  "file": "voice/724-09-p1/K1b_01.mp3",
+  "voice": "elevenlabs:Aura - Versatile & Expressive Female",
+  "emotion": "korkmus",
+  "text": "Gitti mi?",
+  "duration": 1.437,
+  "asrScore": 0.933,
+  "heard": "Gittim mi?",
+  "words": [
+   {
+    "w": "Gitti",
+    "start": 0.366,
+    "end": 0.686
+   },
+   {
+    "w": "mi?",
+    "start": 0.846,
+    "end": 1.406
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.366,
+    "v": "L"
+   },
+   {
+    "t": 0.526,
+    "v": "I"
+   },
+   {
+    "t": 0.566,
+    "v": "L"
+   },
+   {
+    "t": 0.646,
+    "v": "I"
+   },
+   {
+    "t": 0.686,
+    "v": "X"
+   },
+   {
+    "t": 0.846,
+    "v": "M"
+   },
+   {
+    "t": 0.926,
+    "v": "I"
+   },
+   {
+    "t": 1.006,
+    "v": "X"
+   },
+   {
+    "t": 1.406,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 8
+ },
  "i_02": {
   "key": "2608869cbb3a",
   "file": "voice/724-09-p1/M1a_01.mp3",

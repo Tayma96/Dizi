@@ -375,4 +375,4 @@ Kamera açılarını yine iyi hesapla, bu parçada fps yok.
 > En son canavar twerk attıktan sonra eceye doğru saldırıyordu, ordan baslıcak sahne, ece depodan koşarak cıkacak fps modda, marketin içide kapının arkası görünsün he kaçan kız yerde basını mertin göğsüne koymuş mert diz çökmüş teselli eder gibi geçti tamam diyor
 > Ece o esnada depodan kaçıp markete doğru kosuyor. Markete gelince fps moddan cıkar deponun kapısını kapatır ece ve kapıya yaslanır aniden nefes nefese kalmıştır.
 
-Notlar: B9'da doğaçlama izni verilmedi; yalnız metindeki eylemler. Yeni CANLILIK katmanı (engine/canli.tsx: yaylı hareket, saç takibi, anime efektleri) B9'dan itibaren kullanılır (kullanıcı: "Bunları deneyelim").
+Notlar: B9 doğaçlama izni var (25 Kasım: "doğaçlama serbest", görüntü yönetmeni + senarist yardımcısı). CANLILIK katmanından yalnız yaylı hareket ve saç takibi kullanılır; anime efektleri YOK (yalnız hız çizgileri, nadiren).
