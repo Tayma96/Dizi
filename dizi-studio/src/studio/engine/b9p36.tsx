@@ -305,7 +305,7 @@ export const YanParalar: React.FC<{ notlar: number[][]; tg: number; isik: number
       const u = ss(t0, t0 + 0.5, tg);
       const zz = 1.93 + (Z - 1.93) * u;
       const r = ((aci * u) * Math.PI) / 180;
-      const pts = [[-0.08, -0.036], [0.08, -0.036], [0.08, 0.036], [-0.08, 0.036]].map(([a, b]) => yanP(X + a * Math.cos(r) - b * Math.sin(r), 0.003, zz + a * Math.sin(r) + b * Math.cos(r)));
+      const pts = [[-0.09, -0.042], [0.09, -0.042], [0.09, 0.042], [-0.09, 0.042]].map(([a, b]) => yanP(X + a * Math.cos(r) - b * Math.sin(r), 0.003, zz + a * Math.sin(r) + b * Math.cos(r)));
       const d = `M ${pts.map((q) => `${q[0].toFixed(1)} ${q[1].toFixed(1)}`).join(" L ")} Z`;
       const yak = Math.max(0, 1 - (1.9 - zz) * 2.5);
       return (
