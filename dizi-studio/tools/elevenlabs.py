@@ -386,6 +386,8 @@ def visemes_from_alignment(al):
 
 # Ses filtreleri (replik alanı "fx"): kapı arkası = boğuk, yankılı (ses yönetmeni ayarı)
 FX = {
+    # B9: kapının ardındaki yaratık: kalınlaştırılmış (perde ↓), boğuk, yankılı
+    "yaratik_kapi": "asetrate=44100*0.84,aresample=44100,atempo=1.1,highpass=f=120,lowpass=f=1900,equalizer=f=300:t=q:w=1.0:g=3,aecho=0.8:0.5:14|31:0.2|0.1,apad=pad_dur=0.3",
     "kapi_arkasi": "highpass=f=180,lowpass=f=2000,equalizer=f=350:t=q:w=1.0:g=2,aecho=0.8:0.5:14|31:0.18|0.1,apad=pad_dur=0.3",
     "telefon": "highpass=f=300,lowpass=f=3400,acompressor=threshold=-20dB:ratio=4",
     # telefon hoparlöründen, karşı tarafın arka planından gelen uzak ses (ofis odası yansıması)

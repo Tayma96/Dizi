@@ -1,2120 +1,2178 @@
 [
-  {
-    "id": "zeynep",
-    "name": "Zeynep",
-    "role": "Genç kadın, 24 — ana karakter",
-    "voice": "genc_kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f6cfb0",
-    "skinShade": "#e9b592",
-    "hair": {
-      "style": "longWavy",
-      "color": "#4a2c22",
-      "shade": "#6e4434"
-    },
-    "iris": "#6a4a2c",
-    "outfit": {
-      "type": "sweater",
-      "top": "#d9a441",
-      "topShade": "#b9852a",
-      "bottom": "#3f5a7d",
-      "shoes": "#e9e4dc"
-    }
-  },
-  {
-    "id": "kemal",
-    "name": "Kemal",
-    "role": "Baba, 58",
-    "voice": "yasli_erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "shortMale",
-      "color": "#9a958f",
-      "shade": "#c8c3bd"
-    },
-    "iris": "#5a4030",
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "coat",
-      "top": "#5b4636",
-      "topShade": "#46352a",
-      "bottom": "#3b3a3f",
-      "shoes": "#2c2622",
-      "accent": "#e9e2d6"
-    },
-    "blush": false
-  },
-  {
-    "id": "nermin",
-    "name": "Nermin",
-    "role": "Anne, 52",
-    "voice": "yasli_kadin",
-    "gender": "f",
-    "age": "old",
-    "build": "normal",
-    "skin": "#f8d5bb",
-    "skinShade": "#ebb998",
-    "hair": {
-      "style": "bob",
-      "color": "#8c3b2a",
-      "shade": "#b0553f"
-    },
-    "iris": "#4e6b3e",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#4f7a64",
-      "topShade": "#3c604e",
-      "bottom": "#6d5a52",
-      "shoes": "#e0d6cc",
-      "accent": "#efe6d6"
-    }
-  },
-  {
-    "id": "emre",
-    "name": "Emre",
-    "role": "Erkek kardeş, 16",
-    "voice": "genc_erkek2",
-    "gender": "m",
-    "age": "teen",
-    "build": "slim",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "spiky",
-      "color": "#1f1a18",
-      "shade": "#3a3230"
-    },
-    "iris": "#3d2a1e",
-    "outfit": {
-      "type": "hoodie",
-      "top": "#c0392b",
-      "topShade": "#962d22",
-      "bottom": "#2d3a4a",
-      "shoes": "#f2f2f2"
-    }
-  },
-  {
-    "id": "elif",
-    "name": "Elif",
-    "role": "Küçük kız, 7",
-    "voice": "cocuk_kiz",
-    "gender": "f",
-    "age": "child",
-    "build": "normal",
-    "skin": "#f8d5bb",
-    "skinShade": "#ebb998",
-    "hair": {
-      "style": "braids",
-      "color": "#c9a26a",
-      "shade": "#e2c08c"
-    },
-    "iris": "#4a78a8",
-    "outfit": {
-      "type": "dress",
-      "top": "#f2b8c6",
-      "topShade": "#de97a8",
-      "bottom": "#f2b8c6",
-      "shoes": "#f6f6f6",
-      "accent": "#e05a6a"
-    }
-  },
-  {
-    "id": "hatice",
-    "name": "Hatice",
-    "role": "Babaanne, 76",
-    "voice": "yasli_kadin",
-    "gender": "f",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "hijab",
-      "color": "#d8c9a8",
-      "shade": "#b9a985"
-    },
-    "iris": "#4a3a2a",
-    "glasses": "#6b5a4a",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#5a4a5e",
-      "topShade": "#463a4a",
-      "bottom": "#3e3a40",
-      "shoes": "#2c2622",
-      "accent": "#cdbfa8"
-    }
-  },
-  {
-    "id": "riza",
-    "name": "Rıza",
-    "role": "Dede, 79",
-    "voice": "kalin_erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "slim",
-    "skin": "#d9a47c",
-    "skinShade": "#c08860",
-    "hair": {
-      "style": "balding",
-      "color": "#e6e2dc",
-      "shade": "#ffffff"
-    },
-    "iris": "#3a2a20",
-    "facialHair": "beard",
-    "glasses": "#3a3a3a",
-    "outfit": {
-      "type": "sweater",
-      "top": "#7a6a52",
-      "topShade": "#5e5140",
-      "bottom": "#4a4440",
-      "shoes": "#2a2420"
-    },
-    "blush": false
-  },
-  {
-    "id": "kaan",
-    "name": "Kaan",
-    "role": "Zengin iş insanı, 31",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f8d5bb",
-    "skinShade": "#ebb998",
-    "hair": {
-      "style": "slick",
-      "color": "#141210",
-      "shade": "#3a3632"
-    },
-    "iris": "#2e2a26",
-    "outfit": {
-      "type": "suit",
-      "top": "#1f2b44",
-      "topShade": "#151e30",
-      "bottom": "#1f2b44",
-      "shoes": "#111",
-      "accent": "#7a1f2b"
-    },
-    "blush": false
-  },
-  {
-    "id": "selin",
-    "name": "Selin",
-    "role": "Kibirli rakip, 28",
-    "voice": "genc_kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f8d5bb",
-    "skinShade": "#ebb998",
-    "hair": {
-      "style": "ponytail",
-      "color": "#e8c26a",
-      "shade": "#f5dc9c"
-    },
-    "iris": "#3a7a5a",
-    "earrings": "#e3c15a",
-    "outfit": {
-      "type": "dress",
-      "top": "#b3202e",
-      "topShade": "#8c1622",
-      "bottom": "#b3202e",
-      "shoes": "#1a1a1a",
-      "accent": "#1a1a1a"
-    }
-  },
-  {
-    "id": "murat",
-    "name": "Murat",
-    "role": "Bakkal, 47",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#d9a47c",
-    "skinShade": "#c08860",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a211c",
-      "shade": "#4a3a30"
-    },
-    "iris": "#3a2618",
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "apron",
-      "top": "#8fa8c0",
-      "topShade": "#7088a0",
-      "bottom": "#4a4038",
-      "shoes": "#2a2420",
-      "accent": "#f0ebe0"
-    },
-    "blush": false
-  },
-  {
-    "id": "ayse",
-    "name": "Ayşe",
-    "role": "Komşu teyze, 54",
-    "voice": "kadin2",
-    "gender": "f",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "hijab",
-      "color": "#5b8a6a",
-      "shade": "#43705a"
-    },
-    "iris": "#4a3624",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#7a5a4a",
-      "topShade": "#5e4438",
-      "bottom": "#4a3e3a",
-      "shoes": "#2a2420",
-      "accent": "#e8dccb"
-    }
-  },
-  {
-    "id": "deniz",
-    "name": "Dr. Deniz",
-    "role": "Doktor, 36",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "bun",
-      "color": "#3a2a22",
-      "shade": "#5a4234"
-    },
-    "iris": "#5a3a22",
-    "glasses": "#2a3a5a",
-    "outfit": {
-      "type": "labcoat",
-      "top": "#f2f2ee",
-      "topShade": "#d6d6d0",
-      "bottom": "#3a4a5a",
-      "shoes": "#f2f2f2",
-      "accent": "#7fa7c9"
-    }
-  },
-  {
-    "id": "burak",
-    "name": "Komiser Burak",
-    "role": "Polis, 41",
-    "voice": "kalin_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#d9a47c",
-    "skinShade": "#c08860",
-    "hair": {
-      "style": "buzz",
-      "color": "#1a1612",
-      "shade": "#3a3430"
-    },
-    "iris": "#2a1e16",
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "police",
-      "top": "#2f4f7f",
-      "topShade": "#243e66",
-      "bottom": "#1f2a3a",
-      "shoes": "#111"
-    },
-    "blush": false
-  },
-  {
-    "id": "ozan",
-    "name": "Ozan",
-    "role": "Genç adam, 27",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "shortMale",
-      "color": "#5a3a26",
-      "shade": "#7a553a"
-    },
-    "iris": "#5a3a22",
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "shirt",
-      "top": "#9cc0e0",
-      "topShade": "#7ea2c4",
-      "bottom": "#2f3a4a",
-      "shoes": "#5a4030"
-    }
-  },
-  {
-    "id": "defne",
-    "name": "Defne",
-    "role": "Üniversiteli, 20",
-    "voice": "genc_kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#b07a52",
-    "skinShade": "#946240",
-    "hair": {
-      "style": "curly",
-      "color": "#2a1a14",
-      "shade": "#4a3024"
-    },
-    "iris": "#3a2418",
-    "glasses": "#7a3a8a",
-    "outfit": {
-      "type": "tracksuit",
-      "top": "#6a4a9a",
-      "topShade": "#523a7c",
-      "bottom": "#3a2e4e",
-      "shoes": "#f2f2f2"
-    }
-  },
-  {
-    "id": "can",
-    "name": "Can",
-    "role": "Küçük erkek, 9",
-    "voice": "cocuk_erkek",
-    "gender": "m",
-    "age": "child",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "shortMale",
-      "color": "#3a2a1e",
-      "shade": "#5a4430"
-    },
-    "iris": "#4a3420",
-    "outfit": {
-      "type": "school",
-      "top": "#2a3e6a",
-      "topShade": "#1f2f52",
-      "bottom": "#2a3e6a",
-      "shoes": "#1a1a1a",
-      "accent": "#b3202e"
-    }
-  },
-  {
-    "id": "leyla",
-    "name": "Leyla",
-    "role": "Gizemli gelin, 32",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f8d5bb",
-    "skinShade": "#ebb998",
-    "hair": {
-      "style": "longStraight",
-      "color": "#141018",
-      "shade": "#3a3240"
-    },
-    "iris": "#2a2030",
-    "mole": true,
-    "earrings": "#d9d9e6",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#e8dcc6",
-      "topShade": "#cbbda4",
-      "bottom": "#3a3236",
-      "shoes": "#2a2226",
-      "accent": "#3a3236"
-    }
-  },
-  {
-    "id": "huseyin",
-    "name": "Hüseyin",
-    "role": "Tefeci / kötü adam, 52",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "hair": {
-      "style": "slick",
-      "color": "#6a6660",
-      "shade": "#9a958f"
-    },
-    "iris": "#1e1a16",
-    "facialHair": "goatee",
-    "outfit": {
-      "type": "suit",
-      "top": "#1a1a1c",
-      "topShade": "#0e0e10",
-      "bottom": "#1a1a1c",
-      "shoes": "#0a0a0a",
-      "accent": "#5a5a5a"
-    },
-    "blush": false
-  },
-  {
-    "id": "melek",
-    "name": "Melek",
-    "role": "Kafe garsonu, 23",
-    "voice": "genc_kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f6cfb0",
-    "skinShade": "#e9b592",
-    "hair": {
-      "style": "ponytail",
-      "color": "#a8452a",
-      "shade": "#c86a44"
-    },
-    "iris": "#3a6a4a",
-    "outfit": {
-      "type": "apron",
-      "top": "#f2f2f2",
-      "topShade": "#d8d8d8",
-      "bottom": "#2a2a2e",
-      "shoes": "#2a2a2e",
-      "accent": "#3a2a24"
-    }
-  },
-  {
-    "id": "yusuf",
-    "name": "Yusuf",
-    "role": "Öğrenci, 15",
-    "voice": "cocuk_erkek",
-    "gender": "m",
-    "age": "teen",
-    "build": "slim",
-    "skin": "#b07a52",
-    "skinShade": "#946240",
-    "hair": {
-      "style": "curly",
-      "color": "#1a120e",
-      "shade": "#3a2a20"
-    },
-    "iris": "#2a1a12",
-    "outfit": {
-      "type": "school",
-      "top": "#2a3e6a",
-      "topShade": "#1f2f52",
-      "bottom": "#2f3440",
-      "shoes": "#1a1a1a",
-      "accent": "#b3202e"
-    }
-  },
-  {
-    "id": "berkay",
-    "name": "Berkay",
-    "role": "Holding CEO'su, 34 — ana karakter",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "slick",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "outfit": {
-      "type": "suit",
-      "top": "#2b2f3a",
-      "topShade": "#1d2029",
-      "bottom": "#2b2f3a",
-      "shoes": "#111",
-      "accent": "#3a5a8a"
-    },
-    "blush": false
-  },
-  {
-    "id": "berkay_hasta",
-    "name": "Berkay",
-    "role": "Berkay — 6 ay sonra, hastanede",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "facialHair": "stubble",
-    "scar": true,
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false,
-    "bileklik": true
-  },
-  {
-    "id": "selim",
-    "name": "Selim",
-    "role": "Ortak, 49 — en güvenilen",
-    "voice": "kalin_erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "normal",
-    "skin": "#e8bd98",
-    "skinShade": "#d2a07c",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "slick",
-      "color": "#7a746c",
-      "shade": "#a29a90"
-    },
-    "glasses": "#2a2a2a",
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "suit",
-      "top": "#8a8f98",
-      "topShade": "#6e737c",
-      "bottom": "#8a8f98",
-      "shoes": "#2a2420",
-      "accent": "#6a2a2a"
-    },
-    "blush": false
-  },
-  {
-    "id": "nalan",
-    "name": "Hemşire Nalan",
-    "role": "Hemşire, 41",
-    "voice": "kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f6d3bb",
-    "skinShade": "#e6b89a",
-    "iris": "#4a9be0",
-    "hair": {
-      "style": "bun",
-      "color": "#f0d48c",
-      "shade": "#c4a058"
-    },
-    "outfit": {
-      "type": "dress",
-      "top": "#f4f5f2",
-      "topShade": "#d8dedc",
-      "bottom": "#f4f5f2",
-      "shoes": "#f2f2f2"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta1",
-    "name": "Hasta (12)",
-    "role": "Koğuş hastası, panik",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e8bd98",
-    "skinShade": "#d2a07c",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "shortMale",
-      "color": "#3a2e26",
-      "shade": "#5a4a40"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta2",
-    "name": "Hasta (13)",
-    "role": "Koğuş hastası, kendini devlet büyüğü sanıyor",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#e2b08c",
-    "skinShade": "#c99070",
-    "iris": "#2a1e16",
-    "hair": {
-      "style": "balding",
-      "color": "#6a6660",
-      "shade": "#9a958f"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "spiker",
-    "name": "Spiker",
-    "role": "Televizyon haber spikeri (yalnız ses)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "slick",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "outfit": {
-      "type": "suit",
-      "top": "#2b2f3a",
-      "topShade": "#1d2029",
-      "bottom": "#2b2f3a",
-      "shoes": "#111"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta3",
-    "name": "Hasta",
-    "role": "Ortak salon: sallanan",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e8bd98",
-    "skinShade": "#d2a07c",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "spiky",
-      "color": "#3a2e26",
-      "shade": "#5a4a40"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta4",
-    "name": "Hasta",
-    "role": "Ortak salon: kendi kendine konuşan",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "normal",
-    "skin": "#d9a47c",
-    "skinShade": "#c08a64",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "balding",
-      "color": "#8a8680",
-      "shade": "#aaa49c"
-    },
-    "facialHair": "beard",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta5",
-    "name": "Hasta",
-    "role": "Ortak salon: selam veren",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "buzz",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta6",
-    "name": "Hasta",
-    "role": "Ortak salon: volta atan",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e8bd98",
-    "skinShade": "#d2a07c",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "shortMale",
-      "color": "#5a3a26",
-      "shade": "#7a5a40"
-    },
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "hasta7",
-    "name": "Hasta",
-    "role": "Ortak salon: tavana bakan",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f2c8a8",
-    "skinShade": "#e0ab88",
-    "iris": "#3a3a2a",
-    "hair": {
-      "style": "longStraight",
-      "color": "#3a2a20",
-      "shade": "#5a4434"
-    },
-    "outfit": {
-      "type": "dress",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "bakici",
-    "name": "Hastabakıcı",
-    "role": "Hastabakıcı, iri yarı",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#d9a47c",
-    "skinShade": "#c08a64",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "buzz",
-      "color": "#1e1814",
-      "shade": "#3a2e26"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#f4f5f2",
-      "topShade": "#d8dedc",
-      "bottom": "#f4f5f2",
-      "shoes": "#f2f2f2"
-    },
-    "blush": false
-  },
-  {
-    "id": "emir",
-    "name": "Emir",
-    "role": "Emir dizisi: zengin şirket sahibi, şık ve kaliteli, 40",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#ecc19c",
-    "skinShade": "#d8a67f",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "slick",
-      "color": "#241c18",
-      "shade": "#4a3e36"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "suit",
-      "top": "#1f2a44",
-      "topShade": "#151d30",
-      "bottom": "#1f2a44",
-      "shoes": "#0e0e10",
-      "accent": "#7a2430"
-    },
-    "blush": false
-  },
-  {
-    "id": "hostes",
-    "name": "Hostes",
-    "role": "Emir dizisi: business sınıfı hostesi",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f3cdb0",
-    "skinShade": "#e2b292",
-    "iris": "#5a3a26",
-    "hair": {
-      "style": "bun",
-      "color": "#4a2e1e",
-      "shade": "#6a4632"
-    },
-    "earrings": "#e8d08a",
-    "outfit": {
-      "type": "hostes",
-      "top": "#1e4a5c",
-      "topShade": "#153846",
-      "bottom": "#1e4a5c",
-      "shoes": "#111114",
-      "accent": "#c9312f"
-    },
-    "blush": false
-  },
-  {
-    "id": "emir_kaza",
-    "name": "Emir",
-    "role": "Emir: kazadan sonra, sahilde baygın",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#ecc19c",
-    "skinShade": "#d8a67f",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#241c18",
-      "shade": "#4a3e36"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "shirt",
-      "top": "#e6e0d4",
-      "topShade": "#c8c0b0",
-      "bottom": "#1f2a44",
-      "shoes": "#0e0e10",
-      "accent": "#7a2430"
-    },
-    "blush": false,
-    "kan": 1,
-    "yirtik": true
-  },
-  {
-    "id": "emir_kulube",
-    "name": "Emir",
-    "role": "Emir: yerlilerin kulübesinde, sargılı",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#ecc19c",
-    "skinShade": "#d8a67f",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#241c18",
-      "shade": "#4a3e36"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "shirt",
-      "top": "#e6e0d4",
-      "topShade": "#c8c0b0",
-      "bottom": "#1f2a44",
-      "shoes": "skin"
-    },
-    "blush": false,
-    "kan": 0.35,
-    "yirtik": true,
-    "sargi": true
-  },
-  {
-    "id": "yerli_bilge",
-    "name": "Yaşlı adam",
-    "role": "Emir dizisi: ada halkının yaşlısı (sopalı)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "slim",
-    "skin": "#a8714a",
-    "skinShade": "#8e5c3a",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "balding",
-      "color": "#d8d2c8",
-      "shade": "#b8b0a4"
-    },
-    "facialHair": "beard",
-    "outfit": {
-      "type": "yerli",
-      "top": "#c4a878",
-      "topShade": "#a48a5c",
-      "bottom": "#7a4a30",
-      "shoes": "skin",
-      "accent": "#8a3a2a"
-    },
-    "kolye": "#f2e6cf",
-    "blush": false
-  },
-  {
-    "id": "yerli_genc",
-    "name": "Genç adam",
-    "role": "Emir dizisi: ada halkından genç (sopalı)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#9a6440",
-    "skinShade": "#7e4e30",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "shortMale",
-      "color": "#1a120c",
-      "shade": "#3a2a1e"
-    },
-    "outfit": {
-      "type": "yerli",
-      "top": "#9a6a44",
-      "topShade": "#7a5032",
-      "bottom": "#3e4a6a",
-      "shoes": "skin"
-    },
-    "kolye": "#e9dcc0",
-    "blush": false,
-    "facialHair": "stubble"
-  },
-  {
-    "id": "yerli_genc2",
-    "name": "Genç adam",
-    "role": "Emir dizisi: ada halkından genç",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#b07a52",
-    "skinShade": "#94603c",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "spiky",
-      "color": "#1a120c",
-      "shade": "#3a2a1e"
-    },
-    "outfit": {
-      "type": "yerli",
-      "top": "#c2a070",
-      "topShade": "#a0804e",
-      "bottom": "#8a4a2e",
-      "shoes": "skin"
-    },
-    "blush": false
-  },
-  {
-    "id": "yerli_ana",
-    "name": "Yaşlı kadın",
-    "role": "Emir dizisi: ada halkından yaşlı kadın",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "old",
-    "build": "normal",
-    "skin": "#a46e48",
-    "skinShade": "#8a5836",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "bun",
-      "color": "#c8c0b4",
-      "shade": "#a8a094"
-    },
-    "outfit": {
-      "type": "yerli",
-      "top": "#b49464",
-      "topShade": "#94744a",
-      "bottom": "#5a4a6a",
-      "shoes": "skin",
-      "accent": "#3a4a7a"
-    },
-    "kolye": "#f2e6cf",
-    "blush": false
-  },
-  {
-    "id": "yerli_kadin",
-    "name": "Genç kadın",
-    "role": "Emir dizisi: Emir'i iyileştiren genç ada kadını",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#b8805a",
-    "skinShade": "#9a6644",
-    "iris": "#6a4220",
-    "hair": {
-      "style": "longWavy",
-      "color": "#1a110c",
-      "shade": "#3a2618"
-    },
-    "earrings": "#f2e6cf",
-    "outfit": {
-      "type": "yerli",
-      "top": "#d2b484",
-      "topShade": "#b0925e",
-      "bottom": "#7a5232",
-      "shoes": "skin"
-    },
-    "kolye": "#f6ecd6",
-    "blush": true
-  },
-  {
-    "id": "pilot",
-    "name": "Pilot",
-    "role": "Emir dizisi: kazada ölen pilot",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#e2b48e",
-    "skinShade": "#cc9a74",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#5a4a3a",
-      "shade": "#7a6a58"
-    },
-    "outfit": {
-      "type": "suit",
-      "top": "#1d2a44",
-      "topShade": "#141d30",
-      "bottom": "#1d2a44",
-      "shoes": "#0e0e10",
-      "accent": "#1d2a44"
-    },
-    "blush": false
-  },
-  {
-    "id": "cemil",
-    "name": "Cemil",
-    "role": "KAT 7: gece bekçisi, 54",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#e2b08a",
-    "skinShade": "#c8966e",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "balding",
-      "color": "#8a8680",
-      "shade": "#6a6660"
-    },
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "police",
-      "top": "#26324a",
-      "topShade": "#1a2336",
-      "bottom": "#1e2638",
-      "shoes": "#0e0e10"
-    },
-    "blush": false,
-    "isimlik": "C.AYDIN"
-  },
-  {
-    "id": "riza98",
-    "name": "Rıza",
-    "role": "KAT 7: Rıza (1998, genç bekçi; yalnızca ses)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e8bd98",
-    "skinShade": "#d2a07c",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "outfit": {
-      "type": "police",
-      "top": "#26324a",
-      "topShade": "#1a2336",
-      "bottom": "#1e2638",
-      "shoes": "#0e0e10"
-    },
-    "blush": false
-  },
-  {
-    "id": "ece724",
-    "name": "Ece",
-    "role": "7/24: gece vardiyasındaki üniversiteli, 21",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c8a8",
-    "skinShade": "#dcac88",
-    "iris": "#5a3a26",
-    "hair": {
-      "style": "ponytail",
-      "color": "#3a2418",
-      "shade": "#5a3a28"
-    },
-    "outfit": {
-      "type": "apron",
-      "top": "#2e3a48",
-      "topShade": "#222c38",
-      "bottom": "#3a4a5a",
-      "shoes": "#e8e8e8",
-      "accent": "#e8701a"
-    },
-    "isimlik": "ECE",
-    "blush": true,
-    "sivilce": true
-  },
-  {
-    "id": "sabri",
-    "name": "Sabri",
-    "role": "7/24: dükkân sahibi, 60",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#d8a47c",
-    "skinShade": "#c08a64",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "balding",
-      "color": "#9a948c",
-      "shade": "#7a746c"
-    },
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#6a6a66",
-      "topShade": "#525250",
-      "bottom": "#3a3530",
-      "shoes": "#2a1a10",
-      "accent": "#d8d0c0"
-    },
-    "blush": false
-  },
-  {
-    "id": "sabri_sahte",
-    "name": "Sabri",
-    "role": "7/24 B5: depodaki şey, Sabri kılığında (görünüş Sabri ile aynı; göz kırpmaz, mum gibi parlar)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "heavy",
-    "skin": "#d8a47c",
-    "skinShade": "#c08a64",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "balding",
-      "color": "#9a948c",
-      "shade": "#7a746c"
-    },
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#6a6a66",
-      "topShade": "#525250",
-      "bottom": "#3a3530",
-      "shoes": "#2a1a10",
-      "accent": "#d8d0c0"
-    },
-    "blush": false
-  },
-  {
-    "id": "sarhos724",
-    "name": "Müşteri",
-    "role": "7/24: gece yarısı sarhoş müşteri",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#e8b490",
-    "skinShade": "#d09a74",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "facialHair": "stubble",
-    "outfit": {
-      "type": "coat",
-      "top": "#4a3a2a",
-      "topShade": "#3a2c20",
-      "bottom": "#2a2a30",
-      "shoes": "#1a1a1a"
-    },
-    "blush": true
-  },
-  {
-    "id": "ece_ev",
-    "name": "Ece",
-    "role": "7/24: Ece evde, pijamalı, sivilceli",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c8a8",
-    "skinShade": "#dcac88",
-    "iris": "#5a3a26",
-    "hair": {
-      "style": "bun",
-      "color": "#3a2418",
-      "shade": "#5a3a28"
-    },
-    "outfit": {
-      "type": "tshirt",
-      "top": "#e8a0b8",
-      "topShade": "#c8809a",
-      "bottom": "#b8a0d0",
-      "shoes": "#f0e0e8",
-      "accent": "#ffffff"
-    },
-    "blush": true,
-    "sivilce": true,
-    "baski": "kedi"
-  },
-  {
-    "id": "ece_sivil",
-    "name": "Ece",
-    "role": "7/24: Ece sivil (iş görüşmesi), sivilceli",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c8a8",
-    "skinShade": "#dcac88",
-    "iris": "#5a3a26",
-    "hair": {
-      "style": "ponytail",
-      "color": "#3a2418",
-      "shade": "#5a3a28"
-    },
-    "outfit": {
-      "type": "sweater",
-      "top": "#c8902a",
-      "topShade": "#a8741a",
-      "bottom": "#34466a",
-      "shoes": "#f0f0f0",
-      "accent": "#f4ead0"
-    },
-    "blush": true,
-    "sivilce": true
-  },
-  {
-    "id": "anne724",
-    "name": "Anne",
-    "role": "7/24: Ece'nin annesi, 50'li yaşlar, telaşlı ve ağzı bozuk",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#eec4a2",
-    "skinShade": "#d8a884",
-    "iris": "#4a2e1e",
-    "hair": {
-      "style": "bob",
-      "color": "#4a3022",
-      "shade": "#6a4a36"
-    },
-    "outfit": {
-      "type": "cardigan",
-      "top": "#8a4a5a",
-      "topShade": "#6a3444",
-      "bottom": "#5a4a48",
-      "shoes": "#6a4a3a",
-      "accent": "#e8dcc8"
-    },
-    "earrings": "#d8b860",
-    "blush": false,
-    "mole": true
-  },
-  {
-    "id": "ahmet",
-    "name": "Ahmet",
-    "role": "Dram: başrol, 21, üniversiteli; dış ses",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c6a2",
-    "skinShade": "#dcaa86",
-    "iris": "#3a2618",
-    "hair": {
-      "style": "slick",
-      "color": "#3a2416",
-      "shade": "#5a3a24"
-    },
-    "outfit": {
-      "type": "hoodie",
-      "top": "#c8502a",
-      "topShade": "#a83e1e",
-      "bottom": "#2a3242",
-      "shoes": "#e8e8e8",
-      "accent": "#f2e8d8"
-    },
-    "blush": false
-  },
-  {
-    "id": "baba_dg",
-    "name": "Baba",
-    "role": "Dram: Ahmet'in babası, 60, emekli",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "old",
-    "build": "normal",
-    "skin": "#dca882",
-    "skinShade": "#c48e68",
-    "iris": "#2e2014",
-    "hair": {
-      "style": "shortMale",
-      "color": "#8c8680",
-      "shade": "#6c6660"
-    },
-    "facialHair": "mustache",
-    "outfit": {
-      "type": "shirt",
-      "top": "#6a7e94",
-      "topShade": "#54677c",
-      "bottom": "#3e3a36",
-      "shoes": "#2a1c12",
-      "accent": "#e8e2d4"
-    },
-    "blush": false
-  },
-  {
-    "id": "anne_dg",
-    "name": "Anne",
-    "role": "Dram: Ahmet'in annesi, 56, tesettürlü Anadolu kadını",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#e8b896",
-    "skinShade": "#d09c7a",
-    "iris": "#3a2414",
-    "hair": {
-      "style": "hijab",
-      "color": "#8a2a3a",
-      "shade": "#6a1a2a"
-    },
-    "oya": "#f2c84a",
-    "outfit": {
-      "type": "dress",
-      "top": "#5a6248",
-      "topShade": "#464e38",
-      "bottom": "#4a5038",
-      "shoes": "#3a2a1e",
-      "accent": "#d8ccb0"
-    },
-    "blush": true
-  },
-  {
-    "id": "sila",
-    "name": "Sıla",
-    "role": "Dram: Ahmet'in kız kardeşi, 16",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "teen",
-    "build": "slim",
-    "skin": "#eec0a0",
-    "skinShade": "#d8a482",
-    "iris": "#3a2414",
-    "hair": {
-      "style": "longStraight",
-      "color": "#3a2418",
-      "shade": "#5a3a28"
-    },
-    "outfit": {
-      "type": "sweater",
-      "top": "#d8a0b0",
-      "topShade": "#b88090",
-      "bottom": "#4a5a7a",
-      "shoes": "#f0f0f0",
-      "accent": "#ffffff"
-    },
-    "blush": true
-  },
-  {
-    "id": "ayla",
-    "name": "Ayla",
-    "role": "Deli Değilim: Taner Holding santral görevlisi (yalnızca telefonda ses)",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c8a8",
-    "skinShade": "#dcac88",
-    "iris": "#3a2414",
-    "hair": {
-      "style": "bob",
-      "color": "#2a1a12",
-      "shade": "#4a3022"
-    },
-    "outfit": {
-      "type": "suit",
-      "top": "#2a2e3a",
-      "topShade": "#1e222c",
-      "bottom": "#2a2e3a",
-      "shoes": "#1a1a1a",
-      "accent": "#e8e8f0"
-    },
-    "blush": true
-  },
-  {
-    "id": "berkay_ofis",
-    "name": "?",
-    "role": "Deli Değilim: telefonda arka plandaki ses (Berkay'ın sesi)",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f1c6a0",
-    "skinShade": "#dda983",
-    "iris": "#3a2a20",
-    "hair": {
-      "style": "shortMale",
-      "color": "#2a1f1a",
-      "shade": "#4a3a30"
-    },
-    "facialHair": "stubble",
-    "scar": true,
-    "outfit": {
-      "type": "tshirt",
-      "top": "#a9c4d6",
-      "topShade": "#8aa8bc",
-      "bottom": "#a9c4d6",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false,
-    "bileklik": true
-  },
-  {
-    "id": "zeynep_dd",
-    "name": "Zeynep",
-    "role": "Deli Değilim: Berkay'ın eşi (?), 30'lar",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f2cdb0",
-    "skinShade": "#dcb090",
-    "iris": "#4a6a3a",
-    "hair": {
-      "style": "longStraight",
-      "color": "#8a3a1e",
-      "shade": "#a8502c"
-    },
-    "outfit": {
-      "type": "coat",
-      "top": "#b8865a",
-      "topShade": "#9a6c44",
-      "bottom": "#2a2a30",
-      "shoes": "#3a2418",
-      "accent": "#f2ead8"
-    },
-    "earrings": "#d8b860",
-    "blush": true
-  },
-  {
-    "id": "zenith_resepsiyon",
-    "name": "Resepsiyonist",
-    "role": "Kayıp CEO: Zenith genel merkezi resepsiyonisti (sözsüz)",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e8c0a0",
-    "skinShade": "#d0a080",
-    "iris": "#2a1a10",
-    "hair": {
-      "style": "bun",
-      "color": "#1a1210",
-      "shade": "#3a2a20"
-    },
-    "outfit": {
-      "type": "suit",
-      "top": "#1e2430",
-      "topShade": "#141820",
-      "bottom": "#1e2430",
-      "shoes": "#0a0a0c",
-      "accent": "#e8e8ee"
-    },
-    "earrings": "#e8e8e8",
-    "glasses": "#1a1a1a",
-    "blush": false
-  },
-  {
-    "id": "spiker_meridyen",
-    "name": "Spiker",
-    "role": "Kayıp CEO: MERİDYEN HABER spikeri (ekranda, orta yaşlı, kır saçlı)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#e9bf98",
-    "skinShade": "#d4a47c",
-    "iris": "#2e2a26",
-    "hair": {
-      "style": "shortMale",
-      "color": "#9a9690",
-      "shade": "#c8c4bc"
-    },
-    "facialHair": "mustache",
-    "glasses": "#3a3a40",
-    "outfit": {
-      "type": "suit",
-      "top": "#3a2a2a",
-      "topShade": "#2a1c1c",
-      "bottom": "#3a2a2a",
-      "shoes": "#111",
-      "accent": "#c8102e"
-    },
-    "blush": false
-  },
-  {
-    "id": "kiz724",
-    "name": "Küçük kız",
-    "role": "7/24: gece markete gelen 7 yaşlarında sarı saçlı, mavi gözlü kız",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "child",
-    "build": "slim",
-    "skin": "#f6d8c4",
-    "skinShade": "#e8bca4",
-    "iris": "#3a86d8",
-    "hair": {
-      "style": "longWavy",
-      "color": "#f0cc5a",
-      "shade": "#d8b040"
-    },
-    "outfit": {
-      "type": "dress",
-      "top": "#f4a8c0",
-      "topShade": "#e088a8",
-      "bottom": "#f4a8c0",
-      "shoes": "#f8f8f8",
-      "accent": "#ffffff"
-    },
-    "blush": true
-  },
-  {
-    "id": "adam724",
-    "name": "Baba",
-    "role": "7/24: kızın babası, yakışıklı, kaslı, esrarengiz",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#c8916a",
-    "skinShade": "#ae7852",
-    "iris": "#6a8a4a",
-    "hair": {
-      "style": "buzz",
-      "color": "#2a1e18",
-      "shade": "#4a3a30"
-    },
-    "facialHair": "beard",
-    "outfit": {
-      "type": "tshirt",
-      "top": "#4a5638",
-      "topShade": "#3a442c",
-      "bottom": "#2a2a2e",
-      "shoes": "#3a2a1e"
-    },
-    "blush": false,
-    "scar": true
-  },
-  {
-    "id": "iri724",
-    "name": "İri adam",
-    "role": "7/24 B3: iri cüsseli, çirkin gece müşterisi",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#a8ac98",
-    "skinShade": "#88907a",
-    "iris": "#c8b860",
-    "hair": {
-      "style": "bald",
-      "color": "#3a3430",
-      "shade": "#5a524c"
-    },
-    "facialHair": "beard",
-    "scar": true,
-    "mole": true,
-    "outfit": {
-      "type": "coat",
-      "top": "#2a241e",
-      "topShade": "#1c1814",
-      "bottom": "#1a1a1a",
-      "shoes": "#100c0a"
-    },
-    "blush": false,
-    "korkunc": true
-  },
-  {
-    "id": "mert724",
-    "name": "Mert",
-    "role": "7/24: yeni gece vardiyası çalışanı, çok yakışıklı, cool",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#f0c8a4",
-    "skinShade": "#d8ac84",
-    "iris": "#3f8fd8",
-    "hair": {
-      "style": "daginik",
-      "color": "#7a5434",
-      "shade": "#5a3a22"
-    },
-    "outfit": {
-      "type": "tshirt",
-      "top": "#1f2a3c",
-      "topShade": "#161e2c",
-      "bottom": "#3a4a66",
-      "shoes": "#e8e8e8"
-    },
-    "blush": false
-  },
-  {
-    "id": "kacan724",
-    "name": "Kaçan kadın",
-    "role": "7/24: sokakta yaratıktan kaçıp depodan fırlayan kadın; sarışın, mavi göz, kırmızı mini elbise, kırmızı ruj, altın küpe/kolye",
-    "voice": "kadin",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f0c8a8",
-    "skinShade": "#d8ac8a",
-    "iris": "#3f8fd8",
-    "hair": {
-      "style": "longWavy",
-      "color": "#e8c878",
-      "shade": "#c8a456"
-    },
-    "outfit": {
-      "type": "dress",
-      "top": "#c4162a",
-      "topShade": "#9a0e20",
-      "bottom": "#f0c8a8",
-      "shoes": "#f4f4f2"
-    },
-    "blush": true,
-    "mini": true,
-    "makyaj": {
-      "ruj": "#c8102e",
-      "far": "#8a4a6a",
-      "eyeliner": true,
-      "isilti": true
-    },
-    "earrings": "#f2c850",
-    "kolye": "#f2c850",
-    "bileklik": true
-  },
-  {
-    "id": "kd_gobek",
-    "name": "Göbekli Adam",
-    "role": "Kırmızı Düğme: 1 yıldır evden çıkmayan göbekli adam, 38 (geçici ad)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#ecd6c4",
-    "skinShade": "#d4b6a0",
-    "hair": {
-      "style": "yagli",
-      "color": "#2a2420",
-      "shade": "#7a7068"
-    },
-    "iris": "#5a4a3a",
-    "outfit": {
-      "type": "atlet",
-      "top": "#f0ead6",
-      "topShade": "#cfc6ac",
-      "bottom": "#3e4452",
-      "shoes": "#2b2f36"
-    },
-    "blush": false,
-    "gobek": 1,
-    "gobekAcik": true,
-    "terlik": "#3a8ad8",
-    "serit": "#c4c8ce",
-    "kilo": 1,
-    "sakalNokta": 0.9,
-    "gozAlti": true,
-    "kil": true,
-    "leke": true,
-    "kirinti": true,
-    "boy": 0.97
-  },
-  {
-    "id": "kd_kurye",
-    "name": "Motokurye",
-    "role": "Kırmızı Düğme: motokurye, 24 (geçici ad) · kasklı",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e6b48c",
-    "skinShade": "#cc9870",
-    "hair": {
-      "style": "buzz",
-      "color": "#1e1612",
-      "shade": "#3a2a22"
-    },
-    "iris": "#3e2a1c",
-    "outfit": {
-      "type": "kurye",
-      "top": "#18a39a",
-      "topShade": "#11807a",
-      "bottom": "#2c3036",
-      "shoes": "#1a1c20",
-      "accent": "#1f262b"
-    },
-    "baski": "vinn",
-    "sirtCanta": {
-      "renk": "#18a39a",
-      "kenar": "#f4f22e"
-    },
-    "kask": {
-      "renk": "#1b1f24",
-      "serit": "#f4f22e"
-    },
-    "eldiven": "#25292e",
-    "omuzEn": 1.12
-  },
-  {
-    "id": "kd_kurye_kasksiz",
-    "name": "Motokurye",
-    "role": "Kırmızı Düğme: motokurye, 24 · kasksız",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e6b48c",
-    "skinShade": "#cc9870",
-    "hair": {
-      "style": "buzz",
-      "color": "#1e1612",
-      "shade": "#3a2a22"
-    },
-    "iris": "#3e2a1c",
-    "outfit": {
-      "type": "kurye",
-      "top": "#18a39a",
-      "topShade": "#11807a",
-      "bottom": "#2c3036",
-      "shoes": "#1a1c20",
-      "accent": "#1f262b"
-    },
-    "baski": "vinn",
-    "sirtCanta": {
-      "renk": "#18a39a",
-      "kenar": "#f4f22e"
-    },
-    "kulaklikKablo": true,
-    "omuzEn": 1.12
-  },
-  {
-    "id": "kd_influencer",
-    "name": "Influencer",
-    "role": "Kırmızı Düğme: canlı yayıncı, 19 (geçici ad)",
-    "voice": "genc_kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f7d2b8",
-    "skinShade": "#ebb596",
-    "hair": {
-      "style": "perdeli",
-      "color": "#3a2218",
-      "shade": "#5e3a2a",
-      "uc": "#f49ac1"
-    },
-    "iris": "#6a4a2c",
-    "outfit": {
-      "type": "oversize",
-      "top": "#cbb8f4",
-      "topShade": "#a690d8",
-      "bottom": "#9cbbe0",
-      "shoes": "#f8f8f6"
-    },
-    "baski": "blob",
-    "makyaj": {
-      "ruj": "#ef5f80",
-      "far": "#d7a2ea",
-      "eyeliner": true,
-      "isilti": true
-    },
-    "halka": "#f2c94c",
-    "toka": "#ff9cc8",
-    "blush": true,
-    "kalpToka": "#ff4a8a",
-    "tirnak": "#ff6ab0",
-    "boy": 0.96
-  },
-  {
-    "id": "kd_maskeli",
-    "name": "Maskeli",
-    "role": "Kırmızı Düğme: kaçıran, kar maskeli",
-    "voice": "kalin_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#e2b48e",
-    "skinShade": "#c8996f",
-    "hair": {
-      "style": "buzz",
-      "color": "#1a1412",
-      "shade": "#2a201a"
-    },
-    "iris": "#3a2a20",
-    "outfit": {
-      "type": "hoodie",
-      "top": "#1f1f24",
-      "topShade": "#141418",
-      "bottom": "#18181c",
-      "shoes": "#0e0e10"
-    },
-    "karMaske": "#26262c",
-    "eldiven": "#141416",
-    "blush": false
-  },
-  {
-    "id": "kd_gobek_oda",
-    "name": "Göbekli Adam",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (tek terlik, buruşuk)",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "heavy",
-    "skin": "#ecd6c4",
-    "skinShade": "#d4b6a0",
-    "hair": {
-      "style": "yagli",
-      "color": "#2a2420",
-      "shade": "#7a7068"
-    },
-    "iris": "#5a4a3a",
-    "outfit": {
-      "type": "atlet",
-      "top": "#f0ead6",
-      "topShade": "#cfc6ac",
-      "bottom": "#3e4452",
-      "shoes": "#2b2f36"
-    },
-    "blush": false,
-    "gobek": 1,
-    "gobekAcik": true,
-    "terlik": "#3a8ad8",
-    "serit": "#c4c8ce",
-    "kilo": 1,
-    "sakalNokta": 0.9,
-    "gozAlti": true,
-    "kil": true,
-    "leke": true,
-    "kirinti": true,
-    "kirisik": true,
-    "tekTerlik": true,
-    "boy": 0.97
-  },
-  {
-    "id": "kd_kurye_oda",
-    "name": "Motokurye",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (çantasız, kask izi, kablolu kulaklık)",
-    "voice": "genc_erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#e6b48c",
-    "skinShade": "#cc9870",
-    "hair": {
-      "style": "buzz",
-      "color": "#1e1612",
-      "shade": "#3a2a22"
-    },
-    "iris": "#3e2a1c",
-    "outfit": {
-      "type": "kurye",
-      "top": "#18a39a",
-      "topShade": "#11807a",
-      "bottom": "#2c3036",
-      "shoes": "#1a1c20",
-      "accent": "#1f262b"
-    },
-    "baski": "vinn",
-    "kirisik": true,
-    "kulaklikKablo": true,
-    "kaskIzi": true,
-    "eldiven": "#25292e",
-    "omuzEn": 1.12
-  },
-  {
-    "id": "kd_influencer_oda",
-    "name": "Influencer",
-    "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (telefonsuz, makyaj dağılmış)",
-    "voice": "genc_kadin2",
-    "gender": "f",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f7d2b8",
-    "skinShade": "#ebb596",
-    "hair": {
-      "style": "perdeli",
-      "color": "#3a2218",
-      "shade": "#5e3a2a",
-      "uc": "#f49ac1"
-    },
-    "iris": "#6a4a2c",
-    "outfit": {
-      "type": "oversize",
-      "top": "#cbb8f4",
-      "topShade": "#a690d8",
-      "bottom": "#9cbbe0",
-      "shoes": "#f8f8f6"
-    },
-    "baski": "blob",
-    "makyaj": {
-      "ruj": "#d8708a",
-      "far": "#c9a0d8",
-      "eyeliner": true
-    },
-    "halka": "#f2c94c",
-    "toka": "#ff9cc8",
-    "blush": true,
-    "kirisik": true,
-    "kalpToka": "#ff4a8a",
-    "tirnak": "#ff6ab0",
-    "boy": 0.96
-  },
-  {
-    "id": "kd_dorduncu_teyze",
-    "name": "Kolonya Teyze",
-    "role": "Kırmızı Düğme: 4. kişi seçenek 1 · aşırı kibar teyze, 55",
-    "voice": "yasli_kadin",
-    "gender": "f",
-    "age": "old",
-    "build": "normal",
-    "skin": "#f1cdb0",
-    "skinShade": "#dcb090",
-    "hair": {
-      "style": "perma",
-      "color": "#8a4a2e",
-      "shade": "#b8724a"
-    },
-    "iris": "#5a4030",
-    "glasses": "#8a2a4a",
-    "gozlukZinciri": "#c9a24a",
-    "earrings": "#f4f0e6",
-    "outfit": {
-      "type": "cardigan",
-      "top": "#7a3a6a",
-      "topShade": "#5e2a52",
-      "bottom": "#4a4652",
-      "shoes": "#2a2224",
-      "accent": "#f6dfe6"
-    },
-    "dugmeRenk": "#e2202e",
-    "blush": true,
-    "boy": 0.9,
-    "omuzEn": 1.06
-  },
-  {
-    "id": "kd_dorduncu_uykucu",
-    "name": "Uykucu",
-    "role": "Kırmızı Düğme: 4. kişi seçenek 2 · pijamalı uykucu genç, 22",
-    "voice": "genc_erkek2",
-    "gender": "m",
-    "age": "adult",
-    "build": "slim",
-    "skin": "#f4d4b8",
-    "skinShade": "#e0b898",
-    "hair": {
-      "style": "daginik",
-      "color": "#6a4430",
-      "shade": "#8a5e44"
-    },
-    "iris": "#4a6a8a",
-    "outfit": {
-      "type": "pijama",
-      "top": "#a8c8f0",
-      "topShade": "#6f98d0",
-      "bottom": "#a8c8f0",
-      "shoes": "#f4f4f0"
-    },
-    "tavsanTerlik": "#fbf8f4",
-    "uykuMaskesi": "#f6a8c8",
-    "dugmeRenk": "#e2202e",
-    "blush": true,
-    "boy": 1.06,
-    "omuzEn": 0.92
-  },
-  {
-    "id": "kd_dorduncu_sporcu",
-    "name": "Sporcu Abi",
-    "role": "Kırmızı Düğme: 4. kişi seçenek 3 · spor tutkunu abi, 30",
-    "voice": "erkek",
-    "gender": "m",
-    "age": "adult",
-    "build": "normal",
-    "skin": "#d8a47e",
-    "skinShade": "#bf8a64",
-    "hair": {
-      "style": "buzz",
-      "color": "#1a1412",
-      "shade": "#2a201a"
-    },
-    "iris": "#3a2a1c",
-    "facialHair": "goatee",
-    "outfit": {
-      "type": "tracksuit",
-      "top": "#6a3ab8",
-      "topShade": "#4e2a8a",
-      "bottom": "#6a3ab8",
-      "shoes": "#f4f4f0"
-    },
-    "serit": "#c8f03a",
-    "terBandi": "#c8f03a",
-    "belCantasi": "#1e1e22",
-    "boy": 1.04,
-    "omuzEn": 1.16
+ {
+  "id": "zeynep",
+  "name": "Zeynep",
+  "role": "Genç kadın, 24 — ana karakter",
+  "voice": "genc_kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f6cfb0",
+  "skinShade": "#e9b592",
+  "hair": {
+   "style": "longWavy",
+   "color": "#4a2c22",
+   "shade": "#6e4434"
+  },
+  "iris": "#6a4a2c",
+  "outfit": {
+   "type": "sweater",
+   "top": "#d9a441",
+   "topShade": "#b9852a",
+   "bottom": "#3f5a7d",
+   "shoes": "#e9e4dc"
   }
+ },
+ {
+  "id": "kemal",
+  "name": "Kemal",
+  "role": "Baba, 58",
+  "voice": "yasli_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#9a958f",
+   "shade": "#c8c3bd"
+  },
+  "iris": "#5a4030",
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "coat",
+   "top": "#5b4636",
+   "topShade": "#46352a",
+   "bottom": "#3b3a3f",
+   "shoes": "#2c2622",
+   "accent": "#e9e2d6"
+  },
+  "blush": false
+ },
+ {
+  "id": "nermin",
+  "name": "Nermin",
+  "role": "Anne, 52",
+  "voice": "yasli_kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "bob",
+   "color": "#8c3b2a",
+   "shade": "#b0553f"
+  },
+  "iris": "#4e6b3e",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#4f7a64",
+   "topShade": "#3c604e",
+   "bottom": "#6d5a52",
+   "shoes": "#e0d6cc",
+   "accent": "#efe6d6"
+  }
+ },
+ {
+  "id": "emre",
+  "name": "Emre",
+  "role": "Erkek kardeş, 16",
+  "voice": "genc_erkek2",
+  "gender": "m",
+  "age": "teen",
+  "build": "slim",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "spiky",
+   "color": "#1f1a18",
+   "shade": "#3a3230"
+  },
+  "iris": "#3d2a1e",
+  "outfit": {
+   "type": "hoodie",
+   "top": "#c0392b",
+   "topShade": "#962d22",
+   "bottom": "#2d3a4a",
+   "shoes": "#f2f2f2"
+  }
+ },
+ {
+  "id": "elif",
+  "name": "Elif",
+  "role": "Küçük kız, 7",
+  "voice": "cocuk_kiz",
+  "gender": "f",
+  "age": "child",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "braids",
+   "color": "#c9a26a",
+   "shade": "#e2c08c"
+  },
+  "iris": "#4a78a8",
+  "outfit": {
+   "type": "dress",
+   "top": "#f2b8c6",
+   "topShade": "#de97a8",
+   "bottom": "#f2b8c6",
+   "shoes": "#f6f6f6",
+   "accent": "#e05a6a"
+  }
+ },
+ {
+  "id": "hatice",
+  "name": "Hatice",
+  "role": "Babaanne, 76",
+  "voice": "yasli_kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "hijab",
+   "color": "#d8c9a8",
+   "shade": "#b9a985"
+  },
+  "iris": "#4a3a2a",
+  "glasses": "#6b5a4a",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#5a4a5e",
+   "topShade": "#463a4a",
+   "bottom": "#3e3a40",
+   "shoes": "#2c2622",
+   "accent": "#cdbfa8"
+  }
+ },
+ {
+  "id": "riza",
+  "name": "Rıza",
+  "role": "Dede, 79",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "slim",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "balding",
+   "color": "#e6e2dc",
+   "shade": "#ffffff"
+  },
+  "iris": "#3a2a20",
+  "facialHair": "beard",
+  "glasses": "#3a3a3a",
+  "outfit": {
+   "type": "sweater",
+   "top": "#7a6a52",
+   "topShade": "#5e5140",
+   "bottom": "#4a4440",
+   "shoes": "#2a2420"
+  },
+  "blush": false
+ },
+ {
+  "id": "kaan",
+  "name": "Kaan",
+  "role": "Zengin iş insanı, 31",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "slick",
+   "color": "#141210",
+   "shade": "#3a3632"
+  },
+  "iris": "#2e2a26",
+  "outfit": {
+   "type": "suit",
+   "top": "#1f2b44",
+   "topShade": "#151e30",
+   "bottom": "#1f2b44",
+   "shoes": "#111",
+   "accent": "#7a1f2b"
+  },
+  "blush": false
+ },
+ {
+  "id": "selin",
+  "name": "Selin",
+  "role": "Kibirli rakip, 28",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "ponytail",
+   "color": "#e8c26a",
+   "shade": "#f5dc9c"
+  },
+  "iris": "#3a7a5a",
+  "earrings": "#e3c15a",
+  "outfit": {
+   "type": "dress",
+   "top": "#b3202e",
+   "topShade": "#8c1622",
+   "bottom": "#b3202e",
+   "shoes": "#1a1a1a",
+   "accent": "#1a1a1a"
+  }
+ },
+ {
+  "id": "murat",
+  "name": "Murat",
+  "role": "Bakkal, 47",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a211c",
+   "shade": "#4a3a30"
+  },
+  "iris": "#3a2618",
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "apron",
+   "top": "#8fa8c0",
+   "topShade": "#7088a0",
+   "bottom": "#4a4038",
+   "shoes": "#2a2420",
+   "accent": "#f0ebe0"
+  },
+  "blush": false
+ },
+ {
+  "id": "ayse",
+  "name": "Ayşe",
+  "role": "Komşu teyze, 54",
+  "voice": "kadin2",
+  "gender": "f",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "hijab",
+   "color": "#5b8a6a",
+   "shade": "#43705a"
+  },
+  "iris": "#4a3624",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#7a5a4a",
+   "topShade": "#5e4438",
+   "bottom": "#4a3e3a",
+   "shoes": "#2a2420",
+   "accent": "#e8dccb"
+  }
+ },
+ {
+  "id": "deniz",
+  "name": "Dr. Deniz",
+  "role": "Doktor, 36",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "bun",
+   "color": "#3a2a22",
+   "shade": "#5a4234"
+  },
+  "iris": "#5a3a22",
+  "glasses": "#2a3a5a",
+  "outfit": {
+   "type": "labcoat",
+   "top": "#f2f2ee",
+   "topShade": "#d6d6d0",
+   "bottom": "#3a4a5a",
+   "shoes": "#f2f2f2",
+   "accent": "#7fa7c9"
+  }
+ },
+ {
+  "id": "burak",
+  "name": "Komiser Burak",
+  "role": "Polis, 41",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#d9a47c",
+  "skinShade": "#c08860",
+  "hair": {
+   "style": "buzz",
+   "color": "#1a1612",
+   "shade": "#3a3430"
+  },
+  "iris": "#2a1e16",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "police",
+   "top": "#2f4f7f",
+   "topShade": "#243e66",
+   "bottom": "#1f2a3a",
+   "shoes": "#111"
+  },
+  "blush": false
+ },
+ {
+  "id": "ozan",
+  "name": "Ozan",
+  "role": "Genç adam, 27",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a3a26",
+   "shade": "#7a553a"
+  },
+  "iris": "#5a3a22",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#9cc0e0",
+   "topShade": "#7ea2c4",
+   "bottom": "#2f3a4a",
+   "shoes": "#5a4030"
+  }
+ },
+ {
+  "id": "defne",
+  "name": "Defne",
+  "role": "Üniversiteli, 20",
+  "voice": "genc_kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#b07a52",
+  "skinShade": "#946240",
+  "hair": {
+   "style": "curly",
+   "color": "#2a1a14",
+   "shade": "#4a3024"
+  },
+  "iris": "#3a2418",
+  "glasses": "#7a3a8a",
+  "outfit": {
+   "type": "tracksuit",
+   "top": "#6a4a9a",
+   "topShade": "#523a7c",
+   "bottom": "#3a2e4e",
+   "shoes": "#f2f2f2"
+  }
+ },
+ {
+  "id": "can",
+  "name": "Can",
+  "role": "Küçük erkek, 9",
+  "voice": "cocuk_erkek",
+  "gender": "m",
+  "age": "child",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "shortMale",
+   "color": "#3a2a1e",
+   "shade": "#5a4430"
+  },
+  "iris": "#4a3420",
+  "outfit": {
+   "type": "school",
+   "top": "#2a3e6a",
+   "topShade": "#1f2f52",
+   "bottom": "#2a3e6a",
+   "shoes": "#1a1a1a",
+   "accent": "#b3202e"
+  }
+ },
+ {
+  "id": "leyla",
+  "name": "Leyla",
+  "role": "Gizemli gelin, 32",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f8d5bb",
+  "skinShade": "#ebb998",
+  "hair": {
+   "style": "longStraight",
+   "color": "#141018",
+   "shade": "#3a3240"
+  },
+  "iris": "#2a2030",
+  "mole": true,
+  "earrings": "#d9d9e6",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#e8dcc6",
+   "topShade": "#cbbda4",
+   "bottom": "#3a3236",
+   "shoes": "#2a2226",
+   "accent": "#3a3236"
+  }
+ },
+ {
+  "id": "huseyin",
+  "name": "Hüseyin",
+  "role": "Tefeci / kötü adam, 52",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "hair": {
+   "style": "slick",
+   "color": "#6a6660",
+   "shade": "#9a958f"
+  },
+  "iris": "#1e1a16",
+  "facialHair": "goatee",
+  "outfit": {
+   "type": "suit",
+   "top": "#1a1a1c",
+   "topShade": "#0e0e10",
+   "bottom": "#1a1a1c",
+   "shoes": "#0a0a0a",
+   "accent": "#5a5a5a"
+  },
+  "blush": false
+ },
+ {
+  "id": "melek",
+  "name": "Melek",
+  "role": "Kafe garsonu, 23",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f6cfb0",
+  "skinShade": "#e9b592",
+  "hair": {
+   "style": "ponytail",
+   "color": "#a8452a",
+   "shade": "#c86a44"
+  },
+  "iris": "#3a6a4a",
+  "outfit": {
+   "type": "apron",
+   "top": "#f2f2f2",
+   "topShade": "#d8d8d8",
+   "bottom": "#2a2a2e",
+   "shoes": "#2a2a2e",
+   "accent": "#3a2a24"
+  }
+ },
+ {
+  "id": "yusuf",
+  "name": "Yusuf",
+  "role": "Öğrenci, 15",
+  "voice": "cocuk_erkek",
+  "gender": "m",
+  "age": "teen",
+  "build": "slim",
+  "skin": "#b07a52",
+  "skinShade": "#946240",
+  "hair": {
+   "style": "curly",
+   "color": "#1a120e",
+   "shade": "#3a2a20"
+  },
+  "iris": "#2a1a12",
+  "outfit": {
+   "type": "school",
+   "top": "#2a3e6a",
+   "topShade": "#1f2f52",
+   "bottom": "#2f3440",
+   "shoes": "#1a1a1a",
+   "accent": "#b3202e"
+  }
+ },
+ {
+  "id": "berkay",
+  "name": "Berkay",
+  "role": "Holding CEO'su, 34 — ana karakter",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "slick",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2b2f3a",
+   "topShade": "#1d2029",
+   "bottom": "#2b2f3a",
+   "shoes": "#111",
+   "accent": "#3a5a8a"
+  },
+  "blush": false
+ },
+ {
+  "id": "berkay_hasta",
+  "name": "Berkay",
+  "role": "Berkay — 6 ay sonra, hastanede",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "scar": true,
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false,
+  "bileklik": true
+ },
+ {
+  "id": "selim",
+  "name": "Selim",
+  "role": "Ortak, 49 — en güvenilen",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "slick",
+   "color": "#7a746c",
+   "shade": "#a29a90"
+  },
+  "glasses": "#2a2a2a",
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "suit",
+   "top": "#8a8f98",
+   "topShade": "#6e737c",
+   "bottom": "#8a8f98",
+   "shoes": "#2a2420",
+   "accent": "#6a2a2a"
+  },
+  "blush": false
+ },
+ {
+  "id": "nalan",
+  "name": "Hemşire Nalan",
+  "role": "Hemşire, 41",
+  "voice": "kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f6d3bb",
+  "skinShade": "#e6b89a",
+  "iris": "#4a9be0",
+  "hair": {
+   "style": "bun",
+   "color": "#f0d48c",
+   "shade": "#c4a058"
+  },
+  "outfit": {
+   "type": "dress",
+   "top": "#f4f5f2",
+   "topShade": "#d8dedc",
+   "bottom": "#f4f5f2",
+   "shoes": "#f2f2f2"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta1",
+  "name": "Hasta (12)",
+  "role": "Koğuş hastası, panik",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "shortMale",
+   "color": "#3a2e26",
+   "shade": "#5a4a40"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta2",
+  "name": "Hasta (13)",
+  "role": "Koğuş hastası, kendini devlet büyüğü sanıyor",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#e2b08c",
+  "skinShade": "#c99070",
+  "iris": "#2a1e16",
+  "hair": {
+   "style": "balding",
+   "color": "#6a6660",
+   "shade": "#9a958f"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "spiker",
+  "name": "Spiker",
+  "role": "Televizyon haber spikeri (yalnız ses)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "slick",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2b2f3a",
+   "topShade": "#1d2029",
+   "bottom": "#2b2f3a",
+   "shoes": "#111"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta3",
+  "name": "Hasta",
+  "role": "Ortak salon: sallanan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "spiky",
+   "color": "#3a2e26",
+   "shade": "#5a4a40"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta4",
+  "name": "Hasta",
+  "role": "Ortak salon: kendi kendine konuşan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#d9a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "balding",
+   "color": "#8a8680",
+   "shade": "#aaa49c"
+  },
+  "facialHair": "beard",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta5",
+  "name": "Hasta",
+  "role": "Ortak salon: selam veren",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "buzz",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta6",
+  "name": "Hasta",
+  "role": "Ortak salon: volta atan",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a3a26",
+   "shade": "#7a5a40"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "hasta7",
+  "name": "Hasta",
+  "role": "Ortak salon: tavana bakan",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f2c8a8",
+  "skinShade": "#e0ab88",
+  "iris": "#3a3a2a",
+  "hair": {
+   "style": "longStraight",
+   "color": "#3a2a20",
+   "shade": "#5a4434"
+  },
+  "outfit": {
+   "type": "dress",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "bakici",
+  "name": "Hastabakıcı",
+  "role": "Hastabakıcı, iri yarı",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#d9a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "buzz",
+   "color": "#1e1814",
+   "shade": "#3a2e26"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#f4f5f2",
+   "topShade": "#d8dedc",
+   "bottom": "#f4f5f2",
+   "shoes": "#f2f2f2"
+  },
+  "blush": false
+ },
+ {
+  "id": "emir",
+  "name": "Emir",
+  "role": "Emir dizisi: zengin şirket sahibi, şık ve kaliteli, 40",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "slick",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "suit",
+   "top": "#1f2a44",
+   "topShade": "#151d30",
+   "bottom": "#1f2a44",
+   "shoes": "#0e0e10",
+   "accent": "#7a2430"
+  },
+  "blush": false
+ },
+ {
+  "id": "hostes",
+  "name": "Hostes",
+  "role": "Emir dizisi: business sınıfı hostesi",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f3cdb0",
+  "skinShade": "#e2b292",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "bun",
+   "color": "#4a2e1e",
+   "shade": "#6a4632"
+  },
+  "earrings": "#e8d08a",
+  "outfit": {
+   "type": "hostes",
+   "top": "#1e4a5c",
+   "topShade": "#153846",
+   "bottom": "#1e4a5c",
+   "shoes": "#111114",
+   "accent": "#c9312f"
+  },
+  "blush": false
+ },
+ {
+  "id": "emir_kaza",
+  "name": "Emir",
+  "role": "Emir: kazadan sonra, sahilde baygın",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#e6e0d4",
+   "topShade": "#c8c0b0",
+   "bottom": "#1f2a44",
+   "shoes": "#0e0e10",
+   "accent": "#7a2430"
+  },
+  "blush": false,
+  "kan": 1,
+  "yirtik": true
+ },
+ {
+  "id": "emir_kulube",
+  "name": "Emir",
+  "role": "Emir: yerlilerin kulübesinde, sargılı",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#ecc19c",
+  "skinShade": "#d8a67f",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#241c18",
+   "shade": "#4a3e36"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "shirt",
+   "top": "#e6e0d4",
+   "topShade": "#c8c0b0",
+   "bottom": "#1f2a44",
+   "shoes": "skin"
+  },
+  "blush": false,
+  "kan": 0.35,
+  "yirtik": true,
+  "sargi": true
+ },
+ {
+  "id": "yerli_bilge",
+  "name": "Yaşlı adam",
+  "role": "Emir dizisi: ada halkının yaşlısı (sopalı)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "slim",
+  "skin": "#a8714a",
+  "skinShade": "#8e5c3a",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "balding",
+   "color": "#d8d2c8",
+   "shade": "#b8b0a4"
+  },
+  "facialHair": "beard",
+  "outfit": {
+   "type": "yerli",
+   "top": "#c4a878",
+   "topShade": "#a48a5c",
+   "bottom": "#7a4a30",
+   "shoes": "skin",
+   "accent": "#8a3a2a"
+  },
+  "kolye": "#f2e6cf",
+  "blush": false
+ },
+ {
+  "id": "yerli_genc",
+  "name": "Genç adam",
+  "role": "Emir dizisi: ada halkından genç (sopalı)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#9a6440",
+  "skinShade": "#7e4e30",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "shortMale",
+   "color": "#1a120c",
+   "shade": "#3a2a1e"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#9a6a44",
+   "topShade": "#7a5032",
+   "bottom": "#3e4a6a",
+   "shoes": "skin"
+  },
+  "kolye": "#e9dcc0",
+  "blush": false,
+  "facialHair": "stubble"
+ },
+ {
+  "id": "yerli_genc2",
+  "name": "Genç adam",
+  "role": "Emir dizisi: ada halkından genç",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#b07a52",
+  "skinShade": "#94603c",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "spiky",
+   "color": "#1a120c",
+   "shade": "#3a2a1e"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#c2a070",
+   "topShade": "#a0804e",
+   "bottom": "#8a4a2e",
+   "shoes": "skin"
+  },
+  "blush": false
+ },
+ {
+  "id": "yerli_ana",
+  "name": "Yaşlı kadın",
+  "role": "Emir dizisi: ada halkından yaşlı kadın",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "normal",
+  "skin": "#a46e48",
+  "skinShade": "#8a5836",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "bun",
+   "color": "#c8c0b4",
+   "shade": "#a8a094"
+  },
+  "outfit": {
+   "type": "yerli",
+   "top": "#b49464",
+   "topShade": "#94744a",
+   "bottom": "#5a4a6a",
+   "shoes": "skin",
+   "accent": "#3a4a7a"
+  },
+  "kolye": "#f2e6cf",
+  "blush": false
+ },
+ {
+  "id": "yerli_kadin",
+  "name": "Genç kadın",
+  "role": "Emir dizisi: Emir'i iyileştiren genç ada kadını",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#b8805a",
+  "skinShade": "#9a6644",
+  "iris": "#6a4220",
+  "hair": {
+   "style": "longWavy",
+   "color": "#1a110c",
+   "shade": "#3a2618"
+  },
+  "earrings": "#f2e6cf",
+  "outfit": {
+   "type": "yerli",
+   "top": "#d2b484",
+   "topShade": "#b0925e",
+   "bottom": "#7a5232",
+   "shoes": "skin"
+  },
+  "kolye": "#f6ecd6",
+  "blush": true
+ },
+ {
+  "id": "pilot",
+  "name": "Pilot",
+  "role": "Emir dizisi: kazada ölen pilot",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#e2b48e",
+  "skinShade": "#cc9a74",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#5a4a3a",
+   "shade": "#7a6a58"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#1d2a44",
+   "topShade": "#141d30",
+   "bottom": "#1d2a44",
+   "shoes": "#0e0e10",
+   "accent": "#1d2a44"
+  },
+  "blush": false
+ },
+ {
+  "id": "cemil",
+  "name": "Cemil",
+  "role": "KAT 7: gece bekçisi, 54",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#e2b08a",
+  "skinShade": "#c8966e",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "balding",
+   "color": "#8a8680",
+   "shade": "#6a6660"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "police",
+   "top": "#26324a",
+   "topShade": "#1a2336",
+   "bottom": "#1e2638",
+   "shoes": "#0e0e10"
+  },
+  "blush": false,
+  "isimlik": "C.AYDIN"
+ },
+ {
+  "id": "riza98",
+  "name": "Rıza",
+  "role": "KAT 7: Rıza (1998, genç bekçi; yalnızca ses)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8bd98",
+  "skinShade": "#d2a07c",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "outfit": {
+   "type": "police",
+   "top": "#26324a",
+   "topShade": "#1a2336",
+   "bottom": "#1e2638",
+   "shoes": "#0e0e10"
+  },
+  "blush": false
+ },
+ {
+  "id": "ece724",
+  "name": "Ece",
+  "role": "7/24: gece vardiyasındaki üniversiteli, 21",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "ponytail",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "apron",
+   "top": "#2e3a48",
+   "topShade": "#222c38",
+   "bottom": "#3a4a5a",
+   "shoes": "#e8e8e8",
+   "accent": "#e8701a"
+  },
+  "isimlik": "ECE",
+  "blush": true,
+  "sivilce": true
+ },
+ {
+  "id": "sabri",
+  "name": "Sabri",
+  "role": "7/24: dükkân sahibi, 60",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#d8a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "balding",
+   "color": "#9a948c",
+   "shade": "#7a746c"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#6a6a66",
+   "topShade": "#525250",
+   "bottom": "#3a3530",
+   "shoes": "#2a1a10",
+   "accent": "#d8d0c0"
+  },
+  "blush": false
+ },
+ {
+  "id": "sabri_sahte",
+  "name": "Sabri",
+  "role": "7/24 B5: depodaki şey, Sabri kılığında (görünüş Sabri ile aynı; göz kırpmaz, mum gibi parlar)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "heavy",
+  "skin": "#d8a47c",
+  "skinShade": "#c08a64",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "balding",
+   "color": "#9a948c",
+   "shade": "#7a746c"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#6a6a66",
+   "topShade": "#525250",
+   "bottom": "#3a3530",
+   "shoes": "#2a1a10",
+   "accent": "#d8d0c0"
+  },
+  "blush": false
+ },
+ {
+  "id": "sarhos724",
+  "name": "Müşteri",
+  "role": "7/24: gece yarısı sarhoş müşteri",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#e8b490",
+  "skinShade": "#d09a74",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "outfit": {
+   "type": "coat",
+   "top": "#4a3a2a",
+   "topShade": "#3a2c20",
+   "bottom": "#2a2a30",
+   "shoes": "#1a1a1a"
+  },
+  "blush": true
+ },
+ {
+  "id": "ece_ev",
+  "name": "Ece",
+  "role": "7/24: Ece evde, pijamalı, sivilceli",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "bun",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#e8a0b8",
+   "topShade": "#c8809a",
+   "bottom": "#b8a0d0",
+   "shoes": "#f0e0e8",
+   "accent": "#ffffff"
+  },
+  "blush": true,
+  "sivilce": true,
+  "baski": "kedi"
+ },
+ {
+  "id": "ece_sivil",
+  "name": "Ece",
+  "role": "7/24: Ece sivil (iş görüşmesi), sivilceli",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#5a3a26",
+  "hair": {
+   "style": "ponytail",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "sweater",
+   "top": "#c8902a",
+   "topShade": "#a8741a",
+   "bottom": "#34466a",
+   "shoes": "#f0f0f0",
+   "accent": "#f4ead0"
+  },
+  "blush": true,
+  "sivilce": true
+ },
+ {
+  "id": "anne724",
+  "name": "Anne",
+  "role": "7/24: Ece'nin annesi, 50'li yaşlar, telaşlı ve ağzı bozuk",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#eec4a2",
+  "skinShade": "#d8a884",
+  "iris": "#4a2e1e",
+  "hair": {
+   "style": "bob",
+   "color": "#4a3022",
+   "shade": "#6a4a36"
+  },
+  "outfit": {
+   "type": "cardigan",
+   "top": "#8a4a5a",
+   "topShade": "#6a3444",
+   "bottom": "#5a4a48",
+   "shoes": "#6a4a3a",
+   "accent": "#e8dcc8"
+  },
+  "earrings": "#d8b860",
+  "blush": false,
+  "mole": true
+ },
+ {
+  "id": "ahmet",
+  "name": "Ahmet",
+  "role": "Dram: başrol, 21, üniversiteli; dış ses",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c6a2",
+  "skinShade": "#dcaa86",
+  "iris": "#3a2618",
+  "hair": {
+   "style": "slick",
+   "color": "#3a2416",
+   "shade": "#5a3a24"
+  },
+  "outfit": {
+   "type": "hoodie",
+   "top": "#c8502a",
+   "topShade": "#a83e1e",
+   "bottom": "#2a3242",
+   "shoes": "#e8e8e8",
+   "accent": "#f2e8d8"
+  },
+  "blush": false
+ },
+ {
+  "id": "baba_dg",
+  "name": "Baba",
+  "role": "Dram: Ahmet'in babası, 60, emekli",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "old",
+  "build": "normal",
+  "skin": "#dca882",
+  "skinShade": "#c48e68",
+  "iris": "#2e2014",
+  "hair": {
+   "style": "shortMale",
+   "color": "#8c8680",
+   "shade": "#6c6660"
+  },
+  "facialHair": "mustache",
+  "outfit": {
+   "type": "shirt",
+   "top": "#6a7e94",
+   "topShade": "#54677c",
+   "bottom": "#3e3a36",
+   "shoes": "#2a1c12",
+   "accent": "#e8e2d4"
+  },
+  "blush": false
+ },
+ {
+  "id": "anne_dg",
+  "name": "Anne",
+  "role": "Dram: Ahmet'in annesi, 56, tesettürlü Anadolu kadını",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#e8b896",
+  "skinShade": "#d09c7a",
+  "iris": "#3a2414",
+  "hair": {
+   "style": "hijab",
+   "color": "#8a2a3a",
+   "shade": "#6a1a2a"
+  },
+  "oya": "#f2c84a",
+  "outfit": {
+   "type": "dress",
+   "top": "#5a6248",
+   "topShade": "#464e38",
+   "bottom": "#4a5038",
+   "shoes": "#3a2a1e",
+   "accent": "#d8ccb0"
+  },
+  "blush": true
+ },
+ {
+  "id": "sila",
+  "name": "Sıla",
+  "role": "Dram: Ahmet'in kız kardeşi, 16",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "teen",
+  "build": "slim",
+  "skin": "#eec0a0",
+  "skinShade": "#d8a482",
+  "iris": "#3a2414",
+  "hair": {
+   "style": "longStraight",
+   "color": "#3a2418",
+   "shade": "#5a3a28"
+  },
+  "outfit": {
+   "type": "sweater",
+   "top": "#d8a0b0",
+   "topShade": "#b88090",
+   "bottom": "#4a5a7a",
+   "shoes": "#f0f0f0",
+   "accent": "#ffffff"
+  },
+  "blush": true
+ },
+ {
+  "id": "ayla",
+  "name": "Ayla",
+  "role": "Deli Değilim: Taner Holding santral görevlisi (yalnızca telefonda ses)",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#dcac88",
+  "iris": "#3a2414",
+  "hair": {
+   "style": "bob",
+   "color": "#2a1a12",
+   "shade": "#4a3022"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#2a2e3a",
+   "topShade": "#1e222c",
+   "bottom": "#2a2e3a",
+   "shoes": "#1a1a1a",
+   "accent": "#e8e8f0"
+  },
+  "blush": true
+ },
+ {
+  "id": "berkay_ofis",
+  "name": "?",
+  "role": "Deli Değilim: telefonda arka plandaki ses (Berkay'ın sesi)",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f1c6a0",
+  "skinShade": "#dda983",
+  "iris": "#3a2a20",
+  "hair": {
+   "style": "shortMale",
+   "color": "#2a1f1a",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "stubble",
+  "scar": true,
+  "outfit": {
+   "type": "tshirt",
+   "top": "#a9c4d6",
+   "topShade": "#8aa8bc",
+   "bottom": "#a9c4d6",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false,
+  "bileklik": true
+ },
+ {
+  "id": "zeynep_dd",
+  "name": "Zeynep",
+  "role": "Deli Değilim: Berkay'ın eşi (?), 30'lar",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f2cdb0",
+  "skinShade": "#dcb090",
+  "iris": "#4a6a3a",
+  "hair": {
+   "style": "longStraight",
+   "color": "#8a3a1e",
+   "shade": "#a8502c"
+  },
+  "outfit": {
+   "type": "coat",
+   "top": "#b8865a",
+   "topShade": "#9a6c44",
+   "bottom": "#2a2a30",
+   "shoes": "#3a2418",
+   "accent": "#f2ead8"
+  },
+  "earrings": "#d8b860",
+  "blush": true
+ },
+ {
+  "id": "zenith_resepsiyon",
+  "name": "Resepsiyonist",
+  "role": "Kayıp CEO: Zenith genel merkezi resepsiyonisti (sözsüz)",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e8c0a0",
+  "skinShade": "#d0a080",
+  "iris": "#2a1a10",
+  "hair": {
+   "style": "bun",
+   "color": "#1a1210",
+   "shade": "#3a2a20"
+  },
+  "outfit": {
+   "type": "suit",
+   "top": "#1e2430",
+   "topShade": "#141820",
+   "bottom": "#1e2430",
+   "shoes": "#0a0a0c",
+   "accent": "#e8e8ee"
+  },
+  "earrings": "#e8e8e8",
+  "glasses": "#1a1a1a",
+  "blush": false
+ },
+ {
+  "id": "spiker_meridyen",
+  "name": "Spiker",
+  "role": "Kayıp CEO: MERİDYEN HABER spikeri (ekranda, orta yaşlı, kır saçlı)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#e9bf98",
+  "skinShade": "#d4a47c",
+  "iris": "#2e2a26",
+  "hair": {
+   "style": "shortMale",
+   "color": "#9a9690",
+   "shade": "#c8c4bc"
+  },
+  "facialHair": "mustache",
+  "glasses": "#3a3a40",
+  "outfit": {
+   "type": "suit",
+   "top": "#3a2a2a",
+   "topShade": "#2a1c1c",
+   "bottom": "#3a2a2a",
+   "shoes": "#111",
+   "accent": "#c8102e"
+  },
+  "blush": false
+ },
+ {
+  "id": "kiz724",
+  "name": "Küçük kız",
+  "role": "7/24: gece markete gelen 7 yaşlarında sarı saçlı, mavi gözlü kız",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "child",
+  "build": "slim",
+  "skin": "#f6d8c4",
+  "skinShade": "#e8bca4",
+  "iris": "#3a86d8",
+  "hair": {
+   "style": "longWavy",
+   "color": "#f0cc5a",
+   "shade": "#d8b040"
+  },
+  "outfit": {
+   "type": "dress",
+   "top": "#f4a8c0",
+   "topShade": "#e088a8",
+   "bottom": "#f4a8c0",
+   "shoes": "#f8f8f8",
+   "accent": "#ffffff"
+  },
+  "blush": true
+ },
+ {
+  "id": "adam724",
+  "name": "Baba",
+  "role": "7/24: kızın babası, yakışıklı, kaslı, esrarengiz",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#c8916a",
+  "skinShade": "#ae7852",
+  "iris": "#6a8a4a",
+  "hair": {
+   "style": "buzz",
+   "color": "#2a1e18",
+   "shade": "#4a3a30"
+  },
+  "facialHair": "beard",
+  "outfit": {
+   "type": "tshirt",
+   "top": "#4a5638",
+   "topShade": "#3a442c",
+   "bottom": "#2a2a2e",
+   "shoes": "#3a2a1e"
+  },
+  "blush": false,
+  "scar": true
+ },
+ {
+  "id": "iri724",
+  "name": "İri adam",
+  "role": "7/24 B3: iri cüsseli, çirkin gece müşterisi",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#a8ac98",
+  "skinShade": "#88907a",
+  "iris": "#c8b860",
+  "hair": {
+   "style": "bald",
+   "color": "#3a3430",
+   "shade": "#5a524c"
+  },
+  "facialHair": "beard",
+  "scar": true,
+  "mole": true,
+  "outfit": {
+   "type": "coat",
+   "top": "#2a241e",
+   "topShade": "#1c1814",
+   "bottom": "#1a1a1a",
+   "shoes": "#100c0a"
+  },
+  "blush": false,
+  "korkunc": true
+ },
+ {
+  "id": "mert724",
+  "name": "Mert",
+  "role": "7/24: yeni gece vardiyası çalışanı, çok yakışıklı, cool",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#f0c8a4",
+  "skinShade": "#d8ac84",
+  "iris": "#3f8fd8",
+  "hair": {
+   "style": "daginik",
+   "color": "#7a5434",
+   "shade": "#5a3a22"
+  },
+  "outfit": {
+   "type": "tshirt",
+   "top": "#1f2a3c",
+   "topShade": "#161e2c",
+   "bottom": "#3a4a66",
+   "shoes": "#e8e8e8"
+  },
+  "blush": false
+ },
+ {
+  "id": "kacan724",
+  "name": "Kaçan kadın",
+  "role": "7/24: sokakta yaratıktan kaçıp depodan fırlayan kadın; sarışın, mavi göz, kırmızı mini elbise, kırmızı ruj, altın küpe/kolye",
+  "voice": "kadin",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f0c8a8",
+  "skinShade": "#d8ac8a",
+  "iris": "#3f8fd8",
+  "hair": {
+   "style": "longWavy",
+   "color": "#e8c878",
+   "shade": "#c8a456"
+  },
+  "outfit": {
+   "type": "dress",
+   "top": "#c4162a",
+   "topShade": "#9a0e20",
+   "bottom": "#f0c8a8",
+   "shoes": "#f4f4f2"
+  },
+  "blush": true,
+  "mini": true,
+  "makyaj": {
+   "ruj": "#c8102e",
+   "far": "#8a4a6a",
+   "eyeliner": true,
+   "isilti": true
+  },
+  "earrings": "#f2c850",
+  "kolye": "#f2c850",
+  "bileklik": true
+ },
+ {
+  "id": "kd_gobek",
+  "name": "Göbekli Adam",
+  "role": "Kırmızı Düğme: 1 yıldır evden çıkmayan göbekli adam, 38 (geçici ad)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#ecd6c4",
+  "skinShade": "#d4b6a0",
+  "hair": {
+   "style": "yagli",
+   "color": "#2a2420",
+   "shade": "#7a7068"
+  },
+  "iris": "#5a4a3a",
+  "outfit": {
+   "type": "atlet",
+   "top": "#f0ead6",
+   "topShade": "#cfc6ac",
+   "bottom": "#3e4452",
+   "shoes": "#2b2f36"
+  },
+  "blush": false,
+  "gobek": 1,
+  "gobekAcik": true,
+  "terlik": "#3a8ad8",
+  "serit": "#c4c8ce",
+  "kilo": 1,
+  "sakalNokta": 0.9,
+  "gozAlti": true,
+  "kil": true,
+  "leke": true,
+  "kirinti": true,
+  "boy": 0.97
+ },
+ {
+  "id": "kd_kurye",
+  "name": "Motokurye",
+  "role": "Kırmızı Düğme: motokurye, 24 (geçici ad) · kasklı",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e6b48c",
+  "skinShade": "#cc9870",
+  "hair": {
+   "style": "buzz",
+   "color": "#1e1612",
+   "shade": "#3a2a22"
+  },
+  "iris": "#3e2a1c",
+  "outfit": {
+   "type": "kurye",
+   "top": "#18a39a",
+   "topShade": "#11807a",
+   "bottom": "#2c3036",
+   "shoes": "#1a1c20",
+   "accent": "#1f262b"
+  },
+  "baski": "vinn",
+  "sirtCanta": {
+   "renk": "#18a39a",
+   "kenar": "#f4f22e"
+  },
+  "kask": {
+   "renk": "#1b1f24",
+   "serit": "#f4f22e"
+  },
+  "eldiven": "#25292e",
+  "omuzEn": 1.12
+ },
+ {
+  "id": "kd_kurye_kasksiz",
+  "name": "Motokurye",
+  "role": "Kırmızı Düğme: motokurye, 24 · kasksız",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e6b48c",
+  "skinShade": "#cc9870",
+  "hair": {
+   "style": "buzz",
+   "color": "#1e1612",
+   "shade": "#3a2a22"
+  },
+  "iris": "#3e2a1c",
+  "outfit": {
+   "type": "kurye",
+   "top": "#18a39a",
+   "topShade": "#11807a",
+   "bottom": "#2c3036",
+   "shoes": "#1a1c20",
+   "accent": "#1f262b"
+  },
+  "baski": "vinn",
+  "sirtCanta": {
+   "renk": "#18a39a",
+   "kenar": "#f4f22e"
+  },
+  "kulaklikKablo": true,
+  "omuzEn": 1.12
+ },
+ {
+  "id": "kd_influencer",
+  "name": "Influencer",
+  "role": "Kırmızı Düğme: canlı yayıncı, 19 (geçici ad)",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f7d2b8",
+  "skinShade": "#ebb596",
+  "hair": {
+   "style": "perdeli",
+   "color": "#3a2218",
+   "shade": "#5e3a2a",
+   "uc": "#f49ac1"
+  },
+  "iris": "#6a4a2c",
+  "outfit": {
+   "type": "oversize",
+   "top": "#cbb8f4",
+   "topShade": "#a690d8",
+   "bottom": "#9cbbe0",
+   "shoes": "#f8f8f6"
+  },
+  "baski": "blob",
+  "makyaj": {
+   "ruj": "#ef5f80",
+   "far": "#d7a2ea",
+   "eyeliner": true,
+   "isilti": true
+  },
+  "halka": "#f2c94c",
+  "toka": "#ff9cc8",
+  "blush": true,
+  "kalpToka": "#ff4a8a",
+  "tirnak": "#ff6ab0",
+  "boy": 0.96
+ },
+ {
+  "id": "kd_maskeli",
+  "name": "Maskeli",
+  "role": "Kırmızı Düğme: kaçıran, kar maskeli",
+  "voice": "kalin_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#e2b48e",
+  "skinShade": "#c8996f",
+  "hair": {
+   "style": "buzz",
+   "color": "#1a1412",
+   "shade": "#2a201a"
+  },
+  "iris": "#3a2a20",
+  "outfit": {
+   "type": "hoodie",
+   "top": "#1f1f24",
+   "topShade": "#141418",
+   "bottom": "#18181c",
+   "shoes": "#0e0e10"
+  },
+  "karMaske": "#26262c",
+  "eldiven": "#141416",
+  "blush": false
+ },
+ {
+  "id": "kd_gobek_oda",
+  "name": "Göbekli Adam",
+  "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (tek terlik, buruşuk)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#ecd6c4",
+  "skinShade": "#d4b6a0",
+  "hair": {
+   "style": "yagli",
+   "color": "#2a2420",
+   "shade": "#7a7068"
+  },
+  "iris": "#5a4a3a",
+  "outfit": {
+   "type": "atlet",
+   "top": "#f0ead6",
+   "topShade": "#cfc6ac",
+   "bottom": "#3e4452",
+   "shoes": "#2b2f36"
+  },
+  "blush": false,
+  "gobek": 1,
+  "gobekAcik": true,
+  "terlik": "#3a8ad8",
+  "serit": "#c4c8ce",
+  "kilo": 1,
+  "sakalNokta": 0.9,
+  "gozAlti": true,
+  "kil": true,
+  "leke": true,
+  "kirinti": true,
+  "kirisik": true,
+  "tekTerlik": true,
+  "boy": 0.97
+ },
+ {
+  "id": "kd_kurye_oda",
+  "name": "Motokurye",
+  "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (çantasız, kask izi, kablolu kulaklık)",
+  "voice": "genc_erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#e6b48c",
+  "skinShade": "#cc9870",
+  "hair": {
+   "style": "buzz",
+   "color": "#1e1612",
+   "shade": "#3a2a22"
+  },
+  "iris": "#3e2a1c",
+  "outfit": {
+   "type": "kurye",
+   "top": "#18a39a",
+   "topShade": "#11807a",
+   "bottom": "#2c3036",
+   "shoes": "#1a1c20",
+   "accent": "#1f262b"
+  },
+  "baski": "vinn",
+  "kirisik": true,
+  "kulaklikKablo": true,
+  "kaskIzi": true,
+  "eldiven": "#25292e",
+  "omuzEn": 1.12
+ },
+ {
+  "id": "kd_influencer_oda",
+  "name": "Influencer",
+  "role": "Kırmızı Düğme: beyaz oda, kendi kıyafeti (telefonsuz, makyaj dağılmış)",
+  "voice": "genc_kadin2",
+  "gender": "f",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f7d2b8",
+  "skinShade": "#ebb596",
+  "hair": {
+   "style": "perdeli",
+   "color": "#3a2218",
+   "shade": "#5e3a2a",
+   "uc": "#f49ac1"
+  },
+  "iris": "#6a4a2c",
+  "outfit": {
+   "type": "oversize",
+   "top": "#cbb8f4",
+   "topShade": "#a690d8",
+   "bottom": "#9cbbe0",
+   "shoes": "#f8f8f6"
+  },
+  "baski": "blob",
+  "makyaj": {
+   "ruj": "#d8708a",
+   "far": "#c9a0d8",
+   "eyeliner": true
+  },
+  "halka": "#f2c94c",
+  "toka": "#ff9cc8",
+  "blush": true,
+  "kirisik": true,
+  "kalpToka": "#ff4a8a",
+  "tirnak": "#ff6ab0",
+  "boy": 0.96
+ },
+ {
+  "id": "kd_dorduncu_teyze",
+  "name": "Kolonya Teyze",
+  "role": "Kırmızı Düğme: 4. kişi seçenek 1 · aşırı kibar teyze, 55",
+  "voice": "yasli_kadin",
+  "gender": "f",
+  "age": "old",
+  "build": "normal",
+  "skin": "#f1cdb0",
+  "skinShade": "#dcb090",
+  "hair": {
+   "style": "perma",
+   "color": "#8a4a2e",
+   "shade": "#b8724a"
+  },
+  "iris": "#5a4030",
+  "glasses": "#8a2a4a",
+  "gozlukZinciri": "#c9a24a",
+  "earrings": "#f4f0e6",
+  "outfit": {
+   "type": "cardigan",
+   "top": "#7a3a6a",
+   "topShade": "#5e2a52",
+   "bottom": "#4a4652",
+   "shoes": "#2a2224",
+   "accent": "#f6dfe6"
+  },
+  "dugmeRenk": "#e2202e",
+  "blush": true,
+  "boy": 0.9,
+  "omuzEn": 1.06
+ },
+ {
+  "id": "kd_dorduncu_uykucu",
+  "name": "Uykucu",
+  "role": "Kırmızı Düğme: 4. kişi seçenek 2 · pijamalı uykucu genç, 22",
+  "voice": "genc_erkek2",
+  "gender": "m",
+  "age": "adult",
+  "build": "slim",
+  "skin": "#f4d4b8",
+  "skinShade": "#e0b898",
+  "hair": {
+   "style": "daginik",
+   "color": "#6a4430",
+   "shade": "#8a5e44"
+  },
+  "iris": "#4a6a8a",
+  "outfit": {
+   "type": "pijama",
+   "top": "#a8c8f0",
+   "topShade": "#6f98d0",
+   "bottom": "#a8c8f0",
+   "shoes": "#f4f4f0"
+  },
+  "tavsanTerlik": "#fbf8f4",
+  "uykuMaskesi": "#f6a8c8",
+  "dugmeRenk": "#e2202e",
+  "blush": true,
+  "boy": 1.06,
+  "omuzEn": 0.92
+ },
+ {
+  "id": "kd_dorduncu_sporcu",
+  "name": "Sporcu Abi",
+  "role": "Kırmızı Düğme: 4. kişi seçenek 3 · spor tutkunu abi, 30",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "normal",
+  "skin": "#d8a47e",
+  "skinShade": "#bf8a64",
+  "hair": {
+   "style": "buzz",
+   "color": "#1a1412",
+   "shade": "#2a201a"
+  },
+  "iris": "#3a2a1c",
+  "facialHair": "goatee",
+  "outfit": {
+   "type": "tracksuit",
+   "top": "#6a3ab8",
+   "topShade": "#4e2a8a",
+   "bottom": "#6a3ab8",
+   "shoes": "#f4f4f0"
+  },
+  "serit": "#c8f03a",
+  "terBandi": "#c8f03a",
+  "belCantasi": "#1e1e22",
+  "boy": 1.04,
+  "omuzEn": 1.16
+ },
+ {
+  "id": "yaratik724",
+  "name": "Yaratık (depo)",
+  "role": "7/24 B8-B9: depodaki yaratık (yalnız ses kaydı; çizimi Inserts19 Yaratik)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#a8ac98",
+  "skinShade": "#88907a",
+  "iris": "#c8b860",
+  "hair": {
+   "style": "bald",
+   "color": "#3a3430",
+   "shade": "#5a524c"
+  },
+  "facialHair": "beard",
+  "scar": true,
+  "mole": true,
+  "outfit": {
+   "type": "coat",
+   "top": "#2a241e",
+   "topShade": "#1c1814",
+   "bottom": "#1a1a1a",
+   "shoes": "#100c0a"
+  },
+  "blush": false,
+  "korkunc": true
+ },
+ {
+  "id": "yaratik724b",
+  "name": "Yaratık (depo, deneme b)",
+  "role": "7/24 B8-B9: depodaki yaratık (yalnız ses kaydı; çizimi Inserts19 Yaratik)",
+  "voice": "erkek",
+  "gender": "m",
+  "age": "adult",
+  "build": "heavy",
+  "skin": "#a8ac98",
+  "skinShade": "#88907a",
+  "iris": "#c8b860",
+  "hair": {
+   "style": "bald",
+   "color": "#3a3430",
+   "shade": "#5a524c"
+  },
+  "facialHair": "beard",
+  "scar": true,
+  "mole": true,
+  "outfit": {
+   "type": "coat",
+   "top": "#2a241e",
+   "topShade": "#1c1814",
+   "bottom": "#1a1a1a",
+   "shoes": "#100c0a"
+  },
+  "blush": false,
+  "korkunc": true
+ }
 ]

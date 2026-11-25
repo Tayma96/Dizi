@@ -358,5 +358,23 @@
    "similarity_boost": 0.8,
    "speed": 1.0
   }
+ },
+ "yaratik724": {
+  "voice_id": "j9K9HnBcmgA6xNWqjlX0",
+  "sahip": "5864e5226f7b49dd6eb1815c8e324ea47deb439980e19ef4f3fa2435b9c9615f",
+  "ad": "Emin (epic)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
+ },
+ "yaratik724b": {
+  "voice_id": "Q2IX97JeHBY3vNGzgM5s",
+  "sahip": "a28ab06fdab535f13936bb656cf22f7710ef9ccc6e8ae33601d46c244cbcdf36",
+  "ad": "Cavit (TV sunucu)",
+  "ayar": {
+   "similarity_boost": 0.8,
+   "speed": 1.0
+  }
  }
 }
