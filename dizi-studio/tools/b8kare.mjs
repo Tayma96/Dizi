@@ -31,6 +31,6 @@ for (const [i, k] of kareler.entries()) {
 }
 await browser.close({ silent: true });
 const n = kareler.length, rows = Math.ceil(n / sutun);
-execSync(`ffmpeg -v error -y -framerate 1 -i ${tmp}/%03d.png -vf "tile=${Math.min(sutun, n)}x${rows}:color=black" -frames:v 1 ${out}`);
+execSync(`python3 -c "import glob,sys;from PIL import Image;f=sorted(glob.glob(\x27${tmp}/*.png\x27));im=[Image.open(x) for x in f];w,h=im[0].size;c=${sutun};r=(len(im)+c-1)//c;o=Image.new(\x27RGB\x27,(w*min(c,len(im)),h*r));[o.paste(x,((i%c)*w,(i//c)*h)) for i,x in enumerate(im)];o.save(\x27${out}\x27)"`);
 fs.rmSync(tmp, { recursive: true });
 console.log("tamam", out);

@@ -1,6 +1,6 @@
 /* =====================================================================================
  * 7/24 B9 · P3-P6 (Rüşvet, Kıskançlık, Para yiyen kadın, Bekçi): Inserts18 "b8_market" için ek görünümler ve katmanlar.
- *  Hepsi özgün çizim. Banknot: stilize kırmızı "200" (geometrik gül motifi; gerçek banknotun kopyası değil).
+ *  Hepsi özgün çizim. Banknot: stilize YEŞİL "200" (geometrik gül motifi; gerçek banknotun kopyası değil).
  *   para   : kapı altı, yer hizası yakın plan: sıcak ışık şeridinden banknotlar kayar, yığılır; ayak gölgeleri şeritte
  *   sise   : yerdeki su şişesi yakın plan (ağzına kadar dolu), arka planda Elif'in çıplak ayağı + spor ayakkabısı; odak kaydırma
  *   golge  : Elif'in yerdeki gölgesi: ayakları kıpırdamazken gölgedeki saçlar kendi kendine dalgalanır, parmaklar uzar
@@ -22,15 +22,15 @@ const ss = (a: number, b: number, t: number) => {
 /* ------------------------------------------------------------------ banknot deseni (yerel birim: 160 × 72, merkez 0,0) */
 export const NotDesen: React.FC<{ ton?: number; isik?: number }> = ({ ton = 0, isik = 0 }) => (
   <g>
-    <rect x={-80} y={-36} width={160} height={72} rx={4} fill={ton ? "#c02838" : "#d03644"} stroke={O} strokeWidth={3} />
-    <rect x={-72} y={-28} width={144} height={56} rx={2} fill="none" stroke="#f2a6a2" strokeWidth={2} opacity={0.85} />
-    {[0, 1, 2, 3].map((i) => <path key={i} d={`M -70 ${-16 + i * 10} Q -35 ${-24 + i * 10} 0 ${-16 + i * 10} T 70 ${-16 + i * 10}`} stroke="#e8707a" strokeWidth={1.4} fill="none" opacity={0.7} />)}
-    <circle cx={30} cy={0} r={20} fill="#b82232" stroke="#f6c0b8" strokeWidth={2.5} />
-    <path d="M 30 -15 L 35 -5 L 45 0 L 35 5 L 30 15 L 25 5 L 15 0 L 25 -5 Z" fill="#f6c8c0" />
-    <circle cx={30} cy={0} r={4} fill="#b82232" />
-    <text x={-62} y={-8} fontSize={20} fontWeight={900} fontFamily="Arial, sans-serif" fill="#fde8e0">200</text>
-    <text x={-62} y={22} fontSize={10} fontWeight={800} fontFamily="Arial, sans-serif" fill="#f6c0b8" letterSpacing={1}>İKİ YÜZ</text>
-    <rect x={56} y={-28} width={6} height={56} fill="#e8c060" opacity={0.75} />
+    <rect x={-80} y={-36} width={160} height={72} rx={4} fill={ton ? "#2f7f4c" : "#3a9058"} stroke={O} strokeWidth={3} />
+    <rect x={-72} y={-28} width={144} height={56} rx={2} fill="none" stroke="#a8e0b8" strokeWidth={2} opacity={0.85} />
+    {[0, 1, 2, 3].map((i) => <path key={i} d={`M -70 ${-16 + i * 10} Q -35 ${-24 + i * 10} 0 ${-16 + i * 10} T 70 ${-16 + i * 10}`} stroke="#6cbf88" strokeWidth={1.4} fill="none" opacity={0.7} />)}
+    <circle cx={30} cy={0} r={20} fill="#2a6e44" stroke="#cdeed6" strokeWidth={2.5} />
+    <path d="M 30 -15 L 35 -5 L 45 0 L 35 5 L 30 15 L 25 5 L 15 0 L 25 -5 Z" fill="#d8f4e0" />
+    <circle cx={30} cy={0} r={4} fill="#2a6e44" />
+    <text x={-62} y={-8} fontSize={20} fontWeight={900} fontFamily="Arial, sans-serif" fill="#effff4">200</text>
+    <text x={-62} y={22} fontSize={10} fontWeight={800} fontFamily="Arial, sans-serif" fill="#cdeed6" letterSpacing={1}>İKİ YÜZ</text>
+    <rect x={56} y={-28} width={6} height={56} fill="#d8c060" opacity={0.75} />
     {isik > 0 ? <rect x={-80} y={-36} width={160} height={72} rx={4} fill="#ffb860" opacity={0.35 * isik} /> : null}
   </g>
 );
@@ -310,7 +310,7 @@ export const YanParalar: React.FC<{ notlar: number[][]; tg: number; isik: number
       const yak = Math.max(0, 1 - (1.9 - zz) * 2.5);
       return (
         <g key={i} clipPath="url(#ypKirp)">
-          <path d={d} fill={i % 2 ? "#c02838" : "#d03644"} stroke={O} strokeWidth={1.6} />
+          <path d={d} fill={i % 2 ? "#2f7f4c" : "#3a9058"} stroke={O} strokeWidth={1.6} />
           <path d={d} fill="#ffb860" opacity={0.4 * yak * isik} />
         </g>
       );

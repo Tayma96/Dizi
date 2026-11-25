@@ -111,18 +111,18 @@ export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: nu
         {n === "su" ? <rect x={-10} y={-92} width={20} height={14} rx={2} fill="#2a5ad8" stroke={O} strokeWidth={3} /> : <rect x={-8} y={-84} width={16} height={5} fill="#e8f4fa" stroke={O} strokeWidth={2} />}
       </g>
     );
-  // B9 P3-6: özgün, stilize 200'lük (kırmızı; gerçek banknotun kopyası değil: geometrik gül motifi + rakam)
+  // B9 P3-6: özgün, stilize 200'lük (yeşil; gerçek banknotun kopyası değil: geometrik gül motifi + rakam)
   if (n === "para200" || n === "paraTek" || n === "paraYelpaze")
     return (
       <g transform={tr}>
         {(n === "paraTek" ? [0] : n === "para200" ? [-1, 0, 1, 2] : [-3, -2, -1, 0, 1, 2]).map((i) => (
           <g key={i} transform={`rotate(${n === "paraYelpaze" ? i * 13 : i * 3}) translate(${n === "paraYelpaze" ? 0 : i * 2} ${n === "paraYelpaze" ? 0 : -i * 3})`}>
             <g transform="translate(0 -38)">
-              <rect x={-30} y={-46} width={60} height={92} rx={4} fill={i % 2 ? "#c42a3a" : "#d23a46"} stroke={O} strokeWidth={3} />
-              <rect x={-24} y={-40} width={48} height={80} rx={2} fill="none" stroke="#f0a0a0" strokeWidth={2} opacity={0.8} />
-              <circle cx={0} cy={4} r={13} fill="none" stroke="#f6c0b8" strokeWidth={2.5} />
-              <path d="M 0 -9 L 4 0 L 13 4 L 4 8 L 0 17 L -4 8 L -13 4 L -4 0 Z" fill="#f6c0b8" opacity={0.85} />
-              <text x={0} y={-24} textAnchor="middle" fontSize={15} fontWeight={900} fontFamily="Arial, sans-serif" fill="#fde8e0">200</text>
+              <rect x={-30} y={-46} width={60} height={92} rx={4} fill={i % 2 ? "#2f7f4c" : "#3a9058"} stroke={O} strokeWidth={3} />
+              <rect x={-24} y={-40} width={48} height={80} rx={2} fill="none" stroke="#a8e0b8" strokeWidth={2} opacity={0.8} />
+              <circle cx={0} cy={4} r={13} fill="none" stroke="#cdeed6" strokeWidth={2.5} />
+              <path d="M 0 -9 L 4 0 L 13 4 L 4 8 L 0 17 L -4 8 L -13 4 L -4 0 Z" fill="#cdeed6" opacity={0.85} />
+              <text x={0} y={-24} textAnchor="middle" fontSize={15} fontWeight={900} fontFamily="Arial, sans-serif" fill="#effff4">200</text>
             </g>
           </g>
         ))}

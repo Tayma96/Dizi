@@ -1113,11 +1113,11 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         );
       })() : null}
       {pose.agizPara && pose.agizPara > 0.01 ? (
-        // B9: ağız kenarından sarkan kırmızı banknot ucu (çiğnendikçe içeri çekilir)
+        // B9: ağız kenarından sarkan yeşil banknot ucu (çiğnendikçe içeri çekilir)
         <g transform={`translate(${214 + dx * 1.1} ${280}) rotate(${18 + 10 * Math.sin((pose.cigne ?? 0) * 13)})`} opacity={Math.min(1, pose.agizPara * 3)}>
-          <path d={`M 0 -6 L ${30 * pose.agizPara} -10 L ${34 * pose.agizPara} 8 L ${4} 10 Z`} fill="#c8283a" stroke={OUT} strokeWidth={2.5} />
-          <path d={`M 6 -2 L ${28 * pose.agizPara} -4`} stroke="#f2b0a0" strokeWidth={1.5} opacity={0.8} />
-          <text x={9} y={6} fontSize={8} fontWeight={900} fontFamily="Arial, sans-serif" fill="#f8d8c8">200</text>
+          <path d={`M 0 -6 L ${30 * pose.agizPara} -10 L ${34 * pose.agizPara} 8 L ${4} 10 Z`} fill="#3a9058" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M 6 -2 L ${28 * pose.agizPara} -4`} stroke="#a8e0b8" strokeWidth={1.5} opacity={0.8} />
+          <text x={9} y={6} fontSize={8} fontWeight={900} fontFamily="Arial, sans-serif" fill="#effff4">200</text>
         </g>
       ) : null}
       {pose.sirit && pose.sirit > 0.01 ? (
