@@ -77,6 +77,8 @@ EMO = {
     "aci": ("[groggy, in pain]", dict(stability=0.35, style=0.5)),
     # ani panik, acele
     "panik": ("[panicked, urgent]", dict(stability=0.3, style=0.6)),
+    # B9: rica kılığında emir; sorgulayan, otoriter haber spikeri tonu
+    "emir_rica": ("[firm, authoritative, interrogating; a command disguised as a polite request]", dict(stability=0.4, style=0.6)),
 }
 EMO_FALLBACK = {"panik": "korkmus", "saskin": "korkmus", "sok": "korkmus", "gulen": "mutlu", "kararli": "soguk", "supheli": "soguk", "yorgun": "sakin", "dusunceli": "sakin", "utangac": "sakin", "igrenmis": "ofkeli"}
 
