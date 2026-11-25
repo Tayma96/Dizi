@@ -160,7 +160,8 @@ export type BeatCommon = {
   /** karakter durum değişiklikleri (kalıcıdır, sonraki vuruşlara taşınır) */
   cast?: Record<string, CharState>;
   /** kirp: dosyanın başından atlanacak sn; sure: çalınacak en uzun sn */
-  sfx?: { name: string; at?: number; volume?: number; kirp?: number; sure?: number }[];
+  /** zarf: [[sn (sesin başından), kazanç 0..1]] doğrusal ses zarfı (müzik yükselişi/kısılması; B9 P2) */
+  sfx?: { name: string; at?: number; volume?: number; kirp?: number; sure?: number; zarf?: [number, number][] }[];
   lightning?: boolean;
   /** aralik: kapı birkaç santim aralanır */
   door?: "ac" | "kapat" | "aralik" | "acik";
@@ -210,7 +211,8 @@ export type Scene = {
   time?: TimeOfDay;
   rain?: boolean;
   title?: string;
-  ambience?: { name: string; volume?: number };
+  /** zarf: [[sahne sn, kazanç]] ortamı sahne içinde kısıp açma (B9 P2) */
+  ambience?: { name: string; volume?: number; zarf?: [number, number][] };
   /** ikinci ortam katmanı (ör. kalabalık uğultusu) */
   ambience2?: { name: string; volume?: number };
   music?: { name: string; volume?: number; from?: number; /** false: replik sırasında kısılmaz (tam miks parçaları için) */ duck?: boolean };

@@ -1063,7 +1063,7 @@
   "text": "Bu arada aranan aslan da yanımda. O da kapıyı açmanızı rica ediyor.",
   "duration": 4.754,
   "asrScore": 1.0,
-  "heard": "Bu arada aranan aslan da yanımda, o da kapıyı açmanızı rica ediyor.",
+  "heard": "Bu arada aranan Aslan'da yanımda o da kapıyı açmanızı rica ediyor.",
   "words": [
    {
     "w": "Bu",
@@ -2731,7 +2731,7 @@
   "text": "Bu arada aranan aslan da yanımda. O da kapıyı açmanızı rica ediyor.",
   "duration": 4.754,
   "asrScore": 1.0,
-  "heard": "Bu arada aranan aslan da yanımda, o da kapıyı açmanızı rica ediyor.",
+  "heard": "Bu arada aranan Aslan'da yanımda o da kapıyı açmanızı rica ediyor.",
   "words": [
    {
     "w": "Bu",
@@ -3267,5 +3267,491 @@
   "model": "eleven_v4",
   "hesap": "proxy",
   "kredi": 27
+ },
+ "E4c_01": {
+  "key": "f788fcc88131",
+  "file": "voice/724-09-p2/E4c_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "kufur",
+  "text": "He amına koyim, bi bu eksikti! Barkodu okutulmamış twerkçü!",
+  "duration": 4.519,
+  "asrScore": 0.828,
+  "heard": "Ya anlına koyayım bir bu eksikti. Barko'da okutulmamış. Türkçü!",
+  "words": [
+   {
+    "w": "He",
+    "start": 0.153,
+    "end": 0.313
+   },
+   {
+    "w": "amına",
+    "start": 0.393,
+    "end": 0.793
+   },
+   {
+    "w": "koyim,",
+    "start": 0.833,
+    "end": 1.153
+   },
+   {
+    "w": "bi",
+    "start": 1.193,
+    "end": 1.233
+   },
+   {
+    "w": "bu",
+    "start": 1.273,
+    "end": 1.433
+   },
+   {
+    "w": "eksikti!",
+    "start": 1.553,
+    "end": 2.273
+   },
+   {
+    "w": "Barkodu",
+    "start": 2.313,
+    "end": 2.713
+   },
+   {
+    "w": "okutulmamış",
+    "start": 2.793,
+    "end": 3.713
+   },
+   {
+    "w": "twerkçü!",
+    "start": 3.753,
+    "end": 4.553
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.153,
+    "v": "L"
+   },
+   {
+    "t": 0.233,
+    "v": "E"
+   },
+   {
+    "t": 0.313,
+    "v": "X"
+   },
+   {
+    "t": 0.393,
+    "v": "A"
+   },
+   {
+    "t": 0.473,
+    "v": "M"
+   },
+   {
+    "t": 0.553,
+    "v": "I"
+   },
+   {
+    "t": 0.633,
+    "v": "L"
+   },
+   {
+    "t": 0.713,
+    "v": "A"
+   },
+   {
+    "t": 0.833,
+    "v": "L"
+   },
+   {
+    "t": 0.873,
+    "v": "O"
+   },
+   {
+    "t": 0.913,
+    "v": "I"
+   },
+   {
+    "t": 1.033,
+    "v": "M"
+   },
+   {
+    "t": 1.213,
+    "v": "I"
+   },
+   {
+    "t": 1.273,
+    "v": "M"
+   },
+   {
+    "t": 1.353,
+    "v": "U"
+   },
+   {
+    "t": 1.433,
+    "v": "X"
+   },
+   {
+    "t": 1.553,
+    "v": "E"
+   },
+   {
+    "t": 1.593,
+    "v": "L"
+   },
+   {
+    "t": 1.673,
+    "v": "I"
+   },
+   {
+    "t": 1.753,
+    "v": "L"
+   },
+   {
+    "t": 2.033,
+    "v": "I"
+   },
+   {
+    "t": 2.313,
+    "v": "M"
+   },
+   {
+    "t": 2.433,
+    "v": "A"
+   },
+   {
+    "t": 2.473,
+    "v": "L"
+   },
+   {
+    "t": 2.553,
+    "v": "O"
+   },
+   {
+    "t": 2.606,
+    "v": "L"
+   },
+   {
+    "t": 2.66,
+    "v": "U"
+   },
+   {
+    "t": 2.793,
+    "v": "O"
+   },
+   {
+    "t": 2.833,
+    "v": "L"
+   },
+   {
+    "t": 2.873,
+    "v": "U"
+   },
+   {
+    "t": 2.913,
+    "v": "L"
+   },
+   {
+    "t": 2.953,
+    "v": "U"
+   },
+   {
+    "t": 2.993,
+    "v": "L"
+   },
+   {
+    "t": 3.033,
+    "v": "M"
+   },
+   {
+    "t": 3.113,
+    "v": "A"
+   },
+   {
+    "t": 3.153,
+    "v": "M"
+   },
+   {
+    "t": 3.193,
+    "v": "I"
+   },
+   {
+    "t": 3.433,
+    "v": "L"
+   },
+   {
+    "t": 3.833,
+    "v": "O"
+   },
+   {
+    "t": 3.913,
+    "v": "L"
+   },
+   {
+    "t": 4.153,
+    "v": "U"
+   },
+   {
+    "t": 4.233,
+    "v": "X"
+   },
+   {
+    "t": 4.553,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 48
+ },
+ "E4d_01": {
+  "key": "1f15de464456",
+  "file": "voice/724-09-p2/E4d_01.mp3",
+  "voice": "elevenlabs:Nazlı Yeni",
+  "emotion": "bagiriyor",
+  "text": "He amına koyim, bi bu eksikti! Barkodu okutulmamış twerkçü!",
+  "duration": 4.362,
+  "asrScore": 0.898,
+  "heard": "He amına koyayım bir bu eksikti! Barko'da okutulmamış Türkçü!",
+  "words": [
+   {
+    "w": "He",
+    "start": 0.08,
+    "end": 0.16
+   },
+   {
+    "w": "amına",
+    "start": 0.24,
+    "end": 0.64
+   },
+   {
+    "w": "koyim,",
+    "start": 0.68,
+    "end": 1.04
+   },
+   {
+    "w": "bi",
+    "start": 1.12,
+    "end": 1.16
+   },
+   {
+    "w": "bu",
+    "start": 1.2,
+    "end": 1.36
+   },
+   {
+    "w": "eksikti!",
+    "start": 1.48,
+    "end": 2.24
+   },
+   {
+    "w": "Barkodu",
+    "start": 2.28,
+    "end": 2.72
+   },
+   {
+    "w": "okutulmamış",
+    "start": 2.76,
+    "end": 3.36
+   },
+   {
+    "w": "twerkçü!",
+    "start": 3.44,
+    "end": 4.32
+   }
+  ],
+  "mouth": [
+   {
+    "t": 0.08,
+    "v": "L"
+   },
+   {
+    "t": 0.12,
+    "v": "E"
+   },
+   {
+    "t": 0.24,
+    "v": "A"
+   },
+   {
+    "t": 0.32,
+    "v": "M"
+   },
+   {
+    "t": 0.4,
+    "v": "I"
+   },
+   {
+    "t": 0.48,
+    "v": "L"
+   },
+   {
+    "t": 0.56,
+    "v": "A"
+   },
+   {
+    "t": 0.68,
+    "v": "L"
+   },
+   {
+    "t": 0.72,
+    "v": "O"
+   },
+   {
+    "t": 0.8,
+    "v": "I"
+   },
+   {
+    "t": 0.92,
+    "v": "M"
+   },
+   {
+    "t": 0.96,
+    "v": "X"
+   },
+   {
+    "t": 1.12,
+    "v": "M"
+   },
+   {
+    "t": 1.14,
+    "v": "I"
+   },
+   {
+    "t": 1.2,
+    "v": "M"
+   },
+   {
+    "t": 1.28,
+    "v": "U"
+   },
+   {
+    "t": 1.36,
+    "v": "X"
+   },
+   {
+    "t": 1.48,
+    "v": "E"
+   },
+   {
+    "t": 1.52,
+    "v": "L"
+   },
+   {
+    "t": 1.6,
+    "v": "I"
+   },
+   {
+    "t": 1.68,
+    "v": "L"
+   },
+   {
+    "t": 1.84,
+    "v": "I"
+   },
+   {
+    "t": 1.92,
+    "v": "X"
+   },
+   {
+    "t": 2.28,
+    "v": "M"
+   },
+   {
+    "t": 2.32,
+    "v": "A"
+   },
+   {
+    "t": 2.4,
+    "v": "L"
+   },
+   {
+    "t": 2.56,
+    "v": "O"
+   },
+   {
+    "t": 2.613,
+    "v": "L"
+   },
+   {
+    "t": 2.667,
+    "v": "U"
+   },
+   {
+    "t": 2.76,
+    "v": "O"
+   },
+   {
+    "t": 2.78,
+    "v": "L"
+   },
+   {
+    "t": 2.8,
+    "v": "U"
+   },
+   {
+    "t": 2.88,
+    "v": "L"
+   },
+   {
+    "t": 2.96,
+    "v": "U"
+   },
+   {
+    "t": 3.0,
+    "v": "L"
+   },
+   {
+    "t": 3.04,
+    "v": "M"
+   },
+   {
+    "t": 3.12,
+    "v": "A"
+   },
+   {
+    "t": 3.16,
+    "v": "M"
+   },
+   {
+    "t": 3.2,
+    "v": "I"
+   },
+   {
+    "t": 3.28,
+    "v": "L"
+   },
+   {
+    "t": 3.36,
+    "v": "X"
+   },
+   {
+    "t": 3.44,
+    "v": "L"
+   },
+   {
+    "t": 3.52,
+    "v": "O"
+   },
+   {
+    "t": 3.64,
+    "v": "L"
+   },
+   {
+    "t": 3.88,
+    "v": "U"
+   },
+   {
+    "t": 4.0,
+    "v": "X"
+   },
+   {
+    "t": 4.32,
+    "v": "X"
+   }
+  ],
+  "kaynak": "elevenlabs",
+  "model": "eleven_v4",
+  "hesap": "proxy",
+  "kredi": 28
  }
 }

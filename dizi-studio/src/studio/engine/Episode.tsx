@@ -667,14 +667,16 @@ const MusicTrack: React.FC<{ src: string; base: number; dur: number; speaking: [
   return <Audio src={staticFile(src)} loop trimBefore={Math.round(startSec * fps)} volume={base * fadeIn * fadeOut * (1 - 0.55 * d)} />;
 };
 
-const AmbTrack: React.FC<{ src: string; base: number; dur: number; fadeIn?: boolean; fadeOut?: boolean; speaking?: [number, number][]; offset?: number }> = ({ src, base, dur, fadeIn = true, fadeOut = true, speaking = [], offset = 0 }) => {
+const AmbTrack: React.FC<{ src: string; base: number; dur: number; fadeIn?: boolean; fadeOut?: boolean; speaking?: [number, number][]; offset?: number; zarf?: [number, number][] }> = ({ src, base, dur, fadeIn = true, fadeOut = true, speaking = [], offset = 0, zarf }) => {
   const f = useCurrentFrame();
   // replik sırasında ortam sesi geri çekilir (diyalog her zaman önde)
   const d = ducked(f + offset, speaking, 10);
   // aynı ortam bir sonraki sahnede sürüyorsa kesmede "delik" açılmasın diye sönme yapılmaz
   const a = fadeIn ? interpolate(f, [0, 10], [0, 1], clamp) : 1;
   const b = fadeOut ? interpolate(f, [dur - 10, dur], [1, 0], clamp) : 1;
-  return <Audio src={staticFile(src)} loop volume={base * a * b * (1 - 0.6 * d)} />;
+  const { fps } = useVideoConfig();
+  const z = zarf && zarf.length > 1 ? interpolate(f / fps, zarf.map((k) => k[0]), zarf.map((k) => k[1]), clamp) : 1;
+  return <Audio src={staticFile(src)} loop volume={base * a * b * z * (1 - 0.6 * d)} />;
 };
 
 /* ------------------------------ episode ------------------------------ */
@@ -706,7 +708,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
         {tl.scenes.map((ts, si) => (
           <Sequence key={ts.scene.id} name={`${ts.scene.id} · ${ts.scene.title ?? ts.scene.set}`} from={ts.from} durationInFrames={ts.dur}>
             <SceneView ts={ts} colors={colors} />
-            {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} fadeIn={tl.scenes[si - 1]?.scene.ambience?.name !== ts.scene.ambience.name} fadeOut={tl.scenes[si + 1]?.scene.ambience?.name !== ts.scene.ambience.name} speaking={allSpeaking} offset={ts.from} /> : null}
+            {ts.scene.ambience ? <AmbTrack src={`ses/${ts.scene.ambience.name}.mp3`} base={ts.scene.ambience.volume ?? 0.25} dur={ts.dur} fadeIn={tl.scenes[si - 1]?.scene.ambience?.name !== ts.scene.ambience.name} fadeOut={tl.scenes[si + 1]?.scene.ambience?.name !== ts.scene.ambience.name} speaking={allSpeaking} offset={ts.from} zarf={ts.scene.ambience.zarf} /> : null}
             {ts.scene.ambience2 ? <AmbTrack src={`ses/${ts.scene.ambience2.name}.mp3`} base={ts.scene.ambience2.volume ?? 0.1} dur={ts.dur} speaking={allSpeaking} offset={ts.from} /> : null}
             {ts.scene.transition === "whoosh" ? <Audio src={staticFile("ses/efekt/whoosh.mp3")} volume={0.6} /> : null}
             {ts.beats.map((b) => (
@@ -718,7 +720,7 @@ export const Episode: React.FC<EpisodeProps> = ({ script, manifest, part = 0 }) 
                 ) : null}
                 {(b.beat.sfx ?? []).map((s, i) => (
                   <Sequence key={i} from={Math.round((s.at ?? 0) * fps)} layout="none">
-                    <Audio src={staticFile(`ses/${s.name}.mp3`)} volume={s.volume ?? 0.7} trimBefore={s.kirp ? Math.round(s.kirp * fps) : undefined} trimAfter={s.sure ? Math.round(((s.kirp ?? 0) + s.sure) * fps) : undefined} />
+                    <Audio src={staticFile(`ses/${s.name}.mp3`)} volume={s.zarf && s.zarf.length > 1 ? (fr: number) => (s.volume ?? 0.7) * interpolate(fr / fps, s.zarf!.map((z) => z[0]), s.zarf!.map((z) => z[1]), clamp) : s.volume ?? 0.7} trimBefore={s.kirp ? Math.round(s.kirp * fps) : undefined} trimAfter={s.sure ? Math.round(((s.kirp ?? 0) + s.sure) * fps) : undefined} />
                   </Sequence>
                 ))}
                 {b.beat.lightning ? <Audio src={staticFile("ses/efekt/gok_gurultusu.mp3")} volume={0.55} /> : null}
