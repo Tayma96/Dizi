@@ -407,7 +407,7 @@ const Sac: React.FC<{ v: number }> = ({ v }) => {
  * Tezgâhın arkasındaki dar koridor (x -0.9..0.9, z 0..6); sol duvarda depo kapısı (z 3.0..3.9, açık).
  * Depo odası (x -5.5..-0.9, z 1..6): metal raflar, koliler, eski radyo, sallanan çıplak ampul.
  * Yaratık depo ortasında, SIRTI kapıya dönük, dizlerine abanmış twerk atıyor (twerk 0..1 şiddet). */
-const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean }> = ({ c, t, f, twerk, radyo, y, kacis }) => {
+const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: number; y: Prm; kacis?: boolean; ara?: React.ReactNode }> = ({ c, t, f, twerk, radyo, y, kacis, ara }) => {
   const el: React.ReactNode[] = [];
   const q = (pts: V3[], renk: string, key: string, op = 1) => {
     const p = poly(c, pts);
@@ -484,31 +484,114 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
       if (pp) mk.push(<path key={key} d={pp.d} fill={renk} opacity={op} />);
     };
     const mz0 = -1, mz1 = -9.5, mx = 4.2, mh = 3.0;
+    const yazi = (x: number, yy: number, z: number, boy: number, metin: string, renk: string, key: string, kalin = 900) => {
+      const g = toCam(c, [x, yy, z]);
+      if (g[2] < NEAR + 0.2) return;
+      const [gx, gy] = proj(g);
+      const sz = (F * boy) / g[2];
+      if (sz < 2.5) return;
+      mk.push(<text key={key} x={gx} y={gy + sz * 0.36} textAnchor="middle" fontFamily="Arial, sans-serif" fontWeight={kalin} fontSize={sz} fill={renk}>{metin}</text>);
+    };
+    // tavan (karo ızgarası), arka duvar, yan duvarlar, zemin (karolar)
     m([[-mx, mh, mz0], [mx, mh, mz0], [mx, mh, mz1], [-mx, mh, mz1]], "#c4c9c0", "mc");
-    m([[-mx, 0, mz1], [mx, 0, mz1], [mx, mh, mz1], [-mx, mh, mz1]], "#bcc4ba", "mb");
-    m([[-mx, 0, mz0], [-mx, 0, mz1], [-mx, mh, mz1], [-mx, mh, mz0]], "#d8ddd2", "mwl");
-    m([[mx, 0, mz0], [mx, 0, mz1], [mx, mh, mz1], [mx, mh, mz0]], "#d8ddd2", "mwr");
-    m([[-mx, 0, mz0], [mx, 0, mz0], [mx, 0, mz1], [-mx, 0, mz1]], "#d9dccf", "mf");
-    for (let z = mz0; z > mz1; z -= 0.6) m([[-mx, 0.001, z], [mx, 0.001, z], [mx, 0.001, z - 0.025], [-mx, 0.001, z - 0.025]], "#b9bdb0", `mfz${z}`);
-    for (let x = -mx; x <= mx; x += 0.6) m([[x, 0.001, mz0], [x + 0.025, 0.001, mz0], [x + 0.025, 0.001, mz1], [x, 0.001, mz1]], "#b9bdb0", `mfx${x}`);
-    // floresan şeritler
-    for (const fx of [-1.6, 1.6]) for (let z = -2; z > -9; z -= 2.2) m([[fx - 0.12, mh - 0.01, z], [fx + 0.12, mh - 0.01, z], [fx + 0.12, mh - 0.01, z - 1.4], [fx - 0.12, mh - 0.01, z - 1.4]], "#fbfff2", `fl${fx}${z}`);
-    // reyonlar (iki sıra): uzaktan yakına; koridora bakan yüz + baş tarafı + raf katları ve ürünler
-    const RENK = ["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#f2f0e6", "#7a4ad0", "#e85a1a"];
+    for (let z = mz0; z > mz1; z -= 0.6) m([[-mx, mh - 0.002, z], [mx, mh - 0.002, z], [mx, mh - 0.002, z - 0.015], [-mx, mh - 0.002, z - 0.015]], "#a8ada4", `mcz${z}`);
+    for (let x = -mx; x <= mx; x += 0.6) m([[x, mh - 0.002, mz0], [x + 0.015, mh - 0.002, mz0], [x + 0.015, mh - 0.002, mz1], [x, mh - 0.002, mz1]], "#a8ada4", `mcx${x}`);
+    m([[-mx, 0, mz1], [mx, 0, mz1], [mx, mh, mz1], [-mx, mh, mz1]], "#9aa8a0", "mb");
+    m([[-mx, 0, mz0], [-mx, 0, mz1], [-mx, mh, mz1], [-mx, mh, mz0]], "#b4bcb2", "mwl");
+    m([[mx, 0, mz0], [mx, 0, mz1], [mx, mh, mz1], [mx, mh, mz0]], "#b4bcb2", "mwr");
+    m([[-mx, 0, mz0], [mx, 0, mz0], [mx, 0, mz1], [-mx, 0, mz1]], "#cdd1c4", "mf");
+    for (let z = mz0; z > mz1; z -= 0.6) m([[-mx, 0.001, z], [mx, 0.001, z], [mx, 0.001, z - 0.02], [-mx, 0.001, z - 0.02]], "#aeb2a5", `mfz${z}`);
+    for (let x = -mx; x <= mx; x += 0.6) m([[x, 0.001, mz0], [x + 0.02, 0.001, mz0], [x + 0.02, 0.001, mz1], [x, 0.001, mz1]], "#aeb2a5", `mfx${x}`);
+    // arka duvar: camlı içecek dolapları (soğuk iç ışık, raflarda şişeler), üstte "SOĞUK İÇECEK" bandı
+    m([[-3.6, 2.2, mz1 + 0.02], [3.6, 2.2, mz1 + 0.02], [3.6, 2.55, mz1 + 0.02], [-3.6, 2.55, mz1 + 0.02]], "#1f5fae", "dbn");
+    yazi(0, 2.375, mz1 + 0.03, 0.2, "SOĞUK İÇECEK", "#eaf4ff", "dbt");
+    for (let i = 0; i < 6; i++) {
+      const x0 = -3.6 + i * 1.2, zz = mz1 + 0.03;
+      m([[x0, 0.05, zz], [x0 + 1.2, 0.05, zz], [x0 + 1.2, 2.18, zz], [x0, 2.18, zz]], "#5a6066", `dk${i}`);
+      m([[x0 + 0.06, 0.12, zz + 0.001], [x0 + 1.14, 0.12, zz + 0.001], [x0 + 1.14, 2.1, zz + 0.001], [x0 + 0.06, 2.1, zz + 0.001]], "#d6eef8", `dc${i}`);
+      for (let r = 0; r < 4; r++) {
+        const yy = 0.2 + r * 0.48;
+        m([[x0 + 0.06, yy, zz + 0.002], [x0 + 1.14, yy, zz + 0.002], [x0 + 1.14, yy + 0.02, zz + 0.002], [x0 + 0.06, yy + 0.02, zz + 0.002]], "#8a98a0", `dr${i}${r}`);
+        for (let j = 0; j < 9; j++) {
+          const bx = x0 + 0.1 + j * 0.115, bh = 0.24 + 0.08 * random(`db${i}${r}${j}`);
+          const rk = ["#c8281e", "#2a8a3a", "#f2a020", "#3a5ac8", "#7a2a8a", "#e8e0d0"][(i + r * 2 + j) % 6];
+          m([[bx, yy + 0.02, zz + 0.003], [bx + 0.08, yy + 0.02, zz + 0.003], [bx + 0.08, yy + bh * 0.72, zz + 0.003], [bx + 0.055, yy + bh, zz + 0.003], [bx + 0.025, yy + bh, zz + 0.003], [bx, yy + bh * 0.72, zz + 0.003]], rk, `ds${i}${r}${j}`);
+        }
+      }
+      m([[x0 + 1.05, 0.9, zz + 0.004], [x0 + 1.09, 0.9, zz + 0.004], [x0 + 1.09, 1.45, zz + 0.004], [x0 + 1.05, 1.45, zz + 0.004]], "#c8ccd0", `dh${i}`);
+      m([[x0 + 0.12, 0.3, zz + 0.005], [x0 + 0.28, 0.3, zz + 0.005], [x0 + 0.6, 2.0, zz + 0.005], [x0 + 0.44, 2.0, zz + 0.005]], "#ffffff", `dy${i}`, 0.22);
+    }
+    // köşede güvenlik aynası + tavanda kamera kubbesi
+    { const g = toCam(c, [-3.5, 2.5, mz1 + 0.3]); if (g[2] > NEAR) { const [gx, gy] = proj(g); const r = (F * 0.3) / g[2]; mk.push(<g key="ayna"><circle cx={gx} cy={gy} r={r} fill="#9ab0bc" stroke="#2a2e32" strokeWidth={r * 0.12} /><ellipse cx={gx - r * 0.3} cy={gy - r * 0.3} rx={r * 0.35} ry={r * 0.2} fill="#fff" opacity={0.5} /></g>); } }
+    { const g = toCam(c, [0.6, mh - 0.05, -5.2]); if (g[2] > NEAR) { const [gx, gy] = proj(g); const r = (F * 0.09) / g[2]; mk.push(<g key="kam"><path d={`M ${gx - r} ${gy} A ${r} ${r} 0 0 0 ${gx + r} ${gy} Z`} fill="#1a1c20" /><circle cx={gx + r * 0.2} cy={gy + r * 0.4} r={r * 0.15} fill="#ff3020" /></g>); } }
+    // floresan şeritler + zemindeki yansımaları
+    for (const fx of [-1.6, 1.6]) for (let z = -2; z > -9; z -= 2.2) {
+      m([[fx - 0.14, mh - 0.01, z], [fx + 0.14, mh - 0.01, z], [fx + 0.14, mh - 0.01, z - 1.4], [fx - 0.14, mh - 0.01, z - 1.4]], "#8a908a", `flk${fx}${z}`);
+      m([[fx - 0.1, mh - 0.012, z - 0.04], [fx + 0.1, mh - 0.012, z - 0.04], [fx + 0.1, mh - 0.012, z - 1.36], [fx - 0.1, mh - 0.012, z - 1.36]], "#f6fbf0", `fl${fx}${z}`);
+      m([[fx * 0.55 - 0.1, 0.002, z + 0.3], [fx * 0.55 + 0.1, 0.002, z + 0.3], [fx * 0.55 + 0.16, 0.002, z - 1.6], [fx * 0.55 - 0.16, 0.002, z - 1.6]], "#ffffff", `fy${fx}${z}`, 0.18);
+    }
+    // reyonlar: ürün biçimleri (şişe, kutu, teneke, paket), etiket bantları, raf önü fiyat şeritleri
+    const RENK = ["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#f2f0e6", "#7a4ad0", "#e85a1a", "#1a8a8a", "#8a5a2a"];
+    const REYON: [string, string][] = [["ATIŞTIRMALIK", "#d8402e"], ["TEMİZLİK", "#2f6fd0"]];
     for (const sd of [-1, 1]) {
-      const xi = sd * 1.35, xo = sd * 2.0, za = -2.2, zb = -8.2, rh = 1.85;
-      m([[xi, 0, za], [xi, 0, zb], [xi, rh, zb], [xi, rh, za]], "#8a9096", `ry${sd}`);
+      const xi = sd * 1.35, xo = sd * 2.0, za = -2.2, zb = -8.2, rh = 1.85, ic = -sd * 0.02;
+      m([[xi, 0, za], [xi, 0, zb], [xi, rh, zb], [xi, rh, za]], "#7e848a", `ry${sd}`);
+      m([[xi + ic * 0.5, 0, za], [xi + ic * 0.5, 0, zb], [xi + ic * 0.5, 0.11, zb], [xi + ic * 0.5, 0.11, za]], "#4a5056", `rtb${sd}`);
       for (let k = 0; k < 4; k++) {
         const yy = 0.12 + k * 0.45;
-        m([[xi, yy, za], [xi, yy, zb], [xi + sd * -0.06, yy + 0.03, zb], [xi + sd * -0.06, yy + 0.03, za]], "#c8ccd0", `rr${sd}${k}`);
-        for (let i = 0; i < 14; i++) {
-          const z0 = za - 0.1 - i * 0.43, w = 0.3 + 0.08 * random(`mw${sd}${k}${i}`), h = 0.22 + 0.14 * random(`mh${sd}${k}${i}`);
-          m([[xi + sd * -0.02, yy + 0.03, z0], [xi + sd * -0.02, yy + 0.03, z0 - w], [xi + sd * -0.02, yy + 0.03 + h, z0 - w], [xi + sd * -0.02, yy + 0.03 + h, z0]], RENK[(i * 3 + k * 5 + (sd > 0 ? 1 : 0)) % RENK.length], `mp${sd}${k}${i}`);
+        for (let i = 0; i < 18; i++) {
+          const n = random(`mp${sd}${k}${i}`), tur = Math.floor(n * 4);
+          const z0 = za - 0.08 - i * 0.33, w = 0.26 + 0.05 * random(`mw${sd}${k}${i}`);
+          const rk = RENK[(i * 3 + k * 7 + (sd > 0 ? 4 : 0)) % RENK.length];
+          const X = xi + ic, b0 = yy + 0.03;
+          const P = (zz: number, hh: number): V3 => [X, b0 + hh, zz];
+          let sek: V3[];
+          if (tur === 0) { // şişe
+            const h = 0.34;
+            sek = [P(z0, 0), P(z0 - w * 0.7, 0), P(z0 - w * 0.7, h * 0.62), P(z0 - w * 0.45, h * 0.8), P(z0 - w * 0.45, h), P(z0 - w * 0.25, h), P(z0 - w * 0.25, h * 0.8), P(z0, h * 0.62)];
+          } else if (tur === 1) { // teneke (kısa, ikili sıra)
+            const h = 0.16;
+            sek = [P(z0, 0), P(z0 - w, 0), P(z0 - w, h), P(z0, h)];
+            m([P(z0 - w * 0.05, h + 0.005), P(z0 - w * 0.95, h + 0.005), P(z0 - w * 0.95, h * 2), P(z0 - w * 0.05, h * 2)], rk, `mt2${sd}${k}${i}`);
+          } else if (tur === 2) { // kutu
+            const h = 0.3 + 0.06 * random(`mh${sd}${k}${i}`);
+            sek = [P(z0, 0), P(z0 - w, 0), P(z0 - w, h), P(z0, h)];
+          } else { // paket (cips): şişkin, tırtıklı üst
+            const h = 0.3;
+            sek = [P(z0 - 0.01, 0), P(z0 - w + 0.01, 0), P(z0 - w, h * 0.5), P(z0 - w + 0.01, h * 0.92), P(z0 - w * 0.75, h), P(z0 - w * 0.5, h * 0.93), P(z0 - w * 0.25, h), P(z0 - 0.01, h * 0.92), P(z0, h * 0.5)];
+          }
+          m(sek, rk, `mp${sd}${k}${i}`);
+          // etiket bandı + parlama
+          const eh = tur === 0 ? [0.1, 0.2] : tur === 1 ? [0.05, 0.11] : [0.1, 0.19];
+          const ew = tur === 0 ? 0.7 : 1;
+          m([P(z0 - w * 0.08, eh[0]), P(z0 - w * ew + w * 0.08, eh[0]), P(z0 - w * ew + w * 0.08, eh[1]), P(z0 - w * 0.08, eh[1])], tur === 3 ? "#ffe060" : "#f4f0e4", `me${sd}${k}${i}`, 0.9);
+          m([P(z0 - w * 0.12, 0.02), P(z0 - w * 0.2, 0.02), P(z0 - w * 0.2, 0.26), P(z0 - w * 0.12, 0.26)], "#ffffff", `mg${sd}${k}${i}`, tur === 0 ? 0.35 : 0);
+        }
+        // raf tablası + fiyat şeridi + etiketler
+        m([[xi, yy, za], [xi, yy, zb], [xi + ic * 3, yy + 0.03, zb], [xi + ic * 3, yy + 0.03, za]], "#c8ccd0", `rr${sd}${k}`);
+        m([[xi + ic * 3, yy - 0.03, za], [xi + ic * 3, yy - 0.03, zb], [xi + ic * 3, yy + 0.03, zb], [xi + ic * 3, yy + 0.03, za]], "#e8eaec", `rf${sd}${k}`);
+        for (let i = 0; i < 9; i++) {
+          const zz = za - 0.2 - i * 0.66;
+          m([[xi + ic * 3.2, yy - 0.025, zz], [xi + ic * 3.2, yy - 0.025, zz - 0.12], [xi + ic * 3.2, yy + 0.025, zz - 0.12], [xi + ic * 3.2, yy + 0.025, zz]], i % 4 === 1 ? "#e8281e" : "#ffd820", `pt${sd}${k}${i}`);
         }
       }
       m([[xi, rh, za], [xo, rh, za], [xo, rh, zb], [xi, rh, zb]], "#6e747a", `rt${sd}`);
+      // reyon başı: indirim standı (karton piramit + kırmızı afiş)
       m([[xi, 0, za], [xo, 0, za], [xo, rh, za], [xi, rh, za]], "#9aa0a6", `re${sd}`);
-      m([[xi + sd * 0.05, 1.2, za + 0.01], [xo - sd * 0.05, 1.2, za + 0.01], [xo - sd * 0.05, 1.55, za + 0.01], [xi + sd * 0.05, 1.55, za + 0.01]], sd < 0 ? "#e8a628" : "#2f6fd0", `rs${sd}`);
+      for (let r = 0; r < 3; r++) for (let j = 0; j < 3 - r; j++) {
+        const x0 = xi + sd * (0.06 + j * 0.2 + r * 0.1), y0 = r * 0.2;
+        m([[x0, y0, za + 0.3], [x0 + sd * 0.19, y0, za + 0.3], [x0 + sd * 0.19, y0 + 0.19, za + 0.3], [x0, y0 + 0.19, za + 0.3]], RENK[(r * 3 + j + (sd > 0 ? 2 : 0)) % RENK.length], `pk${sd}${r}${j}`);
+        m([[x0 + sd * 0.04, y0 + 0.07, za + 0.301], [x0 + sd * 0.15, y0 + 0.07, za + 0.301], [x0 + sd * 0.15, y0 + 0.12, za + 0.301], [x0 + sd * 0.04, y0 + 0.12, za + 0.301]], "#f4f0e4", `pke${sd}${r}${j}`);
+      }
+      m([[xi + sd * 0.05, 1.15, za + 0.01], [xo - sd * 0.05, 1.15, za + 0.01], [xo - sd * 0.05, 1.6, za + 0.01], [xi + sd * 0.05, 1.6, za + 0.01]], "#e8281e", `rs${sd}`);
+      yazi((xi + xo) / 2, 1.45, za + 0.012, 0.11, "İNDİRİM", "#fff4d0", `rst${sd}`);
+      yazi((xi + xo) / 2, 1.27, za + 0.012, 0.13, "%20", "#ffe060", `rsp${sd}`);
+      // tavandan sarkan reyon tabelası (iki tel)
+      const [ad, rk] = REYON[sd < 0 ? 0 : 1];
+      const tz = -4.6, tx = sd * 1.67;
+      for (const ox of [-0.3, 0.3]) m([[tx + ox, 2.62, tz], [tx + ox + 0.01, 2.62, tz], [tx + ox + 0.01, mh, tz], [tx + ox, mh, tz]], "#5a5e62", `tt${sd}${ox}`);
+      m([[tx - 0.42, 2.38, tz], [tx + 0.42, 2.38, tz], [tx + 0.42, 2.62, tz], [tx - 0.42, 2.62, tz]], rk, `tb${sd}`);
+      yazi(tx, 2.5, tz + 0.005, 0.1, ad, "#ffffff", `tbt${sd}`);
     }
   }
   if (kacis) {
@@ -606,6 +689,7 @@ const SahneDepo: React.FC<{ c: Cam; t: number; f: number; twerk: number; radyo: 
       <rect x={-400} y={-600} width={W + 800} height={H + 1200} fill="#1a1612" />
       {mk}
       {kacis ? <g style={{ mixBlendMode: "screen" }}>{(() => { const g = toCam(c, [0, 1.4, -4]); if (g[2] < 4.6) return null; const [gx, gy] = proj(g); return <circle cx={gx} cy={gy} r={F * 3 / g[2]} fill="url(#fpsMarket)" />; })()}</g> : null}
+      {ara}
       {kor}
       {bosluk ? (
         <>
@@ -700,6 +784,11 @@ const KacisKar: React.FC<{ p: Prm; c: Cam; t: number; f: number; fps: number }> 
     zMin = Math.min(zMin, wz);
     const size = (F * (k.boy ?? 1.7) * 0.93) / a.d / 0.765;
     const q: Prm = { ...k.q, yer: [[0, a.xy[0], a.xy[1], size]] };
+    // bakış açısı: kamera yana geçtikçe karakter de o kadar döner (kâğıt gibi sabit durmasın); yüz yönü = +z (kapıya)
+    const aci = Math.atan2(c.x - wx, c.z - wz) * (180 / Math.PI);
+    const don = Math.max(-0.55, Math.min(0.55, aci / 70));
+    const bk = kf((k.q?.bak as KF) ?? [[0, 0, 0, 0]], t, [0, 0, 0]);
+    q.bak = [[0, bk[0] + don * 0.6, bk[1], bk[2] + don]];
     for (const [ad, ad3] of [["elL", "elL3"], ["elR", "elR3"]]) {
       const v = k.q?.[ad3];
       if (v) { const w3 = (Array.isArray(v[0]) ? kf(v as KF, t, [0, 0, 0]) : v) as V3; const h = pr(w3); if (h) { q[ad] = [[0, h.xy[0], h.xy[1]]]; } }
@@ -708,27 +797,31 @@ const KacisKar: React.FC<{ p: Prm; c: Cam; t: number; f: number; fps: number }> 
     if (kc) parca.push(<React.Fragment key={k.id}>{kc.govde}{kc.on}</React.Fragment>);
   }
   if (!parca.length) return null;
-  // zemin çizgisi (karakterlerin z'sinde): üstü görünür
   const zl = pr([-8, 0, zMin + 0.15]), zr = pr([8, 0, zMin + 0.15]);
   const zemin = zl && zr ? `polygon(${zl.xy[0]}px ${zl.xy[1]}px, ${zr.xy[0]}px ${zr.xy[1]}px, ${zr.xy[0]}px -3000px, ${zl.xy[0]}px -3000px)` : undefined;
-  let kapi: string | undefined;
-  if (c.z > -0.72) {   // kapıya çok yaklaşınca boşluk ekranı doldurur: kırpma gereksiz (ve izdüşüm bozulur)
-    const b = poly(c, [[-0.45, 0, -1], [0.45, 0, -1], [0.45, 2.1, -1], [-0.45, 2.1, -1]]);
-    kapi = b ? `path("${b.d}")` : "polygon(0 0, 0 0, 0 0)";
-  }
-  // dökülmüş ürünler (karakterlerin önünde)
+  // yere düşmüş ürünler + devrilmiş alışveriş sepeti (kızın düşüşünden kalan)
   const yig: React.ReactNode[] = [];
   const RENK = ["#d8402e", "#2f6fd0", "#e8a628", "#2f9e5a", "#e86a9a", "#7a4ad0"];
   for (let i = 0; i < 11; i++) {
     const x0 = -1.0 + i * 0.17 + 0.06 * random(`yx${i}`), z0 = zMin + 0.28 + 0.25 * random(`yz${i}`), w = 0.16 + 0.1 * random(`yw${i}`), h = 0.1 + 0.16 * random(`yh${i}`);
     const pp = poly(c, [[x0, 0, z0], [x0 + w, 0, z0], [x0 + w, h, z0], [x0, h, z0]]);
     if (pp) yig.push(<path key={i} d={pp.d} fill={RENK[i % RENK.length]} stroke="#2b1d1a" strokeWidth={2} />);
+    const et = poly(c, [[x0 + w * 0.15, h * 0.35, z0 + 0.001], [x0 + w * 0.85, h * 0.35, z0 + 0.001], [x0 + w * 0.85, h * 0.65, z0 + 0.001], [x0 + w * 0.15, h * 0.65, z0 + 0.001]]);
+    if (et) yig.push(<path key={`e${i}`} d={et.d} fill="#f4f0e4" opacity={0.85} />);
+  }
+  const sx = 0.75, sz = zMin + 0.5;
+  const sep = poly(c, [[sx, 0, sz], [sx + 0.42, 0, sz + 0.05], [sx + 0.46, 0.24, sz + 0.05], [sx - 0.02, 0.26, sz]]);
+  if (sep) {
+    yig.push(<path key="sep" d={sep.d} fill="#c8281e" stroke="#4a0e0a" strokeWidth={2} />);
+    for (let i = 1; i < 6; i++) { const u = i / 6; const l = poly(c, [[sx + 0.42 * u - 0.01, 0.04, sz + 0.05 * u + 0.002], [sx + 0.42 * u + 0.01, 0.04, sz + 0.05 * u + 0.002], [sx + 0.44 * u + 0.01, 0.22, sz + 0.05 * u + 0.002], [sx + 0.44 * u - 0.01, 0.22, sz + 0.05 * u + 0.002]]); if (l) yig.push(<path key={`sl${i}`} d={l.d} fill="#7a1410" />); }
   }
   return (
-    <div style={{ position: "absolute", left: 0, top: 0, width: W, height: H, clipPath: kapi }}>
-      <div style={{ position: "absolute", left: 0, top: 0, width: W, height: H, clipPath: zemin, filter: "brightness(1.02)" }}>{parca}</div>
-      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ position: "absolute", left: 0, top: 0 }}>{yig}</svg>
-    </div>
+    <g>
+      <foreignObject x={0} y={0} width={W} height={H}>
+        <div style={{ position: "relative", width: W, height: H, clipPath: zemin }}>{parca}</div>
+      </foreignObject>
+      {yig}
+    </g>
   );
 };
 
@@ -773,10 +866,9 @@ const B8Fps: React.FC<{ text?: string[] }> = ({ text }) => {
             <radialGradient id="fpsYesil"><stop offset="0" stopColor="#40ff80" stopOpacity={0.35} /><stop offset="1" stopColor="#40ff80" stopOpacity={0} /></radialGradient>
             <radialGradient id="fpsNeon"><stop offset="0" stopColor="#ff2030" stopOpacity={0.7} /><stop offset="1" stopColor="#ff2030" stopOpacity={0} /></radialGradient>
           </defs>
-          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} /> : (
+          {p.mekan === "depo" ? <SahneDepo c={cam} t={t} f={f} twerk={kf1(p.twerk, t, 0)} radyo={kf1(p.radyo, t, 0)} y={p.depoYaratik ?? {}} kacis={!!p.kacis} ara={p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null} /> : (
           <Sahne c={cam} t={t} f={f} yaratik={ya} yaratikGor={yaG} marketFlas={1} egik={kf1(p.yKafa, t, 0)} seg={kf1(p.ySeg, t, 0)} agiz={kf1(p.yAgiz, t, 0)} />)}
         </svg>
-        {p.kacis ? <KacisKar p={p.kacis as Prm} c={cam} t={t} f={f} fps={fps} /> : null}
       </AbsoluteFill>
       {/* sis/derinlik: ufukta soğuk sis bandı */}
 

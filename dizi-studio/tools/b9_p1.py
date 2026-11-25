@@ -134,8 +134,7 @@ ORTAK = {"t0": 0, "saat": [[0, "00:04"]], "kapi": [[0, 0]], "flor": [[0, 0.85]],
          # kapı altı: depo ampulü sallandıkça ışık nabız gibi; gölge soldan girer, ortada durur (ayaklar)
          "kapiAlt": [[0, 0, -1, 0.25], [t_pat, 0, -1, 0.25], [t_pat + 0.1, 0.7, -1, 0.25]] + [[round(t_pat + 0.3 + i * 0.3, 2), 0.55 + 0.35 * (i % 2), -1, 0.25] for i in range(int((t_golge - t_pat) / 0.3))]
                     + [[t_golge, 0.8, 1.2, 0.22], [t_golge + 0.5, 0.75, 0.78, 0.26], [SON, 0.7, 0.8, 0.26]],
-         "fx": [[t_pat + 0.02, "dokuntu", "yan", TOP[0], TOP[1], 0.8, 1.7], [t_nef + 0.5, "ter", "yan", EY[0] + 95 * S, fy(EY, 0.86), 0.85, 2.2],
-                [t_tut2 + 0.3, "ter", "yan", EY[0] - 90 * S, fy(EY, 0.9), 0.7, 1.6]]}
+         "fx": [[t_pat + 0.02, "dokuntu", "yan", TOP[0], TOP[1], 0.8, 1.7]]}
 
 
 def E(t, isim, vol=0.5, **kw):
