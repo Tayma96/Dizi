@@ -2172,6 +2172,27 @@
   "loop": false,
   "desc": "B8y P1: romantik (28. sn'den 3.07 sn), yumuşak giriş/çıkış."
  },
+ "muzik/b9_aslan": {
+  "file": "ses/muzik/b9_aslan.mp3",
+  "category": "muzik",
+  "duration": 8.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: ental only. Eerie stillness cue: a single low piano note, faint high string harmonics, breathless and sparse, mysterious and ominous"
+ },
+ "muzik/b9_dehset": {
+  "file": "ses/muzik/b9_dehset.mp3",
+  "category": "muzik",
+  "duration": 14.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: umental only. Creeping dread cue: very low cello drone and soft pulsing heartbeat-like bass, slowly rising tension, sparse high glass tones, ends abruptly"
+ },
+ "muzik/b9_kiskanc": {
+  "file": "ses/muzik/b9_kiskanc.mp3",
+  "category": "muzik",
+  "duration": 9.0,
+  "loop": false,
+  "desc": "ElevenLabs Music: Instrumental only. Quiet comedic jealousy cue: soft plucked pizzicato strings and a sly clarinet, slow, a little petty and sulky, ends on a held note"
+ },
  "muzik/banyo_komik": {
   "file": "ses/muzik/banyo_komik.mp3",
   "category": "muzik",
