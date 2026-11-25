@@ -1012,8 +1012,8 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
         <ellipse cx={252 + dx} cy={238} rx={19} ry={10} fill="#ef8f8a" />
       </g>
       <MakyajAlt look={look} dx={dx} />
-      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX + (0.95 - lookX) * tk} lookY={lookY + 0.25 * tk} open={eyeOpenBase * (1 - 0.3 * tk) * (1 - 0.55 * (pose.gozKis?.[0] ?? 0))} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} parilti={pose.parilti?.[0] ?? 0} />
-      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX + (-0.95 - lookX) * tk} lookY={lookY - 0.1 * tk} open={eyeOpenBase * (1 + 0.22 * tk) * (1 - 0.55 * (pose.gozKis?.[1] ?? 0))} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} parilti={pose.parilti?.[1] ?? 0} />
+      <Eye cx={160 + dx} cy={198} look={look} lookX={lookX + (0.95 - lookX) * tk} lookY={lookY + 0.25 * tk} open={eyeOpenBase * (1 - 0.3 * tk) * (1 - 0.55 * (pose.gozKis?.[0] ?? 0))} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeL} uid={`${uid}l`} sok={pose.gozSok ?? 0} parilti={pose.parilti?.[0] ?? 0} bos={pose.bosGoz ?? 0} />
+      <Eye cx={240 + dx} cy={198} look={look} lookX={lookX + (-0.95 - lookX) * tk} lookY={lookY - 0.1 * tk} open={eyeOpenBase * (1 + 0.22 * tk) * (1 - 0.55 * (pose.gozKis?.[1] ?? 0))} smile={face.eyeSmile && tk < 0.5} pupil={look.korkunc ? 0.38 : face.pupil} squeeze={squeezeR} flip uid={`${uid}r`} sok={pose.gozSok ?? 0} parilti={pose.parilti?.[1] ?? 0} bos={pose.bosGoz ?? 0} />
       <Brow cx={160 + dx} cy={160} inner={face.browInner + (-12 - face.browInner) * tk} outer={face.browOuter + (-4 - face.browOuter) * tk} lift={face.browLift + (8 - face.browLift) * tk} color={browColor} thick={look.yakisikli ? 9.5 : male ? 8 : 6.5} squeeze={squeezeL} />
       <Brow cx={240 + dx} cy={160} inner={face.browInner + (14 - face.browInner) * tk} outer={face.browOuter + (12 - face.browOuter) * tk} lift={face.browLift + (-16 - face.browLift) * tk} color={browColor} thick={look.yakisikli ? 9.5 : male ? 8 : 6.5} squeeze={squeezeR} flip />
       <path d={`M ${202 + dx * 1.3} ${214 - 6 * tk} Q ${196 + dx * 1.5 - Math.abs(yaw) * 6 * Math.sign(yaw || 1) - 8 * tk} ${236 - 8 * tk} ${204 + dx * 1.3 + 6 * tk} ${244 - 9 * tk}`} fill="none" stroke={OUT} strokeWidth={3.5} strokeLinecap="round" />
@@ -1081,6 +1081,12 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
             <MakyajUst look={look} dx={dx} mouthX={200 + dx * 1.1} mouthY={274 + 2 * yk} konusuyor={!!vis && vis !== "X"} restMouth={face.mouth} />
           </>
         );
+        if (pose.cigne !== undefined) {
+          // B9: çiğneme: çene ritmik iner-kalkar (ağız kapalı, gerili), dudaklar yana kayar
+          const mx = 200 + dx * 1.1, my = 274 + 2 * yk;
+          const c = Math.sin(pose.cigne * 2 * Math.PI * 2.1), yk2 = pose.yanak ?? 0;
+          return <g transform={`translate(${mx + 3 * yk2 * Math.sin(pose.cigne * 6.6)} ${my + 5 * yk2 * Math.max(0, c)}) scale(${1 + 0.1 * yk2 * c} ${1 - 0.25 * yk2 * Math.max(0, c)}) translate(${-mx} ${-my})`}>{agiz}</g>;
+        }
         if (tk > 0.01) {
           const mx = 200 + dx * 1.1, my = 274 + 2 * yk;
           return <g transform={`translate(${mx + 16 * tk} ${my - 4 * tk}) rotate(${-15 * tk}) skewX(${-12 * tk}) scale(${1 + 0.12 * tk} ${1 - 0.08 * tk}) translate(${-mx} ${-my})`}>{agiz}</g>;
@@ -1093,6 +1099,36 @@ export const Character: React.FC<CharacterProps> = ({ look, pose = {}, size = 10
           agiz
         );
       })()}
+      {pose.yanak && pose.yanak > 0.01 ? (() => {
+        // B9: yanaklar dolu (çiğnerken sırayla şişer)
+        const ph = pose.cigne ?? 0, a = pose.yanak;
+        const l = a * (0.75 + 0.25 * Math.sin(ph * 6.6)), r = a * (0.75 + 0.25 * Math.sin(ph * 6.6 + 2.2));
+        return (
+          <g>
+            <path d={`M ${132 + dx} ${222} Q ${118 + dx - 16 * l} ${262} ${150 + dx} ${292 + 6 * l}`} fill={look.skin} stroke={OUT} strokeWidth={4} />
+            <path d={`M ${268 + dx} ${222} Q ${282 + dx + 16 * r} ${262} ${250 + dx} ${292 + 6 * r}`} fill={look.skin} stroke={OUT} strokeWidth={4} />
+            <ellipse cx={146 + dx - 6 * l} cy={256} rx={14} ry={9} fill="#ef8f8a" opacity={0.35 * l} />
+            <ellipse cx={254 + dx + 6 * r} cy={256} rx={14} ry={9} fill="#ef8f8a" opacity={0.35 * r} />
+          </g>
+        );
+      })() : null}
+      {pose.agizPara && pose.agizPara > 0.01 ? (
+        // B9: ağız kenarından sarkan kırmızı banknot ucu (çiğnendikçe içeri çekilir)
+        <g transform={`translate(${214 + dx * 1.1} ${280}) rotate(${18 + 10 * Math.sin((pose.cigne ?? 0) * 13)})`} opacity={Math.min(1, pose.agizPara * 3)}>
+          <path d={`M 0 -6 L ${30 * pose.agizPara} -10 L ${34 * pose.agizPara} 8 L ${4} 10 Z`} fill="#c8283a" stroke={OUT} strokeWidth={2.5} />
+          <path d={`M 6 -2 L ${28 * pose.agizPara} -4`} stroke="#f2b0a0" strokeWidth={1.5} opacity={0.8} />
+          <text x={9} y={6} fontSize={8} fontWeight={900} fontFamily="Arial, sans-serif" fill="#f8d8c8">200</text>
+        </g>
+      ) : null}
+      {pose.sirit && pose.sirit > 0.01 ? (
+        // B9: gülümseme kulaklara uzar (ince mürekkep çizgisi + koyu yarık; yalnız 1-2 karede)
+        <g opacity={Math.min(1, pose.sirit * 1.4)}>
+          <path d={`M ${174 + dx} 278 Q ${150 + dx - 6 * pose.sirit} ${268 - 4 * pose.sirit} ${122 + dx - 4 * pose.sirit} ${224 - 10 * pose.sirit}`} stroke="#2a0c10" strokeWidth={3.2} fill="none" strokeLinecap="round" />
+          <path d={`M ${226 + dx} 278 Q ${250 + dx + 6 * pose.sirit} ${268 - 4 * pose.sirit} ${278 + dx + 4 * pose.sirit} ${224 - 10 * pose.sirit}`} stroke="#2a0c10" strokeWidth={3.2} fill="none" strokeLinecap="round" />
+          <path d={`M ${176 + dx} 279 Q ${200 + dx} ${292 + 8 * pose.sirit} ${224 + dx} 279 Q ${200 + dx} 286 ${176 + dx} 279 Z`} fill="#1a0608" />
+          {[0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${184 + i * 8 + dx} 281 l 3 ${5 + pose.sirit! * 3} l 3 ${-5 - pose.sirit! * 3} Z`} fill="#f4eee0" />)}
+        </g>
+      ) : null}
       {look.korkunc && (face.mouth === "smirk" || face.mouth === "smile" || face.mouth === "grin") && !vis ? (
         <g>
           {/* gülümsemede sivri, sararmış dişler ve çatlak dudak */}

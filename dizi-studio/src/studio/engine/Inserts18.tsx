@@ -21,6 +21,7 @@ import { Market724BG, Market724FG } from "../sets/market724";
 import { Market724DisBG, Market724DisZemin } from "../sets/market724dis";
 import { Market724YanBG, Market724YanTezgah, YAN_KAPI, YanAyakkabi, kapiAltGolge, yanKapiBosluk, yanTezgahSagX, yanTezgahUst } from "../sets/market724yan";
 import { TvEkran } from "./tv724";
+import { DusenPara, DuvarSaat, GolgeYakin, OrumcekGolge, ParaYakin, SiseYakin, YanParalar } from "./b9p36";
 import { sstep } from "./bocek";
 import { AnimeFxDunya, AnimeFxEkran, fxKamera, type Fx } from "./canli";
 import { karakter, type KarCiz } from "./Inserts16";
@@ -461,13 +462,17 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
     sahne = (
       <>
         <SVG><Market724YanBG frame={f} acik={acik} kol={depoKol} saat={saat} fl={flor} levha={p.levha ? kf1(p.levha, tg, 0) : 0} kapiAlt={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]) : undefined} tv={tvDurum} levhaDy={p.levhaDy ? kf1(p.levhaDy, tg, 0) : 0} kanatTit={p.kanatTit ? kf1(p.kanatTit, tg, 0) : 0} /></SVG>
+        {p.orumcek ? <SVG blend="multiply"><OrumcekGolge k={kf(p.orumcek, tg, [0, 1, 0, 1])} tg={tg} /></SVG> : null}
+        {p.yanPara ? <SVG><YanParalar notlar={p.yanPara} tg={tg} isik={p.kapiAlt ? kf(p.kapiAlt, tg, [0])[0] : 0.8} /></SVG> : null}
+        {kadin && aralik(p.kadinArka, tg) ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}</div> : null}
         {mert ? (
           <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920, clipPath: klip ? `polygon(${bosluk})` : undefined,
             filter: sil > 0.01 ? `brightness(${(1 - 0.9 * sil).toFixed(3)}) saturate(${(1 - 0.7 * sil).toFixed(3)}) drop-shadow(0 0 ${(4 * sil).toFixed(1)}px rgba(255,214,150,${(0.9 * sil).toFixed(2)}))` : undefined }}>
             {mert.govde}{mert.on}
           </div>
         ) : null}
-        {kadin ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}{kadin.on}</div> : null}
+        {kadin && aralik(p.kadinArka, tg) ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.on}</div> : null}
+        {kadin && !aralik(p.kadinArka, tg) && !aralik(p.kadinOnde, tg) ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}{kadin.on}</div> : null}
         {sabri ? sabri.govde : null}
         {ece && p.eceArkada ? ece.govde : null}
         <SVG><Market724YanTezgah sars={sars} frame={f} /></SVG>
@@ -479,6 +484,8 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         })() : null}
         {ece && !p.eceArkada ? ece.govde : null}
         {ece && !p.eceArkada ? ece.on : null}
+        {kadin && aralik(p.kadinOnde, tg) ? <div style={{ position: "absolute", left: 0, top: 0, width: 1080, height: 1920 }}>{kadin.govde}{kadin.on}</div> : null}
+        {p.dusen ? <SVG><DusenPara k={p.dusen} tg={tg} /></SVG> : null}
         {p.ayakkabi && tg >= p.ayakkabi[0][0] ? (() => {
           // B9 P1 kanca: [t, X, Z, yaw°, ezik]; iz: sürüklenme izinin başı [X, Z]
           const [ax, az, ayw, aez] = kf(p.ayakkabi, tg, [0, 0, 0, 0]);
@@ -487,6 +494,14 @@ const B8Market: React.FC<{ text?: string[] }> = ({ text }) => {
         {kf1(p.toz, tg, 0) > 0.01 ? <SVG>{new Array(14).fill(0).map((_, i) => { const u = kf1(p.toz, tg, 0); const [kx, ky] = YAN_KAPI; return <circle key={i} cx={kx - 120 + (i * 37) % 240 + 60 * u * Math.sin(i)} cy={ky + 260 - (i * 53) % 520 - 80 * u} r={14 + (i % 5) * 7} fill="#e8d8b8" opacity={0.35 * (1 - u)} />; })}</SVG> : null}
       </>
     );
+  } else if (view === "para") {
+    sahne = <SVG><ParaYakin p={p} tg={tg} f={f} isik={p.kapiAlt ? kf(p.kapiAlt, tg, [0])[0] : 0.9} ayak={p.kapiAlt ? kf(p.kapiAlt, tg, [0, -1, 0.2, -1, 0, 1]) : [0, -1]} /></SVG>;
+  } else if (view === "sise") {
+    sahne = <SVG><SiseYakin tg={tg} f={f} odak={kf1(p.siseOdak, tg, 1)} /></SVG>;
+  } else if (view === "golge") {
+    sahne = <SVG><GolgeYakin tg={tg} f={f} tuhaf={kf1(p.golgeTuhaf, tg, 0)} /></SVG>;
+  } else if (view === "saat") {
+    sahne = <SVG><DuvarSaat tg={tg} f={f} yazi={basamak<string>(p.duvarSaat, tg, "02:59")} isik={flor} /></SVG>;
   } else if (view === "tv" && tvDurum) {
     // B9 P2: duvar televizyonu yakın plan; spiker rig'i ekran koordinatında (960×540), dudak senkronu sahne zamanından
     const sp = K.spiker ? karakter("spiker", K.spiker, tg, f, fps, t0f) : null;

@@ -336,6 +336,15 @@ export type Pose = {
   kirpmaz?: boolean;
   /** 7/24 B8: göz başına anime parıltısı [sol, sağ] 0..1 */
   parilti?: [number, number];
+  /** 7/24 B9: boş, büyülenmiş bakış 0..1 */
+  bosGoz?: number;
+  /** 7/24 B9: gülümseme kulaklara uzar 0..1 (ince çizgi uzantısı; yalnız 1-2 kare) */
+  sirit?: number;
+  /** 7/24 B9: çiğneme fazı (sn; tanımlıysa çene iner kalkar, yanaklar sırayla şişer) ve şişkinlik 0..1 */
+  cigne?: number;
+  yanak?: number;
+  /** 7/24 B9: ağızdan sarkan banknot ucu 0..1 */
+  agizPara?: number;
   /** 7/24 B8: göz başına kısma [sol, sağ] 0..1 (1 = şüpheyle kısılmış) */
   gozKis?: [number, number];
   /** 7/24 B5: yüzde mum gibi, maske gibi parlaklık 0..1 */

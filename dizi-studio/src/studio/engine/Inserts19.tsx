@@ -863,7 +863,7 @@ const KacisKar: React.FC<{ p: Prm; c: Cam; t: number; f: number; fps: number }> 
   const parca: React.ReactNode[] = [];
   let zMin = 99;
   for (const k of kars) {
-    const [wx, wy, wz] = k.w as V3;
+    const [wx, wy, wz] = (k.wk ? kf(k.wk as KF, t, k.w as number[]) : k.w) as V3;   // B9: wk = zamanlı konum [[t,x,y,z]]
     const a = pr([wx, wy, wz]);
     if (!a) continue;
     zMin = Math.min(zMin, wz);

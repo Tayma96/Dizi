@@ -63,7 +63,11 @@ export const Eye: React.FC<{
   sok?: number;
   /** 7/24 B8: anime âşık parıltısı 0..1: iri iris, büyük bebek, iki büyük parlama + yıldızcık */
   parilti?: number;
-}> = ({ cx, cy, look, lookX, lookY, open: open0, smile, pupil, flip, squeeze = 1, uid, sok = 0, parilti = 0 }) => {
+  /** 7/24 B9: boş bakış 0..1 (büyülenmiş): iris grileşir, bebek iğne ucu, parlama söner, kapak ağırlaşır */
+  bos?: number;
+}> = ({ cx, cy, look, lookX: lookX0, lookY: lookY0, open: open00, smile, pupil, flip, squeeze = 1, uid, sok = 0, parilti = 0, bos = 0 }) => {
+  const open0 = open00 * (1 - 0.18 * bos);
+  const lookX = lookX0 * (1 - bos), lookY = lookY0 * (1 - bos) + 0.15 * bos;
   const open = sok > 0 ? open0 + (1.42 - open0) * sok : open0;
   const w = 22 * squeeze;
   const h = 15;
@@ -95,9 +99,10 @@ export const Eye: React.FC<{
       <path d={shape} fill="#fdfaf5" />
       <g clipPath={`url(#${clipId})`}>
         <circle cx={ix} cy={iy} r={11.5 - 7.6 * sok + 2.5 * parilti} fill={look.iris} />
-        <circle cx={ix} cy={iy} r={6 * pupil * (1 - sok) + 2.1 * sok + 1.6 * parilti} fill="#120c0a" />
-        <circle cx={ix + 4} cy={iy - 4} r={3.2 + 2 * parilti} fill="#fff" opacity={1 - sok} />
-        <circle cx={ix - 4} cy={iy + 4} r={1.4 + 1.4 * parilti} fill="#fff" opacity={0.8 * (1 - sok)} />
+        {bos > 0.01 ? <circle cx={ix} cy={iy} r={11.5 - 7.6 * sok} fill="#9aa0a6" opacity={0.75 * bos} /> : null}
+        <circle cx={ix} cy={iy} r={(6 * pupil * (1 - sok) + 2.1 * sok + 1.6 * parilti) * (1 - 0.72 * bos)} fill="#120c0a" />
+        <circle cx={ix + 4} cy={iy - 4} r={3.2 + 2 * parilti} fill="#fff" opacity={(1 - sok) * (1 - bos)} />
+        <circle cx={ix - 4} cy={iy + 4} r={1.4 + 1.4 * parilti} fill="#fff" opacity={0.8 * (1 - sok) * (1 - bos)} />
         {parilti > 0.01 ? (
           <g opacity={parilti}>
             {/* irisin alt yarısında pembe ışıltı + yıldızcık (anime âşık gözü) */}

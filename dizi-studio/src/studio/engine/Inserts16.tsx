@@ -111,6 +111,61 @@ export const Esya: React.FC<{ n: string; x: number; y: number; s: number; a?: nu
         {n === "su" ? <rect x={-10} y={-92} width={20} height={14} rx={2} fill="#2a5ad8" stroke={O} strokeWidth={3} /> : <rect x={-8} y={-84} width={16} height={5} fill="#e8f4fa" stroke={O} strokeWidth={2} />}
       </g>
     );
+  // B9 P3-6: özgün, stilize 200'lük (kırmızı; gerçek banknotun kopyası değil: geometrik gül motifi + rakam)
+  if (n === "para200" || n === "paraTek" || n === "paraYelpaze")
+    return (
+      <g transform={tr}>
+        {(n === "paraTek" ? [0] : n === "para200" ? [-1, 0, 1, 2] : [-3, -2, -1, 0, 1, 2]).map((i) => (
+          <g key={i} transform={`rotate(${n === "paraYelpaze" ? i * 13 : i * 3}) translate(${n === "paraYelpaze" ? 0 : i * 2} ${n === "paraYelpaze" ? 0 : -i * 3})`}>
+            <g transform="translate(0 -38)">
+              <rect x={-30} y={-46} width={60} height={92} rx={4} fill={i % 2 ? "#c42a3a" : "#d23a46"} stroke={O} strokeWidth={3} />
+              <rect x={-24} y={-40} width={48} height={80} rx={2} fill="none" stroke="#f0a0a0" strokeWidth={2} opacity={0.8} />
+              <circle cx={0} cy={4} r={13} fill="none" stroke="#f6c0b8" strokeWidth={2.5} />
+              <path d="M 0 -9 L 4 0 L 13 4 L 4 8 L 0 17 L -4 8 L -13 4 L -4 0 Z" fill="#f6c0b8" opacity={0.85} />
+              <text x={0} y={-24} textAnchor="middle" fontSize={15} fontWeight={900} fontFamily="Arial, sans-serif" fill="#fde8e0">200</text>
+            </g>
+          </g>
+        ))}
+      </g>
+    );
+  if (n === "cuzdan")  // B9: kahverengi deri cüzdan (katlı)
+    return (
+      <g transform={tr}>
+        <rect x={-34} y={-30} width={68} height={50} rx={8} fill="#5a3420" stroke={O} strokeWidth={3.5} />
+        <path d="M -30 -8 H 30" stroke="#3a2010" strokeWidth={2.5} />
+        <path d="M -28 -26 H 28" stroke="#8a5a38" strokeWidth={2} strokeDasharray="4 3" />
+        <rect x={-22} y={-38} width={30} height={12} rx={2} fill="#2f6fd0" stroke={O} strokeWidth={2} />
+      </g>
+    );
+  if (n === "kart" || n === "kartKirik")  // B9: kredi kartı (kirik: bir köşesi ısırılmış, diş izi)
+    return (
+      <g transform={tr}>
+        <path d={n === "kart" ? "M -34 -44 H 34 V -2 H -34 Z" : "M -34 -44 H 8 Q 12 -36 18 -40 Q 22 -30 28 -34 Q 30 -24 34 -26 V -2 H -34 Z"} fill="#1e2f6a" stroke={O} strokeWidth={3} strokeLinejoin="round" />
+        <rect x={-26} y={-34} width={14} height={11} rx={2} fill="#e8c860" stroke="#8a6a20" strokeWidth={1.5} />
+        <path d="M -26 -14 H 20" stroke="#c8d0e8" strokeWidth={3} strokeDasharray="5 3" />
+        <path d="M -34 -40 L 34 -6" stroke="#ffffff" strokeWidth={5} opacity={0.12} />
+      </g>
+    );
+  if (n === "pence")  // B9 P6: altına dönmüş uzun tırnaklar (dört parmak ucu, kıvrık)
+    return (
+      <g transform={tr}>
+        {[-14, -5, 4, 13].map((x, i) => (
+          <g key={i} transform={`translate(${x} 4) rotate(${(i - 1.5) * 9})`}>
+            <path d="M -4 0 Q -6 22 2 40 Q 4 22 4 0 Z" fill="#e8b830" stroke="#5a3a08" strokeWidth={2.2} />
+            <path d="M -1 6 Q -2 20 1 32" stroke="#fff2b0" strokeWidth={1.6} fill="none" opacity={0.9} />
+          </g>
+        ))}
+      </g>
+    );
+  if (n === "kolSaati")  // B9 P4: bilekte gümüş kol saati (kadran yukarı)
+    return (
+      <g transform={tr}>
+        <rect x={-22} y={-34} width={44} height={14} rx={3} fill="#9aa2aa" stroke={O} strokeWidth={2.5} />
+        <circle cx={0} cy={-27} r={14} fill="#e8eef2" stroke="#5a6470" strokeWidth={4} />
+        <path d="M 0 -27 L 0 -36 M 0 -27 L 6 -24" stroke={O} strokeWidth={2} strokeLinecap="round" />
+        <circle cx={-5} cy={-32} r={3} fill="#ffffff" opacity={0.9} />
+      </g>
+    );
   if (n === "kumanda")  // B9 P2: TV kumandası (avuçta, ucu ileri-yukarı)
     return (
       <g transform={tr}>
@@ -277,6 +332,9 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
         parilti: q.parilti ? (kfDuz(q.parilti, tg, [0, 0]) as [number, number]) : undefined, gozKis: q.gozKis ? (kfDuz(q.gozKis, tg, [0, 0]) as [number, number]) : undefined,
         sacEk: sacEk ? Math.max(-40, Math.min(40, sacEk)) : undefined,
         yerOtur: q.yerOtur ? kfD1(q.yerOtur, tg, 0) || undefined : undefined,
+        bosGoz: q.bosGoz ? kfD1(q.bosGoz, tg, 0) || undefined : undefined, sirit: q.sirit ? kfDuz(q.sirit, tg, [0])[0] || undefined : undefined,
+        cigne: q.cigneAra && aralik(q.cigneAra, tg) ? tg : undefined, yanak: q.yanak ? kfD1(q.yanak, tg, 0) || undefined : undefined,
+        agizPara: q.agizPara ? kfD1(q.agizPara, tg, 0) || undefined : undefined, kirpmaz: q.kirpmaz ? aralik(q.kirpmaz, tg) || undefined : undefined,
       }} />
     </div>
   );
@@ -329,7 +387,7 @@ export const karakter = (id: string, q: Prm | undefined, tg: number, f: number, 
     // çorap bilekten (lastikten) tutulur, aşağı sarkar; kot belinden tutulur
     const dy = tut === "corap" ? 52 * S : tut === "kot" ? 215 * S : tut === "parmak" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? -10 * S : -6 * S;
     // eşya, tutan kolun hemen önünde; öbür kol sonra çizilir (ör. sağ el, sol elin tuttuğu kotun cebini yoklar)
-    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={q.esyaAci && (tut === "su" || tut === "suAcik" || tut === "suYarim") ? kfD1(q.esyaAci, tg, 0) : tut === "isaret" && q.isaretAci !== undefined ? (q.isaretAci as number) : tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
+    if (tut) kollar.push(<Esya key={`e${side}`} n={tut} x={H[0]} y={H[1] + dy} s={S * (tut === "kot" ? 2.5 : 1)} a={q.esyaAci && (tut === "su" || tut === "suAcik" || tut === "suYarim") ? kfD1(q.esyaAci, tg, 0) : tut === "isaret" && q.isaretAci !== undefined ? (Array.isArray(q.isaretAci) ? kfD1(q.isaretAci as KF, tg, 0) : (q.isaretAci as number)) : tut === "corap" || tut === "isaret" || tut === "iki" || tut === "basparmakArka" ? 0 : tut === "kalem" ? (side === "L" ? -32 : 32) : side === "L" ? -15 : 15} />);
   };
   sideDraw("L");
   sideDraw("R");

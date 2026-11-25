@@ -2486,5 +2486,19 @@
   "duration": 58.0,
   "loop": true,
   "desc": "Sağanak + uzak gök gürültüsü (BigSoundBank #0740) — gerçek kayıt, CC0"
+ },
+ "efekt/b9_fisilti": {
+  "file": "ses/efekt/b9_fisilti.mp3",
+  "category": "efekt",
+  "duration": 2.6,
+  "loop": false,
+  "desc": "B9 P4: kulağa nefesli fısıltı (sözcüksüz; ffmpeg pembe gürültü, bant geçiren + hece zarfı; kendi sentezimiz)"
+ },
+ "efekt/b9_kagit_kay": {
+  "file": "ses/efekt/b9_kagit_kay.mp3",
+  "category": "efekt",
+  "duration": 0.5,
+  "loop": false,
+  "desc": "B9 P3: kapı altından kayan banknot hışırtısı (ffmpeg beyaz gürültü, kısa zarf; kendi sentezimiz)"
  }
 }
